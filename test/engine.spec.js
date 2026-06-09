@@ -109,6 +109,34 @@ test('Tier A: anchor-exact beats Guyot under administrative censoring; best-of s
   assert.ok(best.flags.some(f => f.startsWith('wasserstein_to_anchors:')), 'reports Wasserstein');
 });
 
+// -------------------------------------------------- competing risks (Aalen–Johansen)
+test('Aalen-Johansen CIF: invariant CIF1+CIF2+S=1, and naive 1-KM overestimates cause-1 incidence', () => {
+  // cause 1 events early, a burst of competing (cause 2) events at t=2, rest censored
+  const ipd = [];
+  for (let i = 0; i < 20; i++) ipd.push({ time: 1, cause: 1 });
+  for (let i = 0; i < 30; i++) ipd.push({ time: 2, cause: 2 });   // competing
+  for (let i = 0; i < 15; i++) ipd.push({ time: 3, cause: 1 });
+  for (let i = 0; i < 35; i++) ipd.push({ time: 5, cause: 0 });   // censored
+  const aj = RIPD._.cifAalenJohansen(ipd);
+  for (const s of aj) assert.ok(Math.abs(s.cif1 + s.cif2 + s.S - 1) < 1e-9, 'CIF1+CIF2+S=1 invariant');
+  const ajFinal = aj[aj.length - 1].cif1;
+  const naive = RIPD._.cifNaive1(ipd);
+  const naiveFinal = naive[naive.length - 1].cif1;
+  // treating the 30 competing events as censoring inflates the cause-1 incidence
+  assert.ok(naiveFinal > ajFinal + 1e-6, `naive ${naiveFinal.toFixed(3)} should exceed AJ ${ajFinal.toFixed(3)}`);
+});
+
+test('reconstructCompetingRisks labels causes and produces a CIF that respects the invariant', () => {
+  const t = fx('fixture_exp_known.json');
+  // inject competing events on each arm
+  t.arms.forEach(a => { a.competing_events = Math.round(0.2 * a.N); });
+  const r = RIPD.reconstructCompetingRisks(t);
+  assert.ok(r.competing_risks && r.arms[0].cif, 'CIF computed');
+  for (const s of r.arms[0].cif) assert.ok(Math.abs(s.cif1 + s.cif2 + s.S - 1) < 1e-9);
+  const cause2 = r.arms[0].ipd_cr.filter(x => x.cause === 2).length;
+  assert.ok(cause2 > 0 && cause2 <= Math.round(0.2 * t.arms[0].N) + 1, 'competing events labeled');
+});
+
 // -------------------------------------------------- multiple-imputation uncertainty
 test('reconstructEnsemble yields credible intervals that cover the truth', () => {
   const t = fx('fixture_exp_known.json');

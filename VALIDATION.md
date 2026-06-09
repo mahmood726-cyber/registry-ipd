@@ -162,6 +162,18 @@ that is the *honest* uncertainty the coarse registry curve leaves on the HR, whi
 reconstructions hide. This is, to our knowledge, the first **calibrated uncertainty quantification
 for registry-native (no-image) survival reconstruction.**
 
+## Cutting-edge: competing-risks reconstruction (Aalen–Johansen)
+
+When the harvested curve is a cause-specific endpoint (e.g. time-to-progression with death as a
+**competing** event), treating 1−KM as the cumulative incidence is biased — censoring a competing
+event wrongly assumes the patient could still have the event of interest. `reconstructCompetingRisks()`
+labels causes (event-of-interest vs competing, the competing count from `drop_withdrawals` reasons)
+and computes the correct **Aalen–Johansen CIF**. Validated: the invariant CIF₁(t)+CIF₂(t)+S(t)=1
+holds at every step, and naive 1−KM provably overestimates the cause-1 incidence. Demonstration
+(RADIANT-4, 15% competing deaths injected): naive 1−KM overestimates progression incidence by
+**+3.6 pp (experimental) / +1.4 pp (comparator)**; AJ corrects it. This makes the reconstruction
+honest for cause-specific endpoints, which the single-KM assumption silently biases.
+
 ## Remaining levers
 - ✅ HR-calibration · ✅ N-matched mapping · ✅ RMST/median validation · ✅ Royston–Parmar (extrapolation).
 - **Same-endpoint external median matching** to clean the contaminated registry-median cross-check.

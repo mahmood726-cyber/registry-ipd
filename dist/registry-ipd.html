@@ -996,6 +996,56 @@
     };
   }
 
+  // ============================================ 7b. Competing risks (Aalen–Johansen)
+  //
+  // When the endpoint is cause-specific (e.g. time-to-progression with death as a COMPETING event),
+  // treating 1-KM as the cumulative incidence is biased: censoring a competing event assumes the
+  // patient could still have the event of interest, which they cannot. The Aalen–Johansen estimator
+  // gives the correct cause-specific CIF. ipd rows carry cause ∈ {0 censor, 1 event-of-interest,
+  // 2 competing}. Invariant: CIF1(t)+CIF2(t)+S(t) = 1 at every step.
+  function cifAalenJohansen(ipd) {
+    const rows = ipd.slice().sort((a, b) => a.time - b.time);
+    const times = [...new Set(rows.map(r => r.time))].sort((a, b) => a - b);
+    let n = rows.length, S = 1, cif1 = 0, cif2 = 0;
+    const out = [];
+    for (const t of times) {
+      const at = rows.filter(r => Math.abs(r.time - t) < 1e-12);
+      const d1 = at.filter(r => r.cause === 1).length;
+      const d2 = at.filter(r => r.cause === 2).length;
+      const c = at.filter(r => !(r.cause > 0)).length;
+      if (n > 0) { cif1 += S * (d1 / n); cif2 += S * (d2 / n); S *= (1 - (d1 + d2) / n); }
+      out.push({ t, cif1, cif2, S });
+      n -= (d1 + d2 + c);
+    }
+    return out;
+  }
+  // Naive cause-1 cumulative incidence = 1 - KM treating the competing event as censoring (biased high).
+  function cifNaive1(ipd) {
+    const km = kmFromIPD(ipd.map(r => ({ time: r.time, status: r.cause === 1 ? 1 : 0 })));
+    return km.map(s => ({ t: s.t, cif1: 1 - s.S }));
+  }
+  // Reconstruct cause-labeled pseudo-IPD: event-of-interest from the curve, then relabel
+  // `competing_events` of the censored rows as the competing cause (cause 2), spread over time.
+  function reconstructCompetingRisks(trial, opts) {
+    opts = opts || {};
+    const base = reconstruct(trial, opts);
+    if (!base.arms) return base;
+    base.arms.forEach((arm, idx) => {
+      const spec = trial.arms[idx];
+      const comp = spec.competing_events != null ? spec.competing_events : (opts.competing && opts.competing[arm.arm_id]);
+      const ipd = arm.ipd.map(r => ({ time: r.time, cause: r.status === 1 ? 1 : 0 }));
+      if (comp && comp > 0) {
+        const censIdx = ipd.map((r, i) => r.cause === 0 ? i : -1).filter(i => i >= 0).sort((a, b) => ipd[a].time - ipd[b].time);
+        const k = Math.min(comp, censIdx.length);
+        for (let j = 0; j < k; j++) ipd[censIdx[Math.floor(j * censIdx.length / k)]].cause = 2; // spread across time
+      }
+      arm.ipd_cr = ipd;
+      arm.cif = cifAalenJohansen(ipd);
+    });
+    base.competing_risks = true;
+    return base;
+  }
+
   // ============================================ 8. Multiple-imputation uncertainty (Tier A)
   //
   // Registry constraints do NOT uniquely determine the IPD: the censoring level/timing and the
@@ -1072,7 +1122,7 @@
   }
 
   return {
-    reconstruct, reconstructEnsemble, classifyTier,
+    reconstruct, reconstructEnsemble, reconstructCompetingRisks, classifyTier,
     // expose internals for tests
     _: {
       pavaDecreasing, mulberry32, hashStr, quantileSorted,
@@ -1080,7 +1130,7 @@
       coxLogHR, guyotCore, buildRiskIndices, normalizeAndExpand,
       reconstructArmGuyot, reconstructArmAnchorExact, armAnchorWasserstein, anchorStepFn,
       reconstructTierB, selfAudit, parametricArm, solveCutoffExp,
-      fitRoystonParmar, rcsBasis, densifyWithRP
+      fitRoystonParmar, rcsBasis, densifyWithRP, cifAalenJohansen, cifNaive1
     }
   };
 }));
