@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Registry-IPD — Validation Dashboard" />
+<meta property="og:description" content="Validation of registry-native pseudo-IPD reconstruction against true patient-level data: gold-standard across 8 RCTs, anchor-density curve, calibrated uncertainty." />
+<title>Registry-IPD — Validation Dashboard</title>
+<style>
+  :root{--bg:#0e1116;--panel:#161b22;--ink:#e6edf3;--mut:#8b949e;--line:#30363d;--ok:#3fb950;--bad:#f85149;--accent:#58a6ff;--accent2:#f778ba;--warn:#d29922}
+  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  header{padding:20px 24px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#11161d,#0e1116)}
+  h1{margin:0 0 4px;font-size:20px}.sub{color:var(--mut);max-width:920px;font-size:13px}
+  main{max-width:1060px;margin:0 auto;padding:18px 22px;display:grid;gap:18px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  h2{margin:0 0 4px;font-size:15px}.note{color:var(--mut);font-size:12.5px;margin:2px 0 12px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}td,th{text-align:left;padding:6px 9px;border-bottom:1px solid var(--line)}
+  th{color:var(--mut);font-weight:600}.r{text-align:right}.ok{color:var(--ok)}.bad{color:var(--bad)}.mut{color:var(--mut)}
+  svg{width:100%;height:auto;background:#0d1117;border:1px solid var(--line);border-radius:8px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .verdict{border-left:3px solid var(--accent);padding:8px 14px;background:#10161f;border-radius:6px;font-size:13px}
+  code{background:#0d1117;border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+  .pill{display:inline-block;border-radius:999px;padding:2px 9px;font-size:11px;border:1px solid var(--line)}
+  .pill.good{color:var(--ok);border-color:var(--ok)}.pill.mid{color:var(--warn);border-color:var(--warn)}.pill.bad{color:var(--bad);border-color:var(--bad)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Registry-IPD — Validation Dashboard</h1>
+  <div class="sub">Reconstructing pseudo individual-patient survival data from ClinicalTrials.gov / AACT
+  <b>summary data only</b>, validated up to <b>true patient-level RCT data</b>. Fully offline. See
+  <code>VALIDATION.md</code> / <code>METHODS.md</code> in the repo for full detail and caveats.</div>
+</header>
+<main>
+  <section class="panel">
+    <h2>Headline verdict (honest)</h2>
+    <div class="verdict">For adequately-sized trials, <b>RMST and median reconstruct to ~2–6%</b> and the
+    <b>HR to ~11% (median)</b>; the <b>95% credible interval covers the true HR 7/7</b> on real data.
+    HR is the hard estimand; <b>very small trials don't reconstruct</b>; needs <b>≥5–6 posted KM
+    timepoints</b>. Not a substitute for true IPD — a triangulation tool with honest uncertainty.</div>
+  </section>
+
+  <section class="panel">
+    <h2>Validation ladder</h2>
+    <div class="note">Each rung is a more independent ground truth than the last.</div>
+    <table><thead><tr><th>level</th><th>ground truth</th><th>key result</th></tr></thead><tbody id="ladder"></tbody></table>
+  </section>
+
+  <div class="grid2">
+    <section class="panel">
+      <h2>Gold standard — true vs reconstructed HR (8 real RCTs)</h2>
+      <div class="note">Each point: one real RCT. On the diagonal = perfect recovery (log–log axes).</div>
+      <svg id="scatter" viewBox="0 0 460 360"></svg>
+    </section>
+    <section class="panel">
+      <h2>Anchor density — accuracy vs posted timepoints</h2>
+      <div class="note">Curve-only HR fold-error vs K (7 datasets). Sharp gain to ~5, then plateau.</div>
+      <svg id="sens" viewBox="0 0 460 360"></svg>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Calibrated uncertainty — 95% credible interval vs true HR (7 RCTs)</h2>
+    <div class="note">Multiple-imputation interval (sampling the under-identified censoring level). Dot = true patient-level HR; bar = 95% CI. <b>7/7 cover the truth.</b></div>
+    <svg id="forest" viewBox="0 0 920 250"></svg>
+  </section>
+
+  <div class="grid2">
+    <section class="panel">
+      <h2>Gold-standard detail</h2>
+      <table><thead><tr><th>dataset</th><th class="r">N</th><th class="r">true HR</th><th class="r">recon HR</th><th class="r">log-err</th></tr></thead><tbody id="gstab"></tbody></table>
+    </section>
+    <section class="panel">
+      <h2>Competing risks (true IPD: survival::colon)</h2>
+      <div class="note">Reconstructed Aalen–Johansen CIF vs TRUE AJ CIF; naive 1−KM overestimates.</div>
+      <table><thead><tr><th>arm</th><th class="r">true AJ</th><th class="r">naive 1−KM</th><th class="r">recon err</th></tr></thead><tbody id="crtab"></tbody></table>
+      <div class="note" style="margin-top:8px">Estimand reliability: <span class="pill good">RMST ~2–6%</span> <span class="pill good">median ~3–6%</span> <span class="pill mid">HR ~11%</span> <span class="pill bad">small trials fail</span></div>
+    </section>
+  </div>
+</main>
+
+<script>
+// ---- embedded validation results (from the repo's validate/* runs) ----
+var GOLD = [
+  {ds:'gbsg',n:'246/440',t:0.695,r:0.686,e:0.013},{ds:'rotterdam',n:'339/2643',t:1.51,r:1.269,e:0.174},
+  {ds:'pbc',n:'154/158',t:0.944,r:1.117,e:0.168},{ds:'diabetic',n:'197/197',t:0.46,r:0.412,e:0.11},
+  {ds:'nwtco',n:'459/3569',t:5.103,r:5.367,e:0.051},{ds:'myeloid',n:'329/317',t:0.708,r:0.639,e:0.103},
+  {ds:'kidtran',n:'339/524',t:0.907,r:1.046,e:0.142},{ds:'veteran',n:'68/69',t:1.016,r:0.755,e:0.297}
+];
+var SENS = [{K:3,f:1.33},{K:4,f:1.19},{K:5,f:1.09},{K:6,f:1.13},{K:8,f:1.12},{K:12,f:1.08},{K:20,f:1.07}];
+var UNC = [
+  {ds:'gbsg',t:0.695,lo:0.476,hi:0.955},{ds:'rotterdam',t:1.51,lo:0.882,hi:2.005},
+  {ds:'pbc',t:0.944,lo:0.734,hi:1.778},{ds:'diabetic',t:0.46,lo:0.287,hi:0.630},
+  {ds:'nwtco',t:5.103,lo:3.449,hi:7.027},{ds:'myeloid',t:0.708,lo:0.416,hi:0.884},
+  {ds:'kidtran',t:0.907,lo:0.644,hi:1.783}
+];
+var LADDER = [
+  ['Registry-internal','AACT HR / median','HR ~12%, 83–94% within CI; RMST/median round-trip-consistent'],
+  ['Published','primary journal (RADIANT-4)','recon HR 0.47 vs published 0.48; median ~11/4 vs 11.0/3.9'],
+  ['True IPD — survival','8 open RCTs (gbsg, rotterdam, …)','HR median ~11%; median ~3–6%; RMST ~2%'],
+  ['True IPD — uncertainty','same 7 RCTs','95% credible interval covers TRUE HR 7/7 (100%)'],
+  ['True IPD — competing risks','survival::colon','reconstructed AJ CIF within 0.3–1.6pp of true']
+];
+var CR = [{arm:'Observation',aj:0.584,nv:0.593,err:0.016},{arm:'Levamisole+5FU',aj:0.394,nv:0.401,err:0.003}];
+
+function el(tag){return document.createElementNS('http://www.w3.org/2000/svg',tag);}
+function L(s,x1,y1,x2,y2,c,w){var e=el('line');e.setAttribute('x1',x1);e.setAttribute('y1',y1);e.setAttribute('x2',x2);e.setAttribute('y2',y2);e.setAttribute('stroke',c);e.setAttribute('stroke-width',w||1);s.appendChild(e);}
+function T(s,x,y,t,c,anc,fs){var e=el('text');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('fill',c);e.setAttribute('text-anchor',anc||'start');e.setAttribute('font-size',fs||11);e.textContent=t;s.appendChild(e);}
+function C(s,cx,cy,r,c){var e=el('circle');e.setAttribute('cx',cx);e.setAttribute('cy',cy);e.setAttribute('r',r);e.setAttribute('fill',c);s.appendChild(e);}
+
+// ladder + tables
+LADDER.forEach(function(row){var tr=document.createElement('tr');tr.innerHTML='<td>'+row[0]+'</td><td class="mut">'+row[1]+'</td><td>'+row[2]+'</td>';document.getElementById('ladder').appendChild(tr);});
+GOLD.forEach(function(g){var ok=g.e<0.2;var tr=document.createElement('tr');tr.innerHTML='<td>'+g.ds+'</td><td class="r mut">'+g.n+'</td><td class="r">'+g.t+'</td><td class="r">'+g.r+'</td><td class="r '+(ok?'ok':'bad')+'">'+g.e+'</td>';document.getElementById('gstab').appendChild(tr);});
+CR.forEach(function(c){var tr=document.createElement('tr');tr.innerHTML='<td>'+c.arm+'</td><td class="r">'+c.aj+'</td><td class="r mut">'+c.nv+'</td><td class="r ok">'+c.err+'</td>';document.getElementById('crtab').appendChild(tr);});
+
+// scatter: true vs recon HR (log-log)
+(function(){var s=document.getElementById('scatter'),W=460,H=360,p=44;var lo=Math.log(0.3),hi=Math.log(6);
+ var X=v=>p+(Math.log(v)-lo)/(hi-lo)*(W-p-12),Y=v=>H-p-(Math.log(v)-lo)/(hi-lo)*(H-p-12);
+ L(s,X(0.3),Y(0.3),X(6),Y(6),'#30363d',1.5); // diagonal = perfect
+ [0.5,1,2,5].forEach(function(v){L(s,X(v),H-p,X(v),12,'#1b2129',1);L(s,p,Y(v),W-12,Y(v),'#1b2129',1);T(s,X(v),H-p+16,v,'#8b949e','middle',10);T(s,p-6,Y(v)+3,v,'#8b949e','end',10);});
+ T(s,(W+p)/2,H-6,'true HR','#8b949e','middle',11);T(s,14,20,'reconstructed HR','#8b949e','start',11);
+ GOLD.forEach(function(g){C(s,X(g.t),Y(g.r),g.e<0.2?5:4,g.e<0.2?'#58a6ff':'#d29922');T(s,X(g.t)+7,Y(g.r)+3,g.ds,'#8b949e','start',9);});
+})();
+// sensitivity line: K vs HR fold-error
+(function(){var s=document.getElementById('sens'),W=460,H=360,p=46;var xs=SENS.map(d=>d.K),ymin=1.0,ymax=1.4;
+ var X=k=>p+(k-3)/(20-3)*(W-p-14),Y=f=>H-p-(f-ymin)/(ymax-ymin)*(H-p-16);
+ [1.0,1.1,1.2,1.3,1.4].forEach(function(v){L(s,p,Y(v),W-14,Y(v),'#1b2129',1);T(s,p-6,Y(v)+3,v.toFixed(1),'#8b949e','end',10);});
+ [3,5,8,12,20].forEach(function(k){T(s,X(k),H-p+16,k,'#8b949e','middle',10);});
+ T(s,(W+p)/2,H-6,'posted KM timepoints (K)','#8b949e','middle',11);T(s,14,20,'HR fold-error','#8b949e','start',11);
+ var d='';SENS.forEach(function(pt,i){d+=(i?' L ':'M ')+X(pt.K)+' '+Y(pt.f);});var pth=el('path');pth.setAttribute('d',d);pth.setAttribute('fill','none');pth.setAttribute('stroke','#58a6ff');pth.setAttribute('stroke-width',2);s.appendChild(pth);
+ SENS.forEach(function(pt){C(s,X(pt.K),Y(pt.f),3.5,'#58a6ff');});
+ L(s,X(5),12,X(5),H-p,'#3fb95055',1);T(s,X(5)+4,24,'plateau ≥5','#3fb950','start',10);
+})();
+// forest: HR CI vs true HR (log scale)
+(function(){var s=document.getElementById('forest'),W=920,H=250,padL=110,padR=30;var lo=Math.log(0.25),hi=Math.log(8);
+ var X=v=>padL+(Math.log(v)-lo)/(hi-lo)*(W-padL-padR);
+ [0.25,0.5,1,2,4,8].forEach(function(v){L(s,X(v),20,X(v),H-24,'#1b2129',1);T(s,X(v),H-8,v,'#8b949e','middle',10);});
+ L(s,X(1),20,X(1),H-24,'#30363d',1);
+ var rowH=(H-50)/UNC.length;
+ UNC.forEach(function(u,i){var y=34+i*rowH;
+   T(s,8,y+3,u.ds,'#e6edf3','start',11);
+   L(s,X(u.lo),y,X(u.hi),y,'#58a6ff',3); // CI bar
+   L(s,X(u.lo),y-4,X(u.lo),y+4,'#58a6ff',2);L(s,X(u.hi),y-4,X(u.hi),y+4,'#58a6ff',2);
+   C(s,X(u.t),y,4,'#3fb950'); // true HR (covered => green)
+ });
+ T(s,W-padR,16,'● true HR  — 95% CI','#8b949e','end',11);
+})();
+</script>
+</body>
+</html>
