@@ -1,0 +1,122 @@
+[
+  {
+    "arm": "Observation",
+    "n": 315,
+    "recurrences": 177,
+    "competing_deaths": 13,
+    "recon_AJ_CIF_max_abs_err_vs_true": 0.016,
+    "true_final_AJ_CIF": 0.584,
+    "true_final_naive_1KM_CIF": 0.593,
+    "naive_overestimates_by_pp": 0.9,
+    "curve": [
+      {
+        "t": 359,
+        "true_AJ": 0.273,
+        "recon_AJ": 0.26,
+        "true_naive_1KM": 0.273
+      },
+      {
+        "t": 718,
+        "true_AJ": 0.416,
+        "recon_AJ": 0.402,
+        "true_naive_1KM": 0.417
+      },
+      {
+        "t": 1077,
+        "true_AJ": 0.48,
+        "recon_AJ": 0.467,
+        "true_naive_1KM": 0.483
+      },
+      {
+        "t": 1436,
+        "true_AJ": 0.515,
+        "recon_AJ": 0.5,
+        "true_naive_1KM": 0.519
+      },
+      {
+        "t": 1796,
+        "true_AJ": 0.544,
+        "recon_AJ": 0.529,
+        "true_naive_1KM": 0.55
+      },
+      {
+        "t": 2155,
+        "true_AJ": 0.559,
+        "recon_AJ": 0.546,
+        "true_naive_1KM": 0.566
+      },
+      {
+        "t": 2514,
+        "true_AJ": 0.566,
+        "recon_AJ": 0.552,
+        "true_naive_1KM": 0.573
+      },
+      {
+        "t": 2873,
+        "true_AJ": 0.584,
+        "recon_AJ": 0.569,
+        "true_naive_1KM": 0.593
+      }
+    ]
+  },
+  {
+    "arm": "Levamisole+5FU",
+    "n": 304,
+    "recurrences": 119,
+    "competing_deaths": 15,
+    "recon_AJ_CIF_max_abs_err_vs_true": 0.003,
+    "true_final_AJ_CIF": 0.394,
+    "true_final_naive_1KM_CIF": 0.401,
+    "naive_overestimates_by_pp": 0.7,
+    "curve": [
+      {
+        "t": 372,
+        "true_AJ": 0.158,
+        "recon_AJ": 0.155,
+        "true_naive_1KM": 0.159
+      },
+      {
+        "t": 745,
+        "true_AJ": 0.296,
+        "recon_AJ": 0.293,
+        "true_naive_1KM": 0.3
+      },
+      {
+        "t": 1117,
+        "true_AJ": 0.339,
+        "recon_AJ": 0.336,
+        "true_naive_1KM": 0.344
+      },
+      {
+        "t": 1489,
+        "true_AJ": 0.362,
+        "recon_AJ": 0.362,
+        "true_naive_1KM": 0.367
+      },
+      {
+        "t": 1861,
+        "true_AJ": 0.379,
+        "recon_AJ": 0.379,
+        "true_naive_1KM": 0.385
+      },
+      {
+        "t": 2234,
+        "true_AJ": 0.394,
+        "recon_AJ": 0.392,
+        "true_naive_1KM": 0.401
+      },
+      {
+        "t": 2606,
+        "true_AJ": 0.394,
+        "recon_AJ": 0.392,
+        "true_naive_1KM": 0.401
+      },
+      {
+        "t": 2978,
+        "true_AJ": 0.394,
+        "recon_AJ": 0.392,
+        "true_naive_1KM": 0.401
+      }
+    ]
+  }
+]

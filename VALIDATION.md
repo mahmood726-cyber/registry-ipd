@@ -226,6 +226,22 @@ This is the first validation of the engine against genuine patient-level data, a
 confirms the picture from registry/published checks: **RMST and median recover well for real trials
 of adequate size; HR is harder; very small trials are unreliable.**
 
+### Competing-risks gold standard on true IPD (`survival::colon`, `validate/goldstandard_cr.js`)
+
+colon has true recurrence-vs-death competing events. We built the true cause-labeled IPD (recurrence
+= event, death-without-recurrence = competing), per arm, and compared our reconstructed Aalen–Johansen
+CIF to the TRUE AJ CIF:
+
+| arm | n (recur / competing deaths) | recon AJ CIF — max abs err vs TRUE | true final CIF: AJ vs naive 1-KM |
+|---|---|---|---|
+| Observation | 315 (177 / 13) | **0.016** | 0.584 vs 0.593 (naive +0.9 pp) |
+| Levamisole+5FU | 304 (119 / 15) | **0.003** | 0.394 vs 0.401 (naive +0.7 pp) |
+
+The reconstructed competing-risks CIF matches the true patient-level AJ CIF to **0.3–1.6 pp**, and the
+naive 1−KM overestimates as predicted. (The bias is small here because competing deaths are rare
+relative to recurrences; it grows with competing-event frequency — cf. the +3.6 pp on the
+higher-competing RADIANT-4 demo.)
+
 (Datasets used for validation only, not redistributed; re-download: `validate/goldstandard.js` header.)
 
 ## Remaining levers
