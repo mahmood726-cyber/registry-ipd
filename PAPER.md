@@ -137,10 +137,10 @@ https://github.com/mahmood726-cyber/registry-ipd (live: https://mahmood726-cyber
 
 1. Guyot P, Ades AE, Ouwens MJNM, Welton NJ. *BMC Med Res Methodol.* 2012;12:9. doi:10.1186/1471-2288-12-9 *(PubMed-verified; its own recommendation that RCTs report numbers-at-risk + total events alongside KM curves directly supports our censoring-informed method and anchor-density finding.)*
 2. Liu N, Zhou Y, Lee JJ. IPDfromKM. *BMC Med Res Methodol.* 2021;21(1):111. doi:10.1186/s12874-021-01308-8 *(PubMed-verified.)*
-3. Royston P, Parmar MKB. Flexible parametric models. *Stat Med.* 2002;21:2175–2197.
-4. Aalen OO, Johansen S. *Scand J Stat.* 1978;5:141–150.
-5. Jansen JP. NMA of survival data with fractional polynomials. *BMC Med Res Methodol.* 2011;11:61.
-6. Rubin DB. *Multiple Imputation for Nonresponse in Surveys.* Wiley, 1987.
+3. Royston P, Parmar MKB. Flexible parametric proportional-hazards and proportional-odds models for censored survival data. *Stat Med.* 2002;21(15):2175–2197. doi:10.1002/sim.1203 *(PubMed-verified.)*
+4. Aalen OO, Johansen S. An empirical transition matrix for non-homogeneous Markov chains based on censored observations. *Scand J Stat.* 1978;5(3):141–150. *(Foundational competing-risks paper; not PubMed-indexed.)*
+5. Jansen JP. Network meta-analysis of survival data with fractional polynomials. *BMC Med Res Methodol.* 2011;11:61. doi:10.1186/1471-2288-11-61 *(PubMed-verified.)*
+6. Rubin DB. *Multiple Imputation for Nonresponse in Surveys.* Wiley, 1987. *(Book; no DOI.)*
 7. Yao JC, et al. RADIANT-4. *Lancet.* 2016;387:968–977. doi:10.1016/S0140-6736(15)00817-X
 8. RESOLVE-IPD. arXiv:2511.01785 (2025). · KM-GPT. arXiv:2509.18141 (2025).
 9. AACT / Clinical Trials Transformation Initiative, ClinicalTrials.gov. Validation datasets: R
