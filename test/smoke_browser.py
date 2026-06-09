@@ -56,6 +56,18 @@ def main():
         if npaths < 2: failures.append("Tier A should draw 2 reconstructed curves")
         if nchecks < 5: failures.append("Tier A checks table missing rows")
 
+        # advanced panel: run uncertainty + non-PH and verify it renders
+        try:
+            adv_btn = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "advBtn")))
+            adv_btn.click()
+            WebDriverWait(driver, 30).until(lambda d: "Hazard ratio" in d.find_element(By.ID, "advanced").text)
+            adv_txt = driver.find_element(By.ID, "advanced").text.lower()  # CSS uppercases H2s
+            print(f"  advanced panel rendered: HR-CI={'hazard ratio' in adv_txt}, non-PH={'hazards' in adv_txt}")
+            if "95% ci" not in adv_txt: failures.append("advanced: no credible interval")
+            if "time-varying" not in adv_txt: failures.append("advanced: no time-varying HR section")
+        except Exception as e:
+            failures.append(f"advanced panel: {e}")
+
         # Tier B
         tier, badge, exp_dis, nchecks, npaths = reconstruct("tierB")
         print(f"Tier B -> {tier}, badge={badge}, exportDisabled={exp_dis}, checks={nchecks}, curves={npaths}")

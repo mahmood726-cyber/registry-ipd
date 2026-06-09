@@ -64,5 +64,71 @@
       "median_exp_pcterr": 43,
       "RMSTdiff": -660.8
     }
+  },
+  {
+    "ds": "pbc",
+    "label": "PBC primary biliary cirrhosis (OS, D-penicillamine vs placebo)",
+    "n_exp": 154,
+    "n_ctl": 158,
+    "true_HR": 0.944,
+    "true_median_exp": 3422.8,
+    "true_median_ctl": 3240.1,
+    "true_RMST_diff": 39.5,
+    "curve_only": {
+      "HR": 1.117,
+      "HR_logerr": 0.168,
+      "median_exp_pcterr": 3.4,
+      "RMSTdiff": 76.8
+    },
+    "censoring_informed": {
+      "HR": 1.13,
+      "HR_logerr": 0.179,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 65.8
+    }
+  },
+  {
+    "ds": "diabetic",
+    "label": "Diabetic retinopathy (time to vision loss, laser vs control)",
+    "n_exp": 197,
+    "n_ctl": 197,
+    "true_HR": 0.46,
+    "true_median_exp": null,
+    "true_median_ctl": 43.6,
+    "true_RMST_diff": 12.2,
+    "curve_only": {
+      "HR": 0.412,
+      "HR_logerr": 0.11,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 10.7
+    },
+    "censoring_informed": {
+      "HR": 0.405,
+      "HR_logerr": 0.129,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 9.8
+    }
+  },
+  {
+    "ds": "nwtco",
+    "label": "NWTSG Wilms tumour (relapse, histology group)",
+    "n_exp": 459,
+    "n_ctl": 3569,
+    "true_HR": 5.103,
+    "true_median_exp": null,
+    "true_median_ctl": null,
+    "true_RMST_diff": -1696.3,
+    "curve_only": {
+      "HR": 5.367,
+      "HR_logerr": 0.051,
+      "median_exp_pcterr": null,
+      "RMSTdiff": -1532
+    },
+    "censoring_informed": {
+      "HR": 5.57,
+      "HR_logerr": 0.088,
+      "median_exp_pcterr": null,
+      "RMSTdiff": -1509.7
+    }
   }
 ]

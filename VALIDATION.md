@@ -208,19 +208,25 @@ engine never sees the patient-level data. (`validate/goldstandard.js`.)
 |---|---|---|---|---|---|
 | **GBSG** breast (RFS) | 246/440 | 0.695 | **0.686 (1.3%)** | 5.9% | 199 / **199.2** |
 | **Rotterdam** breast (OS) | 339/2643 | 1.51 | 1.269 (17%) | **2.4%** | −548 / **−561** |
+| **PBC** liver (OS) | 154/158 | 0.944 | 1.117 (17%) | 3.4% | 77 / 40 |
+| **Diabetic** retinopathy | 197/197 | 0.46 | **0.412 (11%)** | n/r | 10.7 / 12.2 |
+| **NWTSG** Wilms (relapse) | 459/3569 | 5.10 | **5.37 (5%)** | n/r | −1532 / −1696 |
 | **Veteran** lung (OS) | 68/69 | 1.016 | 0.755 (30%) | 58% | 31 / **−0.7** |
 
+**Aggregate over the 5 adequately-sized trials (≥100/arm): curve-only recovers HR to a median
+log-error of 0.11 (~11%) and the median to ~3.4%** — matching the registry-cohort numbers, now on
+real patient data. Large effects are recovered cleanly (Wilms HR 5.1→5.37, diabetic 0.46→0.41).
+
 **Honest reading (confirmed on real data):**
-- **RMST is recovered excellently at adequate N** — GBSG ~0%, Rotterdam ~2% — vindicating it as the
-  reliable estimand. **Median** likewise (2–6%) for trials of reasonable size.
-- **HR recovery is good for some (GBSG 1.3%), moderate for others (Rotterdam 17%)** — consistent with
-  the registry-cohort finding that HR is the hard estimand.
-- **Small trials reconstruct poorly.** Veteran (N=137, ~null effect) gives a spurious HR 0.76 and 58%
-  median error from 8 coarse points — a real limitation we state plainly: registry-native
-  reconstruction needs an adequately-sized trial and enough posted timepoints.
-- Censoring-informed (forcing the registry event count) improves HR on some trials but can distort
-  the *median* (event-forcing reshapes the between-anchor curve) — so prefer curve-only for
-  median/RMST and censoring-informed for HR.
+- **Median is recovered to ~2–6%** for adequately-sized trials; **HR to ~11% (median)**, good on most
+  (GBSG 1.3%, Wilms 5%, diabetic 11%), moderate on others (Rotterdam/PBC 17%).
+- **RMST** is accurate in absolute terms; its *relative* error inflates for near-null effects with a
+  tiny true RMST-difference (PBC: 77 vs 40, a small absolute gap on a multi-year scale).
+- **Small trials reconstruct poorly.** Veteran (N=137, ~null) gives a spurious HR 0.76 and 58% median
+  error from 8 coarse points — stated plainly: registry-native reconstruction needs adequate N and
+  enough posted timepoints.
+- Censoring-informed (forcing the registry event count) improves HR on some trials but can distort the
+  *median* — so prefer curve-only for median/RMST, censoring-informed for HR.
 
 This is the first validation of the engine against genuine patient-level data, and it broadly
 confirms the picture from registry/published checks: **RMST and median recover well for real trials

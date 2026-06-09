@@ -38,6 +38,9 @@ const CONFIGS = [
   { ds: 'gbsg', label: 'GBSG breast cancer (recurrence-free survival, hormonal Rx)', time: 'rfstime', status: 'status', arm: 'hormon', exp: '1', ctl: '0' },
   { ds: 'veteran', label: 'Veterans lung cancer (overall survival, treatment)', time: 'time', status: 'status', arm: 'trt', exp: '2', ctl: '1' },
   { ds: 'rotterdam', label: 'Rotterdam breast cancer (overall survival, hormonal Rx)', time: 'dtime', status: 'death', arm: 'hormon', exp: '1', ctl: '0' },
+  { ds: 'pbc', label: 'PBC primary biliary cirrhosis (OS, D-penicillamine vs placebo)', time: 'time', status: 'status', eventVal: 2, arm: 'trt', exp: '2', ctl: '1' },
+  { ds: 'diabetic', label: 'Diabetic retinopathy (time to vision loss, laser vs control)', time: 'time', status: 'status', arm: 'trt', exp: '1', ctl: '0' },
+  { ds: 'nwtco', label: 'NWTSG Wilms tumour (relapse, histology group)', time: 'edrel', status: 'rel', arm: 'histol', exp: '2', ctl: '1' },
 ];
 
 function coxHR(expIpd, ctlIpd) {
@@ -47,9 +50,11 @@ function coxHR(expIpd, ctlIpd) {
 
 function run(cfg) {
   const rows = parseCSV(path.join(dir, cfg.ds + '.csv'));
+  const toEvent = (s) => cfg.eventVal != null ? (s === cfg.eventVal ? 1 : 0) : (s >= 1 ? 1 : 0);
   const arm = (which) => rows.filter(r => String(r[cfg.arm]) === which)
     .map(r => ({ time: num(r[cfg.time]), status: num(r[cfg.status]) }))
-    .filter(r => r.time != null && r.status != null && r.time > 0);
+    .filter(r => r.time != null && r.status != null && r.time > 0)
+    .map(r => ({ time: r.time, status: toEvent(r.status) }));
   const expT = arm(cfg.exp), ctlT = arm(cfg.ctl);
   if (expT.length < 20 || ctlT.length < 20) return { ds: cfg.ds, error: 'too few rows' };
 

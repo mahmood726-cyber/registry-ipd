@@ -98,6 +98,10 @@
       <h2 style="margin-top:18px">Self-audit checks</h2>
       <table id="checks"><tbody></tbody></table>
       <div id="flags" style="margin-top:10px"></div>
+      <div id="advancedWrap" style="margin-top:18px;display:none">
+        <button id="advBtn">Run advanced analysis · uncertainty · non-PH · competing risks</button>
+        <div id="advanced" style="margin-top:12px"></div>
+      </div>
     </div>
   </section>
 </main>
@@ -134,6 +138,7 @@
   });
   document.getElementById('run').addEventListener('click', run);
   document.getElementById('exportBtn').addEventListener('click', exportCSV);
+  document.getElementById('advBtn').addEventListener('click', runAdvanced);
 
   function setErr(m){ document.getElementById('inputErr').textContent = m; }
 
@@ -174,7 +179,58 @@
     drawPlot(trial, res);
     drawChecks(res);
     drawFlags(res);
+    // advanced analysis available for Tier A with >=2 arms
+    var advW = document.getElementById('advancedWrap');
+    document.getElementById('advanced').innerHTML = '';
+    advW.style.display = (res.tier==='A' && res.arms && res.arms.length>=2) ? 'block' : 'none';
   }
+
+  function runAdvanced(){
+    if(!lastTrial) return;
+    var box = document.getElementById('advanced');
+    box.innerHTML = '<span class="muted">computing imputation ensemble…</span>';
+    setTimeout(function(){  // yield so the "computing" message paints
+      var html = '';
+      // 1) calibrated credible intervals (multiple imputation)
+      try {
+        var ens = RIPD.reconstructEnsemble(lastTrial, {M:150});
+        if(ens.ensemble){
+          var e = ens.ensemble;
+          html += '<h2>Uncertainty (multiple-imputation credible intervals)</h2><table><tbody>';
+          if(e.hr) html += ciRow('Hazard ratio (exp vs ctl)', e.hr);
+          Object.keys(e.median||{}).forEach(function(k){ if(e.median[k]) html += ciRow('Median · '+k, e.median[k]); });
+          html += '</tbody></table><div class="muted" style="margin-top:4px">95% CI from sampling the under-identified censoring level — the honest uncertainty the registry curve leaves.</div>';
+        }
+      } catch(err){ html += '<div class="err">ensemble: '+err.message+'</div>'; }
+      // 2) time-varying HR / non-PH
+      try {
+        var ex = lastResult.arms.find(function(a){return a.role==='experimental';});
+        var ct = lastResult.arms.find(function(a){return a.role==='comparator';});
+        if(ex && ct){
+          var pieces = RIPD.piecewiseHR(ex.ipd, ct.ipd);
+          var fp = RIPD.fractionalPolyHR(pieces);
+          html += '<h2 style="margin-top:16px">Time-varying hazard ratio (non-PH check)</h2><table><tbody>';
+          pieces.forEach(function(p){ html += '<tr><td>['+p.lo+'–'+(p.hi==null?'∞':p.hi)+']</td><td>HR '+p.hr.toFixed(2)+' <span class="muted">('+p.d_exp+'v'+p.d_ctl+' events)</span></td></tr>'; });
+          html += '</tbody></table>';
+          if(fp) html += '<div style="margin-top:4px" class="'+(fp.nonproportional?'fail':'pass')+'">'
+            + (fp.nonproportional ? 'Non-proportional hazards detected (FP β₁ significant) — a single HR is misleading; prefer RMST.' : 'No strong evidence against proportional hazards.')+'</div>';
+        }
+      } catch(err){ html += '<div class="err">time-varying HR: '+err.message+'</div>'; }
+      // 3) competing risks (only if the trial carries competing_events)
+      try {
+        if(lastTrial.arms.some(function(a){return a.competing_events;})){
+          var cr = RIPD.reconstructCompetingRisks(lastTrial);
+          html += '<h2 style="margin-top:16px">Competing risks (Aalen–Johansen CIF)</h2><table><tbody>';
+          cr.arms.forEach(function(a){ if(!a.cif) return; var f=a.cif[a.cif.length-1];
+            var naive=RIPD._.cifNaive1(a.ipd_cr); var nv=naive.length?naive[naive.length-1].cif1:null;
+            html += '<tr><td>'+(a.label||a.arm_id)+'</td><td>AJ CIF '+f.cif1.toFixed(3)+(nv!=null?' <span class="muted">vs naive 1-KM '+nv.toFixed(3)+'</span>':'')+'</td></tr>'; });
+          html += '</tbody></table>';
+        }
+      } catch(err){ html += '<div class="err">competing risks: '+err.message+'</div>'; }
+      box.innerHTML = html || '<span class="muted">no advanced output</span>';
+    }, 30);
+  }
+  function ciRow(label, ci){ return '<tr><td>'+label+'</td><td><b>'+ci.est+'</b> <span class="muted">(95% CI '+ci.lo+'–'+ci.hi+')</span></td></tr>'; }
 
   function drawChecks(res){
     var tb = document.querySelector('#checks tbody'); tb.innerHTML='';

@@ -107,6 +107,9 @@ Two findings that shaped the design:
 ### Reconstruct (offline, no install)
 Open **`index.html`** (or the single-file **`dist/registry-ipd.html`**) in any browser. Load a
 bundled example or upload a harvested `trial.json`, click **Reconstruct**, export pseudo-IPD CSV.
+For Tier-A two-arm trials a **Run advanced analysis** button surfaces the cutting-edge methods:
+multiple-imputation **credible intervals** (HR/median), **time-varying HR** with a non-PH check,
+and the **Aalen–Johansen CIF** when competing-event counts are present.
 
 ### Harvest a real trial (needs a local AACT snapshot)
 ```bash
