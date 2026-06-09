@@ -221,7 +221,7 @@ engine never sees the patient-level data. (`validate/goldstandard.js`.)
 | **Kidtran** kidney tx | 339/524 | 0.907 | 1.046 (14%) | n/r | — |
 | **Veteran** lung (OS) | 68/69 | 1.016 | 0.755 (30%) | 58% | 31 / **−0.7** |
 
-**Aggregate over 15 adequately-sized datasets (≥100/arm; of 23 real datasets tried): curve-only
+**Aggregate over 15 adequately-sized datasets (≥100/arm; of 25 real datasets tried, incl. 2 recurrent-event collapsed to first-event): curve-only
 recovers HR to a median log-error of 0.11 (~11% fold), with 12/13 within 20%, and the median to
 ~3.4%** — matching the registry-cohort numbers, now on real patient data across 13 RCTs/cohorts.
 Large effects recovered cleanly (Wilms 5.1→5.18, prostate 5.49→5.17, melanoma 4.36→3.99); the classic

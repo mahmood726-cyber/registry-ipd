@@ -508,5 +508,49 @@
   {
     "ds": "bnct",
     "error": "too few rows"
+  },
+  {
+    "ds": "cgd_fe",
+    "label": "CGD RCT (time to first serious infection, rIFN-g vs placebo; recurrent→first-event)",
+    "n_exp": 63,
+    "n_ctl": 65,
+    "true_HR": 0.335,
+    "true_median_exp": null,
+    "true_median_ctl": 300.7,
+    "true_RMST_diff": 56.6,
+    "curve_only": {
+      "HR": 0.248,
+      "HR_logerr": 0.3,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 47.3
+    },
+    "censoring_informed": {
+      "HR": 0.381,
+      "HR_logerr": 0.128,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 23.5
+    }
+  },
+  {
+    "ds": "bladder_fe",
+    "label": "Bladder cancer (time to first recurrence, thiotepa vs placebo; recurrent→first-event)",
+    "n_exp": 38,
+    "n_ctl": 47,
+    "true_HR": 0.696,
+    "true_median_exp": 25.8,
+    "true_median_ctl": 14.7,
+    "true_RMST_diff": 6.9,
+    "curve_only": {
+      "HR": 0.677,
+      "HR_logerr": 0.027,
+      "median_exp_pcterr": 8.6,
+      "RMSTdiff": 6.9
+    },
+    "censoring_informed": {
+      "HR": 0.677,
+      "HR_logerr": 0.028,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 6.8
+    }
   }
 ]
