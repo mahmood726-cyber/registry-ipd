@@ -884,13 +884,22 @@
     }
     checks.C8_followup = { pass: c8ok };
 
-    // C9 HR direction integrity (hard) — favors_arm must align, never invert
-    let c9ok = true;
+    // C9 HR direction integrity (hard): the reconstructed HR direction must not CONTRADICT the
+    // registry's favored arm. Only fails on a clear contradiction (both registry and reconstructed
+    // HR confidently off 1.0) so near-null/ambiguous effects don't trip it. The HR is never inverted.
+    let c9ok = true, c9detail = null;
     if (trial.hr && trial.hr.favors_arm_id != null) {
       const fav = arms.find(a => a.arm_id === trial.hr.favors_arm_id);
-      if (!fav) { c9ok = false; }
+      if (!fav) { c9ok = false; c9detail = 'favors_arm_id does not resolve to an arm'; }
+      else if (checks.C4_hr.applies && checks.C4_hr.recon_hr != null && result.expIdx != null) {
+        const regDir = Math.log(trial.hr.value);              // <0 ⇒ favours experimental
+        const recDir = Math.log(checks.C4_hr.recon_hr);       // exp-vs-ctl
+        const favExp = trial.hr.favors_arm_id === arms[result.expIdx].arm_id;
+        const confident = Math.abs(regDir) > Math.log(1.10) && Math.abs(recDir) > Math.log(1.10);
+        if (confident && (recDir < 0) !== favExp) { c9ok = false; c9detail = 'reconstructed HR direction contradicts the registry favored arm'; }
+      }
     }
-    checks.C9_direction = { pass: c9ok, hard: true };
+    checks.C9_direction = { pass: c9ok, hard: true, detail: c9detail };
 
     const hardFail = !checks.C5_monotonic.pass || !checks.C7_conservation.pass || !checks.C9_direction.pass;
     let badge = 'none';

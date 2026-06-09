@@ -103,6 +103,23 @@ test('Tier A: anchor-exact beats Guyot under administrative censoring; best-of s
   assert.ok(best.flags.some(f => f.startsWith('wasserstein_to_anchors:')), 'reports Wasserstein');
 });
 
+// -------------------------------------------------- C9 direction integrity (hard gate)
+test('C9 hard-fails when the reconstructed HR direction contradicts the registry favored arm', () => {
+  // experimental arm CLEARLY worse (lower survival) but registry HR says it is favored => contradiction
+  const mk = (S) => ({ km_points: [0, 6, 12, 18, 24].map((t, i) => ({ t, S: i === 0 ? 1 : S[i - 1] })), nar_points: [] });
+  const t = {
+    nct_id: 'CONTRA', time_unit: 'months',
+    arms: [
+      Object.assign({ arm_id: 'exp', label: 'Drug', role: 'experimental', N: 100, total_events: 70, follow_up_max: 24 }, mk([0.7, 0.5, 0.35, 0.25])),
+      Object.assign({ arm_id: 'ctl', label: 'Placebo', role: 'comparator', N: 100, total_events: 35, follow_up_max: 24 }, mk([0.9, 0.8, 0.72, 0.65])),
+    ],
+    hr: { value: 0.5, ci_low: 0.35, ci_high: 0.72, method: 'Cox', favors_arm_id: 'exp' }, // claims exp better — false
+  };
+  const r = RIPD.reconstruct(t);
+  assert.strictEqual(r.audit.checks.C9_direction.pass, false, 'C9 should catch the contradiction');
+  assert.strictEqual(r.audit.badge, 'none', 'hard C9 fail => badge none');
+});
+
 // -------------------------------------------------- Royston–Parmar flexible parametric
 test('Royston-Parmar fit reproduces a known Weibull curve and stays monotone', () => {
   const k = 1.3, b = 14; // Weibull S(t)=exp(-(t/b)^k)

@@ -31,6 +31,28 @@ def test_parse_timepoint_bare_number_with_default_unit():
 
 
 # --------------------------------------------------------------- KM normalisation
+def test_orient_does_not_flip_flat_low_survival():
+    # genuine high-risk survival curve (flat, low) must NOT be flipped to incidence
+    flat_low = [(6, 0.45), (12, 0.46), (24, 0.45)]
+    out = H.orient_to_survival(flat_low)
+    assert out[0]["S"] == pytest.approx(0.45, abs=1e-6)  # kept as survival, not 0.55
+    # single point never flips
+    assert H.orient_to_survival([(12, 0.4)])[0]["S"] == pytest.approx(0.4)
+
+
+def test_orient_flips_clear_cumulative_incidence():
+    # clearly rising from ~0 => incidence => S = 1 - value
+    inc = [(6, 0.05), (12, 0.20), (24, 0.40)]
+    out = H.orient_to_survival(inc)
+    assert [round(p["S"], 2) for p in out] == [0.95, 0.80, 0.60]
+
+
+def test_orient_percent_units():
+    # percent declared via units flag => divide by 100 regardless of magnitude
+    out = H.orient_to_survival([(6, 95.0), (12, 80.0)], is_percent=True)
+    assert out[0]["S"] == pytest.approx(0.95) and out[1]["S"] == pytest.approx(0.80)
+
+
 def test_km_value_percent_vs_proportion():
     assert H.km_value_to_survival(82, "Kaplan-Meier Estimate", "Percentage") == pytest.approx(0.82)
     assert H.km_value_to_survival(0.82, "Kaplan-Meier Estimate", "Proportion") == pytest.approx(0.82)

@@ -2,24 +2,33 @@
 
 **Method.** For every Tier-A trial that has *both* a KM curve and a hazard ratio reported in
 `outcome_analyses`, reconstruct pseudo-IPD **from the curve alone** and compare the Cox HR of the
-pseudo-IPD against the **registry-reported HR (held-out ground truth)**. Direction is scored only
-where an experimental-vs-comparator split is determinable (registry HR direction is itself often
-ambiguous). Stratified by reconstructed event count because Cox HR is unstable when events are few.
+pseudo-IPD against the **registry-reported HR (held-out ground truth)**. within-CI is scored on the
+**role-oriented** reconstructed HR (experimental-vs-comparator, no inverse-orientation clause) over
+the direction-determinable subset; magnitude error stays orientation-robust because registry HR
+*direction* is itself often ambiguous. Curve-only vs censoring-informed are scored **paired on the
+same trials**. Run: `node validate/validate_hr.js cohort`.
 
 Cohort: 595 Tier-A trials harvested from the 2026-06-01 AACT snapshot; **30 are clean 2-arm with a
-registry HR** (the usable ground-truth set). Run: `node validate/validate_hr.js cohort`.
+registry HR** (the usable ground-truth set; ~18 with a determinable direction). This is a small,
+selected sample — the intersection of "posts a structured curve" ∩ "reports a Cox HR" ∩ "2-arm" is
+skewed toward large oncology RCTs — so read every percentage with its Wilson CI.
 
-## Results
+## Results (paired, same 30 two-arm trials)
 
-| stratum | n | median HR fold-err | p90 fold-err | within registry 95% CI | direction correct |
-|---|---|---|---|---|---|
-| **events ≥ 50** (fair test) | 20 | **1.08** (~8%) | 1.46 | **79%** | **83%** (12 det.) |
-| events 10–49 | 9 | 1.13 | 1.74 | 100% | 80% (5 det.) |
-| all 30 | 30 | 1.12 | 1.73 | 86% | 83% (18 det.) |
+| method | median HR fold-err | p90 fold-err | within registry CI (oriented) | direction correct |
+|---|---|---|---|---|
+| curve-only | 1.12 (~12%) | 1.73 | 83% (15/18, 95% CI 61–94) | 83% (15/18, CI 61–94) |
+| censoring-informed (N-matched) | 1.10 | 1.57 | **94%** (17/18, 95% CI 74–99) | **89%** (16/18, CI 67–97) |
 
-**Read:** curve-only reconstruction recovers the HR to within ~8% (median) and inside the registry's
-own CI ~80% of the time, with correct direction ~83% where determinable. **Useful as a triangulation
-input; not good enough as a sole source for a pooled HR.**
+**Paired McNemar:** censoring-informed gains 2 trials within-CI, loses 0 (2 discordant) — i.e. the
+improvement is **directionally favorable but not statistically significant at n≈18**. **Read:**
+curve-only recovers the HR to ~12% (median) and inside the registry CI ~83% of determinable trials;
+the N-matched censoring refinement nudges that to ~94% but the sample cannot distinguish them.
+**Useful as a triangulation input; not a sole source for a pooled HR.** (Earlier drafts of this table
+reported higher within-CI figures; those were inflated by a coverage bug that counted a wrong-
+direction reconstruction as "within CI" via its inverse — fixed; numbers above are the corrected,
+oriented values. Per-event-count strata are omitted because censoring-informed changes event counts
+and so shifts stratum membership, making stratum comparisons non-paired.)
 
 ## The tail is real — worked example (RADIANT-4, NCT01524783)
 
@@ -34,12 +43,15 @@ methods.
 
 ## We built lever #1 (censoring-informed) and tested it — honest result
 
-**Mechanism (validated).** `drop_withdrawals` records *why* participants left; for a time-to-event
+**Mechanism (illustrated).** `drop_withdrawals` records *why* participants left; for a time-to-event
 endpoint the event-type reasons (progression/death/relapse for PFS; death for OS) give the event
 count, and the rest is censoring. Curve-only does not know the censoring level, so it over-counts
 events and **attenuates the HR**. Worked example — **RADIANT-4 (NCT01524783)**: curve-only HR
-**0.68** (outside the registry CI) → censoring-informed HR **0.47** vs a registry **0.48**. The
-mechanism clearly works. (`harvest/add_event_counts.py` derives the counts.)
+**0.68** (outside the registry CI) → censoring-informed HR **0.47** vs a registry **0.48**.
+**Caveat: this is a hand-verified illustration, not an automated result** — the bundled demo has the
+two event counts (107/77, derived from `drop_withdrawals`) set explicitly, because automated
+N-matching did not map this trial's flow groups. It shows the *mechanism* works on a clean case; it
+is not what the unattended pipeline produces for an arbitrary trial.
 
 **Blanket application (does NOT generalize).** Applying it to the whole cohort:
 
@@ -58,22 +70,18 @@ specific and noisy; (b) **mapping participant-flow groups to outcome-measure gro
 **First attempt (title/suffix group mapping) failed** because mapping participant-flow groups to
 outcome arms was unreliable. **Fixing the mapping fixed the method.**
 
-### N-matched mapping makes censoring-informed a clean win
+### N-matched mapping turns censoring-informed from a regression into a (modest) improvement
 
 Map each flow group to an outcome arm by its milestone `STARTED` count == the arm's analysis N
-(robust to title/order differences). With that:
-
-| events≥50 (fair test) | curve-only | **N-matched censoring-informed** |
-|---|---|---|
-| median fold-err | 1.081 | 1.08 |
-| p90 fold-err (tail) | 1.46 | **1.35** |
-| within registry CI | 79% | **94%** |
-| direction correct | 83% | **90%** |
-
-(Overall, n=30: within-CI 86→**93%**, p90 1.73→**1.57**, direction 83→**89%**.) So the censoring level
-*is* recoverable from participant-flow data — the earlier negative result was a mapping bug, not a
-method failure. **Censoring-informed (N-matched) is the recommended mode; curve-only remains the
-safe fallback when participant-flow groups don't N-match.**
+(robust to title/order differences). Scored **paired on the same 30 trials** (see the corrected
+table at the top): within-CI 83%→**94%** (15/18→17/18), direction 83%→**89%**, p90 fold 1.73→1.57.
+**Paired McNemar: +2 trials within-CI, 0 lost — directionally favorable but not significant at
+n≈18.** So the censoring level *is* recoverable from participant-flow data (the earlier blanket
+"doesn't generalize" result was a mapping bug), but on this sample we **cannot claim a statistically
+significant win**. Censoring-informed (N-matched) is offered as the **preferred mode where flow
+groups N-match cleanly**; curve-only is the safe default. (Earlier drafts quoted a per-stratum
+"events≥50 79→94%" comparison — withdrawn: censoring-informed changes event counts and shifts
+stratum membership, so that comparison was not paired.)
 
 ### HR-calibration (impose the registry HR for IPD-MA consistency)
 
@@ -84,27 +92,26 @@ right object when you need pseudo-IPD consistent with the published effect for d
 
 ## Robust estimands (RMST & median) — the reconstruction is excellent here
 
-HR is the *hard* estimand (needs event timing/censoring). RMST and median are curve-*derived*, so
-they should be recovered far better. Measured across the cohort (`node validate/validate_rmst.js`):
+HR is the *hard* estimand (needs event timing/censoring). RMST and median are curve-*derived*. Two
+measurements (`node validate/validate_rmst.js`), labelled honestly:
 
-| estimand | metric | result |
-|---|---|---|
-| **RMST** (recon-IPD area vs registry anchor-curve area, to common τ) | median % err / p90 / within-5% | **0.19% / 3.99% / 92%** (n=1256 arms) |
-| **Median** (recon median vs the registry curve's own 0.5-crossing) | median % err / within-10% | **0% / 97%** (n=605 arms) |
+| check | what it compares | result | what it proves |
+|---|---|---|---|
+| **RMST round-trip consistency** | recon-IPD RMST vs the registry anchor-curve's *own* area | 0.19% / p90 3.99% / 92% within 5% (n=1256) | the expand step does not corrupt the curve — **internal consistency, NOT external accuracy** |
+| **median round-trip consistency** | recon median vs the registry curve's *own* 0.5-crossing | 0% / 97% within 10% (n=605, conditioned on reaching 0.5) | same — near-tautological by construction |
+| **median vs *external* registry median** | recon median vs a separately-reported registry median | **48%** median err (n=152) | the only *external* estimand check — see caveat |
 
-Worked example RADIANT-4: reconstructed median **12.0 / 4.0 mo** vs the real published PFS medians
-**11.0 / 3.9 mo** — within ~1 month, externally confirmed.
-
-**So for the estimands that matter most in modern survival meta-analysis — RMST and median, the
-preferred summaries under non-proportional hazards — registry-only reconstruction is essentially
-exact (~0–0.2% error), versus ~8–12% for the HR.** That is the real "is it good enough" answer:
-**yes, and more so for RMST/median than for HR.**
-
-*Caveat on the external median cross-check:* comparing recon median to the registry-*reported*
-median gives ~48% error even after filtering to survival endpoints — but this is an **endpoint-
-matching artifact**, not reconstruction error (recon median == curve median to 0%; the 48% is the
-PFS-curve median being compared to a different-endpoint registry median, e.g. OS, under the same arm
-code). Clean same-endpoint external matching needs the same unresolved group/endpoint mapping.
+**Honest reading.** The 0.19% / 0% figures are **round-trip self-consistency**: anchor-exact
+reconstruction is *built* to pass through the anchors and the method selector minimises distance to
+them, so these checks essentially cannot fail. They are worth running (they confirm the
+death/censor expansion preserves the curve) but they are **not** evidence of external accuracy and
+must not be read as "RMST is exact." The genuinely external check — recon median vs a
+separately-reported registry median — gives **48%**, which we attribute to **endpoint mismatch**
+(the structured curve is often a different endpoint, e.g. PFS, than the reported median, e.g. OS,
+under the same arm code) rather than reconstruction error; that attribution is **supported but not
+proven** (RADIANT-4: recon median 12.0/4.0 mo matches the *published PFS* 11.0/3.9 mo, while the
+auto-harvested "median" was 43 mo ≈ OS/follow-up). A clean same-endpoint external RMST/median check
+remains the key missing validation and needs the unresolved endpoint-level mapping.
 
 ## Royston–Parmar flexible parametric (done, with an honest scope)
 

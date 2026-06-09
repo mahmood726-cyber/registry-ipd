@@ -81,34 +81,45 @@ Classified per trial by richness (`tier = min over arms`):
 ## 6. Self-audit (Bronze / Silver / Gold)
 
 Reconstructed pseudo-IPD is checked back against the registry: total-event match (C1), anchor
-survival fidelity (C2), median within 5% (C3), reconstructed-vs-registry HR via Cox+Firth (C4),
+survival fidelity (C2), median within 5% (C3), reconstructed-vs-registry HR via ridge-penalized Cox (C4),
 monotonicity (C5, hard), number-at-risk consistency (C6, when present), population conservation
 (C7, hard), follow-up sanity (C8), **HR direction integrity (C9, hard — the HR is never inverted,
 only arm labels resolved)**. Hard-check failure or Tier C ⇒ badge `none` and export blocked.
 
 ## 7. Validation
 
-**HR vs registry HR (held-out ground truth, 30 two-arm trials):**
+**HR vs registry HR (held-out ground truth, paired on 30 two-arm trials; within-CI role-oriented,
+no inverse clause; Wilson 95% CIs; ~18 direction-determinable):**
 
 | | curve-only | N-matched censoring-informed |
 |---|---|---|
-| median HR fold-error | ~1.08–1.12 (8–12%) | ~1.08 |
-| within registry 95% CI | 86% (79% at events≥50) | **93%** (**94%** at events≥50) |
-| direction correct | 83% | **89–90%** |
+| median HR fold-error | 1.12 (~12%) | 1.10 |
+| within registry CI (oriented) | 83% (15/18, CI 61–94) | 94% (17/18, CI 74–99) |
+| direction correct | 83% (15/18) | 89% (16/18) |
 
-**Robust estimands (curve-derived):** RMST fidelity **0.19%** median error (92% within 5%, n=1256
-arms); median-from-curve fidelity **0%** (97% within 10%). Worked example RADIANT-4: reconstructed
-median **12.0 / 4.0 mo** vs published PFS **11.0 / 3.9 mo**; HR curve-only 0.68 → censoring-informed
-**0.47** vs registry **0.48**.
+Paired McNemar: informed gains 2 within-CI, loses 0 — **directionally favorable, not significant at
+n≈18.** Per-event-count strata omitted (informed shifts stratum membership → non-paired).
+
+**Round-trip consistency (NOT external accuracy):** RMST recon-vs-anchor 0.19% median (n=1256);
+median recon-vs-curve-0.5-crossing 0% (n=605). These are near-tautological — anchor-exact is built to
+pass through the anchors — so they confirm the expand step preserves the curve, nothing more. The one
+*external* check (recon median vs separately-reported registry median) is 48%, attributed (supported,
+not proven) to endpoint mismatch. RADIANT-4 hand-verified illustration: recon median 12.0/4.0 mo vs
+published PFS 11.0/3.9 mo; HR curve-only 0.68 → censoring-informed **0.47** (event counts set
+manually from `drop_withdrawals`) vs registry **0.48**.
 
 ## 8. Honest conclusions
 
-1. **RMST and median** — the preferred estimands under non-proportional hazards — are recovered
-   **near-exactly (~0–0.2%)**. The tool is genuinely good enough to be a *primary* source for these.
+1. **RMST and median** are recovered with **near-zero round-trip error** — but that is internal
+   self-consistency (the reconstruction is built from the curve), **not validated external accuracy**.
+   A clean same-endpoint external RMST/median check is the key missing validation. They remain the
+   theoretically better-behaved estimands (curve-derived; preferred under non-proportional hazards),
+   but "primary source" status is **not yet earned by evidence**.
 2. **HR** is the hard estimand (needs event timing/censoring AACT doesn't fully report). Curve-only
-   recovers it to ~8–12% (median) and inside the registry CI ~80%; censoring-informed with N-matched
-   mapping raises CI coverage to ~94%. Useful as a triangulation input; HR-calibration imposes it
-   exactly when consistency with the published effect is required.
+   recovers it to ~12% (median) and inside the registry CI ~83% of determinable trials; N-matched
+   censoring-informed nudges that to ~94%, but at n≈18 the two are **statistically indistinguishable**.
+   Useful as a triangulation input; HR-calibration imposes the HR exactly when consistency with the
+   published effect is required (imposition, not recovery).
 3. The recurring bottleneck was **AACT's group/endpoint mapping, not the statistics.** Every apparent
    method failure (147 arms, HR=20 explosions, 48% "median error") traced to a mapping/endpoint
    mismatch; fixing the mapping (N-matching) is what unlocked the gains.

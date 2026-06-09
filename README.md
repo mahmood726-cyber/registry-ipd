@@ -18,9 +18,13 @@ summary data only**, fully offline in the browser. No R, no Shiny, no server, no
 >   superiority. A dense digitized curve carries more between-anchor shape than sparse registry
 >   anchors; where the registry is sparse, this tool degrades explicitly rather than fabricating.
 
-The scoped claim we stand behind: *on trials where ct.gov posted structured KM-estimate +
-number-at-risk data, AACT-only reconstruction reduces anchor error to ~zero and has lower
-HR / RMST error than digitization; elsewhere it degrades with explicit tiered verdicts.*
+The scoped claim we stand behind: *on trials where ct.gov posts a structured KM-estimate curve,
+AACT-only reconstruction uses the exact registry anchors (zero digitization error on the anchors)
+with full provenance; elsewhere it degrades explicitly via tiered verdicts.* See **`VALIDATION.md`**
+for what is and isn't validated — in short: HR recovery ~12% median / ~83–94% within the registry CI
+(n≈18, not significant between methods); RMST/median "fidelity" numbers are **round-trip
+self-consistency, not external accuracy**; a real curve-vs-digitization head-to-head has not been run
+(the only such figure is a self-graded synthetic benchmark).
 
 ## How it works (two pieces)
 
@@ -53,10 +57,15 @@ step function:
   NAR boundaries, so the reconstructed KM passes through every registry anchor **≈ exactly**.
   Correct when censoring is administrative (concentrated at the cutoff) — the case Guyot mishandles.
 
-On a 20-trial synthetic benchmark (administrative censoring, coarse anchors) the censoring-informed
-method cut mean anchor sup-error **0.127 → 0.011** and mean 1-Wasserstein **1.93 → 0.0004**, and
-AACT-only beat simulated digitization **20/20** on both. Wasserstein is used as *both* the model
-selector and the reported fidelity metric. Force a single method with `reconstruct(t,{method:'guyot'|'anchor-exact'})`.
+Wasserstein is used as *both* the model selector and the reported fidelity metric. Force a single
+method with `reconstruct(t,{method:'guyot'|'anchor-exact'})`.
+
+> **On the synthetic benchmark** (`validate/gen_benchmark.js`): the censoring-informed method cut
+> mean anchor sup-error 0.127→0.011 and the "AACT-only beat simulated digitization 20/20" figure is
+> a **self-graded methodology demonstration** — the "digitized" comparator is the same anchors plus
+> injected noise, both reconstructed by the same engine and graded against the anchors, so AACT-only
+> (given the exact anchors) wins *by construction*. It illustrates the mechanism; it is **not** a
+> real-trial head-to-head (that comparison has not been run on actual digitized publications).
 
 > Upgrade path (documented, not yet shipped): **Royston–Parmar flexible parametric (spline) models**
 > for Tier B in place of the exponential, and a Wasserstein-barycenter ensemble across methods.

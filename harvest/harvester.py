@@ -150,23 +150,28 @@ _SURV_RE = re.compile(r"kaplan|survival|progression-free|event-free|disease-free
                       r"probability of|cumulative incidence|proportion", re.I)
 
 
-def orient_to_survival(raw: list[tuple]) -> list[dict]:
+def orient_to_survival(raw: list[tuple], is_percent: bool = False) -> list[dict]:
     """Convert a per-arm series of (time_months, raw_value) into survival probabilities S(t).
 
     DATA-DRIVEN orientation (robust version of the SROC/incidence sign-flip lesson): a true KM
     survival curve starts near 1 and is non-increasing; a cumulative-incidence / "probability of
-    [event]" curve starts near 0 and rises. So if the earliest value is low and the series trends
-    up, it is an event/incidence curve and S = 1 - value. Percent (>1.5) is divided by 100.
+    [event]" curve starts near 0 and CLEARLY RISES. To avoid mis-flipping genuine flat/low-survival
+    curves, we require ≥2 points AND a strict rise of >0.05 before treating it as incidence
+    (S = 1 - value). Percent is divided by 100 when units say so, or as a fallback when value > 1.5.
+    Duplicate timepoints keep the lower S (KM is non-increasing).
     """
     if not raw:
         return []
-    norm = sorted(((t, (v / 100.0 if v > 1.5 else v)) for t, v in raw), key=lambda p: p[0])
+    def conv(v):
+        return v / 100.0 if (is_percent or v > 1.5) else v
+    norm = sorted(((t, conv(v)) for t, v in raw), key=lambda p: p[0])
     first, last = norm[0][1], norm[-1][1]
-    incidence = (first <= 0.5) and (last >= first - 1e-9)
+    incidence = len(norm) >= 2 and first <= 0.5 and (last - first) > 0.05
     merged = {}
     for t, vv in norm:
-        s = (1.0 - vv) if incidence else vv
-        merged[round(t, 4)] = min(1.0, max(0.0, s))
+        s = min(1.0, max(0.0, (1.0 - vv) if incidence else vv))
+        rt = round(t, 4)
+        merged[rt] = s if rt not in merged else min(merged[rt], s)
     return [{"t": t, "S": round(merged[t], 6)} for t in sorted(merged)]
 
 
@@ -206,7 +211,7 @@ def assemble_arms(outcomes: pd.DataFrame, measurements: pd.DataFrame,
             "N": cmap.get(gid), "total_events": None, "follow_up_max": None,
             "km_points": [], "nar_points": [], "median": None,
         }
-        rawKM, nar = [], []
+        rawKM, nar, km_is_percent = [], [], False
         for _, mrow in gmeas.iterrows():
             ptype = str(mrow.get("param_type", "") or "")
             mtitle = str(mrow.get("title", "") or "")
@@ -236,9 +241,11 @@ def assemble_arms(outcomes: pd.DataFrame, measurements: pd.DataFrame,
                     v = float(mrow.get("param_value"))
                     if not math.isnan(v):
                         rawKM.append((t_months, v))
+                        if "percent" in units.lower() or "%" in units:
+                            km_is_percent = True
                 except (TypeError, ValueError):
                     pass
-        arm["km_points"] = orient_to_survival(rawKM)
+        arm["km_points"] = orient_to_survival(rawKM, is_percent=km_is_percent)
         nar.sort(key=lambda p: p["t"]); arm["nar_points"] = nar
         if nar:
             arm["follow_up_max"] = max(p["t"] for p in nar)
