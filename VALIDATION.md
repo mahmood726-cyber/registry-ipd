@@ -196,6 +196,38 @@ reconstructed IPD): piecewise HR **0.35 → 0.90 → 1.63** with FP non-proporti
 the single registry HR (0.48) hides. (On coarse reconstructed anchors the late windows are noisy; the
 method detects and characterises time-variation, it does not claim window-exact HRs.)
 
+## GOLD STANDARD: validation on TRUE patient-level IPD
+
+The strongest validation — against **real patient-level RCT data** (openly published; R `survival::`
+datasets via the Rdatasets mirror). For each, we compute the TRUE estimates from the full IPD, then
+generate the **registry-style coarse summary a sponsor would post** (KM at 8 timepoints + N + total
+events), reconstruct from *that alone*, and compare to truth. Not synthetic, not circular — the
+engine never sees the patient-level data. (`validate/goldstandard.js`.)
+
+| dataset (endpoint) | N exp/ctl | true HR | curve-only HR (log-err) | median %err | RMST-diff recon / **true** |
+|---|---|---|---|---|---|
+| **GBSG** breast (RFS) | 246/440 | 0.695 | **0.686 (1.3%)** | 5.9% | 199 / **199.2** |
+| **Rotterdam** breast (OS) | 339/2643 | 1.51 | 1.269 (17%) | **2.4%** | −548 / **−561** |
+| **Veteran** lung (OS) | 68/69 | 1.016 | 0.755 (30%) | 58% | 31 / **−0.7** |
+
+**Honest reading (confirmed on real data):**
+- **RMST is recovered excellently at adequate N** — GBSG ~0%, Rotterdam ~2% — vindicating it as the
+  reliable estimand. **Median** likewise (2–6%) for trials of reasonable size.
+- **HR recovery is good for some (GBSG 1.3%), moderate for others (Rotterdam 17%)** — consistent with
+  the registry-cohort finding that HR is the hard estimand.
+- **Small trials reconstruct poorly.** Veteran (N=137, ~null effect) gives a spurious HR 0.76 and 58%
+  median error from 8 coarse points — a real limitation we state plainly: registry-native
+  reconstruction needs an adequately-sized trial and enough posted timepoints.
+- Censoring-informed (forcing the registry event count) improves HR on some trials but can distort
+  the *median* (event-forcing reshapes the between-anchor curve) — so prefer curve-only for
+  median/RMST and censoring-informed for HR.
+
+This is the first validation of the engine against genuine patient-level data, and it broadly
+confirms the picture from registry/published checks: **RMST and median recover well for real trials
+of adequate size; HR is harder; very small trials are unreliable.**
+
+(Datasets used for validation only, not redistributed; re-download: `validate/goldstandard.js` header.)
+
 ## Remaining levers
 - ✅ HR-calibration · ✅ N-matched mapping · ✅ RMST/median validation · ✅ Royston–Parmar (extrapolation).
 - **Same-endpoint external median matching** to clean the contaminated registry-median cross-check.

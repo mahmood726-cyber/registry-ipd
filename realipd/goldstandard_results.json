@@ -1,0 +1,68 @@
+[
+  {
+    "ds": "gbsg",
+    "label": "GBSG breast cancer (recurrence-free survival, hormonal Rx)",
+    "n_exp": 246,
+    "n_ctl": 440,
+    "true_HR": 0.695,
+    "true_median_exp": 2017.6,
+    "true_median_ctl": 1527.9,
+    "true_RMST_diff": 199.2,
+    "curve_only": {
+      "HR": 0.686,
+      "HR_logerr": 0.013,
+      "median_exp_pcterr": 5.9,
+      "RMSTdiff": 199
+    },
+    "censoring_informed": {
+      "HR": 0.655,
+      "HR_logerr": 0.059,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 177.6
+    }
+  },
+  {
+    "ds": "veteran",
+    "label": "Veterans lung cancer (overall survival, treatment)",
+    "n_exp": 68,
+    "n_ctl": 69,
+    "true_HR": 1.016,
+    "true_median_exp": 52,
+    "true_median_ctl": 100.4,
+    "true_RMST_diff": -0.7,
+    "curve_only": {
+      "HR": 0.755,
+      "HR_logerr": 0.297,
+      "median_exp_pcterr": 58.3,
+      "RMSTdiff": 31.2
+    },
+    "censoring_informed": {
+      "HR": 0.796,
+      "HR_logerr": 0.245,
+      "median_exp_pcterr": 61.6,
+      "RMSTdiff": 23.7
+    }
+  },
+  {
+    "ds": "rotterdam",
+    "label": "Rotterdam breast cancer (overall survival, hormonal Rx)",
+    "n_exp": 339,
+    "n_ctl": 2643,
+    "true_HR": 1.51,
+    "true_median_exp": 2863.7,
+    "true_median_ctl": 4114.8,
+    "true_RMST_diff": -560.8,
+    "curve_only": {
+      "HR": 1.269,
+      "HR_logerr": 0.174,
+      "median_exp_pcterr": 2.4,
+      "RMSTdiff": -548.5
+    },
+    "censoring_informed": {
+      "HR": 1.562,
+      "HR_logerr": 0.033,
+      "median_exp_pcterr": 43,
+      "RMSTdiff": -660.8
+    }
+  }
+]

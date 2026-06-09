@@ -21,3 +21,6 @@ Thumbs.db
 
 # bulk harvested cohort (keep only curated demos)
 cohort/
+
+# downloaded public validation datasets (not redistributed)
+realipd/*.csv
