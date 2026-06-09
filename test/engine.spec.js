@@ -21,6 +21,12 @@ test('pavaDecreasing enforces non-increasing and is identity on monotone input',
   assert.ok(bad.adjusted >= 1);
 });
 
+test('medianFromKM interpolates the 0.5-crossing on coarse curves (anti-quantization)', () => {
+  const steps = [{ t: 6, S: 0.4 }];                 // S goes 1 -> 0.4 at t=6; true median between 0 and 6
+  assert.strictEqual(RIPD._.medianFromKM(steps), 6); // step snaps up to the posted timepoint
+  assert.ok(Math.abs(RIPD._.medianFromKM(steps, { interpolate: true }) - 5.0) < 1e-9); // 0+(1-.5)/(1-.4)*6
+});
+
 test('kmFromIPD + median + rmst on a hand example', () => {
   const ipd = [{ time: 1, status: 1 }, { time: 2, status: 1 }, { time: 3, status: 0 }, { time: 4, status: 1 }];
   const steps = RIPD._.kmFromIPD(ipd);

@@ -102,16 +102,33 @@ measurements (`node validate/validate_rmst.js`), labelled honestly:
 | **median vs *external* registry median** | recon median vs a separately-reported registry median | **48%** median err (n=152) | the only *external* estimand check — see caveat |
 
 **Honest reading.** The 0.19% / 0% figures are **round-trip self-consistency**: anchor-exact
-reconstruction is *built* to pass through the anchors and the method selector minimises distance to
-them, so these checks essentially cannot fail. They are worth running (they confirm the
-death/censor expansion preserves the curve) but they are **not** evidence of external accuracy and
-must not be read as "RMST is exact." The genuinely external check — recon median vs a
-separately-reported registry median — gives **48%**, which we attribute to **endpoint mismatch**
-(the structured curve is often a different endpoint, e.g. PFS, than the reported median, e.g. OS,
-under the same arm code) rather than reconstruction error; that attribution is **supported but not
-proven** (RADIANT-4: recon median 12.0/4.0 mo matches the *published PFS* 11.0/3.9 mo, while the
-auto-harvested "median" was 43 mo ≈ OS/follow-up). A clean same-endpoint external RMST/median check
-remains the key missing validation and needs the unresolved endpoint-level mapping.
+reconstruction is *built* to pass through the anchors, so they confirm the death/censor expansion
+preserves the curve but are **not** external accuracy.
+
+### External same-endpoint median validation (the genuinely non-circular check)
+
+This was the key missing validation. We matched the reconstructed median to the sponsor's
+*separately-reported* median (computed from full patient-level data) for the **same endpoint**
+(`harvest_medians.py`: tier-1 same-outcome, tier-2 same endpoint-class + title similarity;
+`validate/validate_median_external.js`). Two artifacts had to be removed first:
+
+1. **Endpoint mismatch** — naive arm-code matching compared a PFS curve to an OS/follow-up median
+   (the earlier ~48%). Same-endpoint matching + filtering rate/landmark/age/subgroup measures fixes it.
+2. **Anchor-grid quantization** — Tier-A places events only at posted timepoints, so the *step*
+   median snaps up to the next reported time; the sponsor's median falls between anchors.
+   Interpolating the 0.5-crossing removes this.
+
+| | step median | **interpolated median** |
+|---|---|---|
+| all matched arms (n=106) | 31% median err | **8.7%** (77% within 20%) |
+| clean same-endpoint subset (n=14) | 40% | **6.1%** (86% within 20%) |
+
+**Result:** against the sponsor's full-IPD median, the reconstructed (interpolated) median agrees to
+**~6–9%** — a genuine, *external* confirmation that reconstruction-from-curve is accurate for the
+median, not merely self-consistent. (Small n; the engine now offers `medianFromKM(steps,
+{interpolate:true})` so coarse curves don't over-quantize. RADIANT-4 cross-check: recon 12.0/4.0 mo
+vs published PFS 11.0/3.9 mo.) A same-endpoint *external RMST* check still awaits trials that report
+RMST directly (rare in AACT).
 
 ## Royston–Parmar flexible parametric (done, with an honest scope)
 
