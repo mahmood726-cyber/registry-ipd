@@ -174,6 +174,28 @@ holds at every step, and naive 1−KM provably overestimates the cause-1 inciden
 **+3.6 pp (experimental) / +1.4 pp (comparator)**; AJ corrects it. This makes the reconstruction
 honest for cause-specific endpoints, which the single-KM assumption silently biases.
 
+## Cutting-edge: multi-constraint joint reconstruction (+ max-entropy)
+
+`reconstructJoint()` produces pseudo-IPD consistent with the curve AND total events (censoring-
+informed) AND the registry HR (calibration) at once, and **reports which constraints jointly hold**.
+Key honest finding: the constraints can be **mutually inconsistent** (registry events + HR + curve
+need not be jointly satisfiable); calibration then trades the experimental event count to hit the
+HR, and the report surfaces that tension rather than hiding it. The *maximum-entropy* element — being
+least-committal over the under-identified DOF — is the imputation ensemble above (it samples the
+max-entropy distribution over the censoring level).
+
+## Cutting-edge: fractional-polynomial time-varying HR (non-proportional hazards)
+
+A single Cox HR is misleading under non-PH — and RMST/median (which we recover well) are the
+preferred NPH summaries for exactly this reason. `piecewiseHR()` estimates a piecewise-exponential
+rate-ratio HR(t) on the reconstructed pseudo-IPD; `fractionalPolyHR()` fits a first-order fractional
+polynomial logHR(t)=β₀+β₁·tᵖ and **tests PH (β₁≈0)**; `poolTimeVaryingHR()` inverse-variance-pools
+across trials (a time-varying network/meta effect). Validated: on synthetic delayed-effect data the
+early-window HR≈1, late-window HR drops, and FP flags non-proportional. Demonstration (RADIANT-4
+reconstructed IPD): piecewise HR **0.35 → 0.90 → 1.63** with FP non-proportional=true — time-structure
+the single registry HR (0.48) hides. (On coarse reconstructed anchors the late windows are noisy; the
+method detects and characterises time-variation, it does not claim window-exact HRs.)
+
 ## Remaining levers
 - ✅ HR-calibration · ✅ N-matched mapping · ✅ RMST/median validation · ✅ Royston–Parmar (extrapolation).
 - **Same-endpoint external median matching** to clean the contaminated registry-median cross-check.

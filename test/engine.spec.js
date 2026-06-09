@@ -109,6 +109,45 @@ test('Tier A: anchor-exact beats Guyot under administrative censoring; best-of s
   assert.ok(best.flags.some(f => f.startsWith('wasserstein_to_anchors:')), 'reports Wasserstein');
 });
 
+// -------------------------------------------------- multi-constraint joint reconstruction
+test('reconstructJoint satisfies curve + events + HR constraints simultaneously', () => {
+  const t = fx('fixture_exp_known.json');
+  const r = RIPD.reconstructJoint(t);
+  const jc = r.joint_constraints;
+  assert.ok(jc.curve_anchor_sup_err <= 0.15, `curve anchors held (${jc.curve_anchor_sup_err})`);
+  // calibrated HR hits the registry target
+  assert.ok(Math.abs(Math.log(jc.hr.achieved) - Math.log(jc.hr.target)) < Math.log(1.12), 'HR target met');
+  // the comparator arm (not calibrated) keeps its exact registry event count
+  const compId = t.arms.find(a => a.role === 'comparator').arm_id;
+  const comp = jc.events.find(e => e.arm === compId);
+  assert.strictEqual(comp.recon, comp.registry, 'comparator events match registry exactly');
+  // NOTE: the experimental event count may be adjusted to hit the HR — a registry inconsistency
+  // the joint reconstruction surfaces rather than hides.
+});
+
+// -------------------------------------------------- fractional-polynomial time-varying HR
+test('fractional-polynomial HR detects non-proportional hazards (delayed effect)', () => {
+  const rng = RIPD._.mulberry32(13);
+  // control: constant monthly hazard 0.05; experimental: DELAYED effect (0.05 until mo 10, then 0.015)
+  function gen(arm) {
+    const ipd = [];
+    for (let i = 0; i < 500; i++) {
+      let dead = false, time = 48;
+      for (let m = 0; m < 48 && !dead; m++) {
+        const rate = arm === 'exp' ? (m < 10 ? 0.05 : 0.015) : 0.05;
+        if (rng() < rate) { dead = true; time = m + rng(); }
+      }
+      ipd.push({ time: Math.min(time, 48), status: dead ? 1 : 0 });
+    }
+    return ipd;
+  }
+  const pieces = RIPD.piecewiseHR(gen('exp'), gen('ctl'), [10, 20]);
+  const fp = RIPD.fractionalPolyHR(pieces);
+  assert.ok(pieces[0].hr > 0.75, `early HR ~1 (delayed effect), got ${pieces[0].hr.toFixed(2)}`);
+  assert.ok(pieces[pieces.length - 1].hr < pieces[0].hr * 0.8, 'HR clearly decreases over time');
+  assert.ok(fp && fp.nonproportional, 'FP flags non-proportional hazards');
+});
+
 // -------------------------------------------------- competing risks (Aalen–Johansen)
 test('Aalen-Johansen CIF: invariant CIF1+CIF2+S=1, and naive 1-KM overestimates cause-1 incidence', () => {
   // cause 1 events early, a burst of competing (cause 2) events at t=2, rest censored

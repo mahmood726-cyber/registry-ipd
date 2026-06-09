@@ -940,6 +940,99 @@
     return base;
   }
 
+  // ============================================ 7c. Multi-constraint joint reconstruction
+  //
+  // "Use all the registry data at once": reconstruct pseudo-IPD consistent with the curve AND the
+  // total-event count (censoring-informed, carried on trial.arms[].total_events) AND the registry HR
+  // (calibration) simultaneously, and report which constraints are jointly satisfied. (The
+  // maximum-entropy stance over what the registry leaves open is the ensemble in §8.)
+  function reconstructJoint(trial, opts) {
+    opts = opts || {};
+    const r = reconstruct(trial, Object.assign({ calibrateHR: !!(trial.hr && trial.hr.value != null) }, opts));
+    const sat = {};
+    if (r.arms) {
+      let mx = 0;
+      for (const a of trial.arms) {
+        const rec = r.arms.find(x => x.arm_id === a.arm_id);
+        if (!rec || !(a.km_points || []).length) continue;
+        const km = kmFromIPD(rec.ipd);
+        for (const p of a.km_points) mx = Math.max(mx, Math.abs(evalKM(km, p.t) - p.S));
+      }
+      sat.curve_anchor_sup_err = +mx.toFixed(4);
+      sat.events = trial.arms.map(a => {
+        const rec = r.arms.find(x => x.arm_id === a.arm_id);
+        return { arm: a.arm_id, registry: a.total_events != null ? a.total_events : null,
+          recon: rec ? rec.ipd.filter(x => x.status === 1).length : null };
+      });
+      if (r.calibrated) sat.hr = { target: r.calibrated.target_hr, achieved: r.calibrated.achieved_hr };
+    }
+    r.joint_constraints = sat;
+    return r;
+  }
+
+  // ============================================ 7d. Fractional-polynomial time-varying HR (non-PH)
+  //
+  // A single Cox HR is misleading under non-proportional hazards. On the reconstructed two-arm
+  // pseudo-IPD we estimate a PIECEWISE rate-ratio HR(t) (piecewise-exponential), then fit a
+  // first-order fractional polynomial logHR(t)=β0+β1·t^p (Royston/Jansen style) and test PH
+  // (β1≈0). Pool across trials with inverse-variance weights for a time-varying network/meta effect.
+  function piecewiseHR(expIpd, ctlIpd, breaks) {
+    if (!breaks) {
+      const ev = expIpd.concat(ctlIpd).filter(r => r.status === 1).map(r => r.time).sort((a, b) => a - b);
+      if (ev.length < 6) breaks = [ev[Math.floor(ev.length / 2)] || 1];
+      else breaks = [ev[Math.floor(ev.length / 3)], ev[Math.floor(2 * ev.length / 3)]];
+    }
+    const bounds = [0].concat(breaks, [Infinity]);
+    const out = [];
+    for (let i = 0; i < bounds.length - 1; i++) {
+      const lo = bounds[i], hi = bounds[i + 1];
+      const tally = (ipd) => {
+        let d = 0, pt = 0;
+        for (const r of ipd) {
+          if (r.time > lo) { pt += Math.min(r.time, hi) - lo; if (r.status === 1 && r.time <= hi) d++; }
+        }
+        return { d, pt };
+      };
+      const e = tally(expIpd), c = tally(ctlIpd);
+      if (e.pt <= 0 || c.pt <= 0) continue;
+      const rateE = (e.d + 0.5) / e.pt, rateC = (c.d + 0.5) / c.pt; // Anscombe-style continuity
+      const logHR = Math.log(rateE / rateC);
+      const se = Math.sqrt(1 / (e.d + 0.5) + 1 / (c.d + 0.5));
+      out.push({ t_mid: isFinite(hi) ? (lo + hi) / 2 : lo, lo, hi: isFinite(hi) ? hi : null, logHR, hr: Math.exp(logHR), se, d_exp: e.d, d_ctl: c.d });
+    }
+    return out;
+  }
+  function fractionalPolyHR(pieces) {
+    // weighted FP1 fit logHR = b0 + b1 * t^p over piece midpoints; choose best p; PH test on b1.
+    const pts = pieces.filter(p => isFinite(p.logHR) && p.se > 0);
+    if (pts.length < 2) return null;
+    const powers = [-2, -1, -0.5, 0, 0.5, 1, 2];
+    let best = null;
+    for (const p of powers) {
+      const fx = (t) => p === 0 ? Math.log(t || 1e-6) : Math.pow(t || 1e-6, p);
+      let Sw = 0, Sx = 0, Sy = 0, Sxx = 0, Sxy = 0;
+      for (const pt of pts) { const w = 1 / (pt.se * pt.se), x = fx(pt.t_mid), y = pt.logHR; Sw += w; Sx += w * x; Sy += w * y; Sxx += w * x * x; Sxy += w * x * y; }
+      const det = Sw * Sxx - Sx * Sx; if (Math.abs(det) < 1e-12) continue;
+      const b1 = (Sw * Sxy - Sx * Sy) / det, b0 = (Sy - b1 * Sx) / Sw;
+      let rss = 0; for (const pt of pts) { const r = pt.logHR - (b0 + b1 * fx(pt.t_mid)); rss += r * r / (pt.se * pt.se); }
+      const seB1 = Math.sqrt(Sw / det);
+      if (!best || rss < best.rss) best = { power: p, b0, b1, rss, z_b1: b1 / seB1 };
+    }
+    if (best) best.nonproportional = Math.abs(best.z_b1) > 1.96; // β1 significantly ≠ 0 ⇒ NPH
+    return best;
+  }
+  function poolTimeVaryingHR(perTrialPieces) {
+    // inverse-variance pool of logHR within matched time windows across trials
+    const byWin = {};
+    perTrialPieces.forEach(pieces => pieces.forEach((p, i) => { (byWin[i] = byWin[i] || []).push(p); }));
+    return Object.keys(byWin).map(i => {
+      const ps = byWin[i];
+      let Sw = 0, Swy = 0; ps.forEach(p => { const w = 1 / (p.se * p.se); Sw += w; Swy += w * p.logHR; });
+      const lhr = Swy / Sw, se = Math.sqrt(1 / Sw);
+      return { window: +i, k: ps.length, hr: +Math.exp(lhr).toFixed(3), ci: [+Math.exp(lhr - 1.96 * se).toFixed(3), +Math.exp(lhr + 1.96 * se).toFixed(3)] };
+    });
+  }
+
   // ============================================ 8. Multiple-imputation uncertainty (Tier A)
   //
   // Registry constraints do NOT uniquely determine the IPD: the censoring level/timing and the
@@ -1016,7 +1109,8 @@
   }
 
   return {
-    reconstruct, reconstructEnsemble, reconstructCompetingRisks, classifyTier,
+    reconstruct, reconstructEnsemble, reconstructCompetingRisks, reconstructJoint,
+    piecewiseHR, fractionalPolyHR, poolTimeVaryingHR, classifyTier,
     // expose internals for tests
     _: {
       pavaDecreasing, mulberry32, hashStr, quantileSorted,
