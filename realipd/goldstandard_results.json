@@ -47,22 +47,22 @@
     "ds": "rotterdam",
     "label": "Rotterdam breast cancer (overall survival, hormonal Rx)",
     "n_exp": 339,
-    "n_ctl": 2643,
-    "true_HR": 1.51,
+    "n_ctl": 2500,
+    "true_HR": 1.495,
     "true_median_exp": 2863.7,
-    "true_median_ctl": 4114.8,
-    "true_RMST_diff": -560.8,
+    "true_median_ctl": 4063.1,
+    "true_RMST_diff": -550.7,
     "curve_only": {
-      "HR": 1.269,
-      "HR_logerr": 0.174,
+      "HR": 1.287,
+      "HR_logerr": 0.15,
       "median_exp_pcterr": 2.4,
-      "RMSTdiff": -548.5
+      "RMSTdiff": -536.7
     },
     "censoring_informed": {
-      "HR": 1.562,
-      "HR_logerr": 0.033,
+      "HR": 1.606,
+      "HR_logerr": 0.071,
       "median_exp_pcterr": 43,
-      "RMSTdiff": -660.8
+      "RMSTdiff": -665.6
     }
   },
   {
@@ -113,22 +113,22 @@
     "ds": "nwtco",
     "label": "NWTSG Wilms tumour (relapse, histology group)",
     "n_exp": 459,
-    "n_ctl": 3569,
-    "true_HR": 5.103,
+    "n_ctl": 2500,
+    "true_HR": 5.115,
     "true_median_exp": null,
     "true_median_ctl": null,
-    "true_RMST_diff": -1696.3,
+    "true_RMST_diff": -1698.4,
     "curve_only": {
-      "HR": 5.367,
-      "HR_logerr": 0.051,
+      "HR": 5.184,
+      "HR_logerr": 0.013,
       "median_exp_pcterr": null,
-      "RMSTdiff": -1532
+      "RMSTdiff": -1534.4
     },
     "censoring_informed": {
-      "HR": 5.57,
-      "HR_logerr": 0.088,
+      "HR": 5.403,
+      "HR_logerr": 0.055,
       "median_exp_pcterr": null,
-      "RMSTdiff": -1509.7
+      "RMSTdiff": -1514.5
     }
   },
   {
@@ -173,6 +173,248 @@
       "HR_logerr": 0.187,
       "median_exp_pcterr": null,
       "RMSTdiff": 16.3
+    }
+  },
+  {
+    "ds": "udca2",
+    "label": "UDCA in PBC RCT (progression, UDCA vs placebo)",
+    "n_exp": 680,
+    "n_ctl": 672,
+    "true_HR": 0.445,
+    "true_median_exp": null,
+    "true_median_ctl": null,
+    "true_RMST_diff": 69.9,
+    "curve_only": {
+      "HR": 0.415,
+      "HR_logerr": 0.071,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 59.1
+    },
+    "censoring_informed": {
+      "HR": 0.511,
+      "HR_logerr": 0.138,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 28
+    }
+  },
+  {
+    "ds": "retinopathy",
+    "label": "Diabetic retinopathy (laser, time to vision loss)",
+    "n_exp": 197,
+    "n_ctl": 197,
+    "true_HR": 0.46,
+    "true_median_exp": null,
+    "true_median_ctl": 43.6,
+    "true_RMST_diff": 12.2,
+    "curve_only": {
+      "HR": 0.412,
+      "HR_logerr": 0.11,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 10.7
+    },
+    "censoring_informed": {
+      "HR": 0.405,
+      "HR_logerr": 0.129,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 9.8
+    }
+  },
+  {
+    "ds": "mgus2",
+    "label": "MGUS cohort (death, by sex)",
+    "n_exp": 753,
+    "n_ctl": 631,
+    "true_HR": 1.223,
+    "true_median_exp": 87.7,
+    "true_median_ctl": 107.7,
+    "true_RMST_diff": -19.8,
+    "curve_only": {
+      "HR": 0.975,
+      "HR_logerr": 0.226,
+      "median_exp_pcterr": 0.2,
+      "RMSTdiff": -15.3
+    },
+    "censoring_informed": {
+      "HR": 1.058,
+      "HR_logerr": 0.145,
+      "median_exp_pcterr": 32.5,
+      "RMSTdiff": -23.9
+    }
+  },
+  {
+    "ds": "flchain",
+    "label": "Free light chain cohort (death, by sex)",
+    "n_exp": 2500,
+    "n_ctl": 2500,
+    "true_HR": 1.1,
+    "true_median_exp": null,
+    "true_median_ctl": null,
+    "true_RMST_diff": -58.7,
+    "curve_only": {
+      "HR": 0.955,
+      "HR_logerr": 0.141,
+      "median_exp_pcterr": null,
+      "RMSTdiff": -49.5
+    },
+    "censoring_informed": {
+      "HR": 0.944,
+      "HR_logerr": 0.153,
+      "median_exp_pcterr": null,
+      "RMSTdiff": -36.3
+    }
+  },
+  {
+    "ds": "nafld1",
+    "label": "NAFLD cohort (death, by sex)",
+    "n_exp": 2500,
+    "n_ctl": 2500,
+    "true_HR": 1.05,
+    "true_median_exp": null,
+    "true_median_ctl": null,
+    "true_RMST_diff": 20.5,
+    "curve_only": {
+      "HR": 0.999,
+      "HR_logerr": 0.05,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 19
+    },
+    "censoring_informed": {
+      "HR": 1.26,
+      "HR_logerr": 0.183,
+      "median_exp_pcterr": null,
+      "RMSTdiff": -35
+    }
+  },
+  {
+    "ds": "prostateSurvival",
+    "label": "Prostate cancer (cancer death, grade)",
+    "n_exp": 2500,
+    "n_ctl": 2500,
+    "true_HR": 5.485,
+    "true_median_exp": null,
+    "true_median_ctl": null,
+    "true_RMST_diff": -15.3,
+    "curve_only": {
+      "HR": 5.168,
+      "HR_logerr": 0.06,
+      "median_exp_pcterr": null,
+      "RMSTdiff": -13.6
+    },
+    "censoring_informed": {
+      "HR": 6.96,
+      "HR_logerr": 0.238,
+      "median_exp_pcterr": null,
+      "RMSTdiff": -5.7
+    }
+  },
+  {
+    "ds": "bmt",
+    "label": "Bone marrow transplant (DFS, risk group)",
+    "n_exp": 45,
+    "n_ctl": 38,
+    "true_HR": 1.491,
+    "true_median_exp": 175.5,
+    "true_median_ctl": 410.7,
+    "true_RMST_diff": -221,
+    "curve_only": {
+      "HR": 1.008,
+      "HR_logerr": 0.391,
+      "median_exp_pcterr": 54.6,
+      "RMSTdiff": -137
+    },
+    "censoring_informed": {
+      "HR": 1.049,
+      "HR_logerr": 0.351,
+      "median_exp_pcterr": 54.6,
+      "RMSTdiff": -165.1
+    }
+  },
+  {
+    "ds": "melanoma",
+    "label": "Melanoma (cancer death, ulceration)",
+    "n_exp": 90,
+    "n_ctl": 115,
+    "true_HR": 4.357,
+    "true_median_exp": 2688.7,
+    "true_median_ctl": null,
+    "true_RMST_diff": -1081.2,
+    "curve_only": {
+      "HR": 3.986,
+      "HR_logerr": 0.089,
+      "median_exp_pcterr": 0.8,
+      "RMSTdiff": -1018.2
+    },
+    "censoring_informed": {
+      "HR": 4.351,
+      "HR_logerr": 0.001,
+      "median_exp_pcterr": null,
+      "RMSTdiff": -900.8
+    }
+  },
+  {
+    "ds": "pharmacoSmoking",
+    "label": "Smoking-cessation RCT (time to relapse)",
+    "n_exp": 56,
+    "n_ctl": 57,
+    "true_HR": 1.795,
+    "true_median_exp": 28,
+    "true_median_ctl": 92.5,
+    "true_RMST_diff": -31.4,
+    "curve_only": {
+      "HR": 1.641,
+      "HR_logerr": 0.089,
+      "median_exp_pcterr": 28.7,
+      "RMSTdiff": -28
+    },
+    "censoring_informed": {
+      "HR": 1.641,
+      "HR_logerr": 0.089,
+      "median_exp_pcterr": 28.7,
+      "RMSTdiff": -28
+    }
+  },
+  {
+    "ds": "gehan",
+    "label": "Gehan leukemia RCT (remission, 6-MP vs control)",
+    "n_exp": 21,
+    "n_ctl": 21,
+    "true_HR": 0.221,
+    "true_median_exp": 22.4,
+    "true_median_ctl": 6.1,
+    "true_RMST_diff": 8.1,
+    "curve_only": {
+      "HR": 0.201,
+      "HR_logerr": 0.094,
+      "median_exp_pcterr": 2.7,
+      "RMSTdiff": 7.7
+    },
+    "censoring_informed": {
+      "HR": 0.126,
+      "HR_logerr": 0.562,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 8.5
+    }
+  },
+  {
+    "ds": "tongue",
+    "label": "Tongue cancer (death, ploidy)",
+    "n_exp": 28,
+    "n_ctl": 52,
+    "true_HR": 1.586,
+    "true_median_exp": 37.6,
+    "true_median_ctl": 91.4,
+    "true_RMST_diff": -31.9,
+    "curve_only": {
+      "HR": 1.926,
+      "HR_logerr": 0.194,
+      "median_exp_pcterr": 45.8,
+      "RMSTdiff": -39.3
+    },
+    "censoring_informed": {
+      "HR": 2.05,
+      "HR_logerr": 0.257,
+      "median_exp_pcterr": 83.6,
+      "RMSTdiff": -44.8
     }
   }
 ]

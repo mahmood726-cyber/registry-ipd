@@ -28,7 +28,8 @@ function buildTrial(cfg, K) {
     .map(r => ({ time: num(r[cfg.time]), status: num(r[cfg.status]) }))
     .filter(r => r.time != null && r.status != null && r.time > 0)
     .map(r => ({ time: r.time, status: toEvent(r.status) }));
-  const expT = arm(cfg.exp), ctlT = arm(cfg.ctl);
+  const cap = a => { if (a.length <= 2500) return a; const step = a.length / 2500, s = []; for (let i = 0; i < 2500; i++) s.push(a[Math.floor(i * step)]); return s; };
+  const expT = cap(arm(cfg.exp)), ctlT = cap(arm(cfg.ctl));
   if (expT.length < 100 || ctlT.length < 100) return null;
   const trueHR = _.coxLogHR(expT.map(r => ({ ...r, x: 1 })).concat(ctlT.map(r => ({ ...r, x: 0 })))).hr;
   const coarse = (ipd) => {

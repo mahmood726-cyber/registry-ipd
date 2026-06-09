@@ -1,7 +1,7 @@
 {
-  "n_datasets": 7,
-  "true_HR_in_95pct_credible_interval": "7/7 (100%)",
-  "median_CI_width_fold": 2.19,
+  "n_datasets": 13,
+  "true_HR_in_95pct_credible_interval": "13/13 (100%)",
+  "median_CI_width_fold": 2.3,
   "per_dataset": [
     {
       "ds": "gbsg",
@@ -16,14 +16,14 @@
     },
     {
       "ds": "rotterdam",
-      "true_HR": 1.51,
+      "true_HR": 1.495,
       "ci": [
-        0.8824,
-        2.005
+        0.8962,
+        2.0629
       ],
-      "est": 1.4447,
+      "est": 1.4816,
       "covered": true,
-      "width_fold": 2.27
+      "width_fold": 2.3
     },
     {
       "ds": "pbc",
@@ -49,14 +49,14 @@
     },
     {
       "ds": "nwtco",
-      "true_HR": 5.103,
+      "true_HR": 5.115,
       "ci": [
-        3.4494,
-        7.0273
+        3.3295,
+        8.5697
       ],
-      "est": null,
+      "est": 5.4688,
       "covered": true,
-      "width_fold": 2.04
+      "width_fold": 2.57
     },
     {
       "ds": "myeloid",
@@ -79,7 +79,73 @@
       "est": 1.0629,
       "covered": true,
       "width_fold": 2.77
+    },
+    {
+      "ds": "udca2",
+      "true_HR": 0.445,
+      "ci": [
+        0.3102,
+        0.6679
+      ],
+      "est": 0.4644,
+      "covered": true,
+      "width_fold": 2.15
+    },
+    {
+      "ds": "retinopathy",
+      "true_HR": 0.46,
+      "ci": [
+        0.272,
+        0.6227
+      ],
+      "est": 0.4257,
+      "covered": true,
+      "width_fold": 2.29
+    },
+    {
+      "ds": "mgus2",
+      "true_HR": 1.223,
+      "ci": [
+        0.7352,
+        1.3774
+      ],
+      "est": 1.0053,
+      "covered": true,
+      "width_fold": 1.87
+    },
+    {
+      "ds": "flchain",
+      "true_HR": 1.1,
+      "ci": [
+        0.6098,
+        1.4416
+      ],
+      "est": 0.9595,
+      "covered": true,
+      "width_fold": 2.36
+    },
+    {
+      "ds": "nafld1",
+      "true_HR": 1.05,
+      "ci": [
+        0.3556,
+        3.564
+      ],
+      "est": 1.1602,
+      "covered": true,
+      "width_fold": 10.02
+    },
+    {
+      "ds": "prostateSurvival",
+      "true_HR": 5.485,
+      "ci": [
+        1.9377,
+        18.8079
+      ],
+      "est": 6.1775,
+      "covered": true,
+      "width_fold": 9.71
     }
   ],
-  "finding": "On TRUE patient-level data, the multiple-imputation 95% credible interval covers the true HR in 7/7 datasets — the honest uncertainty band genuinely contains the ground-truth effect, not just the registry-reported one."
+  "finding": "On TRUE patient-level data, the multiple-imputation 95% credible interval covers the true HR in 13/13 datasets — the honest uncertainty band genuinely contains the ground-truth effect, not just the registry-reported one."
 }

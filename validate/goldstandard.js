@@ -43,7 +43,19 @@ const CONFIGS = [
   { ds: 'nwtco', label: 'NWTSG Wilms tumour (relapse, histology group)', time: 'edrel', status: 'rel', arm: 'histol', exp: '2', ctl: '1' },
   { ds: 'myeloid', label: 'Myeloid AML RCT (overall survival, trt A vs B)', time: 'futime', status: 'death', arm: 'trt', exp: 'B', ctl: 'A' },
   { ds: 'kidtran', label: 'Kidney transplant (graft survival, by sex)', time: 'time', status: 'delta', arm: 'gender', exp: '2', ctl: '1' },
+  { ds: 'udca2', label: 'UDCA in PBC RCT (progression, UDCA vs placebo)', time: 'futime', status: 'status', arm: 'trt', exp: '1', ctl: '0' },
+  { ds: 'retinopathy', label: 'Diabetic retinopathy (laser, time to vision loss)', time: 'futime', status: 'status', arm: 'trt', exp: '1', ctl: '0' },
+  { ds: 'mgus2', label: 'MGUS cohort (death, by sex)', time: 'futime', status: 'death', arm: 'sex', exp: 'M', ctl: 'F' },
+  { ds: 'flchain', label: 'Free light chain cohort (death, by sex)', time: 'futime', status: 'death', arm: 'sex', exp: 'M', ctl: 'F' },
+  { ds: 'nafld1', label: 'NAFLD cohort (death, by sex)', time: 'futime', status: 'status', arm: 'male', exp: '1', ctl: '0' },
+  { ds: 'prostateSurvival', label: 'Prostate cancer (cancer death, grade)', time: 'survTime', status: 'status', eventVal: 1, arm: 'grade', exp: 'poor', ctl: 'mode' },
+  { ds: 'bmt', label: 'Bone marrow transplant (DFS, risk group)', time: 't2', status: 'd3', arm: 'group', exp: '3', ctl: '1' },
+  { ds: 'melanoma', label: 'Melanoma (cancer death, ulceration)', time: 'time', status: 'status', eventVal: 1, arm: 'ulcer', exp: '1', ctl: '0' },
+  { ds: 'pharmacoSmoking', label: 'Smoking-cessation RCT (time to relapse)', time: 'ttr', status: 'relapse', arm: 'grp', exp: 'patchOnly', ctl: 'combination' },
+  { ds: 'gehan', label: 'Gehan leukemia RCT (remission, 6-MP vs control)', time: 'time', status: 'cens', arm: 'treat', exp: '6-MP', ctl: 'control' },
+  { ds: 'tongue', label: 'Tongue cancer (death, ploidy)', time: 'time', status: 'delta', arm: 'type', exp: '2', ctl: '1' },
 ];
+const CAP = 2500; // subsample cap per arm (file order; keeps huge cohorts tractable)
 
 function coxHR(expIpd, ctlIpd) {
   return _.coxLogHR(expIpd.map(r => ({ time: r.time, status: r.status, x: 1 }))
@@ -58,7 +70,8 @@ function run(cfg, K) {
     .map(r => ({ time: num(r[cfg.time]), status: num(r[cfg.status]) }))
     .filter(r => r.time != null && r.status != null && r.time > 0)
     .map(r => ({ time: r.time, status: toEvent(r.status) }));
-  const expT = arm(cfg.exp), ctlT = arm(cfg.ctl);
+  const subsample = (a) => { if (a.length <= CAP) return a; const step = a.length / CAP, s = []; for (let i = 0; i < CAP; i++) s.push(a[Math.floor(i * step)]); return s; };
+  const expT = subsample(arm(cfg.exp)), ctlT = subsample(arm(cfg.ctl));
   if (expT.length < 20 || ctlT.length < 20) return { ds: cfg.ds, error: 'too few rows' };
 
   // ---- TRUE estimates from full IPD ----
