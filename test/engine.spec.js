@@ -109,6 +109,21 @@ test('Tier A: anchor-exact beats Guyot under administrative censoring; best-of s
   assert.ok(best.flags.some(f => f.startsWith('wasserstein_to_anchors:')), 'reports Wasserstein');
 });
 
+// -------------------------------------------------- multiple-imputation uncertainty
+test('reconstructEnsemble yields credible intervals that cover the truth', () => {
+  const t = fx('fixture_exp_known.json');
+  const r = RIPD.reconstructEnsemble(t, { M: 80 });
+  assert.strictEqual(r.tier, 'A');
+  // HR credible interval is ordered and covers the registry HR
+  const hr = r.ensemble.hr;
+  assert.ok(hr.lo <= hr.est && hr.est <= hr.hi, 'HR CI ordered');
+  assert.ok(t.hr.value >= hr.lo && t.hr.value <= hr.hi, `registry HR ${t.hr.value} in CI [${hr.lo},${hr.hi}]`);
+  // control-arm median CI covers the true KM median
+  const cm = r.ensemble.median.ctl;
+  assert.ok(t._truth.ctl_median >= cm.lo && t._truth.ctl_median <= cm.hi,
+    `true median ${t._truth.ctl_median} in CI [${cm.lo},${cm.hi}]`);
+});
+
 // -------------------------------------------------- C9 direction integrity (hard gate)
 test('C9 hard-fails when the reconstructed HR direction contradicts the registry favored arm', () => {
   // experimental arm CLEARLY worse (lower survival) but registry HR says it is favored => contradiction
