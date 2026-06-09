@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Registry-Native Pseudo-IPD Reconstructor" />
+<meta property="og:description" content="Reconstruct pseudo individual-patient survival data from ClinicalTrials.gov / AACT summary data only. Fully offline." />
+<title>Registry-Native Pseudo-IPD Reconstructor (ct.gov / AACT)</title>
+<style>
+  :root{--bg:#0e1116;--panel:#161b22;--ink:#e6edf3;--mut:#8b949e;--line:#30363d;
+        --gold:#e3b341;--silver:#adb6c0;--bronze:#cd7f32;--none:#6e7681;
+        --exp:#58a6ff;--ctl:#f778ba;--ok:#3fb950;--bad:#f85149;--warn:#d29922;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  header{padding:18px 22px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#11161d,#0e1116)}
+  h1{margin:0 0 4px;font-size:19px}
+  .sub{color:var(--mut);font-size:13px;max-width:880px}
+  .caveat{margin:12px 22px 0;padding:10px 14px;border:1px solid #3d2d12;background:#1d1708;border-radius:8px;color:#e3c97a;font-size:12.5px;max-width:980px}
+  main{display:grid;grid-template-columns:340px 1fr;gap:18px;padding:18px 22px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+  .panel h2{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+  select,button,textarea{font:inherit;color:var(--ink);background:#0d1117;border:1px solid var(--line);border-radius:7px;padding:8px 10px}
+  button{cursor:pointer;background:#21262d}
+  button:hover{background:#2d333b}
+  button:disabled{opacity:.4;cursor:not-allowed}
+  button.primary{background:#1f6feb;border-color:#1f6feb}
+  button.primary:hover{background:#388bfd}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+  label.fld{display:block;color:var(--mut);font-size:12px;margin:10px 0 4px}
+  textarea{width:100%;min-height:90px;font-family:Consolas,monospace;font-size:12px}
+  .badge{display:inline-block;padding:4px 12px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:.04em}
+  .badge.gold{background:#3a2f08;color:var(--gold);border:1px solid var(--gold)}
+  .badge.silver{background:#22272e;color:var(--silver);border:1px solid var(--silver)}
+  .badge.bronze{background:#2a1c0e;color:var(--bronze);border:1px solid var(--bronze)}
+  .badge.none{background:#1c2128;color:var(--none);border:1px solid var(--none)}
+  .tier{font-size:28px;font-weight:800;margin:0}
+  .tierwrap{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  td,th{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--mut);font-weight:600}
+  .pass{color:var(--ok)} .fail{color:var(--bad)} .na{color:var(--mut)}
+  .flag{display:inline-block;background:#21262d;border:1px solid var(--line);border-radius:6px;padding:2px 8px;margin:2px 4px 0 0;font-size:11.5px;color:var(--warn)}
+  .legend span{display:inline-flex;align-items:center;gap:6px;margin-right:16px;font-size:12px;color:var(--mut)}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .muted{color:var(--mut);font-size:12px}
+  .err{color:var(--bad);font-size:13px;white-space:pre-wrap}
+  svg{width:100%;height:auto;background:#0d1117;border:1px solid var(--line);border-radius:8px}
+  code{background:#0d1117;padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Registry-Native Pseudo-IPD Reconstructor <span class="muted">· ct.gov / AACT only · fully offline</span></h1>
+  <div class="sub">Reconstructs <b>pseudo</b> individual-patient time-to-event data from ClinicalTrials.gov / AACT
+  <b>summary</b> fields only — exact registry anchors, zero digitization error, full provenance to the NCT record.</div>
+</header>
+<div class="caveat"><b>Honest scope:</b> AACT contains <b>no Kaplan–Meier curves and no true IPD</b> — only summary statistics.
+  Output is always <b>pseudo-IPD</b>, never true IPD, and never produced for Tier C. The edge over digitization tools
+  (IPDfromKM / KM-GPT / Guyot-on-image) is exact anchors on the rich-registry subset — <b>not</b> universal superiority.</div>
+
+<main>
+  <section class="panel" id="controls">
+    <h2>Input</h2>
+    <label class="fld">Bundled example</label>
+    <div class="row">
+      <select id="example"></select>
+      <button id="loadEx">Load</button>
+    </div>
+    <label class="fld">Upload trial JSON (from the harvester)</label>
+    <div class="row"><input type="file" id="file" accept="application/json" /></div>
+    <label class="fld">…or paste trial JSON</label>
+    <textarea id="paste" placeholder='{"nct_id":"…","arms":[…],"hr":{…}}'></textarea>
+    <div class="row" style="margin-top:10px">
+      <button class="primary" id="run">Reconstruct</button>
+      <button id="exportBtn" disabled>Export pseudo-IPD CSV</button>
+    </div>
+    <div id="inputErr" class="err"></div>
+    <p class="muted" style="margin-top:14px">Bootstrap replicates (Tier B): <span id="bval">300</span>
+      <input id="boot" type="range" min="50" max="1000" step="50" value="300" style="width:100%"></p>
+  </section>
+
+  <section class="panel" id="results">
+    <h2>Result</h2>
+    <div id="empty" class="muted">Load an example or your harvested trial JSON, then <b>Reconstruct</b>.</div>
+    <div id="out" style="display:none">
+      <div class="tierwrap">
+        <p class="tier" id="tier">—</p>
+        <span class="badge" id="badge">—</span>
+        <span class="muted" id="nct"></span>
+      </div>
+      <div id="verdict" class="muted" style="margin-bottom:10px"></div>
+      <div class="legend" style="margin:6px 0 8px">
+        <span><span class="dot" style="background:var(--exp)"></span>experimental</span>
+        <span><span class="dot" style="background:var(--ctl)"></span>comparator</span>
+        <span>○ registry KM anchor &nbsp; — reconstructed KM</span>
+      </div>
+      <svg id="plot" viewBox="0 0 720 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="survival overlay"></svg>
+      <h2 style="margin-top:18px">Self-audit checks</h2>
+      <table id="checks"><tbody></tbody></table>
+      <div id="flags" style="margin-top:10px"></div>
+    </div>
+  </section>
+</main>
+
+<!-- engine (works offline via local script src; build.js inlines it for distribution) -->
+<script src="src/engine.js"></script>
+<script src="examples/examples.js"></script>
+<script>
+(function(){
+  "use strict";
+  var RIPD = window.RIPD;
+  var EXAMPLES = window.RIPD_EXAMPLES || {};
+  var lastResult = null, lastTrial = null;
+
+  // populate examples dropdown
+  var sel = document.getElementById('example');
+  Object.keys(EXAMPLES).forEach(function(k){
+    var o=document.createElement('option'); o.value=k; o.textContent=EXAMPLES[k].label||k; sel.appendChild(o);
+  });
+
+  document.getElementById('boot').addEventListener('input', function(e){
+    document.getElementById('bval').textContent = e.target.value;
+  });
+  document.getElementById('loadEx').addEventListener('click', function(){
+    var ex = EXAMPLES[sel.value]; if(!ex) return;
+    document.getElementById('paste').value = JSON.stringify(ex.trial, null, 2);
+    setErr('');
+  });
+  document.getElementById('file').addEventListener('change', function(e){
+    var f = e.target.files[0]; if(!f) return;
+    var r = new FileReader();
+    r.onload = function(){ document.getElementById('paste').value = r.result; setErr(''); };
+    r.readAsText(f);
+  });
+  document.getElementById('run').addEventListener('click', run);
+  document.getElementById('exportBtn').addEventListener('click', exportCSV);
+
+  function setErr(m){ document.getElementById('inputErr').textContent = m; }
+
+  function run(){
+    var txt = document.getElementById('paste').value.trim();
+    if(!txt){ setErr('Paste or load a trial JSON first.'); return; }
+    var trial;
+    try { trial = JSON.parse(txt); } catch(e){ setErr('Invalid JSON: '+e.message); return; }
+    if(!trial.arms){ setErr('Trial JSON must have an "arms" array.'); return; }
+    setErr('');
+    var B = parseInt(document.getElementById('boot').value,10);
+    var res;
+    try { res = RIPD.reconstruct(trial, {bootstrap:B}); }
+    catch(e){ setErr('Reconstruction error: '+e.message); return; }
+    lastResult = res; lastTrial = trial;
+    render(trial, res);
+  }
+
+  function render(trial, res){
+    document.getElementById('empty').style.display='none';
+    document.getElementById('out').style.display='block';
+    document.getElementById('tier').textContent = 'Tier '+res.tier;
+    document.getElementById('nct').textContent = res.nct_id||'';
+    var b = document.getElementById('badge');
+    b.className = 'badge '+(res.audit.badge||'none');
+    b.textContent = (res.audit.badge||'none').toUpperCase();
+    var verdict = document.getElementById('verdict');
+    if(res.tier==='C'){
+      verdict.innerHTML = '<span class="fail">Insufficient registry data — reconstruction refused (Tier C IPD would be fabrication).</span>';
+    } else if(res.envelope){
+      verdict.innerHTML = 'Reconstructed '+res.arms.length+' arm(s) · parametric (exponential) with bootstrap envelope';
+    } else {
+      var w = (res.wasserstein_to_anchors!=null)?(' · 1-Wasserstein to anchors '+res.wasserstein_to_anchors.toFixed(4)):'';
+      verdict.innerHTML = 'Reconstructed '+res.arms.length+' arm(s) · method <b>'+(res.method||'?')+'</b> '
+        +'<span class="muted">(best-of Guyot vs censoring-informed anchor-exact, selected by min-Wasserstein)</span>'+w;
+    }
+    document.getElementById('exportBtn').disabled = !res.exportable;
+    drawPlot(trial, res);
+    drawChecks(res);
+    drawFlags(res);
+  }
+
+  function drawChecks(res){
+    var tb = document.querySelector('#checks tbody'); tb.innerHTML='';
+    var C = res.audit.checks; var names = {
+      C1_total_events:'C1 total events match', C2_anchor_fidelity:'C2 anchor survival fidelity',
+      C3_median:'C3 median within 5%', C4_hr:'C4 reconstructed HR vs registry',
+      C5_monotonic:'C5 S(t) monotone (hard)', C6_nar:'C6 number-at-risk consistency',
+      C7_conservation:'C7 population conserved (hard)', C8_followup:'C8 no event past follow-up',
+      C9_direction:'C9 HR direction integrity (hard)'
+    };
+    Object.keys(names).forEach(function(k){
+      var c = C[k]; if(!c) return;
+      var applies = (c.applies===undefined)?true:c.applies;
+      var cls = !applies ? 'na' : (c.pass?'pass':'fail');
+      var mark = !applies ? 'n/a' : (c.pass?'PASS':'FAIL');
+      var extra='';
+      if(k==='C2_anchor_fidelity' && c.maxDiff!=null) extra=' (max Δ '+c.maxDiff.toExponential(1)+')';
+      if(k==='C4_hr' && c.recon_hr!=null) extra=' (recon HR '+c.recon_hr.toFixed(3)+' vs '+c.reg_hr+')';
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td>'+names[k]+'</td><td class="'+cls+'">'+mark+extra+'</td>';
+      tb.appendChild(tr);
+    });
+  }
+
+  function drawFlags(res){
+    var f=document.getElementById('flags'); f.innerHTML='';
+    (res.flags||[]).forEach(function(fl){
+      var s=document.createElement('span'); s.className='flag'; s.textContent=fl; f.appendChild(s);
+    });
+  }
+
+  // -------- compact SVG survival overlay (no external chart lib) --------
+  function kmSteps(ipd){ return RIPD._.kmFromIPD(ipd); }
+  function drawPlot(trial, res){
+    var svg = document.getElementById('plot');
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    var W=720,Hh=360,padL=46,padR=14,padT=14,padB=34;
+    var pw=W-padL-padR, ph=Hh-padT-padB;
+    // x domain = max anchor/recon time
+    var tmax=0;
+    (trial.arms||[]).forEach(function(a){ (a.km_points||[]).forEach(function(p){tmax=Math.max(tmax,p.t);}); (a.nar_points||[]).forEach(function(p){tmax=Math.max(tmax,p.t);}); });
+    if(res.arms){ res.arms.forEach(function(a){ a.ipd.forEach(function(r){tmax=Math.max(tmax,r.time);}); }); }
+    tmax = tmax||1;
+    var X=function(t){return padL + pw*(t/tmax);};
+    var Y=function(s){return padT + ph*(1-s);};
+    // axes
+    addLine(svg,padL,padT,padL,padT+ph,'#30363d');
+    addLine(svg,padL,padT+ph,padL+pw,padT+ph,'#30363d');
+    [0,.25,.5,.75,1].forEach(function(s){
+      addLine(svg,padL,Y(s),padL+pw,Y(s),'#1b2129');
+      addText(svg,padL-6,Y(s)+3,s.toFixed(2),'#8b949e','end',10);
+    });
+    for(var k=0;k<=4;k++){ var tt=tmax*k/4; addText(svg,X(tt),padT+ph+16,fmt(tt),'#8b949e','middle',10); }
+    addText(svg,padL+pw/2,Hh-4,'time ('+(trial.time_unit||'months')+')','#8b949e','middle',11);
+    var roleColor={experimental:getCss('--exp'),comparator:getCss('--ctl')};
+    // reconstructed step curves
+    if(res.arms){
+      res.arms.forEach(function(a){
+        var col = roleColor[a.role]||'#9aa4af';
+        var steps = kmSteps(a.ipd);
+        var d='M '+X(0)+' '+Y(1); var prevS=1;
+        steps.forEach(function(st){ d+=' L '+X(st.t)+' '+Y(prevS)+' L '+X(st.t)+' '+Y(st.S); prevS=st.S; });
+        d+=' L '+X(tmax)+' '+Y(prevS);
+        addPath(svg,d,col,2);
+      });
+    }
+    // registry KM anchors as circles
+    (trial.arms||[]).forEach(function(a){
+      var col = roleColor[a.role]||'#9aa4af';
+      (a.km_points||[]).forEach(function(p){ addCircle(svg,X(p.t),Y(p.S),3.2,col); });
+    });
+  }
+  function fmt(x){ return (Math.round(x*10)/10).toString(); }
+  function getCss(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim()||'#888'; }
+  function svgEl(n){ return document.createElementNS('http://www.w3.org/2000/svg',n); }
+  function addLine(s,x1,y1,x2,y2,c){var e=svgEl('line');e.setAttribute('x1',x1);e.setAttribute('y1',y1);e.setAttribute('x2',x2);e.setAttribute('y2',y2);e.setAttribute('stroke',c);s.appendChild(e);}
+  function addPath(s,d,c,w){var e=svgEl('path');e.setAttribute('d',d);e.setAttribute('fill','none');e.setAttribute('stroke',c);e.setAttribute('stroke-width',w);s.appendChild(e);}
+  function addCircle(s,cx,cy,r,c){var e=svgEl('circle');e.setAttribute('cx',cx);e.setAttribute('cy',cy);e.setAttribute('r',r);e.setAttribute('fill','none');e.setAttribute('stroke',c);e.setAttribute('stroke-width',1.6);s.appendChild(e);}
+  function addText(s,x,y,t,c,anc,fs){var e=svgEl('text');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('fill',c);e.setAttribute('text-anchor',anc);e.setAttribute('font-size',fs);e.textContent=t;s.appendChild(e);}
+
+  // -------- pseudo-IPD CSV export --------
+  function exportCSV(){
+    if(!lastResult || !lastResult.exportable){ return; }
+    var rows=['nct_id,arm_id,role,time,status,reconstruction_tier,assurance_badge'];
+    lastResult.arms.forEach(function(a){
+      a.ipd.forEach(function(r){
+        rows.push([lastResult.nct_id,a.arm_id,a.role,r.time,r.status,lastResult.tier,lastResult.audit.badge].join(','));
+      });
+    });
+    // provenance header comment (pseudo-IPD, not true IPD)
+    var header='# PSEUDO-IPD reconstructed from ClinicalTrials.gov/AACT summary anchors only — NOT true patient data.\n'+
+               '# source: '+(lastTrial.source_url||lastTrial.nct_id)+'  tier='+lastResult.tier+'  badge='+lastResult.audit.badge+'\n';
+    var blob=new Blob([header+rows.join('\n')+'\n'],{type:'text/csv'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a'); a.href=url; a.download=(lastResult.nct_id||'trial')+'_pseudoIPD.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+  }
+
+  // auto-load first example for convenience
+  if(sel.options.length){ sel.selectedIndex=0; document.getElementById('loadEx').click(); }
+})();
+</script>
+</body>
+</html>

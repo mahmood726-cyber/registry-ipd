@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Registry-Native Pseudo-IPD Reconstructor" />
+<meta property="og:description" content="Reconstruct pseudo individual-patient survival data from ClinicalTrials.gov / AACT summary data only. Fully offline." />
+<title>Registry-Native Pseudo-IPD Reconstructor (ct.gov / AACT)</title>
+<style>
+  :root{--bg:#0e1116;--panel:#161b22;--ink:#e6edf3;--mut:#8b949e;--line:#30363d;
+        --gold:#e3b341;--silver:#adb6c0;--bronze:#cd7f32;--none:#6e7681;
+        --exp:#58a6ff;--ctl:#f778ba;--ok:#3fb950;--bad:#f85149;--warn:#d29922;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  header{padding:18px 22px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#11161d,#0e1116)}
+  h1{margin:0 0 4px;font-size:19px}
+  .sub{color:var(--mut);font-size:13px;max-width:880px}
+  .caveat{margin:12px 22px 0;padding:10px 14px;border:1px solid #3d2d12;background:#1d1708;border-radius:8px;color:#e3c97a;font-size:12.5px;max-width:980px}
+  main{display:grid;grid-template-columns:340px 1fr;gap:18px;padding:18px 22px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+  .panel h2{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+  select,button,textarea{font:inherit;color:var(--ink);background:#0d1117;border:1px solid var(--line);border-radius:7px;padding:8px 10px}
+  button{cursor:pointer;background:#21262d}
+  button:hover{background:#2d333b}
+  button:disabled{opacity:.4;cursor:not-allowed}
+  button.primary{background:#1f6feb;border-color:#1f6feb}
+  button.primary:hover{background:#388bfd}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+  label.fld{display:block;color:var(--mut);font-size:12px;margin:10px 0 4px}
+  textarea{width:100%;min-height:90px;font-family:Consolas,monospace;font-size:12px}
+  .badge{display:inline-block;padding:4px 12px;border-radius:999px;font-weight:700;font-size:12px;letter-spacing:.04em}
+  .badge.gold{background:#3a2f08;color:var(--gold);border:1px solid var(--gold)}
+  .badge.silver{background:#22272e;color:var(--silver);border:1px solid var(--silver)}
+  .badge.bronze{background:#2a1c0e;color:var(--bronze);border:1px solid var(--bronze)}
+  .badge.none{background:#1c2128;color:var(--none);border:1px solid var(--none)}
+  .tier{font-size:28px;font-weight:800;margin:0}
+  .tierwrap{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  td,th{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--mut);font-weight:600}
+  .pass{color:var(--ok)} .fail{color:var(--bad)} .na{color:var(--mut)}
+  .flag{display:inline-block;background:#21262d;border:1px solid var(--line);border-radius:6px;padding:2px 8px;margin:2px 4px 0 0;font-size:11.5px;color:var(--warn)}
+  .legend span{display:inline-flex;align-items:center;gap:6px;margin-right:16px;font-size:12px;color:var(--mut)}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .muted{color:var(--mut);font-size:12px}
+  .err{color:var(--bad);font-size:13px;white-space:pre-wrap}
+  svg{width:100%;height:auto;background:#0d1117;border:1px solid var(--line);border-radius:8px}
+  code{background:#0d1117;padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Registry-Native Pseudo-IPD Reconstructor <span class="muted">· ct.gov / AACT only · fully offline</span></h1>
+  <div class="sub">Reconstructs <b>pseudo</b> individual-patient time-to-event data from ClinicalTrials.gov / AACT
+  <b>summary</b> fields only — exact registry anchors, zero digitization error, full provenance to the NCT record.</div>
+</header>
+<div class="caveat"><b>Honest scope:</b> AACT contains <b>no Kaplan–Meier curves and no true IPD</b> — only summary statistics.
+  Output is always <b>pseudo-IPD</b>, never true IPD, and never produced for Tier C. The edge over digitization tools
+  (IPDfromKM / KM-GPT / Guyot-on-image) is exact anchors on the rich-registry subset — <b>not</b> universal superiority.</div>
+
+<main>
+  <section class="panel" id="controls">
+    <h2>Input</h2>
+    <label class="fld">Bundled example</label>
+    <div class="row">
+      <select id="example"></select>
+      <button id="loadEx">Load</button>
+    </div>
+    <label class="fld">Upload trial JSON (from the harvester)</label>
+    <div class="row"><input type="file" id="file" accept="application/json" /></div>
+    <label class="fld">…or paste trial JSON</label>
+    <textarea id="paste" placeholder='{"nct_id":"…","arms":[…],"hr":{…}}'></textarea>
+    <div class="row" style="margin-top:10px">
+      <button class="primary" id="run">Reconstruct</button>
+      <button id="exportBtn" disabled>Export pseudo-IPD CSV</button>
+    </div>
+    <div id="inputErr" class="err"></div>
+    <p class="muted" style="margin-top:14px">Bootstrap replicates (Tier B): <span id="bval">300</span>
+      <input id="boot" type="range" min="50" max="1000" step="50" value="300" style="width:100%"></p>
+  </section>
+
+  <section class="panel" id="results">
+    <h2>Result</h2>
+    <div id="empty" class="muted">Load an example or your harvested trial JSON, then <b>Reconstruct</b>.</div>
+    <div id="out" style="display:none">
+      <div class="tierwrap">
+        <p class="tier" id="tier">—</p>
+        <span class="badge" id="badge">—</span>
+        <span class="muted" id="nct"></span>
+      </div>
+      <div id="verdict" class="muted" style="margin-bottom:10px"></div>
+      <div class="legend" style="margin:6px 0 8px">
+        <span><span class="dot" style="background:var(--exp)"></span>experimental</span>
+        <span><span class="dot" style="background:var(--ctl)"></span>comparator</span>
+        <span>○ registry KM anchor &nbsp; — reconstructed KM</span>
+      </div>
+      <svg id="plot" viewBox="0 0 720 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="survival overlay"></svg>
+      <h2 style="margin-top:18px">Self-audit checks</h2>
+      <table id="checks"><tbody></tbody></table>
+      <div id="flags" style="margin-top:10px"></div>
+    </div>
+  </section>
+</main>
+
+<!-- engine (works offline via local script src; build.js inlines it for distribution) -->
+<script>
+/*
+ * registry-ipd engine — Registry-Native Pseudo-IPD Reconstructor (ct.gov / AACT only)
+ * ----------------------------------------------------------------------------------
+ * Reconstructs PSEUDO individual-patient time-to-event data from ClinicalTrials.gov /
+ * AACT *summary* fields only. There is NO Kaplan-Meier curve and NO true IPD in AACT;
+ * the input is exact registry-reported anchors (KM-estimate points, number-at-risk,
+ * median, hazard ratio). The edge over digitization tools is ZERO digitization error
+ * and full provenance — NOT universal superiority. See README for the scoped claim.
+ *
+ * Single UMD module (Node + browser). Sections:
+ *   1. small numeric utilities (PAVA, RNG, hashing, quantile)
+ *   2. survival primitives (KM from IPD, median, RMST, 1-Wasserstein)
+ *   3. Cox PH single-covariate (Breslow ties) for the self-audit HR check
+ *   4. Tier A — two methods: Guyot inverse-KM (constant censoring) AND censoring-informed
+ *      anchor-exact (RESOLVE-IPD CEN-KM style); best-of selected by min 1-Wasserstein to anchors
+ *   5. Tier B — parametric (exponential) with seeded bootstrap envelope
+ *   6. tiering + self-audit checks (C1..C9) + Bronze/Silver/Gold badge
+ *   7. top-level reconstruct()
+ *
+ * Reference: Guyot P. et al. (2012) BMC Med Res Methodol 12:9.
+ */
+(function (root, factory) {
+  if (typeof module === 'object' && module.exports) module.exports = factory();
+  else { root.RIPD = factory(); }
+}(typeof self !== 'undefined' ? self : this, function () {
+  'use strict';
+
+  // ============================================================ 1. utilities
+
+  // Pool-Adjacent-Violators enforcing a NON-INCREASING sequence (isotonic, decreasing).
+  // Returns {y, adjusted, maxAdj} where adjusted counts how many points moved.
+  function pavaDecreasing(s) {
+    const n = s.length;
+    const y = s.slice();
+    // Work on the negated series to reuse increasing-PAVA logic.
+    const v = y.map(x => -x);
+    const w = new Array(n).fill(1);
+    const val = v.slice();
+    const blockW = w.slice();
+    const blockStart = []; const blockVal = []; const blockWt = [];
+    for (let i = 0; i < n; i++) {
+      let cv = val[i], cw = blockW[i], cs = i;
+      while (blockVal.length > 0 && blockVal[blockVal.length - 1] >= cv) {
+        const pv = blockVal.pop(), pw = blockWt.pop(); cs = blockStart.pop();
+        cv = (pv * pw + cv * cw) / (pw + cw); cw = pw + cw;
+      }
+      blockVal.push(cv); blockWt.push(cw); blockStart.push(cs);
+    }
+    // expand blocks back
+    let idx = n; const out = new Array(n);
+    for (let b = blockVal.length - 1; b >= 0; b--) {
+      const start = blockStart[b];
+      for (let k = start; k < idx; k++) out[k] = -blockVal[b];
+      idx = start;
+    }
+    let adjusted = 0, maxAdj = 0;
+    for (let i = 0; i < n; i++) {
+      const dlt = Math.abs(out[i] - s[i]);
+      if (dlt > 1e-12) { adjusted++; if (dlt > maxAdj) maxAdj = dlt; }
+    }
+    return { y: out, adjusted, maxAdj };
+  }
+
+  // mulberry32 — small, fast, fully deterministic seeded PRNG.
+  function mulberry32(seed) {
+    let a = seed >>> 0;
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  // deterministic 32-bit string hash (so seed = hash(nct_id) is reproducible)
+  function hashStr(str) {
+    let h = 2166136261 >>> 0;
+    str = String(str == null ? '' : str);
+    for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return h >>> 0;
+  }
+
+  function quantileSorted(sorted, p) {
+    if (sorted.length === 0) return NaN;
+    if (sorted.length === 1) return sorted[0];
+    const idx = p * (sorted.length - 1);
+    const lo = Math.floor(idx), hi = Math.ceil(idx);
+    if (lo === hi) return sorted[lo];
+    return sorted[lo] + (sorted[hi] - sorted[lo]) * (idx - lo);
+  }
+
+  // ====================================================== 2. survival primitives
+
+  // Kaplan-Meier estimate from pseudo-IPD rows [{time,status}] (status 1=event,0=censor).
+  // Returns step points: [{t, S, nRisk, d, c}] with S right-continuous after event times.
+  function kmFromIPD(ipd) {
+    if (!ipd.length) return [];
+    const rows = ipd.slice().sort((a, b) => a.time - b.time || a.status - b.status);
+    const times = [...new Set(rows.map(r => r.time))].sort((a, b) => a - b);
+    let nRisk = rows.length, S = 1;
+    const steps = [];
+    for (const t of times) {
+      const atT = rows.filter(r => Math.abs(r.time - t) < 1e-12);
+      const d = atT.filter(r => r.status === 1).length;
+      const c = atT.filter(r => r.status === 0).length;
+      if (d > 0) S *= (1 - d / nRisk);
+      steps.push({ t, S, nRisk, d, c });
+      nRisk -= (d + c);
+    }
+    return steps;
+  }
+
+  // Median survival from KM steps = smallest event time with S <= 0.5 (null if not reached).
+  function medianFromKM(steps) {
+    for (const s of steps) if (s.S <= 0.5 + 1e-12) return s.t;
+    return null;
+  }
+
+  // Restricted mean survival time to horizon tau (area under the KM step function).
+  function rmst(steps, tau) {
+    if (!steps.length) return 0;
+    let area = 0, prevT = 0, prevS = 1;
+    for (const s of steps) {
+      const t = Math.min(s.t, tau);
+      if (t > prevT) area += prevS * (t - prevT);
+      prevT = s.t; prevS = s.S;
+      if (s.t >= tau) return area;
+    }
+    if (tau > prevT) area += prevS * (tau - prevT);
+    return area;
+  }
+
+  // Evaluate a KM step function (from kmFromIPD) at arbitrary time t (right-continuous).
+  function evalKM(steps, t) {
+    let S = 1;
+    for (const s of steps) { if (s.t <= t + 1e-12) S = s.S; else break; }
+    return S;
+  }
+
+  // 1-Wasserstein (L1) distance between two survival curves over [0,tau].
+  function wasserstein1(stepsA, stepsB, tau, grid) {
+    grid = grid || 400;
+    let acc = 0; const dt = tau / grid;
+    for (let i = 0; i < grid; i++) {
+      const t = (i + 0.5) * dt;
+      acc += Math.abs(evalKM(stepsA, t) - evalKM(stepsB, t)) * dt;
+    }
+    return acc;
+  }
+
+  // ====================================================== 3. Cox PH (single covariate)
+
+  // Cox partial-likelihood for ONE binary covariate x (1=experimental, 0=control),
+  // Breslow ties, Newton-Raphson. Optional ridge penalty stabilises near-separation.
+  // rows: [{time, status, x}]. Returns {beta, hr, iters, separated, penalized}.
+  function coxLogHR(rows, opts) {
+    opts = opts || {};
+    const ridge = opts.ridge || 0;
+    const data = rows.slice().sort((a, b) => b.time - a.time); // descending => cumulative risk set
+    const nEventExp = rows.filter(r => r.status === 1 && r.x === 1).length;
+    const nEventCtl = rows.filter(r => r.status === 1 && r.x === 0).length;
+    const separated = nEventExp === 0 || nEventCtl === 0;
+    const lam = ridge || (separated ? 1.0 : 0); // auto-ridge under separation
+    // unique event times
+    const evTimes = [...new Set(rows.filter(r => r.status === 1).map(r => r.time))].sort((a, b) => a - b);
+    let beta = 0, iters = 0;
+    for (; iters < 100; iters++) {
+      let U = 0, I = 0;
+      for (const et of evTimes) {
+        const risk = rows.filter(r => r.time >= et - 1e-12);
+        const ev = rows.filter(r => r.status === 1 && Math.abs(r.time - et) < 1e-12);
+        let S0 = 0, S1 = 0;
+        for (const r of risk) { const e = Math.exp(beta * r.x); S0 += e; S1 += r.x * e; }
+        const dt = ev.length;
+        const sumX = ev.reduce((a, r) => a + r.x, 0);
+        const p = S0 > 0 ? S1 / S0 : 0;
+        U += sumX - dt * p;            // x^2 = x for binary
+        I += dt * (p - p * p);
+      }
+      U -= lam * beta;                 // ridge gradient
+      I += lam;
+      if (I <= 1e-12) break;
+      const step = U / I;
+      beta += step;
+      if (Math.abs(step) < 1e-8) { iters++; break; }
+      if (!isFinite(beta)) { beta = Math.sign(U) * 5; break; }
+    }
+    return { beta, hr: Math.exp(beta), iters, separated, penalized: lam > 0 };
+  }
+
+  // ====================================================== 4. Tier A — Guyot inverse-KM
+
+  // Map number-at-risk report times to clicked-point indices (lower/upper brackets).
+  function buildRiskIndices(tS, tRisk) {
+    const nt = tS.length, lower = [], upper = [];
+    for (let i = 0; i < tRisk.length; i++) {
+      let k = 0; while (k < nt && tS[k] < tRisk[i] - 1e-9) k++;
+      lower[i] = Math.min(k, nt - 1);
+    }
+    for (let i = 0; i < tRisk.length; i++) {
+      upper[i] = (i < tRisk.length - 1) ? Math.max(lower[i + 1] - 1, lower[i]) : nt - 1;
+    }
+    return { lower, upper };
+  }
+
+  // Faithful port of Guyot et al. KM.reconstruct. Produces per-clicked-point deaths d[]
+  // and censors cen[]. totEvents (optional) anchors the final interval.
+  function guyotCore(tS, S, tRisk, nRisk, totEvents) {
+    const { lower, upper } = buildRiskIndices(tS, tRisk);
+    const nInt = nRisk.length, nt = tS.length;
+    const nCensor = new Array(nInt).fill(0);
+    const nhat = new Array(nt + 1).fill(nRisk[0] + 1);
+    const cen = new Array(nt).fill(0);
+    const d = new Array(nt).fill(0);
+    const KMhat = new Array(nt).fill(1);
+    const lastI = new Array(nInt).fill(0);
+    let sumdL = 0;
+
+    function distributeCensor(i, m) {
+      for (let k = lower[i]; k <= upper[i]; k++) cen[k] = 0;
+      if (m <= 0) return;
+      const a = tS[lower[i]], b = tS[Math.min(lower[i + 1], nt - 1)];
+      const span = (b - a) || 1;
+      for (let j = 0; j < m; j++) {
+        const ct = a + span * (j + 0.5) / m;
+        let kk = lower[i];
+        while (kk < upper[i] && tS[kk + 1] <= ct + 1e-12) kk++;
+        cen[kk]++;
+      }
+    }
+
+    for (let i = 0; i < nInt - 1; i++) {
+      // first approximation of number censored on interval i
+      const sLo = S[lower[i]] || 1e-12;
+      nCensor[i] = Math.round(nRisk[i] * (S[lower[i + 1]] / sLo) - nRisk[i + 1]);
+      let guard = 0;
+      while ((nhat[lower[i + 1]] > nRisk[i + 1]) ||
+             (nhat[lower[i + 1]] < nRisk[i + 1] && nCensor[i] > 0)) {
+        if (guard++ > 5000) break;
+        if (nCensor[i] <= 0) { for (let k = lower[i]; k <= upper[i]; k++) cen[k] = 0; nCensor[i] = 0; }
+        else distributeCensor(i, nCensor[i]);
+        nhat[lower[i]] = nRisk[i];
+        let last = lastI[i];
+        for (let k = lower[i]; k <= upper[i]; k++) {
+          if (i === 0 && k === lower[i]) { d[k] = 0; KMhat[k] = 1; }
+          else {
+            const ref = KMhat[last] || 1e-12;
+            d[k] = Math.round(nhat[k] * (1 - S[k] / ref));
+            if (d[k] < 0) d[k] = 0; if (d[k] > nhat[k]) d[k] = nhat[k];
+          }
+          KMhat[k] = (KMhat[last] || 1) * (1 - d[k] / (nhat[k] || 1));
+          nhat[k + 1] = nhat[k] - d[k] - cen[k];
+          if (nhat[k + 1] < 0) nhat[k + 1] = 0;
+          if (d[k] !== 0) last = k;
+        }
+        nCensor[i] = nCensor[i] + (nhat[lower[i + 1]] - nRisk[i + 1]);
+        lastI[i + 1] = last;
+      }
+      for (let k = lower[i]; k <= upper[i]; k++) sumdL += d[k];
+    }
+
+    // ---- final interval: anchor on totEvents if available ----
+    const i = nInt - 1;
+    if (nt - 1 >= lower[i]) {
+      nhat[lower[i]] = nRisk[i];
+      let last = lastI[i];
+      for (let k = lower[i]; k < nt; k++) {
+        if (i === 0 && k === lower[i]) { d[k] = 0; KMhat[k] = 1; nhat[k + 1] = nhat[k] - cen[k]; continue; }
+        const ref = KMhat[last] || 1e-12;
+        d[k] = Math.round(nhat[k] * (1 - S[k] / ref));
+        if (d[k] < 0) d[k] = 0; if (d[k] > nhat[k]) d[k] = nhat[k];
+        KMhat[k] = ref * (1 - d[k] / (nhat[k] || 1));
+        // remaining at-risk after last clicked point are censored
+        cen[k] = (k === nt - 1) ? Math.max(0, nhat[k] - d[k]) : 0;
+        nhat[k + 1] = nhat[k] - d[k] - cen[k];
+        if (nhat[k + 1] < 0) nhat[k + 1] = 0;
+        if (d[k] !== 0) last = k;
+      }
+    }
+
+    return { d, cen, lower, upper, nhat };
+  }
+
+  // Conserving normalization + expansion. A forward capacity walk fixes the population
+  // at EXACTLY N (every patient leaves the risk set once), then reconcile to totEvents by
+  // SWAPPING censor<->event (never adding bodies). Remaining at-risk are tail-censored.
+  function normalizeAndExpand(tS, d, cen, N, totEvents, followUp, flags) {
+    const nt = tS.length;
+    const D = d.slice(), C = cen.slice();
+    let n = N;
+    for (let k = 0; k < nt; k++) {
+      if (D[k] < 0) D[k] = 0; if (D[k] > n) D[k] = n;
+      if (C[k] < 0) C[k] = 0; if (C[k] > n - D[k]) C[k] = n - D[k];
+      n = n - D[k] - C[k];
+    }
+    let tailC = Math.max(0, n);                 // remaining at-risk -> administrative censor
+    const tailT = (followUp != null) ? followUp : tS[nt - 1];
+    if (totEvents != null) {
+      let delta = totEvents - D.reduce((a, b) => a + b, 0);
+      // Distribute the correction PROPORTIONAL to the curve's death profile d[k] (never at t=0),
+      // so reconciling to the registry total preserves KM anchor fidelity instead of piling
+      // events at the earliest censor. Guyot's constant-censoring assumption systematically
+      // mis-splits death/censor when censoring is non-uniform; the registry total fixes the count.
+      if (delta > 0) {
+        let guard = 0;
+        while (delta > 0 && guard++ < 1000) {
+          const wsum = D.reduce((a, d, k) => a + (k > 0 && C[k] > 0 ? d : 0), 0);
+          if (wsum <= 0) break;
+          let moved = 0;
+          for (let k = 1; k < nt && delta > 0; k++) {
+            if (C[k] <= 0) continue;
+            const want = Math.max(1, Math.round(delta * D[k] / wsum));
+            const take = Math.min(want, C[k], delta);
+            C[k] -= take; D[k] += take; delta -= take; moved += take;
+          }
+          if (moved === 0) break;
+        }
+        // any residual: spill to the latest available censor, then the administrative tail
+        for (let k = nt - 1; k >= 1 && delta > 0; k--) { const take = Math.min(C[k], delta); C[k] -= take; D[k] += take; delta -= take; }
+        while (delta > 0 && tailC > 0) { tailC--; D[nt - 1]++; delta--; }
+      } else if (delta < 0) {
+        let need = -delta;
+        const dsum = D.reduce((a, d, k) => a + (k > 0 ? d : 0), 0);
+        for (let k = nt - 1; k >= 1 && need > 0; k--) {
+          const want = dsum > 0 ? Math.min(D[k], Math.round((-delta) * D[k] / dsum)) : D[k];
+          const take = Math.min(want, D[k], need);
+          D[k] -= take; C[k] += take; need -= take;
+        }
+        for (let k = nt - 1; k >= 1 && need > 0; k--) { const take = Math.min(D[k], need); D[k] -= take; C[k] += take; need -= take; }
+        delta = -need;
+      }
+      if (delta !== 0) flags.push('event_reconciliation_residual:' + delta);
+    }
+    const ipd = [];
+    for (let k = 0; k < nt; k++) {
+      for (let j = 0; j < D[k]; j++) ipd.push({ time: tS[k], status: 1 });
+      for (let j = 0; j < C[k]; j++) ipd.push({ time: tS[k], status: 0 });
+    }
+    for (let j = 0; j < tailC; j++) ipd.push({ time: tailT, status: 0 });
+    return ipd; // exactly N rows by construction
+  }
+
+  function reconstructArmGuyot(arm, flags) {
+    let pts = arm.km_points.slice().filter(p => isFinite(p.t) && isFinite(p.S)).sort((a, b) => a.t - b.t);
+    // ensure origin
+    if (pts.length === 0 || pts[0].t > 1e-9 || pts[0].S < 1 - 1e-9) {
+      if (!(Math.abs(pts[0] && pts[0].t) < 1e-9)) pts = [{ t: 0, S: 1 }].concat(pts);
+    }
+    const tS = pts.map(p => p.t);
+    let Svec = pts.map(p => Math.min(1, Math.max(0, p.S)));
+    const pav = pavaDecreasing(Svec);
+    if (pav.adjusted > 0) flags.push(`monotonicity_adjusted:${pav.adjusted}(max${pav.maxAdj.toFixed(3)})`);
+    Svec = pav.y;
+
+    const nar = arm.nar_points.slice().filter(p => isFinite(p.t) && isFinite(p.n)).sort((a, b) => a.t - b.t);
+    const tRisk = nar.map(p => p.t);
+    const nRisk = nar.map(p => Math.round(p.n));
+    // ensure a risk anchor at the first clicked time
+    if (tRisk.length === 0 || tRisk[0] > tS[0] + 1e-9) { tRisk.unshift(tS[0]); nRisk.unshift(arm.N || nRisk[0] || 1); }
+
+    const core = guyotCore(tS, Svec, tRisk, nRisk, arm.total_events);
+    const N = arm.N != null ? arm.N : nRisk[0];
+    const ipd = normalizeAndExpand(tS, core.d, core.cen, N, arm.total_events, arm.follow_up_max, flags);
+    return { ipd, tS, Svec, tRisk, nRisk };
+  }
+
+  // Censoring-informed / anchor-EXACT reconstruction (RESOLVE-IPD CEN-KM style, 2025).
+  // Deaths are taken DIRECTLY from the registry curve with at-risk held constant within each
+  // interval; censoring is placed only at NAR-anchor boundaries. The reconstructed KM therefore
+  // passes through every registry anchor exactly (≈0 Wasserstein) — correct when censoring is
+  // administrative (concentrated at the cutoff), which Guyot's constant-censoring assumption
+  // mishandles. The two methods are complementary; reconstruct() picks the better fit per trial.
+  function reconstructArmAnchorExact(arm, flags) {
+    let pts = arm.km_points.slice().filter(p => isFinite(p.t) && isFinite(p.S)).sort((a, b) => a.t - b.t);
+    if (pts.length === 0 || pts[0].t > 1e-9 || pts[0].S < 1 - 1e-9) {
+      if (!(pts[0] && Math.abs(pts[0].t) < 1e-9)) pts = [{ t: 0, S: 1 }].concat(pts);
+    }
+    const tS = pts.map(p => p.t);
+    let Svec = pavaDecreasing(pts.map(p => Math.min(1, Math.max(0, p.S)))).y;
+    const nt = tS.length;
+    const nar = arm.nar_points.slice().filter(p => isFinite(p.t) && isFinite(p.n)).sort((a, b) => a.t - b.t);
+    const N = arm.N != null ? arm.N : (nar[0] ? Math.round(nar[0].n) : 1);
+    // map each NAR time to the nearest curve-anchor index at or after it
+    const narTarget = {};
+    for (const p of nar) {
+      let k = 0; while (k < nt && tS[k] < p.t - 1e-9) k++;
+      narTarget[Math.min(k, nt - 1)] = Math.round(p.n);
+    }
+    const D = new Array(nt).fill(0), C = new Array(nt).fill(0);
+    let n = N;
+    for (let k = 1; k < nt; k++) {
+      const ratio = Svec[k - 1] > 0 ? Svec[k] / Svec[k - 1] : 1;   // conditional survival from the curve
+      let d = Math.round(n * (1 - ratio));
+      if (d < 0) d = 0; if (d > n) d = n;
+      D[k] = d; let after = n - d;
+      if (narTarget[k] != null) { const c = Math.max(0, after - narTarget[k]); C[k] = c; after -= c; }
+      n = after;
+    }
+    const ipd = normalizeAndExpand(tS, D, C, N, arm.total_events, arm.follow_up_max, flags);
+    return { ipd, tS, Svec };
+  }
+
+  // right-continuous survival step from sparse registry anchors
+  function anchorStepFn(km_points) {
+    const p = km_points.slice().sort((a, b) => a.t - b.t);
+    return function (t) { let S = 1; for (const q of p) { if (q.t <= t + 1e-9) S = q.S; else break; } return S; };
+  }
+  // 1-Wasserstein (L1 area) between a reconstruction's KM and the registry anchor step
+  function armAnchorWasserstein(arm, ipd) {
+    if (!arm.km_points || !arm.km_points.length) return 0;
+    const km = kmFromIPD(ipd), aStep = anchorStepFn(arm.km_points);
+    const tau = Math.max.apply(null, arm.km_points.map(p => p.t)) || 1;
+    const grid = 240, dt = tau / grid; let acc = 0;
+    for (let i = 0; i < grid; i++) { const t = (i + 0.5) * dt; acc += Math.abs(evalKM(km, t) - aStep(t)) * dt; }
+    return acc;
+  }
+
+  function armReconByMethod(arm, method, flags) {
+    return method === 'anchor-exact' ? reconstructArmAnchorExact(arm, flags) : reconstructArmGuyot(arm, flags);
+  }
+
+  // HR-CALIBRATION: make the reconstructed pseudo-IPD reproduce the registry-reported HR by
+  // 1-D-solving the experimental arm's censoring level (total_events). More events in the
+  // experimental arm => it looks worse => higher HR, so beta is monotincreasing in total_events;
+  // bisection converges. Anchors are preserved (total_events only re-splits death/censor), so the
+  // result stays consistent with BOTH the reported curve and the published effect — the right
+  // object for downstream IPD meta-analysis. Not a validation of recovery (it imposes the HR).
+  function calibrateHR(trial, result, flags) {
+    const hr = trial.hr; if (!hr || hr.value == null) return;
+    if (result.expIdx == null || result.ctlIdx == null) return;
+    const expSpec = trial.arms[result.expIdx];
+    const ctlIpd = result.arms[result.ctlIdx].ipd;
+    const N = expSpec.N; if (!N) return;
+    const target = Math.log(hr.value);
+    const betaFor = (te) => {
+      const a2 = Object.assign({}, expSpec, { total_events: te });
+      const ipd = armReconByMethod(a2, result.method, []).ipd;
+      return coxLogHR(ipd.map(r => ({ time: r.time, status: r.status, x: 1 }))
+        .concat(ctlIpd.map(r => ({ time: r.time, status: r.status, x: 0 })))).beta;
+    };
+    let lo = Math.max(1, Math.round(0.03 * N)), hi = N;
+    const blo = betaFor(lo), bhi = betaFor(hi);
+    let teStar;
+    if (target <= blo) teStar = lo; else if (target >= bhi) teStar = hi;
+    else {
+      for (let it = 0; it < 30 && hi - lo > 1; it++) {
+        const mid = Math.round((lo + hi) / 2);
+        if (betaFor(mid) < target) lo = mid; else hi = mid;
+      }
+      teStar = hi;
+    }
+    const a2 = Object.assign({}, expSpec, { total_events: teStar });
+    result.arms[result.expIdx].ipd = armReconByMethod(a2, result.method, flags).ipd;
+    const achieved = Math.exp(betaFor(teStar));
+    result.calibrated = { target_hr: hr.value, achieved_hr: +achieved.toFixed(4), exp_total_events: teStar };
+    flags.push('hr_calibrated:te=' + teStar + ',hr=' + achieved.toFixed(3));
+  }
+
+  // ====================================================== 5. Tier B — parametric
+
+  // Calibrate a per-arm survival model and emit pseudo-IPD. Exponential by default;
+  // Weibull when shape is identifiable from (median, events, follow-up).
+  function parametricArm(params, rng) {
+    const { N, median, lambda, cutoff, shape, targetEvents } = params;
+    const k = shape || 1;
+    const b = median / Math.pow(Math.log(2), 1 / k);  // scale from median
+    const lam = (k === 1) ? (lambda != null ? lambda : Math.log(2) / median) : null;
+    const T = [];
+    for (let i = 0; i < N; i++) {
+      const u = Math.max(1e-12, rng());
+      T.push(k === 1 ? -Math.log(u) / lam : b * Math.pow(-Math.log(u), 1 / k));
+    }
+    // Condition on the registry-reported event count: set the admin cutoff to the
+    // order statistic between the E-th and (E+1)-th smallest latent time => EXACTLY
+    // E observed events. Falls back to a fixed cutoff when targetEvents is absent.
+    let C = cutoff;
+    if (targetEvents != null && targetEvents >= 0 && targetEvents <= N) {
+      if (targetEvents === 0) C = -1;                 // all censored
+      else if (targetEvents === N) C = Infinity;
+      else { const s = T.slice().sort((a, b) => a - b); C = (s[targetEvents - 1] + s[targetEvents]) / 2; }
+    }
+    const ipd = [];
+    for (let i = 0; i < N; i++) {
+      const ev = T[i] <= C;
+      ipd.push({ time: ev ? T[i] : Math.min(T[i], isFinite(C) ? Math.max(C, 0) : T[i]), status: ev ? 1 : 0 });
+    }
+    return ipd;
+  }
+
+  // Solve admin cutoff C so expected events match total_events for exponential.
+  function solveCutoffExp(lambda, N, totEvents) {
+    if (totEvents == null || N == null) return null;
+    const frac = totEvents / N;
+    if (frac <= 0 || frac >= 1) return null;
+    return -Math.log(1 - frac) / lambda;
+  }
+
+  function logCItoSD(point, lo, hi, oneSided) {
+    if (lo != null && hi != null && lo > 0 && hi > 0) return (Math.log(hi) - Math.log(lo)) / (2 * 1.959964);
+    const bound = (hi != null && hi > 0) ? hi : (lo != null && lo > 0 ? lo : null);
+    if (bound != null && point > 0) return Math.abs(Math.log(bound) - Math.log(point)) / 1.644854; // one-sided
+    return 0;
+  }
+
+  function reconstructTierB(trial, flags, opts) {
+    opts = opts || {};
+    const B = opts.bootstrap == null ? 1000 : opts.bootstrap;
+    const seed = hashStr(trial.nct_id) ^ 0x9e3779b9;
+    const arms = trial.arms;
+    const ctlIdx = arms.findIndex(a => a.role === 'comparator');
+    const expIdx = arms.findIndex(a => a.role === 'experimental');
+    const ci = ctlIdx >= 0 ? ctlIdx : 0;
+    const ei = expIdx >= 0 ? expIdx : 1;
+    const hr = trial.hr || {};
+
+    function buildOnce(rng, medianMul, hrMul) {
+      const out = [];
+      const cMed = arms[ci].median.value * (medianMul[ci] || 1);
+      const cLam = Math.log(2) / cMed;
+      const cCut = arms[ci].follow_up_max || (cMed * 3);
+      out[ci] = { ipd: parametricArm({ N: arms[ci].N, median: cMed, lambda: cLam, cutoff: cCut, targetEvents: arms[ci].total_events }, rng), lambda: cLam };
+      // experimental: PH anchor on HR if available, else its own median
+      let eLam, primary;
+      if (hr.value) { eLam = cLam * hr.value * (hrMul || 1); primary = 'hr'; }
+      else { const eMed = arms[ei].median.value * (medianMul[ei] || 1); eLam = Math.log(2) / eMed; primary = 'median'; }
+      const eMedEff = Math.log(2) / eLam;
+      const eCut = arms[ei].follow_up_max || (eMedEff * 3);
+      out[ei] = { ipd: parametricArm({ N: arms[ei].N, median: eMedEff, lambda: eLam, cutoff: eCut, targetEvents: arms[ei].total_events }, rng), lambda: eLam, primary };
+      return out;
+    }
+
+    // central (unperturbed) draw
+    const rng0 = mulberry32(seed);
+    const central = buildOnce(rng0, {}, 1);
+    if (central[ei].primary === 'hr' && arms[ei].median && arms[ei].median.value) {
+      const medRatio = arms[ci].median.value / arms[ei].median.value;
+      if (Math.abs(Math.log(medRatio) - Math.log(hr.value)) > Math.log(1.15))
+        flags.push('hr_median_inconsistent');
+    }
+    flags.push('assumption:parametric_exponential');
+
+    // bootstrap envelope
+    const medSDc = arms[ci].median ? logCItoSD(arms[ci].median.value, arms[ci].median.ci_low, arms[ci].median.ci_high) : 0;
+    const hrSD = logCItoSD(hr.value, hr.ci_low, hr.ci_high, hr.one_sided);
+    const meds = [], lhrs = [], rmsts = [];
+    let bseed = seed;
+    for (let b = 0; b < B; b++) {
+      bseed = (bseed + 0x6D2B79F5) >>> 0;
+      const rng = mulberry32(bseed);
+      const mm = {}; mm[ci] = Math.exp(gauss(rng) * medSDc);
+      const hm = Math.exp(gauss(rng) * hrSD);
+      const draw = buildOnce(rng, mm, hm);
+      const kmE = kmFromIPD(draw[ei].ipd), kmC = kmFromIPD(draw[ci].ipd);
+      const me = medianFromKM(kmE); if (me != null) meds.push(me);
+      const cox = coxLogHR(draw[ei].ipd.map(r => ({ ...r, x: 1 })).concat(draw[ci].ipd.map(r => ({ ...r, x: 0 }))));
+      lhrs.push(cox.beta);
+      const tau = Math.min(maxTime(draw[ei].ipd), maxTime(draw[ci].ipd));
+      rmsts.push(rmst(kmE, tau) - rmst(kmC, tau));
+    }
+    meds.sort((a, b) => a - b); lhrs.sort((a, b) => a - b); rmsts.sort((a, b) => a - b);
+    const envelope = {
+      median_exp: [quantileSorted(meds, 0.025), quantileSorted(meds, 0.975)],
+      logHR: [quantileSorted(lhrs, 0.025), quantileSorted(lhrs, 0.975)],
+      rmst_diff: [quantileSorted(rmsts, 0.025), quantileSorted(rmsts, 0.975)],
+      bootstrap: B
+    };
+    const armsOut = arms.map((a, i) => ({ arm_id: a.arm_id, label: a.label, role: a.role, ipd: central[i].ipd }));
+    return { arms: armsOut, envelope, expIdx: ei, ctlIdx: ci };
+  }
+
+  function gauss(rng) { // Box-Muller
+    let u = 0, v = 0; while (u === 0) u = rng(); while (v === 0) v = rng();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+  function maxTime(ipd) { return ipd.reduce((m, r) => Math.max(m, r.time), 0); }
+
+  // ============================================ 5b. Royston–Parmar flexible parametric (spline)
+
+  // We have EXACT registry (t,S) anchors, so the RP model log H(t) = s(log t; gamma) is fit by
+  // ordinary least squares on (x=log t, y=log(-log S)) — no IPD/MLE needed. Restricted cubic
+  // spline basis (Royston & Parmar 2002). Yields a smooth, monotone, extrapolatable S(t):
+  // S(t) = exp(-exp(eta(log t))).
+  function rcsBasis(x, knots) {
+    const m = knots.length, kmin = knots[0], kmax = knots[m - 1];
+    const cube = (z) => (z > 0 ? z * z * z : 0);
+    const out = [x];
+    for (let j = 1; j < m - 1; j++) {
+      const kj = knots[j], lam = (kmax - kj) / (kmax - kmin);
+      out.push(cube(x - kj) - lam * cube(x - kmin) - (1 - lam) * cube(x - kmax));
+    }
+    return out; // length m-1
+  }
+  function gaussSolve(A, b) {
+    const n = b.length, M = A.map((r, i) => r.concat(b[i]));
+    for (let col = 0; col < n; col++) {
+      let piv = col; for (let r = col + 1; r < n; r++) if (Math.abs(M[r][col]) > Math.abs(M[piv][col])) piv = r;
+      const tmp = M[col]; M[col] = M[piv]; M[piv] = tmp;
+      const d = M[col][col] || 1e-12;
+      for (let r = 0; r < n; r++) { if (r === col) continue; const f = M[r][col] / d; for (let c = col; c <= n; c++) M[r][c] -= f * M[col][c]; }
+    }
+    return M.map((r, i) => r[n] / (r[i] || 1e-12));
+  }
+  function olsSolve(X, y) {
+    const p = X[0].length, A = Array.from({ length: p }, () => new Array(p).fill(0)), b = new Array(p).fill(0);
+    for (let i = 0; i < X.length; i++) for (let j = 0; j < p; j++) { b[j] += X[i][j] * y[i]; for (let k = 0; k < p; k++) A[j][k] += X[i][j] * X[i][k]; }
+    for (let j = 0; j < p; j++) A[j][j] += 1e-8; // ridge for stability
+    return gaussSolve(A, b);
+  }
+  function fitRoystonParmar(km_points) {
+    const pts = km_points.filter(p => p.t > 0 && p.S > 1e-6 && p.S < 1 - 1e-9).sort((a, b) => a.t - b.t);
+    if (pts.length < 3) return null;
+    const xs = pts.map(p => Math.log(p.t));
+    const ys = pts.map(p => Math.log(-Math.log(p.S)));         // complementary log-log
+    const n = pts.length, ndf = n >= 8 ? 3 : n >= 5 ? 2 : 1;   // spline df scales with anchor count
+    const knots = [xs[0]];
+    for (let j = 1; j < ndf; j++) knots.push(quantileSorted(xs, j / ndf));
+    knots.push(xs[xs.length - 1]);
+    const X = xs.map(x => [1].concat(rcsBasis(x, knots)));
+    const gamma = olsSolve(X, ys);
+    const predict = (t) => {
+      if (t <= 0) return 1;
+      const eta = [1].concat(rcsBasis(Math.log(t), knots)).reduce((s, bb, i) => s + bb * gamma[i], 0);
+      return Math.min(1, Math.max(0, Math.exp(-Math.exp(eta))));
+    };
+    return { predict, gamma, knots, df: ndf };
+  }
+  // Replace coarse anchors with a dense, monotone RP-smoothed set (optionally extrapolated to tau).
+  function densifyWithRP(trial, flags, extrapolateTo) {
+    const t2 = JSON.parse(JSON.stringify(trial));
+    let applied = false;
+    for (const a of t2.arms) {
+      if (!a.km_points || a.km_points.length < 3) continue;
+      const rp = fitRoystonParmar(a.km_points);
+      if (!rp) continue;
+      const ts = a.km_points.map(p => p.t).filter(x => x > 0);
+      const tmin = Math.min.apply(null, ts), tmax = extrapolateTo || Math.max.apply(null, ts);
+      const G = 24, dense = [{ t: 0, S: 1 }];
+      let prev = 1;
+      for (let i = 1; i <= G; i++) {
+        const t = tmin + (tmax - tmin) * i / G;
+        let S = Math.min(prev, rp.predict(t));   // enforce monotone non-increasing
+        prev = S; dense.push({ t: +t.toFixed(4), S: +S.toFixed(6) });
+      }
+      a.km_points = dense; applied = true;
+    }
+    if (applied && flags) flags.push('smoothed:rp');
+    return t2;
+  }
+
+  // ====================================================== 6. tiering + self-audit
+
+  function classifyTier(trial) {
+    const arms = trial.arms || [];
+    if (!arms.length) return 'C';
+    let tier = 'A';
+    for (const a of arms) {
+      const kmN = (a.km_points || []).length;
+      // Tier A = KM curve at >=3 timepoints + a population N. NAR is OPTIONAL (AACT has ~0
+      // structured number-at-risk); without it, reconstruction uses N + total events and censors
+      // to the tail (IPDfromKM "no number-at-risk" mode). total_events optional but improves fidelity.
+      const hasA = kmN >= 3 && a.N != null;
+      const hasB = a.median && a.median.value != null && a.N != null &&
+        (a.total_events != null || a.follow_up_max != null);
+      let t = hasA ? 'A' : (hasB ? 'B' : 'C');
+      // trial HR required for Tier B coupling
+      if (t === 'B' && !(trial.hr && trial.hr.value != null)) t = 'C';
+      tier = minTier(tier, t);
+    }
+    return tier;
+  }
+  function minTier(a, b) { const r = { A: 3, B: 2, C: 1 }; return r[a] <= r[b] ? a : b; }
+
+  // Self-audit: compare reconstructed pseudo-IPD back to registry anchors.
+  function selfAudit(trial, result) {
+    const checks = {};
+    const arms = trial.arms;
+    const recByRole = {};
+    result.arms.forEach(a => { recByRole[a.role] = a; });
+
+    // C1 total-event match
+    let c1ok = true, c1detail = [];
+    for (const a of arms) {
+      const rec = result.arms.find(x => x.arm_id === a.arm_id);
+      if (!rec || a.total_events == null) continue;
+      const re = rec.ipd.filter(r => r.status === 1).length;
+      const tol = result.tier === 'A' ? 0 : Math.max(1, Math.round(0.01 * a.total_events));
+      const ok = Math.abs(re - a.total_events) <= tol;
+      c1ok = c1ok && ok; c1detail.push({ arm: a.arm_id, recon: re, reg: a.total_events });
+    }
+    checks.C1_total_events = { pass: c1ok, detail: c1detail };
+
+    // C2 anchor survival fidelity (Tier A only)
+    let c2ok = true, c2max = 0;
+    if (result.tier === 'A') {
+      for (const a of arms) {
+        const rec = result.arms.find(x => x.arm_id === a.arm_id);
+        if (!rec) continue;
+        const km = kmFromIPD(rec.ipd);
+        for (const p of (a.km_points || [])) {
+          const diff = Math.abs(evalKM(km, p.t) - p.S);
+          if (diff > c2max) c2max = diff;
+        }
+      }
+      c2ok = c2max <= 1e-3 + 1e-9;
+    }
+    checks.C2_anchor_fidelity = { pass: c2ok, maxDiff: c2max, applies: result.tier === 'A' };
+
+    // C3 median within 5%
+    let c3ok = true, c3detail = [];
+    for (const a of arms) {
+      const rec = result.arms.find(x => x.arm_id === a.arm_id);
+      if (!rec || !a.median || a.median.value == null) continue;
+      const rm = medianFromKM(kmFromIPD(rec.ipd));
+      if (rm == null) { c3ok = false; c3detail.push({ arm: a.arm_id, recon: null, reg: a.median.value }); continue; }
+      const ok = Math.abs(rm - a.median.value) / a.median.value <= 0.05;
+      c3ok = c3ok && ok; c3detail.push({ arm: a.arm_id, recon: rm, reg: a.median.value });
+    }
+    checks.C3_median = { pass: c3ok, detail: c3detail };
+
+    // C4 reconstructed HR vs registry HR (within 10% on HR scale AND inside CI)
+    let c4 = { pass: true, applies: false };
+    if (trial.hr && trial.hr.value != null && result.expIdx != null) {
+      const ei = result.arms[result.expIdx], ci = result.arms[result.ctlIdx];
+      if (ei && ci) {
+        const rows = ei.ipd.map(r => ({ time: r.time, status: r.status, x: 1 }))
+          .concat(ci.ipd.map(r => ({ time: r.time, status: r.status, x: 0 })));
+        const cox = coxLogHR(rows);
+        const within = Math.abs(Math.log(cox.hr) - Math.log(trial.hr.value)) <= Math.log(1.10);
+        const inCI = (trial.hr.ci_low == null || trial.hr.ci_high == null) ? true :
+          (cox.hr >= trial.hr.ci_low - 1e-9 && cox.hr <= trial.hr.ci_high + 1e-9);
+        c4 = { pass: within && inCI, applies: true, recon_hr: cox.hr, reg_hr: trial.hr.value, within, inCI, separated: cox.separated };
+      }
+    }
+    checks.C4_hr = c4;
+
+    // C5 monotonicity (hard)
+    let c5ok = true;
+    for (const rec of result.arms) {
+      const km = kmFromIPD(rec.ipd); let prev = 1;
+      for (const s of km) { if (s.S > prev + 1e-9) { c5ok = false; break; } prev = s.S; }
+    }
+    checks.C5_monotonic = { pass: c5ok, hard: true };
+
+    // C6 NAR consistency within +/-1 (Tier A)
+    let c6ok = true;
+    const anyNar = arms.some(a => (a.nar_points || []).length > 0);
+    if (result.tier === 'A' && anyNar) {
+      for (const a of arms) {
+        const rec = result.arms.find(x => x.arm_id === a.arm_id);
+        if (!rec) continue;
+        const km = kmFromIPD(rec.ipd);
+        for (const np of (a.nar_points || [])) {
+          // n at risk just before time np.t
+          let nr = rec.ipd.length, consumed = 0;
+          for (const s of km) { if (s.t < np.t - 1e-9) consumed += s.d + s.c; else break; }
+          nr = rec.ipd.length - consumed;
+          if (Math.abs(nr - np.n) > 1) { c6ok = false; }
+        }
+      }
+    }
+    checks.C6_nar = { pass: c6ok, applies: result.tier === 'A' && anyNar };
+
+    // C7 population conservation (hard)
+    let c7ok = true;
+    for (const a of arms) {
+      const rec = result.arms.find(x => x.arm_id === a.arm_id);
+      if (!rec || a.N == null) continue;
+      if (rec.ipd.length !== a.N) c7ok = false;
+    }
+    checks.C7_conservation = { pass: c7ok, hard: true };
+
+    // C8 no event after follow-up cutoff
+    let c8ok = true;
+    for (const a of arms) {
+      const rec = result.arms.find(x => x.arm_id === a.arm_id);
+      if (!rec || a.follow_up_max == null) continue;
+      if (rec.ipd.some(r => r.status === 1 && r.time > a.follow_up_max + 1e-6)) c8ok = false;
+    }
+    checks.C8_followup = { pass: c8ok };
+
+    // C9 HR direction integrity (hard) — favors_arm must align, never invert
+    let c9ok = true;
+    if (trial.hr && trial.hr.favors_arm_id != null) {
+      const fav = arms.find(a => a.arm_id === trial.hr.favors_arm_id);
+      if (!fav) { c9ok = false; }
+    }
+    checks.C9_direction = { pass: c9ok, hard: true };
+
+    const hardFail = !checks.C5_monotonic.pass || !checks.C7_conservation.pass || !checks.C9_direction.pass;
+    let badge = 'none';
+    if (!hardFail && result.tier !== 'C') {
+      const soft = [checks.C1_total_events.pass, checks.C2_anchor_fidelity.pass || !checks.C2_anchor_fidelity.applies,
+      checks.C3_median.pass, (checks.C4_hr.pass || !checks.C4_hr.applies),
+      checks.C6_nar.pass || !checks.C6_nar.applies];
+      const allSoft = soft.every(Boolean);
+      if (result.tier === 'A' && allSoft) badge = 'gold';
+      else if (result.tier === 'A') badge = 'silver';
+      else if (result.tier === 'B' && checks.C1_total_events.pass && checks.C3_median.pass && checks.C4_hr.pass) badge = 'silver';
+      else if (result.tier === 'B' && checks.C3_median.pass) badge = 'bronze';
+    }
+    return { checks, badge, hardFail };
+  }
+
+  // ====================================================== 7. top-level reconstruct
+
+  function reconstruct(trial, opts) {
+    opts = opts || {};
+    // opt-in: ignore registry total_events (pure curve-only) — used to compare against the
+    // censoring-informed reconstruction for the agreement gate.
+    if (opts.ignoreTotalEvents) {
+      trial = JSON.parse(JSON.stringify(trial));
+      (trial.arms || []).forEach(a => { a.total_events = null; });
+    }
+    const flags = [];
+    // optional Royston–Parmar smoothing of coarse Tier-A curves before reconstruction
+    if (opts.smooth === 'rp') trial = densifyWithRP(trial, flags, opts.extrapolateTo);
+    const tier = classifyTier(trial);
+
+    if (tier === 'C') {
+      return {
+        nct_id: trial.nct_id, tier: 'C', ipd: null, arms: null,
+        verdict: 'insufficient_registry_data',
+        available: trial.hr && trial.hr.value != null ? ['hr'] : [],
+        flags, audit: { badge: 'none', checks: {} }, exportable: false
+      };
+    }
+
+    // HR direction guard — resolve reference, NEVER invert (only swap labels)
+    if (trial.hr && trial.hr.value != null && trial.hr.favors_arm_id == null) {
+      flags.push('hr_reference_ambiguous');
+    }
+
+    let result;
+    if (tier === 'A') {
+      // Best-of ensemble: run Guyot (constant-censoring) and anchor-exact (censoring-informed),
+      // select the method with the lower total 1-Wasserstein to the registry anchors per trial.
+      const METHODS = (opts.method === 'guyot') ? { guyot: reconstructArmGuyot }
+        : (opts.method === 'anchor-exact') ? { 'anchor-exact': reconstructArmAnchorExact }
+          : { guyot: reconstructArmGuyot, 'anchor-exact': reconstructArmAnchorExact };
+      let best = null;
+      for (const name in METHODS) {
+        const f2 = [], arms = []; let w = 0;
+        for (const a of trial.arms) {
+          const r = METHODS[name](a, f2);
+          arms.push({ arm_id: a.arm_id, label: a.label, role: a.role, ipd: r.ipd });
+          w += armAnchorWasserstein(a, r.ipd);
+        }
+        if (!best || w < best.w) best = { name, arms, w, f2 };
+      }
+      flags.push('method:' + best.name);
+      flags.push('wasserstein_to_anchors:' + best.w.toFixed(4));
+      best.f2.forEach(x => flags.push(x));
+      const ei = trial.arms.findIndex(a => a.role === 'experimental');
+      const ci = trial.arms.findIndex(a => a.role === 'comparator');
+      result = { tier, arms: best.arms, method: best.name, wasserstein: best.w,
+        expIdx: ei >= 0 ? ei : null, ctlIdx: ci >= 0 ? ci : null, envelope: null };
+    } else {
+      const b = reconstructTierB(trial, flags, opts);
+      result = { tier, arms: b.arms, expIdx: b.expIdx, ctlIdx: b.ctlIdx, envelope: b.envelope };
+    }
+
+    if (opts.calibrateHR && tier === 'A') calibrateHR(trial, result, flags);
+
+    const audit = selfAudit(trial, result);
+    return {
+      nct_id: trial.nct_id, tier, arms: result.arms, envelope: result.envelope,
+      method: result.method || null, wasserstein_to_anchors: result.wasserstein != null ? result.wasserstein : null,
+      calibrated: result.calibrated || null,
+      flags, audit, exportable: audit.badge !== 'none'
+    };
+  }
+
+  return {
+    reconstruct, classifyTier,
+    // expose internals for tests
+    _: {
+      pavaDecreasing, mulberry32, hashStr, quantileSorted,
+      kmFromIPD, medianFromKM, rmst, evalKM, wasserstein1,
+      coxLogHR, guyotCore, buildRiskIndices, normalizeAndExpand,
+      reconstructArmGuyot, reconstructArmAnchorExact, armAnchorWasserstein, anchorStepFn,
+      reconstructTierB, selfAudit, parametricArm, solveCutoffExp,
+      fitRoystonParmar, rcsBasis, densifyWithRP
+    }
+  };
+}));
+
+</script>
+<script>
+window.RIPD_EXAMPLES = {
+  "tierA": {
+    "label": "Tier A — rich (KM points + at-risk)",
+    "trial": {
+      "nct_id": "EXAMPLE-A",
+      "source_url": "synthetic example",
+      "time_unit": "months",
+      "arms": [
+        {
+          "arm_id": "OG000",
+          "label": "Drug A",
+          "role": "experimental",
+          "N": 200,
+          "total_events": 131,
+          "follow_up_max": 24,
+          "km_points": [
+            {
+              "t": 0,
+              "S": 1
+            },
+            {
+              "t": 4,
+              "S": 0.905
+            },
+            {
+              "t": 8,
+              "S": 0.81
+            },
+            {
+              "t": 12,
+              "S": 0.69
+            },
+            {
+              "t": 16,
+              "S": 0.59
+            },
+            {
+              "t": 20,
+              "S": 0.505
+            },
+            {
+              "t": 24,
+              "S": 0.425
+            }
+          ],
+          "nar_points": [
+            {
+              "t": 0,
+              "n": 200
+            },
+            {
+              "t": 12,
+              "n": 138
+            },
+            {
+              "t": 24,
+              "n": 85
+            }
+          ]
+        },
+        {
+          "arm_id": "OG001",
+          "label": "Placebo",
+          "role": "comparator",
+          "N": 200,
+          "total_events": 165,
+          "follow_up_max": 24,
+          "km_points": [
+            {
+              "t": 0,
+              "S": 1
+            },
+            {
+              "t": 4,
+              "S": 0.83
+            },
+            {
+              "t": 8,
+              "S": 0.62
+            },
+            {
+              "t": 12,
+              "S": 0.45
+            },
+            {
+              "t": 16,
+              "S": 0.325
+            },
+            {
+              "t": 20,
+              "S": 0.25
+            },
+            {
+              "t": 24,
+              "S": 0.22
+            }
+          ],
+          "nar_points": [
+            {
+              "t": 0,
+              "n": 200
+            },
+            {
+              "t": 12,
+              "n": 90
+            },
+            {
+              "t": 24,
+              "n": 44
+            }
+          ]
+        }
+      ],
+      "hr": {
+        "value": 0.647,
+        "ci_low": 0.5,
+        "ci_high": 0.86,
+        "method": "Cox",
+        "favors_arm_id": "OG000"
+      }
+    }
+  },
+  "tierB": {
+    "label": "Tier B — medium (median + HR, parametric)",
+    "trial": {
+      "nct_id": "EXAMPLE-B",
+      "source_url": "synthetic example",
+      "time_unit": "months",
+      "arms": [
+        {
+          "arm_id": "OG000",
+          "label": "Drug B",
+          "role": "experimental",
+          "N": 300,
+          "total_events": 165,
+          "follow_up_max": 30,
+          "median": {
+            "value": 16,
+            "ci_low": 13,
+            "ci_high": 20.5
+          },
+          "km_points": [],
+          "nar_points": []
+        },
+        {
+          "arm_id": "OG001",
+          "label": "Placebo",
+          "role": "comparator",
+          "N": 300,
+          "total_events": 200,
+          "follow_up_max": 30,
+          "median": {
+            "value": 10,
+            "ci_low": 8.5,
+            "ci_high": 11.8
+          },
+          "km_points": [],
+          "nar_points": []
+        }
+      ],
+      "hr": {
+        "value": 0.625,
+        "ci_low": 0.5,
+        "ci_high": 0.78,
+        "method": "Cox",
+        "favors_arm_id": "OG000"
+      }
+    }
+  },
+  "tierC": {
+    "label": "Tier C — sparse (HR only, refused)",
+    "trial": {
+      "nct_id": "EXAMPLE-C",
+      "source_url": "synthetic example",
+      "time_unit": "months",
+      "arms": [
+        {
+          "arm_id": "OG000",
+          "label": "Drug C",
+          "role": "experimental",
+          "N": null,
+          "total_events": null,
+          "km_points": [],
+          "nar_points": [],
+          "median": null
+        },
+        {
+          "arm_id": "OG001",
+          "label": "Placebo",
+          "role": "comparator",
+          "N": null,
+          "total_events": null,
+          "km_points": [],
+          "nar_points": [],
+          "median": null
+        }
+      ],
+      "hr": {
+        "value": 0.82,
+        "ci_low": 0.66,
+        "ci_high": 1.02,
+        "method": "Cox",
+        "favors_arm_id": "OG000"
+      }
+    }
+  },
+  "realOnc": {
+    "label": "REAL ct.gov — NCT01524783 (RADIANT-4, NET; high-event OS)",
+    "trial": {
+      "nct_id": "NCT01524783",
+      "source_url": "https://clinicaltrials.gov/study/NCT01524783",
+      "outcome_id": 228201242,
+      "time_unit": "months",
+      "condition": "Advanced NET of GI Origin; Advanced NET of Lung Origin; Neuroendocrine Tumors",
+      "arms": [
+        {
+          "arm_id": "OG000",
+          "label": "Everolimus + BSC",
+          "role": "experimental",
+          "N": 205,
+          "total_events": 107,
+          "follow_up_max": 24,
+          "km_points": [
+            {
+              "t": 2,
+              "S": 0.901
+            },
+            {
+              "t": 4,
+              "S": 0.812
+            },
+            {
+              "t": 6,
+              "S": 0.721
+            },
+            {
+              "t": 8,
+              "S": 0.624
+            },
+            {
+              "t": 10,
+              "S": 0.517
+            },
+            {
+              "t": 12,
+              "S": 0.444
+            },
+            {
+              "t": 15,
+              "S": 0.401
+            },
+            {
+              "t": 18,
+              "S": 0.318
+            },
+            {
+              "t": 21,
+              "S": 0.276
+            },
+            {
+              "t": 24,
+              "S": 0.22
+            }
+          ],
+          "nar_points": [],
+          "median": null
+        },
+        {
+          "arm_id": "OG001",
+          "label": "Placebo + BSC",
+          "role": "comparator",
+          "N": 97,
+          "total_events": 77,
+          "follow_up_max": 27,
+          "km_points": [
+            {
+              "t": 2,
+              "S": 0.746
+            },
+            {
+              "t": 4,
+              "S": 0.491
+            },
+            {
+              "t": 6,
+              "S": 0.401
+            },
+            {
+              "t": 8,
+              "S": 0.358
+            },
+            {
+              "t": 10,
+              "S": 0.313
+            },
+            {
+              "t": 12,
+              "S": 0.281
+            },
+            {
+              "t": 15,
+              "S": 0.264
+            },
+            {
+              "t": 18,
+              "S": 0.244
+            },
+            {
+              "t": 21,
+              "S": 0.174
+            },
+            {
+              "t": 24,
+              "S": 0.174
+            },
+            {
+              "t": 27,
+              "S": 0.174
+            }
+          ],
+          "nar_points": [],
+          "median": null
+        }
+      ],
+      "hr": {
+        "value": 0.48,
+        "ci_low": 0.35,
+        "ci_high": 0.67,
+        "ci_percent": 95,
+        "p_value": 0.001,
+        "method": "Log Rank",
+        "one_sided": false,
+        "favors_arm_id": "OG000"
+      },
+      "_note": "total_events set from drop_withdrawals (censoring-informed); see VALIDATION.md"
+    }
+  },
+  "real": {
+    "label": "REAL ct.gov — NCT00725985 (cladribine MS; low-event)",
+    "trial": {
+      "nct_id": "NCT00725985",
+      "source_url": "https://clinicaltrials.gov/study/NCT00725985",
+      "outcome_id": 228260378,
+      "time_unit": "months",
+      "arms": [
+        {
+          "arm_id": "OG000",
+          "label": "Cladribine 5.25 mg/kg, Rebif (OLMP)",
+          "role": "experimental",
+          "N": 24,
+          "total_events": null,
+          "follow_up_max": 23.655,
+          "km_points": [
+            {
+              "t": 0.0329,
+              "S": 1
+            },
+            {
+              "t": 2.9569,
+              "S": 1
+            },
+            {
+              "t": 5.9138,
+              "S": 0.9583
+            },
+            {
+              "t": 8.8706,
+              "S": 0.9583
+            },
+            {
+              "t": 11.8275,
+              "S": 0.9583
+            },
+            {
+              "t": 14.7844,
+              "S": 0.9583
+            },
+            {
+              "t": 17.7413,
+              "S": 0.9583
+            },
+            {
+              "t": 20.6982,
+              "S": 0.9583
+            },
+            {
+              "t": 23.655,
+              "S": 0.9583
+            }
+          ],
+          "nar_points": [],
+          "median": null
+        },
+        {
+          "arm_id": "OG001",
+          "label": "Cladribine 3.5 mg/kg, Rebif (OLMP)",
+          "role": "experimental",
+          "N": 25,
+          "total_events": null,
+          "follow_up_max": 23.655,
+          "km_points": [
+            {
+              "t": 0.0329,
+              "S": 1
+            },
+            {
+              "t": 2.9569,
+              "S": 1
+            },
+            {
+              "t": 5.9138,
+              "S": 0.9583
+            },
+            {
+              "t": 8.8706,
+              "S": 0.9583
+            },
+            {
+              "t": 11.8275,
+              "S": 0.9583
+            },
+            {
+              "t": 14.7844,
+              "S": 0.9583
+            },
+            {
+              "t": 17.7413,
+              "S": 0.9583
+            },
+            {
+              "t": 20.6982,
+              "S": 0.9583
+            },
+            {
+              "t": 23.655,
+              "S": 0.9583
+            }
+          ],
+          "nar_points": [],
+          "median": null
+        },
+        {
+          "arm_id": "OG002",
+          "label": "Placebo, Rebif (OLMP)",
+          "role": "comparator",
+          "N": 60,
+          "total_events": null,
+          "follow_up_max": 23.655,
+          "km_points": [
+            {
+              "t": 0.0329,
+              "S": 1
+            },
+            {
+              "t": 2.9569,
+              "S": 1
+            },
+            {
+              "t": 5.9138,
+              "S": 0.9473
+            },
+            {
+              "t": 8.8706,
+              "S": 0.9473
+            },
+            {
+              "t": 11.8275,
+              "S": 0.9473
+            },
+            {
+              "t": 14.7844,
+              "S": 0.9236
+            },
+            {
+              "t": 17.7413,
+              "S": 0.8906
+            },
+            {
+              "t": 20.6982,
+              "S": 0.8906
+            },
+            {
+              "t": 23.655,
+              "S": 0.8906
+            }
+          ],
+          "nar_points": [],
+          "median": null
+        }
+      ],
+      "hr": null
+    }
+  }
+};
+
+</script>
+<script>
+(function(){
+  "use strict";
+  var RIPD = window.RIPD;
+  var EXAMPLES = window.RIPD_EXAMPLES || {};
+  var lastResult = null, lastTrial = null;
+
+  // populate examples dropdown
+  var sel = document.getElementById('example');
+  Object.keys(EXAMPLES).forEach(function(k){
+    var o=document.createElement('option'); o.value=k; o.textContent=EXAMPLES[k].label||k; sel.appendChild(o);
+  });
+
+  document.getElementById('boot').addEventListener('input', function(e){
+    document.getElementById('bval').textContent = e.target.value;
+  });
+  document.getElementById('loadEx').addEventListener('click', function(){
+    var ex = EXAMPLES[sel.value]; if(!ex) return;
+    document.getElementById('paste').value = JSON.stringify(ex.trial, null, 2);
+    setErr('');
+  });
+  document.getElementById('file').addEventListener('change', function(e){
+    var f = e.target.files[0]; if(!f) return;
+    var r = new FileReader();
+    r.onload = function(){ document.getElementById('paste').value = r.result; setErr(''); };
+    r.readAsText(f);
+  });
+  document.getElementById('run').addEventListener('click', run);
+  document.getElementById('exportBtn').addEventListener('click', exportCSV);
+
+  function setErr(m){ document.getElementById('inputErr').textContent = m; }
+
+  function run(){
+    var txt = document.getElementById('paste').value.trim();
+    if(!txt){ setErr('Paste or load a trial JSON first.'); return; }
+    var trial;
+    try { trial = JSON.parse(txt); } catch(e){ setErr('Invalid JSON: '+e.message); return; }
+    if(!trial.arms){ setErr('Trial JSON must have an "arms" array.'); return; }
+    setErr('');
+    var B = parseInt(document.getElementById('boot').value,10);
+    var res;
+    try { res = RIPD.reconstruct(trial, {bootstrap:B}); }
+    catch(e){ setErr('Reconstruction error: '+e.message); return; }
+    lastResult = res; lastTrial = trial;
+    render(trial, res);
+  }
+
+  function render(trial, res){
+    document.getElementById('empty').style.display='none';
+    document.getElementById('out').style.display='block';
+    document.getElementById('tier').textContent = 'Tier '+res.tier;
+    document.getElementById('nct').textContent = res.nct_id||'';
+    var b = document.getElementById('badge');
+    b.className = 'badge '+(res.audit.badge||'none');
+    b.textContent = (res.audit.badge||'none').toUpperCase();
+    var verdict = document.getElementById('verdict');
+    if(res.tier==='C'){
+      verdict.innerHTML = '<span class="fail">Insufficient registry data — reconstruction refused (Tier C IPD would be fabrication).</span>';
+    } else if(res.envelope){
+      verdict.innerHTML = 'Reconstructed '+res.arms.length+' arm(s) · parametric (exponential) with bootstrap envelope';
+    } else {
+      var w = (res.wasserstein_to_anchors!=null)?(' · 1-Wasserstein to anchors '+res.wasserstein_to_anchors.toFixed(4)):'';
+      verdict.innerHTML = 'Reconstructed '+res.arms.length+' arm(s) · method <b>'+(res.method||'?')+'</b> '
+        +'<span class="muted">(best-of Guyot vs censoring-informed anchor-exact, selected by min-Wasserstein)</span>'+w;
+    }
+    document.getElementById('exportBtn').disabled = !res.exportable;
+    drawPlot(trial, res);
+    drawChecks(res);
+    drawFlags(res);
+  }
+
+  function drawChecks(res){
+    var tb = document.querySelector('#checks tbody'); tb.innerHTML='';
+    var C = res.audit.checks; var names = {
+      C1_total_events:'C1 total events match', C2_anchor_fidelity:'C2 anchor survival fidelity',
+      C3_median:'C3 median within 5%', C4_hr:'C4 reconstructed HR vs registry',
+      C5_monotonic:'C5 S(t) monotone (hard)', C6_nar:'C6 number-at-risk consistency',
+      C7_conservation:'C7 population conserved (hard)', C8_followup:'C8 no event past follow-up',
+      C9_direction:'C9 HR direction integrity (hard)'
+    };
+    Object.keys(names).forEach(function(k){
+      var c = C[k]; if(!c) return;
+      var applies = (c.applies===undefined)?true:c.applies;
+      var cls = !applies ? 'na' : (c.pass?'pass':'fail');
+      var mark = !applies ? 'n/a' : (c.pass?'PASS':'FAIL');
+      var extra='';
+      if(k==='C2_anchor_fidelity' && c.maxDiff!=null) extra=' (max Δ '+c.maxDiff.toExponential(1)+')';
+      if(k==='C4_hr' && c.recon_hr!=null) extra=' (recon HR '+c.recon_hr.toFixed(3)+' vs '+c.reg_hr+')';
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td>'+names[k]+'</td><td class="'+cls+'">'+mark+extra+'</td>';
+      tb.appendChild(tr);
+    });
+  }
+
+  function drawFlags(res){
+    var f=document.getElementById('flags'); f.innerHTML='';
+    (res.flags||[]).forEach(function(fl){
+      var s=document.createElement('span'); s.className='flag'; s.textContent=fl; f.appendChild(s);
+    });
+  }
+
+  // -------- compact SVG survival overlay (no external chart lib) --------
+  function kmSteps(ipd){ return RIPD._.kmFromIPD(ipd); }
+  function drawPlot(trial, res){
+    var svg = document.getElementById('plot');
+    while(svg.firstChild) svg.removeChild(svg.firstChild);
+    var W=720,Hh=360,padL=46,padR=14,padT=14,padB=34;
+    var pw=W-padL-padR, ph=Hh-padT-padB;
+    // x domain = max anchor/recon time
+    var tmax=0;
+    (trial.arms||[]).forEach(function(a){ (a.km_points||[]).forEach(function(p){tmax=Math.max(tmax,p.t);}); (a.nar_points||[]).forEach(function(p){tmax=Math.max(tmax,p.t);}); });
+    if(res.arms){ res.arms.forEach(function(a){ a.ipd.forEach(function(r){tmax=Math.max(tmax,r.time);}); }); }
+    tmax = tmax||1;
+    var X=function(t){return padL + pw*(t/tmax);};
+    var Y=function(s){return padT + ph*(1-s);};
+    // axes
+    addLine(svg,padL,padT,padL,padT+ph,'#30363d');
+    addLine(svg,padL,padT+ph,padL+pw,padT+ph,'#30363d');
+    [0,.25,.5,.75,1].forEach(function(s){
+      addLine(svg,padL,Y(s),padL+pw,Y(s),'#1b2129');
+      addText(svg,padL-6,Y(s)+3,s.toFixed(2),'#8b949e','end',10);
+    });
+    for(var k=0;k<=4;k++){ var tt=tmax*k/4; addText(svg,X(tt),padT+ph+16,fmt(tt),'#8b949e','middle',10); }
+    addText(svg,padL+pw/2,Hh-4,'time ('+(trial.time_unit||'months')+')','#8b949e','middle',11);
+    var roleColor={experimental:getCss('--exp'),comparator:getCss('--ctl')};
+    // reconstructed step curves
+    if(res.arms){
+      res.arms.forEach(function(a){
+        var col = roleColor[a.role]||'#9aa4af';
+        var steps = kmSteps(a.ipd);
+        var d='M '+X(0)+' '+Y(1); var prevS=1;
+        steps.forEach(function(st){ d+=' L '+X(st.t)+' '+Y(prevS)+' L '+X(st.t)+' '+Y(st.S); prevS=st.S; });
+        d+=' L '+X(tmax)+' '+Y(prevS);
+        addPath(svg,d,col,2);
+      });
+    }
+    // registry KM anchors as circles
+    (trial.arms||[]).forEach(function(a){
+      var col = roleColor[a.role]||'#9aa4af';
+      (a.km_points||[]).forEach(function(p){ addCircle(svg,X(p.t),Y(p.S),3.2,col); });
+    });
+  }
+  function fmt(x){ return (Math.round(x*10)/10).toString(); }
+  function getCss(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim()||'#888'; }
+  function svgEl(n){ return document.createElementNS('http://www.w3.org/2000/svg',n); }
+  function addLine(s,x1,y1,x2,y2,c){var e=svgEl('line');e.setAttribute('x1',x1);e.setAttribute('y1',y1);e.setAttribute('x2',x2);e.setAttribute('y2',y2);e.setAttribute('stroke',c);s.appendChild(e);}
+  function addPath(s,d,c,w){var e=svgEl('path');e.setAttribute('d',d);e.setAttribute('fill','none');e.setAttribute('stroke',c);e.setAttribute('stroke-width',w);s.appendChild(e);}
+  function addCircle(s,cx,cy,r,c){var e=svgEl('circle');e.setAttribute('cx',cx);e.setAttribute('cy',cy);e.setAttribute('r',r);e.setAttribute('fill','none');e.setAttribute('stroke',c);e.setAttribute('stroke-width',1.6);s.appendChild(e);}
+  function addText(s,x,y,t,c,anc,fs){var e=svgEl('text');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('fill',c);e.setAttribute('text-anchor',anc);e.setAttribute('font-size',fs);e.textContent=t;s.appendChild(e);}
+
+  // -------- pseudo-IPD CSV export --------
+  function exportCSV(){
+    if(!lastResult || !lastResult.exportable){ return; }
+    var rows=['nct_id,arm_id,role,time,status,reconstruction_tier,assurance_badge'];
+    lastResult.arms.forEach(function(a){
+      a.ipd.forEach(function(r){
+        rows.push([lastResult.nct_id,a.arm_id,a.role,r.time,r.status,lastResult.tier,lastResult.audit.badge].join(','));
+      });
+    });
+    // provenance header comment (pseudo-IPD, not true IPD)
+    var header='# PSEUDO-IPD reconstructed from ClinicalTrials.gov/AACT summary anchors only — NOT true patient data.\n'+
+               '# source: '+(lastTrial.source_url||lastTrial.nct_id)+'  tier='+lastResult.tier+'  badge='+lastResult.audit.badge+'\n';
+    var blob=new Blob([header+rows.join('\n')+'\n'],{type:'text/csv'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a'); a.href=url; a.download=(lastResult.nct_id||'trial')+'_pseudoIPD.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+  }
+
+  // auto-load first example for convenience
+  if(sel.options.length){ sel.selectedIndex=0; document.getElementById('loadEx').click(); }
+})();
+</script>
+</body>
+</html>

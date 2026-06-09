@@ -1,0 +1,23 @@
+# local state / progress (may contain local paths)
+PROGRESS.md
+sentinel-findings.*
+STUCK_FAILURES.*
+
+# AACT snapshots are large — never commit
+*.zip
+*_pipe-delimited-export*/
+coverage_report.json
+NCT*.json
+
+# python / node
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+
+# os
+Thumbs.db
+.DS_Store
+
+# bulk harvested cohort (keep only curated demos)
+cohort/

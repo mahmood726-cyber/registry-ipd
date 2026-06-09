@@ -1,0 +1,50 @@
+{
+  "nct_id": "SYNTH-TIERB",
+  "source": "synthetic",
+  "time_unit": "months",
+  "arms": [
+    {
+      "arm_id": "ctl",
+      "label": "Control",
+      "role": "comparator",
+      "N": 300,
+      "total_events": 200,
+      "follow_up_max": 30,
+      "median": {
+        "value": 10,
+        "ci_low": 8.5,
+        "ci_high": 11.8
+      },
+      "km_points": [],
+      "nar_points": []
+    },
+    {
+      "arm_id": "exp",
+      "label": "Experimental",
+      "role": "experimental",
+      "N": 300,
+      "total_events": 165,
+      "follow_up_max": 30,
+      "median": {
+        "value": 16,
+        "ci_low": 13,
+        "ci_high": 20.5
+      },
+      "km_points": [],
+      "nar_points": []
+    }
+  ],
+  "hr": {
+    "value": 0.625,
+    "ci_low": 0.5,
+    "ci_high": 0.78,
+    "method": "Cox",
+    "favors_arm_id": "exp"
+  },
+  "_truth": {
+    "hr": 0.625,
+    "logHR": -0.4700036292457356,
+    "exp_median": 16,
+    "ctl_median": 10
+  }
+}

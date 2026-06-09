@@ -1,0 +1,408 @@
+{
+  "cohort_dir": "benchmark/aact",
+  "n_trials": 20,
+  "n_reconstructable": 20,
+  "n_not_reconstructable": 0,
+  "not_reconstructable_nct": [],
+  "aggregate": {
+    "n": 20,
+    "logHR_RMSE": 0.12335950856595884,
+    "logHR_mean_abs": 0.10285719696699758,
+    "anchor_sup_error_mean": 0.011203809523809585,
+    "anchor_sup_error_max": 0.07600000000000007,
+    "wasserstein_mean": 0.00042337654464334073,
+    "tier_counts": {
+      "A": 20
+    }
+  },
+  "per_trial": [
+    {
+      "file": "BENCH-01.json",
+      "nct": "BENCH-01",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.1146196569330924,
+      "anchor_sup_error": 0.04669999999999985,
+      "wasserstein": 0.00043689166666713617,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-02.json",
+      "nct": "BENCH-02",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.04206728233799595,
+      "anchor_sup_error": 0.07600000000000007,
+      "wasserstein": 1.030677626578933e-15,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-03.json",
+      "nct": "BENCH-03",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.0946184022065566,
+      "anchor_sup_error": 0.00004285714285717779,
+      "wasserstein": 0.0005600624999999907,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-04.json",
+      "nct": "BENCH-04",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.10902713122927918,
+      "anchor_sup_error": 0.00003333333333332966,
+      "wasserstein": 0.0005333333333334977,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-05.json",
+      "nct": "BENCH-05",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.05459173955209107,
+      "anchor_sup_error": 1.1102230246251565e-16,
+      "wasserstein": 1.2111145419879692e-15,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-06.json",
+      "nct": "BENCH-06",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.08740069414087331,
+      "anchor_sup_error": 0.0000428571428572333,
+      "wasserstein": 0.00033402678571485317,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-07.json",
+      "nct": "BENCH-07",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.13443512806691257,
+      "anchor_sup_error": 0.000033333333333440684,
+      "wasserstein": 0.0004889583333334404,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-08.json",
+      "nct": "BENCH-08",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.08068596524794983,
+      "anchor_sup_error": 1.1102230246251565e-16,
+      "wasserstein": 7.313594174718176e-16,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-09.json",
+      "nct": "BENCH-09",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.07963812094683109,
+      "anchor_sup_error": 0.00004285714285717779,
+      "wasserstein": 0.0013245535714286251,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-10.json",
+      "nct": "BENCH-10",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.060834177325172545,
+      "anchor_sup_error": 0.00003333333333338517,
+      "wasserstein": 0.0007179375000002652,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-11.json",
+      "nct": "BENCH-11",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.04560324291320478,
+      "anchor_sup_error": 1.1102230246251565e-16,
+      "wasserstein": 6.514580541683263e-16,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-12.json",
+      "nct": "BENCH-12",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.1679468447470152,
+      "anchor_sup_error": 0.0000428571428572333,
+      "wasserstein": 0.0005732232142856322,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-13.json",
+      "nct": "BENCH-13",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.32701871008671995,
+      "anchor_sup_error": 0.00003333333333338517,
+      "wasserstein": 0.0007636875000001262,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-14.json",
+      "nct": "BENCH-14",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.16930739625938607,
+      "anchor_sup_error": 5.551115123125783e-17,
+      "wasserstein": 3.629908873481466e-16,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-15.json",
+      "nct": "BENCH-15",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.025965892113048006,
+      "anchor_sup_error": 0.05432857142857145,
+      "wasserstein": 0.0006859387499999661,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-16.json",
+      "nct": "BENCH-16",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.06044753185351452,
+      "anchor_sup_error": 0.04666666666666669,
+      "wasserstein": 0.00018836416666685393,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-17.json",
+      "nct": "BENCH-17",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.16946077417700584,
+      "anchor_sup_error": 1.1102230246251565e-16,
+      "wasserstein": 1.6653345369377285e-15,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-18.json",
+      "nct": "BENCH-18",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.13585099828288677,
+      "anchor_sup_error": 0.0000428571428572333,
+      "wasserstein": 0.0009538035714287872,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-19.json",
+      "nct": "BENCH-19",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.07332167545553245,
+      "anchor_sup_error": 0.00003333333333338517,
+      "wasserstein": 0.0009067499999998967,
+      "exportable": true
+    },
+    {
+      "file": "BENCH-20.json",
+      "nct": "BENCH-20",
+      "tier": "A",
+      "badge": "silver",
+      "logHR_err": 0.024302575464883708,
+      "anchor_sup_error": 1.6653345369377348e-16,
+      "wasserstein": 2.0899948438568528e-15,
+      "exportable": true
+    }
+  ],
+  "head_to_head": {
+    "n": 20,
+    "aact_better_anchor_sup": "20/20",
+    "aact_better_wasserstein": "20/20",
+    "detail": [
+      {
+        "nct": "BENCH-01",
+        "aact_sup": 0.04669999999999985,
+        "digi_sup": 0.1333333333333333,
+        "aact_w1": 0.00043689166666713617,
+        "digi_w1": 0.46050445944444585,
+        "aact_logHR_err": 0.1146196569330924,
+        "digi_logHR_err": 0.037203451345440564
+      },
+      {
+        "nct": "BENCH-02",
+        "aact_sup": 0.07600000000000007,
+        "digi_sup": 0.14400000000000002,
+        "aact_w1": 1.030677626578933e-15,
+        "digi_w1": 0.4272491500000025,
+        "aact_logHR_err": 0.04206728233799595,
+        "digi_logHR_err": 0.012901216341999922
+      },
+      {
+        "nct": "BENCH-03",
+        "aact_sup": 0.00004285714285717779,
+        "digi_sup": 0.1886,
+        "aact_w1": 0.0005600624999999907,
+        "digi_w1": 0.5251789591346704,
+        "aact_logHR_err": 0.0946184022065566,
+        "digi_logHR_err": 0.2068542258872733
+      },
+      {
+        "nct": "BENCH-04",
+        "aact_sup": 0.00003333333333332966,
+        "digi_sup": 0.26,
+        "aact_w1": 0.0005333333333334977,
+        "digi_w1": 0.6113713917812031,
+        "aact_logHR_err": 0.10902713122927918,
+        "digi_logHR_err": 0.07660752120753611
+      },
+      {
+        "nct": "BENCH-05",
+        "aact_sup": 1.1102230246251565e-16,
+        "digi_sup": 0.11455991569650736,
+        "aact_w1": 1.2111145419879692e-15,
+        "digi_w1": 1.1843769245973292,
+        "aact_logHR_err": 0.05459173955209107,
+        "digi_logHR_err": 0.019983233505167064
+      },
+      {
+        "nct": "BENCH-06",
+        "aact_sup": 0.0000428571428572333,
+        "digi_sup": 0.2057,
+        "aact_w1": 0.00033402678571485317,
+        "digi_w1": 0.3864936399025009,
+        "aact_logHR_err": 0.08740069414087331,
+        "digi_logHR_err": 0.1817263179016456
+      },
+      {
+        "nct": "BENCH-07",
+        "aact_sup": 0.000033333333333440684,
+        "digi_sup": 0.15333333333333332,
+        "aact_w1": 0.0004889583333334404,
+        "digi_w1": 0.44126908438949825,
+        "aact_logHR_err": 0.13443512806691257,
+        "digi_logHR_err": 0.23372555245293045
+      },
+      {
+        "nct": "BENCH-08",
+        "aact_sup": 1.1102230246251565e-16,
+        "digi_sup": 0.14400000000000002,
+        "aact_w1": 7.313594174718176e-16,
+        "digi_w1": 0.6267347500000002,
+        "aact_logHR_err": 0.08068596524794983,
+        "digi_logHR_err": 0.055799667267803194
+      },
+      {
+        "nct": "BENCH-09",
+        "aact_sup": 0.00004285714285717779,
+        "digi_sup": 0.26,
+        "aact_w1": 0.0013245535714286251,
+        "digi_w1": 0.6724810206839441,
+        "aact_logHR_err": 0.07963812094683109,
+        "digi_logHR_err": 0.019064804421497827
+      },
+      {
+        "nct": "BENCH-10",
+        "aact_sup": 0.00003333333333338517,
+        "digi_sup": 0.13917312661498715,
+        "aact_w1": 0.0007179375000002652,
+        "digi_w1": 1.0009258730374824,
+        "aact_logHR_err": 0.060834177325172545,
+        "digi_logHR_err": 0.015478392654938722
+      },
+      {
+        "nct": "BENCH-11",
+        "aact_sup": 1.1102230246251565e-16,
+        "digi_sup": 0.16400000000000003,
+        "aact_w1": 6.514580541683263e-16,
+        "digi_w1": 0.3218548499999999,
+        "aact_logHR_err": 0.04560324291320478,
+        "digi_logHR_err": 0.0889654036040382
+      },
+      {
+        "nct": "BENCH-12",
+        "aact_sup": 0.0000428571428572333,
+        "digi_sup": 0.1342428571428571,
+        "aact_w1": 0.0005732232142856322,
+        "digi_w1": 0.4498820830628278,
+        "aact_logHR_err": 0.1679468447470152,
+        "digi_logHR_err": 0.13185545911678087
+      },
+      {
+        "nct": "BENCH-13",
+        "aact_sup": 0.00003333333333338517,
+        "digi_sup": 0.16666666666666663,
+        "aact_w1": 0.0007636875000001262,
+        "digi_w1": 1.067107811603638,
+        "aact_logHR_err": 0.32701871008671995,
+        "digi_logHR_err": 0.19262879063879834
+      },
+      {
+        "nct": "BENCH-14",
+        "aact_sup": 5.551115123125783e-17,
+        "digi_sup": 0.19599999999999995,
+        "aact_w1": 3.629908873481466e-16,
+        "digi_w1": 1.114256250000003,
+        "aact_logHR_err": 0.16930739625938607,
+        "digi_logHR_err": 0.172360065579168
+      },
+      {
+        "nct": "BENCH-15",
+        "aact_sup": 0.05432857142857145,
+        "digi_sup": 0.14859999999999995,
+        "aact_w1": 0.0006859387499999661,
+        "digi_w1": 0.8200607737499982,
+        "aact_logHR_err": 0.025965892113048006,
+        "digi_logHR_err": 0.013038865219324736
+      },
+      {
+        "nct": "BENCH-16",
+        "aact_sup": 0.04666666666666669,
+        "digi_sup": 0.16000000000000003,
+        "aact_w1": 0.00018836416666685393,
+        "digi_w1": 0.23679682249999984,
+        "aact_logHR_err": 0.06044753185351452,
+        "digi_logHR_err": 0.1456588191884299
+      },
+      {
+        "nct": "BENCH-17",
+        "aact_sup": 1.1102230246251565e-16,
+        "digi_sup": 0.15600000000000003,
+        "aact_w1": 1.6653345369377285e-15,
+        "digi_w1": 0.6831027450980359,
+        "aact_logHR_err": 0.16946077417700584,
+        "digi_logHR_err": 0.14438730629347712
+      },
+      {
+        "nct": "BENCH-18",
+        "aact_sup": 0.0000428571428572333,
+        "digi_sup": 0.16000000000000003,
+        "aact_w1": 0.0009538035714287872,
+        "digi_w1": 0.5821793683929639,
+        "aact_logHR_err": 0.13585099828288677,
+        "digi_logHR_err": 0.014998374800283543
+      },
+      {
+        "nct": "BENCH-19",
+        "aact_sup": 0.00003333333333338517,
+        "digi_sup": 0.11333333333333317,
+        "aact_w1": 0.0009067499999998967,
+        "digi_w1": 0.7092568274999984,
+        "aact_logHR_err": 0.07332167545553245,
+        "digi_logHR_err": 0.027433405988962045
+      },
+      {
+        "nct": "BENCH-20",
+        "aact_sup": 1.6653345369377348e-16,
+        "digi_sup": 0.21999999999999997,
+        "aact_w1": 2.0899948438568528e-15,
+        "digi_w1": 0.9346198431522901,
+        "aact_logHR_err": 0.024302575464883708,
+        "digi_logHR_err": 0.10332205461596722
+      }
+    ],
+    "note": "AACT-only is expected to win on anchor fidelity (exact registry values); this is the scoped claim, NOT universal superiority on between-anchor shape."
+  }
+}
