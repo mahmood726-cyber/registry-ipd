@@ -482,5 +482,31 @@
       "median_exp_pcterr": null,
       "RMSTdiff": 1.3
     }
+  },
+  {
+    "ds": "ebmt1",
+    "label": "EBMT transplant (overall survival, risk score)",
+    "n_exp": 167,
+    "n_ctl": 406,
+    "true_HR": 3.966,
+    "true_median_exp": 232.7,
+    "true_median_ctl": null,
+    "true_RMST_diff": -1176.6,
+    "curve_only": {
+      "HR": 5.029,
+      "HR_logerr": 0.237,
+      "median_exp_pcterr": 29.4,
+      "RMSTdiff": -1057.3
+    },
+    "censoring_informed": {
+      "HR": 5.329,
+      "HR_logerr": 0.295,
+      "median_exp_pcterr": 76.6,
+      "RMSTdiff": -990.5
+    }
+  },
+  {
+    "ds": "bnct",
+    "error": "too few rows"
   }
 ]

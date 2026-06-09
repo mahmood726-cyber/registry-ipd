@@ -221,7 +221,7 @@ engine never sees the patient-level data. (`validate/goldstandard.js`.)
 | **Kidtran** kidney tx | 339/524 | 0.907 | 1.046 (14%) | n/r | — |
 | **Veteran** lung (OS) | 68/69 | 1.016 | 0.755 (30%) | 58% | 31 / **−0.7** |
 
-**Aggregate over 14 adequately-sized datasets (≥100/arm; of 22 real datasets tried): curve-only
+**Aggregate over 15 adequately-sized datasets (≥100/arm; of 23 real datasets tried): curve-only
 recovers HR to a median log-error of 0.11 (~11% fold), with 12/13 within 20%, and the median to
 ~3.4%** — matching the registry-cohort numbers, now on real patient data across 13 RCTs/cohorts.
 Large effects recovered cleanly (Wilms 5.1→5.18, prostate 5.49→5.17, melanoma 4.36→3.99); the classic
@@ -260,9 +260,12 @@ reconstruction and motivates registries to post at least a handful of KM-estimat
   (GBSG 1.3%, Wilms 5%, diabetic 11%), moderate on others (Rotterdam/PBC 17%).
 - **RMST** is accurate in absolute terms; its *relative* error inflates for near-null effects with a
   tiny true RMST-difference (PBC: 77 vs 40, a small absolute gap on a multi-year scale).
-- **Small trials reconstruct poorly.** Veteran (N=137, ~null) gives a spurious HR 0.76 and 58% median
-  error from 8 coarse points — stated plainly: registry-native reconstruction needs adequate N and
-  enough posted timepoints.
+- **The failure boundary is events × effect size, not N alone.** Across the 8 small datasets
+  (<100/arm), 4/8 still land within 20%: those with a strong effect and enough events reconstruct
+  fine even at small N (Gehan 6-MP N=21/arm, HR 0.22→0.20, 9%; AIDS-by-CCR5 0.29→0.31, 7%; melanoma
+  4.36→3.99, 9%), whereas small trials with weak/near-null effects fail (Veteran N=69/arm ~null →
+  spurious 0.76, 58% median error; bmt 39%). So the practical guard is "enough events + a real
+  effect," not a raw N threshold.
 - Censoring-informed (forcing the registry event count) improves HR on some trials but can distort the
   *median* — so prefer curve-only for median/RMST, censoring-informed for HR.
 

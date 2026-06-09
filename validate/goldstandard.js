@@ -57,6 +57,8 @@ const CONFIGS = [
   { ds: 'cancer', label: 'NCCTG lung cancer (OS, by sex)', time: 'time', status: 'status', eventVal: 2, arm: 'sex', exp: '2', ctl: '1' },
   { ds: 'ebmt3', label: 'EBMT transplant (relapse-free survival, T-cell depletion)', time: 'rfstime', status: 'rfsstat', arm: 'tcd', exp: 'TCD', ctl: 'No TCD' },
   { ds: 'aidssi', label: 'AIDS cohort (time to AIDS, CCR5 genotype)', time: 'time', status: 'status', eventVal: 1, arm: 'ccr5', exp: 'WM', ctl: 'WW' },
+  { ds: 'ebmt1', label: 'EBMT transplant (overall survival, risk score)', time: 'srv', status: 'srvstat', arm: 'score', exp: 'High risk', ctl: 'Low risk' },
+  { ds: 'bnct', label: 'BNCT brain tumour (OS, treated vs untreated; small)', time: 'time', status: 'death', arm: 'trt', exp: '3', ctl: '1' },
 ];
 const CAP = 2500; // subsample cap per arm (file order; keeps huge cohorts tractable)
 
