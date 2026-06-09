@@ -1,0 +1,66 @@
+{
+  "datasets": [
+    "gbsg",
+    "rotterdam",
+    "pbc",
+    "diabetic",
+    "nwtco",
+    "myeloid",
+    "kidtran"
+  ],
+  "n_datasets": 7,
+  "K_values": [
+    3,
+    4,
+    5,
+    6,
+    8,
+    12,
+    20
+  ],
+  "by_K": {
+    "3": {
+      "n_datasets": 7,
+      "HR_logerr_median": 0.285,
+      "HR_foldErr_median": 1.33,
+      "median_pcterr_median": 9.2
+    },
+    "4": {
+      "n_datasets": 7,
+      "HR_logerr_median": 0.174,
+      "HR_foldErr_median": 1.19,
+      "median_pcterr_median": 9.7
+    },
+    "5": {
+      "n_datasets": 7,
+      "HR_logerr_median": 0.086,
+      "HR_foldErr_median": 1.09,
+      "median_pcterr_median": 2.4
+    },
+    "6": {
+      "n_datasets": 7,
+      "HR_logerr_median": 0.12,
+      "HR_foldErr_median": 1.127,
+      "median_pcterr_median": 3
+    },
+    "8": {
+      "n_datasets": 7,
+      "HR_logerr_median": 0.11,
+      "HR_foldErr_median": 1.116,
+      "median_pcterr_median": 5.9
+    },
+    "12": {
+      "n_datasets": 7,
+      "HR_logerr_median": 0.074,
+      "HR_foldErr_median": 1.077,
+      "median_pcterr_median": 3.1
+    },
+    "20": {
+      "n_datasets": 7,
+      "HR_logerr_median": 0.069,
+      "HR_foldErr_median": 1.071,
+      "median_pcterr_median": 3
+    }
+  },
+  "finding": "Reconstruction accuracy improves with the number of posted KM timepoints and plateaus: beyond ~6-8 points the gain is small. This quantifies how coarse a registry curve can be before reconstruction degrades, and motivates registries posting >=6-8 timepoints."
+}

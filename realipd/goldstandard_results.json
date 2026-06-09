@@ -130,5 +130,49 @@
       "median_exp_pcterr": null,
       "RMSTdiff": -1509.7
     }
+  },
+  {
+    "ds": "myeloid",
+    "label": "Myeloid AML RCT (overall survival, trt A vs B)",
+    "n_exp": 329,
+    "n_ctl": 317,
+    "true_HR": 0.708,
+    "true_median_exp": 2280,
+    "true_median_ctl": 701.2,
+    "true_RMST_diff": 222.1,
+    "curve_only": {
+      "HR": 0.639,
+      "HR_logerr": 0.103,
+      "median_exp_pcterr": 9.7,
+      "RMSTdiff": 210.1
+    },
+    "censoring_informed": {
+      "HR": 0.62,
+      "HR_logerr": 0.132,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 216.5
+    }
+  },
+  {
+    "ds": "kidtran",
+    "label": "Kidney transplant (graft survival, by sex)",
+    "n_exp": 339,
+    "n_ctl": 524,
+    "true_HR": 0.907,
+    "true_median_exp": null,
+    "true_median_ctl": null,
+    "true_RMST_diff": 44.2,
+    "curve_only": {
+      "HR": 1.046,
+      "HR_logerr": 0.142,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 50.6
+    },
+    "censoring_informed": {
+      "HR": 1.094,
+      "HR_logerr": 0.187,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 16.3
+    }
   }
 ]

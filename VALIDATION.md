@@ -211,11 +211,29 @@ engine never sees the patient-level data. (`validate/goldstandard.js`.)
 | **PBC** liver (OS) | 154/158 | 0.944 | 1.117 (17%) | 3.4% | 77 / 40 |
 | **Diabetic** retinopathy | 197/197 | 0.46 | **0.412 (11%)** | n/r | 10.7 / 12.2 |
 | **NWTSG** Wilms (relapse) | 459/3569 | 5.10 | **5.37 (5%)** | n/r | −1532 / −1696 |
+| **Myeloid** AML (OS) | 329/317 | 0.708 | **0.639 (10%)** | 9.7% | — |
+| **Kidtran** kidney tx | 339/524 | 0.907 | 1.046 (14%) | n/r | — |
 | **Veteran** lung (OS) | 68/69 | 1.016 | 0.755 (30%) | 58% | 31 / **−0.7** |
 
-**Aggregate over the 5 adequately-sized trials (≥100/arm): curve-only recovers HR to a median
-log-error of 0.11 (~11%) and the median to ~3.4%** — matching the registry-cohort numbers, now on
-real patient data. Large effects are recovered cleanly (Wilms HR 5.1→5.37, diabetic 0.46→0.41).
+**Aggregate over the 7 adequately-sized trials (≥100/arm): curve-only recovers HR to a median
+log-error of 0.11 (~11% fold) and the median to ~3–6%** — matching the registry-cohort numbers, now on
+real patient data across 7 RCTs. Large effects are recovered cleanly (Wilms HR 5.1→5.37, diabetic
+0.46→0.41, myeloid 0.71→0.64).
+
+### Anchor density: how many posted timepoints does reconstruction need?
+
+Sweeping K (number of posted KM timepoints) across the 7 true-IPD datasets
+(`validate/sensitivity_anchors.js`):
+
+| K (timepoints) | 3 | 4 | 5 | 6 | 8 | 12 | 20 |
+|---|---|---|---|---|---|---|---|
+| HR fold-error (median) | 1.33 | 1.19 | **1.09** | 1.13 | 1.12 | 1.08 | 1.07 |
+| median % error | 9.2 | 9.7 | 2.4 | 3.0 | 5.9 | 3.1 | 3.0 |
+
+**Accuracy improves sharply from 3→5 timepoints, then plateaus** (HR fold-error 1.33 → ~1.08–1.12,
+median 9% → ~3%). Practical implication: registry-native reconstruction needs **≥5–6 posted KM
+timepoints**; beyond ~8 the marginal gain is small. This both tells users when to trust the
+reconstruction and motivates registries to post at least a handful of KM-estimate timepoints.
 
 **Honest reading (confirmed on real data):**
 - **Median is recovered to ~2–6%** for adequately-sized trials; **HR to ~11% (median)**, good on most

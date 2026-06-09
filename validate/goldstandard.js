@@ -41,6 +41,8 @@ const CONFIGS = [
   { ds: 'pbc', label: 'PBC primary biliary cirrhosis (OS, D-penicillamine vs placebo)', time: 'time', status: 'status', eventVal: 2, arm: 'trt', exp: '2', ctl: '1' },
   { ds: 'diabetic', label: 'Diabetic retinopathy (time to vision loss, laser vs control)', time: 'time', status: 'status', arm: 'trt', exp: '1', ctl: '0' },
   { ds: 'nwtco', label: 'NWTSG Wilms tumour (relapse, histology group)', time: 'edrel', status: 'rel', arm: 'histol', exp: '2', ctl: '1' },
+  { ds: 'myeloid', label: 'Myeloid AML RCT (overall survival, trt A vs B)', time: 'futime', status: 'death', arm: 'trt', exp: 'B', ctl: 'A' },
+  { ds: 'kidtran', label: 'Kidney transplant (graft survival, by sex)', time: 'time', status: 'delta', arm: 'gender', exp: '2', ctl: '1' },
 ];
 
 function coxHR(expIpd, ctlIpd) {
@@ -48,7 +50,8 @@ function coxHR(expIpd, ctlIpd) {
     .concat(ctlIpd.map(r => ({ time: r.time, status: r.status, x: 0 }))));
 }
 
-function run(cfg) {
+function run(cfg, K) {
+  K = K || 8;  // number of registry-style posted KM timepoints
   const rows = parseCSV(path.join(dir, cfg.ds + '.csv'));
   const toEvent = (s) => cfg.eventVal != null ? (s === cfg.eventVal ? 1 : 0) : (s >= 1 ? 1 : 0);
   const arm = (which) => rows.filter(r => String(r[cfg.arm]) === which)
@@ -66,7 +69,6 @@ function run(cfg) {
   const trueRMSTd = _.rmst(kmE, tau) - _.rmst(kmC, tau);
 
   // ---- registry-style coarse summary (what ct.gov would post): KM at K timepoints + N + events ----
-  const K = 8;
   function coarse(km, ipd) {
     const tmax = 0.95 * Math.max(...ipd.map(r => r.time));
     const pts = [{ t: 0, S: 1 }];
@@ -109,6 +111,10 @@ function run(cfg) {
 const round1 = x => x == null ? null : +x.toFixed(1);
 const pct = x => x == null ? null : +(100 * x).toFixed(1);
 
-const results = CONFIGS.map(run);
-fs.writeFileSync(path.join(dir, 'goldstandard_results.json'), JSON.stringify(results, null, 2));
-console.log(JSON.stringify(results, null, 2));
+if (require.main === module) {
+  const results = CONFIGS.map(c => run(c, 8));
+  fs.writeFileSync(path.join(dir, 'goldstandard_results.json'), JSON.stringify(results, null, 2));
+  console.log(JSON.stringify(results, null, 2));
+} else {
+  module.exports = { CONFIGS, run, dir };
+}
