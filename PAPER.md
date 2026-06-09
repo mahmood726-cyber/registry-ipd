@@ -27,12 +27,13 @@ proceeds up a ladder of increasing independence: AACT-internal HR, primary publi
 **true patient-level IPD** from eight open RCT datasets (R `survival::` and related).
 
 **Results.** AACT contains **zero structured number-at-risk** rows; ~hundreds of trials post a KM-estimate
-curve. Against true patient-level data across 7 adequately-sized RCTs (≥100/arm), curve-only
-reconstruction recovers the HR to a median fold-error of **1.12 (~11%)** and the median to **~3–6%**;
-RMST is recovered to **~2%**. The multiple-imputation 95% credible interval covers the **true HR in
-7/7** datasets (median width ~2.2×). Reconstructed Aalen–Johansen CIFs match the true CIFs to
-**0.3–1.6 percentage points** (`survival::colon`). Accuracy rises sharply with the number of posted KM
-timepoints and **plateaus at ≥5–6** (HR fold-error 1.33 at K=3 → ~1.09 at K=5). Very small trials
+curve. Against true patient-level data across **14 adequately-sized RCTs/cohorts** (≥100/arm; of 22
+real datasets), curve-only reconstruction recovers the HR to a median fold-error of **1.12 (~11%;
+12/14 within 20%)** and the median to **~3%**; RMST to **~2%**. The multiple-imputation 95% credible
+interval covers the **true HR in 14/14** datasets (median width ~2.3×). Reconstructed Aalen–Johansen
+CIFs match the true CIFs even under heavy competing risk (`aidssi`: naive 1−KM overstates the AIDS
+incidence by 16 pp, AJ recovers truth within 6 pp). Accuracy rises sharply with posted KM timepoints
+and **plateaus at ≥5–6** (HR fold-error 1.40 at K=3 → 1.15 at K=5 → 1.08 by K=12). Very small trials
 (N≈137) do not reconstruct reliably.
 
 **Conclusions.** Registry-native, image-free reconstruction is **good enough for RMST/median-based
@@ -97,13 +98,17 @@ A ladder of increasing independence (full numbers in `VALIDATION.md`):
    83→94% (curve-only→censoring-informed), median fold-error ~1.1.
 2. **Primary publication** (RADIANT-4, Yao et al. *Lancet* 2016): reconstructed HR 0.47–0.48 vs
    published 0.48; median 11/4 vs 11.0/3.9 months.
-3. **True patient-level IPD**, 8 open RCTs (GBSG, Rotterdam, PBC, diabetic retinopathy, NWTSG Wilms,
-   myeloid AML, kidney-transplant, Veterans lung). For the 7 adequately-sized trials: HR median
-   fold-error **1.12**, median **~3–6%**, RMST **~2%**; large effects recovered cleanly (Wilms 5.1→5.4).
-4. **Uncertainty coverage**: the 95% credible interval covers the **true HR 7/7**.
-5. **Competing-risks gold standard** (`survival::colon`): reconstructed AJ CIF within **0.3–1.6 pp** of
-   the true CIF.
-6. **Anchor-density operating curve**: accuracy plateaus at **≥5–6** posted timepoints.
+3. **True patient-level IPD**, 22 open datasets (breast/colon/lung/AML/melanoma/leukemia/transplant/
+   PBC/MGUS/NAFLD/prostate/retinopathy/AIDS; R `survival::` and others). For the 14 adequately-sized
+   (≥100/arm): HR median fold-error **1.12 (12/14 within 20%)**, median **~3%**, RMST **~2%**; large
+   effects clean (Wilms 5.1→5.2, melanoma 4.4→4.0), classic Gehan 6-MP RCT 0.22→0.20.
+4. **Uncertainty coverage**: the 95% credible interval covers the **true HR 14/14** (median width 2.3×).
+5. **Competing-risks gold standard**: reconstructed AJ CIF within ~1 pp of truth where competing risk
+   is rare (`survival::colon`) and recovers truth within 6 pp where it is heavy (`aidssi`: naive 1−KM
+   overstates AIDS incidence by 16 pp).
+6. **Anchor-density operating curve** (formalized): HR fold-error e(K) is monotone-decreasing and
+   plateaus — e(3)≈1.40, e(5)≈1.15, e(≥12)≈1.08 — giving a concrete reporting standard: **post ≥5–6
+   KM timepoints** (ideally ≥8) for a reliably reconstructable trial.
 
 All reconstruction code is unit-tested (deterministic estimators to 1e-6; stochastic to seeded
 Monte-Carlo tolerances) with a headless-browser smoke test of the offline tool.

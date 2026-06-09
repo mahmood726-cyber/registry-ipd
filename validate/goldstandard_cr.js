@@ -45,8 +45,7 @@ function crByArm(rxVal) {
 function cifAt(ajSteps, t) { let v = 0; for (const s of ajSteps) { if (s.t <= t + 1e-9) v = s.cif1; else break; } return v; }
 function naiveAt(naiveSteps, t) { let v = 0; for (const s of naiveSteps) { if (s.t <= t + 1e-9) v = s.cif1; else break; } return v; }
 
-function run(rxVal, label) {
-  const cr = crByArm(rxVal);
+function runCR(cr, label, idTag) {
   if (cr.length < 50) return { arm: label, error: 'too few' };
   const trueAJ = _.cifAalenJohansen(cr);
   const trueNaive = _.cifNaive1(cr);
@@ -60,7 +59,7 @@ function run(rxVal, label) {
   const N = cr.length;
   const cause1 = cr.filter(r => r.cause === 1).length, cause2 = cr.filter(r => r.cause === 2).length;
   const trial = {
-    nct_id: 'GOLDCR-' + rxVal, time_unit: 'days',
+    nct_id: 'GOLDCR-' + idTag, time_unit: 'days',
     arms: [{ arm_id: 'a', label, role: 'experimental', N, total_events: cause1, competing_events: cause2,
       follow_up_max: +tmax.toFixed(0), km_points, nar_points: [] }],
     hr: null,
@@ -86,7 +85,19 @@ function run(rxVal, label) {
   };
 }
 
-const out = [run('Obs', 'Observation'), run('Lev+5FU', 'Levamisole+5FU')];
+// aidssi: one row/patient, status already cause-labeled (1=AIDS event-of-interest, 2=SI competing, 0=censor)
+function aidssiCR() {
+  const t = fs.readFileSync(path.join(dir, 'aidssi.csv'), 'utf8').trim().split(/\r?\n/);
+  const h = t[0].split(',').map(x => x.replace(/"/g, ''));
+  const it = (o, k) => o[k];
+  const rows2 = t.slice(1).map(l => { const c = l.split(','); const o = {}; h.forEach((k, i) => o[k] = (c[i] || '').replace(/"/g, '')); return o; });
+  return rows2.map(r => ({ time: num(r.time), cause: num(r.status) })).filter(r => r.time != null && r.cause != null && r.time > 0);
+}
+const out = [
+  runCR(crByArm('Obs'), 'colon: Observation', 'colonObs'),
+  runCR(crByArm('Lev+5FU'), 'colon: Levamisole+5FU', 'colonLev'),
+  runCR(aidssiCR(), 'AIDS (event) vs SI (competing)', 'aidssi'),
+];
 fs.writeFileSync(path.join(dir, 'goldstandard_cr_results.json'), JSON.stringify(out, null, 2));
 out.forEach(o => {
   if (o.error) return console.log(o.arm, o.error);

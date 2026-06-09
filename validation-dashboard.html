@@ -35,7 +35,7 @@
   <section class="panel">
     <h2>Headline verdict (honest)</h2>
     <div class="verdict">For adequately-sized trials, <b>RMST and median reconstruct to ~2–6%</b> and the
-    <b>HR to ~11% (median)</b>; the <b>95% credible interval covers the true HR 13/13</b> on real data.
+    <b>HR to ~11% (median)</b>; the <b>95% credible interval covers the true HR 14/14</b> on real data.
     HR is the hard estimand; <b>very small trials don't reconstruct</b>; needs <b>≥5–6 posted KM
     timepoints</b>. Not a substitute for true IPD — a triangulation tool with honest uncertainty.</div>
   </section>
@@ -48,20 +48,20 @@
 
   <div class="grid2">
     <section class="panel">
-      <h2>Gold standard — true vs reconstructed HR (19 real datasets)</h2>
+      <h2>Gold standard — true vs reconstructed HR (22 real datasets)</h2>
       <div class="note">Each point: one real RCT. On the diagonal = perfect recovery (log–log axes).</div>
       <svg id="scatter" viewBox="0 0 460 360"></svg>
     </section>
     <section class="panel">
       <h2>Anchor density — accuracy vs posted timepoints</h2>
-      <div class="note">Curve-only HR fold-error vs K (13 datasets). Sharp gain to ~5, then plateau.</div>
+      <div class="note">Curve-only HR fold-error vs K (14 datasets). Sharp gain to ~5, then plateau.</div>
       <svg id="sens" viewBox="0 0 460 360"></svg>
     </section>
   </div>
 
   <section class="panel">
-    <h2>Calibrated uncertainty — 95% credible interval vs true HR (13 RCTs)</h2>
-    <div class="note">Multiple-imputation interval (sampling the under-identified censoring level). Dot = true patient-level HR; bar = 95% CI. <b>13/13 cover the truth.</b></div>
+    <h2>Calibrated uncertainty — 95% credible interval vs true HR (14 RCTs)</h2>
+    <div class="note">Multiple-imputation interval (sampling the under-identified censoring level). Dot = true patient-level HR; bar = 95% CI. <b>14/14 cover the truth.</b></div>
     <svg id="forest" viewBox="0 0 920 360"></svg>
   </section>
 
@@ -71,7 +71,7 @@
       <table><thead><tr><th>dataset</th><th class="r">N</th><th class="r">true HR</th><th class="r">recon HR</th><th class="r">log-err</th></tr></thead><tbody id="gstab"></tbody></table>
     </section>
     <section class="panel">
-      <h2>Competing risks (true IPD: survival::colon)</h2>
+      <h2>Competing risks (true IPD: colon + aidssi)</h2>
       <div class="note">Reconstructed Aalen–Johansen CIF vs TRUE AJ CIF; naive 1−KM overestimates.</div>
       <table><thead><tr><th>arm</th><th class="r">true AJ</th><th class="r">naive 1−KM</th><th class="r">recon err</th></tr></thead><tbody id="crtab"></tbody></table>
       <div class="note" style="margin-top:8px">Estimand reliability: <span class="pill good">RMST ~2–6%</span> <span class="pill good">median ~3–6%</span> <span class="pill mid">HR ~11%</span> <span class="pill bad">small trials fail</span></div>
@@ -91,9 +91,10 @@ var GOLD = [ // s:true=small (<100/arm)
   {ds:'prostate',n:'2500/2500',t:5.485,r:5.168,e:0.06},{ds:'melanoma',n:'90/115',t:4.357,r:3.986,e:0.089},
   {ds:'gehan',n:'21/21',t:0.221,r:0.201,e:0.094,s:1},{ds:'pharmaco',n:'56/57',t:1.795,r:1.641,e:0.089,s:1},
   {ds:'bmt',n:'45/38',t:1.491,r:1.008,e:0.391,s:1},{ds:'tongue',n:'28/52',t:1.586,r:1.926,e:0.194,s:1},
-  {ds:'veteran',n:'68/69',t:1.016,r:0.755,e:0.297,s:1}
+  {ds:'veteran',n:'68/69',t:1.016,r:0.755,e:0.297,s:1},{ds:'ebmt3',n:'276/1928',t:1.285,r:1.008,e:0.243},
+  {ds:'cancer',n:'90/138',t:0.588,r:0.729,e:0.214,s:1},{ds:'aidssi',n:'65/259',t:0.291,r:0.312,e:0.07,s:1}
 ];
-var SENS = [{K:3,f:1.40},{K:4,f:1.26},{K:5,f:1.13},{K:6,f:1.13},{K:8,f:1.12},{K:12,f:1.07},{K:20,f:1.07}];
+var SENS = [{K:3,f:1.40},{K:4,f:1.28},{K:5,f:1.15},{K:6,f:1.16},{K:8,f:1.12},{K:12,f:1.08},{K:20,f:1.08}];
 var UNC = [
   {ds:'gbsg',t:0.695,lo:0.476,hi:0.955},{ds:'rotterdam',t:1.495,lo:0.896,hi:2.063},
   {ds:'pbc',t:0.944,lo:0.734,hi:1.778},{ds:'diabetic',t:0.46,lo:0.287,hi:0.630},
@@ -101,16 +102,16 @@ var UNC = [
   {ds:'kidtran',t:0.907,lo:0.644,hi:1.783},{ds:'udca2',t:0.445,lo:0.310,hi:0.668},
   {ds:'retinopathy',t:0.46,lo:0.272,hi:0.623},{ds:'mgus2',t:1.223,lo:0.735,hi:1.377},
   {ds:'flchain',t:1.1,lo:0.610,hi:1.442},{ds:'nafld1',t:1.05,lo:0.356,hi:3.564},
-  {ds:'prostate',t:5.485,lo:1.938,hi:18.808}
+  {ds:'prostate',t:5.485,lo:1.938,hi:18.808},{ds:'ebmt3',t:1.285,lo:0.741,hi:1.594}
 ];
 var LADDER = [
   ['Registry-internal','AACT HR / median','HR ~12%, 83–94% within CI; RMST/median round-trip-consistent'],
   ['Published','primary journal (RADIANT-4)','recon HR 0.47 vs published 0.48; median ~11/4 vs 11.0/3.9'],
-  ['True IPD — survival','13 of 19 datasets (gbsg, udca2, melanoma, …)','HR median ~11% (12/13 within 20%); median ~3%; RMST ~2%'],
-  ['True IPD — uncertainty','same 13 datasets','95% credible interval covers TRUE HR 13/13 (100%)'],
-  ['True IPD — competing risks','survival::colon','reconstructed AJ CIF within 0.3–1.6pp of true']
+  ['True IPD — survival','14 of 22 datasets (gbsg, udca2, melanoma, …)','HR median ~11% (12/14 within 20%); median ~3%; RMST ~2%'],
+  ['True IPD — uncertainty','same 14 datasets','95% credible interval covers TRUE HR 14/14 (100%)'],
+  ['True IPD — competing risks','colon + aidssi,AJ CIF recovered; naive 1-KM overstates by up to 16pp (heavy competing)']
 ];
-var CR = [{arm:'Observation',aj:0.584,nv:0.593,err:0.016},{arm:'Levamisole+5FU',aj:0.394,nv:0.401,err:0.003}];
+var CR = [{arm:'colon: Obs',aj:0.584,nv:0.593,err:0.016},{arm:'colon: Lev+5FU',aj:0.394,nv:0.401,err:0.003},{arm:'aidssi: AIDS vs SI (heavy)',aj:0.408,nv:0.569,err:0.06}];
 
 function el(tag){return document.createElementNS('http://www.w3.org/2000/svg',tag);}
 function L(s,x1,y1,x2,y2,c,w){var e=el('line');e.setAttribute('x1',x1);e.setAttribute('y1',y1);e.setAttribute('x2',x2);e.setAttribute('y2',y2);e.setAttribute('stroke',c);e.setAttribute('stroke-width',w||1);s.appendChild(e);}

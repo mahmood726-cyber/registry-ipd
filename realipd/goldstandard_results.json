@@ -416,5 +416,71 @@
       "median_exp_pcterr": 83.6,
       "RMSTdiff": -44.8
     }
+  },
+  {
+    "ds": "cancer",
+    "label": "NCCTG lung cancer (OS, by sex)",
+    "n_exp": 90,
+    "n_ctl": 138,
+    "true_HR": 0.588,
+    "true_median_exp": 403.1,
+    "true_median_ctl": 269.3,
+    "true_RMST_diff": 127.5,
+    "curve_only": {
+      "HR": 0.729,
+      "HR_logerr": 0.214,
+      "median_exp_pcterr": 3.7,
+      "RMSTdiff": 120.6
+    },
+    "censoring_informed": {
+      "HR": 0.567,
+      "HR_logerr": 0.038,
+      "median_exp_pcterr": 47.8,
+      "RMSTdiff": 173.5
+    }
+  },
+  {
+    "ds": "ebmt3",
+    "label": "EBMT transplant (relapse-free survival, T-cell depletion)",
+    "n_exp": 276,
+    "n_ctl": 1928,
+    "true_HR": 1.285,
+    "true_median_exp": 1492.2,
+    "true_median_ctl": 2591.1,
+    "true_RMST_diff": -198.3,
+    "curve_only": {
+      "HR": 1.008,
+      "HR_logerr": 0.243,
+      "median_exp_pcterr": 1.1,
+      "RMSTdiff": -185.5
+    },
+    "censoring_informed": {
+      "HR": 1.265,
+      "HR_logerr": 0.016,
+      "median_exp_pcterr": 68.7,
+      "RMSTdiff": -302.9
+    }
+  },
+  {
+    "ds": "aidssi",
+    "label": "AIDS cohort (time to AIDS, CCR5 genotype)",
+    "n_exp": 65,
+    "n_ctl": 259,
+    "true_HR": 0.291,
+    "true_median_exp": null,
+    "true_median_ctl": 9.6,
+    "true_RMST_diff": 2.3,
+    "curve_only": {
+      "HR": 0.312,
+      "HR_logerr": 0.07,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 2
+    },
+    "censoring_informed": {
+      "HR": 0.369,
+      "HR_logerr": 0.24,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 1.3
+    }
   }
 ]

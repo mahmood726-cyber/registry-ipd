@@ -1,6 +1,6 @@
 [
   {
-    "arm": "Observation",
+    "arm": "colon: Observation",
     "n": 315,
     "recurrences": 177,
     "competing_deaths": 13,
@@ -60,7 +60,7 @@
     ]
   },
   {
-    "arm": "Levamisole+5FU",
+    "arm": "colon: Levamisole+5FU",
     "n": 304,
     "recurrences": 119,
     "competing_deaths": 15,
@@ -116,6 +116,66 @@
         "true_AJ": 0.394,
         "recon_AJ": 0.392,
         "true_naive_1KM": 0.401
+      }
+    ]
+  },
+  {
+    "arm": "AIDS (event) vs SI (competing)",
+    "n": 329,
+    "recurrences": 114,
+    "competing_deaths": 108,
+    "recon_AJ_CIF_max_abs_err_vs_true": 0.06,
+    "true_final_AJ_CIF": 0.408,
+    "true_final_naive_1KM_CIF": 0.569,
+    "naive_overestimates_by_pp": 16,
+    "curve": [
+      {
+        "t": 2,
+        "true_AJ": 0.006,
+        "recon_AJ": 0.003,
+        "true_naive_1KM": 0.007
+      },
+      {
+        "t": 3,
+        "true_AJ": 0.038,
+        "recon_AJ": 0.024,
+        "true_naive_1KM": 0.04
+      },
+      {
+        "t": 5,
+        "true_AJ": 0.13,
+        "recon_AJ": 0.089,
+        "true_naive_1KM": 0.143
+      },
+      {
+        "t": 6,
+        "true_AJ": 0.171,
+        "recon_AJ": 0.12,
+        "true_naive_1KM": 0.195
+      },
+      {
+        "t": 8,
+        "true_AJ": 0.254,
+        "recon_AJ": 0.196,
+        "true_naive_1KM": 0.313
+      },
+      {
+        "t": 9,
+        "true_AJ": 0.288,
+        "recon_AJ": 0.229,
+        "true_naive_1KM": 0.364
+      },
+      {
+        "t": 11,
+        "true_AJ": 0.386,
+        "recon_AJ": 0.335,
+        "true_naive_1KM": 0.527
+      },
+      {
+        "t": 13,
+        "true_AJ": 0.408,
+        "recon_AJ": 0.367,
+        "true_naive_1KM": 0.569
       }
     ]
   }

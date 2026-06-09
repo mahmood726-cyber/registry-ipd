@@ -54,6 +54,9 @@ const CONFIGS = [
   { ds: 'pharmacoSmoking', label: 'Smoking-cessation RCT (time to relapse)', time: 'ttr', status: 'relapse', arm: 'grp', exp: 'patchOnly', ctl: 'combination' },
   { ds: 'gehan', label: 'Gehan leukemia RCT (remission, 6-MP vs control)', time: 'time', status: 'cens', arm: 'treat', exp: '6-MP', ctl: 'control' },
   { ds: 'tongue', label: 'Tongue cancer (death, ploidy)', time: 'time', status: 'delta', arm: 'type', exp: '2', ctl: '1' },
+  { ds: 'cancer', label: 'NCCTG lung cancer (OS, by sex)', time: 'time', status: 'status', eventVal: 2, arm: 'sex', exp: '2', ctl: '1' },
+  { ds: 'ebmt3', label: 'EBMT transplant (relapse-free survival, T-cell depletion)', time: 'rfstime', status: 'rfsstat', arm: 'tcd', exp: 'TCD', ctl: 'No TCD' },
+  { ds: 'aidssi', label: 'AIDS cohort (time to AIDS, CCR5 genotype)', time: 'time', status: 'status', eventVal: 1, arm: 'ccr5', exp: 'WM', ctl: 'WW' },
 ];
 const CAP = 2500; // subsample cap per arm (file order; keeps huge cohorts tractable)
 
