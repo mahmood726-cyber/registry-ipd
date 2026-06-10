@@ -30,6 +30,20 @@ direction reconstruction as "within CI" via its inverse — fixed; numbers above
 oriented values. Per-event-count strata are omitted because censoring-informed changes event counts
 and so shifts stratum membership, making stratum comparisons non-paired.)
 
+**On the engine default (re-run 2026-06-10).** The censoring-informed row is now the **Titman QP** (the
+engine default when events are posted). On this registry-HR set it gives median fold **1.10 / within-CI
+94% / 17 of 18** — essentially unchanged from before, and the McNemar is +3/−1. *This is expected, not
+a let-down:* the QP's large gold-standard gains (1.15→1.04, §"GOLD STANDARD") are concentrated in
+**heavily-censored, large-effect** trials, and the 30 registry-HR trials are mostly large,
+lightly-censored oncology RCTs measured against a *coarse* registry-reported HR. A stratified analysis
+(`validate/censoring_stratified.js`) confirms the nuance: the QP's advantage over curve-only is
+**consistently positive (mean ~0.19 fold) but not predictable from summary features** — pooled censoring
+barely correlates with curve-only error (Spearman −0.02); the weak drivers are censoring **asymmetry
+between arms** (0.24) and **effect size** (0.21). So there is **no safe "curve-only is fine here" rule**;
+the operational conclusion is to *always* prefer the event count (QP) where the registry posts it — and
+a figure number-at-risk table where it does not (§"NAR fusion") — reserving bare curve-only for
+triangulation with its credible interval.
+
 ## The tail is real — worked example (RADIANT-4, NCT01524783)
 
 Everolimus vs placebo in advanced NET, N=205/97, 10–11 KM timepoints, ~240 reconstructed events.
