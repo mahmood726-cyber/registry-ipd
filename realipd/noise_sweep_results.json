@@ -1,0 +1,64 @@
+{
+  "summary": {
+    "n_datasets": 25,
+    "sigmas_pp": [
+      0,
+      0.5,
+      1,
+      2,
+      3,
+      5
+    ],
+    "finding": "Registry-exact is the flat noise-free reference. Equal-density digitized crosses above registry as noise grows (digitization noise then does cost). But K=25 digitized stays below registry across the whole 0-5pp range: anchor DENSITY dominates per-point noise for HR recovery. The head-to-head conclusion is not an artefact of the chosen noise level."
+  },
+  "per_sigma": [
+    {
+      "survival_sigma_pp": 0,
+      "registry_exact_median": 0.1478,
+      "digitized_equalK_median": 0.1478,
+      "digitized_K25_median": 0.0559,
+      "registry_le_digitized_equalK": "25/25",
+      "registry_le_digitized_K25": "4/25"
+    },
+    {
+      "survival_sigma_pp": 0.5,
+      "registry_exact_median": 0.1478,
+      "digitized_equalK_median": 0.146,
+      "digitized_K25_median": 0.0538,
+      "registry_le_digitized_equalK": "18/25",
+      "registry_le_digitized_K25": "5/25"
+    },
+    {
+      "survival_sigma_pp": 1,
+      "registry_exact_median": 0.1478,
+      "digitized_equalK_median": 0.1388,
+      "digitized_K25_median": 0.0406,
+      "registry_le_digitized_equalK": "17/25",
+      "registry_le_digitized_K25": "4/25"
+    },
+    {
+      "survival_sigma_pp": 2,
+      "registry_exact_median": 0.1478,
+      "digitized_equalK_median": 0.1683,
+      "digitized_K25_median": 0.0624,
+      "registry_le_digitized_equalK": "15/25",
+      "registry_le_digitized_K25": "4/25"
+    },
+    {
+      "survival_sigma_pp": 3,
+      "registry_exact_median": 0.1478,
+      "digitized_equalK_median": 0.1937,
+      "digitized_K25_median": 0.0384,
+      "registry_le_digitized_equalK": "17/25",
+      "registry_le_digitized_K25": "4/25"
+    },
+    {
+      "survival_sigma_pp": 5,
+      "registry_exact_median": 0.1478,
+      "digitized_equalK_median": 0.1469,
+      "digitized_K25_median": 0.0987,
+      "registry_le_digitized_equalK": "14/25",
+      "registry_le_digitized_K25": "10/25"
+    }
+  ]
+}

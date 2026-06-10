@@ -44,10 +44,17 @@ three "elevate toward breakthrough" items without re-reading the whole history.
   the policy brief. (Refactored `goldstandard.js` to export `loadArms`/`coxHR`, output byte-identical.)
 - ✅ **All citations PubMed-verified** (`CITATIONS.md`, 8/8 indexable exact).
 
+- ✅ **Dashboard panels** (`validation-dashboard.html`): coverage census (anchor-density histogram +
+  headline stats), head-to-head grouped bars, and a digitization-noise sensitivity line chart. All
+  offline SVG; headless-smoke verified (3 panels render, 0 severe console errors).
+- ✅ **Noise sweep** (`validate/noise_sweep.js` → `noise_sweep_results.json`): σ 0–5 pp; confirms the
+  head-to-head ordering is robust (K=25 digitized beats registry across the whole range).
+
 ## What's autonomously left (smaller polish, optional)
-- Surface the coverage census + head-to-head as panels in `validation-dashboard.html` / the live tool.
-- Sensitivity of the head-to-head to the digitization noise level (currently fixed σ; the ordering is
-  robust to doubling, but a sweep would document it).
+- Extend the true-IPD gold standard with more **open** datasets (R/Python packages, Dryad/Zenodo/OSF,
+  open-access paper supplements) — NOT credentialed repos (Vivli/YODA/PDS need a DUA; do not scrape).
+- Surface the same census/head-to-head panels inside the live tool (`index.html`), not just the
+  dashboard.
 
 ## Honest framing (carry forward)
 Novel registry-native data path + calibrated uncertainty + unusually rigorous validation; bounded by

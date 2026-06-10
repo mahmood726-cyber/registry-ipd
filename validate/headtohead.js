@@ -30,8 +30,8 @@ const RIPD = require('../src/engine.js');
 const _ = RIPD._;
 const GS = require('./goldstandard.js');
 
-const DIG_S_SIGMA = 0.01;     // survival-axis digitization noise (1 percentage point)
-const DIG_T_FRAC = 0.005;     // time-axis noise as fraction of t_max (0.5%)
+const DIG_S_SIGMA = 0.01;     // default survival-axis digitization noise (1 percentage point)
+const DIG_T_FRAC = 0.005;     // default time-axis noise as fraction of t_max (0.5%)
 const K_REG = 8;              // realistic registry anchor count
 const K_DIG = 25;             // realistic digitizer click count
 
@@ -49,14 +49,16 @@ function anchors(km, ipd, K) {
 }
 
 // same timepoints, but survival & time perturbed by digitization pixel noise, then monotone-fixed
-function digitize(km, ipd, K, rng) {
+function digitize(km, ipd, K, rng, sSigma, tFrac) {
+  sSigma = sSigma == null ? DIG_S_SIGMA : sSigma;
+  tFrac = tFrac == null ? DIG_T_FRAC : tFrac;
   const tmax = 0.95 * Math.max(...ipd.map(r => r.time));
-  const tnoise = DIG_T_FRAC * tmax;
+  const tnoise = tFrac * tmax;
   const raw = [{ t: 0, S: 1 }];
   for (let i = 1; i <= K; i++) {
     const t0 = tmax * i / K;
     const t = Math.max(raw[raw.length - 1].t + 1e-6, t0 + gauss(rng) * tnoise);
-    const S = Math.min(1, Math.max(0, _.evalKM(km, t0) + gauss(rng) * DIG_S_SIGMA));
+    const S = Math.min(1, Math.max(0, _.evalKM(km, t0) + gauss(rng) * sSigma));
     raw.push({ t: +t.toFixed(3), S });
   }
   // enforce non-increasing survival (a real digitizer / the reconstruction PAVA-fixes this)
@@ -90,7 +92,10 @@ function scoreRecon(trial, truth, tau) {
   };
 }
 
-function runOne(cfg) {
+function runOne(cfg, opts) {
+  opts = opts || {};
+  const sSigma = opts.sSigma == null ? DIG_S_SIGMA : opts.sSigma;
+  const tFrac = opts.tFrac == null ? DIG_T_FRAC : opts.tFrac;
   const { expT, ctlT } = GS.loadArms(cfg);
   if (expT.length < 20 || ctlT.length < 20) return null;
   const kmE = _.kmFromIPD(expT), kmC = _.kmFromIPD(ctlT);
@@ -101,12 +106,12 @@ function runOne(cfg) {
 
   // (A) equal density K_REG: exact vs noisy
   const regA_e = anchors(kmE, expT, K_REG), regA_c = anchors(kmC, ctlT, K_REG);
-  const digA_e = digitize(kmE, expT, K_REG, rng), digA_c = digitize(kmC, ctlT, K_REG, rng);
+  const digA_e = digitize(kmE, expT, K_REG, rng, sSigma, tFrac), digA_c = digitize(kmC, ctlT, K_REG, rng, sSigma, tFrac);
   const regEqual = scoreRecon(buildTrial('REG=' + cfg.ds, armFrom(regA_e.pts, expT, regA_e.tmax), armFrom(regA_c.pts, ctlT, regA_c.tmax)), truth, tau);
   const digEqual = scoreRecon(buildTrial('DIG=' + cfg.ds, armFrom(digA_e.pts, expT, digA_e.tmax), armFrom(digA_c.pts, ctlT, digA_c.tmax)), truth, tau);
 
   // (B) realistic: registry few-exact (K_REG) vs digitized many-noisy (K_DIG)
-  const digB_e = digitize(kmE, expT, K_DIG, rng), digB_c = digitize(kmC, ctlT, K_DIG, rng);
+  const digB_e = digitize(kmE, expT, K_DIG, rng, sSigma, tFrac), digB_c = digitize(kmC, ctlT, K_DIG, rng, sSigma, tFrac);
   const digReal = scoreRecon(buildTrial('DIGR=' + cfg.ds, armFrom(digB_e.pts, expT, digB_e.tmax), armFrom(digB_c.pts, ctlT, digB_c.tmax)), truth, tau);
 
   return { ds: cfg.ds, label: cfg.label, true_HR: +truth.HR.toFixed(3),

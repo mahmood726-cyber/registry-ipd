@@ -55,7 +55,26 @@ It also means the two approaches are **complementary**: where a publication figu
 (dense shape); where only the registry record exists, reconstruct natively (exact, provenanced) — and
 push registries toward the anchor density that makes the native path competitive.
 
-*Caveat: the noise model is deterministic and conservative; doubling it does not change the ordering,
-because the density effect dominates. RMST and median (curve-derived) are recovered well by both paths;
-the HR — which depends on event/censoring timing — is where density matters most. Small trials (e.g.
-`gehan`, N≈42/arm) reconstruct poorly under both paths, consistent with the small-N boundary.*
+## Robustness to the noise level (sensitivity sweep)
+
+`validate/noise_sweep.js` varies the digitization noise σ from 0 to 5 percentage points (the dashboard
+plots it). Registry-exact is the flat noise-free reference (median |logHR| 0.148). The two findings are
+robust:
+
+| σ (survival, pp) | registry exact | digitized K=8 (equal) | digitized K=25 |
+|---:|---:|---:|---:|
+| 0   | 0.148 | 0.148 | 0.056 |
+| 1   | 0.148 | 0.139 | 0.041 |
+| 2   | 0.148 | 0.168 | 0.062 |
+| 3   | 0.148 | 0.194 | 0.038 |
+| 5   | 0.148 | 0.147 | 0.099 |
+
+Equal-density digitized *crosses above* registry once σ exceeds ~1 pp (digitization noise does cost at
+equal density), but **K=25 digitized stays well below registry across the whole 0–5 pp range** — anchor
+density dominates per-point noise for HR recovery. The head-to-head conclusion is not an artefact of
+the chosen noise level.
+
+*Caveat: the noise model is deterministic and conservative. RMST and median (curve-derived) are
+recovered well by both paths; the HR — which depends on event/censoring timing — is where density
+matters most. Small trials (e.g. `gehan`, N≈21/arm) reconstruct poorly under both paths, consistent
+with the small-N boundary.*

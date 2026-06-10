@@ -77,6 +77,38 @@
       <div class="note" style="margin-top:8px">Estimand reliability: <span class="pill good">RMST ~2–6%</span> <span class="pill good">median ~3–6%</span> <span class="pill mid">HR ~11%</span> <span class="pill bad">small trials fail</span></div>
     </section>
   </div>
+
+  <section class="panel">
+    <h2>AACT coverage — what is actually reconstructable</h2>
+    <div class="note">Full 2026-06-01 snapshot: <b>76,067</b> trials with posted results, but only
+      <b>288–~605</b> (0.4–0.8%) post a reconstructable KM curve and <b>0</b> post a structured
+      number-at-risk row. Of curve-posters, only <b>~34%</b> reach the ≥6 timepoints needed for
+      reliable reconstruction (green region). Bars: trials by posted KM-timepoint count (broad
+      detection). Source: <code>census_full_aact.py</code>.</div>
+    <div class="grid2" style="align-items:center">
+      <svg id="census" viewBox="0 0 460 300"></svg>
+      <div id="censusStats"></div>
+    </div>
+  </section>
+
+  <div class="grid2">
+    <section class="panel">
+      <h2>Head-to-head — registry-structured vs figure-digitization</h2>
+      <div class="note">Same true curve, two posted forms, both reconstructed vs truth (25 real
+        datasets). Median |log&nbsp;HR| error. At <b>equal density</b> it's a near-tie (pixel noise
+        costs little); a <b>dense digitized figure (K=25)</b> beats few exact registry anchors (K=8) —
+        the registry path is <b>anchor-density-limited, not noise-limited</b>. <code>headtohead.js</code>.</div>
+      <svg id="h2h" viewBox="0 0 460 300"></svg>
+    </section>
+    <section class="panel">
+      <h2>Digitization-noise sensitivity</h2>
+      <div class="note">Sweeping the digitization noise σ. Registry-exact is the flat noise-free
+        reference; equal-density digitized crosses above it as noise grows, but K=25 digitized stays
+        below across the whole 0–5&nbsp;pp range. The conclusion is not an artefact of the chosen
+        noise level. <code>noise_sweep.js</code>.</div>
+      <svg id="noise" viewBox="0 0 460 300"></svg>
+    </section>
+  </div>
 </main>
 
 <script>
@@ -156,6 +188,73 @@ CR.forEach(function(c){var tr=document.createElement('tr');tr.innerHTML='<td>'+c
    C(s,X(u.t),y,4,'#3fb950'); // true HR (covered => green)
  });
  T(s,W-padR,16,'● true HR  — 95% CI','#8b949e','end',11);
+})();
+
+// ---- coverage census, head-to-head, noise sweep (from census_full_aact.py / headtohead.js / noise_sweep.js) ----
+var CENSUS={universe:76067,nar:0,strict:288,broad:514,reliableK6:174,
+  hist:[['3',185],['4',96],['5',59],['6',45],['7',25],['8',25],['9',15],['10',10],['11',9],['12+',45]]};
+var H2H={eqReg:0.148,eqDig:0.139,eqWin:'17/25',realReg:0.148,realDig:0.041,realWin:'4/25'};
+// rows: [sigma_pp, registry_exact, digitized_equalK, digitized_K25]
+var NOISE=[[0,0.1478,0.1478,0.0559],[0.5,0.1478,0.146,0.0538],[1,0.1478,0.1388,0.0406],
+  [2,0.1478,0.1683,0.0624],[3,0.1478,0.1937,0.0384],[5,0.1478,0.1469,0.0987]];
+
+function R(s,x,y,w,h,c){var e=el('rect');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('width',Math.max(0,w));e.setAttribute('height',Math.max(0,h));e.setAttribute('fill',c);s.appendChild(e);}
+
+// census: anchor-density histogram, K>=6 shaded as "reliable"
+(function(){var s=document.getElementById('census'),W=460,H=300,p=40;var bars=CENSUS.hist;
+ var maxC=Math.max.apply(null,bars.map(function(b){return b[1];}));
+ var bw=(W-p-14)/bars.length;var Y=function(c){return H-p-c/maxC*(H-p-20);};
+ // shade reliable region (K>=6 => index>=3)
+ var sx=p+3*bw;R(s,sx,16,W-14-sx,H-p-16,'#3fb95014');
+ T(s,sx+4,28,'reliable (≥6 timepoints)','#3fb950','start',10);
+ [0,Math.round(maxC/2),maxC].forEach(function(v){L(s,p,Y(v),W-14,Y(v),'#1b2129',1);T(s,p-6,Y(v)+3,v,'#8b949e','end',10);});
+ bars.forEach(function(b,i){var x=p+i*bw+bw*0.15,h=H-p-Y(b[1]);var c=i>=3?'#3fb950':'#58a6ff';
+   R(s,x,Y(b[1]),bw*0.7,h,c);T(s,x+bw*0.35,H-p+15,b[0],'#8b949e','middle',10);
+   if(b[1]>=20)T(s,x+bw*0.35,Y(b[1])-4,b[1],'#8b949e','middle',9);});
+ T(s,(W+p)/2,H-6,'posted KM timepoints (K)','#8b949e','middle',11);
+ T(s,14,12,'trials','#8b949e','start',11);
+})();
+// census stat callouts (HTML)
+(function(){var d=document.getElementById('censusStats');
+ function row(big,lab,col){return '<div style="margin:0 0 12px"><div style="font-size:26px;font-weight:700;color:'+(col||'#e6edf3')+'">'+big+'</div><div class="mut" style="font-size:12px">'+lab+'</div></div>';}
+ d.innerHTML=row('76,067','trials with posted results','#e6edf3')
+   +row('0','structured number-at-risk rows (exact)','#f85149')
+   +row('288–605','reconstructable KM curve (0.4–0.8%)','#58a6ff')
+   +row('~34%','of curve-posters reach ≥6 timepoints','#d29922');
+})();
+// head-to-head grouped bars: equal-density vs realistic, registry vs digitized
+(function(){var s=document.getElementById('h2h'),W=460,H=300,p=44;var ymax=0.20;
+ var groups=[{lab:'equal density (K=8)',reg:H2H.eqReg,dig:H2H.eqDig,win:H2H.eqWin},
+             {lab:'realistic (8 vs 25)',reg:H2H.realReg,dig:H2H.realDig,win:H2H.realWin}];
+ var Y=function(v){return H-p-v/ymax*(H-p-26);};
+ [0,0.05,0.1,0.15,0.2].forEach(function(v){L(s,p,Y(v),W-14,Y(v),'#1b2129',1);T(s,p-6,Y(v)+3,v.toFixed(2),'#8b949e','end',10);});
+ var gw=(W-p-14)/groups.length;
+ groups.forEach(function(g,i){var gx=p+i*gw;var bw=gw*0.28;
+   R(s,gx+gw*0.12,Y(g.reg),bw,H-p-Y(g.reg),'#58a6ff');
+   R(s,gx+gw*0.5,Y(g.dig),bw,H-p-Y(g.dig),'#f778ba');
+   T(s,gx+gw*0.12+bw/2,Y(g.reg)-4,g.reg.toFixed(3),'#8b949e','middle',9);
+   T(s,gx+gw*0.5+bw/2,Y(g.dig)-4,g.dig.toFixed(3),'#8b949e','middle',9);
+   T(s,gx+gw*0.4,H-p+15,g.lab,'#8b949e','middle',10);
+   T(s,gx+gw*0.4,H-p+28,'registry wins '+g.win,'#6e7681','middle',9);});
+ T(s,14,12,'median |log HR| error','#8b949e','start',11);
+ R(s,W-150,18,10,10,'#58a6ff');T(s,W-135,27,'registry (exact)','#8b949e','start',10);
+ R(s,W-150,32,10,10,'#f778ba');T(s,W-135,41,'digitized (noisy)','#8b949e','start',10);
+})();
+// noise sweep: 3 lines vs sigma
+(function(){var s=document.getElementById('noise'),W=460,H=300,p=46;var ymax=0.22;
+ var xs=NOISE.map(function(r){return r[0];});var xmax=Math.max.apply(null,xs);
+ var X=function(x){return p+x/xmax*(W-p-16);},Y=function(v){return H-p-v/ymax*(H-p-22);};
+ [0,0.05,0.1,0.15,0.2].forEach(function(v){L(s,p,Y(v),W-16,Y(v),'#1b2129',1);T(s,p-6,Y(v)+3,v.toFixed(2),'#8b949e','end',10);});
+ xs.forEach(function(x){T(s,X(x),H-p+15,x,'#8b949e','middle',10);});
+ T(s,(W+p)/2,H-6,'digitization noise σ (survival, pp)','#8b949e','middle',11);
+ T(s,14,12,'median |log HR| error','#8b949e','start',11);
+ function line(idx,col,lab,ly){var d='';NOISE.forEach(function(r,i){d+=(i?' L ':'M ')+X(r[0])+' '+Y(r[idx]);});
+   var pth=el('path');pth.setAttribute('d',d);pth.setAttribute('fill','none');pth.setAttribute('stroke',col);pth.setAttribute('stroke-width',2);s.appendChild(pth);
+   NOISE.forEach(function(r){C(s,X(r[0]),Y(r[idx]),3,col);});
+   R(s,W-160,ly,10,3,col);T(s,W-145,ly+5,lab,'#8b949e','start',10);}
+ line(1,'#3fb950','registry exact',18);
+ line(2,'#f778ba','digitized K=8',32);
+ line(3,'#d29922','digitized K=25',46);
 })();
 </script>
 </body>
