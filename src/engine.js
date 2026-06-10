@@ -411,6 +411,59 @@
     return { ipd, tS, Svec };
   }
 
+  // Titman (2026) quadratic-programming reconstruction, adapted to the structured-registry regime.
+  // On the cumulative-hazard scale the posted curve fixes the per-interval hazards h_k, so events are
+  // d_k = h_k·n_k and the at-risk recursion n_{k+1} = n_k(1-h_k) - c_k is LINEAR in the unknown
+  // censoring counts c_k; the registry total-event count E is a LINEAR constraint E = Σ h_k n_k. The
+  // remaining censoring degree of freedom is resolved by the convex QP  min ½‖c‖²  s.t. E(c)=E, c≥0,
+  // whose minimum-norm non-negative solution is closed-form: c_k = max(0, λ A_k), A_k = ∂E/∂c_k,
+  // λ = (E - E0)/Σ A_k², E0 = N(1 - S_K). With NAR/marked censoring this is exact; here it best-fits
+  // the curve under the event-count constraint. Beats anchor-exact under heavy administrative censoring
+  // (validate/titman_qp.js). Degrades to curve-only when no total_events is posted.
+  function reconstructArmQP(arm, flags) {
+    let pts = arm.km_points.slice().filter(p => isFinite(p.t) && isFinite(p.S)).sort((a, b) => a.t - b.t);
+    if (!(pts[0] && Math.abs(pts[0].t) < 1e-9)) pts = [{ t: 0, S: 1 }].concat(pts);
+    const tS = pts.map(p => p.t);
+    const Svec = pavaDecreasing(pts.map(p => Math.min(1, Math.max(0, p.S)))).y;
+    const nt = tS.length;
+    const N = arm.N != null ? arm.N : 1;
+    const h = [0];                                   // h[k] = discrete hazard over interval ending at tS[k]
+    for (let k = 1; k < nt; k++) h[k] = Math.min(0.999, Math.max(0, Svec[k - 1] > 0 ? 1 - Svec[k] / Svec[k - 1] : 0));
+    // curve-only at-risk n0 and event ceiling E0 = N(1 - S_K)
+    const n0 = new Array(nt + 1); n0[1] = N;
+    for (let k = 1; k < nt; k++) n0[k + 1] = n0[k] * (1 - h[k]);
+    let E0 = 0; for (let k = 1; k < nt; k++) E0 += h[k] * n0[k];
+    // sensitivities A_k = ∂E/∂c_k = -Σ_{m>k} h_m Π_{l=k+1}^{m-1}(1-h_l)  (≤ 0, constant)
+    const A = new Array(nt).fill(0);
+    for (let k = 1; k < nt; k++) {
+      let a = 0;
+      for (let m = k + 1; m < nt; m++) { let prod = 1; for (let l = k + 1; l <= m - 1; l++) prod *= (1 - h[l]); a += h[m] * prod; }
+      A[k] = -a;
+    }
+    let sumA2 = 0; for (let k = 1; k < nt; k++) sumA2 += A[k] * A[k]; if (sumA2 <= 0) sumA2 = 1;
+    const E = arm.total_events;
+    const Etarget = (E != null && E > 0) ? Math.min(E, E0) : E0;
+    const lambda = (Etarget - E0) / sumA2;            // ≤ 0
+    const c = new Array(nt).fill(0);
+    for (let k = 1; k < nt; k++) c[k] = Math.max(0, lambda * A[k]);
+    // Realise pseudo-IPD directly: d_k events SPREAD across interval (tS[k-1], tS[k]] and c_k censored
+    // at the interval end tS[k]. Spreading (not piling at the anchor) is what makes the at-risk sets —
+    // and hence the Cox HR — correct; placing every event at the anchor time biases the HR.
+    const ipd = [];
+    let n = N;
+    for (let k = 1; k < nt; k++) {
+      const dk = Math.min(Math.round(h[k] * n), n);
+      const t0 = tS[k - 1], t1 = tS[k];
+      for (let i = 0; i < dk; i++) ipd.push({ time: t0 + (t1 - t0) * (i + 0.5) / Math.max(1, dk), status: 1 });
+      const ck = Math.min(Math.round(c[k]), n - dk);
+      for (let i = 0; i < ck; i++) ipd.push({ time: t1, status: 0 });
+      n -= dk + ck;
+    }
+    const tailT = arm.follow_up_max != null ? arm.follow_up_max : tS[nt - 1];
+    for (let i = 0; i < Math.max(0, Math.round(n)); i++) ipd.push({ time: tailT, status: 0 });
+    return { ipd, tS, Svec };
+  }
+
   // right-continuous survival step from sparse registry anchors
   function anchorStepFn(km_points) {
     const p = km_points.slice().sort((a, b) => a.t - b.t);
@@ -854,9 +907,17 @@
     if (tier === 'A') {
       // Best-of ensemble: run Guyot (constant-censoring) and anchor-exact (censoring-informed),
       // select the method with the lower total 1-Wasserstein to the registry anchors per trial.
+      // When the registry posts a total-event count, the Titman QP is the validated-best censoring-
+      // informed reconstruction — use it directly. The anchor-Wasserstein best-of CANNOT select it,
+      // because censoring is invisible to the anchors (it does not change the KM at the posted points),
+      // so a method that fits anchors equally well but mis-places censoring would be chosen instead.
+      // Without an event count, fall back to the curve-only best-of (Guyot vs anchor-exact).
+      const hasEvents = trial.arms.length > 0 && trial.arms.every(a => a.total_events != null && a.total_events > 0);
       const METHODS = (opts.method === 'guyot') ? { guyot: reconstructArmGuyot }
         : (opts.method === 'anchor-exact') ? { 'anchor-exact': reconstructArmAnchorExact }
-          : { guyot: reconstructArmGuyot, 'anchor-exact': reconstructArmAnchorExact };
+          : (opts.method === 'qp') ? { qp: reconstructArmQP }
+            : (hasEvents) ? { qp: reconstructArmQP }
+              : { guyot: reconstructArmGuyot, 'anchor-exact': reconstructArmAnchorExact };
       let best = null;
       for (const name in METHODS) {
         const f2 = [], arms = []; let w = 0;
@@ -1116,7 +1177,7 @@
       pavaDecreasing, mulberry32, hashStr, quantileSorted,
       kmFromIPD, medianFromKM, rmst, evalKM, wasserstein1,
       coxLogHR, guyotCore, buildRiskIndices, normalizeAndExpand,
-      reconstructArmGuyot, reconstructArmAnchorExact, armAnchorWasserstein, anchorStepFn,
+      reconstructArmGuyot, reconstructArmAnchorExact, reconstructArmQP, armAnchorWasserstein, anchorStepFn,
       reconstructTierB, selfAudit, parametricArm, solveCutoffExp,
       fitRoystonParmar, rcsBasis, densifyWithRP, cifAalenJohansen, cifNaive1
     }

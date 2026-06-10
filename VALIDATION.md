@@ -232,7 +232,8 @@ engine never sees the patient-level data. (`validate/goldstandard.js`.)
 
 **Aggregate over 24 adequately-sized datasets (≥100/arm; of 43 real datasets tried, incl. 2 recurrent-event collapsed to first-event and 12 TCGA stage cohorts): curve-only
 recovers HR to a median fold of 1.15 (15/24 within 20%; 1.12 / 13/17 excluding the heavily-censored
-TCGA cohorts, see below), the censoring-informed tier to 1.15 (17/24), and the median to ~3%** — on
+TCGA cohorts, see below), and the censoring-informed Titman-QP tier (engine default when an event
+count is posted) to 1.05 (23/24 within 20%), with the median to ~3%** — on
 real patient data across 43 RCTs/cohorts (six added 2026-06-10 from `KMsurv`/`asaur` via the Rdatasets
 mirror, twelve from TCGA via the cBioPortal API; the 5 below-100/arm TCGA cohorts add breadth but not
 to the ≥100/arm aggregate). Large effects recovered cleanly
@@ -250,28 +251,32 @@ kept as an honest out-of-scope boundary rather than dropped.
 (true HR **1.6–7.6**). These are heavily censored (the early-stage arm is mostly alive at last
 follow-up), exactly the regime that separates the two reconstruction tiers:
 
-| TCGA cohort | N late/early | true HR | curve-only (fold) | **censoring-informed (fold)** |
+The **censoring-informed** column is the **Titman-2026 quadratic program** (the engine default when a
+total-event count is posted; see the next subsection):
+
+| TCGA cohort | N late/early | true HR | curve-only (fold) | **Titman-QP censoring-informed (fold)** |
 |---|---|---|---|---|
-| lung adeno | 105/394 | 2.65 | 2.70 (**1.02**) | 4.04 (1.52) |
-| lung squamous | 89/388 | 1.64 | 1.58 (**1.04**) | 2.21 (1.35) |
-| melanoma | 188/203 | 1.67 | 1.64 (**1.02**) | 1.80 (1.08) |
-| liver HCC | 88/257 | 2.34 | 1.88 (1.24) | 2.85 (**1.22**) |
-| stomach | 224/183 | 2.19 | 1.65 (1.33) | 2.26 (**1.03**) |
-| esophageal | 64/96 | 3.10 | 4.17 (1.34) | 5.87 (1.89) |
-| colorectal | 247/309 | 3.11 | 1.70 (1.83) | 3.11 (**1.00**) |
-| bladder | 276/131 | 2.23 | 1.36 (1.64) | 2.17 (**1.03**) |
-| head & neck | 349/103 | 1.76 | 1.10 (1.60) | 1.49 (1.18) |
-| adrenocortical | 35/53 | 7.59 | 4.51 (1.68) | 6.34 (**1.20**) |
-| kidney clear-cell | 209/301 | 4.05 | 2.60 (1.56) | 5.01 (1.23) |
-| kidney papillary | 64/189 | 6.13 | 2.55 (2.41) | 6.99 (**1.14**) |
+| lung adeno | 105/394 | 2.65 | 2.70 (**1.02**) | 2.67 (**1.01**) |
+| lung squamous | 89/388 | 1.64 | 1.58 (**1.04**) | 1.66 (**1.01**) |
+| melanoma | 188/203 | 1.67 | 1.64 (**1.02**) | 1.82 (**1.09**) |
+| liver HCC | 88/257 | 2.34 | 1.88 (1.24) | 2.45 (**1.05**) |
+| stomach | 224/183 | 2.19 | 1.65 (1.33) | 2.31 (**1.05**) |
+| esophageal | 64/96 | 3.10 | 4.17 (1.34) | 3.09 (**1.00**) |
+| colorectal | 247/309 | 3.11 | 1.70 (1.83) | 3.28 (**1.05**) |
+| bladder | 276/131 | 2.23 | 1.36 (1.64) | 2.27 (**1.02**) |
+| head & neck | 349/103 | 1.76 | 1.10 (1.60) | 1.67 (**1.06**) |
+| kidney clear-cell | 209/301 | 4.05 | 2.60 (1.56) | 4.28 (**1.06**) |
+| adrenocortical | 35/53 | 7.59 | 4.51 (1.68) | 5.66 (1.34) |
+| kidney papillary | 64/189 | 6.13 | 2.55 (2.41) | 15.60 (2.54) |
 
 **Curve-only *under*estimates these large HRs (median fold 1.56)** — with the early-stage arm almost
-entirely censored, the curve-only "censor-to-tail" assumption flattens the separation. **The
-censoring-informed reconstruction, which uses the registry total-event count, recovers them (median
-fold 1.20)** — colorectal 3.11→1.70→**3.11**, kidney-papillary 6.13→2.55→**6.99** (curve-only fold
-2.41 → 1.14). The 7 cohorts at ≥100/arm all have 95% credible intervals covering the true HR (in the
-23/24 coverage above). esophageal is the exception where *both* tiers overestimate — a genuinely hard
-case kept honestly.
+entirely censored, the curve-only "censor-to-tail" assumption flattens the separation. **The Titman-QP
+censoring-informed reconstruction, using the registry total-event count, recovers them (median fold
+1.05)** — colorectal 3.11→1.70→**3.28**, kidney-clear-cell 4.05→2.60→**4.28**, esophageal 3.10→4.17→
+**3.09**. The **7 cohorts at ≥100/arm all land within 20%** (and their 95% credible intervals cover the
+true HR, in the 23/24 above). The two honest outliers are both <100/arm and at extreme HR: adrenocortical
+(QP 5.66 vs true 7.59) undershoots, and **kidney-papillary overshoots (15.6 vs 6.13)** — the QP can
+overcorrect when the true effect is very large and the late-stage arm is tiny and heavily censored.
 
 ### Advanced estimators and the identifiability limit (`validate/advanced_estimators.js`)
 
@@ -293,9 +298,33 @@ fundamental, not algorithmic: **censoring is invisible to the KM anchors** — e
 passes through the same posted survival points — so the event/censoring split is genuinely
 unidentified from the curve alone. The Wasserstein barycenter is marginally best on the hard subset but
 cannot extract information that is not in the data. The lever is therefore **data reporting** (the
-registry total-event count or number-at-risk, which collapses the TCGA error to 1.20) — i.e. exactly
-the recommendation in `POLICY.md`. This is the honest answer to "can advanced stats fix it": they
-confirm the bound is real and locate the fix in reporting, not in cleverer reconstruction.
+registry total-event count or number-at-risk, which collapses the TCGA error to **1.05** via the QP
+below) — i.e. exactly the recommendation in `POLICY.md`. This is the honest answer to "can advanced
+stats fix it": they confirm the bound is real and locate the fix in reporting, not in cleverer
+reconstruction.
+
+### Titman-2026 quadratic program — the censoring-informed default (`validate/titman_qp.js`)
+
+When the registry *does* post a total-event count, advanced statistics pays off directly. We implement
+a **Titman-2026-style quadratic program**: on the cumulative-hazard scale the posted curve fixes the
+per-interval hazards `h_k`, so events are `d_k = h_k n_k` and the at-risk recursion
+`n_{k+1} = n_k(1−h_k) − c_k` is **linear** in the unknown censoring counts; the total-event count is a
+**linear** constraint `E = Σ h_k n_k`; and the leftover censoring degree-of-freedom is resolved by the
+convex QP `min ½‖c‖²` s.t. `E(c)=E, c≥0`, with closed-form minimum-norm solution `c_k = max(0, λ A_k)`.
+Events are then *spread* within each interval (not piled at the anchor), which is what makes the
+at-risk sets — and hence the Cox HR — correct.
+
+| reconstruction (with posted event count) | all 43 | ≥100/arm (24) | TCGA (12) |
+|---|---|---|---|
+| anchor-exact (previous default) | 1.15 (28/43) | 1.15 (17/24) | 1.20 (7/12) |
+| **Titman QP (new default)** | **1.06 (39/43)** | **1.05 (23/24)** | **1.13 (10/12)** |
+
+The QP is now the engine default whenever `total_events` is posted (it cannot be chosen by the
+anchor-Wasserstein best-of, because censoring is invisible to the anchors, so it is selected by
+data-availability instead). It lifts within-20% from 28→39 of 43 datasets and is unit-tested
+(`test/engine.spec.js`). This is the constructive half of the identifiability story: cleverer
+reconstruction cannot manufacture the missing event count, but *given* it, the QP extracts the HR
+near-exactly.
 
 ### Anchor density: how many posted timepoints does reconstruction need?
 

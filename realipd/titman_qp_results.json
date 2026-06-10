@@ -1,0 +1,513 @@
+{
+  "summary": {
+    "all": {
+      "n": 43,
+      "qp": {
+        "median_fold": 1.06,
+        "within20": "39/43"
+      },
+      "censinf": {
+        "median_fold": 1.148,
+        "within20": "28/43"
+      }
+    },
+    "tcga": {
+      "n": 12,
+      "qp": {
+        "median_fold": 1.125,
+        "within20": "10/12"
+      },
+      "censinf": {
+        "median_fold": 1.197,
+        "within20": "7/12"
+      }
+    },
+    "big": {
+      "n": 24,
+      "qp": {
+        "median_fold": 1.054,
+        "within20": "22/24"
+      },
+      "censinf": {
+        "median_fold": 1.148,
+        "within20": "17/24"
+      }
+    },
+    "note": "Titman-2026-style QP reconstruction vs the engine censoring-informed (anchor-exact), both using the registry total-event count, scored as HR fold-error vs true IPD."
+  },
+  "per_dataset": [
+    {
+      "ds": "gbsg",
+      "tcga": false,
+      "n_exp": 246,
+      "n_ctl": 440,
+      "true_HR": 0.695,
+      "qp_HR": 0.699,
+      "censinf_HR": 0.655,
+      "qp_fold": 1.006,
+      "censinf_fold": 1.061
+    },
+    {
+      "ds": "veteran",
+      "tcga": false,
+      "n_exp": 68,
+      "n_ctl": 69,
+      "true_HR": 1.016,
+      "qp_HR": 0.959,
+      "censinf_HR": 0.796,
+      "qp_fold": 1.06,
+      "censinf_fold": 1.278
+    },
+    {
+      "ds": "rotterdam",
+      "tcga": false,
+      "n_exp": 339,
+      "n_ctl": 2500,
+      "true_HR": 1.495,
+      "qp_HR": 1.317,
+      "censinf_HR": 1.605,
+      "qp_fold": 1.135,
+      "censinf_fold": 1.073
+    },
+    {
+      "ds": "pbc",
+      "tcga": false,
+      "n_exp": 154,
+      "n_ctl": 158,
+      "true_HR": 0.944,
+      "qp_HR": 0.906,
+      "censinf_HR": 1.121,
+      "qp_fold": 1.043,
+      "censinf_fold": 1.187
+    },
+    {
+      "ds": "diabetic",
+      "tcga": false,
+      "n_exp": 197,
+      "n_ctl": 197,
+      "true_HR": 0.46,
+      "qp_HR": 0.45,
+      "censinf_HR": 0.413,
+      "qp_fold": 1.023,
+      "censinf_fold": 1.114
+    },
+    {
+      "ds": "nwtco",
+      "tcga": false,
+      "n_exp": 459,
+      "n_ctl": 2500,
+      "true_HR": 5.115,
+      "qp_HR": 4.922,
+      "censinf_HR": 5.401,
+      "qp_fold": 1.039,
+      "censinf_fold": 1.056
+    },
+    {
+      "ds": "myeloid",
+      "tcga": false,
+      "n_exp": 329,
+      "n_ctl": 317,
+      "true_HR": 0.708,
+      "qp_HR": 0.727,
+      "censinf_HR": 0.62,
+      "qp_fold": 1.027,
+      "censinf_fold": 1.141
+    },
+    {
+      "ds": "kidtran",
+      "tcga": false,
+      "n_exp": 339,
+      "n_ctl": 524,
+      "true_HR": 0.907,
+      "qp_HR": 0.861,
+      "censinf_HR": 1.095,
+      "qp_fold": 1.054,
+      "censinf_fold": 1.207
+    },
+    {
+      "ds": "udca2",
+      "tcga": false,
+      "n_exp": 680,
+      "n_ctl": 672,
+      "true_HR": 0.445,
+      "qp_HR": 0.417,
+      "censinf_HR": 0.511,
+      "qp_fold": 1.068,
+      "censinf_fold": 1.148
+    },
+    {
+      "ds": "retinopathy",
+      "tcga": false,
+      "n_exp": 197,
+      "n_ctl": 197,
+      "true_HR": 0.46,
+      "qp_HR": 0.45,
+      "censinf_HR": 0.413,
+      "qp_fold": 1.023,
+      "censinf_fold": 1.114
+    },
+    {
+      "ds": "mgus2",
+      "tcga": false,
+      "n_exp": 753,
+      "n_ctl": 631,
+      "true_HR": 1.223,
+      "qp_HR": 1.276,
+      "censinf_HR": 1.056,
+      "qp_fold": 1.044,
+      "censinf_fold": 1.158
+    },
+    {
+      "ds": "flchain",
+      "tcga": false,
+      "n_exp": 2500,
+      "n_ctl": 2500,
+      "true_HR": 1.1,
+      "qp_HR": 1.096,
+      "censinf_HR": 0.944,
+      "qp_fold": 1.004,
+      "censinf_fold": 1.165
+    },
+    {
+      "ds": "nafld1",
+      "tcga": false,
+      "n_exp": 2500,
+      "n_ctl": 2500,
+      "true_HR": 1.05,
+      "qp_HR": 1.051,
+      "censinf_HR": 1.26,
+      "qp_fold": 1.001,
+      "censinf_fold": 1.2
+    },
+    {
+      "ds": "prostateSurvival",
+      "tcga": false,
+      "n_exp": 2500,
+      "n_ctl": 2500,
+      "true_HR": 5.485,
+      "qp_HR": 5.103,
+      "censinf_HR": 6.957,
+      "qp_fold": 1.075,
+      "censinf_fold": 1.268
+    },
+    {
+      "ds": "bmt",
+      "tcga": false,
+      "n_exp": 45,
+      "n_ctl": 38,
+      "true_HR": 1.491,
+      "qp_HR": 1.331,
+      "censinf_HR": 1.041,
+      "qp_fold": 1.12,
+      "censinf_fold": 1.432
+    },
+    {
+      "ds": "melanoma",
+      "tcga": false,
+      "n_exp": 90,
+      "n_ctl": 115,
+      "true_HR": 4.357,
+      "qp_HR": 4.639,
+      "censinf_HR": 4.396,
+      "qp_fold": 1.065,
+      "censinf_fold": 1.009
+    },
+    {
+      "ds": "pharmacoSmoking",
+      "tcga": false,
+      "n_exp": 56,
+      "n_ctl": 57,
+      "true_HR": 1.795,
+      "qp_HR": 1.746,
+      "censinf_HR": 1.641,
+      "qp_fold": 1.028,
+      "censinf_fold": 1.093
+    },
+    {
+      "ds": "gehan",
+      "tcga": false,
+      "n_exp": 21,
+      "n_ctl": 21,
+      "true_HR": 0.221,
+      "qp_HR": 0.24,
+      "censinf_HR": 0.126,
+      "qp_fold": 1.084,
+      "censinf_fold": 1.754
+    },
+    {
+      "ds": "tongue",
+      "tcga": false,
+      "n_exp": 28,
+      "n_ctl": 52,
+      "true_HR": 1.586,
+      "qp_HR": 1.827,
+      "censinf_HR": 2.05,
+      "qp_fold": 1.152,
+      "censinf_fold": 1.293
+    },
+    {
+      "ds": "cancer",
+      "tcga": false,
+      "n_exp": 90,
+      "n_ctl": 138,
+      "true_HR": 0.588,
+      "qp_HR": 0.586,
+      "censinf_HR": 0.576,
+      "qp_fold": 1.004,
+      "censinf_fold": 1.021
+    },
+    {
+      "ds": "ebmt3",
+      "tcga": false,
+      "n_exp": 276,
+      "n_ctl": 1928,
+      "true_HR": 1.285,
+      "qp_HR": 1.232,
+      "censinf_HR": 1.265,
+      "qp_fold": 1.043,
+      "censinf_fold": 1.016
+    },
+    {
+      "ds": "aidssi",
+      "tcga": false,
+      "n_exp": 65,
+      "n_ctl": 259,
+      "true_HR": 0.291,
+      "qp_HR": 0.262,
+      "censinf_HR": 0.369,
+      "qp_fold": 1.108,
+      "censinf_fold": 1.271
+    },
+    {
+      "ds": "ebmt1",
+      "tcga": false,
+      "n_exp": 167,
+      "n_ctl": 406,
+      "true_HR": 3.966,
+      "qp_HR": 3.754,
+      "censinf_HR": 5.329,
+      "qp_fold": 1.057,
+      "censinf_fold": 1.344
+    },
+    {
+      "ds": "cgd_fe",
+      "tcga": false,
+      "n_exp": 63,
+      "n_ctl": 65,
+      "true_HR": 0.335,
+      "qp_HR": 0.262,
+      "censinf_HR": 0.381,
+      "qp_fold": 1.278,
+      "censinf_fold": 1.137
+    },
+    {
+      "ds": "bladder_fe",
+      "tcga": false,
+      "n_exp": 38,
+      "n_ctl": 47,
+      "true_HR": 0.696,
+      "qp_HR": 0.68,
+      "censinf_HR": 0.677,
+      "qp_fold": 1.023,
+      "censinf_fold": 1.028
+    },
+    {
+      "ds": "alloauto",
+      "tcga": false,
+      "n_exp": 50,
+      "n_ctl": 51,
+      "true_HR": 0.838,
+      "qp_HR": 0.778,
+      "censinf_HR": 0.715,
+      "qp_fold": 1.077,
+      "censinf_fold": 1.173
+    },
+    {
+      "ds": "larynx",
+      "tcga": false,
+      "n_exp": 27,
+      "n_ctl": 33,
+      "true_HR": 1.837,
+      "qp_HR": 1.721,
+      "censinf_HR": 1.937,
+      "qp_fold": 1.068,
+      "censinf_fold": 1.054
+    },
+    {
+      "ds": "burn",
+      "tcga": false,
+      "n_exp": 84,
+      "n_ctl": 70,
+      "true_HR": 0.571,
+      "qp_HR": 0.616,
+      "censinf_HR": 0.553,
+      "qp_fold": 1.077,
+      "censinf_fold": 1.033
+    },
+    {
+      "ds": "pneumon",
+      "tcga": false,
+      "n_exp": 838,
+      "n_ctl": 2285,
+      "true_HR": 2.237,
+      "qp_HR": 2.232,
+      "censinf_HR": 2.262,
+      "qp_fold": 1.002,
+      "censinf_fold": 1.011
+    },
+    {
+      "ds": "bfeed",
+      "tcga": false,
+      "n_exp": 270,
+      "n_ctl": 657,
+      "true_HR": 1.245,
+      "qp_HR": 1.582,
+      "censinf_HR": 2.213,
+      "qp_fold": 1.271,
+      "censinf_fold": 1.778
+    },
+    {
+      "ds": "hepatoCellular",
+      "tcga": false,
+      "n_exp": 41,
+      "n_ctl": 186,
+      "true_HR": 2.18,
+      "qp_HR": 1.973,
+      "censinf_HR": 2.232,
+      "qp_fold": 1.105,
+      "censinf_fold": 1.024
+    },
+    {
+      "ds": "cbio_luad",
+      "tcga": true,
+      "n_exp": 105,
+      "n_ctl": 394,
+      "true_HR": 2.65,
+      "qp_HR": 3.049,
+      "censinf_HR": 4.039,
+      "qp_fold": 1.15,
+      "censinf_fold": 1.524
+    },
+    {
+      "ds": "cbio_coadread",
+      "tcga": true,
+      "n_exp": 247,
+      "n_ctl": 309,
+      "true_HR": 3.107,
+      "qp_HR": 3.396,
+      "censinf_HR": 3.117,
+      "qp_fold": 1.093,
+      "censinf_fold": 1.003
+    },
+    {
+      "ds": "cbio_stad",
+      "tcga": true,
+      "n_exp": 224,
+      "n_ctl": 183,
+      "true_HR": 2.194,
+      "qp_HR": 2.233,
+      "censinf_HR": 2.255,
+      "qp_fold": 1.018,
+      "censinf_fold": 1.028
+    },
+    {
+      "ds": "cbio_kirc",
+      "tcga": true,
+      "n_exp": 209,
+      "n_ctl": 301,
+      "true_HR": 4.052,
+      "qp_HR": 4.279,
+      "censinf_HR": 5.023,
+      "qp_fold": 1.056,
+      "censinf_fold": 1.24
+    },
+    {
+      "ds": "cbio_hnsc",
+      "tcga": true,
+      "n_exp": 349,
+      "n_ctl": 103,
+      "true_HR": 1.762,
+      "qp_HR": 1.347,
+      "censinf_HR": 1.488,
+      "qp_fold": 1.308,
+      "censinf_fold": 1.184
+    },
+    {
+      "ds": "cbio_skcm",
+      "tcga": true,
+      "n_exp": 188,
+      "n_ctl": 203,
+      "true_HR": 1.67,
+      "qp_HR": 1.479,
+      "censinf_HR": 1.802,
+      "qp_fold": 1.129,
+      "censinf_fold": 1.079
+    },
+    {
+      "ds": "cbio_blca",
+      "tcga": true,
+      "n_exp": 276,
+      "n_ctl": 131,
+      "true_HR": 2.234,
+      "qp_HR": 1.986,
+      "censinf_HR": 2.169,
+      "qp_fold": 1.125,
+      "censinf_fold": 1.03
+    },
+    {
+      "ds": "cbio_lusc",
+      "tcga": true,
+      "n_exp": 89,
+      "n_ctl": 388,
+      "true_HR": 1.636,
+      "qp_HR": 1.878,
+      "censinf_HR": 2.194,
+      "qp_fold": 1.148,
+      "censinf_fold": 1.341
+    },
+    {
+      "ds": "cbio_esca",
+      "tcga": true,
+      "n_exp": 64,
+      "n_ctl": 96,
+      "true_HR": 3.099,
+      "qp_HR": 3.197,
+      "censinf_HR": 5.872,
+      "qp_fold": 1.032,
+      "censinf_fold": 1.895
+    },
+    {
+      "ds": "cbio_lihc",
+      "tcga": true,
+      "n_exp": 88,
+      "n_ctl": 257,
+      "true_HR": 2.336,
+      "qp_HR": 2.3,
+      "censinf_HR": 2.851,
+      "qp_fold": 1.016,
+      "censinf_fold": 1.22
+    },
+    {
+      "ds": "cbio_kirp",
+      "tcga": true,
+      "n_exp": 64,
+      "n_ctl": 189,
+      "true_HR": 6.13,
+      "qp_HR": 6.215,
+      "censinf_HR": 6.887,
+      "qp_fold": 1.014,
+      "censinf_fold": 1.123
+    },
+    {
+      "ds": "cbio_acc",
+      "tcga": true,
+      "n_exp": 35,
+      "n_ctl": 53,
+      "true_HR": 7.59,
+      "qp_HR": 5.664,
+      "censinf_HR": 6.34,
+      "qp_fold": 1.34,
+      "censinf_fold": 1.197
+    }
+  ]
+}

@@ -10,11 +10,16 @@ const fx = (n) => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'test', 
 
 test('AACT-only fidelity: dense-anchor Tier A drives anchor sup-error ~0', () => {
   const t = fx('fixture_exp_known.json');
-  const r = RIPD.reconstruct(t);
+  const r = RIPD.reconstruct(t);   // default (Titman QP when total_events posted)
   const f = M.fidelity(t, r);
+  // the KM passes through the posted anchors at the anchor times (true anchor fidelity)
   assert.ok(f.anchor_sup_error <= 1e-3, `anchor sup-error ${f.anchor_sup_error}`);
   assert.ok(f.logHR_err != null && f.logHR_err < 0.3, `logHR err ${f.logHR_err}`);
-  assert.ok(f.wasserstein_to_anchors < 0.02, `W1 ${f.wasserstein_to_anchors}`);
+  // the anchor-exact method additionally holds the step-function between anchors (W1 ≈ 0). The QP
+  // default deliberately SPREADS events within intervals (realistic timing → better HR), so its
+  // 1-Wasserstein to the flat anchor-step is non-zero by design; we check the exact method's W1 here.
+  const fAE = M.fidelity(t, RIPD.reconstruct(t, { method: 'anchor-exact' }));
+  assert.ok(fAE.wasserstein_to_anchors < 0.02, `anchor-exact W1 ${fAE.wasserstein_to_anchors}`);
 });
 
 test('head-to-head: AACT-only beats simulated digitization on anchor fidelity', () => {

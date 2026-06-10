@@ -49,14 +49,24 @@ posted as **cumulative incidence** ("probability of progression/event"), not sur
 
 Classified per trial by richness (`tier = min over arms`):
 
-- **Tier A** (KM curve ≥3 timepoints + N): reconstruct from the structured anchors. Two methods are
-  run and the one with the lower **1-Wasserstein distance to the registry anchors** is selected:
-  - **Guyot inverse-KM** (Guyot 2012): iterative event/censor recovery, constant censoring within
-    number-at-risk blocks; here driven by N + total events when NAR is absent.
-  - **Censoring-informed anchor-exact** (RESOLVE-IPD CEN-KM style, 2025): deaths taken directly from
-    the curve with at-risk held constant within each interval; censoring only at boundaries ⇒ the
-    reconstructed KM passes through the registry anchors ≈ exactly. Correct when censoring is
-    administrative (which Guyot's constant-censoring assumption mishandles).
+- **Tier A** (KM curve ≥3 timepoints + N): reconstruct from the structured anchors.
+  - **When a total-event count is posted (the common AACT case), the default is the Titman-2026
+    quadratic program** (`reconstructArmQP`). On the cumulative-hazard scale the curve fixes the
+    per-interval hazards `h_k`, so events are `d_k = h_k n_k` and the at-risk recursion
+    `n_{k+1} = n_k(1−h_k) − c_k` is **linear** in the unknown censoring counts; the event count is a
+    **linear** constraint `E = Σ h_k n_k`; the leftover censoring DOF is resolved by the convex QP
+    `min ½‖c‖²` s.t. `E(c)=E, c≥0`, closed-form `c_k = max(0, λ A_k)`. Events are spread within each
+    interval (not piled at the anchor) so the at-risk sets — and the Cox HR — are correct. This is the
+    validated-best method (gold-standard HR fold-error 1.05 vs 1.15 for anchor-exact); it is selected
+    by *data availability*, not the Wasserstein best-of, because censoring is invisible to the anchors.
+  - **Without an event count (curve-only)**, two methods are run and the one with the lower
+    **1-Wasserstein distance to the registry anchors** is selected:
+    - **Guyot inverse-KM** (Guyot 2012): iterative event/censor recovery, constant censoring within
+      number-at-risk blocks; here driven by N + total events when NAR is absent.
+    - **Censoring-informed anchor-exact** (RESOLVE-IPD CEN-KM style, 2025): deaths taken directly from
+      the curve with at-risk held constant within each interval; censoring only at boundaries ⇒ the
+      reconstructed KM passes through the registry anchors ≈ exactly. Correct when censoring is
+      administrative (which Guyot's constant-censoring assumption mishandles).
   Population is conserved by a forward capacity walk; reconciliation to `total_events` distributes
   the correction **proportional to the curve's death profile** (never piling events at t=0).
 - **Tier B** (median + HR + N + events): parametric (exponential) per arm, event count matched

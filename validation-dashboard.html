@@ -35,9 +35,11 @@
   <section class="panel">
     <h2>Headline verdict (honest)</h2>
     <div class="verdict">For adequately-sized trials, <b>RMST and median reconstruct to ~2–6%</b> and the
-    <b>HR to ~12% (median)</b>; the <b>95% credible interval covers the true HR 23/24 (96%)</b> on real data.
-    HR is the hard estimand; <b>very small trials don't reconstruct</b>; needs <b>≥5–6 posted KM
-    timepoints</b>. Not a substitute for true IPD — a triangulation tool with honest uncertainty.</div>
+    HR to <b>~12% curve-only</b>, improving to <b>~5% when the registry posts a total-event count</b>
+    (the Titman-2026 quadratic program; 23/24 within 20%). The <b>95% credible interval covers the true
+    HR 23/24 (96%)</b> on real data. HR is the hard estimand; <b>very small trials don't reconstruct</b>;
+    needs <b>≥5–6 posted KM timepoints</b>. Not a substitute for true IPD — a triangulation tool with
+    honest uncertainty.</div>
   </section>
 
   <section class="panel">
@@ -116,11 +118,12 @@
       <code>fetch_cbioportal.js</code>) split by <b>late vs early stage</b> — a strong contrast (true HR
       1.6–7.6), heavily censored. <b>Curve-only underestimates</b> these large HRs (median fold 1.56:
       the early-stage arm is mostly censored, flattening the separation). The
-      <b>censoring-informed tier — using the registry total-event count — recovers them</b> (median fold
-      1.20; e.g. colorectal 3.11 true → 1.70 curve-only → <b>3.11</b>; kidney-papillary fold 2.41 → 1.14).
-      Bars = HR fold-error per cohort; lower is better. Advanced curve-only estimators (max-entropy
-      ensemble, Wasserstein barycenter) can't close this gap — the event count is the missing
-      information (<code>advanced_estimators.js</code>), which is the case for <code>POLICY.md</code>.</div>
+      <b>censoring-informed tier — the Titman-2026 quadratic program using the registry total-event
+      count — recovers them</b> (median fold 1.56 → <b>1.05</b>; colorectal 3.11 true → 1.70 curve-only
+      → <b>3.11</b>; the 7 cohorts at ≥100/arm all land within 20%). Bars = HR fold-error per cohort;
+      lower is better. Two extreme small-arm cases (kidney-papillary HR 6.13, adrenocortical 7.59)
+      stay hard. Curve-only estimators (max-entropy, Wasserstein barycenter) can't close the gap —
+      the event count is the missing information (<code>advanced_estimators.js</code>, <code>titman_qp.js</code>).</div>
     <div class="grid2" style="align-items:center">
       <svg id="cbio" viewBox="0 0 460 300"></svg>
       <div id="cbioStats"></div>
@@ -289,11 +292,11 @@ function R(s,x,y,w,h,c){var e=el('rect');e.setAttribute('x',x);e.setAttribute('y
  line(2,'#f778ba','digitized K=8',32);
  line(3,'#d29922','digitized K=25',46);
 })();
-// TCGA stage cohorts: HR fold-error, curve-only vs censoring-informed. [label, curveFold, censFold]
-var CBIO=[['luad',1.02,1.52],['skcm',1.02,1.08],['lusc',1.04,1.35],['stad',1.33,1.03],
-  ['lihc',1.24,1.22],['esca',1.34,1.89],['kirc',1.56,1.23],['hnsc',1.60,1.18],['blca',1.64,1.03],
-  ['acc',1.68,1.20],['coadread',1.83,1.00],['kirp',2.41,1.14]];
-(function(){var s=document.getElementById('cbio'),W=460,H=300,p=44;var ymax=2.5;
+// TCGA stage cohorts: HR fold-error, curve-only vs censoring-informed (Titman QP). [label,curve,QP]
+var CBIO=[['luad',1.02,1.01],['skcm',1.02,1.09],['lusc',1.04,1.01],['stad',1.33,1.05],
+  ['lihc',1.24,1.05],['esca',1.34,1.00],['kirc',1.56,1.06],['hnsc',1.60,1.06],['blca',1.64,1.02],
+  ['acc',1.68,1.34],['coadread',1.83,1.05],['kirp',2.41,2.54]];
+(function(){var s=document.getElementById('cbio'),W=460,H=300,p=44;var ymax=2.6;
  var Y=function(v){return H-p-(Math.min(v,ymax)-1)/(ymax-1)*(H-p-26);}; // bars measure fold above 1.0
  [1.0,1.5,2.0,2.5].forEach(function(v){L(s,p,Y(v),W-14,Y(v),'#1b2129',1);T(s,p-6,Y(v)+3,v.toFixed(1),'#8b949e','end',10);});
  var gw=(W-p-14)/CBIO.length;
@@ -308,9 +311,9 @@ var CBIO=[['luad',1.02,1.52],['skcm',1.02,1.08],['lusc',1.04,1.35],['stad',1.33,
 (function(){var d=document.getElementById('cbioStats');
  function row(big,lab,col){return '<div style="margin:0 0 12px"><div style="font-size:26px;font-weight:700;color:'+(col||'#e6edf3')+'">'+big+'</div><div class="mut" style="font-size:12px">'+lab+'</div></div>';}
  d.innerHTML=row('12','real TCGA cohorts (open API)','#e6edf3')
-   +row('1.56 → 1.20','median fold: curve-only → censoring-informed','#3fb950')
-   +row('1.6–7.6','true HR range (strong, heavily censored)','#58a6ff')
-   +row('confirmed','identifiability limit (advanced_estimators.js)','#d29922');
+   +row('1.56 → 1.05','median fold: curve-only → Titman-QP censoring-informed','#3fb950')
+   +row('7/7','≥100/arm TCGA cohorts within 20% (QP)','#58a6ff')
+   +row('1.6–7.6','true HR range (strong, heavily censored)','#8b949e');
 })();
 </script>
 </body>

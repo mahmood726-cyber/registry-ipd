@@ -65,9 +65,16 @@ three "elevate toward breakthrough" items without re-reading the whole history.
   3 curve-only point estimators — censor-to-tail, max-entropy ensemble, and a **1-Wasserstein
   barycenter** of the imputed pseudo-IPD point-clouds (OT estimate, rank-matching preserves at-risk
   structure). **None dominates; all fail (~1.5) on heavily-censored TCGA** because censoring is
-  invisible to the KM anchors — a *fundamental identifiability limit*, not algorithmic. The fix is the
-  registry event count (cens-informed → 1.20), reinforcing POLICY.md. Folded into PAPER.md Discussion +
-  VALIDATION.md + dashboard cbio panel.
+  invisible to the KM anchors — a *fundamental identifiability limit*, not algorithmic.
+- ✅ **Titman-2026 QP IMPLEMENTED & integrated as the engine default** (`reconstructArmQP` in
+  src/engine.js; `validate/titman_qp.js`). Convex QP: curve fixes per-interval hazards → at-risk
+  recursion linear in censoring counts, event count a linear constraint, leftover DOF resolved by
+  `min ½‖c‖²` (closed form). Events spread within intervals (the key — piling at the anchor biases the
+  HR). **Censoring-informed HR fold-error 1.15 → 1.05 (≥100/arm: 23/24 within 20%; the 7 ≥100/arm TCGA
+  cohorts now 7/7).** Selected by data-availability (events posted), NOT the anchor-Wasserstein best-of
+  (censoring is invisible to anchors). Unit-tested; suite 25 JS + 19 Py green. Outliers: kidney-
+  papillary overshoots (extreme HR + tiny censored arm). Propagated to PAPER/METHODS/VALIDATION/README/
+  dashboard. Headline now: curve-only ~12%, QP ~5% when an event count is posted.
 
 ## What's autonomously left (optional, in priority order)
 - **More strong-contrast IPD** to push 38 → 60+: more TCGA cohorts by stage (the fetcher generalises —

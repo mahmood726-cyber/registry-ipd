@@ -18,7 +18,9 @@ estimands are trustworthy.
 number-at-risk, total events (and, via participant-flow `drop_withdrawals`, event/censoring/competing
 counts), and the reported hazard ratio (HR). Reconstruction is tiered by data richness and, for the
 rich tier, selects per trial between a faithful Guyot inverse-KM and a censoring-informed anchor-exact
-method by minimum 1-Wasserstein distance to the registry anchors. We add: (i) **multiple-imputation
+method by minimum 1-Wasserstein distance to the registry anchors; when a total-event count is posted we
+default to a **Titman-2026-style quadratic program** that solves the event/censoring allocation
+exactly under the event-count constraint. We add: (i) **multiple-imputation
 uncertainty** that samples the under-identified censoring level to produce calibrated credible
 intervals; (ii) **competing-risks** reconstruction with the Aalen–Johansen cumulative-incidence
 estimator; (iii) **HR-calibration** that imposes the reported HR for downstream IPD meta-analysis;
@@ -33,10 +35,12 @@ reconstructable structured KM curve — the binding coverage limit, quantified b
 real datasets, incl. 12 TCGA cohorts from the open cBioPortal API), curve-only reconstruction recovers
 the HR to a median fold-error of **1.15** (**1.12** excluding the 7 heavily-censored, large-effect TCGA
 cohorts where curve-only underestimates the HR) and the median to **~3%**; RMST to **~2%**. On the 12
-heavily-censored TCGA cohorts the **censoring-informed method — which uses the registry total-event
-count — recovers the large effects (median fold 1.56 → 1.20)**, validating the event-count tier; we
-show this gap is a *fundamental identifiability limit* (no curve-only estimator, including an
-optimal-transport Wasserstein barycenter, closes it), not an algorithmic deficiency. The multiple-imputation 95%
+heavily-censored TCGA cohorts the **censoring-informed method — a Titman-2026 quadratic program that
+uses the registry total-event count — recovers the large effects (median fold 1.56 → 1.05; the 7
+cohorts at ≥100/arm all within 20%)**, lifting the whole ≥100/arm set to **median fold 1.04 (23/24
+within 20%)**. We show the curve-only gap is a *fundamental identifiability limit* (no curve-only
+estimator, including an optimal-transport Wasserstein barycenter, closes it) that only the event count
+resolves — not an algorithmic deficiency. The multiple-imputation 95%
 credible interval covers the **true HR in 23/24 (96%)** (median width ~2.3×; the single miss is `bfeed`,
 the discrete-time outlier) — empirical coverage matching the nominal 95%. Reconstructed Aalen–Johansen
 CIFs match the true CIFs even under heavy competing risk (`aidssi`: naive 1−KM overstates the AIDS
@@ -99,10 +103,19 @@ reliable reconstruction (see §4.6) — motivating the registry-reporting recomm
 failures: filtering result-groups by `outcome_id`; data-driven survival/incidence orientation;
 N-matched mapping of participant-flow groups to outcome arms via milestone `STARTED` counts.
 
-**Tiered reconstruction.** Tier A (KM curve ≥3 timepoints + N) runs two estimators and keeps the lower
-1-Wasserstein fit: a faithful port of Guyot's iterative inverse-KM, and a censoring-informed
+**Tiered reconstruction.** Tier A (KM curve ≥3 timepoints + N) runs two curve-only estimators and keeps
+the lower 1-Wasserstein fit: a faithful port of Guyot's iterative inverse-KM, and a censoring-informed
 anchor-exact estimator (RESOLVE-IPD CEN-KM style) that holds at-risk constant within intervals so the
-reconstructed curve passes through the registry anchors. Tier B (median + HR + N) uses an exponential
+reconstructed curve passes through the registry anchors. **When the registry posts a total-event count,
+we instead default to a Titman-2026-style quadratic program.** On the cumulative-hazard scale the
+posted curve fixes the per-interval discrete hazards \(h_k\), so events are \(d_k=h_k n_k\) and the
+at-risk recursion \(n_{k+1}=n_k(1-h_k)-c_k\) is *linear* in the unknown censoring counts \(c_k\); the
+total-event count is a *linear* constraint \(E=\sum_k h_k n_k\); and the remaining censoring
+degree-of-freedom is resolved by the convex QP \(\min \tfrac12\lVert c\rVert^2\) s.t. \(E(c)=E,\,c\ge0\),
+whose minimum-norm non-negative solution is closed-form (\(c_k=\max(0,\lambda A_k)\)). Events are then
+spread within each interval (not piled at the anchor), which is what makes the at-risk sets — and hence
+the Cox HR — correct. On the gold standard this lifts the censoring-informed median HR fold-error from
+1.15 (anchor-exact) to **1.05** (`validate/titman_qp.js`). Tier B (median + HR + N) uses an exponential
 parametric model with a seeded bootstrap envelope; Tier C fails closed.
 
 **Self-audit.** Nine checks (event count, anchor fidelity, median, Cox-derived HR with ridge penalty,
@@ -187,9 +200,11 @@ that, via rank-matching, averages reconstructions while preserving the at-risk s
 on. None dominates, and on the heavily-censored cohorts all three remain at ~1.5 fold. The reason is
 structural: **censoring is invisible to the posted KM anchors** — every censoring level passes through
 the same survival points — so the event/censoring split is genuinely unidentified from the curve alone.
-The censoring-informed tier collapses the error to 1.20 *because it injects the one missing statistic,
-the total-event count*. The honest conclusion is that cleverer reconstruction cannot substitute for
-that statistic; the fix is reporting (total events or number-at-risk), reinforcing `POLICY.md`.
+The censoring-informed Titman QP collapses the error to **1.05** *because it injects the one missing
+statistic, the total-event count*, as a linear constraint that pins the at-risk path. The honest
+conclusion is that cleverer reconstruction cannot substitute for that statistic when it is absent
+(curve-only stays at ~1.5); when it is present the QP is near-exact. Either way the lever is reporting
+(total events or number-at-risk), reinforcing `POLICY.md`.
 
 ## 6. Limitations
 

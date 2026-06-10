@@ -67,7 +67,9 @@ test('Tier A: exponential round-trip recovers exact total events + tracks anchor
 
 test('Tier A: integer round-trip recovers the exact death schedule (Guyot parity)', () => {
   const t = fx('fixture_guyot_roundtrip.json');
-  const r = RIPD.reconstruct(t);
+  // explicitly request Guyot: this test validates Guyot's exact death-schedule recovery. (The default
+  // now uses the Titman QP when a total-event count is posted, which spreads events within intervals.)
+  const r = RIPD.reconstruct(t, { method: 'guyot' });
   const rec = r.arms[0];
   // reconstruct per-time death counts
   const byT = {};
@@ -105,8 +107,34 @@ test('Tier A: anchor-exact beats Guyot under administrative censoring; best-of s
   const ae = supErr(RIPD.reconstruct(trial, { method: 'anchor-exact' }));
   const best = RIPD.reconstruct(trial);
   assert.ok(ae < g, `anchor-exact sup-err ${ae.toFixed(4)} should beat Guyot ${g.toFixed(4)}`);
-  assert.ok(best.method === 'anchor-exact', `best-of should select anchor-exact, got ${best.method}`);
+  // a censoring-aware method (anchor-exact or the Titman QP) must win over Guyot's constant-censoring
+  assert.ok(best.method === 'anchor-exact' || best.method === 'qp', `best-of should select a censoring-aware method, got ${best.method}`);
   assert.ok(best.flags.some(f => f.startsWith('wasserstein_to_anchors:')), 'reports Wasserstein');
+});
+
+test('Titman QP: with a posted total-event count, recovers a heavily-censored HR better than Guyot', () => {
+  // two exponential arms, strong effect, with HEAVY administrative censoring of the low-hazard arm —
+  // the regime where curve-only/Guyot underestimates the HR and the event count identifies it.
+  const mk = (seed, med, cut, N) => { const rng = RIPD._.mulberry32(seed), lam = Math.log(2) / med, ipd = [];
+    for (let i = 0; i < N; i++) { const T = -Math.log(Math.max(1e-12, rng())) / lam; ipd.push({ time: Math.min(T, cut), status: T <= cut ? 1 : 0 }); } return ipd; };
+  const expIpd = mk(11, 6, 30, 300), ctlIpd = mk(22, 24, 30, 300);   // true HR ≈ 4 (24/6), ctl heavily censored
+  const trueHR = RIPD._.coxLogHR(expIpd.map(r => ({ ...r, x: 1 })).concat(ctlIpd.map(r => ({ ...r, x: 0 })))).hr;
+  const coarse = (ipd) => { const km = RIPD._.kmFromIPD(ipd), tmax = 0.95 * Math.max(...ipd.map(r => r.time)), pts = [{ t: 0, S: 1 }];
+    for (let i = 1; i <= 8; i++) { const t = tmax * i / 8; pts.push({ t: +t.toFixed(2), S: +RIPD._.evalKM(km, t).toFixed(4) }); }
+    return { km_points: pts, nar_points: [], N: ipd.length, total_events: ipd.filter(r => r.status === 1).length, follow_up_max: +tmax.toFixed(2) }; };
+  const trial = { nct_id: 'QP-TEST', time_unit: 'm', hr: null,
+    arms: [Object.assign({ arm_id: 'exp', role: 'experimental' }, coarse(expIpd)), Object.assign({ arm_id: 'ctl', role: 'comparator' }, coarse(ctlIpd))] };
+  const hrOf = (r) => RIPD._.coxLogHR(r.arms[0].ipd.map(x => ({ time: x.time, status: x.status, x: 1 }))
+    .concat(r.arms[1].ipd.map(x => ({ time: x.time, status: x.status, x: 0 })))).hr;
+  const qp = RIPD.reconstruct(trial, { method: 'qp' });
+  const guyot = RIPD.reconstruct(trial, { method: 'guyot' });
+  const feQP = Math.exp(Math.abs(Math.log(hrOf(qp)) - Math.log(trueHR)));
+  const feGuyot = Math.exp(Math.abs(Math.log(hrOf(guyot)) - Math.log(trueHR)));
+  assert.ok(qp.method === 'qp', 'forced QP method');
+  assert.ok(feQP <= feGuyot, `QP fold-err ${feQP.toFixed(3)} should beat Guyot ${feGuyot.toFixed(3)}`);
+  assert.ok(feQP < 1.25, `QP should recover the heavily-censored HR within ~25% (got fold ${feQP.toFixed(3)})`);
+  // the default (events posted) should choose QP
+  assert.ok(RIPD.reconstruct(trial).method === 'qp', 'default uses QP when total_events posted');
 });
 
 // -------------------------------------------------- multi-constraint joint reconstruction

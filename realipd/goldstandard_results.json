@@ -15,10 +15,10 @@
       "RMSTdiff": 199
     },
     "censoring_informed": {
-      "HR": 0.655,
-      "HR_logerr": 0.059,
-      "median_exp_pcterr": null,
-      "RMSTdiff": 177.6
+      "HR": 0.712,
+      "HR_logerr": 0.024,
+      "median_exp_pcterr": 3.9,
+      "RMSTdiff": 205.9
     }
   },
   {
@@ -37,10 +37,10 @@
       "RMSTdiff": 31.2
     },
     "censoring_informed": {
-      "HR": 0.796,
-      "HR_logerr": 0.245,
-      "median_exp_pcterr": 61.6,
-      "RMSTdiff": 23.7
+      "HR": 0.919,
+      "HR_logerr": 0.1,
+      "median_exp_pcterr": 56,
+      "RMSTdiff": 10.4
     }
   },
   {
@@ -59,10 +59,10 @@
       "RMSTdiff": -536.7
     },
     "censoring_informed": {
-      "HR": 1.606,
-      "HR_logerr": 0.071,
-      "median_exp_pcterr": 43,
-      "RMSTdiff": -665.6
+      "HR": 1.315,
+      "HR_logerr": 0.129,
+      "median_exp_pcterr": 3.1,
+      "RMSTdiff": -528.4
     }
   },
   {
@@ -81,10 +81,10 @@
       "RMSTdiff": 76.8
     },
     "censoring_informed": {
-      "HR": 1.13,
-      "HR_logerr": 0.179,
-      "median_exp_pcterr": null,
-      "RMSTdiff": 65.8
+      "HR": 0.906,
+      "HR_logerr": 0.042,
+      "median_exp_pcterr": 2.7,
+      "RMSTdiff": 89.4
     }
   },
   {
@@ -103,10 +103,10 @@
       "RMSTdiff": 10.7
     },
     "censoring_informed": {
-      "HR": 0.405,
-      "HR_logerr": 0.129,
+      "HR": 0.45,
+      "HR_logerr": 0.023,
       "median_exp_pcterr": null,
-      "RMSTdiff": 9.8
+      "RMSTdiff": 12.2
     }
   },
   {
@@ -125,10 +125,10 @@
       "RMSTdiff": -1534.4
     },
     "censoring_informed": {
-      "HR": 5.403,
-      "HR_logerr": 0.055,
+      "HR": 4.922,
+      "HR_logerr": 0.038,
       "median_exp_pcterr": null,
-      "RMSTdiff": -1514.5
+      "RMSTdiff": -1651.2
     }
   },
   {
@@ -147,10 +147,10 @@
       "RMSTdiff": 210.1
     },
     "censoring_informed": {
-      "HR": 0.62,
-      "HR_logerr": 0.132,
-      "median_exp_pcterr": null,
-      "RMSTdiff": 216.5
+      "HR": 0.727,
+      "HR_logerr": 0.027,
+      "median_exp_pcterr": 5.4,
+      "RMSTdiff": 227.3
     }
   },
   {
@@ -169,10 +169,10 @@
       "RMSTdiff": 50.6
     },
     "censoring_informed": {
-      "HR": 1.094,
-      "HR_logerr": 0.187,
+      "HR": 0.861,
+      "HR_logerr": 0.052,
       "median_exp_pcterr": null,
-      "RMSTdiff": 16.3
+      "RMSTdiff": 53.2
     }
   },
   {
@@ -191,10 +191,10 @@
       "RMSTdiff": 59.1
     },
     "censoring_informed": {
-      "HR": 0.511,
-      "HR_logerr": 0.138,
+      "HR": 0.417,
+      "HR_logerr": 0.066,
       "median_exp_pcterr": null,
-      "RMSTdiff": 28
+      "RMSTdiff": 69
     }
   },
   {
@@ -213,10 +213,10 @@
       "RMSTdiff": 10.7
     },
     "censoring_informed": {
-      "HR": 0.405,
-      "HR_logerr": 0.129,
+      "HR": 0.45,
+      "HR_logerr": 0.023,
       "median_exp_pcterr": null,
-      "RMSTdiff": 9.8
+      "RMSTdiff": 12.2
     }
   },
   {
@@ -235,10 +235,10 @@
       "RMSTdiff": -15.3
     },
     "censoring_informed": {
-      "HR": 1.058,
-      "HR_logerr": 0.145,
-      "median_exp_pcterr": 32.5,
-      "RMSTdiff": -23.9
+      "HR": 1.202,
+      "HR_logerr": 0.017,
+      "median_exp_pcterr": 0.2,
+      "RMSTdiff": -20.6
     }
   },
   {
@@ -257,10 +257,10 @@
       "RMSTdiff": -49.5
     },
     "censoring_informed": {
-      "HR": 0.944,
-      "HR_logerr": 0.153,
+      "HR": 1.096,
+      "HR_logerr": 0.004,
       "median_exp_pcterr": null,
-      "RMSTdiff": -36.3
+      "RMSTdiff": -56.6
     }
   },
   {
@@ -279,10 +279,10 @@
       "RMSTdiff": 19
     },
     "censoring_informed": {
-      "HR": 1.26,
-      "HR_logerr": 0.183,
+      "HR": 1.015,
+      "HR_logerr": 0.034,
       "median_exp_pcterr": null,
-      "RMSTdiff": -35
+      "RMSTdiff": -40
     }
   },
   {
@@ -301,10 +301,10 @@
       "RMSTdiff": -13.6
     },
     "censoring_informed": {
-      "HR": 6.96,
-      "HR_logerr": 0.238,
+      "HR": 5.755,
+      "HR_logerr": 0.048,
       "median_exp_pcterr": null,
-      "RMSTdiff": -5.7
+      "RMSTdiff": -14.9
     }
   },
   {
@@ -323,10 +323,10 @@
       "RMSTdiff": -137
     },
     "censoring_informed": {
-      "HR": 1.049,
-      "HR_logerr": 0.351,
-      "median_exp_pcterr": 54.6,
-      "RMSTdiff": -165.1
+      "HR": 1.331,
+      "HR_logerr": 0.113,
+      "median_exp_pcterr": 51.2,
+      "RMSTdiff": -184.9
     }
   },
   {
@@ -345,10 +345,10 @@
       "RMSTdiff": -1018.2
     },
     "censoring_informed": {
-      "HR": 4.351,
-      "HR_logerr": 0.001,
-      "median_exp_pcterr": null,
-      "RMSTdiff": -900.8
+      "HR": 4.639,
+      "HR_logerr": 0.063,
+      "median_exp_pcterr": 0.7,
+      "RMSTdiff": -1106.1
     }
   },
   {
@@ -367,10 +367,10 @@
       "RMSTdiff": -28
     },
     "censoring_informed": {
-      "HR": 1.641,
-      "HR_logerr": 0.089,
-      "median_exp_pcterr": 28.7,
-      "RMSTdiff": -28
+      "HR": 1.746,
+      "HR_logerr": 0.028,
+      "median_exp_pcterr": 22.2,
+      "RMSTdiff": -30.2
     }
   },
   {
@@ -389,10 +389,10 @@
       "RMSTdiff": 7.7
     },
     "censoring_informed": {
-      "HR": 0.126,
-      "HR_logerr": 0.562,
-      "median_exp_pcterr": null,
-      "RMSTdiff": 8.5
+      "HR": 0.24,
+      "HR_logerr": 0.081,
+      "median_exp_pcterr": 1.5,
+      "RMSTdiff": 7.9
     }
   },
   {
@@ -411,10 +411,10 @@
       "RMSTdiff": -39.3
     },
     "censoring_informed": {
-      "HR": 2.05,
-      "HR_logerr": 0.257,
-      "median_exp_pcterr": 83.6,
-      "RMSTdiff": -44.8
+      "HR": 1.827,
+      "HR_logerr": 0.142,
+      "median_exp_pcterr": 23,
+      "RMSTdiff": -36.9
     }
   },
   {
@@ -433,10 +433,10 @@
       "RMSTdiff": 120.6
     },
     "censoring_informed": {
-      "HR": 0.567,
-      "HR_logerr": 0.038,
-      "median_exp_pcterr": 47.8,
-      "RMSTdiff": 173.5
+      "HR": 0.58,
+      "HR_logerr": 0.014,
+      "median_exp_pcterr": 1.1,
+      "RMSTdiff": 123.8
     }
   },
   {
@@ -455,10 +455,10 @@
       "RMSTdiff": -185.5
     },
     "censoring_informed": {
-      "HR": 1.265,
-      "HR_logerr": 0.016,
-      "median_exp_pcterr": 68.7,
-      "RMSTdiff": -302.9
+      "HR": 1.236,
+      "HR_logerr": 0.039,
+      "median_exp_pcterr": 5.7,
+      "RMSTdiff": -198.4
     }
   },
   {
@@ -477,10 +477,10 @@
       "RMSTdiff": 2
     },
     "censoring_informed": {
-      "HR": 0.369,
-      "HR_logerr": 0.24,
+      "HR": 0.268,
+      "HR_logerr": 0.082,
       "median_exp_pcterr": null,
-      "RMSTdiff": 1.3
+      "RMSTdiff": 2.3
     }
   },
   {
@@ -499,10 +499,10 @@
       "RMSTdiff": -1057.3
     },
     "censoring_informed": {
-      "HR": 5.329,
-      "HR_logerr": 0.295,
-      "median_exp_pcterr": 76.6,
-      "RMSTdiff": -990.5
+      "HR": 3.754,
+      "HR_logerr": 0.055,
+      "median_exp_pcterr": 28.6,
+      "RMSTdiff": -1167
     }
   },
   {
@@ -525,10 +525,10 @@
       "RMSTdiff": 47.3
     },
     "censoring_informed": {
-      "HR": 0.381,
-      "HR_logerr": 0.128,
+      "HR": 0.263,
+      "HR_logerr": 0.242,
       "median_exp_pcterr": null,
-      "RMSTdiff": 23.5
+      "RMSTdiff": 57.5
     }
   },
   {
@@ -547,10 +547,10 @@
       "RMSTdiff": 6.9
     },
     "censoring_informed": {
-      "HR": 0.677,
-      "HR_logerr": 0.028,
-      "median_exp_pcterr": null,
-      "RMSTdiff": 6.8
+      "HR": 0.68,
+      "HR_logerr": 0.023,
+      "median_exp_pcterr": 4,
+      "RMSTdiff": 7.3
     }
   },
   {
@@ -569,10 +569,10 @@
       "RMSTdiff": 4.1
     },
     "censoring_informed": {
-      "HR": 0.715,
-      "HR_logerr": 0.159,
+      "HR": 0.812,
+      "HR_logerr": 0.032,
       "median_exp_pcterr": null,
-      "RMSTdiff": 3.1
+      "RMSTdiff": 4.2
     }
   },
   {
@@ -591,10 +591,10 @@
       "RMSTdiff": -1.6
     },
     "censoring_informed": {
-      "HR": 1.926,
-      "HR_logerr": 0.047,
-      "median_exp_pcterr": 30.3,
-      "RMSTdiff": -1.5
+      "HR": 1.721,
+      "HR_logerr": 0.066,
+      "median_exp_pcterr": 32.3,
+      "RMSTdiff": -1.6
     }
   },
   {
@@ -613,10 +613,10 @@
       "RMSTdiff": 9.4
     },
     "censoring_informed": {
-      "HR": 0.553,
-      "HR_logerr": 0.033,
+      "HR": 0.575,
+      "HR_logerr": 0.007,
       "median_exp_pcterr": null,
-      "RMSTdiff": 4.5
+      "RMSTdiff": 12.4
     }
   },
   {
@@ -635,8 +635,8 @@
       "RMSTdiff": -0.1
     },
     "censoring_informed": {
-      "HR": 2.26,
-      "HR_logerr": 0.01,
+      "HR": 2.232,
+      "HR_logerr": 0.002,
       "median_exp_pcterr": null,
       "RMSTdiff": -0.1
     }
@@ -657,10 +657,10 @@
       "RMSTdiff": -12.2
     },
     "censoring_informed": {
-      "HR": 2.213,
-      "HR_logerr": 0.575,
-      "median_exp_pcterr": 29.2,
-      "RMSTdiff": -13
+      "HR": 1.564,
+      "HR_logerr": 0.229,
+      "median_exp_pcterr": 25.7,
+      "RMSTdiff": -7.1
     }
   },
   {
@@ -679,10 +679,10 @@
       "RMSTdiff": -14.4
     },
     "censoring_informed": {
-      "HR": 2.249,
-      "HR_logerr": 0.031,
-      "median_exp_pcterr": 1.1,
-      "RMSTdiff": -15.9
+      "HR": 1.973,
+      "HR_logerr": 0.1,
+      "median_exp_pcterr": 11.9,
+      "RMSTdiff": -15.2
     }
   },
   {
@@ -701,10 +701,10 @@
       "RMSTdiff": -33.2
     },
     "censoring_informed": {
-      "HR": 4.039,
-      "HR_logerr": 0.421,
-      "median_exp_pcterr": 52.6,
-      "RMSTdiff": -37.2
+      "HR": 2.668,
+      "HR_logerr": 0.006,
+      "median_exp_pcterr": 1.5,
+      "RMSTdiff": -28
     }
   },
   {
@@ -723,10 +723,10 @@
       "RMSTdiff": -22.7
     },
     "censoring_informed": {
-      "HR": 3.107,
-      "HR_logerr": 0,
+      "HR": 3.275,
+      "HR_logerr": 0.052,
       "median_exp_pcterr": null,
-      "RMSTdiff": -20.4
+      "RMSTdiff": -23.3
     }
   },
   {
@@ -745,10 +745,10 @@
       "RMSTdiff": -22.7
     },
     "censoring_informed": {
-      "HR": 2.255,
-      "HR_logerr": 0.027,
-      "median_exp_pcterr": 154,
-      "RMSTdiff": -24.1
+      "HR": 2.308,
+      "HR_logerr": 0.05,
+      "median_exp_pcterr": 5.2,
+      "RMSTdiff": -25.5
     }
   },
   {
@@ -767,10 +767,10 @@
       "RMSTdiff": -36.9
     },
     "censoring_informed": {
-      "HR": 5.006,
-      "HR_logerr": 0.211,
-      "median_exp_pcterr": 46.8,
-      "RMSTdiff": -39.1
+      "HR": 4.279,
+      "HR_logerr": 0.054,
+      "median_exp_pcterr": 5.5,
+      "RMSTdiff": -38.7
     }
   },
   {
@@ -789,10 +789,10 @@
       "RMSTdiff": -22.9
     },
     "censoring_informed": {
-      "HR": 1.488,
-      "HR_logerr": 0.169,
-      "median_exp_pcterr": 128.1,
-      "RMSTdiff": -24.9
+      "HR": 1.67,
+      "HR_logerr": 0.054,
+      "median_exp_pcterr": 1.4,
+      "RMSTdiff": -24.4
     }
   },
   {
@@ -811,10 +811,10 @@
       "RMSTdiff": -31.8
     },
     "censoring_informed": {
-      "HR": 1.802,
-      "HR_logerr": 0.076,
-      "median_exp_pcterr": 60.2,
-      "RMSTdiff": -29.2
+      "HR": 1.815,
+      "HR_logerr": 0.083,
+      "median_exp_pcterr": 8.1,
+      "RMSTdiff": -24.6
     }
   },
   {
@@ -833,10 +833,10 @@
       "RMSTdiff": -17.4
     },
     "censoring_informed": {
-      "HR": 2.169,
-      "HR_logerr": 0.03,
-      "median_exp_pcterr": 154.4,
-      "RMSTdiff": -21.5
+      "HR": 2.268,
+      "HR_logerr": 0.015,
+      "median_exp_pcterr": 10.9,
+      "RMSTdiff": -22.1
     }
   },
   {
@@ -855,10 +855,10 @@
       "RMSTdiff": -16.9
     },
     "censoring_informed": {
-      "HR": 2.214,
-      "HR_logerr": 0.302,
-      "median_exp_pcterr": 97.6,
-      "RMSTdiff": -23.6
+      "HR": 1.659,
+      "HR_logerr": 0.014,
+      "median_exp_pcterr": 0.4,
+      "RMSTdiff": -14.4
     }
   },
   {
@@ -877,10 +877,10 @@
       "RMSTdiff": -15
     },
     "censoring_informed": {
-      "HR": 5.872,
-      "HR_logerr": 0.639,
-      "median_exp_pcterr": 55.2,
-      "RMSTdiff": -12.8
+      "HR": 3.09,
+      "HR_logerr": 0.003,
+      "median_exp_pcterr": 4.5,
+      "RMSTdiff": -13.5
     }
   },
   {
@@ -899,10 +899,10 @@
       "RMSTdiff": -24.7
     },
     "censoring_informed": {
-      "HR": 2.847,
-      "HR_logerr": 0.198,
-      "median_exp_pcterr": 160.6,
-      "RMSTdiff": -25.2
+      "HR": 2.453,
+      "HR_logerr": 0.049,
+      "median_exp_pcterr": 3.1,
+      "RMSTdiff": -25.4
     }
   },
   {
@@ -921,10 +921,10 @@
       "RMSTdiff": -32.4
     },
     "censoring_informed": {
-      "HR": 6.992,
-      "HR_logerr": 0.132,
+      "HR": 15.596,
+      "HR_logerr": 0.934,
       "median_exp_pcterr": null,
-      "RMSTdiff": -28.3
+      "RMSTdiff": -36.7
     }
   },
   {
@@ -943,10 +943,10 @@
       "RMSTdiff": -46.3
     },
     "censoring_informed": {
-      "HR": 6.34,
-      "HR_logerr": 0.18,
-      "median_exp_pcterr": 18.3,
-      "RMSTdiff": -45.3
+      "HR": 5.664,
+      "HR_logerr": 0.293,
+      "median_exp_pcterr": 1.3,
+      "RMSTdiff": -47.9
     }
   }
 ]

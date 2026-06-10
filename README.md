@@ -46,9 +46,16 @@ fetches — it reads the harvested JSON).
 
 ### Statistical methods (not just Guyot)
 
-Tier A runs **two reconstructions and keeps the one that fits the registry curve best**, measured by
-the **1-Wasserstein (L1-area) distance** between the reconstructed KM and the registry KM-estimate
-step function:
+- **Titman-2026 quadratic program** (default when a **total-event count** is posted, the common AACT
+  case) — on the cumulative-hazard scale the curve fixes the per-interval hazards, so the at-risk
+  recursion is *linear* in the unknown censoring counts and the event count is a *linear* constraint;
+  the leftover censoring degree-of-freedom is resolved by a convex QP (`min ½‖c‖²`) with a closed-form
+  solution. Events are spread within intervals so the at-risk sets — and the Cox HR — are correct.
+  **Validated-best: gold-standard HR fold-error 1.05 vs 1.15 for the previous method** (23/24 within
+  20%). See `validate/titman_qp.js`.
+
+When no event count is posted (curve-only), Tier A runs **two reconstructions and keeps the one that
+fits the registry curve best**, by the **1-Wasserstein (L1-area) distance** to the registry KM step:
 
 - **Guyot (2012) inverse-KM** — classic iterative reconstruction assuming constant censoring within
   number-at-risk blocks. Strong when censoring is spread through follow-up.
@@ -57,8 +64,9 @@ step function:
   NAR boundaries, so the reconstructed KM passes through every registry anchor **≈ exactly**.
   Correct when censoring is administrative (concentrated at the cutoff) — the case Guyot mishandles.
 
-Wasserstein is used as *both* the model selector and the reported fidelity metric. Force a single
-method with `reconstruct(t,{method:'guyot'|'anchor-exact'})`.
+Force a single method with `reconstruct(t,{method:'qp'|'guyot'|'anchor-exact'})`. (The QP can't be
+chosen by the anchor-Wasserstein best-of — censoring is invisible to the anchors — so it's selected by
+data availability.)
 
 > **On the synthetic benchmark** (`validate/gen_benchmark.js`): the censoring-informed method cut
 > mean anchor sup-error 0.127→0.011 and the "AACT-only beat simulated digitization 20/20" figure is
