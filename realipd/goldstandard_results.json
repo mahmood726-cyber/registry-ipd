@@ -684,5 +684,159 @@
       "median_exp_pcterr": 1.1,
       "RMSTdiff": -15.9
     }
+  },
+  {
+    "ds": "cbio_luad",
+    "label": "TCGA lung adeno (OS, late vs early stage)",
+    "n_exp": 105,
+    "n_ctl": 394,
+    "true_HR": 2.65,
+    "true_median_exp": 27,
+    "true_median_ctl": 56.3,
+    "true_RMST_diff": -30,
+    "curve_only": {
+      "HR": 2.702,
+      "HR_logerr": 0.019,
+      "median_exp_pcterr": 0.8,
+      "RMSTdiff": -33.2
+    },
+    "censoring_informed": {
+      "HR": 4.039,
+      "HR_logerr": 0.421,
+      "median_exp_pcterr": 52.6,
+      "RMSTdiff": -37.2
+    }
+  },
+  {
+    "ds": "cbio_coadread",
+    "label": "TCGA colorectal (OS, late vs early stage)",
+    "n_exp": 247,
+    "n_ctl": 309,
+    "true_HR": 3.107,
+    "true_median_exp": 52.3,
+    "true_median_ctl": null,
+    "true_RMST_diff": -25.8,
+    "curve_only": {
+      "HR": 1.696,
+      "HR_logerr": 0.606,
+      "median_exp_pcterr": 2.3,
+      "RMSTdiff": -22.7
+    },
+    "censoring_informed": {
+      "HR": 3.107,
+      "HR_logerr": 0,
+      "median_exp_pcterr": null,
+      "RMSTdiff": -20.4
+    }
+  },
+  {
+    "ds": "cbio_stad",
+    "label": "TCGA stomach (OS, late vs early stage)",
+    "n_exp": 224,
+    "n_ctl": 183,
+    "true_HR": 2.194,
+    "true_median_exp": 20.9,
+    "true_median_ctl": 68.4,
+    "true_RMST_diff": -22.9,
+    "curve_only": {
+      "HR": 1.646,
+      "HR_logerr": 0.288,
+      "median_exp_pcterr": 6.4,
+      "RMSTdiff": -22.7
+    },
+    "censoring_informed": {
+      "HR": 2.255,
+      "HR_logerr": 0.027,
+      "median_exp_pcterr": 154,
+      "RMSTdiff": -24.1
+    }
+  },
+  {
+    "ds": "cbio_kirc",
+    "label": "TCGA kidney clear-cell (OS, late vs early stage)",
+    "n_exp": 209,
+    "n_ctl": 301,
+    "true_HR": 4.052,
+    "true_median_exp": 40.7,
+    "true_median_ctl": null,
+    "true_RMST_diff": -38.4,
+    "curve_only": {
+      "HR": 2.6,
+      "HR_logerr": 0.444,
+      "median_exp_pcterr": 7.4,
+      "RMSTdiff": -36.9
+    },
+    "censoring_informed": {
+      "HR": 5.006,
+      "HR_logerr": 0.211,
+      "median_exp_pcterr": 46.8,
+      "RMSTdiff": -39.1
+    }
+  },
+  {
+    "ds": "cbio_hnsc",
+    "label": "TCGA head & neck (OS, late vs early stage)",
+    "n_exp": 349,
+    "n_ctl": 103,
+    "true_HR": 1.762,
+    "true_median_exp": 47,
+    "true_median_ctl": 84.3,
+    "true_RMST_diff": -28.1,
+    "curve_only": {
+      "HR": 1.102,
+      "HR_logerr": 0.469,
+      "median_exp_pcterr": 2.8,
+      "RMSTdiff": -22.9
+    },
+    "censoring_informed": {
+      "HR": 1.488,
+      "HR_logerr": 0.169,
+      "median_exp_pcterr": 128.1,
+      "RMSTdiff": -24.9
+    }
+  },
+  {
+    "ds": "cbio_skcm",
+    "label": "TCGA melanoma (OS, late vs early stage)",
+    "n_exp": 188,
+    "n_ctl": 203,
+    "true_HR": 1.67,
+    "true_median_exp": 64.1,
+    "true_median_ctl": 105.3,
+    "true_RMST_diff": -27.6,
+    "curve_only": {
+      "HR": 1.644,
+      "HR_logerr": 0.016,
+      "median_exp_pcterr": 6,
+      "RMSTdiff": -31.8
+    },
+    "censoring_informed": {
+      "HR": 1.802,
+      "HR_logerr": 0.076,
+      "median_exp_pcterr": 60.2,
+      "RMSTdiff": -29.2
+    }
+  },
+  {
+    "ds": "cbio_blca",
+    "label": "TCGA bladder (OS, late vs early stage)",
+    "n_exp": 276,
+    "n_ctl": 131,
+    "true_HR": 2.234,
+    "true_median_exp": 23.5,
+    "true_median_ctl": 90,
+    "true_RMST_diff": -21.3,
+    "curve_only": {
+      "HR": 1.364,
+      "HR_logerr": 0.494,
+      "median_exp_pcterr": 12.5,
+      "RMSTdiff": -17.4
+    },
+    "censoring_informed": {
+      "HR": 2.169,
+      "HR_logerr": 0.03,
+      "median_exp_pcterr": 154.4,
+      "RMSTdiff": -21.5
+    }
   }
 ]

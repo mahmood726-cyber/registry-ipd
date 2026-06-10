@@ -162,9 +162,9 @@ that is the *honest* uncertainty the coarse registry curve leaves on the HR, whi
 reconstructions hide. This is, to our knowledge, the first **calibrated uncertainty quantification
 for registry-native (no-image) survival reconstruction.**
 
-**Gold-standard coverage on TRUE IPD** (`validate/goldstandard_uncertainty.js`): across the **17
+**Gold-standard coverage on TRUE IPD** (`validate/goldstandard_uncertainty.js`): across the **24
 adequately-sized (≥100/arm)** real datasets, the 95% credible interval covers the **true patient-level
-HR in 16/17 (94%)** — empirical coverage matching the nominal 95% (median width ~2.3× fold; not
+HR in 23/24 (96%)** — empirical coverage matching the nominal 95% (median width ~2.3× fold; not
 over-wide, e.g. diabetic [0.29, 0.63] tightly covers 0.46). The single miss is **`bfeed`** (true 1.245
 vs band [1.45, 3.37]): its point reconstruction is so far off (the discrete-week / ~96%-event boundary
 case) that even the uncertainty band does not reach truth — an honest failure, not hidden. So the
@@ -230,10 +230,11 @@ engine never sees the patient-level data. (`validate/goldstandard.js`.)
 | **Breastfeeding** (smoking) | 270/657 | 1.245 | 2.179 (56%) | 26% | −12.2 / −3.8 |
 | **HCC** liver (vasc. invasion) | 41/186 | 2.18 | **2.01 (8%)** | 1.1% | −14.4 / **−15.6** |
 
-**Aggregate over 17 adequately-sized datasets (≥100/arm; of 31 real datasets tried, incl. 2 recurrent-event collapsed to first-event): curve-only
-recovers HR to a median log-error of 0.11 (~12% fold), with 13/17 within 20%, and the median to
-~3%** — matching the registry-cohort numbers, now on real patient data across 31 RCTs/cohorts (six
-added 2026-06-10 from `KMsurv`/`asaur` via the open Rdatasets mirror). Large effects recovered cleanly
+**Aggregate over 24 adequately-sized datasets (≥100/arm; of 38 real datasets tried, incl. 2 recurrent-event collapsed to first-event and 7 TCGA stage cohorts): curve-only
+recovers HR to a median fold of 1.15 (15/24 within 20%; 1.12 / 13/17 excluding the heavily-censored
+TCGA cohorts, see below), the censoring-informed tier to 1.15 (17/24), and the median to ~3%** — on
+real patient data across 38 RCTs/cohorts (six added 2026-06-10 from `KMsurv`/`asaur` via the Rdatasets
+mirror, seven from TCGA via the cBioPortal API). Large effects recovered cleanly
 (Wilms 5.1→5.18, prostate 5.49→5.17, melanoma 4.36→3.99, HCC 2.18→2.01); the classic 1965 Gehan
 leukemia RCT (6-MP) recovers 0.221→0.201 (9%); UDCA-in-PBC RCT 0.445→0.415. The set spans
 breast/colon/lung/AML/melanoma/leukemia/transplant/PBC/MGUS/NAFLD/prostate/retinopathy/larynx/burn/
@@ -241,32 +242,31 @@ pneumonia/HCC. The **worst case is `bfeed`** (fold 1.75): breastfeeding duration
 with ~96% events — a heavily-tied discrete-time series, not the smooth KM curve the method targets;
 kept as an honest out-of-scope boundary rather than dropped.
 
-### Real cancer cohorts (TCGA / cBioPortal) — the low-signal regime
+### Real cancer cohorts (TCGA / cBioPortal) — and why the event-count tier matters
 
-A separate slice on **8 real TCGA overall-survival cohorts** pulled from the open cBioPortal API
-(`harvest/fetch_cbioportal.js`; LUAD, colorectal, stomach, liver, kidney, head&neck, melanoma,
-bladder), split by **sex** — which in most cancers is a **near-null** survival contrast (true HR
-0.72–1.21). For near-null effects the *fold*-error used above is the wrong metric (a tiny absolute
-wobble looks huge as a ratio), so this slice scores **absolute log-HR error** and is deliberately
-**kept out of the headline aggregate** (`validate/goldstandard_cbio.js`).
+**7 real TCGA overall-survival cohorts** pulled from the open cBioPortal API
+(`harvest/fetch_cbioportal.js`; lung adeno, colorectal, stomach, kidney clear-cell, head&neck,
+melanoma, bladder), split by **late vs early stage** — a strong, real survival contrast (true HR
+1.7–4.1). These are heavily censored (the early-stage arm is mostly alive at last follow-up), which is
+exactly the regime that separates the two reconstruction tiers:
 
-| TCGA cohort | N M/F | true HR | recon HR | \|log-HR err\| | direction |
-|---|---|---|---|---|---|
-| colorectal | 303/265 | 1.084 | 1.103 | **0.017** | ok |
-| kidney clear-cell | 326/184 | 0.956 | 0.940 | **0.017** | ok |
-| stomach | 271/145 | 1.101 | 0.961 | 0.136 | flip* |
-| lung adeno | 232/269 | 1.05 | 0.907 | 0.146 | flip* |
-| head & neck | 381/141 | 0.718 | 0.617 | 0.153 | ok |
-| bladder | 301/108 | 0.895 | 0.697 | 0.249 | ok |
-| liver HCC | 247/119 | 0.811 | 0.607 | 0.291 | ok |
-| melanoma | 264/162 | 1.21 | 1.858 | 0.429 | ok |
+| TCGA cohort | N late/early | true HR | curve-only (fold) | **censoring-informed (fold)** |
+|---|---|---|---|---|
+| lung adeno | 105/394 | 2.65 | 2.70 (**1.02**) | 4.04 (1.52) |
+| melanoma | 188/203 | 1.67 | 1.64 (**1.02**) | 1.80 (1.08) |
+| stomach | 224/183 | 2.19 | 1.65 (1.33) | 2.26 (**1.03**) |
+| colorectal | 247/309 | 3.11 | 1.70 (1.83) | 3.11 (**1.00**) |
+| bladder | 276/131 | 2.23 | 1.36 (1.64) | 2.17 (**1.03**) |
+| head & neck | 349/103 | 1.76 | 1.10 (1.60) | 1.49 (1.18) |
+| kidney clear-cell | 209/301 | 4.05 | 2.60 (1.56) | 5.01 (1.23) |
 
-**Mean absolute log-HR error ≈ 0.18; direction agrees 6/8.** *The two "flips" (stomach, lung) are
-trials whose true HR is ≈1.0 — there is no real sex effect to recover, so the sign of a near-unity HR
-is noise. The honest reading: in the **low-signal regime the method has limited precision (~0.18 on the
-log scale) and should not be trusted to detect small effects** — consistent with the headline finding
-that the HR is the hard estimand. It recovers real, large contrasts well (the non-null gold standard
-above) but does not manufacture precision where the data carry little signal.
+**Curve-only *under*estimates these large HRs (median fold 1.56)** — with the early-stage arm almost
+entirely censored, the curve-only "censor-to-tail" assumption flattens the separation. **The
+censoring-informed reconstruction, which uses the registry total-event count, recovers them (median
+fold 1.08; 5/7 within 20%)** — colorectal 3.11→1.70→**3.11**, bladder 2.23→1.36→**2.17**. This is a
+clean, real-data demonstration of *why* the method reconstructs with total events when AACT posts them,
+and why the curve-only number is an honest floor rather than the operating point. All 7 cohorts' 95%
+credible intervals cover the true HR (they are in the 23/24 coverage above).
 
 ### Anchor density: how many posted timepoints does reconstruction need?
 

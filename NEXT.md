@@ -56,18 +56,20 @@ three "elevate toward breakthrough" items without re-reading the whole history.
   (download paths in the file header).
 
 - ✅ **Uncertainty re-run on expanded set**: 14/14 → 16/17 (94%), bfeed the miss (2026-06-10).
-- ✅ **cBioPortal/TCGA integration** (`harvest/fetch_cbioportal.js`): 8 real cancer OS cohorts pulled
-  from the open API. Sex-split is near-null (true HR 0.7–1.2), so reported as a SEPARATE slice scored
-  by absolute log-HR error (`goldstandard_cbio.js`, mean ~0.18), kept out of the headline aggregate +
-  its own dashboard panel. Honest characterisation of the low-signal regime.
+- ✅ **cBioPortal/TCGA integration** (`harvest/fetch_cbioportal.js`): 7 real cancer OS cohorts by
+  **late vs early stage** (strong contrast, true HR 1.7–4.1) now in the MAIN gold standard → **38
+  datasets, 24 at ≥100/arm**. Key finding: on these heavily-censored cohorts curve-only underestimates
+  (median fold 1.56) but the **censoring-informed tier recovers them (1.08)** — validates the
+  event-count tier. Uncertainty re-run → **23/24 (96%)**. (Earlier sex-split slice retired — near-null,
+  superseded by the stronger stage contrast. Stage-parser bug fixed: don't strip letters before the
+  STAGE regex.) Dashboard cbio panel repurposed to curve-vs-censoring-informed.
 
 ## What's autonomously left (optional, in priority order)
-- **Strong-contrast cancer IPD**: TCGA pan-can stage/metastasis attributes are sparsely populated, so
-  the cBioPortal cohorts ended up near-null. To get strong real oncology contrasts (large HR), use
-  non-pan-can `*_tcga`/`*_tcga_pub` studies with clinical stage, or Dryad/Zenodo trial deposits
-  (CC0/CC-BY). NOT credentialed repos (Vivli/YODA/PDS need a DUA — do not scrape).
-- **Re-run competing-risks** on any new datasets that have competing-event structure (the current
-  new additions don't).
+- **More strong-contrast IPD** to push 38 → 60+: more TCGA cohorts by stage (the fetcher generalises —
+  add study IDs), Dryad/Zenodo/OSF trial deposits (CC0/CC-BY). NOT credentialed repos (Vivli/YODA/PDS
+  need a DUA — do not scrape).
+- **Re-run competing-risks** on any new datasets with competing-event structure (current additions
+  don't have it).
 - Surface the census/head-to-head panels inside the live tool (`index.html`), not just the dashboard.
 
 ## Honest framing (carry forward)

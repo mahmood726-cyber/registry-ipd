@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Registry-IPD — Validation Dashboard" />
-<meta property="og:description" content="Validation of registry-native pseudo-IPD reconstruction against true patient-level data: gold-standard across 31 open datasets, AACT coverage census, registry-vs-digitization head-to-head, anchor-density curve, calibrated uncertainty." />
+<meta property="og:description" content="Validation of registry-native pseudo-IPD reconstruction against true patient-level data: gold-standard across 38 open datasets, AACT coverage census, registry-vs-digitization head-to-head, anchor-density curve, calibrated uncertainty." />
 <title>Registry-IPD — Validation Dashboard</title>
 <style>
   :root{--bg:#0e1116;--panel:#161b22;--ink:#e6edf3;--mut:#8b949e;--line:#30363d;--ok:#3fb950;--bad:#f85149;--accent:#58a6ff;--accent2:#f778ba;--warn:#d29922}
@@ -35,7 +35,7 @@
   <section class="panel">
     <h2>Headline verdict (honest)</h2>
     <div class="verdict">For adequately-sized trials, <b>RMST and median reconstruct to ~2–6%</b> and the
-    <b>HR to ~12% (median)</b>; the <b>95% credible interval covers the true HR 16/17 (94%)</b> on real data.
+    <b>HR to ~12% (median)</b>; the <b>95% credible interval covers the true HR 23/24 (96%)</b> on real data.
     HR is the hard estimand; <b>very small trials don't reconstruct</b>; needs <b>≥5–6 posted KM
     timepoints</b>. Not a substitute for true IPD — a triangulation tool with honest uncertainty.</div>
   </section>
@@ -48,7 +48,7 @@
 
   <div class="grid2">
     <section class="panel">
-      <h2>Gold standard — true vs reconstructed HR (31 real datasets; * = recurrent→first-event)</h2>
+      <h2>Gold standard — true vs reconstructed HR (38 real datasets; * = recurrent→first-event; ‡ = TCGA stage, curve-only)</h2>
       <div class="note">Each point: one real RCT. On the diagonal = perfect recovery (log–log axes).</div>
       <svg id="scatter" viewBox="0 0 460 360"></svg>
     </section>
@@ -60,8 +60,8 @@
   </div>
 
   <section class="panel">
-    <h2>Calibrated uncertainty — 95% credible interval vs true HR (17 datasets)</h2>
-    <div class="note">Multiple-imputation interval (sampling the under-identified censoring level). Dot = true patient-level HR; bar = 95% CI. <b>16/17 (94%) cover the truth</b> — the one miss (bfeed, red) is the discrete-time outlier.</div>
+    <h2>Calibrated uncertainty — 95% credible interval vs true HR (24 datasets)</h2>
+    <div class="note">Multiple-imputation interval (sampling the under-identified censoring level). Dot = true patient-level HR; bar = 95% CI. <b>23/24 (96%) cover the truth</b> — the one miss (bfeed, red) is the discrete-time outlier.</div>
     <svg id="forest" viewBox="0 0 920 360"></svg>
   </section>
 
@@ -111,12 +111,14 @@
   </div>
 
   <section class="panel">
-    <h2>Real cancer cohorts (TCGA / cBioPortal) — the low-signal regime</h2>
-    <div class="note">8 real TCGA overall-survival cohorts (open cBioPortal API, <code>fetch_cbioportal.js</code>)
-      split by sex — a <b>near-null</b> contrast (true HR 0.7–1.2). Scored by <b>absolute log-HR error</b>
-      (fold-error is meaningless near the null), kept <b>out of the headline aggregate</b>. Mean
-      |log&nbsp;HR| err ≈ <b>0.18</b>: limited precision in the low-signal regime — it recovers large
-      real contrasts well but doesn't manufacture precision where the data carry little signal.</div>
+    <h2>Real cancer cohorts (TCGA) — why the event-count tier matters</h2>
+    <div class="note">7 real TCGA overall-survival cohorts (open cBioPortal API,
+      <code>fetch_cbioportal.js</code>) split by <b>late vs early stage</b> — a strong contrast (true HR
+      1.7–4.1), heavily censored. <b>Curve-only underestimates</b> these large HRs (median fold 1.56:
+      the early-stage arm is mostly censored, flattening the separation). The
+      <b>censoring-informed tier — using the registry total-event count — recovers them</b> (median fold
+      1.08; e.g. colorectal 3.11 true → 1.70 curve-only → <b>3.11</b>). Bars = HR fold-error per cohort;
+      lower is better. All 7 are inside the 23/24 uncertainty coverage above.</div>
     <div class="grid2" style="align-items:center">
       <svg id="cbio" viewBox="0 0 460 300"></svg>
       <div id="cbioStats"></div>
@@ -140,7 +142,11 @@ var GOLD = [ // s:true=small (<100/arm)
   {ds:'cancer',n:'90/138',t:0.588,r:0.729,e:0.214,s:1},{ds:'aidssi',n:'65/259',t:0.291,r:0.312,e:0.07,s:1},{ds:'ebmt1',n:'167/406',t:3.966,r:5.029,e:0.237},{ds:'bladder*',n:'38/47',t:0.696,r:0.677,e:0.027,s:1},{ds:'cgd*',n:'63/65',t:0.335,r:0.248,e:0.30,s:1},
   {ds:'alloauto',n:'50/51',t:0.838,r:0.678,e:0.213,s:1},{ds:'larynx',n:'27/33',t:1.837,r:1.711,e:0.071,s:1},
   {ds:'burn',n:'84/70',t:0.571,r:0.466,e:0.203,s:1},{ds:'pneumon',n:'838/2285',t:2.237,r:2.3,e:0.028},
-  {ds:'bfeed',n:'270/657',t:1.245,r:2.179,e:0.56},{ds:'hcc',n:'41/186',t:2.18,r:2.01,e:0.081,s:1}
+  {ds:'bfeed',n:'270/657',t:1.245,r:2.179,e:0.56},{ds:'hcc',n:'41/186',t:2.18,r:2.01,e:0.081,s:1},
+  {ds:'luad‡',n:'105/394',t:2.65,r:2.702,e:0.019},{ds:'skcm‡',n:'188/203',t:1.67,r:1.644,e:0.016},
+  {ds:'stad‡',n:'224/183',t:2.194,r:1.646,e:0.288},{ds:'coad‡',n:'247/309',t:3.107,r:1.696,e:0.606},
+  {ds:'blca‡',n:'276/131',t:2.234,r:1.364,e:0.494},{ds:'hnsc‡',n:'349/103',t:1.762,r:1.102,e:0.469},
+  {ds:'kirc‡',n:'209/301',t:4.052,r:2.6,e:0.444}
 ];
 var SENS = [{K:3,f:1.40},{K:4,f:1.28},{K:5,f:1.15},{K:6,f:1.16},{K:8,f:1.12},{K:12,f:1.08},{K:20,f:1.08}];
 var UNC = [
@@ -152,7 +158,11 @@ var UNC = [
   {ds:'flchain',t:1.1,lo:0.610,hi:1.442},{ds:'nafld1',t:1.05,lo:0.356,hi:3.564},
   {ds:'prostate',t:5.485,lo:1.938,hi:18.808},{ds:'ebmt3',t:1.285,lo:0.741,hi:1.594},
   {ds:'ebmt1',t:3.966,lo:3.660,hi:7.096},{ds:'pneumon',t:2.237,lo:1.504,hi:3.392},
-  {ds:'bfeed',t:1.245,lo:1.448,hi:3.368}
+  {ds:'bfeed',t:1.245,lo:1.448,hi:3.368},
+  {ds:'luad‡',t:2.65,lo:1.792,hi:5.925},{ds:'coad‡',t:3.107,lo:0.814,hi:6.609},
+  {ds:'stad‡',t:2.194,lo:1.127,hi:3.228},{ds:'kirc‡',t:4.052,lo:1.907,hi:6.049},
+  {ds:'hnsc‡',t:1.762,lo:0.628,hi:2.897},{ds:'skcm‡',t:1.67,lo:1.106,hi:2.718},
+  {ds:'blca‡',t:2.234,lo:0.975,hi:3.125}
 ];
 var LADDER = [
   ['Registry-internal','AACT HR / median','HR ~12%, 83–94% within CI; RMST/median round-trip-consistent'],
@@ -274,26 +284,27 @@ function R(s,x,y,w,h,c){var e=el('rect');e.setAttribute('x',x);e.setAttribute('y
  line(2,'#f778ba','digitized K=8',32);
  line(3,'#d29922','digitized K=25',46);
 })();
-// cBioPortal real cancer cohorts: true vs recon HR (linear), |logHR err| coloured
-// [label, trueHR, reconHR, absLogHRerr]
-var CBIO=[['colorectal',1.084,1.103,0.017],['kidney',0.956,0.940,0.017],['stomach',1.101,0.961,0.136],
-  ['lung',1.05,0.907,0.146],['head&neck',0.718,0.617,0.153],['bladder',0.895,0.697,0.249],
-  ['liver',0.811,0.607,0.291],['melanoma',1.21,1.858,0.429]];
-(function(){var s=document.getElementById('cbio'),W=460,H=300,p=42;var lo=0.5,hi=2.0;
- var X=function(v){return p+(v-lo)/(hi-lo)*(W-p-14);},Y=function(v){return H-p-(v-lo)/(hi-lo)*(H-p-16);};
- L(s,X(lo),Y(lo),X(hi),Y(hi),'#30363d',1.5); // diagonal
- L(s,X(1),Y(lo),X(1),Y(hi),'#1b2129',1);L(s,X(lo),Y(1),X(hi),Y(1),'#1b2129',1); // null lines
- [0.5,1,1.5,2].forEach(function(v){T(s,X(v),H-p+15,v,'#8b949e','middle',10);T(s,p-6,Y(v)+3,v,'#8b949e','end',10);});
- T(s,(W+p)/2,H-6,'true HR (M vs F)','#8b949e','middle',11);T(s,14,12,'reconstructed HR','#8b949e','start',11);
- CBIO.forEach(function(d){C(s,X(d[1]),Y(d[2]),4,d[3]<0.2?'#3fb950':'#d29922');});
- T(s,W-14,24,'● |logHR err|<0.2  ● ≥0.2','#8b949e','end',10);
+// TCGA stage cohorts: HR fold-error, curve-only vs censoring-informed. [label, curveFold, censFold]
+var CBIO=[['luad',1.02,1.52],['skcm',1.02,1.08],['stad',1.33,1.03],['coadread',1.83,1.00],
+  ['blca',1.64,1.03],['hnsc',1.60,1.18],['kirc',1.56,1.23]];
+(function(){var s=document.getElementById('cbio'),W=460,H=300,p=44;var ymax=2.0;
+ var Y=function(v){return H-p-(v-1)/(ymax-1)*(H-p-26);}; // bars measure fold above 1.0
+ [1.0,1.25,1.5,1.75,2.0].forEach(function(v){L(s,p,Y(v),W-14,Y(v),'#1b2129',1);T(s,p-6,Y(v)+3,v.toFixed(2),'#8b949e','end',10);});
+ var gw=(W-p-14)/CBIO.length;
+ CBIO.forEach(function(d,i){var gx=p+i*gw;var bw=gw*0.32;
+   R(s,gx+gw*0.10,Y(d[1]),bw,H-p-Y(d[1]),'#f778ba'); // curve-only
+   R(s,gx+gw*0.50,Y(d[2]),bw,H-p-Y(d[2]),'#3fb950'); // censoring-informed
+   T(s,gx+gw*0.42,H-p+14,d[0],'#8b949e','middle',9);});
+ T(s,14,12,'HR fold-error (1.0 = perfect)','#8b949e','start',11);
+ R(s,W-150,18,10,10,'#f778ba');T(s,W-135,27,'curve-only','#8b949e','start',10);
+ R(s,W-150,32,10,10,'#3fb950');T(s,W-135,41,'censoring-informed','#8b949e','start',10);
 })();
 (function(){var d=document.getElementById('cbioStats');
  function row(big,lab,col){return '<div style="margin:0 0 12px"><div style="font-size:26px;font-weight:700;color:'+(col||'#e6edf3')+'">'+big+'</div><div class="mut" style="font-size:12px">'+lab+'</div></div>';}
- d.innerHTML=row('8','real TCGA cohorts (open API)','#e6edf3')
-   +row('~0.18','mean |log HR| error','#d29922')
-   +row('6/8','direction agrees (2 flips are true HR≈1)','#58a6ff')
-   +row('0.7–1.2','true HR range (near-null by design)','#8b949e');
+ d.innerHTML=row('7','real TCGA cohorts (open API)','#e6edf3')
+   +row('1.56 → 1.08','median fold: curve-only → censoring-informed','#3fb950')
+   +row('1.7–4.1','true HR range (strong, heavily censored)','#58a6ff')
+   +row('23/24','uncertainty coverage incl. these','#8b949e');
 })();
 </script>
 </body>

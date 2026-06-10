@@ -27,13 +27,15 @@ const DEFAULT_STUDIES = [
 
 const ATTRS = new Set(['OS_MONTHS', 'OS_STATUS', 'SEX', 'AJCC_PATHOLOGIC_TUMOR_STAGE', 'SUBTYPE']);
 
-// map AJCC stage strings to early (I/II) vs late (III/IV)
+// map AJCC stage strings to early (I/II) vs late (III/IV). Order matters: IV, then III, then II/I.
+// NOTE: do NOT strip non-letters first — that removes the word "STAGE" and the match silently fails
+// (the original bug that made stage_group come back all-blank).
 function stageGroup(v) {
   if (!v) return '';
-  const s = v.toUpperCase().replace(/[^IVX0-9 ]/g, ' ');
-  if (/\bSTAGE\s*IV\b|\bSTAGE\s*X\b/.test(s)) return 'late';
-  if (/\bSTAGE\s*III\b/.test(s)) return 'late';
-  if (/\bSTAGE\s*II\b|\bSTAGE\s*I\b/.test(s)) return 'early';
+  const s = v.toUpperCase();
+  if (/STAGE\s*IV/.test(s)) return 'late';
+  if (/STAGE\s*III/.test(s)) return 'late';
+  if (/STAGE\s*II/.test(s) || /STAGE\s*I\b/.test(s) || /STAGE\s*I[^IVX]/.test(s)) return 'early';
   return '';
 }
 const csvCell = (x) => (x == null ? '' : String(x).replace(/[",\r\n]/g, ' '));
