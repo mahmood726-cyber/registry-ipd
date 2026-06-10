@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Registry-IPD — Validation Dashboard" />
-<meta property="og:description" content="Validation of registry-native pseudo-IPD reconstruction against true patient-level data: gold-standard across 43 open datasets, AACT coverage census, registry-vs-digitization head-to-head, anchor-density curve, calibrated uncertainty." />
+<meta property="og:description" content="Validation of registry-native pseudo-IPD reconstruction against true patient-level data: gold-standard across 45 open datasets, AACT coverage census, registry-vs-digitization head-to-head, anchor-density curve, calibrated uncertainty." />
 <title>Registry-IPD — Validation Dashboard</title>
 <style>
   :root{--bg:#0e1116;--panel:#161b22;--ink:#e6edf3;--mut:#8b949e;--line:#30363d;--ok:#3fb950;--bad:#f85149;--accent:#58a6ff;--accent2:#f778ba;--warn:#d29922}
@@ -36,7 +36,7 @@
     <h2>Headline verdict (honest)</h2>
     <div class="verdict">For adequately-sized trials, <b>RMST and median reconstruct to ~2–6%</b> and the
     HR to <b>~12% curve-only</b>, improving to <b>~5% when the registry posts a total-event count</b>
-    (the Titman-2026 quadratic program; 23/24 within 20%). The <b>95% credible interval covers the true
+    (the Titman-2026 quadratic program; 24/25 within 20%). The <b>95% credible interval covers the true
     HR 23/24 (96%)</b> on real data. HR is the hard estimand; <b>very small trials don't reconstruct</b>;
     needs <b>≥5–6 posted KM timepoints</b>. Not a substitute for true IPD — a triangulation tool with
     honest uncertainty.</div>
@@ -50,7 +50,7 @@
 
   <div class="grid2">
     <section class="panel">
-      <h2>Gold standard — true vs reconstructed HR (43 real datasets; * = recurrent→first-event; ‡ = TCGA stage, curve-only)</h2>
+      <h2>Gold standard — true vs reconstructed HR (45 real datasets; * = recurrent→first-event; ‡ = TCGA stage, curve-only)</h2>
       <div class="note">Each point: one real RCT. On the diagonal = perfect recovery (log–log axes).</div>
       <svg id="scatter" viewBox="0 0 460 360"></svg>
     </section>
@@ -62,8 +62,8 @@
   </div>
 
   <section class="panel">
-    <h2>Calibrated uncertainty — 95% credible interval vs true HR (24 datasets)</h2>
-    <div class="note">Multiple-imputation interval (sampling the under-identified censoring level). Dot = true patient-level HR; bar = 95% CI. <b>23/24 (96%) cover the truth</b> — the one miss (bfeed, red) is the discrete-time outlier.</div>
+    <h2>Calibrated uncertainty — 95% credible interval vs true HR (25 datasets)</h2>
+    <div class="note">Multiple-imputation interval (sampling the under-identified censoring level). Dot = true patient-level HR; bar = 95% CI. <b>24/25 (96%) cover the truth</b> — the one miss (bfeed, red) is the discrete-time outlier.</div>
     <svg id="forest" viewBox="0 0 920 360"></svg>
   </section>
 
@@ -114,13 +114,13 @@
 
   <section class="panel">
     <h2>Real cancer cohorts (TCGA) — why the event-count tier matters</h2>
-    <div class="note">12 real TCGA overall-survival cohorts (open cBioPortal API,
+    <div class="note">14 real TCGA overall-survival cohorts (open cBioPortal API,
       <code>fetch_cbioportal.js</code>) split by <b>late vs early stage</b> — a strong contrast (true HR
       1.6–7.6), heavily censored. <b>Curve-only underestimates</b> these large HRs (median fold 1.56:
       the early-stage arm is mostly censored, flattening the separation). The
       <b>censoring-informed tier — the Titman-2026 quadratic program using the registry total-event
       count — recovers them</b> (median fold 1.56 → <b>1.05</b>; colorectal 3.11 true → 1.70 curve-only
-      → <b>3.11</b>; the 7 cohorts at ≥100/arm all land within 20%). Bars = HR fold-error per cohort;
+      → <b>3.11</b>; the 8 cohorts at ≥100/arm all land within 20%). Bars = HR fold-error per cohort;
       lower is better. Two extreme small-arm cases (kidney-papillary HR 6.13, adrenocortical 7.59)
       stay hard. Curve-only estimators (max-entropy, Wasserstein barycenter) can't close the gap —
       the event count is the missing information (<code>advanced_estimators.js</code>, <code>titman_qp.js</code>).</div>
@@ -154,7 +154,8 @@ var GOLD = [ // s:true=small (<100/arm)
   {ds:'kirc‡',n:'209/301',t:4.052,r:2.6,e:0.444},
   {ds:'lusc‡',n:'89/388',t:1.636,r:1.58,e:0.035,s:1},{ds:'esca‡',n:'64/96',t:3.099,r:4.166,e:0.296,s:1},
   {ds:'lihc‡',n:'88/257',t:2.336,r:1.878,e:0.218,s:1},{ds:'kirp‡',n:'64/189',t:6.13,r:2.548,e:0.878,s:1},
-  {ds:'acc‡',n:'35/53',t:7.59,r:4.51,e:0.521,s:1}
+  {ds:'acc‡',n:'35/53',t:7.59,r:4.51,e:0.521,s:1},
+  {ds:'brca‡',n:'264/788',t:2.695,r:1.658,e:0.486},{ds:'meso‡',n:'60/25',t:0.992,r:1.201,e:0.190,s:1}
 ];
 var SENS = [{K:3,f:1.40},{K:4,f:1.28},{K:5,f:1.15},{K:6,f:1.16},{K:8,f:1.12},{K:12,f:1.08},{K:20,f:1.08}];
 var UNC = [
@@ -170,7 +171,7 @@ var UNC = [
   {ds:'luad‡',t:2.65,lo:1.792,hi:5.925},{ds:'coad‡',t:3.107,lo:0.814,hi:6.609},
   {ds:'stad‡',t:2.194,lo:1.127,hi:3.228},{ds:'kirc‡',t:4.052,lo:1.907,hi:6.049},
   {ds:'hnsc‡',t:1.762,lo:0.628,hi:2.897},{ds:'skcm‡',t:1.67,lo:1.106,hi:2.718},
-  {ds:'blca‡',t:2.234,lo:0.975,hi:3.125}
+  {ds:'blca‡',t:2.234,lo:0.975,hi:3.125},{ds:'brca‡',t:2.695,lo:0.589,hi:10.383}
 ];
 var LADDER = [
   ['Registry-internal','AACT HR / median','HR ~12%, 83–94% within CI; RMST/median round-trip-consistent'],
@@ -293,9 +294,9 @@ function R(s,x,y,w,h,c){var e=el('rect');e.setAttribute('x',x);e.setAttribute('y
  line(3,'#d29922','digitized K=25',46);
 })();
 // TCGA stage cohorts: HR fold-error, curve-only vs censoring-informed (Titman QP). [label,curve,QP]
-var CBIO=[['luad',1.02,1.01],['skcm',1.02,1.09],['lusc',1.04,1.01],['stad',1.33,1.05],
-  ['lihc',1.24,1.05],['esca',1.34,1.00],['kirc',1.56,1.06],['hnsc',1.60,1.06],['blca',1.64,1.02],
-  ['acc',1.68,1.34],['coadread',1.83,1.05],['kirp',2.41,2.54]];
+var CBIO=[['luad',1.02,1.01],['skcm',1.02,1.09],['lusc',1.04,1.01],['meso',1.21,1.13],['lihc',1.24,1.05],
+  ['stad',1.33,1.05],['esca',1.34,1.00],['kirc',1.56,1.06],['hnsc',1.60,1.06],['brca',1.63,1.02],
+  ['blca',1.64,1.02],['acc',1.68,1.34],['coadread',1.83,1.05],['kirp',2.41,2.54]];
 (function(){var s=document.getElementById('cbio'),W=460,H=300,p=44;var ymax=2.6;
  var Y=function(v){return H-p-(Math.min(v,ymax)-1)/(ymax-1)*(H-p-26);}; // bars measure fold above 1.0
  [1.0,1.5,2.0,2.5].forEach(function(v){L(s,p,Y(v),W-14,Y(v),'#1b2129',1);T(s,p-6,Y(v)+3,v.toFixed(1),'#8b949e','end',10);});
@@ -312,7 +313,7 @@ var CBIO=[['luad',1.02,1.01],['skcm',1.02,1.09],['lusc',1.04,1.01],['stad',1.33,
  function row(big,lab,col){return '<div style="margin:0 0 12px"><div style="font-size:26px;font-weight:700;color:'+(col||'#e6edf3')+'">'+big+'</div><div class="mut" style="font-size:12px">'+lab+'</div></div>';}
  d.innerHTML=row('12','real TCGA cohorts (open API)','#e6edf3')
    +row('1.56 → 1.05','median fold: curve-only → Titman-QP censoring-informed','#3fb950')
-   +row('7/7','≥100/arm TCGA cohorts within 20% (QP)','#58a6ff')
+   +row('8/8','≥100/arm TCGA cohorts within 20% (QP)','#58a6ff')
    +row('1.6–7.6','true HR range (strong, heavily censored)','#8b949e');
 })();
 </script>

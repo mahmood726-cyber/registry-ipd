@@ -14,7 +14,7 @@
  *             flchain nafld1 cancer ovarian; do curl -L -o realipd/$ds.csv $base/survival/$ds.csv; done
  *   for ds in alloauto larynx burn pneumon bfeed; do curl -L -o realipd/$ds.csv $base/KMsurv/$ds.csv; done
  *   for ds in prostateSurvival pharmacoSmoking hepatoCellular; do curl -L -o realipd/$ds.csv $base/asaur/$ds.csv; done
- *   # cbio_* (12 TCGA cohorts, late vs early stage): node harvest/fetch_cbioportal.js  (open cBioPortal API)
+ *   # cbio_* (14 TCGA cohorts, late vs early stage): node harvest/fetch_cbioportal.js  (open cBioPortal API)
  *   # remaining (udca2, gehan, tongue, bmt, melanoma, ebmt1/3, aidssi, kidney, etc.) live under
  *   # realipd/ already or in their respective packages; see CONFIGS below for the per-dataset source.
  * Usage: node validate/goldstandard.js [realipd_dir]
@@ -86,6 +86,8 @@ const CONFIGS = [
   { ds: 'cbio_lihc', label: 'TCGA liver HCC (OS, late vs early stage)', time: 'time', status: 'status', arm: 'stage_group', exp: 'late', ctl: 'early' },
   { ds: 'cbio_kirp', label: 'TCGA kidney papillary (OS, late vs early stage)', time: 'time', status: 'status', arm: 'stage_group', exp: 'late', ctl: 'early' },
   { ds: 'cbio_acc', label: 'TCGA adrenocortical (OS, late vs early stage)', time: 'time', status: 'status', arm: 'stage_group', exp: 'late', ctl: 'early' },
+  { ds: 'cbio_brca', label: 'TCGA breast (OS, late vs early stage)', time: 'time', status: 'status', arm: 'stage_group', exp: 'late', ctl: 'early' },
+  { ds: 'cbio_meso', label: 'TCGA mesothelioma (OS, late vs early stage)', time: 'time', status: 'status', arm: 'stage_group', exp: 'late', ctl: 'early' },
 ];
 const CAP = 2500; // subsample cap per arm (file order; keeps huge cohorts tractable)
 

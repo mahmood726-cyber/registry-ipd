@@ -1,6 +1,6 @@
 {
-  "n_datasets": 24,
-  "true_HR_in_95pct_credible_interval": "23/24 (96%)",
+  "n_datasets": 25,
+  "true_HR_in_95pct_credible_interval": "24/25 (96%)",
   "median_CI_width_fold": 2.42,
   "per_dataset": [
     {
@@ -266,7 +266,18 @@
       "est": 1.8745,
       "covered": true,
       "width_fold": 3.21
+    },
+    {
+      "ds": "cbio_brca",
+      "true_HR": 2.695,
+      "ci": [
+        0.589,
+        10.3826
+      ],
+      "est": 3.3364,
+      "covered": true,
+      "width_fold": 17.63
     }
   ],
-  "finding": "On TRUE patient-level data, the multiple-imputation 95% credible interval covers the true HR in 23/24 datasets — the honest uncertainty band genuinely contains the ground-truth effect, not just the registry-reported one."
+  "finding": "On TRUE patient-level data, the multiple-imputation 95% credible interval covers the true HR in 24/25 datasets — the honest uncertainty band genuinely contains the ground-truth effect, not just the registry-reported one."
 }

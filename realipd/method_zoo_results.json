@@ -1,0 +1,2667 @@
+{
+  "summary": {
+    "all": {
+      "guyot": {
+        "median_fold": 1.141,
+        "within20": "30/45",
+        "max_fold": 2.05
+      },
+      "anchor_exact": {
+        "median_fold": 1.137,
+        "within20": "31/45",
+        "max_fold": 1.9
+      },
+      "qp_l2": {
+        "median_fold": 1.043,
+        "within20": "41/45",
+        "max_fold": 2.54
+      },
+      "qp_roughness": {
+        "median_fold": 1.034,
+        "within20": "42/45",
+        "max_fold": 2.38
+      },
+      "qp_maxent": {
+        "median_fold": 1.037,
+        "within20": "43/45",
+        "max_fold": 2.69
+      },
+      "rp_qp": {
+        "median_fold": 1.043,
+        "within20": "41/45",
+        "max_fold": 2.54
+      },
+      "qp_ridge": {
+        "median_fold": 1.037,
+        "within20": "42/45",
+        "max_fold": 2.03
+      },
+      "qp_firth": {
+        "median_fold": 1.045,
+        "within20": "41/45",
+        "max_fold": 2.42
+      },
+      "qp_rmstH": {
+        "median_fold": 1.083,
+        "within20": "31/45",
+        "max_fold": 2.1
+      },
+      "maxent_ensemble": {
+        "median_fold": 1.064,
+        "within20": "38/45",
+        "max_fold": 1.76
+      },
+      "wasserstein_bary": {
+        "median_fold": 1.194,
+        "within20": "24/45",
+        "max_fold": 17.97
+      },
+      "rubin_pool": {
+        "median_fold": 1.069,
+        "within20": "38/45",
+        "max_fold": 1.78
+      }
+    },
+    "big": {
+      "guyot": {
+        "median_fold": 1.138,
+        "within20": "18/25",
+        "max_fold": 1.53
+      },
+      "anchor_exact": {
+        "median_fold": 1.114,
+        "within20": "19/25",
+        "max_fold": 1.53
+      },
+      "qp_l2": {
+        "median_fold": 1.034,
+        "within20": "24/25",
+        "max_fold": 1.22
+      },
+      "qp_roughness": {
+        "median_fold": 1.027,
+        "within20": "25/25",
+        "max_fold": 1.08
+      },
+      "qp_maxent": {
+        "median_fold": 1.025,
+        "within20": "25/25",
+        "max_fold": 1.08
+      },
+      "rp_qp": {
+        "median_fold": 1.034,
+        "within20": "24/25",
+        "max_fold": 1.22
+      },
+      "qp_ridge": {
+        "median_fold": 1.035,
+        "within20": "25/25",
+        "max_fold": 1.19
+      },
+      "qp_firth": {
+        "median_fold": 1.036,
+        "within20": "24/25",
+        "max_fold": 1.21
+      },
+      "qp_rmstH": {
+        "median_fold": 1.069,
+        "within20": "19/25",
+        "max_fold": 1.8
+      },
+      "maxent_ensemble": {
+        "median_fold": 1.056,
+        "within20": "22/25",
+        "max_fold": 1.76
+      },
+      "wasserstein_bary": {
+        "median_fold": 1.266,
+        "within20": "12/25",
+        "max_fold": 8.41
+      },
+      "rubin_pool": {
+        "median_fold": 1.063,
+        "within20": "22/25",
+        "max_fold": 1.78
+      }
+    },
+    "tcga": {
+      "guyot": {
+        "median_fold": 1.197,
+        "within20": "8/14",
+        "max_fold": 2.05
+      },
+      "anchor_exact": {
+        "median_fold": 1.197,
+        "within20": "8/14",
+        "max_fold": 1.9
+      },
+      "qp_l2": {
+        "median_fold": 1.054,
+        "within20": "12/14",
+        "max_fold": 2.54
+      },
+      "qp_roughness": {
+        "median_fold": 1.047,
+        "within20": "12/14",
+        "max_fold": 2.38
+      },
+      "qp_maxent": {
+        "median_fold": 1.05,
+        "within20": "13/14",
+        "max_fold": 2.69
+      },
+      "rp_qp": {
+        "median_fold": 1.054,
+        "within20": "12/14",
+        "max_fold": 2.54
+      },
+      "qp_ridge": {
+        "median_fold": 1.039,
+        "within20": "12/14",
+        "max_fold": 2.03
+      },
+      "qp_firth": {
+        "median_fold": 1.05,
+        "within20": "12/14",
+        "max_fold": 2.42
+      },
+      "qp_rmstH": {
+        "median_fold": 1.101,
+        "within20": "9/14",
+        "max_fold": 2.1
+      },
+      "maxent_ensemble": {
+        "median_fold": 1.102,
+        "within20": "10/14",
+        "max_fold": 1.76
+      },
+      "wasserstein_bary": {
+        "median_fold": 1.266,
+        "within20": "6/14",
+        "max_fold": 2.36
+      },
+      "rubin_pool": {
+        "median_fold": 1.107,
+        "within20": "10/14",
+        "max_fold": 1.78
+      }
+    }
+  },
+  "per_dataset": [
+    {
+      "ds": "gbsg",
+      "tcga": false,
+      "n_exp": 246,
+      "n_ctl": 400,
+      "true_HR": 0.689,
+      "guyot": {
+        "HR": 0.649,
+        "fold": 1.062
+      },
+      "anchor_exact": {
+        "HR": 0.646,
+        "fold": 1.067
+      },
+      "qp_l2": {
+        "HR": 0.707,
+        "fold": 1.026
+      },
+      "qp_roughness": {
+        "HR": 0.676,
+        "fold": 1.019
+      },
+      "qp_maxent": {
+        "HR": 0.694,
+        "fold": 1.007
+      },
+      "rp_qp": {
+        "HR": 0.707,
+        "fold": 1.026
+      },
+      "qp_ridge": {
+        "HR": 0.709,
+        "fold": 1.029
+      },
+      "qp_firth": {
+        "HR": 0.709,
+        "fold": 1.029
+      },
+      "qp_rmstH": {
+        "HR": 0.766,
+        "fold": 1.112
+      },
+      "maxent_ensemble": {
+        "HR": 0.695,
+        "fold": 1.008
+      },
+      "wasserstein_bary": {
+        "HR": 0.923,
+        "fold": 1.34
+      },
+      "rubin_pool": {
+        "HR": 0.697,
+        "fold": 1.011
+      }
+    },
+    {
+      "ds": "veteran",
+      "tcga": false,
+      "n_exp": 68,
+      "n_ctl": 69,
+      "true_HR": 1.016,
+      "guyot": {
+        "HR": 0.782,
+        "fold": 1.3
+      },
+      "anchor_exact": {
+        "HR": 0.796,
+        "fold": 1.278
+      },
+      "qp_l2": {
+        "HR": 0.919,
+        "fold": 1.106
+      },
+      "qp_roughness": {
+        "HR": 0.949,
+        "fold": 1.071
+      },
+      "qp_maxent": {
+        "HR": 0.958,
+        "fold": 1.061
+      },
+      "rp_qp": {
+        "HR": 0.919,
+        "fold": 1.106
+      },
+      "qp_ridge": {
+        "HR": 0.921,
+        "fold": 1.104
+      },
+      "qp_firth": {
+        "HR": 0.92,
+        "fold": 1.105
+      },
+      "qp_rmstH": {
+        "HR": 0.586,
+        "fold": 1.734
+      },
+      "maxent_ensemble": {
+        "HR": 1.077,
+        "fold": 1.06
+      },
+      "wasserstein_bary": {
+        "HR": 0.927,
+        "fold": 1.097
+      },
+      "rubin_pool": {
+        "HR": 1.063,
+        "fold": 1.046
+      }
+    },
+    {
+      "ds": "rotterdam",
+      "tcga": false,
+      "n_exp": 339,
+      "n_ctl": 400,
+      "true_HR": 1.447,
+      "guyot": {
+        "HR": 1.322,
+        "fold": 1.095
+      },
+      "anchor_exact": {
+        "HR": 1.322,
+        "fold": 1.095
+      },
+      "qp_l2": {
+        "HR": 1.352,
+        "fold": 1.07
+      },
+      "qp_roughness": {
+        "HR": 1.451,
+        "fold": 1.003
+      },
+      "qp_maxent": {
+        "HR": 1.396,
+        "fold": 1.037
+      },
+      "rp_qp": {
+        "HR": 1.352,
+        "fold": 1.07
+      },
+      "qp_ridge": {
+        "HR": 1.35,
+        "fold": 1.072
+      },
+      "qp_firth": {
+        "HR": 1.352,
+        "fold": 1.07
+      },
+      "qp_rmstH": {
+        "HR": 1.2,
+        "fold": 1.206
+      },
+      "maxent_ensemble": {
+        "HR": 1.337,
+        "fold": 1.082
+      },
+      "wasserstein_bary": {
+        "HR": 1.695,
+        "fold": 1.171
+      },
+      "rubin_pool": {
+        "HR": 1.343,
+        "fold": 1.078
+      }
+    },
+    {
+      "ds": "pbc",
+      "tcga": false,
+      "n_exp": 154,
+      "n_ctl": 158,
+      "true_HR": 0.944,
+      "guyot": {
+        "HR": 1.13,
+        "fold": 1.197
+      },
+      "anchor_exact": {
+        "HR": 1.121,
+        "fold": 1.187
+      },
+      "qp_l2": {
+        "HR": 0.906,
+        "fold": 1.043
+      },
+      "qp_roughness": {
+        "HR": 0.883,
+        "fold": 1.069
+      },
+      "qp_maxent": {
+        "HR": 0.902,
+        "fold": 1.047
+      },
+      "rp_qp": {
+        "HR": 0.906,
+        "fold": 1.043
+      },
+      "qp_ridge": {
+        "HR": 0.907,
+        "fold": 1.041
+      },
+      "qp_firth": {
+        "HR": 0.906,
+        "fold": 1.042
+      },
+      "qp_rmstH": {
+        "HR": 0.897,
+        "fold": 1.052
+      },
+      "maxent_ensemble": {
+        "HR": 0.906,
+        "fold": 1.043
+      },
+      "wasserstein_bary": {
+        "HR": 0.862,
+        "fold": 1.095
+      },
+      "rubin_pool": {
+        "HR": 0.909,
+        "fold": 1.039
+      }
+    },
+    {
+      "ds": "diabetic",
+      "tcga": false,
+      "n_exp": 197,
+      "n_ctl": 197,
+      "true_HR": 0.46,
+      "guyot": {
+        "HR": 0.405,
+        "fold": 1.138
+      },
+      "anchor_exact": {
+        "HR": 0.413,
+        "fold": 1.114
+      },
+      "qp_l2": {
+        "HR": 0.45,
+        "fold": 1.023
+      },
+      "qp_roughness": {
+        "HR": 0.46,
+        "fold": 1.001
+      },
+      "qp_maxent": {
+        "HR": 0.453,
+        "fold": 1.017
+      },
+      "rp_qp": {
+        "HR": 0.45,
+        "fold": 1.023
+      },
+      "qp_ridge": {
+        "HR": 0.455,
+        "fold": 1.012
+      },
+      "qp_firth": {
+        "HR": 0.452,
+        "fold": 1.019
+      },
+      "qp_rmstH": {
+        "HR": 0.39,
+        "fold": 1.18
+      },
+      "maxent_ensemble": {
+        "HR": 0.469,
+        "fold": 1.019
+      },
+      "wasserstein_bary": {
+        "HR": 0.251,
+        "fold": 1.836
+      },
+      "rubin_pool": {
+        "HR": 0.473,
+        "fold": 1.027
+      }
+    },
+    {
+      "ds": "nwtco",
+      "tcga": false,
+      "n_exp": 400,
+      "n_ctl": 400,
+      "true_HR": 6.418,
+      "guyot": {
+        "HR": 5.775,
+        "fold": 1.111
+      },
+      "anchor_exact": {
+        "HR": 5.775,
+        "fold": 1.111
+      },
+      "qp_l2": {
+        "HR": 6.4,
+        "fold": 1.003
+      },
+      "qp_roughness": {
+        "HR": 6.426,
+        "fold": 1.001
+      },
+      "qp_maxent": {
+        "HR": 6.415,
+        "fold": 1
+      },
+      "rp_qp": {
+        "HR": 6.4,
+        "fold": 1.003
+      },
+      "qp_ridge": {
+        "HR": 6.188,
+        "fold": 1.037
+      },
+      "qp_firth": {
+        "HR": 6.321,
+        "fold": 1.015
+      },
+      "qp_rmstH": {
+        "HR": 6.078,
+        "fold": 1.056
+      },
+      "maxent_ensemble": {
+        "HR": 7.544,
+        "fold": 1.175
+      },
+      "wasserstein_bary": {
+        "HR": 7.689,
+        "fold": 1.198
+      },
+      "rubin_pool": {
+        "HR": 7.495,
+        "fold": 1.168
+      }
+    },
+    {
+      "ds": "myeloid",
+      "tcga": false,
+      "n_exp": 329,
+      "n_ctl": 317,
+      "true_HR": 0.708,
+      "guyot": {
+        "HR": 0.615,
+        "fold": 1.15
+      },
+      "anchor_exact": {
+        "HR": 0.62,
+        "fold": 1.141
+      },
+      "qp_l2": {
+        "HR": 0.727,
+        "fold": 1.027
+      },
+      "qp_roughness": {
+        "HR": 0.719,
+        "fold": 1.015
+      },
+      "qp_maxent": {
+        "HR": 0.714,
+        "fold": 1.008
+      },
+      "rp_qp": {
+        "HR": 0.727,
+        "fold": 1.027
+      },
+      "qp_ridge": {
+        "HR": 0.728,
+        "fold": 1.029
+      },
+      "qp_firth": {
+        "HR": 0.727,
+        "fold": 1.027
+      },
+      "qp_rmstH": {
+        "HR": 0.71,
+        "fold": 1.003
+      },
+      "maxent_ensemble": {
+        "HR": 0.675,
+        "fold": 1.049
+      },
+      "wasserstein_bary": {
+        "HR": 0.707,
+        "fold": 1.002
+      },
+      "rubin_pool": {
+        "HR": 0.678,
+        "fold": 1.045
+      }
+    },
+    {
+      "ds": "kidtran",
+      "tcga": false,
+      "n_exp": 339,
+      "n_ctl": 400,
+      "true_HR": 0.856,
+      "guyot": {
+        "HR": 1.049,
+        "fold": 1.225
+      },
+      "anchor_exact": {
+        "HR": 1.051,
+        "fold": 1.227
+      },
+      "qp_l2": {
+        "HR": 0.804,
+        "fold": 1.065
+      },
+      "qp_roughness": {
+        "HR": 0.829,
+        "fold": 1.032
+      },
+      "qp_maxent": {
+        "HR": 0.858,
+        "fold": 1.002
+      },
+      "rp_qp": {
+        "HR": 0.804,
+        "fold": 1.065
+      },
+      "qp_ridge": {
+        "HR": 0.807,
+        "fold": 1.061
+      },
+      "qp_firth": {
+        "HR": 0.806,
+        "fold": 1.062
+      },
+      "qp_rmstH": {
+        "HR": 0.928,
+        "fold": 1.083
+      },
+      "maxent_ensemble": {
+        "HR": 0.806,
+        "fold": 1.063
+      },
+      "wasserstein_bary": {
+        "HR": 0.493,
+        "fold": 1.737
+      },
+      "rubin_pool": {
+        "HR": 0.805,
+        "fold": 1.063
+      }
+    },
+    {
+      "ds": "udca2",
+      "tcga": false,
+      "n_exp": 400,
+      "n_ctl": 400,
+      "true_HR": 0.441,
+      "guyot": {
+        "HR": 0.506,
+        "fold": 1.149
+      },
+      "anchor_exact": {
+        "HR": 0.506,
+        "fold": 1.148
+      },
+      "qp_l2": {
+        "HR": 0.36,
+        "fold": 1.224
+      },
+      "qp_roughness": {
+        "HR": 0.41,
+        "fold": 1.075
+      },
+      "qp_maxent": {
+        "HR": 0.406,
+        "fold": 1.084
+      },
+      "rp_qp": {
+        "HR": 0.36,
+        "fold": 1.224
+      },
+      "qp_ridge": {
+        "HR": 0.371,
+        "fold": 1.189
+      },
+      "qp_firth": {
+        "HR": 0.363,
+        "fold": 1.213
+      },
+      "qp_rmstH": {
+        "HR": 0.379,
+        "fold": 1.164
+      },
+      "maxent_ensemble": {
+        "HR": 0.368,
+        "fold": 1.199
+      },
+      "wasserstein_bary": {
+        "HR": 0.058,
+        "fold": 7.579
+      },
+      "rubin_pool": {
+        "HR": 0.368,
+        "fold": 1.197
+      }
+    },
+    {
+      "ds": "retinopathy",
+      "tcga": false,
+      "n_exp": 197,
+      "n_ctl": 197,
+      "true_HR": 0.46,
+      "guyot": {
+        "HR": 0.405,
+        "fold": 1.138
+      },
+      "anchor_exact": {
+        "HR": 0.413,
+        "fold": 1.114
+      },
+      "qp_l2": {
+        "HR": 0.45,
+        "fold": 1.023
+      },
+      "qp_roughness": {
+        "HR": 0.46,
+        "fold": 1.001
+      },
+      "qp_maxent": {
+        "HR": 0.453,
+        "fold": 1.017
+      },
+      "rp_qp": {
+        "HR": 0.45,
+        "fold": 1.023
+      },
+      "qp_ridge": {
+        "HR": 0.455,
+        "fold": 1.012
+      },
+      "qp_firth": {
+        "HR": 0.452,
+        "fold": 1.019
+      },
+      "qp_rmstH": {
+        "HR": 0.39,
+        "fold": 1.18
+      },
+      "maxent_ensemble": {
+        "HR": 0.471,
+        "fold": 1.024
+      },
+      "wasserstein_bary": {
+        "HR": 0.305,
+        "fold": 1.507
+      },
+      "rubin_pool": {
+        "HR": 0.472,
+        "fold": 1.026
+      }
+    },
+    {
+      "ds": "mgus2",
+      "tcga": false,
+      "n_exp": 400,
+      "n_ctl": 400,
+      "true_HR": 1.208,
+      "guyot": {
+        "HR": 1.435,
+        "fold": 1.188
+      },
+      "anchor_exact": {
+        "HR": 1.437,
+        "fold": 1.19
+      },
+      "qp_l2": {
+        "HR": 1.212,
+        "fold": 1.003
+      },
+      "qp_roughness": {
+        "HR": 1.2,
+        "fold": 1.006
+      },
+      "qp_maxent": {
+        "HR": 1.217,
+        "fold": 1.008
+      },
+      "rp_qp": {
+        "HR": 1.212,
+        "fold": 1.003
+      },
+      "qp_ridge": {
+        "HR": 1.211,
+        "fold": 1.003
+      },
+      "qp_firth": {
+        "HR": 1.212,
+        "fold": 1.003
+      },
+      "qp_rmstH": {
+        "HR": 1.187,
+        "fold": 1.017
+      },
+      "maxent_ensemble": {
+        "HR": 1.211,
+        "fold": 1.002
+      },
+      "wasserstein_bary": {
+        "HR": 1.09,
+        "fold": 1.108
+      },
+      "rubin_pool": {
+        "HR": 1.212,
+        "fold": 1.003
+      }
+    },
+    {
+      "ds": "flchain",
+      "tcga": false,
+      "n_exp": 400,
+      "n_ctl": 400,
+      "true_HR": 1.11,
+      "guyot": {
+        "HR": 0.925,
+        "fold": 1.2
+      },
+      "anchor_exact": {
+        "HR": 0.933,
+        "fold": 1.19
+      },
+      "qp_l2": {
+        "HR": 1.131,
+        "fold": 1.019
+      },
+      "qp_roughness": {
+        "HR": 1.122,
+        "fold": 1.011
+      },
+      "qp_maxent": {
+        "HR": 1.135,
+        "fold": 1.023
+      },
+      "rp_qp": {
+        "HR": 1.131,
+        "fold": 1.019
+      },
+      "qp_ridge": {
+        "HR": 1.13,
+        "fold": 1.018
+      },
+      "qp_firth": {
+        "HR": 1.131,
+        "fold": 1.019
+      },
+      "qp_rmstH": {
+        "HR": 1.156,
+        "fold": 1.041
+      },
+      "maxent_ensemble": {
+        "HR": 1.104,
+        "fold": 1.006
+      },
+      "wasserstein_bary": {
+        "HR": 0.844,
+        "fold": 1.315
+      },
+      "rubin_pool": {
+        "HR": 1.101,
+        "fold": 1.009
+      }
+    },
+    {
+      "ds": "nafld1",
+      "tcga": false,
+      "n_exp": 400,
+      "n_ctl": 400,
+      "true_HR": 1.509,
+      "guyot": {
+        "HR": 1.48,
+        "fold": 1.019
+      },
+      "anchor_exact": {
+        "HR": 1.477,
+        "fold": 1.022
+      },
+      "qp_l2": {
+        "HR": 1.516,
+        "fold": 1.005
+      },
+      "qp_roughness": {
+        "HR": 1.439,
+        "fold": 1.049
+      },
+      "qp_maxent": {
+        "HR": 1.455,
+        "fold": 1.037
+      },
+      "rp_qp": {
+        "HR": 1.516,
+        "fold": 1.005
+      },
+      "qp_ridge": {
+        "HR": 1.499,
+        "fold": 1.007
+      },
+      "qp_firth": {
+        "HR": 1.506,
+        "fold": 1.002
+      },
+      "qp_rmstH": {
+        "HR": 1.03,
+        "fold": 1.465
+      },
+      "maxent_ensemble": {
+        "HR": 2.053,
+        "fold": 1.361
+      },
+      "wasserstein_bary": {
+        "HR": 4.786,
+        "fold": 3.172
+      },
+      "rubin_pool": {
+        "HR": 2.048,
+        "fold": 1.358
+      }
+    },
+    {
+      "ds": "prostateSurvival",
+      "tcga": false,
+      "n_exp": 400,
+      "n_ctl": 400,
+      "true_HR": 4.631,
+      "guyot": {
+        "HR": 4.448,
+        "fold": 1.041
+      },
+      "anchor_exact": {
+        "HR": 4.457,
+        "fold": 1.039
+      },
+      "qp_l2": {
+        "HR": 4.468,
+        "fold": 1.037
+      },
+      "qp_roughness": {
+        "HR": 4.493,
+        "fold": 1.031
+      },
+      "qp_maxent": {
+        "HR": 4.415,
+        "fold": 1.049
+      },
+      "rp_qp": {
+        "HR": 4.468,
+        "fold": 1.037
+      },
+      "qp_ridge": {
+        "HR": 4.134,
+        "fold": 1.12
+      },
+      "qp_firth": {
+        "HR": 4.318,
+        "fold": 1.072
+      },
+      "qp_rmstH": {
+        "HR": 4.758,
+        "fold": 1.028
+      },
+      "maxent_ensemble": {
+        "HR": 5.499,
+        "fold": 1.187
+      },
+      "wasserstein_bary": {
+        "HR": 38.967,
+        "fold": 8.415
+      },
+      "rubin_pool": {
+        "HR": 5.466,
+        "fold": 1.18
+      }
+    },
+    {
+      "ds": "bmt",
+      "tcga": false,
+      "n_exp": 45,
+      "n_ctl": 38,
+      "true_HR": 1.491,
+      "guyot": {
+        "HR": 1.049,
+        "fold": 1.421
+      },
+      "anchor_exact": {
+        "HR": 1.041,
+        "fold": 1.432
+      },
+      "qp_l2": {
+        "HR": 1.331,
+        "fold": 1.12
+      },
+      "qp_roughness": {
+        "HR": 1.329,
+        "fold": 1.122
+      },
+      "qp_maxent": {
+        "HR": 1.331,
+        "fold": 1.12
+      },
+      "rp_qp": {
+        "HR": 1.331,
+        "fold": 1.12
+      },
+      "qp_ridge": {
+        "HR": 1.318,
+        "fold": 1.131
+      },
+      "qp_firth": {
+        "HR": 1.323,
+        "fold": 1.127
+      },
+      "qp_rmstH": {
+        "HR": 1.35,
+        "fold": 1.105
+      },
+      "maxent_ensemble": {
+        "HR": 1.301,
+        "fold": 1.146
+      },
+      "wasserstein_bary": {
+        "HR": 1.395,
+        "fold": 1.069
+      },
+      "rubin_pool": {
+        "HR": 1.298,
+        "fold": 1.149
+      }
+    },
+    {
+      "ds": "melanoma",
+      "tcga": false,
+      "n_exp": 90,
+      "n_ctl": 115,
+      "true_HR": 4.357,
+      "guyot": {
+        "HR": 4.351,
+        "fold": 1.001
+      },
+      "anchor_exact": {
+        "HR": 4.396,
+        "fold": 1.009
+      },
+      "qp_l2": {
+        "HR": 4.639,
+        "fold": 1.065
+      },
+      "qp_roughness": {
+        "HR": 4.383,
+        "fold": 1.006
+      },
+      "qp_maxent": {
+        "HR": 4.69,
+        "fold": 1.076
+      },
+      "rp_qp": {
+        "HR": 4.639,
+        "fold": 1.065
+      },
+      "qp_ridge": {
+        "HR": 4.353,
+        "fold": 1.001
+      },
+      "qp_firth": {
+        "HR": 4.554,
+        "fold": 1.045
+      },
+      "qp_rmstH": {
+        "HR": 4.063,
+        "fold": 1.072
+      },
+      "maxent_ensemble": {
+        "HR": 4.719,
+        "fold": 1.083
+      },
+      "wasserstein_bary": {
+        "HR": 19.293,
+        "fold": 4.428
+      },
+      "rubin_pool": {
+        "HR": 4.67,
+        "fold": 1.072
+      }
+    },
+    {
+      "ds": "pharmacoSmoking",
+      "tcga": false,
+      "n_exp": 56,
+      "n_ctl": 57,
+      "true_HR": 1.795,
+      "guyot": {
+        "HR": 1.641,
+        "fold": 1.093
+      },
+      "anchor_exact": {
+        "HR": 1.641,
+        "fold": 1.093
+      },
+      "qp_l2": {
+        "HR": 1.746,
+        "fold": 1.028
+      },
+      "qp_roughness": {
+        "HR": 1.746,
+        "fold": 1.028
+      },
+      "qp_maxent": {
+        "HR": 1.746,
+        "fold": 1.028
+      },
+      "rp_qp": {
+        "HR": 1.746,
+        "fold": 1.028
+      },
+      "qp_ridge": {
+        "HR": 1.721,
+        "fold": 1.043
+      },
+      "qp_firth": {
+        "HR": 1.739,
+        "fold": 1.032
+      },
+      "qp_rmstH": {
+        "HR": 1.682,
+        "fold": 1.067
+      },
+      "maxent_ensemble": {
+        "HR": 1.738,
+        "fold": 1.032
+      },
+      "wasserstein_bary": {
+        "HR": 2.388,
+        "fold": 1.331
+      },
+      "rubin_pool": {
+        "HR": 1.734,
+        "fold": 1.035
+      }
+    },
+    {
+      "ds": "gehan",
+      "tcga": false,
+      "n_exp": 21,
+      "n_ctl": 21,
+      "true_HR": 0.221,
+      "guyot": {
+        "HR": 0.126,
+        "fold": 1.754
+      },
+      "anchor_exact": {
+        "HR": 0.126,
+        "fold": 1.754
+      },
+      "qp_l2": {
+        "HR": 0.24,
+        "fold": 1.084
+      },
+      "qp_roughness": {
+        "HR": 0.236,
+        "fold": 1.065
+      },
+      "qp_maxent": {
+        "HR": 0.249,
+        "fold": 1.128
+      },
+      "rp_qp": {
+        "HR": 0.24,
+        "fold": 1.084
+      },
+      "qp_ridge": {
+        "HR": 0.27,
+        "fold": 1.219
+      },
+      "qp_firth": {
+        "HR": 0.248,
+        "fold": 1.122
+      },
+      "qp_rmstH": {
+        "HR": 0.21,
+        "fold": 1.055
+      },
+      "maxent_ensemble": {
+        "HR": 0.231,
+        "fold": 1.046
+      },
+      "wasserstein_bary": {
+        "HR": 0.232,
+        "fold": 1.049
+      },
+      "rubin_pool": {
+        "HR": 0.232,
+        "fold": 1.052
+      }
+    },
+    {
+      "ds": "tongue",
+      "tcga": false,
+      "n_exp": 28,
+      "n_ctl": 52,
+      "true_HR": 1.586,
+      "guyot": {
+        "HR": 2.09,
+        "fold": 1.318
+      },
+      "anchor_exact": {
+        "HR": 2.05,
+        "fold": 1.293
+      },
+      "qp_l2": {
+        "HR": 1.827,
+        "fold": 1.152
+      },
+      "qp_roughness": {
+        "HR": 1.764,
+        "fold": 1.112
+      },
+      "qp_maxent": {
+        "HR": 1.815,
+        "fold": 1.145
+      },
+      "rp_qp": {
+        "HR": 1.827,
+        "fold": 1.152
+      },
+      "qp_ridge": {
+        "HR": 1.785,
+        "fold": 1.126
+      },
+      "qp_firth": {
+        "HR": 1.838,
+        "fold": 1.159
+      },
+      "qp_rmstH": {
+        "HR": 1.643,
+        "fold": 1.036
+      },
+      "maxent_ensemble": {
+        "HR": 1.687,
+        "fold": 1.064
+      },
+      "wasserstein_bary": {
+        "HR": 1.893,
+        "fold": 1.194
+      },
+      "rubin_pool": {
+        "HR": 1.695,
+        "fold": 1.069
+      }
+    },
+    {
+      "ds": "cancer",
+      "tcga": false,
+      "n_exp": 90,
+      "n_ctl": 138,
+      "true_HR": 0.588,
+      "guyot": {
+        "HR": 0.567,
+        "fold": 1.038
+      },
+      "anchor_exact": {
+        "HR": 0.576,
+        "fold": 1.021
+      },
+      "qp_l2": {
+        "HR": 0.58,
+        "fold": 1.014
+      },
+      "qp_roughness": {
+        "HR": 0.527,
+        "fold": 1.117
+      },
+      "qp_maxent": {
+        "HR": 0.578,
+        "fold": 1.019
+      },
+      "rp_qp": {
+        "HR": 0.58,
+        "fold": 1.014
+      },
+      "qp_ridge": {
+        "HR": 0.584,
+        "fold": 1.007
+      },
+      "qp_firth": {
+        "HR": 0.583,
+        "fold": 1.009
+      },
+      "qp_rmstH": {
+        "HR": 0.7,
+        "fold": 1.189
+      },
+      "maxent_ensemble": {
+        "HR": 0.56,
+        "fold": 1.051
+      },
+      "wasserstein_bary": {
+        "HR": 0.61,
+        "fold": 1.036
+      },
+      "rubin_pool": {
+        "HR": 0.567,
+        "fold": 1.037
+      }
+    },
+    {
+      "ds": "ebmt3",
+      "tcga": false,
+      "n_exp": 276,
+      "n_ctl": 400,
+      "true_HR": 1.281,
+      "guyot": {
+        "HR": 1.172,
+        "fold": 1.094
+      },
+      "anchor_exact": {
+        "HR": 1.17,
+        "fold": 1.095
+      },
+      "qp_l2": {
+        "HR": 1.239,
+        "fold": 1.034
+      },
+      "qp_roughness": {
+        "HR": 1.316,
+        "fold": 1.027
+      },
+      "qp_maxent": {
+        "HR": 1.24,
+        "fold": 1.034
+      },
+      "rp_qp": {
+        "HR": 1.239,
+        "fold": 1.034
+      },
+      "qp_ridge": {
+        "HR": 1.237,
+        "fold": 1.035
+      },
+      "qp_firth": {
+        "HR": 1.24,
+        "fold": 1.033
+      },
+      "qp_rmstH": {
+        "HR": 1.053,
+        "fold": 1.217
+      },
+      "maxent_ensemble": {
+        "HR": 1.23,
+        "fold": 1.042
+      },
+      "wasserstein_bary": {
+        "HR": 1.381,
+        "fold": 1.078
+      },
+      "rubin_pool": {
+        "HR": 1.235,
+        "fold": 1.038
+      }
+    },
+    {
+      "ds": "aidssi",
+      "tcga": false,
+      "n_exp": 65,
+      "n_ctl": 259,
+      "true_HR": 0.291,
+      "guyot": {
+        "HR": 0.374,
+        "fold": 1.288
+      },
+      "anchor_exact": {
+        "HR": 0.369,
+        "fold": 1.271
+      },
+      "qp_l2": {
+        "HR": 0.268,
+        "fold": 1.085
+      },
+      "qp_roughness": {
+        "HR": 0.246,
+        "fold": 1.18
+      },
+      "qp_maxent": {
+        "HR": 0.266,
+        "fold": 1.094
+      },
+      "rp_qp": {
+        "HR": 0.268,
+        "fold": 1.085
+      },
+      "qp_ridge": {
+        "HR": 0.284,
+        "fold": 1.024
+      },
+      "qp_firth": {
+        "HR": 0.277,
+        "fold": 1.048
+      },
+      "qp_rmstH": {
+        "HR": 0.297,
+        "fold": 1.021
+      },
+      "maxent_ensemble": {
+        "HR": 0.27,
+        "fold": 1.075
+      },
+      "wasserstein_bary": {
+        "HR": 0.016,
+        "fold": 17.969
+      },
+      "rubin_pool": {
+        "HR": 0.268,
+        "fold": 1.085
+      }
+    },
+    {
+      "ds": "ebmt1",
+      "tcga": false,
+      "n_exp": 167,
+      "n_ctl": 400,
+      "true_HR": 3.928,
+      "guyot": {
+        "HR": 5.311,
+        "fold": 1.352
+      },
+      "anchor_exact": {
+        "HR": 5.301,
+        "fold": 1.35
+      },
+      "qp_l2": {
+        "HR": 3.716,
+        "fold": 1.057
+      },
+      "qp_roughness": {
+        "HR": 3.728,
+        "fold": 1.054
+      },
+      "qp_maxent": {
+        "HR": 3.751,
+        "fold": 1.047
+      },
+      "rp_qp": {
+        "HR": 3.716,
+        "fold": 1.057
+      },
+      "qp_ridge": {
+        "HR": 3.672,
+        "fold": 1.07
+      },
+      "qp_firth": {
+        "HR": 3.715,
+        "fold": 1.057
+      },
+      "qp_rmstH": {
+        "HR": 5.391,
+        "fold": 1.373
+      },
+      "maxent_ensemble": {
+        "HR": 3.521,
+        "fold": 1.116
+      },
+      "wasserstein_bary": {
+        "HR": 3.44,
+        "fold": 1.142
+      },
+      "rubin_pool": {
+        "HR": 3.581,
+        "fold": 1.097
+      }
+    },
+    {
+      "ds": "cgd_fe",
+      "tcga": false,
+      "n_exp": 63,
+      "n_ctl": 65,
+      "true_HR": 0.335,
+      "guyot": {
+        "HR": 0.381,
+        "fold": 1.137
+      },
+      "anchor_exact": {
+        "HR": 0.381,
+        "fold": 1.137
+      },
+      "qp_l2": {
+        "HR": 0.263,
+        "fold": 1.274
+      },
+      "qp_roughness": {
+        "HR": 0.261,
+        "fold": 1.285
+      },
+      "qp_maxent": {
+        "HR": 0.254,
+        "fold": 1.32
+      },
+      "rp_qp": {
+        "HR": 0.263,
+        "fold": 1.274
+      },
+      "qp_ridge": {
+        "HR": 0.281,
+        "fold": 1.19
+      },
+      "qp_firth": {
+        "HR": 0.268,
+        "fold": 1.251
+      },
+      "qp_rmstH": {
+        "HR": 0.327,
+        "fold": 1.024
+      },
+      "maxent_ensemble": {
+        "HR": 0.25,
+        "fold": 1.337
+      },
+      "wasserstein_bary": {
+        "HR": 0.039,
+        "fold": 8.53
+      },
+      "rubin_pool": {
+        "HR": 0.25,
+        "fold": 1.341
+      }
+    },
+    {
+      "ds": "bladder_fe",
+      "tcga": false,
+      "n_exp": 38,
+      "n_ctl": 47,
+      "true_HR": 0.696,
+      "guyot": {
+        "HR": 0.68,
+        "fold": 1.023
+      },
+      "anchor_exact": {
+        "HR": 0.677,
+        "fold": 1.028
+      },
+      "qp_l2": {
+        "HR": 0.68,
+        "fold": 1.023
+      },
+      "qp_roughness": {
+        "HR": 0.671,
+        "fold": 1.037
+      },
+      "qp_maxent": {
+        "HR": 0.674,
+        "fold": 1.033
+      },
+      "rp_qp": {
+        "HR": 0.68,
+        "fold": 1.023
+      },
+      "qp_ridge": {
+        "HR": 0.691,
+        "fold": 1.007
+      },
+      "qp_firth": {
+        "HR": 0.687,
+        "fold": 1.014
+      },
+      "qp_rmstH": {
+        "HR": 0.649,
+        "fold": 1.073
+      },
+      "maxent_ensemble": {
+        "HR": 0.702,
+        "fold": 1.008
+      },
+      "wasserstein_bary": {
+        "HR": 0.634,
+        "fold": 1.098
+      },
+      "rubin_pool": {
+        "HR": 0.696,
+        "fold": 1
+      }
+    },
+    {
+      "ds": "alloauto",
+      "tcga": false,
+      "n_exp": 50,
+      "n_ctl": 51,
+      "true_HR": 0.838,
+      "guyot": {
+        "HR": 0.715,
+        "fold": 1.173
+      },
+      "anchor_exact": {
+        "HR": 0.715,
+        "fold": 1.173
+      },
+      "qp_l2": {
+        "HR": 0.812,
+        "fold": 1.032
+      },
+      "qp_roughness": {
+        "HR": 0.84,
+        "fold": 1.002
+      },
+      "qp_maxent": {
+        "HR": 0.834,
+        "fold": 1.005
+      },
+      "rp_qp": {
+        "HR": 0.812,
+        "fold": 1.032
+      },
+      "qp_ridge": {
+        "HR": 0.819,
+        "fold": 1.024
+      },
+      "qp_firth": {
+        "HR": 0.816,
+        "fold": 1.027
+      },
+      "qp_rmstH": {
+        "HR": 0.676,
+        "fold": 1.241
+      },
+      "maxent_ensemble": {
+        "HR": 1.07,
+        "fold": 1.276
+      },
+      "wasserstein_bary": {
+        "HR": 0.734,
+        "fold": 1.143
+      },
+      "rubin_pool": {
+        "HR": 1.02,
+        "fold": 1.217
+      }
+    },
+    {
+      "ds": "larynx",
+      "tcga": false,
+      "n_exp": 27,
+      "n_ctl": 33,
+      "true_HR": 1.837,
+      "guyot": {
+        "HR": 1.926,
+        "fold": 1.048
+      },
+      "anchor_exact": {
+        "HR": 1.937,
+        "fold": 1.054
+      },
+      "qp_l2": {
+        "HR": 1.721,
+        "fold": 1.068
+      },
+      "qp_roughness": {
+        "HR": 1.754,
+        "fold": 1.048
+      },
+      "qp_maxent": {
+        "HR": 1.827,
+        "fold": 1.006
+      },
+      "rp_qp": {
+        "HR": 1.721,
+        "fold": 1.068
+      },
+      "qp_ridge": {
+        "HR": 1.668,
+        "fold": 1.102
+      },
+      "qp_firth": {
+        "HR": 1.718,
+        "fold": 1.07
+      },
+      "qp_rmstH": {
+        "HR": 1.339,
+        "fold": 1.372
+      },
+      "maxent_ensemble": {
+        "HR": 1.999,
+        "fold": 1.088
+      },
+      "wasserstein_bary": {
+        "HR": 1.562,
+        "fold": 1.176
+      },
+      "rubin_pool": {
+        "HR": 1.944,
+        "fold": 1.058
+      }
+    },
+    {
+      "ds": "burn",
+      "tcga": false,
+      "n_exp": 84,
+      "n_ctl": 70,
+      "true_HR": 0.571,
+      "guyot": {
+        "HR": 0.553,
+        "fold": 1.033
+      },
+      "anchor_exact": {
+        "HR": 0.553,
+        "fold": 1.033
+      },
+      "qp_l2": {
+        "HR": 0.575,
+        "fold": 1.007
+      },
+      "qp_roughness": {
+        "HR": 0.594,
+        "fold": 1.04
+      },
+      "qp_maxent": {
+        "HR": 0.605,
+        "fold": 1.059
+      },
+      "rp_qp": {
+        "HR": 0.575,
+        "fold": 1.007
+      },
+      "qp_ridge": {
+        "HR": 0.588,
+        "fold": 1.03
+      },
+      "qp_firth": {
+        "HR": 0.579,
+        "fold": 1.014
+      },
+      "qp_rmstH": {
+        "HR": 0.299,
+        "fold": 1.908
+      },
+      "maxent_ensemble": {
+        "HR": 0.514,
+        "fold": 1.111
+      },
+      "wasserstein_bary": {
+        "HR": 0.237,
+        "fold": 2.406
+      },
+      "rubin_pool": {
+        "HR": 0.514,
+        "fold": 1.112
+      }
+    },
+    {
+      "ds": "pneumon",
+      "tcga": false,
+      "n_exp": 400,
+      "n_ctl": 400,
+      "true_HR": 2.381,
+      "guyot": {
+        "HR": 2.458,
+        "fold": 1.032
+      },
+      "anchor_exact": {
+        "HR": 2.453,
+        "fold": 1.03
+      },
+      "qp_l2": {
+        "HR": 2.391,
+        "fold": 1.004
+      },
+      "qp_roughness": {
+        "HR": 2.385,
+        "fold": 1.002
+      },
+      "qp_maxent": {
+        "HR": 2.373,
+        "fold": 1.003
+      },
+      "rp_qp": {
+        "HR": 2.391,
+        "fold": 1.004
+      },
+      "qp_ridge": {
+        "HR": 2.21,
+        "fold": 1.077
+      },
+      "qp_firth": {
+        "HR": 2.297,
+        "fold": 1.036
+      },
+      "qp_rmstH": {
+        "HR": 2.479,
+        "fold": 1.041
+      },
+      "maxent_ensemble": {
+        "HR": 2.684,
+        "fold": 1.127
+      },
+      "wasserstein_bary": {
+        "HR": 2.512,
+        "fold": 1.055
+      },
+      "rubin_pool": {
+        "HR": 2.757,
+        "fold": 1.158
+      }
+    },
+    {
+      "ds": "bfeed",
+      "tcga": false,
+      "n_exp": 270,
+      "n_ctl": 400,
+      "true_HR": 1.166,
+      "guyot": {
+        "HR": 1.781,
+        "fold": 1.527
+      },
+      "anchor_exact": {
+        "HR": 1.781,
+        "fold": 1.527
+      },
+      "qp_l2": {
+        "HR": 1.209,
+        "fold": 1.036
+      },
+      "qp_roughness": {
+        "HR": 1.206,
+        "fold": 1.034
+      },
+      "qp_maxent": {
+        "HR": 1.195,
+        "fold": 1.025
+      },
+      "rp_qp": {
+        "HR": 1.209,
+        "fold": 1.036
+      },
+      "qp_ridge": {
+        "HR": 1.208,
+        "fold": 1.036
+      },
+      "qp_firth": {
+        "HR": 1.21,
+        "fold": 1.037
+      },
+      "qp_rmstH": {
+        "HR": 1.129,
+        "fold": 1.034
+      },
+      "maxent_ensemble": {
+        "HR": 1.222,
+        "fold": 1.048
+      },
+      "wasserstein_bary": {
+        "HR": 1.187,
+        "fold": 1.018
+      },
+      "rubin_pool": {
+        "HR": 1.225,
+        "fold": 1.05
+      }
+    },
+    {
+      "ds": "hepatoCellular",
+      "tcga": false,
+      "n_exp": 41,
+      "n_ctl": 186,
+      "true_HR": 2.18,
+      "guyot": {
+        "HR": 2.249,
+        "fold": 1.032
+      },
+      "anchor_exact": {
+        "HR": 2.232,
+        "fold": 1.024
+      },
+      "qp_l2": {
+        "HR": 1.973,
+        "fold": 1.105
+      },
+      "qp_roughness": {
+        "HR": 2.113,
+        "fold": 1.032
+      },
+      "qp_maxent": {
+        "HR": 2.067,
+        "fold": 1.055
+      },
+      "rp_qp": {
+        "HR": 1.973,
+        "fold": 1.105
+      },
+      "qp_ridge": {
+        "HR": 1.937,
+        "fold": 1.126
+      },
+      "qp_firth": {
+        "HR": 2,
+        "fold": 1.09
+      },
+      "qp_rmstH": {
+        "HR": 1.525,
+        "fold": 1.43
+      },
+      "maxent_ensemble": {
+        "HR": 2.552,
+        "fold": 1.171
+      },
+      "wasserstein_bary": {
+        "HR": 1.897,
+        "fold": 1.149
+      },
+      "rubin_pool": {
+        "HR": 2.537,
+        "fold": 1.164
+      }
+    },
+    {
+      "ds": "cbio_luad",
+      "tcga": true,
+      "n_exp": 105,
+      "n_ctl": 394,
+      "true_HR": 2.65,
+      "guyot": {
+        "HR": 4.039,
+        "fold": 1.524
+      },
+      "anchor_exact": {
+        "HR": 4.039,
+        "fold": 1.524
+      },
+      "qp_l2": {
+        "HR": 2.668,
+        "fold": 1.006
+      },
+      "qp_roughness": {
+        "HR": 2.724,
+        "fold": 1.028
+      },
+      "qp_maxent": {
+        "HR": 2.672,
+        "fold": 1.008
+      },
+      "rp_qp": {
+        "HR": 2.668,
+        "fold": 1.006
+      },
+      "qp_ridge": {
+        "HR": 2.638,
+        "fold": 1.005
+      },
+      "qp_firth": {
+        "HR": 2.678,
+        "fold": 1.01
+      },
+      "qp_rmstH": {
+        "HR": 2.408,
+        "fold": 1.101
+      },
+      "maxent_ensemble": {
+        "HR": 2.692,
+        "fold": 1.016
+      },
+      "wasserstein_bary": {
+        "HR": 2.473,
+        "fold": 1.072
+      },
+      "rubin_pool": {
+        "HR": 2.659,
+        "fold": 1.003
+      }
+    },
+    {
+      "ds": "cbio_coadread",
+      "tcga": true,
+      "n_exp": 247,
+      "n_ctl": 309,
+      "true_HR": 3.107,
+      "guyot": {
+        "HR": 3.107,
+        "fold": 1
+      },
+      "anchor_exact": {
+        "HR": 3.117,
+        "fold": 1.003
+      },
+      "qp_l2": {
+        "HR": 3.275,
+        "fold": 1.054
+      },
+      "qp_roughness": {
+        "HR": 3.185,
+        "fold": 1.025
+      },
+      "qp_maxent": {
+        "HR": 3.172,
+        "fold": 1.021
+      },
+      "rp_qp": {
+        "HR": 3.275,
+        "fold": 1.054
+      },
+      "qp_ridge": {
+        "HR": 3.202,
+        "fold": 1.03
+      },
+      "qp_firth": {
+        "HR": 3.257,
+        "fold": 1.048
+      },
+      "qp_rmstH": {
+        "HR": 2.404,
+        "fold": 1.293
+      },
+      "maxent_ensemble": {
+        "HR": 2.137,
+        "fold": 1.454
+      },
+      "wasserstein_bary": {
+        "HR": 1.581,
+        "fold": 1.966
+      },
+      "rubin_pool": {
+        "HR": 2.153,
+        "fold": 1.443
+      }
+    },
+    {
+      "ds": "cbio_stad",
+      "tcga": true,
+      "n_exp": 224,
+      "n_ctl": 183,
+      "true_HR": 2.194,
+      "guyot": {
+        "HR": 2.27,
+        "fold": 1.034
+      },
+      "anchor_exact": {
+        "HR": 2.255,
+        "fold": 1.028
+      },
+      "qp_l2": {
+        "HR": 2.308,
+        "fold": 1.052
+      },
+      "qp_roughness": {
+        "HR": 2.297,
+        "fold": 1.047
+      },
+      "qp_maxent": {
+        "HR": 2.304,
+        "fold": 1.05
+      },
+      "rp_qp": {
+        "HR": 2.308,
+        "fold": 1.052
+      },
+      "qp_ridge": {
+        "HR": 2.282,
+        "fold": 1.04
+      },
+      "qp_firth": {
+        "HR": 2.296,
+        "fold": 1.046
+      },
+      "qp_rmstH": {
+        "HR": 2.193,
+        "fold": 1
+      },
+      "maxent_ensemble": {
+        "HR": 2.258,
+        "fold": 1.029
+      },
+      "wasserstein_bary": {
+        "HR": 2.174,
+        "fold": 1.009
+      },
+      "rubin_pool": {
+        "HR": 2.225,
+        "fold": 1.014
+      }
+    },
+    {
+      "ds": "cbio_kirc",
+      "tcga": true,
+      "n_exp": 209,
+      "n_ctl": 301,
+      "true_HR": 4.052,
+      "guyot": {
+        "HR": 5.006,
+        "fold": 1.235
+      },
+      "anchor_exact": {
+        "HR": 5.023,
+        "fold": 1.24
+      },
+      "qp_l2": {
+        "HR": 4.279,
+        "fold": 1.056
+      },
+      "qp_roughness": {
+        "HR": 4.374,
+        "fold": 1.08
+      },
+      "qp_maxent": {
+        "HR": 4.244,
+        "fold": 1.047
+      },
+      "rp_qp": {
+        "HR": 4.279,
+        "fold": 1.056
+      },
+      "qp_ridge": {
+        "HR": 4.194,
+        "fold": 1.035
+      },
+      "qp_firth": {
+        "HR": 4.256,
+        "fold": 1.05
+      },
+      "qp_rmstH": {
+        "HR": 2.253,
+        "fold": 1.798
+      },
+      "maxent_ensemble": {
+        "HR": 3.436,
+        "fold": 1.179
+      },
+      "wasserstein_bary": {
+        "HR": 2.967,
+        "fold": 1.366
+      },
+      "rubin_pool": {
+        "HR": 3.696,
+        "fold": 1.096
+      }
+    },
+    {
+      "ds": "cbio_hnsc",
+      "tcga": true,
+      "n_exp": 349,
+      "n_ctl": 103,
+      "true_HR": 1.762,
+      "guyot": {
+        "HR": 1.504,
+        "fold": 1.171
+      },
+      "anchor_exact": {
+        "HR": 1.488,
+        "fold": 1.184
+      },
+      "qp_l2": {
+        "HR": 1.67,
+        "fold": 1.055
+      },
+      "qp_roughness": {
+        "HR": 1.701,
+        "fold": 1.036
+      },
+      "qp_maxent": {
+        "HR": 1.634,
+        "fold": 1.078
+      },
+      "rp_qp": {
+        "HR": 1.67,
+        "fold": 1.055
+      },
+      "qp_ridge": {
+        "HR": 1.658,
+        "fold": 1.063
+      },
+      "qp_firth": {
+        "HR": 1.655,
+        "fold": 1.064
+      },
+      "qp_rmstH": {
+        "HR": 1.732,
+        "fold": 1.017
+      },
+      "maxent_ensemble": {
+        "HR": 1.599,
+        "fold": 1.102
+      },
+      "wasserstein_bary": {
+        "HR": 1.392,
+        "fold": 1.266
+      },
+      "rubin_pool": {
+        "HR": 1.571,
+        "fold": 1.122
+      }
+    },
+    {
+      "ds": "cbio_skcm",
+      "tcga": true,
+      "n_exp": 188,
+      "n_ctl": 203,
+      "true_HR": 1.67,
+      "guyot": {
+        "HR": 1.801,
+        "fold": 1.078
+      },
+      "anchor_exact": {
+        "HR": 1.802,
+        "fold": 1.079
+      },
+      "qp_l2": {
+        "HR": 1.815,
+        "fold": 1.086
+      },
+      "qp_roughness": {
+        "HR": 1.785,
+        "fold": 1.069
+      },
+      "qp_maxent": {
+        "HR": 1.809,
+        "fold": 1.083
+      },
+      "rp_qp": {
+        "HR": 1.815,
+        "fold": 1.086
+      },
+      "qp_ridge": {
+        "HR": 1.803,
+        "fold": 1.079
+      },
+      "qp_firth": {
+        "HR": 1.814,
+        "fold": 1.086
+      },
+      "qp_rmstH": {
+        "HR": 1.588,
+        "fold": 1.052
+      },
+      "maxent_ensemble": {
+        "HR": 1.615,
+        "fold": 1.034
+      },
+      "wasserstein_bary": {
+        "HR": 1.446,
+        "fold": 1.155
+      },
+      "rubin_pool": {
+        "HR": 1.621,
+        "fold": 1.031
+      }
+    },
+    {
+      "ds": "cbio_blca",
+      "tcga": true,
+      "n_exp": 276,
+      "n_ctl": 131,
+      "true_HR": 2.234,
+      "guyot": {
+        "HR": 2.152,
+        "fold": 1.038
+      },
+      "anchor_exact": {
+        "HR": 2.169,
+        "fold": 1.03
+      },
+      "qp_l2": {
+        "HR": 2.268,
+        "fold": 1.015
+      },
+      "qp_roughness": {
+        "HR": 2.24,
+        "fold": 1.003
+      },
+      "qp_maxent": {
+        "HR": 2.2,
+        "fold": 1.015
+      },
+      "rp_qp": {
+        "HR": 2.268,
+        "fold": 1.015
+      },
+      "qp_ridge": {
+        "HR": 2.238,
+        "fold": 1.002
+      },
+      "qp_firth": {
+        "HR": 2.247,
+        "fold": 1.005
+      },
+      "qp_rmstH": {
+        "HR": 2.159,
+        "fold": 1.035
+      },
+      "maxent_ensemble": {
+        "HR": 2.116,
+        "fold": 1.056
+      },
+      "wasserstein_bary": {
+        "HR": 1.574,
+        "fold": 1.42
+      },
+      "rubin_pool": {
+        "HR": 2.018,
+        "fold": 1.107
+      }
+    },
+    {
+      "ds": "cbio_lusc",
+      "tcga": true,
+      "n_exp": 89,
+      "n_ctl": 388,
+      "true_HR": 1.636,
+      "guyot": {
+        "HR": 2.214,
+        "fold": 1.353
+      },
+      "anchor_exact": {
+        "HR": 2.194,
+        "fold": 1.341
+      },
+      "qp_l2": {
+        "HR": 1.659,
+        "fold": 1.014
+      },
+      "qp_roughness": {
+        "HR": 1.646,
+        "fold": 1.006
+      },
+      "qp_maxent": {
+        "HR": 1.683,
+        "fold": 1.029
+      },
+      "rp_qp": {
+        "HR": 1.659,
+        "fold": 1.014
+      },
+      "qp_ridge": {
+        "HR": 1.648,
+        "fold": 1.008
+      },
+      "qp_firth": {
+        "HR": 1.671,
+        "fold": 1.021
+      },
+      "qp_rmstH": {
+        "HR": 1.649,
+        "fold": 1.008
+      },
+      "maxent_ensemble": {
+        "HR": 1.543,
+        "fold": 1.06
+      },
+      "wasserstein_bary": {
+        "HR": 1.418,
+        "fold": 1.154
+      },
+      "rubin_pool": {
+        "HR": 1.554,
+        "fold": 1.053
+      }
+    },
+    {
+      "ds": "cbio_esca",
+      "tcga": true,
+      "n_exp": 64,
+      "n_ctl": 96,
+      "true_HR": 3.099,
+      "guyot": {
+        "HR": 6.346,
+        "fold": 2.048
+      },
+      "anchor_exact": {
+        "HR": 5.872,
+        "fold": 1.895
+      },
+      "qp_l2": {
+        "HR": 3.09,
+        "fold": 1.003
+      },
+      "qp_roughness": {
+        "HR": 3.126,
+        "fold": 1.009
+      },
+      "qp_maxent": {
+        "HR": 3.091,
+        "fold": 1.002
+      },
+      "rp_qp": {
+        "HR": 3.09,
+        "fold": 1.003
+      },
+      "qp_ridge": {
+        "HR": 2.981,
+        "fold": 1.039
+      },
+      "qp_firth": {
+        "HR": 3.079,
+        "fold": 1.006
+      },
+      "qp_rmstH": {
+        "HR": 3.333,
+        "fold": 1.076
+      },
+      "maxent_ensemble": {
+        "HR": 3.42,
+        "fold": 1.104
+      },
+      "wasserstein_bary": {
+        "HR": 4.042,
+        "fold": 1.304
+      },
+      "rubin_pool": {
+        "HR": 3.43,
+        "fold": 1.107
+      }
+    },
+    {
+      "ds": "cbio_lihc",
+      "tcga": true,
+      "n_exp": 88,
+      "n_ctl": 257,
+      "true_HR": 2.336,
+      "guyot": {
+        "HR": 2.847,
+        "fold": 1.218
+      },
+      "anchor_exact": {
+        "HR": 2.851,
+        "fold": 1.22
+      },
+      "qp_l2": {
+        "HR": 2.453,
+        "fold": 1.05
+      },
+      "qp_roughness": {
+        "HR": 2.486,
+        "fold": 1.064
+      },
+      "qp_maxent": {
+        "HR": 2.5,
+        "fold": 1.07
+      },
+      "rp_qp": {
+        "HR": 2.453,
+        "fold": 1.05
+      },
+      "qp_ridge": {
+        "HR": 2.419,
+        "fold": 1.035
+      },
+      "qp_firth": {
+        "HR": 2.46,
+        "fold": 1.053
+      },
+      "qp_rmstH": {
+        "HR": 2.605,
+        "fold": 1.115
+      },
+      "maxent_ensemble": {
+        "HR": 2.358,
+        "fold": 1.009
+      },
+      "wasserstein_bary": {
+        "HR": 2.483,
+        "fold": 1.063
+      },
+      "rubin_pool": {
+        "HR": 2.372,
+        "fold": 1.015
+      }
+    },
+    {
+      "ds": "cbio_kirp",
+      "tcga": true,
+      "n_exp": 64,
+      "n_ctl": 189,
+      "true_HR": 6.13,
+      "guyot": {
+        "HR": 6.992,
+        "fold": 1.141
+      },
+      "anchor_exact": {
+        "HR": 6.887,
+        "fold": 1.123
+      },
+      "qp_l2": {
+        "HR": 15.596,
+        "fold": 2.544
+      },
+      "qp_roughness": {
+        "HR": 14.62,
+        "fold": 2.385
+      },
+      "qp_maxent": {
+        "HR": 16.468,
+        "fold": 2.686
+      },
+      "rp_qp": {
+        "HR": 15.596,
+        "fold": 2.544
+      },
+      "qp_ridge": {
+        "HR": 12.457,
+        "fold": 2.032
+      },
+      "qp_firth": {
+        "HR": 14.852,
+        "fold": 2.423
+      },
+      "qp_rmstH": {
+        "HR": 12.287,
+        "fold": 2.004
+      },
+      "maxent_ensemble": {
+        "HR": 9.351,
+        "fold": 1.525
+      },
+      "wasserstein_bary": {
+        "HR": 4.292,
+        "fold": 1.428
+      },
+      "rubin_pool": {
+        "HR": 8.645,
+        "fold": 1.41
+      }
+    },
+    {
+      "ds": "cbio_acc",
+      "tcga": true,
+      "n_exp": 35,
+      "n_ctl": 53,
+      "true_HR": 7.59,
+      "guyot": {
+        "HR": 6.34,
+        "fold": 1.197
+      },
+      "anchor_exact": {
+        "HR": 6.34,
+        "fold": 1.197
+      },
+      "qp_l2": {
+        "HR": 5.664,
+        "fold": 1.34
+      },
+      "qp_roughness": {
+        "HR": 9.318,
+        "fold": 1.228
+      },
+      "qp_maxent": {
+        "HR": 6.489,
+        "fold": 1.17
+      },
+      "rp_qp": {
+        "HR": 5.664,
+        "fold": 1.34
+      },
+      "qp_ridge": {
+        "HR": 4.997,
+        "fold": 1.519
+      },
+      "qp_firth": {
+        "HR": 5.49,
+        "fold": 1.382
+      },
+      "qp_rmstH": {
+        "HR": 3.622,
+        "fold": 2.095
+      },
+      "maxent_ensemble": {
+        "HR": 5.592,
+        "fold": 1.357
+      },
+      "wasserstein_bary": {
+        "HR": 6.082,
+        "fold": 1.248
+      },
+      "rubin_pool": {
+        "HR": 6.204,
+        "fold": 1.223
+      }
+    },
+    {
+      "ds": "cbio_brca",
+      "tcga": true,
+      "n_exp": 264,
+      "n_ctl": 400,
+      "true_HR": 2.228,
+      "guyot": {
+        "HR": 2.988,
+        "fold": 1.341
+      },
+      "anchor_exact": {
+        "HR": 2.988,
+        "fold": 1.341
+      },
+      "qp_l2": {
+        "HR": 2.292,
+        "fold": 1.029
+      },
+      "qp_roughness": {
+        "HR": 2.211,
+        "fold": 1.008
+      },
+      "qp_maxent": {
+        "HR": 2.289,
+        "fold": 1.027
+      },
+      "rp_qp": {
+        "HR": 2.292,
+        "fold": 1.029
+      },
+      "qp_ridge": {
+        "HR": 2.267,
+        "fold": 1.017
+      },
+      "qp_firth": {
+        "HR": 2.291,
+        "fold": 1.028
+      },
+      "qp_rmstH": {
+        "HR": 2.085,
+        "fold": 1.069
+      },
+      "maxent_ensemble": {
+        "HR": 1.264,
+        "fold": 1.763
+      },
+      "wasserstein_bary": {
+        "HR": 0.944,
+        "fold": 2.361
+      },
+      "rubin_pool": {
+        "HR": 1.251,
+        "fold": 1.781
+      }
+    },
+    {
+      "ds": "cbio_meso",
+      "tcga": true,
+      "n_exp": 60,
+      "n_ctl": 25,
+      "true_HR": 0.992,
+      "guyot": {
+        "HR": 1.124,
+        "fold": 1.132
+      },
+      "anchor_exact": {
+        "HR": 1.124,
+        "fold": 1.133
+      },
+      "qp_l2": {
+        "HR": 1.118,
+        "fold": 1.127
+      },
+      "qp_roughness": {
+        "HR": 1.092,
+        "fold": 1.1
+      },
+      "qp_maxent": {
+        "HR": 1.097,
+        "fold": 1.105
+      },
+      "rp_qp": {
+        "HR": 1.118,
+        "fold": 1.127
+      },
+      "qp_ridge": {
+        "HR": 1.114,
+        "fold": 1.122
+      },
+      "qp_firth": {
+        "HR": 1.103,
+        "fold": 1.111
+      },
+      "qp_rmstH": {
+        "HR": 1.652,
+        "fold": 1.665
+      },
+      "maxent_ensemble": {
+        "HR": 0.961,
+        "fold": 1.033
+      },
+      "wasserstein_bary": {
+        "HR": 1.144,
+        "fold": 1.153
+      },
+      "rubin_pool": {
+        "HR": 0.959,
+        "fold": 1.035
+      }
+    }
+  ]
+}

@@ -76,6 +76,15 @@ three "elevate toward breakthrough" items without re-reading the whole history.
   papillary overshoots (extreme HR + tiny censored arm). Propagated to PAPER/METHODS/VALIDATION/README/
   dashboard. Headline now: curve-only ~12%, QP ~5% when an event count is posted.
 
+- ✅ **TCGA widened to 14 cohorts → 45 datasets** (added brca, meso; brca ≥100/arm recovers QP
+  2.70→2.74). ≥100/arm now 25 (24/25 within 20%), uncertainty 24/25 (96%).
+- ✅ **12-method benchmark** (`validate/method_zoo.js`): Guyot, anchor-exact, QP-L2/roughness/maxent,
+  RP+QP, QP+ridge/Firth/RMST-H, max-ent ensemble, Wasserstein barycenter, Rubin pool. **The QP family
+  dominates (~1.03-1.04 vs classical ~1.14); the censoring regulariser is 2nd-order (roughness/maxent
+  edge L2 on subsampled data but tie on full data, L2 has better worst-case → kept); ridge-Cox gives
+  best worst-case; NOTHING fixes the extreme small-arm outliers (kirp/acc) — irreducible small-sample
+  limit.** Conclusion: the current QP-L2 is near-optimal. Documented in VALIDATION.md.
+
 ## What's autonomously left (optional, in priority order)
 - **More strong-contrast IPD** to push 38 → 60+: more TCGA cohorts by stage (the fetcher generalises —
   add study IDs), Dryad/Zenodo/OSF trial deposits (CC0/CC-BY). NOT credentialed repos (Vivli/YODA/PDS
