@@ -112,6 +112,20 @@
   </div>
 
   <section class="panel">
+    <h2>Real pixel pipeline (kmcurve) — the at-risk table is the lever, not the pixels</h2>
+    <div class="note">Replacing the simulated digitizer with an <b>actual raster extractor</b> (the sibling
+      <code>kmcurve</code> project: render → dark-curve pixel cloud → arm separation → Guyot) on the
+      gold-standard curves. A real pixel extractor recovers the HR to <b>~9% (9/10 within 20%) only when
+      the number-at-risk table is supplied</b>; <b>without it the median is 1.30, p90 18.7×, with HR
+      inversions</b> — unusable. Same conclusion from the opposite direction: the binding constraint is the
+      <b>at-risk / anchor information, not the pixel reading</b>. <code>real_pipeline_headtohead_results.json</code>.</div>
+    <div class="grid2" style="align-items:center">
+      <svg id="realpipe" viewBox="0 0 460 280"></svg>
+      <div id="realpipeStats"></div>
+    </div>
+  </section>
+
+  <section class="panel">
     <h2>Real cancer cohorts (TCGA) — why the event-count tier matters</h2>
     <div class="note">14 real TCGA overall-survival cohorts (open cBioPortal API,
       <code>fetch_cbioportal.js</code>) split by <b>late vs early stage</b> — a strong contrast (true HR
@@ -297,6 +311,25 @@ function R(s,x,y,w,h,c){var e=el('rect');e.setAttribute('x',x);e.setAttribute('y
  line(1,'#3fb950','registry exact',18);
  line(2,'#f778ba','digitized K=8',32);
  line(3,'#d29922','digitized K=25',46);
+})();
+// real pixel pipeline (kmcurve): median HR fold-error, curve-only vs censoring-informed (+at-risk)
+(function(){var s=document.getElementById('realpipe'),W=460,H=280,p=46;var ymax=2.0;
+ var bars=[['curve-only\\n(no at-risk)',1.30,'#f85149'],['censoring-informed\\n(+ at-risk table)',1.09,'#3fb950']];
+ var Y=function(v){return H-p-(Math.min(v,ymax)-1)/(ymax-1)*(H-p-30);};
+ [1.0,1.25,1.5,1.75,2.0].forEach(function(v){L(s,p,Y(v),W-14,Y(v),'#1b2129',1);T(s,p-6,Y(v)+3,v.toFixed(2),'#8b949e','end',10);});
+ var gw=(W-p-14)/bars.length;
+ bars.forEach(function(b,i){var gx=p+i*gw;R(s,gx+gw*0.22,Y(b[1]),gw*0.56,H-p-Y(b[1]),b[2]);
+   T(s,gx+gw*0.5,Y(b[1])-5,b[1].toFixed(2),'#e6edf3','middle',12);
+   b[0].split('\\n').forEach(function(ln,j){T(s,gx+gw*0.5,H-p+15+j*12,ln,'#8b949e','middle',10);});});
+ T(s,14,12,'median HR fold-error','#8b949e','start',11);
+ T(s,W-14,12,'curve-only p90 = 18.7× (off chart)','#f85149','end',9);
+})();
+(function(){var d=document.getElementById('realpipeStats');
+ function row(big,lab,col){return '<div style="margin:0 0 12px"><div style="font-size:26px;font-weight:700;color:'+(col||'#e6edf3')+'">'+big+'</div><div class="mut" style="font-size:12px">'+lab+'</div></div>';}
+ d.innerHTML=row('1.30 → 1.09','median fold: real pixels, +at-risk table','#3fb950')
+   +row('2/10 → 9/10','within 20% (the at-risk table is the lever)','#58a6ff')
+   +row('18.7× → 1.5×','p90 fold-error collapses with at-risk','#d29922')
+   +row('real raster','kmcurve extractor, not a noise model','#8b949e');
 })();
 // TCGA stage cohorts: HR fold-error, curve-only vs censoring-informed (Titman QP). [label,curve,QP]
 var CBIO=[['luad',1.02,1.01],['skcm',1.02,1.09],['lusc',1.04,1.01],['meso',1.21,1.13],['lihc',1.24,1.05],

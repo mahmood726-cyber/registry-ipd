@@ -23,8 +23,10 @@ AACT-only reconstruction uses the exact registry anchors (zero digitization erro
 with full provenance; elsewhere it degrades explicitly via tiered verdicts.* See **`VALIDATION.md`**
 for what is and isn't validated — in short: HR recovery ~12% median / ~83–94% within the registry CI
 (n≈18, not significant between methods); RMST/median "fidelity" numbers are **round-trip
-self-consistency, not external accuracy**; a real curve-vs-digitization head-to-head has not been run
-(the only such figure is a self-graded synthetic benchmark).
+self-consistency, not external accuracy**; the curve-vs-digitization head-to-head has now been run with
+a **real raster extractor** (the `kmcurve` pipeline on rendered gold-standard curves, `HEADTOHEAD.md`)
+— it recovers the HR to ~9% only with the at-risk table, confirming the at-risk information (not the
+pixels) is the binding constraint.
 
 ## How it works (two pieces)
 
@@ -51,8 +53,8 @@ fetches — it reads the harvested JSON).
   recursion is *linear* in the unknown censoring counts and the event count is a *linear* constraint;
   the leftover censoring degree-of-freedom is resolved by a convex QP (`min ½‖c‖²`) with a closed-form
   solution. Events are spread within intervals so the at-risk sets — and the Cox HR — are correct.
-  **Validated-best: gold-standard HR fold-error 1.05 vs 1.15 for the previous method** (23/24 within
-  20%). See `validate/titman_qp.js`.
+  **Validated-best: gold-standard HR fold-error 1.04 vs 1.15 for the previous method** (28/29 within
+  20% across 51 true-IPD datasets). See `validate/titman_qp.js`.
 
 When no event count is posted (curve-only), Tier A runs **two reconstructions and keeps the one that
 fits the registry curve best**, by the **1-Wasserstein (L1-area) distance** to the registry KM step:
@@ -73,7 +75,10 @@ data availability.)
 > a **self-graded methodology demonstration** — the "digitized" comparator is the same anchors plus
 > injected noise, both reconstructed by the same engine and graded against the anchors, so AACT-only
 > (given the exact anchors) wins *by construction*. It illustrates the mechanism; it is **not** a
-> real-trial head-to-head (that comparison has not been run on actual digitized publications).
+> real-trial head-to-head. The genuine comparison — a real raster extractor (`kmcurve`) on rendered
+> gold-standard curves — *has* now been run (`HEADTOHEAD.md`): it needs the at-risk table to reach ~9%
+> and is unusable without it, confirming the at-risk information is the lever. (Still pending: the same
+> on messy *real* publication figures, which add colour/overlap/OCR error the controlled render omits.)
 
 > Upgrade path (documented, not yet shipped): **Royston–Parmar flexible parametric (spline) models**
 > for Tier B in place of the exponential, and a Wasserstein-barycenter ensemble across methods.

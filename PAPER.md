@@ -190,6 +190,16 @@ error**: it is competitive with and cleaner than digitisation *only when enough 
 shape; reconstruct natively from the registry for exactness and provenance. This directly motivates the
 reporting recommendation in `POLICY.md`: the native path's value is unlocked by anchor density.
 
+We then replaced the *simulated* digitiser with a **real raster pipeline** (the sibling `kmcurve`
+project: PDF render → dark-curve pixel cloud → arm separation → Guyot). Rendering each gold-standard
+true curve to an actual image and extracting it recovers the HR to a median fold-error of only **1.09
+(9/10 within 20%) when the number-at-risk table is supplied, but degrades to 1.30 (p90 18.7×, with HR
+inversions) without it** (`HEADTOHEAD.md`; `validate/real_pipeline_headtohead_results.json`). A real
+pixel extractor thus reaches the *same* conclusion from the opposite direction: the binding constraint
+is the **at-risk / anchor information, not the pixel reading**. The ~9% real-pipeline figure sits
+between this project's registry curve-only (~12%) and its Titman-QP (~5%), confirming the two paths are
+complementary and that the number-at-risk table is the lever for both.
+
 **The censoring level is an identifiability limit, not an algorithmic one.** The 14 TCGA cohorts expose
 the sharpest version of the under-identification: because the early-stage arm is heavily censored,
 curve-only underestimates the (large) HR. We asked whether advanced statistics can recover it *without*
