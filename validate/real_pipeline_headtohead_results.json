@@ -1,0 +1,160 @@
+{
+  "summary": {
+    "n_total": 10,
+    "n_scored": 10,
+    "censoring_informed": {
+      "median": 1.09,
+      "p90": 1.5188,
+      "within_20pct": 9,
+      "n": 10
+    },
+    "curve_only": {
+      "median": 1.3046,
+      "p90": 18.6736,
+      "within_20pct": 2,
+      "n": 10
+    }
+  },
+  "results": [
+    {
+      "ds": "gbsg",
+      "label": "GBSG breast cancer (RFS, hormonal Rx)",
+      "status": "scored",
+      "n_exp": 246,
+      "n_ctl": 440,
+      "true_hr": 0.7066,
+      "recon_hr_curveonly": 0.9217,
+      "recon_hr_nar": 0.6707,
+      "fold_curveonly": 1.3046,
+      "fold_nar": 1.0535,
+      "abs_log_err_nar": 0.0521,
+      "true_events": 299
+    },
+    {
+      "ds": "veteran",
+      "label": "Veterans lung cancer (OS, treatment)",
+      "status": "scored",
+      "n_exp": 68,
+      "n_ctl": 69,
+      "true_hr": 1.0166,
+      "recon_hr_curveonly": 0.826,
+      "recon_hr_nar": 0.8962,
+      "fold_curveonly": 1.2307,
+      "fold_nar": 1.1344,
+      "abs_log_err_nar": 0.1261,
+      "true_events": 128
+    },
+    {
+      "ds": "rotterdam",
+      "label": "Rotterdam breast cancer (OS, hormonal Rx)",
+      "status": "scored",
+      "n_exp": 339,
+      "n_ctl": 2643,
+      "true_hr": 1.6276,
+      "recon_hr_curveonly": 1.2672,
+      "recon_hr_nar": 1.4467,
+      "fold_curveonly": 1.2843,
+      "fold_nar": 1.125,
+      "abs_log_err_nar": 0.1178,
+      "true_events": 1272
+    },
+    {
+      "ds": "pbc",
+      "label": "PBC (OS, D-penicillamine vs placebo)",
+      "status": "scored",
+      "n_exp": 154,
+      "n_ctl": 158,
+      "true_hr": 0.9445,
+      "recon_hr_curveonly": 0.9761,
+      "recon_hr_nar": 0.8665,
+      "fold_curveonly": 1.0334,
+      "fold_nar": 1.09,
+      "abs_log_err_nar": 0.0862,
+      "true_events": 125
+    },
+    {
+      "ds": "diabetic",
+      "label": "Diabetic retinopathy (vision loss, laser)",
+      "status": "scored",
+      "n_exp": 197,
+      "n_ctl": 197,
+      "true_hr": 0.4672,
+      "recon_hr_curveonly": 0.8266,
+      "recon_hr_nar": 0.489,
+      "fold_curveonly": 1.7695,
+      "fold_nar": 1.0467,
+      "abs_log_err_nar": 0.0456,
+      "true_events": 155
+    },
+    {
+      "ds": "cancer",
+      "label": "NCCTG lung cancer (OS, by sex)",
+      "status": "scored",
+      "n_exp": 90,
+      "n_ctl": 138,
+      "true_hr": 0.603,
+      "recon_hr_curveonly": 0.463,
+      "recon_hr_nar": 0.6251,
+      "fold_curveonly": 1.3024,
+      "fold_nar": 1.0365,
+      "abs_log_err_nar": 0.0359,
+      "true_events": 165
+    },
+    {
+      "ds": "colon",
+      "label": "Colon cancer (OS, Lev+5FU vs Obs)",
+      "status": "scored",
+      "n_exp": 608,
+      "n_ctl": 630,
+      "true_hr": 0.6445,
+      "recon_hr_curveonly": 0.9314,
+      "recon_hr_nar": 0.6677,
+      "fold_curveonly": 1.4452,
+      "fold_nar": 1.036,
+      "abs_log_err_nar": 0.0354,
+      "true_events": 587
+    },
+    {
+      "ds": "nwtco",
+      "label": "NWTSG Wilms tumour (relapse, histology)",
+      "status": "scored",
+      "n_exp": 459,
+      "n_ctl": 3569,
+      "true_hr": 19.5988,
+      "recon_hr_curveonly": 1.0495,
+      "recon_hr_nar": 12.9041,
+      "fold_curveonly": 18.6736,
+      "fold_nar": 1.5188,
+      "abs_log_err_nar": 0.4179,
+      "true_events": 571
+    },
+    {
+      "ds": "bmt",
+      "label": "Bone marrow transplant (DFS, risk group)",
+      "status": "scored",
+      "n_exp": 45,
+      "n_ctl": 38,
+      "true_hr": 1.4871,
+      "recon_hr_curveonly": 1.2485,
+      "recon_hr_nar": 1.4337,
+      "fold_curveonly": 1.1911,
+      "fold_nar": 1.0372,
+      "abs_log_err_nar": 0.0366,
+      "true_events": 58
+    },
+    {
+      "ds": "tongue",
+      "label": "Tongue cancer (death, ploidy)",
+      "status": "scored",
+      "n_exp": 28,
+      "n_ctl": 52,
+      "true_hr": 1.6531,
+      "recon_hr_curveonly": 0.8301,
+      "recon_hr_nar": 1.4385,
+      "fold_curveonly": 1.9913,
+      "fold_nar": 1.1492,
+      "abs_log_err_nar": 0.1391,
+      "true_events": 53
+    }
+  ]
+}

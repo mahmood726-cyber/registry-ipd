@@ -78,3 +78,34 @@ the chosen noise level.
 recovered well by both paths; the HR — which depends on event/censoring timing — is where density
 matters most. Small trials (e.g. `gehan`, N≈21/arm) reconstruct poorly under both paths, consistent
 with the small-N boundary.*
+
+## Real-pipeline arm: the digitizer is an ACTUAL raster pipeline, not a noise model (2026-06-10)
+
+The `digitize()` above *simulates* figure reading (sample coordinates off the true curve + Gaussian
+pixel noise). The sibling project `C:\Projects\kmcurve` is a real KM-figure digitization pipeline
+(render → dark-curve pixel cloud → arm separation → Guyot), so we can replace the simulation with the
+real thing. `kmcurve/ipd_km_pipeline/realipd_benchmark.py` renders each gold-standard true-IPD curve
+to an actual raster, runs kmcurve's pipeline, and scores the reconstructed log-rank HR against truth —
+both **curve-only** and **censoring-informed** (the number-at-risk table a real figure prints, which
+kmcurve OCRs and the registry posts). Same estimator (`guyot.logrank_hr`) for truth and recon, so the
+fold-error is pipeline-induced. Calibration and the at-risk table are supplied exactly (production OCRs
+both, adding error) — this isolates curve-extraction + arm-separation + reconstruction. Reproduce from
+the kmcurve repo: `python realipd_benchmark.py --registry <this repo>` (results JSON committed here at
+`validate/real_pipeline_headtohead_results.json`).
+
+| reconstruction mode | median HR fold-err | p90 | within 20% |
+|---|---:|---:|---:|
+| **curve-only** (no at-risk table) | 1.30 | 18.7 | 2/10 |
+| **censoring-informed** (+ at-risk table) | **1.09 (~9%)** | 1.52 | **9/10** |
+
+**This corroborates the head-to-head's central finding from the other direction.** A *real* pixel
+extractor recovers the HR to ~9% **only once the at-risk/anchor information is present** — without it,
+the real pipeline is unusable (median 1.30, a p90 of 18.7×, HR inversions on well-separated arms such
+as `diabetic` 0.47→0.83). So the binding constraint is the **anchor / number-at-risk information, not
+the pixel reading** — exactly what the simulated head-to-head showed (density beats per-point noise)
+and what `POLICY.md` asks registries to post. The ~9% real-pipeline figure sits between this project's
+registry curve-only (~12%) and its Titman-QP (~5%), confirming the two paths are complementary and
+that the at-risk table is the lever for both. (Honest scope: clean single-style monochrome rendered
+curves with exact calibration are an upper bound on messy real figures — coloured/overlapping arms,
+censor ticks, and OCR'd at-risk tables all add error the controlled render omits. The one dataset
+still outside 20% with the at-risk table, `nwtco`, is an extreme imbalanced case, true HR 19.6.)
