@@ -19,6 +19,7 @@ via the command shown. Engine: `src/engine.js` (Titman-QP default when a total-e
 | **IPD meta-analysis fidelity** | pooled HR true 2.497 vs reconstructed 2.643 (within 1.059); τ² 0.15→0.204 (conservative) | `node validate/ipd_meta_fidelity.js` |
 | **AACT coverage census** | 76067 results-trials; 0 structured NAR rows; 288–514 post a reconstructable curve | `node harvest/census_full_aact.py` |
 | **Production (real AACT trials)** | 250 trials reconstructed; median fold vs registry HR 1.13; only 27% post an event count | `node validate/gallery.js` |
+| **Scale (registry-wide)** | 399 trials → 904 pairwise pseudo-IPD comparisons across 277 conditions; 886 exportable | `node validate/scale_run.js` |
 | **When does the event count matter** | QP gap over curve-only mean ~0.186 fold but not predictable (Spearman vs censoring -0.017) ⇒ always prefer the event count | `node validate/censoring_stratified.js` |
 
 **Tests:** `npm test` (engine + metric unit tests). **Smoke:** `python test/smoke_browser.py`.

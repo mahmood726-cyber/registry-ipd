@@ -190,6 +190,10 @@ tiered engine, and the self-audit checks are net-new.
   breast/HIV/AF/lymphoma/MS/myeloma/rare-disease — median fold 1.13 vs the registry HR on the 30 that
   report one; **only 27% post a total-event count** (the rest fall back to curve-only), reinforcing the
   policy ask. A real trial (NCT00725985) is bundled as an in-tool example.
+- **At scale (`SCALE.md`, `validate/scale_run.js`):** across the cohort, **399 trials yield 904 pairwise
+  pseudo-IPD comparisons** (multi-arm trials compound — a 4-arm trial is up to 6 comparisons) spanning
+  **277 distinct conditions** (HIV, breast cancer, asthma, RA, MS, …) — 104 gold / 782 silver, 886
+  exportable.
 - Remaining (optional next steps): scan the 288 Tier-A trials for a higher-event oncology OS demo;
   run the full AACT-only-vs-digitization head-to-head on real trials that also have a published
   curve; ship Royston–Parmar for Tier B.

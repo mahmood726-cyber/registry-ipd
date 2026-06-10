@@ -60,6 +60,9 @@ add('AACT coverage census', cf && `${cf.universe_trials_with_results} results-tr
 // --- production gallery ---
 const gal = g(load('gallery_results.json'), 'summary');
 add('Production (real AACT trials)', gal && `${gal.cohort_trials_reconstructed} trials reconstructed; median fold vs registry HR ${gal.median_fold_vs_registry_HR}; only ${Math.round(100 * gal.method_qp / (gal.method_qp + gal.method_other))}% post an event count`, 'node validate/gallery.js');
+// --- scale run (registry-wide) ---
+const sc = g(load('scale_index.json'), 'summary');
+add('Scale (registry-wide)', sc && `${sc.reconstructable_trials} trials → ${sc.total_pairwise_comparisons} pairwise pseudo-IPD comparisons across ${sc.distinct_conditions} conditions; ${sc.exportable_comparisons} exportable`, 'node validate/scale_run.js');
 // --- censoring stratified ---
 const cs = g(load('censoring_stratified_results.json'), 'summary');
 add('When does the event count matter', cs && `QP gap over curve-only mean ~${cs.mean_event_count_value_gap} fold but not predictable (Spearman vs censoring ${g(cs, 'spearman_curveonly_fold_vs', 'pooled_censoring')}) ⇒ always prefer the event count`, 'node validate/censoring_stratified.js');
