@@ -235,7 +235,10 @@ under-identified; we surface this as honest interval width rather than a false p
 (N≈137) do not reconstruct. The external-median check is sensitive to endpoint matching. True-IPD
 validation used 51 open datasets (R `survival`/`KMsurv`/`asaur` and TCGA via the open cBioPortal API);
 credentialed repositories (Vivli, Project Data Sphere, YODA) would extend it further to dozens–hundreds
-of trials. Tier B is exponential-only.
+of trials. Tier B (median + HR, no curve) is exponential-only; validated for the first time
+(`tierb_validation.js`), it recovers RMST to ~7% on average but fails (40–58%) on strongly
+non-exponential survival — a closed-form Weibull from median + event-rate fixes those worst cases
+(e.g. `bmt` 58%→14%) but is a wash on average, so the exponential remains the documented default.
 
 ## 7. Availability
 

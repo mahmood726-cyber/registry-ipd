@@ -480,6 +480,30 @@ data. This is exactly where competing-risks-aware reconstruction matters.
 
 (Datasets used for validation only, not redistributed; re-download: `validate/goldstandard.js` header.)
 
+## Tier B (median + HR, no KM curve) — validated, with an honest shape limit (`validate/tierb_validation.js`)
+
+Tier B fires when a trial posts a **median + HR + N + events but no Kaplan–Meier curve** (≈3,263 AACT
+trials); the engine reconstructs each arm as an **exponential** parametric model. This tier had never
+been tested against truth. On the 30 gold-standard datasets where the median is defined (HR and median
+are *inputs*, so recovering them is circular — the honest test is **RMST**, which depends on the
+survival *shape*):
+
+- **On average the exponential is adequate**: per-arm RMST median error **~7%** (23/30 within 20%);
+  RMST-difference median absolute error ~8 time-units.
+- **But it has a real failure mode on strongly non-exponential survival** (early-heavy hazards): RMST
+  error reaches **40–58%** on `bmt`, `veteran`, `pharmacoSmoking`, and several TCGA cancers — the
+  constant-hazard assumption cannot bend.
+
+A closed-form **2-parameter Weibull** fit from the *same* inputs (median + events/N pin the shape:
+`k = ln(R/L)/ln(t_max/median)`) fixes exactly those cases — `bmt` 58%→**14%**, `pharmacoSmoking`
+38%→**3%**, `veteran` 39%→**16%**, `tongue` 25%→**12%** — but is a **wash on average** (per-arm RMST
+7.6% vs 6.6%; it adds variance on the easy near-exponential arms) and complicates the imposed-HR
+coupling (Weibull PH needs a shared shape, `eMed = cMed/HR^{1/k}`). So **we keep the exponential as the
+stable default and document the failure mode** rather than ship a change that regresses the average and
+the bootstrap envelope; the Weibull is a *targeted* improvement worth adopting only with a
+shape-confidence gate. Net: Tier B is a usable last resort for RMST/median when no curve is posted, with
+a flagged caveat for non-exponential survival.
+
 ## Remaining levers
 - ✅ HR-calibration · ✅ N-matched mapping · ✅ RMST/median validation · ✅ Royston–Parmar (extrapolation).
 - **Same-endpoint external median matching** to clean the contaminated registry-median cross-check.
