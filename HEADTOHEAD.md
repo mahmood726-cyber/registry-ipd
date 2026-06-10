@@ -93,19 +93,26 @@ both, adding error) — this isolates curve-extraction + arm-separation + recons
 the kmcurve repo: `python realipd_benchmark.py --registry <this repo>` (results JSON committed here at
 `validate/real_pipeline_headtohead_results.json`).
 
-| reconstruction mode | median HR fold-err | p90 | within 20% |
-|---|---:|---:|---:|
-| **curve-only** (no at-risk table) | 1.30 | 18.7 | 2/10 |
-| **censoring-informed** (+ at-risk table) | **1.09 (~9%)** | 1.52 | **9/10** |
+| reconstruction backend | median HR fold-err | p90 | within 20% | input it needs |
+|---|---:|---:|---:|---|
+| curve-only Guyot | 1.30 | 18.7 | 2/10 | the curve |
+| Guyot + NAR table | 1.09 (~9%) | 1.52 | 9/10 | + interior at-risk table |
+| **Titman-QP (events)** | **1.041 (~4%)** | **1.26** | 8/10 | + total "N (events)" only |
 
-**This corroborates the head-to-head's central finding from the other direction.** A *real* pixel
-extractor recovers the HR to ~9% **only once the at-risk/anchor information is present** — without it,
-the real pipeline is unusable (median 1.30, a p90 of 18.7×, HR inversions on well-separated arms such
-as `diabetic` 0.47→0.83). So the binding constraint is the **anchor / number-at-risk information, not
-the pixel reading** — exactly what the simulated head-to-head showed (density beats per-point noise)
-and what `POLICY.md` asks registries to post. The ~9% real-pipeline figure sits between this project's
-registry curve-only (~12%) and its Titman-QP (~5%), confirming the two paths are complementary and
-that the at-risk table is the lever for both. (Honest scope: clean single-style monochrome rendered
-curves with exact calibration are an upper bound on messy real figures — coloured/overlapping arms,
-censor ticks, and OCR'd at-risk tables all add error the controlled render omits. The one dataset
-still outside 20% with the at-risk table, `nwtco`, is an extreme imbalanced case, true HR 19.6.)
+**This corroborates BOTH of this project's central findings from the figure side.**
+(1) A *real* pixel extractor recovers the HR usefully **only once the anchor/event information is
+present** — curve-only is unusable (median 1.30, p90 18.7×, HR inversions on well-separated arms such
+as `diabetic` 0.47→0.83). The binding constraint is the **anchor/number-at-risk information, not the
+pixel reading** — exactly what the simulated head-to-head showed (density beats per-point noise) and
+what `POLICY.md` asks registries to post.
+(2) **Titman-QP beats Guyot on the real pipeline too** — median 1.041 vs 1.09, p90 1.26 vs 1.52 —
+mirroring `method_zoo.js`'s QP≈1.05 vs Guyot≈1.14, and using only the total event count (no interior
+table). kmcurve ported `reconstructArmQP` into `qp_reconstruct.py`; the one needed change was adding
+Guyot-style fractional-event **carry** to the realisation, because the literal sparse-anchor port
+loses events on a DENSE extracted curve (hundreds of pixel columns with `h_k·n < 0.5` round to zero).
+So the QP is a drop-in backend upgrade for the digitization path, not just the registry path.
+
+(Honest scope: clean single-style monochrome rendered curves with exact calibration are an upper bound
+on messy real figures — coloured/overlapping arms, censor ticks, and OCR'd at-risk tables all add
+error the controlled render omits. The hardest residual, `nwtco`, is an extreme imbalanced case,
+true HR 19.6.)
