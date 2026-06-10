@@ -185,8 +185,11 @@ tiered engine, and the self-audit checks are net-new.
 ## Status
 - Engine, harvester, HTML shell, single-file build, validation harness: **done & green**
   (14 JS tests + 16 Python tests + headless-Chrome smoke).
-- **Live AACT run: done.** Coverage measured (table above); a real trial (NCT00725985) harvested
-  and reconstructed end-to-end (Tier A, Silver) and bundled as an in-tool example.
+- **Live AACT run: done.** Coverage measured (table above); **250 real AACT trials reconstructed
+  end-to-end** with the shipped Titman-QP engine (`GALLERY.md`, `validate/gallery.js`) across
+  breast/HIV/AF/lymphoma/MS/myeloma/rare-disease — median fold 1.13 vs the registry HR on the 30 that
+  report one; **only 27% post a total-event count** (the rest fall back to curve-only), reinforcing the
+  policy ask. A real trial (NCT00725985) is bundled as an in-tool example.
 - Remaining (optional next steps): scan the 288 Tier-A trials for a higher-event oncology OS demo;
   run the full AACT-only-vs-digitization head-to-head on real trials that also have a published
   curve; ship Royston–Parmar for Tier B.
