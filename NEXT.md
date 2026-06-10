@@ -36,11 +36,18 @@ three "elevate toward breakthrough" items without re-reading the whole history.
    CSVs into `validate/goldstandard.js` configs to extend the gold standard to dozens–hundreds of
    trials. This is the one remaining lever and the only non-autonomous item.
 
+## Also done this session (beyond items 1+2)
+- ✅ **Real head-to-head** `HEADTOHEAD.md` / `validate/headtohead.js`: registry-structured vs
+  figure-digitization on 25 open-IPD datasets. Honest finding — at equal density digitization noise
+  costs little; a dense digitized figure beats few exact registry anchors on HR; the registry path's
+  binding weakness is **anchor sparsity, not noise**. Tempered into `PAPER.md` Discussion; reinforces
+  the policy brief. (Refactored `goldstandard.js` to export `loadArms`/`coxHR`, output byte-identical.)
+- ✅ **All citations PubMed-verified** (`CITATIONS.md`, 8/8 indexable exact).
+
 ## What's autonomously left (smaller polish, optional)
-- Surface the coverage census as a panel in `validation-dashboard.html` / the live tool.
-- A real (not synthetic) structured-vs-digitized head-to-head: simulate figure-digitization noise on
-  the open-IPD datasets and reconstruct both ways vs true IPD, to quantify the no-digitization-error
-  advantage on the same trials (`benchmark/gen_benchmark.js` currently does this on synthetic data).
+- Surface the coverage census + head-to-head as panels in `validation-dashboard.html` / the live tool.
+- Sensitivity of the head-to-head to the digitization noise level (currently fixed σ; the ordering is
+  robust to doubling, but a sweep would document it).
 
 ## Honest framing (carry forward)
 Novel registry-native data path + calibrated uncertainty + unusually rigorous validation; bounded by
