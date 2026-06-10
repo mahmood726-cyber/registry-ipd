@@ -1058,5 +1058,71 @@
       "median_exp_pcterr": 0.2,
       "RMSTdiff": -48
     }
+  },
+  {
+    "ds": "cbio2_prad_gleason_score",
+    "label": "SU2C prostate (OS, Gleason 9 vs 7)",
+    "n_exp": 35,
+    "n_ctl": 36,
+    "true_HR": 1.354,
+    "true_median_exp": 22.1,
+    "true_median_ctl": 29.1,
+    "true_RMST_diff": -4.7,
+    "curve_only": {
+      "HR": 1.282,
+      "HR_logerr": 0.055,
+      "median_exp_pcterr": 4.9,
+      "RMSTdiff": -4.3
+    },
+    "censoring_informed": {
+      "HR": 1.499,
+      "HR_logerr": 0.102,
+      "median_exp_pcterr": 0.8,
+      "RMSTdiff": -5.4
+    }
+  },
+  {
+    "ds": "cbio2_luad_pathologic_stage",
+    "label": "MSK lung adeno (OS, stage 3 vs 1)",
+    "n_exp": 62,
+    "n_ctl": 447,
+    "true_HR": 5.022,
+    "true_median_exp": 45.6,
+    "true_median_ctl": null,
+    "true_RMST_diff": -13.6,
+    "curve_only": {
+      "HR": 2.198,
+      "HR_logerr": 0.826,
+      "median_exp_pcterr": 5.1,
+      "RMSTdiff": -13.6
+    },
+    "censoring_informed": {
+      "HR": 4.682,
+      "HR_logerr": 0.07,
+      "median_exp_pcterr": 1.1,
+      "RMSTdiff": -17
+    }
+  },
+  {
+    "ds": "cbio2_crc_stage_at_diagnosis",
+    "label": "MSK colorectal (OS, stage IV vs III)",
+    "n_exp": 662,
+    "n_ctl": 216,
+    "true_HR": 1.032,
+    "true_median_exp": 63.9,
+    "true_median_ctl": 70.2,
+    "true_RMST_diff": 3.4,
+    "curve_only": {
+      "HR": 1.011,
+      "HR_logerr": 0.02,
+      "median_exp_pcterr": 1.2,
+      "RMSTdiff": 0
+    },
+    "censoring_informed": {
+      "HR": 1.029,
+      "HR_logerr": 0.003,
+      "median_exp_pcterr": 0.1,
+      "RMSTdiff": -17.9
+    }
   }
 ]

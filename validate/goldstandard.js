@@ -92,6 +92,9 @@ const CONFIGS = [
   { ds: 'cbio2_brcaMETABRIC_grade', label: 'METABRIC breast (OS, grade 3 vs 1)', time: 'time', status: 'status', arm: 'group', exp: '3', ctl: '1' },
   { ds: 'cbio2_brcaMETABRIC_er_status', label: 'METABRIC breast (OS, ER-negative vs positive)', time: 'time', status: 'status', arm: 'group', exp: 'Negative', ctl: 'Positive' },
   { ds: 'cbio2_brcaMETABRIC_tumor_stage', label: 'METABRIC breast (OS, stage 2 vs 1)', time: 'time', status: 'status', arm: 'group', exp: '2', ctl: '1' },
+  { ds: 'cbio2_prad_gleason_score', label: 'SU2C prostate (OS, Gleason 9 vs 7)', time: 'time', status: 'status', arm: 'group', exp: '9', ctl: '7' },
+  { ds: 'cbio2_luad_pathologic_stage', label: 'MSK lung adeno (OS, stage 3 vs 1)', time: 'time', status: 'status', arm: 'group', exp: '3', ctl: '1' },
+  { ds: 'cbio2_crc_stage_at_diagnosis', label: 'MSK colorectal (OS, stage IV vs III)', time: 'time', status: 'status', arm: 'group', exp: 'IV', ctl: 'III' },
 ];
 const CAP = 2500; // subsample cap per arm (file order; keeps huge cohorts tractable)
 

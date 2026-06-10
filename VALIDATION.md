@@ -162,9 +162,9 @@ that is the *honest* uncertainty the coarse registry curve leaves on the HR, whi
 reconstructions hide. This is, to our knowledge, the first **calibrated uncertainty quantification
 for registry-native (no-image) survival reconstruction.**
 
-**Gold-standard coverage on TRUE IPD** (`validate/goldstandard_uncertainty.js`): across the **28
+**Gold-standard coverage on TRUE IPD** (`validate/goldstandard_uncertainty.js`): across the **29
 adequately-sized (≥100/arm)** real datasets, the 95% credible interval covers the **true patient-level
-HR in 27/28 (96%)** — empirical coverage matching the nominal 95% (median width ~2.3× fold; not
+HR in 28/29 (97%)** — empirical coverage matching the nominal 95% (median width ~2.3× fold; not
 over-wide, e.g. diabetic [0.29, 0.63] tightly covers 0.46). The single miss is **`bfeed`** (true 1.245
 vs band [1.45, 3.37]): its point reconstruction is so far off (the discrete-week / ~96%-event boundary
 case) that even the uncertainty band does not reach truth — an honest failure, not hidden. So the
@@ -230,12 +230,12 @@ engine never sees the patient-level data. (`validate/goldstandard.js`.)
 | **Breastfeeding** (smoking) | 270/657 | 1.245 | 2.179 (56%) | 26% | −12.2 / −3.8 |
 | **HCC** liver (vasc. invasion) | 41/186 | 2.18 | **2.01 (8%)** | 1.1% | −14.4 / **−15.6** |
 
-**Aggregate over 28 adequately-sized datasets (≥100/arm; of 48 real datasets tried, incl. 2 recurrent-event collapsed to first-event and 12 TCGA stage cohorts): curve-only
+**Aggregate over 29 adequately-sized datasets (≥100/arm; of 51 real datasets tried, incl. 2 recurrent-event collapsed to first-event and 12 TCGA stage cohorts): curve-only
 recovers HR to a median fold of 1.15 (15/24 within 20%; 1.12 / 13/17 excluding the heavily-censored
 TCGA cohorts, see below), and the censoring-informed Titman-QP tier (engine default when an event
 count is posted) to 1.05 (23/24 within 20%), with the median to ~3%** — on
 real patient data across 43 RCTs/cohorts (six added 2026-06-10 from `KMsurv`/`asaur` via the Rdatasets
-mirror, fourteen from TCGA and three from METABRIC via the cBioPortal API; the 5 below-100/arm TCGA cohorts add breadth but not
+mirror, fourteen from TCGA and six from non-TCGA cohorts (METABRIC/SU2C/MSK) via the cBioPortal API; the 5 below-100/arm TCGA cohorts add breadth but not
 to the ≥100/arm aggregate). Large effects recovered cleanly
 (Wilms 5.1→5.18, prostate 5.49→5.17, melanoma 4.36→3.99, HCC 2.18→2.01); the classic 1965 Gehan
 leukemia RCT (6-MP) recovers 0.221→0.201 (9%); UDCA-in-PBC RCT 0.445→0.415. The set spans

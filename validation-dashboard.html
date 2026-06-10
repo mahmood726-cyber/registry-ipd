@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta property="og:title" content="Registry-IPD — Validation Dashboard" />
-<meta property="og:description" content="Validation of registry-native pseudo-IPD reconstruction against true patient-level data: gold-standard across 48 open datasets, AACT coverage census, registry-vs-digitization head-to-head, anchor-density curve, calibrated uncertainty." />
+<meta property="og:description" content="Validation of registry-native pseudo-IPD reconstruction against true patient-level data: gold-standard across 51 open datasets, AACT coverage census, registry-vs-digitization head-to-head, anchor-density curve, calibrated uncertainty." />
 <title>Registry-IPD — Validation Dashboard</title>
 <style>
   :root{--bg:#0e1116;--panel:#161b22;--ink:#e6edf3;--mut:#8b949e;--line:#30363d;--ok:#3fb950;--bad:#f85149;--accent:#58a6ff;--accent2:#f778ba;--warn:#d29922}
@@ -36,8 +36,7 @@
     <h2>Headline verdict (honest)</h2>
     <div class="verdict">For adequately-sized trials, <b>RMST and median reconstruct to ~2–6%</b> and the
     HR to <b>~12% curve-only</b>, improving to <b>~5% when the registry posts a total-event count</b>
-    (the Titman-2026 quadratic program; 27/28 within 20%). The <b>95% credible interval covers the true
-    HR 27/28 (96%)</b> on real data. HR is the hard estimand; <b>very small trials don't reconstruct</b>;
+    (the Titman-2026 quadratic program; 28/29 within 20%). The <b>95% credible interval covers the true HR 28/29 (97%)</b> on real data. HR is the hard estimand; <b>very small trials don't reconstruct</b>;
     needs <b>≥5–6 posted KM timepoints</b>. Not a substitute for true IPD — a triangulation tool with
     honest uncertainty.</div>
   </section>
@@ -50,7 +49,7 @@
 
   <div class="grid2">
     <section class="panel">
-      <h2>Gold standard — true vs reconstructed HR (48 real datasets; * recurrent→first; ‡ TCGA stage; § non-TCGA METABRIC; curve-only)</h2>
+      <h2>Gold standard — true vs reconstructed HR (51 real datasets; * recurrent→first; ‡ TCGA stage; § non-TCGA cohorts; curve-only)</h2>
       <div class="note">Each point: one real RCT. On the diagonal = perfect recovery (log–log axes).</div>
       <svg id="scatter" viewBox="0 0 460 360"></svg>
     </section>
@@ -62,8 +61,8 @@
   </div>
 
   <section class="panel">
-    <h2>Calibrated uncertainty — 95% credible interval vs true HR (28 datasets)</h2>
-    <div class="note">Multiple-imputation interval (sampling the under-identified censoring level). Dot = true patient-level HR; bar = 95% CI. <b>27/28 (96%) cover the truth</b> — the one miss (bfeed, red) is the discrete-time outlier.</div>
+    <h2>Calibrated uncertainty — 95% credible interval vs true HR (29 datasets)</h2>
+    <div class="note">Multiple-imputation interval (sampling the under-identified censoring level). Dot = true patient-level HR; bar = 95% CI. <b>28/29 (97%) cover the truth</b> — the one miss (bfeed, red) is the discrete-time outlier.</div>
     <svg id="forest" viewBox="0 0 920 360"></svg>
   </section>
 
@@ -157,7 +156,9 @@ var GOLD = [ // s:true=small (<100/arm)
   {ds:'acc‡',n:'35/53',t:7.59,r:4.51,e:0.521,s:1},
   {ds:'brca‡',n:'264/788',t:2.695,r:1.658,e:0.486},{ds:'meso‡',n:'60/25',t:0.992,r:1.201,e:0.190,s:1},
   {ds:'MB-grade§',n:'953/169',t:1.626,r:1.078,e:0.411},{ds:'MB-ER§',n:'473/1507',t:1.16,r:1.169,e:0.008},
-  {ds:'MB-stage§',n:'825/501',t:1.812,r:1.317,e:0.319}
+  {ds:'MB-stage§',n:'825/501',t:1.812,r:1.317,e:0.319},
+  {ds:'PR-gl§',n:'35/36',t:1.354,r:1.282,e:0.055,s:1},{ds:'LU-st§',n:'62/447',t:5.022,r:2.198,e:0.826,s:1},
+  {ds:'CR-st§',n:'662/216',t:1.032,r:1.011,e:0.020}
 ];
 var SENS = [{K:3,f:1.40},{K:4,f:1.28},{K:5,f:1.15},{K:6,f:1.16},{K:8,f:1.12},{K:12,f:1.08},{K:20,f:1.08}];
 var UNC = [
@@ -175,7 +176,7 @@ var UNC = [
   {ds:'hnsc‡',t:1.762,lo:0.628,hi:2.897},{ds:'skcm‡',t:1.67,lo:1.106,hi:2.718},
   {ds:'blca‡',t:2.234,lo:0.975,hi:3.125},{ds:'brca‡',t:2.695,lo:0.589,hi:10.383},
   {ds:'MB-grade§',t:1.626,lo:0.694,hi:1.846},{ds:'MB-ER§',t:1.16,lo:0.744,hi:1.845},
-  {ds:'MB-stage§',t:1.812,lo:0.894,hi:2.154}
+  {ds:'MB-stage§',t:1.812,lo:0.894,hi:2.154},{ds:'CR-st§',t:1.032,lo:0.495,hi:2.554}
 ];
 var LADDER = [
   ['Registry-internal','AACT HR / median','HR ~12%, 83–94% within CI; RMST/median round-trip-consistent'],

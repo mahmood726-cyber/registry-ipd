@@ -43,6 +43,13 @@ three "elevate toward breakthrough" items without re-reading the whole history.
      (grade/stage/ER) via `harvest/fetch_cbio_cohort.js` → gold standard **48 datasets, 28 ≥100/arm**,
      QP 1.04 (26/28 within 20%), uncertainty **27/28 (96%)**. All 3 recover to ≤3%. cBioPortal non-TCGA
      is the open lever; the fetcher generalises to any study/grouping.
+   - **Widened further (2026-06-10):** +3 diverse non-TCGA cohorts (SU2C prostate, MSK lung, MSK
+     colorectal) → **51 datasets, 29 ≥100/arm, QP 1.035 (28/29), uncertainty 28/29 (97%)**. Lung (true
+     HR 5.0, heavily censored) is a clean QP demo: curve-only 2.28 fold → QP 1.07.
+   - **kmcurve synergy** (`KMCURVE-SYNERGY.md`): reviewed the sibling PDF-figure-extraction project.
+     4 cross-ideas; the strongest = **NAR fusion** (registry-exact curve + kmcurve's OCR'd
+     numbers-at-risk → dissolves registry-IPD's identifiability limit without changing registry
+     reporting). Also: registry-IPD's Titman-QP beats kmcurve's Guyot backend (proven in method_zoo).
 
 ## Also done this session (beyond items 1+2)
 - ✅ **Real head-to-head** `HEADTOHEAD.md` / `validate/headtohead.js`: registry-structured vs
