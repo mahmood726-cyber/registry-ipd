@@ -29,7 +29,26 @@ numbers-at-risk table (hence the per-interval event count), the QP applies direc
 the HR more accurately than Guyot from the *same* digitised curve. Actionable: vendor the QP
 (`reconstructArmQP`) as an alternative backend in kmcurve, or expose it as a shared library.
 
-## Idea 2 — NAR fusion resolves registry-IPD's #1 limitation ★ (highest value)
+## Idea 2 — NAR fusion resolves registry-IPD's #1 limitation ★ — **VALIDATED (2026-06-10)**
+
+**Result (`validate/nar_fusion.js`, 51-dataset gold standard):** fusing the registry-exact curve with a
+figure's numbers-at-risk table (sparse, OCR-noise-modelled), via a NAR-aware QP reconstruction, recovers
+the HR to **median fold 1.05 *without* a registry event count** — matching the Titman QP that *uses* the
+registry event count, and lifting the heavily-censored TCGA cohorts to **20/20 within 20%**:
+
+| | curve-only (no NAR/events) | **fusion: curve + figure NAR** | QP: curve + registry events |
+|---|---|---|---|
+| all 51 | 1.18 | **1.05** | 1.05 |
+| ≥100/arm | 1.15 | **1.03** | 1.04 |
+| heavily-censored TCGA | 1.38 | **1.06 (20/20)** | 1.05 (18/20) |
+
+So **the figure's at-risk table substitutes for the missing registry event count** — dissolving the
+binding identifiability limit this project documents. (Feeding NAR to the *anchor-exact* method only
+gets to 1.14; the gain needs the QP's event-spreading + the NAR at-risk path together — see
+`nar_fusion.js`.) This is the concrete best-of-both registry+figure reconstruction, validated on real
+true-IPD. Below is the original motivation.
+
+
 
 registry-IPD's binding accuracy limit is **the absent number-at-risk** (Section "identifiability limit"
 in `VALIDATION.md`: censoring is unidentified from the curve alone, so curve-only underestimates large

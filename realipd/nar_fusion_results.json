@@ -1,0 +1,1235 @@
+{
+  "summary": {
+    "n": 51,
+    "all": {
+      "curve_only": {
+        "median_fold": 1.183,
+        "within20": "26/51"
+      },
+      "fusion_nar_anchorexact": {
+        "median_fold": 1.139,
+        "within20": "35/51"
+      },
+      "fusion_nar_qp": {
+        "median_fold": 1.051,
+        "within20": "46/51"
+      },
+      "qp_curve_plus_events": {
+        "median_fold": 1.049,
+        "within20": "47/51"
+      }
+    },
+    "ge100": {
+      "curve_only": {
+        "median_fold": 1.153,
+        "within20": "17/29"
+      },
+      "fusion_nar_anchorexact": {
+        "median_fold": 1.13,
+        "within20": "21/29"
+      },
+      "fusion_nar_qp": {
+        "median_fold": 1.03,
+        "within20": "28/29"
+      },
+      "qp_curve_plus_events": {
+        "median_fold": 1.035,
+        "within20": "28/29"
+      }
+    },
+    "heavily_censored_tcga": {
+      "curve_only": {
+        "median_fold": 1.376,
+        "within20": "6/20"
+      },
+      "fusion_nar_anchorexact": {
+        "median_fold": 1.193,
+        "within20": "11/20"
+      },
+      "fusion_nar_qp": {
+        "median_fold": 1.063,
+        "within20": "20/20"
+      },
+      "qp_curve_plus_events": {
+        "median_fold": 1.052,
+        "within20": "18/20"
+      }
+    },
+    "note": "Fusion = registry-exact curve + numbers-at-risk (figure risk table), NO registry event count. sparse = ~4 OCR-noised NAR columns (realistic risk table); dense = NAR at every anchor, clean (upper bound). QP = curve + registry event count. If fusion approaches QP, the figure NAR substitutes for the missing registry event count."
+  },
+  "per_dataset": [
+    {
+      "ds": "gbsg",
+      "tcga": false,
+      "n_exp": 246,
+      "n_ctl": 440,
+      "true_HR": 0.695,
+      "curve_only": {
+        "HR": 0.686,
+        "fold": 1.013
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.64,
+        "fold": 1.086
+      },
+      "fusion_nar_qp": {
+        "HR": 0.678,
+        "fold": 1.025
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.712,
+        "fold": 1.024
+      }
+    },
+    {
+      "ds": "veteran",
+      "tcga": false,
+      "n_exp": 68,
+      "n_ctl": 69,
+      "true_HR": 1.016,
+      "curve_only": {
+        "HR": 0.755,
+        "fold": 1.346
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.789,
+        "fold": 1.289
+      },
+      "fusion_nar_qp": {
+        "HR": 0.839,
+        "fold": 1.212
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.919,
+        "fold": 1.106
+      }
+    },
+    {
+      "ds": "rotterdam",
+      "tcga": false,
+      "n_exp": 339,
+      "n_ctl": 2500,
+      "true_HR": 1.495,
+      "curve_only": {
+        "HR": 1.287,
+        "fold": 1.162
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.762,
+        "fold": 1.178
+      },
+      "fusion_nar_qp": {
+        "HR": 1.472,
+        "fold": 1.016
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.315,
+        "fold": 1.138
+      }
+    },
+    {
+      "ds": "pbc",
+      "tcga": false,
+      "n_exp": 154,
+      "n_ctl": 158,
+      "true_HR": 0.944,
+      "curve_only": {
+        "HR": 1.117,
+        "fold": 1.183
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.064,
+        "fold": 1.126
+      },
+      "fusion_nar_qp": {
+        "HR": 0.915,
+        "fold": 1.032
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.906,
+        "fold": 1.043
+      }
+    },
+    {
+      "ds": "diabetic",
+      "tcga": false,
+      "n_exp": 197,
+      "n_ctl": 197,
+      "true_HR": 0.46,
+      "curve_only": {
+        "HR": 0.412,
+        "fold": 1.116
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.437,
+        "fold": 1.053
+      },
+      "fusion_nar_qp": {
+        "HR": 0.447,
+        "fold": 1.03
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.45,
+        "fold": 1.023
+      }
+    },
+    {
+      "ds": "nwtco",
+      "tcga": false,
+      "n_exp": 459,
+      "n_ctl": 2500,
+      "true_HR": 5.115,
+      "curve_only": {
+        "HR": 5.184,
+        "fold": 1.014
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 5.379,
+        "fold": 1.052
+      },
+      "fusion_nar_qp": {
+        "HR": 4.413,
+        "fold": 1.159
+      },
+      "qp_curve_plus_events": {
+        "HR": 4.922,
+        "fold": 1.039
+      }
+    },
+    {
+      "ds": "myeloid",
+      "tcga": false,
+      "n_exp": 329,
+      "n_ctl": 317,
+      "true_HR": 0.708,
+      "curve_only": {
+        "HR": 0.639,
+        "fold": 1.108
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.627,
+        "fold": 1.13
+      },
+      "fusion_nar_qp": {
+        "HR": 0.712,
+        "fold": 1.006
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.727,
+        "fold": 1.027
+      }
+    },
+    {
+      "ds": "kidtran",
+      "tcga": false,
+      "n_exp": 339,
+      "n_ctl": 524,
+      "true_HR": 0.907,
+      "curve_only": {
+        "HR": 1.046,
+        "fold": 1.153
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.033,
+        "fold": 1.139
+      },
+      "fusion_nar_qp": {
+        "HR": 0.888,
+        "fold": 1.021
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.861,
+        "fold": 1.054
+      }
+    },
+    {
+      "ds": "udca2",
+      "tcga": false,
+      "n_exp": 680,
+      "n_ctl": 672,
+      "true_HR": 0.445,
+      "curve_only": {
+        "HR": 0.415,
+        "fold": 1.073
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.414,
+        "fold": 1.076
+      },
+      "fusion_nar_qp": {
+        "HR": 0.44,
+        "fold": 1.012
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.417,
+        "fold": 1.068
+      }
+    },
+    {
+      "ds": "retinopathy",
+      "tcga": false,
+      "n_exp": 197,
+      "n_ctl": 197,
+      "true_HR": 0.46,
+      "curve_only": {
+        "HR": 0.412,
+        "fold": 1.116
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.436,
+        "fold": 1.056
+      },
+      "fusion_nar_qp": {
+        "HR": 0.445,
+        "fold": 1.035
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.45,
+        "fold": 1.023
+      }
+    },
+    {
+      "ds": "mgus2",
+      "tcga": false,
+      "n_exp": 753,
+      "n_ctl": 631,
+      "true_HR": 1.223,
+      "curve_only": {
+        "HR": 0.975,
+        "fold": 1.254
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.979,
+        "fold": 1.249
+      },
+      "fusion_nar_qp": {
+        "HR": 1.186,
+        "fold": 1.031
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.202,
+        "fold": 1.017
+      }
+    },
+    {
+      "ds": "flchain",
+      "tcga": false,
+      "n_exp": 2500,
+      "n_ctl": 2500,
+      "true_HR": 1.1,
+      "curve_only": {
+        "HR": 0.955,
+        "fold": 1.151
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.955,
+        "fold": 1.151
+      },
+      "fusion_nar_qp": {
+        "HR": 1.087,
+        "fold": 1.012
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.096,
+        "fold": 1.004
+      }
+    },
+    {
+      "ds": "nafld1",
+      "tcga": false,
+      "n_exp": 2500,
+      "n_ctl": 2500,
+      "true_HR": 1.05,
+      "curve_only": {
+        "HR": 0.999,
+        "fold": 1.051
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.219,
+        "fold": 1.161
+      },
+      "fusion_nar_qp": {
+        "HR": 0.999,
+        "fold": 1.051
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.015,
+        "fold": 1.035
+      }
+    },
+    {
+      "ds": "prostateSurvival",
+      "tcga": false,
+      "n_exp": 2500,
+      "n_ctl": 2500,
+      "true_HR": 5.485,
+      "curve_only": {
+        "HR": 5.168,
+        "fold": 1.061
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 5.934,
+        "fold": 1.082
+      },
+      "fusion_nar_qp": {
+        "HR": 5.359,
+        "fold": 1.024
+      },
+      "qp_curve_plus_events": {
+        "HR": 5.755,
+        "fold": 1.049
+      }
+    },
+    {
+      "ds": "bmt",
+      "tcga": false,
+      "n_exp": 45,
+      "n_ctl": 38,
+      "true_HR": 1.491,
+      "curve_only": {
+        "HR": 1.008,
+        "fold": 1.478
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.028,
+        "fold": 1.45
+      },
+      "fusion_nar_qp": {
+        "HR": 1.181,
+        "fold": 1.262
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.331,
+        "fold": 1.12
+      }
+    },
+    {
+      "ds": "melanoma",
+      "tcga": false,
+      "n_exp": 90,
+      "n_ctl": 115,
+      "true_HR": 4.357,
+      "curve_only": {
+        "HR": 3.986,
+        "fold": 1.093
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 3.997,
+        "fold": 1.09
+      },
+      "fusion_nar_qp": {
+        "HR": 4.219,
+        "fold": 1.033
+      },
+      "qp_curve_plus_events": {
+        "HR": 4.639,
+        "fold": 1.065
+      }
+    },
+    {
+      "ds": "pharmacoSmoking",
+      "tcga": false,
+      "n_exp": 56,
+      "n_ctl": 57,
+      "true_HR": 1.795,
+      "curve_only": {
+        "HR": 1.641,
+        "fold": 1.093
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.622,
+        "fold": 1.107
+      },
+      "fusion_nar_qp": {
+        "HR": 2.257,
+        "fold": 1.258
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.746,
+        "fold": 1.028
+      }
+    },
+    {
+      "ds": "gehan",
+      "tcga": false,
+      "n_exp": 21,
+      "n_ctl": 21,
+      "true_HR": 0.221,
+      "curve_only": {
+        "HR": 0.201,
+        "fold": 1.099
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.189,
+        "fold": 1.169
+      },
+      "fusion_nar_qp": {
+        "HR": 0.267,
+        "fold": 1.206
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.24,
+        "fold": 1.084
+      }
+    },
+    {
+      "ds": "tongue",
+      "tcga": false,
+      "n_exp": 28,
+      "n_ctl": 52,
+      "true_HR": 1.586,
+      "curve_only": {
+        "HR": 1.926,
+        "fold": 1.215
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.896,
+        "fold": 1.196
+      },
+      "fusion_nar_qp": {
+        "HR": 1.416,
+        "fold": 1.119
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.827,
+        "fold": 1.152
+      }
+    },
+    {
+      "ds": "cancer",
+      "tcga": false,
+      "n_exp": 90,
+      "n_ctl": 138,
+      "true_HR": 0.588,
+      "curve_only": {
+        "HR": 0.729,
+        "fold": 1.238
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.734,
+        "fold": 1.248
+      },
+      "fusion_nar_qp": {
+        "HR": 0.559,
+        "fold": 1.053
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.58,
+        "fold": 1.014
+      }
+    },
+    {
+      "ds": "ebmt3",
+      "tcga": false,
+      "n_exp": 276,
+      "n_ctl": 1928,
+      "true_HR": 1.285,
+      "curve_only": {
+        "HR": 1.008,
+        "fold": 1.275
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.161,
+        "fold": 1.106
+      },
+      "fusion_nar_qp": {
+        "HR": 1.299,
+        "fold": 1.011
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.236,
+        "fold": 1.04
+      }
+    },
+    {
+      "ds": "aidssi",
+      "tcga": false,
+      "n_exp": 65,
+      "n_ctl": 259,
+      "true_HR": 0.291,
+      "curve_only": {
+        "HR": 0.312,
+        "fold": 1.072
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.303,
+        "fold": 1.043
+      },
+      "fusion_nar_qp": {
+        "HR": 0.243,
+        "fold": 1.198
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.268,
+        "fold": 1.085
+      }
+    },
+    {
+      "ds": "ebmt1",
+      "tcga": false,
+      "n_exp": 167,
+      "n_ctl": 406,
+      "true_HR": 3.966,
+      "curve_only": {
+        "HR": 5.029,
+        "fold": 1.268
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 4.686,
+        "fold": 1.181
+      },
+      "fusion_nar_qp": {
+        "HR": 3.337,
+        "fold": 1.189
+      },
+      "qp_curve_plus_events": {
+        "HR": 3.754,
+        "fold": 1.057
+      }
+    },
+    {
+      "ds": "cgd_fe",
+      "tcga": false,
+      "n_exp": 63,
+      "n_ctl": 65,
+      "true_HR": 0.335,
+      "curve_only": {
+        "HR": 0.248,
+        "fold": 1.349
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.303,
+        "fold": 1.104
+      },
+      "fusion_nar_qp": {
+        "HR": 0.288,
+        "fold": 1.165
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.263,
+        "fold": 1.274
+      }
+    },
+    {
+      "ds": "bladder_fe",
+      "tcga": false,
+      "n_exp": 38,
+      "n_ctl": 47,
+      "true_HR": 0.696,
+      "curve_only": {
+        "HR": 0.677,
+        "fold": 1.027
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.731,
+        "fold": 1.051
+      },
+      "fusion_nar_qp": {
+        "HR": 0.655,
+        "fold": 1.062
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.68,
+        "fold": 1.023
+      }
+    },
+    {
+      "ds": "alloauto",
+      "tcga": false,
+      "n_exp": 50,
+      "n_ctl": 51,
+      "true_HR": 0.838,
+      "curve_only": {
+        "HR": 0.678,
+        "fold": 1.237
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.688,
+        "fold": 1.219
+      },
+      "fusion_nar_qp": {
+        "HR": 0.789,
+        "fold": 1.062
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.812,
+        "fold": 1.032
+      }
+    },
+    {
+      "ds": "larynx",
+      "tcga": false,
+      "n_exp": 27,
+      "n_ctl": 33,
+      "true_HR": 1.837,
+      "curve_only": {
+        "HR": 1.711,
+        "fold": 1.074
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.901,
+        "fold": 1.034
+      },
+      "fusion_nar_qp": {
+        "HR": 1.69,
+        "fold": 1.087
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.721,
+        "fold": 1.068
+      }
+    },
+    {
+      "ds": "burn",
+      "tcga": false,
+      "n_exp": 84,
+      "n_ctl": 70,
+      "true_HR": 0.571,
+      "curve_only": {
+        "HR": 0.466,
+        "fold": 1.225
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 0.691,
+        "fold": 1.21
+      },
+      "fusion_nar_qp": {
+        "HR": 0.584,
+        "fold": 1.022
+      },
+      "qp_curve_plus_events": {
+        "HR": 0.575,
+        "fold": 1.007
+      }
+    },
+    {
+      "ds": "pneumon",
+      "tcga": false,
+      "n_exp": 838,
+      "n_ctl": 2285,
+      "true_HR": 2.237,
+      "curve_only": {
+        "HR": 2.3,
+        "fold": 1.028
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 2.272,
+        "fold": 1.016
+      },
+      "fusion_nar_qp": {
+        "HR": 2.28,
+        "fold": 1.019
+      },
+      "qp_curve_plus_events": {
+        "HR": 2.232,
+        "fold": 1.002
+      }
+    },
+    {
+      "ds": "bfeed",
+      "tcga": false,
+      "n_exp": 270,
+      "n_ctl": 657,
+      "true_HR": 1.245,
+      "curve_only": {
+        "HR": 2.179,
+        "fold": 1.751
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 2.175,
+        "fold": 1.747
+      },
+      "fusion_nar_qp": {
+        "HR": 1.685,
+        "fold": 1.354
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.564,
+        "fold": 1.257
+      }
+    },
+    {
+      "ds": "hepatoCellular",
+      "tcga": false,
+      "n_exp": 41,
+      "n_ctl": 186,
+      "true_HR": 2.18,
+      "curve_only": {
+        "HR": 2.01,
+        "fold": 1.084
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 2.429,
+        "fold": 1.114
+      },
+      "fusion_nar_qp": {
+        "HR": 2.096,
+        "fold": 1.04
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.973,
+        "fold": 1.105
+      }
+    },
+    {
+      "ds": "cbio_luad",
+      "tcga": true,
+      "n_exp": 105,
+      "n_ctl": 394,
+      "true_HR": 2.65,
+      "curve_only": {
+        "HR": 2.702,
+        "fold": 1.019
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 2.933,
+        "fold": 1.106
+      },
+      "fusion_nar_qp": {
+        "HR": 2.601,
+        "fold": 1.019
+      },
+      "qp_curve_plus_events": {
+        "HR": 2.668,
+        "fold": 1.006
+      }
+    },
+    {
+      "ds": "cbio_coadread",
+      "tcga": true,
+      "n_exp": 247,
+      "n_ctl": 309,
+      "true_HR": 3.107,
+      "curve_only": {
+        "HR": 1.696,
+        "fold": 1.833
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 2.291,
+        "fold": 1.357
+      },
+      "fusion_nar_qp": {
+        "HR": 2.922,
+        "fold": 1.063
+      },
+      "qp_curve_plus_events": {
+        "HR": 3.275,
+        "fold": 1.054
+      }
+    },
+    {
+      "ds": "cbio_stad",
+      "tcga": true,
+      "n_exp": 224,
+      "n_ctl": 183,
+      "true_HR": 2.194,
+      "curve_only": {
+        "HR": 1.646,
+        "fold": 1.334
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.486,
+        "fold": 1.477
+      },
+      "fusion_nar_qp": {
+        "HR": 2.343,
+        "fold": 1.068
+      },
+      "qp_curve_plus_events": {
+        "HR": 2.308,
+        "fold": 1.052
+      }
+    },
+    {
+      "ds": "cbio_kirc",
+      "tcga": true,
+      "n_exp": 209,
+      "n_ctl": 301,
+      "true_HR": 4.052,
+      "curve_only": {
+        "HR": 2.6,
+        "fold": 1.558
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 3.785,
+        "fold": 1.071
+      },
+      "fusion_nar_qp": {
+        "HR": 3.894,
+        "fold": 1.041
+      },
+      "qp_curve_plus_events": {
+        "HR": 4.279,
+        "fold": 1.056
+      }
+    },
+    {
+      "ds": "cbio_hnsc",
+      "tcga": true,
+      "n_exp": 349,
+      "n_ctl": 103,
+      "true_HR": 1.762,
+      "curve_only": {
+        "HR": 1.102,
+        "fold": 1.599
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.284,
+        "fold": 1.372
+      },
+      "fusion_nar_qp": {
+        "HR": 1.712,
+        "fold": 1.029
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.67,
+        "fold": 1.055
+      }
+    },
+    {
+      "ds": "cbio_skcm",
+      "tcga": true,
+      "n_exp": 188,
+      "n_ctl": 203,
+      "true_HR": 1.67,
+      "curve_only": {
+        "HR": 1.644,
+        "fold": 1.016
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.934,
+        "fold": 1.158
+      },
+      "fusion_nar_qp": {
+        "HR": 1.644,
+        "fold": 1.016
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.815,
+        "fold": 1.086
+      }
+    },
+    {
+      "ds": "cbio_blca",
+      "tcga": true,
+      "n_exp": 276,
+      "n_ctl": 131,
+      "true_HR": 2.234,
+      "curve_only": {
+        "HR": 1.364,
+        "fold": 1.639
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.717,
+        "fold": 1.302
+      },
+      "fusion_nar_qp": {
+        "HR": 2.073,
+        "fold": 1.078
+      },
+      "qp_curve_plus_events": {
+        "HR": 2.268,
+        "fold": 1.015
+      }
+    },
+    {
+      "ds": "cbio_lusc",
+      "tcga": true,
+      "n_exp": 89,
+      "n_ctl": 388,
+      "true_HR": 1.636,
+      "curve_only": {
+        "HR": 1.58,
+        "fold": 1.035
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.888,
+        "fold": 1.154
+      },
+      "fusion_nar_qp": {
+        "HR": 1.595,
+        "fold": 1.025
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.659,
+        "fold": 1.014
+      }
+    },
+    {
+      "ds": "cbio_esca",
+      "tcga": true,
+      "n_exp": 64,
+      "n_ctl": 96,
+      "true_HR": 3.099,
+      "curve_only": {
+        "HR": 4.166,
+        "fold": 1.345
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 4.169,
+        "fold": 1.346
+      },
+      "fusion_nar_qp": {
+        "HR": 3.212,
+        "fold": 1.037
+      },
+      "qp_curve_plus_events": {
+        "HR": 3.09,
+        "fold": 1.003
+      }
+    },
+    {
+      "ds": "cbio_lihc",
+      "tcga": true,
+      "n_exp": 88,
+      "n_ctl": 257,
+      "true_HR": 2.336,
+      "curve_only": {
+        "HR": 1.878,
+        "fold": 1.244
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.894,
+        "fold": 1.234
+      },
+      "fusion_nar_qp": {
+        "HR": 2.369,
+        "fold": 1.014
+      },
+      "qp_curve_plus_events": {
+        "HR": 2.453,
+        "fold": 1.05
+      }
+    },
+    {
+      "ds": "cbio_kirp",
+      "tcga": true,
+      "n_exp": 64,
+      "n_ctl": 189,
+      "true_HR": 6.13,
+      "curve_only": {
+        "HR": 2.548,
+        "fold": 2.406
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 4.626,
+        "fold": 1.325
+      },
+      "fusion_nar_qp": {
+        "HR": 5.78,
+        "fold": 1.061
+      },
+      "qp_curve_plus_events": {
+        "HR": 15.596,
+        "fold": 2.544
+      }
+    },
+    {
+      "ds": "cbio_acc",
+      "tcga": true,
+      "n_exp": 35,
+      "n_ctl": 53,
+      "true_HR": 7.59,
+      "curve_only": {
+        "HR": 4.51,
+        "fold": 1.683
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 6.813,
+        "fold": 1.114
+      },
+      "fusion_nar_qp": {
+        "HR": 7.01,
+        "fold": 1.083
+      },
+      "qp_curve_plus_events": {
+        "HR": 5.664,
+        "fold": 1.34
+      }
+    },
+    {
+      "ds": "cbio_brca",
+      "tcga": true,
+      "n_exp": 264,
+      "n_ctl": 788,
+      "true_HR": 2.695,
+      "curve_only": {
+        "HR": 1.658,
+        "fold": 1.625
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 2.942,
+        "fold": 1.092
+      },
+      "fusion_nar_qp": {
+        "HR": 2.446,
+        "fold": 1.102
+      },
+      "qp_curve_plus_events": {
+        "HR": 2.742,
+        "fold": 1.017
+      }
+    },
+    {
+      "ds": "cbio_meso",
+      "tcga": true,
+      "n_exp": 60,
+      "n_ctl": 25,
+      "true_HR": 0.992,
+      "curve_only": {
+        "HR": 1.201,
+        "fold": 1.21
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.126,
+        "fold": 1.134
+      },
+      "fusion_nar_qp": {
+        "HR": 1.067,
+        "fold": 1.075
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.118,
+        "fold": 1.127
+      }
+    },
+    {
+      "ds": "cbio2_brcaMETABRIC_grade",
+      "tcga": true,
+      "n_exp": 953,
+      "n_ctl": 169,
+      "true_HR": 1.626,
+      "curve_only": {
+        "HR": 1.078,
+        "fold": 1.508
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.258,
+        "fold": 1.293
+      },
+      "fusion_nar_qp": {
+        "HR": 1.521,
+        "fold": 1.069
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.577,
+        "fold": 1.031
+      }
+    },
+    {
+      "ds": "cbio2_brcaMETABRIC_er_status",
+      "tcga": true,
+      "n_exp": 473,
+      "n_ctl": 1507,
+      "true_HR": 1.16,
+      "curve_only": {
+        "HR": 1.169,
+        "fold": 1.008
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.3,
+        "fold": 1.121
+      },
+      "fusion_nar_qp": {
+        "HR": 1.142,
+        "fold": 1.016
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.164,
+        "fold": 1.003
+      }
+    },
+    {
+      "ds": "cbio2_brcaMETABRIC_tumor_stage",
+      "tcga": true,
+      "n_exp": 825,
+      "n_ctl": 501,
+      "true_HR": 1.812,
+      "curve_only": {
+        "HR": 1.317,
+        "fold": 1.376
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.431,
+        "fold": 1.266
+      },
+      "fusion_nar_qp": {
+        "HR": 1.695,
+        "fold": 1.069
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.775,
+        "fold": 1.021
+      }
+    },
+    {
+      "ds": "cbio2_prad_gleason_score",
+      "tcga": true,
+      "n_exp": 35,
+      "n_ctl": 36,
+      "true_HR": 1.354,
+      "curve_only": {
+        "HR": 1.282,
+        "fold": 1.056
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.268,
+        "fold": 1.068
+      },
+      "fusion_nar_qp": {
+        "HR": 1.488,
+        "fold": 1.099
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.499,
+        "fold": 1.107
+      }
+    },
+    {
+      "ds": "cbio2_luad_pathologic_stage",
+      "tcga": true,
+      "n_exp": 62,
+      "n_ctl": 447,
+      "true_HR": 5.022,
+      "curve_only": {
+        "HR": 2.198,
+        "fold": 2.285
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 4.211,
+        "fold": 1.193
+      },
+      "fusion_nar_qp": {
+        "HR": 4.223,
+        "fold": 1.189
+      },
+      "qp_curve_plus_events": {
+        "HR": 4.682,
+        "fold": 1.073
+      }
+    },
+    {
+      "ds": "cbio2_crc_stage_at_diagnosis",
+      "tcga": true,
+      "n_exp": 662,
+      "n_ctl": 216,
+      "true_HR": 1.032,
+      "curve_only": {
+        "HR": 1.011,
+        "fold": 1.02
+      },
+      "fusion_nar_anchorexact": {
+        "HR": 1.057,
+        "fold": 1.024
+      },
+      "fusion_nar_qp": {
+        "HR": 1.025,
+        "fold": 1.007
+      },
+      "qp_curve_plus_events": {
+        "HR": 1.029,
+        "fold": 1.003
+      }
+    }
+  ]
+}

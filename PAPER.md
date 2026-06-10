@@ -219,6 +219,15 @@ conclusion is that cleverer reconstruction cannot substitute for that statistic 
 (curve-only stays at ~1.5); when it is present the QP is near-exact. Either way the lever is reporting
 (total events or number-at-risk), reinforcing `POLICY.md`.
 
+Crucially, that missing statistic need not come from the registry: a *figure* of the same trial prints
+a **numbers-at-risk table**, which the sibling `kmcurve` project OCRs. Fusing the registry-exact curve
+with that figure NAR — via a NAR-aware QP, and *without* any registry event count — recovers the HR to
+the same **median fold 1.05** as the event-count QP, and to **20/20 within 20%** on the heavily-censored
+TCGA cohorts (`validate/nar_fusion.js`; `KMCURVE-SYNERGY.md`). The figure's at-risk table thus
+substitutes for the missing registry event count, dissolving the identifiability limit and making the
+structured-registry and figure-digitisation paths genuinely complementary: the exact curve from the
+registry, the at-risk table from the figure, neither sufficient alone.
+
 ## 6. Limitations
 
 Registry coverage is the binding limit (hundreds of trials, not all). The censoring level is

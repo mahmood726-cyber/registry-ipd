@@ -392,6 +392,28 @@ only pulls kirp 15.6→12.5, and the Wasserstein barycenter *blows up* on it (17
 small-sample limit, not a method deficiency. The honest conclusion: **the current QP is near-optimal —
 the remaining error is irreducible from the posted summary, not a better-algorithm problem.**
 
+### NAR fusion — the figure's risk table substitutes for the missing event count (`validate/nar_fusion.js`)
+
+The identifiability limit above is "irreducible *from the posted summary*". But a *figure* of the same
+trial prints a **numbers-at-risk table** the sibling `kmcurve` project OCRs — exactly the field AACT
+lacks. Fusing the registry-exact curve with that NAR (sparse ~4-column table, ±3% OCR noise, **and no
+registry event count**) via a NAR-aware QP reconstruction recovers the HR to QP level:
+
+| set | curve-only (no NAR/events) | NAR via anchor-exact | **fusion: curve + figure NAR (NAR-aware QP)** | QP: curve + registry events |
+|---|---|---|---|---|
+| all 51 | 1.18 (26/51) | 1.14 (35/51) | **1.05 (46/51)** | 1.05 (47/51) |
+| ≥100/arm | 1.15 | 1.13 | **1.03 (28/29)** | 1.04 (28/29) |
+| heavily-censored TCGA | 1.38 | 1.19 | **1.06 (20/20)** | 1.05 (18/20) |
+
+**The figure's at-risk table fully substitutes for the missing registry event count** — the fusion
+matches the event-count QP and is *20/20 within 20%* on the heavily-censored cohorts. Two notes: (a) the
+gain needs the **QP's event-spreading together with the NAR at-risk path** — feeding NAR to the
+anchor-exact method alone only reaches 1.14 (it piles events at the anchors); (b) denser/cleaner NAR did
+not beat the sparse OCR'd table, so a real 4-column risk table suffices. This is the concrete
+**best-of-both registry+figure reconstruction**: where a trial is in both AACT and a publication, the
+exact registry curve + the figure's NAR dissolves the identifiability limit *without* the registry
+changing its reporting. (`KMCURVE-SYNERGY.md` idea 2, now validated.)
+
 ### Anchor density: how many posted timepoints does reconstruction need?
 
 Sweeping K (number of posted KM timepoints) across the 7 true-IPD datasets
