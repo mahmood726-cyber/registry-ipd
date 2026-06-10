@@ -26,8 +26,10 @@ estimator; (iii) **HR-calibration** that imposes the reported HR for downstream 
 proceeds up a ladder of increasing independence: AACT-internal HR, primary publications, and finally
 **true patient-level IPD** from eight open RCT datasets (R `survival::` and related).
 
-**Results.** AACT contains **zero structured number-at-risk** rows; ~hundreds of trials post a KM-estimate
-curve. Against true patient-level data across **14 adequately-sized RCTs/cohorts** (≥100/arm; of 22
+**Results.** Of the 76,067 AACT trials with posted results, **zero** contain a structured
+number-at-risk row, and only **288–~600** (0.4–0.8%, depending on detection strictness) post a
+reconstructable structured KM curve — the binding coverage limit, quantified by census
+(`census_full_aact.py`). Against true patient-level data across **14 adequately-sized RCTs/cohorts** (≥100/arm; of 22
 real datasets), curve-only reconstruction recovers the HR to a median fold-error of **1.12 (~11%;
 12/14 within 20%)** and the median to **~3%**; RMST to **~2%**. The multiple-imputation 95% credible
 interval covers the **true HR in 14/14** datasets (median width ~2.3×). Reconstructed Aalen–Johansen
@@ -45,13 +47,30 @@ calibrated intervals make explicit.
 ## 1. Introduction
 
 Pseudo-IPD reconstruction from KM curves (Guyot et al. 2012) is standard in HTA and meta-analysis;
-IPDfromKM (Liu et al. 2021) and automated pipelines (KM-GPT 2025; RESOLVE-IPD 2025) all operate on the
-*figure image*. This injects digitisation error and presumes access to the publication's plot. We
-invert the premise: ClinicalTrials.gov, via the AACT relational mirror, exposes structured
-KM-estimate measurements, participant flow, and reported effect sizes for tens of thousands of trials.
-Reconstructing from these **exact registry values** removes digitisation error and yields provenance to
-the NCT record — but raises a different question we answer empirically: *which reconstructed estimands
-are trustworthy, and how trustworthy?*
+IPDfromKM (Liu et al. 2021), ipdfc (Wei & Royston 2017) and the recent automated pipelines KM-GPT
+(2025) and RESOLVE-IPD (2025) all operate on the *figure image*. This injects digitisation error and
+presumes access to the publication's plot. We invert the premise: ClinicalTrials.gov, via the AACT
+relational mirror, exposes structured KM-estimate measurements, participant flow, and reported effect
+sizes for tens of thousands of trials. Reconstructing from these **exact registry values** removes
+digitisation error and yields provenance to the NCT record — but raises a different question we answer
+empirically: *which reconstructed estimands are trustworthy, and how trustworthy?*
+
+**Related work and positioning.** Since Guyot et al. (2012), survival-IPD reconstruction has relied on
+digitising the plotted KM curve — reading (time, survival) coordinates off the figure with software
+such as DigitizeIt and inverting the KM equations using numbers-at-risk transcribed from the figure's
+risk table. This figure-digitisation paradigm underlies IPDfromKM and ipdfc, the automated pipelines
+RESOLVE-IPD and KM-GPT, and the only reconstruction route in HTA methods guidance (NICE DSU TSD 19).
+Independently, the ClinicalTrials.gov ecosystem has been harvested at scale for *aggregate* evidence
+synthesis (the AACT database, Tasneem et al. 2012; CT.gov results knowledge graphs) — but these efforts
+extract efficacy/safety fields and never reconstruct time-to-event IPD. The closest tabular-input
+neighbour is Titman (2026), who reconstructs pseudo-IPD — including competing-risks data from
+cumulative-incidence functions — from *published* numbers-at-risk and marked censoring times via
+quadratic programming, but draws those tables from journal articles rather than registry-posted
+structured results. **To our knowledge this is the first method to reconstruct survival IPD natively
+from the structured survival tables ClinicalTrials.gov/AACT exposes, bypassing figure digitisation**;
+we cite Titman (2026) as concurrent tabular-input work and claim novelty on data *provenance*
+(registry-posted tables), not merely on accepting tabular input. A systematic prior-art search
+supporting this positioning is recorded in `NOVELTY.md`.
 
 ## 2. Data
 
@@ -59,8 +78,14 @@ The AACT pipe-delimited snapshot (2026-06-01) holds 76,067 trials with posted re
 tables: `outcome_measurements` (KM-estimate timepoints, median), `outcome_analyses` (HR/CI/method),
 `outcome_counts` (per-arm N), `result_groups`/`milestones`/`drop_withdrawals` (arms, randomised counts,
 withdrawal reasons). Two empirical facts drove the design: **(i)** AACT contains *no* structured
-number-at-risk; **(ii)** survival is frequently posted as cumulative *incidence* ("probability of
-event"), requiring data-driven orientation to a survival scale.
+number-at-risk (**0 rows** across all 76,067 results-trials); **(ii)** survival is frequently posted
+as cumulative *incidence* ("probability of event"), requiring data-driven orientation to a survival
+scale. A full-snapshot census (`census_full_aact.py`) sizes the reconstructable population: **288**
+trials post a survival curve under strict detection (Kaplan-Meier/survival/PFS/EFS at ≥3 timepoints)
+and **≈514–605** under a broader net (adding disease-free survival, cumulative incidence); a further
+**3,263** are parametrically reconstructable from a posted median + HR (Tier B). The median
+curve-posting trial reports only **3–4** timepoints, and only **≈34%** post the **≥5–6** needed for
+reliable reconstruction (see §4.6) — motivating the registry-reporting recommendation in `POLICY.md`.
 
 ## 3. Methods
 
@@ -168,5 +193,15 @@ Rubin) are a journal article and a book respectively.*
    PFS HR 0.48 [95% CI 0.35–0.67] matches our reconstruction.)*
 8. RESOLVE-IPD. arXiv:2511.01785 (2025). · KM-GPT. arXiv:2509.18141 (2025). *(arXiv preprints —
    figure-image reconstruction pipelines; identifiers carried verbatim, not PubMed-indexed.)*
-9. AACT / Clinical Trials Transformation Initiative, ClinicalTrials.gov. Validation datasets: R
-   `survival` package (Therneau) and Rdatasets mirror.
+9. Titman AC. Using quadratic programming to reconstruct data from published survival and competing
+   risks analyses. *Stat Med.* 2026;45(6-7):e70474. PMID 41775249. doi:10.1002/sim.70474 *(Verified;
+   closest concurrent prior art — tabular numbers-at-risk input via QP, but from journal articles, not
+   ClinicalTrials.gov/AACT. See `NOVELTY.md`.)*
+10. Wei Y, Royston P. Reconstructing time-to-event data from published Kaplan-Meier curves (ipdfc).
+    *Stata J.* 2017;17(4):786–802. PMID 29398980; PMCID PMC5796634. *(Figure-digitisation
+    implementation.)*
+11. Tasneem A, et al. The database for Aggregate Analysis of ClinicalTrials.gov (AACT). *PLoS One.*
+    2012;7(3):e33677. PMCID PMC3306288. doi:10.1371/journal.pone.0033677 *(The AACT substrate; aggregate
+    harvesting, no IPD reconstruction.)*
+12. AACT / Clinical Trials Transformation Initiative, ClinicalTrials.gov. Validation datasets: R
+    `survival` package (Therneau) and Rdatasets mirror.

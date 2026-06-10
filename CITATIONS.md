@@ -20,9 +20,13 @@ title, first author, year, journal, volume and pages match the citation text.
 | 6 | Rubin 1987, *Multiple Imputation for Nonresponse in Surveys*, Wiley | — | — | n/a | Book; no DOI. Underpins the multiple-imputation uncertainty method. |
 | 7 | Yao et al. 2016 (RADIANT-4), *Lancet* 387(10022):968–977 | 10.1016/S0140-6736(15)00817-X | 26703889 | ✅ exact | Print 2016, online 2015-12-17. Published PFS HR 0.48 (95% CI 0.35–0.67); matches our external-publication reconstruction check (0.47–0.48). |
 | 8 | RESOLVE-IPD arXiv:2511.01785; KM-GPT arXiv:2509.18141 | — | — | arXiv | 2025 preprints, figure-image reconstruction pipelines. Not PubMed-indexed; arXiv identifiers carried verbatim. (Cross-checked by the novelty search; see `NOVELTY.md`.) |
-| 9 | AACT / CTTI, ClinicalTrials.gov; R `survival` (Therneau) + Rdatasets | — | — | data | Data sources, not bibliographic claims. |
+| 9 | Titman 2026, *Stat Med* 45(6-7):e70474 (closest concurrent prior art) | 10.1002/sim.70474 | 41775249 | ✅ exact | "Using Quadratic Programming to Reconstruct Data From Published Survival and Competing Risks Analyses." Abstract confirms tabular numbers-at-risk + marked-censoring input, frames established methods as KM-plot-based, also does competing-risks-from-CIF; **no mention of CT.gov/AACT** (illustrated on a follicular-lymphoma study). Added in the novelty pass; see `NOVELTY.md`. |
+| 10 | Wei & Royston 2017 (ipdfc), *Stata J* 17(4):786–802 | — | 29398980 | ✅ | PMCID PMC5796634. Stata J has no DOI; PMID confirms. Figure-digitisation sibling of Guyot. |
+| 11 | Tasneem 2012 (AACT), *PLoS One* 7(3):e33677 | 10.1371/journal.pone.0033677 | 22438982 | ✅ exact | PMCID PMC3306288. The AACT substrate paper; aggregate harvesting, no IPD reconstruction. |
+| 12 | AACT / CTTI, ClinicalTrials.gov; R `survival` (Therneau) + Rdatasets | — | — | data | Data sources, not bibliographic claims. |
 
-**Result.** 5/5 PubMed-indexable references verified exact, 0 misattributions, 0 fabrications. The 4
-remaining entries are a non-indexed 1978 journal article, a book, two arXiv preprints, and the data
-sources — all correctly categorised. The two arXiv preprints are additionally scrutinised by the
-prior-art / novelty search (`NOVELTY.md`).
+**Result.** 8/8 PubMed-indexable references verified exact (5 original + Titman, Wei & Royston,
+Tasneem added in the novelty pass), 0 misattributions, 0 fabrications. The remaining entries are a
+non-indexed 1978 journal article, a book, two arXiv preprints, and the data sources — all correctly
+categorised. The two arXiv preprints are additionally scrutinised by the prior-art / novelty search
+(`NOVELTY.md`).

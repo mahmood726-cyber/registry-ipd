@@ -1,0 +1,45 @@
+{
+  "aact_location": "AACTLocation(backend=<AACTBackend.ZIP: 'zip'>, dsn_or_path='C:/Users/mahmo/AACT/20260601_pipe-delimited-export.zip')",
+  "universe_trials_with_results": 76067,
+  "structured_number_at_risk_rows": 0,
+  "trials_with_hr": 5567,
+  "trials_with_median": 18761,
+  "tierA_strict_kaplan_survival_pfs_efs": 288,
+  "tierA_broad_harvester_surv_re": 514,
+  "tierB_median_plus_hr": 3263,
+  "pct_of_universe": {
+    "tierA_strict": 0.379,
+    "tierA_broad": 0.676,
+    "tierA_broad_plus_tierB": 4.965
+  },
+  "anchor_density_hist_broad": {
+    "3": 185,
+    "4": 96,
+    "5": 59,
+    "6": 45,
+    "7": 25,
+    "8": 25,
+    "9": 15,
+    "10": 10,
+    "11": 9,
+    "12+": 45
+  },
+  "anchor_density_hist_strict": {
+    "3": 118,
+    "4": 56,
+    "5": 33,
+    "6": 24,
+    "7": 8,
+    "8": 7,
+    "9": 12,
+    "10": 6,
+    "11": 6,
+    "12+": 18
+  },
+  "reliability_bands_broad": {
+    "reliable_K_ge_6": 174,
+    "borderline_K_eq_5": 59,
+    "weak_K_3_to_4": 281
+  },
+  "note": "Binding K here = MAX timepoints over a trial's qualifying survival outcomes (best reconstructable endpoint), so this histogram is an UPPER bound on per-trial anchor density; the cohort census (validate/census_cohort.js) uses the stricter binding MIN-across-arms. Strict vs broad brackets how liberally a 'survival curve' is detected. 0 structured NAR rows across all of AACT is the exact zero-NAR finding."
+}
