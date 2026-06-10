@@ -1,0 +1,135 @@
+{
+  "summary": {
+    "k": 14,
+    "comparison": "late vs early stage, overall survival, across TCGA cancers",
+    "true_IPD": {
+      "pooled_HR": 2.497,
+      "CI_HKSJ": [
+        1.891,
+        3.296
+      ],
+      "PI": [
+        1.033,
+        6.036
+      ],
+      "tau2": 0.15,
+      "I2": 75.8
+    },
+    "reconstructed_QP": {
+      "pooled_HR": 2.643,
+      "CI_HKSJ": [
+        1.912,
+        3.654
+      ],
+      "PI": [
+        0.945,
+        7.396
+      ],
+      "tau2": 0.204,
+      "I2": 78.9
+    },
+    "pooled_HR_fold_diff": 1.059,
+    "tau2_abs_diff": 0.054,
+    "methods": "REML τ², HKSJ CI (floored), prediction interval on t_{k-1}, log-HR pooling. k=14."
+  },
+  "per_trial": [
+    {
+      "ds": "luad",
+      "true_HR": 2.65,
+      "true_se": 0.159,
+      "recon_HR": 2.67,
+      "recon_se": 0.15
+    },
+    {
+      "ds": "coadread",
+      "true_HR": 3.11,
+      "true_se": 0.202,
+      "recon_HR": 3.27,
+      "recon_se": 0.197
+    },
+    {
+      "ds": "stad",
+      "true_HR": 2.19,
+      "true_se": 0.173,
+      "recon_HR": 2.31,
+      "recon_se": 0.165
+    },
+    {
+      "ds": "kirc",
+      "true_HR": 4.05,
+      "true_se": 0.167,
+      "recon_HR": 4.28,
+      "recon_se": 0.167
+    },
+    {
+      "ds": "hnsc",
+      "true_HR": 1.76,
+      "true_se": 0.193,
+      "recon_HR": 1.67,
+      "recon_se": 0.172
+    },
+    {
+      "ds": "skcm",
+      "true_HR": 1.67,
+      "true_se": 0.15,
+      "recon_HR": 1.81,
+      "recon_se": 0.15
+    },
+    {
+      "ds": "blca",
+      "true_HR": 2.23,
+      "true_se": 0.189,
+      "recon_HR": 2.27,
+      "recon_se": 0.18
+    },
+    {
+      "ds": "lusc",
+      "true_HR": 1.64,
+      "true_se": 0.164,
+      "recon_HR": 1.66,
+      "recon_se": 0.161
+    },
+    {
+      "ds": "esca",
+      "true_HR": 3.1,
+      "true_se": 0.267,
+      "recon_HR": 3.09,
+      "recon_se": 0.257
+    },
+    {
+      "ds": "lihc",
+      "true_HR": 2.34,
+      "true_se": 0.188,
+      "recon_HR": 2.45,
+      "recon_se": 0.177
+    },
+    {
+      "ds": "kirp",
+      "true_HR": 6.13,
+      "true_se": 0.337,
+      "recon_HR": 15.6,
+      "recon_se": 0.435
+    },
+    {
+      "ds": "acc",
+      "true_HR": 7.59,
+      "true_se": 0.422,
+      "recon_HR": 5.66,
+      "recon_se": 0.399
+    },
+    {
+      "ds": "brca",
+      "true_HR": 2.7,
+      "true_se": 0.17,
+      "recon_HR": 2.74,
+      "recon_se": 0.146
+    },
+    {
+      "ds": "meso",
+      "true_HR": 0.99,
+      "true_se": 0.267,
+      "recon_HR": 1.12,
+      "recon_se": 0.263
+    }
+  ]
+}

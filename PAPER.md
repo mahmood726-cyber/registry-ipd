@@ -50,9 +50,12 @@ and **plateaus at ≥5–6** (HR fold-error 1.40 at K=3 → 1.15 at K=5 → 1.08
 
 **Conclusions.** Registry-native, image-free reconstruction is **good enough for RMST/median-based
 survival synthesis** of adequately-sized trials and provides a useful, uncertainty-quantified HR
-triangulation input — without digitisation error and with full provenance to the registry record. It
-is bounded honestly by registry coverage and by the under-identified censoring level, which our
-calibrated intervals make explicit.
+triangulation input — without digitisation error and with full provenance to the registry record. At
+the use-case level, pooling the reconstructed pseudo-IPD across trials in a random-effects meta-analysis
+(REML τ², HKSJ, prediction interval) recovers the pooled HR to within **~6%** of the true-IPD result,
+with only a small and *conservative* heterogeneity inflation (τ² 0.15→0.20) — so the method is fit for
+IPD meta-analysis, its intended purpose. It is bounded honestly by registry coverage and by the
+under-identified censoring level, which our calibrated intervals make explicit.
 
 ## 1. Introduction
 

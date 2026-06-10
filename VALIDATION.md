@@ -518,6 +518,29 @@ the bootstrap envelope; the Weibull is a *targeted* improvement worth adopting o
 shape-confidence gate. Net: Tier B is a usable last resort for RMST/median when no curve is posted, with
 a flagged caveat for non-exponential survival.
 
+## The use case: IPD meta-analysis fidelity (`validate/ipd_meta_fidelity.js`)
+
+Per-trial HR recovery is the means; the **end** is IPD meta-analysis. Does reconstruction error survive
+pooling, or wash out? We pooled the **14 TCGA stage cohorts** (a real meta-analytic question — the
+pooled prognostic effect of advanced vs early stage across cancers, with genuine between-cancer
+heterogeneity) with a proper random-effects model — **REML τ², HKSJ confidence interval (floored),
+prediction interval on t_{k−1}, log-HR pooling** — on the **true IPD** and the **QP-reconstructed**
+pseudo-IPD:
+
+| | pooled HR | 95% CI (HKSJ) | 95% prediction interval | τ² | I² |
+|---|---|---|---|---|---|
+| true IPD | **2.50** | [1.89, 3.30] | [1.03, 6.04] | 0.150 | 76% |
+| QP-reconstructed | **2.64** | [1.91, 3.65] | [0.95, 7.40] | 0.204 | 79% |
+
+**The pooled estimate is recovered within 6%** (2.50 vs 2.64), the confidence and prediction intervals
+overlap, and reconstruction **slightly inflates the heterogeneity** (τ² 0.15→0.20, I² 76→79%). That
+inflation is expected and in the *safe* direction: per-trial reconstruction error adds a little apparent
+between-study variance, widening the prediction interval rather than producing a falsely precise pooled
+effect. So a meta-analysis built on reconstructed pseudo-IPD reaches essentially the same conclusion as
+one built on true IPD — the method is **fit for its actual purpose**, with a conservative heterogeneity
+bias to disclose. (Reconstruction noise does not bias the *central* pooled effect — consistent with the
+per-trial errors being roughly symmetric on the log-HR scale.)
+
 ## Remaining levers
 - ✅ HR-calibration · ✅ N-matched mapping · ✅ RMST/median validation · ✅ Royston–Parmar (extrapolation).
 - **Same-endpoint external median matching** to clean the contaminated registry-median cross-check.

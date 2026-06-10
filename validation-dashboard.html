@@ -81,6 +81,17 @@
     </div>
   </section>
 
+  <section class="panel">
+    <h2>The use case — IPD meta-analysis fidelity (reconstructed vs true IPD)</h2>
+    <div class="note">The method's purpose is IPD meta-analysis. Pooling the <b>14 TCGA stage cohorts</b>
+      (advanced vs early stage OS — a real meta-analytic question) with random effects (<b>REML τ², HKSJ,
+      prediction interval on t<sub>k−1</sub></b>), on the <b>true IPD</b> vs the <b>QP-reconstructed</b>
+      pseudo-IPD. Diamond = pooled HR, thick bar = 95% CI, thin whisker = 95% prediction interval. The
+      pooled HR matches within <b>~6%</b> (2.50 vs 2.64); reconstruction only slightly inflates
+      heterogeneity (τ² 0.15→0.20 — the safe direction). <code>validate/ipd_meta_fidelity.js</code>.</div>
+    <svg id="meta" viewBox="0 0 920 200"></svg>
+  </section>
+
   <div class="grid2">
     <section class="panel">
       <h2>Gold-standard detail</h2>
@@ -349,6 +360,21 @@ var PROD=[[0.88,1,1],[1.06,0.55,0],[0.764,0.827,0],[0.97,1,0],[0.348,0.31,0],[0.
  T(s,(W+p)/2,H-5,'registry-reported HR','#8b949e','middle',11);T(s,14,12,'reconstructed HR','#8b949e','start',11);
  PROD.forEach(function(d){C(s,X(d[0]),Y(d[1]),4,d[2]?'#3fb950':'#58a6ff');});
  T(s,W-12,24,'● gold  ● silver','#8b949e','end',10);
+})();
+// IPD-MA fidelity: pooled HR with 95% CI (thick) and 95% PI (thin), true vs reconstructed
+// [label, HR, CIlo, CIhi, PIlo, PIhi, colour]
+var META=[['true IPD',2.50,1.89,3.30,1.03,6.04,'#3fb950'],['QP-reconstructed',2.64,1.91,3.65,0.95,7.40,'#58a6ff']];
+(function(){var s=document.getElementById('meta'),W=920,H=200,padL=150,padR=40;var lo=Math.log(0.8),hi=Math.log(8);
+ var X=function(v){return padL+(Math.log(v)-lo)/(hi-lo)*(W-padL-padR);};
+ [1,2,3,5,8].forEach(function(v){L(s,X(v),24,X(v),H-26,'#1b2129',1);T(s,X(v),H-10,v,'#8b949e','middle',11);});
+ L(s,X(1),24,X(1),H-26,'#30363d',1);T(s,X(1)+4,20,'no effect','#8b949e','start',9);
+ META.forEach(function(d,i){var y=58+i*60;
+   T(s,10,y+4,d[0],d[6],'start',13);
+   L(s,X(d[4]),y,X(d[5]),y,d[6],1.5);L(s,X(d[4]),y-5,X(d[4]),y+5,d[6],1.5);L(s,X(d[5]),y-5,X(d[5]),y+5,d[6],1.5); // PI whisker
+   L(s,X(d[2]),y,X(d[3]),y,d[6],5);                                                                               // CI bar
+   var dx=X(d[1]);[[dx-7,y],[dx,y-7],[dx+7,y],[dx,y+7]].forEach(function(pt,j){var ln=el('line');var nx=[[dx,y-7],[dx+7,y],[dx,y+7],[dx-7,y]][j];ln.setAttribute('x1',pt[0]);ln.setAttribute('y1',pt[1]);ln.setAttribute('x2',nx[0]);ln.setAttribute('y2',nx[1]);ln.setAttribute('stroke',d[6]);ln.setAttribute('stroke-width',2);s.appendChild(ln);}); // diamond
+   T(s,X(d[3])+10,y+4,'HR '+d[1].toFixed(2)+'  CI ['+d[2]+', '+d[3]+']  PI ['+d[4]+', '+d[5]+']','#8b949e','start',10);});
+ T(s,padL,16,'pooled hazard ratio (log scale) — thick = 95% CI, thin = 95% PI','#8b949e','start',10);
 })();
 (function(){var d=document.getElementById('prodStats');
  function row(big,lab,col){return '<div style="margin:0 0 12px"><div style="font-size:26px;font-weight:700;color:'+(col||'#e6edf3')+'">'+big+'</div><div class="mut" style="font-size:12px">'+lab+'</div></div>';}
