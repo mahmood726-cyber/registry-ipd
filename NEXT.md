@@ -31,10 +31,13 @@ three "elevate toward breakthrough" items without re-reading the whole history.
      real trials). 0 structured NAR rows; 288–~605 reconstructable curves (0.4–0.8%); only ~34%
      clear ≥6 timepoints. Wired into `PAPER.md` abstract + §2 and `README.md`.
    - Plus: **all citations PubMed-verified** → `CITATIONS.md` (8/8 indexable refs exact).
-3. **Credentialed large-scale true-IPD validation** — STILL OPEN, *needs the user's credentialed
-   access* (Vivli / Project Data Sphere / YODA). Blocked until a data export is provided; then plug
-   CSVs into `validate/goldstandard.js` configs to extend the gold standard to dozens–hundreds of
-   trials. This is the one remaining lever and the only non-autonomous item.
+3. **Credentialed large-scale true-IPD validation** — INFRASTRUCTURE DONE (2026-06-10). Built
+   `validate/ingest_ipd.js` + `CREDENTIALED.md`: drop a credentialed export under
+   `realipd/credentialed/<batch>/` (gitignored) with a `manifest.json` column-mapping and run ONE
+   command — same pipeline as the open gold standard (curve-only + Titman-QP + uncertainty). Handles
+   **CDISC ADTTE `CNSR` inversion** (1=censored) and generic time/status formats. Proven end-to-end on
+   a synthetic CDISC mock (QP 1.025, coverage 3/3). Vivli/YODA still need their DUA process (gated);
+   Project Data Sphere + open repositories are the next autonomous targets (see below).
 
 ## Also done this session (beyond items 1+2)
 - ✅ **Real head-to-head** `HEADTOHEAD.md` / `validate/headtohead.js`: registry-structured vs

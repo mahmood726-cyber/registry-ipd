@@ -24,3 +24,6 @@ cohort/
 
 # downloaded public validation datasets (not redistributed)
 realipd/*.csv
+
+# credentialed IPD exports (DUA-protected) — NEVER commit
+realipd/credentialed/
