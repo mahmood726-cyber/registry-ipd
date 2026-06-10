@@ -162,11 +162,14 @@ that is the *honest* uncertainty the coarse registry curve leaves on the HR, whi
 reconstructions hide. This is, to our knowledge, the first **calibrated uncertainty quantification
 for registry-native (no-image) survival reconstruction.**
 
-**Gold-standard coverage on TRUE IPD** (`validate/goldstandard_uncertainty.js`): on the 7 real RCT
-datasets, the 95% credible interval covers the **true patient-level HR in 14/14 (100%)** — every
-ground-truth HR falls inside the band (median width ~2.2× fold; not over-wide, e.g. diabetic
-[0.29, 0.63] tightly covers 0.46). So the honest uncertainty band genuinely contains the *true*
-effect, not merely the registry-reported one.
+**Gold-standard coverage on TRUE IPD** (`validate/goldstandard_uncertainty.js`): across the **17
+adequately-sized (≥100/arm)** real datasets, the 95% credible interval covers the **true patient-level
+HR in 16/17 (94%)** — empirical coverage matching the nominal 95% (median width ~2.3× fold; not
+over-wide, e.g. diabetic [0.29, 0.63] tightly covers 0.46). The single miss is **`bfeed`** (true 1.245
+vs band [1.45, 3.37]): its point reconstruction is so far off (the discrete-week / ~96%-event boundary
+case) that even the uncertainty band does not reach truth — an honest failure, not hidden. So the
+uncertainty band genuinely contains the *true* effect on 16 of 17 datasets, not merely the
+registry-reported one, with calibration close to nominal rather than conservatively over-wide.
 
 ## Cutting-edge: competing-risks reconstruction (Aalen–Johansen)
 

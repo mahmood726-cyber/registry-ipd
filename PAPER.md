@@ -32,7 +32,9 @@ reconstructable structured KM curve — the binding coverage limit, quantified b
 (`census_full_aact.py`). Against true patient-level data across **17 adequately-sized RCTs/cohorts** (≥100/arm; of 31
 real datasets), curve-only reconstruction recovers the HR to a median fold-error of **1.12 (~12%;
 13/17 within 20%)** and the median to **~3%**; RMST to **~2%**. The multiple-imputation 95% credible
-interval covers the **true HR in 14/14** of the uncertainty-validation datasets (median width ~2.3×). Reconstructed Aalen–Johansen
+interval covers the **true HR in 16/17 (94%)** of the uncertainty-validation datasets (median width
+~2.3×; the single miss is `bfeed`, the discrete-time outlier) — empirical coverage matching the
+nominal 95%. Reconstructed Aalen–Johansen
 CIFs match the true CIFs even under heavy competing risk (`aidssi`: naive 1−KM overstates the AIDS
 incidence by 16 pp, AJ recovers truth within 6 pp). Accuracy rises sharply with posted KM timepoints
 and **plateaus at ≥5–6** (HR fold-error 1.40 at K=3 → 1.15 at K=5 → 1.08 by K=12). Very small trials
@@ -130,7 +132,8 @@ A ladder of increasing independence (full numbers in `VALIDATION.md`):
    6-MP RCT 0.22→0.20. The worst case is `bfeed` (fold 1.75) — breastfeeding duration in discrete
    weeks with ~96% events, a heavily-tied discrete-time series rather than the smooth KM curve the
    method targets; retained as an honest out-of-favour boundary.
-4. **Uncertainty coverage**: the 95% credible interval covers the **true HR 14/14** (median width 2.3×).
+4. **Uncertainty coverage**: the 95% credible interval covers the **true HR 16/17 (94%)** (median width
+   2.3×); empirical coverage matches the nominal 95%, with `bfeed` the sole miss.
 5. **Competing-risks gold standard**: reconstructed AJ CIF within ~1 pp of truth where competing risk
    is rare (`survival::colon`) and recovers truth within 6 pp where it is heavy (`aidssi`: naive 1−KM
    overstates AIDS incidence by 16 pp).

@@ -35,7 +35,7 @@
   <section class="panel">
     <h2>Headline verdict (honest)</h2>
     <div class="verdict">For adequately-sized trials, <b>RMST and median reconstruct to ~2–6%</b> and the
-    <b>HR to ~11% (median)</b>; the <b>95% credible interval covers the true HR 14/14</b> on real data.
+    <b>HR to ~12% (median)</b>; the <b>95% credible interval covers the true HR 16/17 (94%)</b> on real data.
     HR is the hard estimand; <b>very small trials don't reconstruct</b>; needs <b>≥5–6 posted KM
     timepoints</b>. Not a substitute for true IPD — a triangulation tool with honest uncertainty.</div>
   </section>
@@ -60,8 +60,8 @@
   </div>
 
   <section class="panel">
-    <h2>Calibrated uncertainty — 95% credible interval vs true HR (14 RCTs)</h2>
-    <div class="note">Multiple-imputation interval (sampling the under-identified censoring level). Dot = true patient-level HR; bar = 95% CI. <b>14/14 cover the truth.</b></div>
+    <h2>Calibrated uncertainty — 95% credible interval vs true HR (17 datasets)</h2>
+    <div class="note">Multiple-imputation interval (sampling the under-identified censoring level). Dot = true patient-level HR; bar = 95% CI. <b>16/17 (94%) cover the truth</b> — the one miss (bfeed, red) is the discrete-time outlier.</div>
     <svg id="forest" viewBox="0 0 920 360"></svg>
   </section>
 
@@ -74,7 +74,7 @@
       <h2>Competing risks (true IPD: colon + aidssi)</h2>
       <div class="note">Reconstructed Aalen–Johansen CIF vs TRUE AJ CIF; naive 1−KM overestimates.</div>
       <table><thead><tr><th>arm</th><th class="r">true AJ</th><th class="r">naive 1−KM</th><th class="r">recon err</th></tr></thead><tbody id="crtab"></tbody></table>
-      <div class="note" style="margin-top:8px">Estimand reliability: <span class="pill good">RMST ~2–6%</span> <span class="pill good">median ~3–6%</span> <span class="pill mid">HR ~11%</span> <span class="pill bad">small trials fail</span></div>
+      <div class="note" style="margin-top:8px">Estimand reliability: <span class="pill good">RMST ~2–6%</span> <span class="pill good">median ~3–6%</span> <span class="pill mid">HR ~12%</span> <span class="pill bad">small trials fail</span></div>
     </section>
   </div>
 
@@ -137,7 +137,9 @@ var UNC = [
   {ds:'kidtran',t:0.907,lo:0.644,hi:1.783},{ds:'udca2',t:0.445,lo:0.310,hi:0.668},
   {ds:'retinopathy',t:0.46,lo:0.272,hi:0.623},{ds:'mgus2',t:1.223,lo:0.735,hi:1.377},
   {ds:'flchain',t:1.1,lo:0.610,hi:1.442},{ds:'nafld1',t:1.05,lo:0.356,hi:3.564},
-  {ds:'prostate',t:5.485,lo:1.938,hi:18.808},{ds:'ebmt3',t:1.285,lo:0.741,hi:1.594}
+  {ds:'prostate',t:5.485,lo:1.938,hi:18.808},{ds:'ebmt3',t:1.285,lo:0.741,hi:1.594},
+  {ds:'ebmt1',t:3.966,lo:3.660,hi:7.096},{ds:'pneumon',t:2.237,lo:1.504,hi:3.392},
+  {ds:'bfeed',t:1.245,lo:1.448,hi:3.368}
 ];
 var LADDER = [
   ['Registry-internal','AACT HR / median','HR ~12%, 83–94% within CI; RMST/median round-trip-consistent'],
@@ -184,13 +186,13 @@ CR.forEach(function(c){var tr=document.createElement('tr');tr.innerHTML='<td>'+c
  [0.25,0.5,1,2,5,10,20].forEach(function(v){L(s,X(v),20,X(v),H-24,'#1b2129',1);T(s,X(v),H-8,v,'#8b949e','middle',10);});
  L(s,X(1),20,X(1),H-24,'#30363d',1);
  var rowH=(H-50)/UNC.length;
- UNC.forEach(function(u,i){var y=34+i*rowH;
-   T(s,8,y+3,u.ds,'#e6edf3','start',11);
+ UNC.forEach(function(u,i){var y=34+i*rowH;var cov=u.t>=u.lo&&u.t<=u.hi;
+   T(s,8,y+3,u.ds,cov?'#e6edf3':'#f85149','start',11);
    L(s,X(u.lo),y,X(u.hi),y,'#58a6ff',3); // CI bar
    L(s,X(u.lo),y-4,X(u.lo),y+4,'#58a6ff',2);L(s,X(u.hi),y-4,X(u.hi),y+4,'#58a6ff',2);
-   C(s,X(u.t),y,4,'#3fb950'); // true HR (covered => green)
+   C(s,X(u.t),y,4,cov?'#3fb950':'#f85149'); // true HR: green=covered, red=miss
  });
- T(s,W-padR,16,'● true HR  — 95% CI','#8b949e','end',11);
+ T(s,W-padR,16,'● covered  ● miss (bfeed)  — 95% CI','#8b949e','end',11);
 })();
 
 // ---- coverage census, head-to-head, noise sweep (from census_full_aact.py / headtohead.js / noise_sweep.js) ----
