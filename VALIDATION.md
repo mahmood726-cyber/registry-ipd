@@ -168,8 +168,25 @@ HR in 28/29 (97%)** — empirical coverage matching the nominal 95% (median widt
 over-wide, e.g. diabetic [0.29, 0.63] tightly covers 0.46). The single miss is **`bfeed`** (true 1.245
 vs band [1.45, 3.37]): its point reconstruction is so far off (the discrete-week / ~96%-event boundary
 case) that even the uncertainty band does not reach truth — an honest failure, not hidden. So the
-uncertainty band genuinely contains the *true* effect on 16 of 17 datasets, not merely the
-registry-reported one, with calibration close to nominal rather than conservatively over-wide.
+uncertainty band genuinely contains the *true* effect on 28 of 29 datasets, not merely the
+registry-reported one.
+
+**Multi-level calibration — the intervals are conservative, not over-confident**
+(`validate/uncertainty_calibration.js`). Marginal 95% coverage is necessary but weak; an interval can
+hit 95% while being miscalibrated elsewhere. Checking coverage at every nominal level (29 datasets,
+M=400 imputations):
+
+| nominal | 50% | 80% | 90% | 95% |
+|---|---|---|---|---|
+| empirical coverage | 83% | 90% | 97% | 97% |
+
+Empirical coverage is **above** nominal at every level. The honest reading: the **95% interval is
+well-calibrated** (97% ≈ 95%), but **narrower intervals over-cover** — the band is sized for the tails,
+so it is *conservative* (wider than strictly needed) at the centre. This is the **safe** direction of
+miscalibration: the intervals will not mislead by being too narrow, but a 50% interval should not be
+read as a 50% bet (it covers ~83%). The likely cause is the deliberately wide censoring-level sampling
+band ([0.55·E₀, E₀]); tightening it would sharpen the low-level intervals at some risk to tail coverage.
+We keep the conservative band and report this honestly rather than tune to a calibration target.
 
 ## Cutting-edge: competing-risks reconstruction (Aalen–Johansen)
 

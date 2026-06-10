@@ -155,8 +155,11 @@ A ladder of increasing independence (full numbers in `VALIDATION.md`):
    a clean demonstration of why the event-count tier matters. The worst case overall is `bfeed` (fold 1.75) — breastfeeding duration
    in discrete weeks with ~96% events, a heavily-tied discrete-time series, retained as an honest
    out-of-favour boundary.
-4. **Uncertainty coverage**: the 95% credible interval covers the **true HR 27/28 (96%)** (median width
-   2.3×); empirical coverage matches the nominal 95%, with `bfeed` the sole miss.
+4. **Uncertainty coverage**: the 95% credible interval covers the **true HR 28/29 (97%)** (median width
+   2.3×), with `bfeed` the sole miss. A **multi-level calibration check** (`uncertainty_calibration.js`,
+   nominal 50/80/90/95% → empirical 83/90/97/97%) shows the 95% interval is well-calibrated but
+   narrower intervals **over-cover**: the band is *conservative* (the safe direction — too wide, never
+   over-confident), which we report rather than tune away.
 5. **Competing-risks gold standard**: reconstructed AJ CIF within ~1 pp of truth where competing risk
    is rare (`survival::colon`) and recovers truth within 6 pp where it is heavy (`aidssi`: naive 1−KM
    overstates AIDS incidence by 16 pp).

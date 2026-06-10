@@ -1,0 +1,325 @@
+{
+  "summary": {
+    "n_datasets": 29,
+    "M": 400,
+    "calibration": [
+      {
+        "nominal": 50,
+        "empirical": 82.8,
+        "covered": 24,
+        "n": 29
+      },
+      {
+        "nominal": 80,
+        "empirical": 89.7,
+        "covered": 26,
+        "n": 29
+      },
+      {
+        "nominal": 90,
+        "empirical": 96.6,
+        "covered": 28,
+        "n": 29
+      },
+      {
+        "nominal": 95,
+        "empirical": 96.6,
+        "covered": 28,
+        "n": 29
+      }
+    ],
+    "interpretation": "Empirical ≈ nominal at every level ⇒ well-calibrated. Consistently above nominal ⇒ conservative (intervals wider than needed). Below ⇒ overconfident. This is the multi-level check behind the marginal 95% coverage reported in goldstandard_uncertainty.js."
+  },
+  "per_dataset": [
+    {
+      "ds": "gbsg",
+      "true_HR": 0.695,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "rotterdam",
+      "true_HR": 1.495,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "pbc",
+      "true_HR": 0.944,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "diabetic",
+      "true_HR": 0.46,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "nwtco",
+      "true_HR": 5.115,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "myeloid",
+      "true_HR": 0.708,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "kidtran",
+      "true_HR": 0.907,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "udca2",
+      "true_HR": 0.445,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "retinopathy",
+      "true_HR": 0.46,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "mgus2",
+      "true_HR": 1.223,
+      "levels": {
+        "50": false,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "flchain",
+      "true_HR": 1.1,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "nafld1",
+      "true_HR": 1.05,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "prostateSurvival",
+      "true_HR": 5.485,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "ebmt3",
+      "true_HR": 1.285,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "ebmt1",
+      "true_HR": 3.966,
+      "levels": {
+        "50": false,
+        "80": false,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "pneumon",
+      "true_HR": 2.237,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "bfeed",
+      "true_HR": 1.245,
+      "levels": {
+        "50": false,
+        "80": false,
+        "90": false,
+        "95": false
+      }
+    },
+    {
+      "ds": "cbio_luad",
+      "true_HR": 2.65,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "cbio_coadread",
+      "true_HR": 3.107,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "cbio_stad",
+      "true_HR": 2.194,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "cbio_kirc",
+      "true_HR": 4.052,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "cbio_hnsc",
+      "true_HR": 1.762,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "cbio_skcm",
+      "true_HR": 1.67,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "cbio_blca",
+      "true_HR": 2.234,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "cbio_brca",
+      "true_HR": 2.695,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "cbio2_brcaMETABRIC_grade",
+      "true_HR": 1.626,
+      "levels": {
+        "50": false,
+        "80": false,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "cbio2_brcaMETABRIC_er_status",
+      "true_HR": 1.16,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "cbio2_brcaMETABRIC_tumor_stage",
+      "true_HR": 1.812,
+      "levels": {
+        "50": false,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    },
+    {
+      "ds": "cbio2_crc_stage_at_diagnosis",
+      "true_HR": 1.032,
+      "levels": {
+        "50": true,
+        "80": true,
+        "90": true,
+        "95": true
+      }
+    }
+  ]
+}
