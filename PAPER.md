@@ -138,15 +138,35 @@ extend it. Tier B is exponential-only.
 Code, tests, harvester, validation scripts, offline tool and dashboard: MIT-licensed at
 https://github.com/mahmood726-cyber/registry-ipd (live: https://mahmood726-cyber.github.io/registry-ipd/).
 
-## References (DOI-resolve before submission)
+## References
 
-1. Guyot P, Ades AE, Ouwens MJNM, Welton NJ. *BMC Med Res Methodol.* 2012;12:9. doi:10.1186/1471-2288-12-9 *(PubMed-verified; its own recommendation that RCTs report numbers-at-risk + total events alongside KM curves directly supports our censoring-informed method and anchor-density finding.)*
-2. Liu N, Zhou Y, Lee JJ. IPDfromKM. *BMC Med Res Methodol.* 2021;21(1):111. doi:10.1186/s12874-021-01308-8 *(PubMed-verified.)*
-3. Royston P, Parmar MKB. Flexible parametric proportional-hazards and proportional-odds models for censored survival data. *Stat Med.* 2002;21(15):2175–2197. doi:10.1002/sim.1203 *(PubMed-verified.)*
-4. Aalen OO, Johansen S. An empirical transition matrix for non-homogeneous Markov chains based on censored observations. *Scand J Stat.* 1978;5(3):141–150. *(Foundational competing-risks paper; not PubMed-indexed.)*
-5. Jansen JP. Network meta-analysis of survival data with fractional polynomials. *BMC Med Res Methodol.* 2011;11:61. doi:10.1186/1471-2288-11-61 *(PubMed-verified.)*
+*All PubMed-indexed references below were programmatically DOI→PMID resolved and field-matched
+(author/year/journal/volume/pages) against PubMed on 2026-06-10 (verification log:
+`CITATIONS.md`). arXiv preprints are flagged as such; the two non-indexed classics (Aalen–Johansen,
+Rubin) are a journal article and a book respectively.*
+
+1. Guyot P, Ades AE, Ouwens MJNM, Welton NJ. *BMC Med Res Methodol.* 2012;12:9. PMID 22297116.
+   doi:10.1186/1471-2288-12-9 *(Verified. The abstract's own recommendation — "all RCTs should
+   report information on numbers at risk and total number of events alongside KM curves" — is direct
+   prior-authority support for our censoring-informed method and the ≥5–6-timepoint anchor-density
+   finding.)*
+2. Liu N, Zhou Y, Lee JJ. IPDfromKM. *BMC Med Res Methodol.* 2021;21(1):111. PMID 34074267.
+   doi:10.1186/s12874-021-01308-8 *(Verified; abstract confirms figure-image input — "extract raw
+   data coordinates from published K-M curves".)*
+3. Royston P, Parmar MKB. Flexible parametric proportional-hazards and proportional-odds models for
+   censored survival data. *Stat Med.* 2002;21(15):2175–2197. PMID 12210632. doi:10.1002/sim.1203
+   *(Verified.)*
+4. Aalen OO, Johansen S. An empirical transition matrix for non-homogeneous Markov chains based on
+   censored observations. *Scand J Stat.* 1978;5(3):141–150. *(Foundational competing-risks paper;
+   not PubMed-indexed.)*
+5. Jansen JP. Network meta-analysis of survival data with fractional polynomials. *BMC Med Res
+   Methodol.* 2011;11:61. PMID 21548941. doi:10.1186/1471-2288-11-61 *(Verified.)*
 6. Rubin DB. *Multiple Imputation for Nonresponse in Surveys.* Wiley, 1987. *(Book; no DOI.)*
-7. Yao JC, et al. RADIANT-4. *Lancet.* 2016;387:968–977. doi:10.1016/S0140-6736(15)00817-X
-8. RESOLVE-IPD. arXiv:2511.01785 (2025). · KM-GPT. arXiv:2509.18141 (2025).
+7. Yao JC, Fazio N, Singh S, et al. Everolimus for advanced, non-functional neuroendocrine tumours
+   of the lung or gastrointestinal tract (RADIANT-4). *Lancet.* 2016;387(10022):968–977. PMID
+   26703889. doi:10.1016/S0140-6736(15)00817-X *(Verified; print 2016, online 2015-12-17. Published
+   PFS HR 0.48 [95% CI 0.35–0.67] matches our reconstruction.)*
+8. RESOLVE-IPD. arXiv:2511.01785 (2025). · KM-GPT. arXiv:2509.18141 (2025). *(arXiv preprints —
+   figure-image reconstruction pipelines; identifiers carried verbatim, not PubMed-indexed.)*
 9. AACT / Clinical Trials Transformation Initiative, ClinicalTrials.gov. Validation datasets: R
    `survival` package (Therneau) and Rdatasets mirror.
