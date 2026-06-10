@@ -24,17 +24,19 @@ intervals; (ii) **competing-risks** reconstruction with the Aalen–Johansen cum
 estimator; (iii) **HR-calibration** that imposes the reported HR for downstream IPD meta-analysis;
 (iv) **fractional-polynomial time-varying-HR** analysis for non-proportional hazards. Validation
 proceeds up a ladder of increasing independence: AACT-internal HR, primary publications, and finally
-**true patient-level IPD** from 38 open RCT/cohort datasets (R `survival::`/`KMsurv`/`asaur` and TCGA via cBioPortal).
+**true patient-level IPD** from 43 open RCT/cohort datasets (R `survival::`/`KMsurv`/`asaur` and TCGA via cBioPortal).
 
 **Results.** Of the 76,067 AACT trials with posted results, **zero** contain a structured
 number-at-risk row, and only **288–~600** (0.4–0.8%, depending on detection strictness) post a
 reconstructable structured KM curve — the binding coverage limit, quantified by census
-(`census_full_aact.py`). Against true patient-level data across **24 adequately-sized RCTs/cohorts** (≥100/arm; of 38
-real datasets, incl. 7 TCGA cohorts from the open cBioPortal API), curve-only reconstruction recovers
+(`census_full_aact.py`). Against true patient-level data across **24 adequately-sized RCTs/cohorts** (≥100/arm; of 43
+real datasets, incl. 12 TCGA cohorts from the open cBioPortal API), curve-only reconstruction recovers
 the HR to a median fold-error of **1.15** (**1.12** excluding the 7 heavily-censored, large-effect TCGA
-cohorts where curve-only underestimates the HR) and the median to **~3%**; RMST to **~2%**. On those
-TCGA cohorts the **censoring-informed method — which uses the registry total-event count — recovers the
-large effects (median fold 1.56 → 1.08)**, validating the event-count tier. The multiple-imputation 95%
+cohorts where curve-only underestimates the HR) and the median to **~3%**; RMST to **~2%**. On the 12
+heavily-censored TCGA cohorts the **censoring-informed method — which uses the registry total-event
+count — recovers the large effects (median fold 1.56 → 1.20)**, validating the event-count tier; we
+show this gap is a *fundamental identifiability limit* (no curve-only estimator, including an
+optimal-transport Wasserstein barycenter, closes it), not an algorithmic deficiency. The multiple-imputation 95%
 credible interval covers the **true HR in 23/24 (96%)** (median width ~2.3×; the single miss is `bfeed`,
 the discrete-time outlier) — empirical coverage matching the nominal 95%. Reconstructed Aalen–Johansen
 CIFs match the true CIFs even under heavy competing risk (`aidssi`: naive 1−KM overstates the AIDS
@@ -127,9 +129,9 @@ A ladder of increasing independence (full numbers in `VALIDATION.md`):
    83→94% (curve-only→censoring-informed), median fold-error ~1.1.
 2. **Primary publication** (RADIANT-4, Yao et al. *Lancet* 2016): reconstructed HR 0.47–0.48 vs
    published 0.48; median 11/4 vs 11.0/3.9 months.
-3. **True patient-level IPD**, 38 open datasets (breast/colon/lung/AML/melanoma/leukemia/transplant/
+3. **True patient-level IPD**, 43 open datasets (breast/colon/lung/AML/melanoma/leukemia/transplant/
    PBC/MGUS/NAFLD/prostate/retinopathy/AIDS/larynx/burn/pneumonia/HCC; R `survival::`/`KMsurv`/`asaur`;
-   plus 7 TCGA cohorts by stage from cBioPortal). For the 24 adequately-sized (≥100/arm): curve-only HR
+   plus 12 TCGA cohorts by stage from cBioPortal). For the 24 adequately-sized (≥100/arm): curve-only HR
    median fold-error **1.15 (15/24 within 20%; 1.12 / 13/17 excluding the TCGA cohorts)**, median
    **~3%**, RMST **~2%**; large effects clean (Wilms 5.1→5.2, melanoma 4.4→4.0, TCGA-LUAD 2.65→2.70),
    classic Gehan 6-MP RCT 0.22→0.20.
@@ -175,12 +177,26 @@ error**: it is competitive with and cleaner than digitisation *only when enough 
 shape; reconstruct natively from the registry for exactness and provenance. This directly motivates the
 reporting recommendation in `POLICY.md`: the native path's value is unlocked by anchor density.
 
+**The censoring level is an identifiability limit, not an algorithmic one.** The 12 TCGA cohorts expose
+the sharpest version of the under-identification: because the early-stage arm is heavily censored,
+curve-only underestimates the (large) HR. We asked whether advanced statistics can recover it *without*
+the registry event count, benchmarking three curve-only point estimators (`validate/advanced_estimators.js`):
+the current censor-to-tail, a max-entropy ensemble (model-averaging over the censoring level), and a
+**1-Wasserstein barycenter** of the imputed pseudo-IPD point-clouds — the optimal-transport estimate
+that, via rank-matching, averages reconstructions while preserving the at-risk structure the HR depends
+on. None dominates, and on the heavily-censored cohorts all three remain at ~1.5 fold. The reason is
+structural: **censoring is invisible to the posted KM anchors** — every censoring level passes through
+the same survival points — so the event/censoring split is genuinely unidentified from the curve alone.
+The censoring-informed tier collapses the error to 1.20 *because it injects the one missing statistic,
+the total-event count*. The honest conclusion is that cleverer reconstruction cannot substitute for
+that statistic; the fix is reporting (total events or number-at-risk), reinforcing `POLICY.md`.
+
 ## 6. Limitations
 
 Registry coverage is the binding limit (hundreds of trials, not all). The censoring level is
 under-identified; we surface this as honest interval width rather than a false point. Very small trials
 (N≈137) do not reconstruct. The external-median check is sensitive to endpoint matching. True-IPD
-validation used 38 open datasets (R `survival`/`KMsurv`/`asaur` and TCGA via the open cBioPortal API);
+validation used 43 open datasets (R `survival`/`KMsurv`/`asaur` and TCGA via the open cBioPortal API);
 credentialed repositories (Vivli, Project Data Sphere, YODA) would extend it further to dozens–hundreds
 of trials. Tier B is exponential-only.
 

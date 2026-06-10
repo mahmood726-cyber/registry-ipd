@@ -838,5 +838,115 @@
       "median_exp_pcterr": 154.4,
       "RMSTdiff": -21.5
     }
+  },
+  {
+    "ds": "cbio_lusc",
+    "label": "TCGA lung squamous (OS, late vs early stage)",
+    "n_exp": 89,
+    "n_ctl": 388,
+    "true_HR": 1.636,
+    "true_median_exp": 30.6,
+    "true_median_ctl": 61,
+    "true_RMST_diff": -16,
+    "curve_only": {
+      "HR": 1.58,
+      "HR_logerr": 0.035,
+      "median_exp_pcterr": 1.3,
+      "RMSTdiff": -16.9
+    },
+    "censoring_informed": {
+      "HR": 2.214,
+      "HR_logerr": 0.302,
+      "median_exp_pcterr": 97.6,
+      "RMSTdiff": -23.6
+    }
+  },
+  {
+    "ds": "cbio_esca",
+    "label": "TCGA esophageal (OS, late vs early stage)",
+    "n_exp": 64,
+    "n_ctl": 96,
+    "true_HR": 3.099,
+    "true_median_exp": 18.2,
+    "true_median_ctl": 46.1,
+    "true_RMST_diff": -14.9,
+    "curve_only": {
+      "HR": 4.166,
+      "HR_logerr": 0.296,
+      "median_exp_pcterr": 3.7,
+      "RMSTdiff": -15
+    },
+    "censoring_informed": {
+      "HR": 5.872,
+      "HR_logerr": 0.639,
+      "median_exp_pcterr": 55.2,
+      "RMSTdiff": -12.8
+    }
+  },
+  {
+    "ds": "cbio_lihc",
+    "label": "TCGA liver HCC (OS, late vs early stage)",
+    "n_exp": 88,
+    "n_ctl": 257,
+    "true_HR": 2.336,
+    "true_median_exp": 24.8,
+    "true_median_ctl": 82.7,
+    "true_RMST_diff": -25.8,
+    "curve_only": {
+      "HR": 1.878,
+      "HR_logerr": 0.218,
+      "median_exp_pcterr": 3.7,
+      "RMSTdiff": -24.7
+    },
+    "censoring_informed": {
+      "HR": 2.847,
+      "HR_logerr": 0.198,
+      "median_exp_pcterr": 160.6,
+      "RMSTdiff": -25.2
+    }
+  },
+  {
+    "ds": "cbio_kirp",
+    "label": "TCGA kidney papillary (OS, late vs early stage)",
+    "n_exp": 64,
+    "n_ctl": 189,
+    "true_HR": 6.13,
+    "true_median_exp": 43.1,
+    "true_median_ctl": null,
+    "true_RMST_diff": -34.4,
+    "curve_only": {
+      "HR": 2.548,
+      "HR_logerr": 0.878,
+      "median_exp_pcterr": 1.9,
+      "RMSTdiff": -32.4
+    },
+    "censoring_informed": {
+      "HR": 6.992,
+      "HR_logerr": 0.132,
+      "median_exp_pcterr": null,
+      "RMSTdiff": -28.3
+    }
+  },
+  {
+    "ds": "cbio_acc",
+    "label": "TCGA adrenocortical (OS, late vs early stage)",
+    "n_exp": 35,
+    "n_ctl": 53,
+    "true_HR": 7.59,
+    "true_median_exp": 31.9,
+    "true_median_ctl": null,
+    "true_RMST_diff": -49,
+    "curve_only": {
+      "HR": 4.51,
+      "HR_logerr": 0.521,
+      "median_exp_pcterr": 5,
+      "RMSTdiff": -46.3
+    },
+    "censoring_informed": {
+      "HR": 6.34,
+      "HR_logerr": 0.18,
+      "median_exp_pcterr": 18.3,
+      "RMSTdiff": -45.3
+    }
   }
 ]

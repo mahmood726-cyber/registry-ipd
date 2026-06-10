@@ -1,0 +1,854 @@
+{
+  "summary": {
+    "all": {
+      "n": 43,
+      "censor_to_tail": {
+        "median_fold": 1.162,
+        "within20": "23/43"
+      },
+      "maxent_ensemble": {
+        "median_fold": 1.14,
+        "within20": "24/43"
+      },
+      "wasserstein_barycenter": {
+        "median_fold": 1.191,
+        "within20": "23/43"
+      }
+    },
+    "tcga_heavily_censored": {
+      "n": 12,
+      "censor_to_tail": {
+        "median_fold": 1.558,
+        "within20": "3/12"
+      },
+      "maxent_ensemble": {
+        "median_fold": 1.551,
+        "within20": "3/12"
+      },
+      "wasserstein_barycenter": {
+        "median_fold": 1.51,
+        "within20": "3/12"
+      }
+    },
+    "note": "Curve-only regime (no registry event count). censor_to_tail = current default; maxent_ensemble = median log-HR over censoring-level imputations; wasserstein_barycenter = Cox HR on the 1-Wasserstein barycenter (rank-averaged, censoring-preserving) of the imputed IPD."
+  },
+  "per_dataset": [
+    {
+      "ds": "gbsg",
+      "n_exp": 246,
+      "n_ctl": 440,
+      "true_HR": 0.695,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.686,
+        "fold": 1.013
+      },
+      "maxent_ensemble": {
+        "HR": 0.679,
+        "fold": 1.024
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.675,
+        "fold": 1.03
+      }
+    },
+    {
+      "ds": "veteran",
+      "n_exp": 68,
+      "n_ctl": 69,
+      "true_HR": 1.016,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.755,
+        "fold": 1.346
+      },
+      "maxent_ensemble": {
+        "HR": 0.758,
+        "fold": 1.342
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.726,
+        "fold": 1.401
+      }
+    },
+    {
+      "ds": "rotterdam",
+      "n_exp": 339,
+      "n_ctl": 2500,
+      "true_HR": 1.495,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 1.287,
+        "fold": 1.162
+      },
+      "maxent_ensemble": {
+        "HR": 1.273,
+        "fold": 1.175
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.247,
+        "fold": 1.2
+      }
+    },
+    {
+      "ds": "pbc",
+      "n_exp": 154,
+      "n_ctl": 158,
+      "true_HR": 0.944,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 1.117,
+        "fold": 1.183
+      },
+      "maxent_ensemble": {
+        "HR": 1.125,
+        "fold": 1.191
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.069,
+        "fold": 1.132
+      }
+    },
+    {
+      "ds": "diabetic",
+      "n_exp": 197,
+      "n_ctl": 197,
+      "true_HR": 0.46,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.412,
+        "fold": 1.116
+      },
+      "maxent_ensemble": {
+        "HR": 0.412,
+        "fold": 1.116
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.439,
+        "fold": 1.049
+      }
+    },
+    {
+      "ds": "nwtco",
+      "n_exp": 459,
+      "n_ctl": 2500,
+      "true_HR": 5.115,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 5.184,
+        "fold": 1.014
+      },
+      "maxent_ensemble": {
+        "HR": 5.243,
+        "fold": 1.025
+      },
+      "wasserstein_barycenter": {
+        "HR": 4.74,
+        "fold": 1.079
+      }
+    },
+    {
+      "ds": "myeloid",
+      "n_exp": 329,
+      "n_ctl": 317,
+      "true_HR": 0.708,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.639,
+        "fold": 1.108
+      },
+      "maxent_ensemble": {
+        "HR": 0.65,
+        "fold": 1.09
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.686,
+        "fold": 1.032
+      }
+    },
+    {
+      "ds": "kidtran",
+      "n_exp": 339,
+      "n_ctl": 524,
+      "true_HR": 0.907,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 1.046,
+        "fold": 1.153
+      },
+      "maxent_ensemble": {
+        "HR": 1.015,
+        "fold": 1.118
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.939,
+        "fold": 1.035
+      }
+    },
+    {
+      "ds": "udca2",
+      "n_exp": 680,
+      "n_ctl": 672,
+      "true_HR": 0.445,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.415,
+        "fold": 1.073
+      },
+      "maxent_ensemble": {
+        "HR": 0.409,
+        "fold": 1.088
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.421,
+        "fold": 1.057
+      }
+    },
+    {
+      "ds": "retinopathy",
+      "n_exp": 197,
+      "n_ctl": 197,
+      "true_HR": 0.46,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.412,
+        "fold": 1.116
+      },
+      "maxent_ensemble": {
+        "HR": 0.411,
+        "fold": 1.12
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.448,
+        "fold": 1.027
+      }
+    },
+    {
+      "ds": "mgus2",
+      "n_exp": 753,
+      "n_ctl": 631,
+      "true_HR": 1.223,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.975,
+        "fold": 1.254
+      },
+      "maxent_ensemble": {
+        "HR": 0.927,
+        "fold": 1.32
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.932,
+        "fold": 1.312
+      }
+    },
+    {
+      "ds": "flchain",
+      "n_exp": 2500,
+      "n_ctl": 2500,
+      "true_HR": 1.1,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.955,
+        "fold": 1.151
+      },
+      "maxent_ensemble": {
+        "HR": 0.969,
+        "fold": 1.135
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.996,
+        "fold": 1.104
+      }
+    },
+    {
+      "ds": "nafld1",
+      "n_exp": 2500,
+      "n_ctl": 2500,
+      "true_HR": 1.05,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.999,
+        "fold": 1.051
+      },
+      "maxent_ensemble": {
+        "HR": 0.962,
+        "fold": 1.092
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.911,
+        "fold": 1.153
+      }
+    },
+    {
+      "ds": "prostateSurvival",
+      "n_exp": 2500,
+      "n_ctl": 2500,
+      "true_HR": 5.485,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 5.168,
+        "fold": 1.061
+      },
+      "maxent_ensemble": {
+        "HR": 5.176,
+        "fold": 1.06
+      },
+      "wasserstein_barycenter": {
+        "HR": 4.117,
+        "fold": 1.332
+      }
+    },
+    {
+      "ds": "bmt",
+      "n_exp": 45,
+      "n_ctl": 38,
+      "true_HR": 1.491,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 1.008,
+        "fold": 1.478
+      },
+      "maxent_ensemble": {
+        "HR": 1.03,
+        "fold": 1.447
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.039,
+        "fold": 1.435
+      }
+    },
+    {
+      "ds": "melanoma",
+      "n_exp": 90,
+      "n_ctl": 115,
+      "true_HR": 4.357,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 3.986,
+        "fold": 1.093
+      },
+      "maxent_ensemble": {
+        "HR": 3.847,
+        "fold": 1.132
+      },
+      "wasserstein_barycenter": {
+        "HR": 3.657,
+        "fold": 1.191
+      }
+    },
+    {
+      "ds": "pharmacoSmoking",
+      "n_exp": 56,
+      "n_ctl": 57,
+      "true_HR": 1.795,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 1.641,
+        "fold": 1.093
+      },
+      "maxent_ensemble": {
+        "HR": 1.699,
+        "fold": 1.056
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.861,
+        "fold": 1.037
+      }
+    },
+    {
+      "ds": "gehan",
+      "n_exp": 21,
+      "n_ctl": 21,
+      "true_HR": 0.221,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.201,
+        "fold": 1.099
+      },
+      "maxent_ensemble": {
+        "HR": 0.226,
+        "fold": 1.022
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.248,
+        "fold": 1.123
+      }
+    },
+    {
+      "ds": "tongue",
+      "n_exp": 28,
+      "n_ctl": 52,
+      "true_HR": 1.586,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 1.926,
+        "fold": 1.215
+      },
+      "maxent_ensemble": {
+        "HR": 1.807,
+        "fold": 1.14
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.893,
+        "fold": 1.194
+      }
+    },
+    {
+      "ds": "cancer",
+      "n_exp": 90,
+      "n_ctl": 138,
+      "true_HR": 0.588,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.729,
+        "fold": 1.238
+      },
+      "maxent_ensemble": {
+        "HR": 0.714,
+        "fold": 1.213
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.707,
+        "fold": 1.201
+      }
+    },
+    {
+      "ds": "ebmt3",
+      "n_exp": 276,
+      "n_ctl": 1928,
+      "true_HR": 1.285,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 1.008,
+        "fold": 1.275
+      },
+      "maxent_ensemble": {
+        "HR": 1.023,
+        "fold": 1.256
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.005,
+        "fold": 1.279
+      }
+    },
+    {
+      "ds": "aidssi",
+      "n_exp": 65,
+      "n_ctl": 259,
+      "true_HR": 0.291,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.312,
+        "fold": 1.072
+      },
+      "maxent_ensemble": {
+        "HR": 0.3,
+        "fold": 1.032
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.282,
+        "fold": 1.03
+      }
+    },
+    {
+      "ds": "ebmt1",
+      "n_exp": 167,
+      "n_ctl": 406,
+      "true_HR": 3.966,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 5.029,
+        "fold": 1.268
+      },
+      "maxent_ensemble": {
+        "HR": 4.946,
+        "fold": 1.247
+      },
+      "wasserstein_barycenter": {
+        "HR": 4.788,
+        "fold": 1.207
+      }
+    },
+    {
+      "ds": "cgd_fe",
+      "n_exp": 63,
+      "n_ctl": 65,
+      "true_HR": 0.335,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.248,
+        "fold": 1.349
+      },
+      "maxent_ensemble": {
+        "HR": 0.256,
+        "fold": 1.306
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.249,
+        "fold": 1.347
+      }
+    },
+    {
+      "ds": "bladder_fe",
+      "n_exp": 38,
+      "n_ctl": 47,
+      "true_HR": 0.696,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.677,
+        "fold": 1.027
+      },
+      "maxent_ensemble": {
+        "HR": 0.693,
+        "fold": 1.003
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.626,
+        "fold": 1.112
+      }
+    },
+    {
+      "ds": "alloauto",
+      "n_exp": 50,
+      "n_ctl": 51,
+      "true_HR": 0.838,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.678,
+        "fold": 1.237
+      },
+      "maxent_ensemble": {
+        "HR": 0.692,
+        "fold": 1.211
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.754,
+        "fold": 1.111
+      }
+    },
+    {
+      "ds": "larynx",
+      "n_exp": 27,
+      "n_ctl": 33,
+      "true_HR": 1.837,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 1.711,
+        "fold": 1.074
+      },
+      "maxent_ensemble": {
+        "HR": 1.712,
+        "fold": 1.073
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.683,
+        "fold": 1.092
+      }
+    },
+    {
+      "ds": "burn",
+      "n_exp": 84,
+      "n_ctl": 70,
+      "true_HR": 0.571,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 0.466,
+        "fold": 1.225
+      },
+      "maxent_ensemble": {
+        "HR": 0.459,
+        "fold": 1.244
+      },
+      "wasserstein_barycenter": {
+        "HR": 0.436,
+        "fold": 1.31
+      }
+    },
+    {
+      "ds": "pneumon",
+      "n_exp": 838,
+      "n_ctl": 2285,
+      "true_HR": 2.237,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 2.3,
+        "fold": 1.028
+      },
+      "maxent_ensemble": {
+        "HR": 2.325,
+        "fold": 1.039
+      },
+      "wasserstein_barycenter": {
+        "HR": 2.292,
+        "fold": 1.024
+      }
+    },
+    {
+      "ds": "bfeed",
+      "n_exp": 270,
+      "n_ctl": 657,
+      "true_HR": 1.245,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 2.179,
+        "fold": 1.751
+      },
+      "maxent_ensemble": {
+        "HR": 2.279,
+        "fold": 1.831
+      },
+      "wasserstein_barycenter": {
+        "HR": 2.341,
+        "fold": 1.881
+      }
+    },
+    {
+      "ds": "hepatoCellular",
+      "n_exp": 41,
+      "n_ctl": 186,
+      "true_HR": 2.18,
+      "tcga": false,
+      "censor_to_tail": {
+        "HR": 2.01,
+        "fold": 1.084
+      },
+      "maxent_ensemble": {
+        "HR": 1.969,
+        "fold": 1.107
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.954,
+        "fold": 1.115
+      }
+    },
+    {
+      "ds": "cbio_luad",
+      "n_exp": 105,
+      "n_ctl": 394,
+      "true_HR": 2.65,
+      "tcga": true,
+      "censor_to_tail": {
+        "HR": 2.702,
+        "fold": 1.019
+      },
+      "maxent_ensemble": {
+        "HR": 2.722,
+        "fold": 1.027
+      },
+      "wasserstein_barycenter": {
+        "HR": 2.715,
+        "fold": 1.024
+      }
+    },
+    {
+      "ds": "cbio_coadread",
+      "n_exp": 247,
+      "n_ctl": 309,
+      "true_HR": 3.107,
+      "tcga": true,
+      "censor_to_tail": {
+        "HR": 1.696,
+        "fold": 1.833
+      },
+      "maxent_ensemble": {
+        "HR": 1.718,
+        "fold": 1.808
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.724,
+        "fold": 1.803
+      }
+    },
+    {
+      "ds": "cbio_stad",
+      "n_exp": 224,
+      "n_ctl": 183,
+      "true_HR": 2.194,
+      "tcga": true,
+      "censor_to_tail": {
+        "HR": 1.646,
+        "fold": 1.334
+      },
+      "maxent_ensemble": {
+        "HR": 1.686,
+        "fold": 1.301
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.749,
+        "fold": 1.255
+      }
+    },
+    {
+      "ds": "cbio_kirc",
+      "n_exp": 209,
+      "n_ctl": 301,
+      "true_HR": 4.052,
+      "tcga": true,
+      "censor_to_tail": {
+        "HR": 2.6,
+        "fold": 1.558
+      },
+      "maxent_ensemble": {
+        "HR": 2.612,
+        "fold": 1.551
+      },
+      "wasserstein_barycenter": {
+        "HR": 2.684,
+        "fold": 1.51
+      }
+    },
+    {
+      "ds": "cbio_hnsc",
+      "n_exp": 349,
+      "n_ctl": 103,
+      "true_HR": 1.762,
+      "tcga": true,
+      "censor_to_tail": {
+        "HR": 1.102,
+        "fold": 1.599
+      },
+      "maxent_ensemble": {
+        "HR": 1.106,
+        "fold": 1.593
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.108,
+        "fold": 1.591
+      }
+    },
+    {
+      "ds": "cbio_skcm",
+      "n_exp": 188,
+      "n_ctl": 203,
+      "true_HR": 1.67,
+      "tcga": true,
+      "censor_to_tail": {
+        "HR": 1.644,
+        "fold": 1.016
+      },
+      "maxent_ensemble": {
+        "HR": 1.629,
+        "fold": 1.025
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.564,
+        "fold": 1.068
+      }
+    },
+    {
+      "ds": "cbio_blca",
+      "n_exp": 276,
+      "n_ctl": 131,
+      "true_HR": 2.234,
+      "tcga": true,
+      "censor_to_tail": {
+        "HR": 1.364,
+        "fold": 1.639
+      },
+      "maxent_ensemble": {
+        "HR": 1.374,
+        "fold": 1.626
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.385,
+        "fold": 1.613
+      }
+    },
+    {
+      "ds": "cbio_lusc",
+      "n_exp": 89,
+      "n_ctl": 388,
+      "true_HR": 1.636,
+      "tcga": true,
+      "censor_to_tail": {
+        "HR": 1.58,
+        "fold": 1.035
+      },
+      "maxent_ensemble": {
+        "HR": 1.581,
+        "fold": 1.035
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.585,
+        "fold": 1.032
+      }
+    },
+    {
+      "ds": "cbio_esca",
+      "n_exp": 64,
+      "n_ctl": 96,
+      "true_HR": 3.099,
+      "tcga": true,
+      "censor_to_tail": {
+        "HR": 4.166,
+        "fold": 1.345
+      },
+      "maxent_ensemble": {
+        "HR": 4.182,
+        "fold": 1.35
+      },
+      "wasserstein_barycenter": {
+        "HR": 4.358,
+        "fold": 1.406
+      }
+    },
+    {
+      "ds": "cbio_lihc",
+      "n_exp": 88,
+      "n_ctl": 257,
+      "true_HR": 2.336,
+      "tcga": true,
+      "censor_to_tail": {
+        "HR": 1.878,
+        "fold": 1.244
+      },
+      "maxent_ensemble": {
+        "HR": 1.865,
+        "fold": 1.253
+      },
+      "wasserstein_barycenter": {
+        "HR": 1.769,
+        "fold": 1.321
+      }
+    },
+    {
+      "ds": "cbio_kirp",
+      "n_exp": 64,
+      "n_ctl": 189,
+      "true_HR": 6.13,
+      "tcga": true,
+      "censor_to_tail": {
+        "HR": 2.548,
+        "fold": 2.406
+      },
+      "maxent_ensemble": {
+        "HR": 2.524,
+        "fold": 2.429
+      },
+      "wasserstein_barycenter": {
+        "HR": 2.464,
+        "fold": 2.488
+      }
+    },
+    {
+      "ds": "cbio_acc",
+      "n_exp": 35,
+      "n_ctl": 53,
+      "true_HR": 7.59,
+      "tcga": true,
+      "censor_to_tail": {
+        "HR": 4.51,
+        "fold": 1.683
+      },
+      "maxent_ensemble": {
+        "HR": 4.454,
+        "fold": 1.704
+      },
+      "wasserstein_barycenter": {
+        "HR": 4.098,
+        "fold": 1.852
+      }
+    }
+  ]
+}

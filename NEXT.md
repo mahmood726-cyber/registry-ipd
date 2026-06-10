@@ -56,13 +56,18 @@ three "elevate toward breakthrough" items without re-reading the whole history.
   (download paths in the file header).
 
 - ✅ **Uncertainty re-run on expanded set**: 14/14 → 16/17 (94%), bfeed the miss (2026-06-10).
-- ✅ **cBioPortal/TCGA integration** (`harvest/fetch_cbioportal.js`): 7 real cancer OS cohorts by
-  **late vs early stage** (strong contrast, true HR 1.7–4.1) now in the MAIN gold standard → **38
-  datasets, 24 at ≥100/arm**. Key finding: on these heavily-censored cohorts curve-only underestimates
-  (median fold 1.56) but the **censoring-informed tier recovers them (1.08)** — validates the
-  event-count tier. Uncertainty re-run → **23/24 (96%)**. (Earlier sex-split slice retired — near-null,
-  superseded by the stronger stage contrast. Stage-parser bug fixed: don't strip letters before the
-  STAGE regex.) Dashboard cbio panel repurposed to curve-vs-censoring-informed.
+- ✅ **cBioPortal/TCGA integration** (`harvest/fetch_cbioportal.js`): **12 real cancer OS cohorts** by
+  **late vs early stage** (strong contrast, true HR **1.6–7.6**) → gold standard **43 datasets, 24 at
+  ≥100/arm**. Key finding: on these heavily-censored cohorts curve-only underestimates (median fold
+  1.56) but the **censoring-informed tier recovers them (1.20)** — validates the event-count tier.
+  Uncertainty **23/24 (96%)**. (Stage-parser bug fixed: don't strip letters before the STAGE regex.)
+- ✅ **Advanced-stats / Wasserstein investigation** (`validate/advanced_estimators.js`): benchmarked
+  3 curve-only point estimators — censor-to-tail, max-entropy ensemble, and a **1-Wasserstein
+  barycenter** of the imputed pseudo-IPD point-clouds (OT estimate, rank-matching preserves at-risk
+  structure). **None dominates; all fail (~1.5) on heavily-censored TCGA** because censoring is
+  invisible to the KM anchors — a *fundamental identifiability limit*, not algorithmic. The fix is the
+  registry event count (cens-informed → 1.20), reinforcing POLICY.md. Folded into PAPER.md Discussion +
+  VALIDATION.md + dashboard cbio panel.
 
 ## What's autonomously left (optional, in priority order)
 - **More strong-contrast IPD** to push 38 → 60+: more TCGA cohorts by stage (the fetcher generalises —

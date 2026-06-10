@@ -230,11 +230,12 @@ engine never sees the patient-level data. (`validate/goldstandard.js`.)
 | **Breastfeeding** (smoking) | 270/657 | 1.245 | 2.179 (56%) | 26% | −12.2 / −3.8 |
 | **HCC** liver (vasc. invasion) | 41/186 | 2.18 | **2.01 (8%)** | 1.1% | −14.4 / **−15.6** |
 
-**Aggregate over 24 adequately-sized datasets (≥100/arm; of 38 real datasets tried, incl. 2 recurrent-event collapsed to first-event and 7 TCGA stage cohorts): curve-only
+**Aggregate over 24 adequately-sized datasets (≥100/arm; of 43 real datasets tried, incl. 2 recurrent-event collapsed to first-event and 12 TCGA stage cohorts): curve-only
 recovers HR to a median fold of 1.15 (15/24 within 20%; 1.12 / 13/17 excluding the heavily-censored
 TCGA cohorts, see below), the censoring-informed tier to 1.15 (17/24), and the median to ~3%** — on
-real patient data across 38 RCTs/cohorts (six added 2026-06-10 from `KMsurv`/`asaur` via the Rdatasets
-mirror, seven from TCGA via the cBioPortal API). Large effects recovered cleanly
+real patient data across 43 RCTs/cohorts (six added 2026-06-10 from `KMsurv`/`asaur` via the Rdatasets
+mirror, twelve from TCGA via the cBioPortal API; the 5 below-100/arm TCGA cohorts add breadth but not
+to the ≥100/arm aggregate). Large effects recovered cleanly
 (Wilms 5.1→5.18, prostate 5.49→5.17, melanoma 4.36→3.99, HCC 2.18→2.01); the classic 1965 Gehan
 leukemia RCT (6-MP) recovers 0.221→0.201 (9%); UDCA-in-PBC RCT 0.445→0.415. The set spans
 breast/colon/lung/AML/melanoma/leukemia/transplant/PBC/MGUS/NAFLD/prostate/retinopathy/larynx/burn/
@@ -244,29 +245,57 @@ kept as an honest out-of-scope boundary rather than dropped.
 
 ### Real cancer cohorts (TCGA / cBioPortal) — and why the event-count tier matters
 
-**7 real TCGA overall-survival cohorts** pulled from the open cBioPortal API
-(`harvest/fetch_cbioportal.js`; lung adeno, colorectal, stomach, kidney clear-cell, head&neck,
-melanoma, bladder), split by **late vs early stage** — a strong, real survival contrast (true HR
-1.7–4.1). These are heavily censored (the early-stage arm is mostly alive at last follow-up), which is
-exactly the regime that separates the two reconstruction tiers:
+**12 real TCGA overall-survival cohorts** pulled from the open cBioPortal API
+(`harvest/fetch_cbioportal.js`), split by **late vs early stage** — a strong, real survival contrast
+(true HR **1.6–7.6**). These are heavily censored (the early-stage arm is mostly alive at last
+follow-up), exactly the regime that separates the two reconstruction tiers:
 
 | TCGA cohort | N late/early | true HR | curve-only (fold) | **censoring-informed (fold)** |
 |---|---|---|---|---|
 | lung adeno | 105/394 | 2.65 | 2.70 (**1.02**) | 4.04 (1.52) |
+| lung squamous | 89/388 | 1.64 | 1.58 (**1.04**) | 2.21 (1.35) |
 | melanoma | 188/203 | 1.67 | 1.64 (**1.02**) | 1.80 (1.08) |
+| liver HCC | 88/257 | 2.34 | 1.88 (1.24) | 2.85 (**1.22**) |
 | stomach | 224/183 | 2.19 | 1.65 (1.33) | 2.26 (**1.03**) |
+| esophageal | 64/96 | 3.10 | 4.17 (1.34) | 5.87 (1.89) |
 | colorectal | 247/309 | 3.11 | 1.70 (1.83) | 3.11 (**1.00**) |
 | bladder | 276/131 | 2.23 | 1.36 (1.64) | 2.17 (**1.03**) |
 | head & neck | 349/103 | 1.76 | 1.10 (1.60) | 1.49 (1.18) |
+| adrenocortical | 35/53 | 7.59 | 4.51 (1.68) | 6.34 (**1.20**) |
 | kidney clear-cell | 209/301 | 4.05 | 2.60 (1.56) | 5.01 (1.23) |
+| kidney papillary | 64/189 | 6.13 | 2.55 (2.41) | 6.99 (**1.14**) |
 
 **Curve-only *under*estimates these large HRs (median fold 1.56)** — with the early-stage arm almost
 entirely censored, the curve-only "censor-to-tail" assumption flattens the separation. **The
 censoring-informed reconstruction, which uses the registry total-event count, recovers them (median
-fold 1.08; 5/7 within 20%)** — colorectal 3.11→1.70→**3.11**, bladder 2.23→1.36→**2.17**. This is a
-clean, real-data demonstration of *why* the method reconstructs with total events when AACT posts them,
-and why the curve-only number is an honest floor rather than the operating point. All 7 cohorts' 95%
-credible intervals cover the true HR (they are in the 23/24 coverage above).
+fold 1.20)** — colorectal 3.11→1.70→**3.11**, kidney-papillary 6.13→2.55→**6.99** (curve-only fold
+2.41 → 1.14). The 7 cohorts at ≥100/arm all have 95% credible intervals covering the true HR (in the
+23/24 coverage above). esophageal is the exception where *both* tiers overestimate — a genuinely hard
+case kept honestly.
+
+### Advanced estimators and the identifiability limit (`validate/advanced_estimators.js`)
+
+Can cutting-edge statistics recover the heavily-censored HRs **without** the event count? We
+benchmarked three curve-only point estimators on the gold standard: (A) the current **censor-to-tail**;
+(B) a **max-entropy ensemble** (median log-HR over imputations of the under-identified censoring
+level); and (C) a **1-Wasserstein barycenter** of the imputed pseudo-IPD point-clouds — the
+optimal-transport point estimate, which (uniquely, via rank-matching) averages the reconstructions
+*while preserving the at-risk structure* the HR depends on.
+
+| estimator (curve-only) | all 43 (median fold) | heavily-censored TCGA (median fold) |
+|---|---|---|
+| censor-to-tail (current) | 1.16 | 1.56 |
+| max-entropy ensemble | **1.14** | 1.55 |
+| Wasserstein barycenter | 1.19 | **1.51** |
+
+**No estimator dominates, and on the heavily-censored cohorts all three fail (~1.5).** The reason is
+fundamental, not algorithmic: **censoring is invisible to the KM anchors** — every censoring level
+passes through the same posted survival points — so the event/censoring split is genuinely
+unidentified from the curve alone. The Wasserstein barycenter is marginally best on the hard subset but
+cannot extract information that is not in the data. The lever is therefore **data reporting** (the
+registry total-event count or number-at-risk, which collapses the TCGA error to 1.20) — i.e. exactly
+the recommendation in `POLICY.md`. This is the honest answer to "can advanced stats fix it": they
+confirm the bound is real and locate the fix in reporting, not in cleverer reconstruction.
 
 ### Anchor density: how many posted timepoints does reconstruction need?
 
