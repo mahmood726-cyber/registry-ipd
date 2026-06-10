@@ -109,6 +109,19 @@
       <svg id="noise" viewBox="0 0 460 300"></svg>
     </section>
   </div>
+
+  <section class="panel">
+    <h2>Real cancer cohorts (TCGA / cBioPortal) — the low-signal regime</h2>
+    <div class="note">8 real TCGA overall-survival cohorts (open cBioPortal API, <code>fetch_cbioportal.js</code>)
+      split by sex — a <b>near-null</b> contrast (true HR 0.7–1.2). Scored by <b>absolute log-HR error</b>
+      (fold-error is meaningless near the null), kept <b>out of the headline aggregate</b>. Mean
+      |log&nbsp;HR| err ≈ <b>0.18</b>: limited precision in the low-signal regime — it recovers large
+      real contrasts well but doesn't manufacture precision where the data carry little signal.</div>
+    <div class="grid2" style="align-items:center">
+      <svg id="cbio" viewBox="0 0 460 300"></svg>
+      <div id="cbioStats"></div>
+    </div>
+  </section>
 </main>
 
 <script>
@@ -260,6 +273,27 @@ function R(s,x,y,w,h,c){var e=el('rect');e.setAttribute('x',x);e.setAttribute('y
  line(1,'#3fb950','registry exact',18);
  line(2,'#f778ba','digitized K=8',32);
  line(3,'#d29922','digitized K=25',46);
+})();
+// cBioPortal real cancer cohorts: true vs recon HR (linear), |logHR err| coloured
+// [label, trueHR, reconHR, absLogHRerr]
+var CBIO=[['colorectal',1.084,1.103,0.017],['kidney',0.956,0.940,0.017],['stomach',1.101,0.961,0.136],
+  ['lung',1.05,0.907,0.146],['head&neck',0.718,0.617,0.153],['bladder',0.895,0.697,0.249],
+  ['liver',0.811,0.607,0.291],['melanoma',1.21,1.858,0.429]];
+(function(){var s=document.getElementById('cbio'),W=460,H=300,p=42;var lo=0.5,hi=2.0;
+ var X=function(v){return p+(v-lo)/(hi-lo)*(W-p-14);},Y=function(v){return H-p-(v-lo)/(hi-lo)*(H-p-16);};
+ L(s,X(lo),Y(lo),X(hi),Y(hi),'#30363d',1.5); // diagonal
+ L(s,X(1),Y(lo),X(1),Y(hi),'#1b2129',1);L(s,X(lo),Y(1),X(hi),Y(1),'#1b2129',1); // null lines
+ [0.5,1,1.5,2].forEach(function(v){T(s,X(v),H-p+15,v,'#8b949e','middle',10);T(s,p-6,Y(v)+3,v,'#8b949e','end',10);});
+ T(s,(W+p)/2,H-6,'true HR (M vs F)','#8b949e','middle',11);T(s,14,12,'reconstructed HR','#8b949e','start',11);
+ CBIO.forEach(function(d){C(s,X(d[1]),Y(d[2]),4,d[3]<0.2?'#3fb950':'#d29922');});
+ T(s,W-14,24,'● |logHR err|<0.2  ● ≥0.2','#8b949e','end',10);
+})();
+(function(){var d=document.getElementById('cbioStats');
+ function row(big,lab,col){return '<div style="margin:0 0 12px"><div style="font-size:26px;font-weight:700;color:'+(col||'#e6edf3')+'">'+big+'</div><div class="mut" style="font-size:12px">'+lab+'</div></div>';}
+ d.innerHTML=row('8','real TCGA cohorts (open API)','#e6edf3')
+   +row('~0.18','mean |log HR| error','#d29922')
+   +row('6/8','direction agrees (2 flips are true HR≈1)','#58a6ff')
+   +row('0.7–1.2','true HR range (near-null by design)','#8b949e');
 })();
 </script>
 </body>

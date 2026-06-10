@@ -241,6 +241,33 @@ pneumonia/HCC. The **worst case is `bfeed`** (fold 1.75): breastfeeding duration
 with ~96% events — a heavily-tied discrete-time series, not the smooth KM curve the method targets;
 kept as an honest out-of-scope boundary rather than dropped.
 
+### Real cancer cohorts (TCGA / cBioPortal) — the low-signal regime
+
+A separate slice on **8 real TCGA overall-survival cohorts** pulled from the open cBioPortal API
+(`harvest/fetch_cbioportal.js`; LUAD, colorectal, stomach, liver, kidney, head&neck, melanoma,
+bladder), split by **sex** — which in most cancers is a **near-null** survival contrast (true HR
+0.72–1.21). For near-null effects the *fold*-error used above is the wrong metric (a tiny absolute
+wobble looks huge as a ratio), so this slice scores **absolute log-HR error** and is deliberately
+**kept out of the headline aggregate** (`validate/goldstandard_cbio.js`).
+
+| TCGA cohort | N M/F | true HR | recon HR | \|log-HR err\| | direction |
+|---|---|---|---|---|---|
+| colorectal | 303/265 | 1.084 | 1.103 | **0.017** | ok |
+| kidney clear-cell | 326/184 | 0.956 | 0.940 | **0.017** | ok |
+| stomach | 271/145 | 1.101 | 0.961 | 0.136 | flip* |
+| lung adeno | 232/269 | 1.05 | 0.907 | 0.146 | flip* |
+| head & neck | 381/141 | 0.718 | 0.617 | 0.153 | ok |
+| bladder | 301/108 | 0.895 | 0.697 | 0.249 | ok |
+| liver HCC | 247/119 | 0.811 | 0.607 | 0.291 | ok |
+| melanoma | 264/162 | 1.21 | 1.858 | 0.429 | ok |
+
+**Mean absolute log-HR error ≈ 0.18; direction agrees 6/8.** *The two "flips" (stomach, lung) are
+trials whose true HR is ≈1.0 — there is no real sex effect to recover, so the sign of a near-unity HR
+is noise. The honest reading: in the **low-signal regime the method has limited precision (~0.18 on the
+log scale) and should not be trusted to detect small effects** — consistent with the headline finding
+that the HR is the hard estimand. It recovers real, large contrasts well (the non-null gold standard
+above) but does not manufacture precision where the data carry little signal.
+
 ### Anchor density: how many posted timepoints does reconstruction need?
 
 Sweeping K (number of posted KM timepoints) across the 7 true-IPD datasets
