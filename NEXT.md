@@ -36,8 +36,13 @@ three "elevate toward breakthrough" items without re-reading the whole history.
    `realipd/credentialed/<batch>/` (gitignored) with a `manifest.json` column-mapping and run ONE
    command — same pipeline as the open gold standard (curve-only + Titman-QP + uncertainty). Handles
    **CDISC ADTTE `CNSR` inversion** (1=censored) and generic time/status formats. Proven end-to-end on
-   a synthetic CDISC mock (QP 1.025, coverage 3/3). Vivli/YODA still need their DUA process (gated);
-   Project Data Sphere + open repositories are the next autonomous targets (see below).
+   a synthetic CDISC mock (QP 1.025, coverage 3/3).
+   - **Tried the credentialed repos (2026-06-10):** Vivli/YODA/CSDR are committee-gated (DUA + creds),
+     Project Data Sphere has no open API — none autonomously pullable (by design). **Pivoted to
+     non-TCGA published cohorts via cBioPortal** (412 available): added 3 **METABRIC** breast contrasts
+     (grade/stage/ER) via `harvest/fetch_cbio_cohort.js` → gold standard **48 datasets, 28 ≥100/arm**,
+     QP 1.04 (26/28 within 20%), uncertainty **27/28 (96%)**. All 3 recover to ≤3%. cBioPortal non-TCGA
+     is the open lever; the fetcher generalises to any study/grouping.
 
 ## Also done this session (beyond items 1+2)
 - ✅ **Real head-to-head** `HEADTOHEAD.md` / `validate/headtohead.js`: registry-structured vs

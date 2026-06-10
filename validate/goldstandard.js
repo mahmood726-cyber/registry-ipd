@@ -88,6 +88,10 @@ const CONFIGS = [
   { ds: 'cbio_acc', label: 'TCGA adrenocortical (OS, late vs early stage)', time: 'time', status: 'status', arm: 'stage_group', exp: 'late', ctl: 'early' },
   { ds: 'cbio_brca', label: 'TCGA breast (OS, late vs early stage)', time: 'time', status: 'status', arm: 'stage_group', exp: 'late', ctl: 'early' },
   { ds: 'cbio_meso', label: 'TCGA mesothelioma (OS, late vs early stage)', time: 'time', status: 'status', arm: 'stage_group', exp: 'late', ctl: 'early' },
+  // --- non-TCGA published cohorts (cBioPortal open API; harvest/fetch_cbio_cohort.js) ---
+  { ds: 'cbio2_brcaMETABRIC_grade', label: 'METABRIC breast (OS, grade 3 vs 1)', time: 'time', status: 'status', arm: 'group', exp: '3', ctl: '1' },
+  { ds: 'cbio2_brcaMETABRIC_er_status', label: 'METABRIC breast (OS, ER-negative vs positive)', time: 'time', status: 'status', arm: 'group', exp: 'Negative', ctl: 'Positive' },
+  { ds: 'cbio2_brcaMETABRIC_tumor_stage', label: 'METABRIC breast (OS, stage 2 vs 1)', time: 'time', status: 'status', arm: 'group', exp: '2', ctl: '1' },
 ];
 const CAP = 2500; // subsample cap per arm (file order; keeps huge cohorts tractable)
 

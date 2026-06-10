@@ -162,9 +162,9 @@ that is the *honest* uncertainty the coarse registry curve leaves on the HR, whi
 reconstructions hide. This is, to our knowledge, the first **calibrated uncertainty quantification
 for registry-native (no-image) survival reconstruction.**
 
-**Gold-standard coverage on TRUE IPD** (`validate/goldstandard_uncertainty.js`): across the **25
+**Gold-standard coverage on TRUE IPD** (`validate/goldstandard_uncertainty.js`): across the **28
 adequately-sized (≥100/arm)** real datasets, the 95% credible interval covers the **true patient-level
-HR in 24/25 (96%)** — empirical coverage matching the nominal 95% (median width ~2.3× fold; not
+HR in 27/28 (96%)** — empirical coverage matching the nominal 95% (median width ~2.3× fold; not
 over-wide, e.g. diabetic [0.29, 0.63] tightly covers 0.46). The single miss is **`bfeed`** (true 1.245
 vs band [1.45, 3.37]): its point reconstruction is so far off (the discrete-week / ~96%-event boundary
 case) that even the uncertainty band does not reach truth — an honest failure, not hidden. So the
@@ -230,12 +230,12 @@ engine never sees the patient-level data. (`validate/goldstandard.js`.)
 | **Breastfeeding** (smoking) | 270/657 | 1.245 | 2.179 (56%) | 26% | −12.2 / −3.8 |
 | **HCC** liver (vasc. invasion) | 41/186 | 2.18 | **2.01 (8%)** | 1.1% | −14.4 / **−15.6** |
 
-**Aggregate over 25 adequately-sized datasets (≥100/arm; of 45 real datasets tried, incl. 2 recurrent-event collapsed to first-event and 12 TCGA stage cohorts): curve-only
+**Aggregate over 28 adequately-sized datasets (≥100/arm; of 48 real datasets tried, incl. 2 recurrent-event collapsed to first-event and 12 TCGA stage cohorts): curve-only
 recovers HR to a median fold of 1.15 (15/24 within 20%; 1.12 / 13/17 excluding the heavily-censored
 TCGA cohorts, see below), and the censoring-informed Titman-QP tier (engine default when an event
 count is posted) to 1.05 (23/24 within 20%), with the median to ~3%** — on
 real patient data across 43 RCTs/cohorts (six added 2026-06-10 from `KMsurv`/`asaur` via the Rdatasets
-mirror, fourteen from TCGA via the cBioPortal API; the 5 below-100/arm TCGA cohorts add breadth but not
+mirror, fourteen from TCGA and three from METABRIC via the cBioPortal API; the 5 below-100/arm TCGA cohorts add breadth but not
 to the ≥100/arm aggregate). Large effects recovered cleanly
 (Wilms 5.1→5.18, prostate 5.49→5.17, melanoma 4.36→3.99, HCC 2.18→2.01); the classic 1965 Gehan
 leukemia RCT (6-MP) recovers 0.221→0.201 (9%); UDCA-in-PBC RCT 0.445→0.415. The set spans
@@ -280,6 +280,22 @@ true HR, in the 23/24 above). The two honest outliers are both <100/arm and at e
 (QP 5.66 vs true 7.59) undershoots, and **kidney-papillary overshoots (15.6 vs 6.13)** — the QP can
 overcorrect when the true effect is very large and the late-stage arm is tiny and heavily censored.
 
+### Beyond TCGA — non-TCGA published cohorts and credentialed repositories
+
+To diversify beyond TCGA, we added three contrasts from **METABRIC** (the 1,980-patient published breast
+cohort, via the same open cBioPortal API; `harvest/fetch_cbio_cohort.js`): grade 3 vs 1 (true HR 1.63,
+curve-only 1.51 → **QP 1.03**), tumour-stage 2 vs 1 (1.81, 1.38 → **1.02**), and ER-negative vs positive
+(1.16, recovered to **1.00**). These are real patient-level survival from a *different source and cancer
+series* than TCGA, and the QP recovers all three to ≤3%. (They are three clinical axes of one cohort, so
+not three independent trials — noted for honesty.) cBioPortal exposes **412 non-TCGA studies**; this is a
+sampler, and the fetcher generalises to any of them.
+
+The genuinely *credentialed* repositories — **Vivli, YODA, ClinicalStudyDataRequest, Project Data
+Sphere** — are gated behind committee-reviewed data-use agreements (and PDS has no open API), so they
+cannot be pulled autonomously; that is by design for patient privacy. The ingestion path
+(`validate/ingest_ipd.js`, `CREDENTIALED.md`) makes any such export a one-command drop-in (CDISC ADTTE
+`CNSR` handled), so when a credentialed export is obtained it extends this gold standard immediately.
+
 ### Advanced estimators and the identifiability limit (`validate/advanced_estimators.js`)
 
 Can cutting-edge statistics recover the heavily-censored HRs **without** the event count? We
@@ -318,12 +334,12 @@ at-risk sets — and hence the Cox HR — correct.
 
 | reconstruction (with posted event count) | all 43 | ≥100/arm (24) | TCGA (12) |
 |---|---|---|---|
-| anchor-exact (previous default) | 1.15 (28/45) | 1.15 (17/25) | 1.20 (7/14) |
-| **Titman QP (new default)** | **1.06 (41/45)** | **1.05 (24/25)** | **1.13 (11/14)** |
+| anchor-exact (previous default) | 1.15 (31/48) | 1.15 (19/28) | 1.20 (8/14) |
+| **Titman QP (new default)** | **1.06 (44/48)** | **1.04 (26/28)** | **1.11 (12/14)** |
 
 The QP is now the engine default whenever `total_events` is posted (it cannot be chosen by the
 anchor-Wasserstein best-of, because censoring is invisible to the anchors, so it is selected by
-data-availability instead). It lifts within-20% from 28→41 of 45 datasets and is unit-tested
+data-availability instead). It lifts within-20% from 28→44 of 48 datasets and is unit-tested
 (`test/engine.spec.js`). This is the constructive half of the identifiability story: cleverer
 reconstruction cannot manufacture the missing event count, but *given* it, the QP extracts the HR
 near-exactly.

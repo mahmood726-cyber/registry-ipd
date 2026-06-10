@@ -992,5 +992,71 @@
       "median_exp_pcterr": 2.4,
       "RMSTdiff": -2
     }
+  },
+  {
+    "ds": "cbio2_brcaMETABRIC_grade",
+    "label": "METABRIC breast (OS, grade 3 vs 1)",
+    "n_exp": 953,
+    "n_ctl": 169,
+    "true_HR": 1.626,
+    "true_median_exp": 128.1,
+    "true_median_ctl": 203.6,
+    "true_RMST_diff": -39.2,
+    "curve_only": {
+      "HR": 1.078,
+      "HR_logerr": 0.411,
+      "median_exp_pcterr": 1.4,
+      "RMSTdiff": -33.6
+    },
+    "censoring_informed": {
+      "HR": 1.577,
+      "HR_logerr": 0.031,
+      "median_exp_pcterr": 1.3,
+      "RMSTdiff": -38.4
+    }
+  },
+  {
+    "ds": "cbio2_brcaMETABRIC_er_status",
+    "label": "METABRIC breast (OS, ER-negative vs positive)",
+    "n_exp": 473,
+    "n_ctl": 1507,
+    "true_HR": 1.16,
+    "true_median_exp": 130,
+    "true_median_ctl": 161.1,
+    "true_RMST_diff": -11.9,
+    "curve_only": {
+      "HR": 1.169,
+      "HR_logerr": 0.008,
+      "median_exp_pcterr": 2.4,
+      "RMSTdiff": -15.2
+    },
+    "censoring_informed": {
+      "HR": 1.164,
+      "HR_logerr": 0.003,
+      "median_exp_pcterr": 0.4,
+      "RMSTdiff": -12.5
+    }
+  },
+  {
+    "ds": "cbio2_brcaMETABRIC_tumor_stage",
+    "label": "METABRIC breast (OS, stage 2 vs 1)",
+    "n_exp": 825,
+    "n_ctl": 501,
+    "true_HR": 1.812,
+    "true_median_exp": 140.6,
+    "true_median_ctl": 227.3,
+    "true_RMST_diff": -48.4,
+    "curve_only": {
+      "HR": 1.317,
+      "HR_logerr": 0.319,
+      "median_exp_pcterr": 0.1,
+      "RMSTdiff": -44.5
+    },
+    "censoring_informed": {
+      "HR": 1.775,
+      "HR_logerr": 0.021,
+      "median_exp_pcterr": 0.2,
+      "RMSTdiff": -48
+    }
   }
 ]

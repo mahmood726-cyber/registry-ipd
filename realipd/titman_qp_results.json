@@ -1,36 +1,36 @@
 {
   "summary": {
     "all": {
-      "n": 43,
+      "n": 48,
       "qp": {
         "median_fold": 1.06,
-        "within20": "39/43"
+        "within20": "44/48"
       },
       "censinf": {
         "median_fold": 1.148,
-        "within20": "28/43"
+        "within20": "31/48"
       }
     },
     "tcga": {
-      "n": 12,
+      "n": 14,
       "qp": {
-        "median_fold": 1.125,
-        "within20": "10/12"
+        "median_fold": 1.111,
+        "within20": "12/14"
       },
       "censinf": {
         "median_fold": 1.197,
-        "within20": "7/12"
+        "within20": "8/14"
       }
     },
     "big": {
-      "n": 24,
+      "n": 28,
       "qp": {
-        "median_fold": 1.054,
-        "within20": "22/24"
+        "median_fold": 1.044,
+        "within20": "26/28"
       },
       "censinf": {
         "median_fold": 1.148,
-        "within20": "17/24"
+        "within20": "19/28"
       }
     },
     "note": "Titman-2026-style QP reconstruction vs the engine censoring-informed (anchor-exact), both using the registry total-event count, scored as HR fold-error vs true IPD."
@@ -508,6 +508,61 @@
       "censinf_HR": 6.34,
       "qp_fold": 1.34,
       "censinf_fold": 1.197
+    },
+    {
+      "ds": "cbio_brca",
+      "tcga": true,
+      "n_exp": 264,
+      "n_ctl": 788,
+      "true_HR": 2.695,
+      "qp_HR": 2.519,
+      "censinf_HR": 3.73,
+      "qp_fold": 1.07,
+      "censinf_fold": 1.384
+    },
+    {
+      "ds": "cbio_meso",
+      "tcga": true,
+      "n_exp": 60,
+      "n_ctl": 25,
+      "true_HR": 0.992,
+      "qp_HR": 1.103,
+      "censinf_HR": 1.124,
+      "qp_fold": 1.111,
+      "censinf_fold": 1.133
+    },
+    {
+      "ds": "cbio2_brcaMETABRIC_grade",
+      "tcga": false,
+      "n_exp": 953,
+      "n_ctl": 169,
+      "true_HR": 1.626,
+      "qp_HR": 1.577,
+      "censinf_HR": 1.272,
+      "qp_fold": 1.031,
+      "censinf_fold": 1.278
+    },
+    {
+      "ds": "cbio2_brcaMETABRIC_er_status",
+      "tcga": false,
+      "n_exp": 473,
+      "n_ctl": 1507,
+      "true_HR": 1.16,
+      "qp_HR": 1.171,
+      "censinf_HR": 1.128,
+      "qp_fold": 1.01,
+      "censinf_fold": 1.028
+    },
+    {
+      "ds": "cbio2_brcaMETABRIC_tumor_stage",
+      "tcga": false,
+      "n_exp": 825,
+      "n_ctl": 501,
+      "true_HR": 1.812,
+      "qp_HR": 1.817,
+      "censinf_HR": 1.629,
+      "qp_fold": 1.003,
+      "censinf_fold": 1.112
     }
   ]
 }
