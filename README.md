@@ -95,12 +95,27 @@ Two findings that shaped the design:
 1. **AACT has zero structured number-at-risk.** So Guyot's classic NAR-driven reconstruction cannot
    run as-published; the engine uses N + total events with tail censoring (IPDfromKM's "no
    number-at-risk" mode), and **Tier A does not require NAR**. The "exact-anchor beats digitization"
-   edge is real but applies to a **small subset** (~288 trials) — we say so plainly.
+   edge is real but applies to a **small subset** (288 trials strictly; ≈514–605 under a broader
+   survival-curve net) — we say so plainly.
 2. **KM data is often stored as cumulative *incidence* ("probability of progression/event"), not
    survival.** The harvester detects orientation **data-drivenly** (a curve starting near 0 and
    rising is incidence ⇒ `S = 1 − value`), the robust form of the sign-flip lesson. Verified on a
    live reconstruction of **NCT00725985** (Tier A, Silver) — bundled in the tool as the "REAL ct.gov"
    example.
+
+**Anchor-density reality (the reuse bottleneck).** Of the trials that *do* post a curve, the median
+posts only **3–4 KM timepoints**, and only **≈34%** post the **≥5–6** our validation shows are needed
+for reliable reconstruction (HR fold-error 1.40 at K=3 → 1.15 at K=5 → 1.08 by K=12). Reproduce the
+full-snapshot census with `harvest/census_full_aact.py`; the per-arm detail over 605 real harvested
+trials with `validate/census_cohort.js`. This is the evidence base for the reporting recommendation in
+**`POLICY.md`** (two structured fields + a timepoint threshold for CTTI/AACT + EU CTIS).
+
+**Where this method sits vs prior art.** Every established KM-IPD reconstruction tool (Guyot 2012,
+IPDfromKM, ipdfc, RESOLVE-IPD, KM-GPT) digitises a *figure image*; the closest tabular-input neighbour,
+Titman 2026, uses *journal-article* tables. To our knowledge this is the first reconstruction native to
+ClinicalTrials.gov/AACT **structured registry data** — novelty on data *provenance*, not file format.
+Full systematic prior-art search and hedge wording in **`NOVELTY.md`**; every citation is
+PubMed-verified in **`CITATIONS.md`**.
 
 ## Usage
 
