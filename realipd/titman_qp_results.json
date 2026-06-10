@@ -1,14 +1,14 @@
 {
   "summary": {
     "all": {
-      "n": 48,
+      "n": 51,
       "qp": {
         "median_fold": 1.06,
-        "within20": "44/48"
+        "within20": "46/51"
       },
       "censinf": {
         "median_fold": 1.148,
-        "within20": "31/48"
+        "within20": "32/51"
       }
     },
     "tcga": {
@@ -23,14 +23,14 @@
       }
     },
     "big": {
-      "n": 28,
+      "n": 29,
       "qp": {
         "median_fold": 1.044,
-        "within20": "26/28"
+        "within20": "27/29"
       },
       "censinf": {
         "median_fold": 1.148,
-        "within20": "19/28"
+        "within20": "19/29"
       }
     },
     "note": "Titman-2026-style QP reconstruction vs the engine censoring-informed (anchor-exact), both using the registry total-event count, scored as HR fold-error vs true IPD."
@@ -563,6 +563,39 @@
       "censinf_HR": 1.629,
       "qp_fold": 1.003,
       "censinf_fold": 1.112
+    },
+    {
+      "ds": "cbio2_prad_gleason_score",
+      "tcga": false,
+      "n_exp": 35,
+      "n_ctl": 36,
+      "true_HR": 1.354,
+      "qp_HR": 1.425,
+      "censinf_HR": 1.467,
+      "qp_fold": 1.052,
+      "censinf_fold": 1.083
+    },
+    {
+      "ds": "cbio2_luad_pathologic_stage",
+      "tcga": false,
+      "n_exp": 62,
+      "n_ctl": 447,
+      "true_HR": 5.022,
+      "qp_HR": 6.414,
+      "censinf_HR": 0,
+      "qp_fold": 1.277,
+      "censinf_fold": null
+    },
+    {
+      "ds": "cbio2_crc_stage_at_diagnosis",
+      "tcga": false,
+      "n_exp": 662,
+      "n_ctl": 216,
+      "true_HR": 1.032,
+      "qp_HR": 1.109,
+      "censinf_HR": 1.279,
+      "qp_fold": 1.075,
+      "censinf_fold": 1.24
     }
   ]
 }

@@ -351,12 +351,12 @@ at-risk sets — and hence the Cox HR — correct.
 
 | reconstruction (with posted event count) | all 43 | ≥100/arm (24) | TCGA (12) |
 |---|---|---|---|
-| anchor-exact (previous default) | 1.15 (31/48) | 1.15 (19/28) | 1.20 (8/14) |
-| **Titman QP (new default)** | **1.06 (44/48)** | **1.04 (26/28)** | **1.11 (12/14)** |
+| anchor-exact (previous default) | 1.15 (32/51) | 1.15 (19/29) | 1.20 (8/14) |
+| **Titman QP (new default)** | **1.06 (46/51)** | **1.04 (27/29)** | **1.11 (12/14)** |
 
 The QP is now the engine default whenever `total_events` is posted (it cannot be chosen by the
 anchor-Wasserstein best-of, because censoring is invisible to the anchors, so it is selected by
-data-availability instead). It lifts within-20% from 28→44 of 48 datasets and is unit-tested
+data-availability instead). It lifts within-20% from 32→46 of 51 datasets and is unit-tested
 (`test/engine.spec.js`). This is the constructive half of the identifiability story: cleverer
 reconstruction cannot manufacture the missing event count, but *given* it, the QP extracts the HR
 near-exactly.
