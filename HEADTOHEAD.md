@@ -93,11 +93,14 @@ both, adding error) — this isolates curve-extraction + arm-separation + recons
 the kmcurve repo: `python realipd_benchmark.py --registry <this repo>` (results JSON committed here at
 `validate/real_pipeline_headtohead_results.json`).
 
-| reconstruction backend | median HR fold-err | p90 | within 20% | input it needs |
+| reconstruction backend | median HR fold-err | p90 | within 20% (95% CI) | input it needs |
 |---|---:|---:|---:|---|
-| curve-only Guyot | 1.30 | 18.7 | 2/10 | the curve |
-| Guyot + NAR table | 1.09 (~9%) | 1.52 | 9/10 | + interior at-risk table |
-| **Titman-QP (events)** | **1.041 (~4%)** | **1.26** | 8/10 | + total "N (events)" only |
+| curve-only Guyot | 1.42 | 4.46 | 14/42 (21–48%) | the curve |
+| Guyot + NAR table | 1.09 (~9%) | 1.52 | 31/42 (59–85%) | + interior at-risk table |
+| **Titman-QP (events)** | **1.041 (~4%)** | **1.26** | 35/42 (69–92%) | + total "N (events)" only |
+
+(42 true-IPD datasets; QP beats Guyot+NAR 28/42 paired. **The NAR-fusion union of
+this project + kmcurve beats either alone — see `FUSION.md`.**)
 
 **This corroborates BOTH of this project's central findings from the figure side.**
 (1) A *real* pixel extractor recovers the HR usefully **only once the anchor/event information is
