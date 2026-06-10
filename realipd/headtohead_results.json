@@ -1,0 +1,876 @@
+{
+  "summary": {
+    "n_datasets": 25,
+    "equal_density": {
+      "registry_exact_mean_logHR_err": 0.1635,
+      "registry_exact_median_logHR_err": 0.1478,
+      "digitized_noisy_mean_logHR_err": 0.1724,
+      "digitized_noisy_median_logHR_err": 0.1388,
+      "registry_le_digitized": "17/25",
+      "interpretation": "Same K points, one exact one pixel-noised: isolates the pure digitization-error cost."
+    },
+    "realistic": {
+      "registry_K8_exact_median_logHR_err": 0.1478,
+      "digitized_K25_noisy_median_logHR_err": 0.0406,
+      "registry_le_digitized": "4/25",
+      "interpretation": "Registry posts few exact anchors; a digitizer reads many noisy points. Real-world trade-off."
+    },
+    "noise_model": {
+      "survival_sigma_pp": 1,
+      "time_sigma_frac": 0.005,
+      "note": "Conservative: ~1 percentage-point survival error and 0.5% time error per digitized point, within the range reported for KM-figure digitization. Deterministic (seeded per dataset)."
+    }
+  },
+  "per_dataset": [
+    {
+      "ds": "gbsg",
+      "label": "GBSG breast cancer (recurrence-free survival, hormonal Rx)",
+      "true_HR": 0.695,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 0.655,
+        "logHR_err": 0.059,
+        "median_pcterr": 100,
+        "RMSTdiff_err": 21.65
+      },
+      "digitized_noisy": {
+        "HR": 0.605,
+        "logHR_err": 0.1388,
+        "median_pcterr": 25.3,
+        "RMSTdiff_err": 22.93
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 0.655,
+          "logHR_err": 0.059,
+          "median_pcterr": 100,
+          "RMSTdiff_err": 21.65
+        },
+        "digitized_noisy": {
+          "HR": 0.712,
+          "logHR_err": 0.0235,
+          "median_pcterr": 100,
+          "RMSTdiff_err": 29
+        }
+      }
+    },
+    {
+      "ds": "veteran",
+      "label": "Veterans lung cancer (overall survival, treatment)",
+      "true_HR": 1.016,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 0.796,
+        "logHR_err": 0.2449,
+        "median_pcterr": 61.6,
+        "RMSTdiff_err": 24.47
+      },
+      "digitized_noisy": {
+        "HR": 0.758,
+        "logHR_err": 0.293,
+        "median_pcterr": 75,
+        "RMSTdiff_err": 36.72
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 0.796,
+          "logHR_err": 0.2449,
+          "median_pcterr": 61.6,
+          "RMSTdiff_err": 24.47
+        },
+        "digitized_noisy": {
+          "HR": 0.983,
+          "logHR_err": 0.0339,
+          "median_pcterr": 23.9,
+          "RMSTdiff_err": 2.49
+        }
+      }
+    },
+    {
+      "ds": "rotterdam",
+      "label": "Rotterdam breast cancer (overall survival, hormonal Rx)",
+      "true_HR": 1.495,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 1.606,
+        "logHR_err": 0.0712,
+        "median_pcterr": 43,
+        "RMSTdiff_err": 114.99
+      },
+      "digitized_noisy": {
+        "HR": 1.687,
+        "logHR_err": 0.1208,
+        "median_pcterr": 42.8,
+        "RMSTdiff_err": 123.76
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 1.606,
+          "logHR_err": 0.0712,
+          "median_pcterr": 43,
+          "RMSTdiff_err": 114.99
+        },
+        "digitized_noisy": {
+          "HR": 1.524,
+          "logHR_err": 0.0191,
+          "median_pcterr": 44.4,
+          "RMSTdiff_err": 178.55
+        }
+      }
+    },
+    {
+      "ds": "pbc",
+      "label": "PBC primary biliary cirrhosis (OS, D-penicillamine vs placebo)",
+      "true_HR": 0.944,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 1.13,
+        "logHR_err": 0.1795,
+        "median_pcterr": 100,
+        "RMSTdiff_err": 26.27
+      },
+      "digitized_noisy": {
+        "HR": 0.835,
+        "logHR_err": 0.123,
+        "median_pcterr": 100,
+        "RMSTdiff_err": 10.86
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 1.13,
+          "logHR_err": 0.1795,
+          "median_pcterr": 100,
+          "RMSTdiff_err": 26.27
+        },
+        "digitized_noisy": {
+          "HR": 0.973,
+          "logHR_err": 0.0301,
+          "median_pcterr": 100,
+          "RMSTdiff_err": 18.7
+        }
+      }
+    },
+    {
+      "ds": "diabetic",
+      "label": "Diabetic retinopathy (time to vision loss, laser vs control)",
+      "true_HR": 0.46,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 0.397,
+        "logHR_err": 0.1478,
+        "median_pcterr": null,
+        "RMSTdiff_err": 2.43
+      },
+      "digitized_noisy": {
+        "HR": 0.416,
+        "logHR_err": 0.0999,
+        "median_pcterr": null,
+        "RMSTdiff_err": 2.33
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 0.397,
+          "logHR_err": 0.1478,
+          "median_pcterr": null,
+          "RMSTdiff_err": 2.43
+        },
+        "digitized_noisy": {
+          "HR": 0.442,
+          "logHR_err": 0.0406,
+          "median_pcterr": null,
+          "RMSTdiff_err": 1.66
+        }
+      }
+    },
+    {
+      "ds": "nwtco",
+      "label": "NWTSG Wilms tumour (relapse, histology group)",
+      "true_HR": 5.115,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 5.403,
+        "logHR_err": 0.0549,
+        "median_pcterr": null,
+        "RMSTdiff_err": 183.91
+      },
+      "digitized_noisy": {
+        "HR": 5.687,
+        "logHR_err": 0.1061,
+        "median_pcterr": null,
+        "RMSTdiff_err": 116.11
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 5.403,
+          "logHR_err": 0.0549,
+          "median_pcterr": null,
+          "RMSTdiff_err": 183.91
+        },
+        "digitized_noisy": {
+          "HR": 5.284,
+          "logHR_err": 0.0326,
+          "median_pcterr": null,
+          "RMSTdiff_err": 39.33
+        }
+      }
+    },
+    {
+      "ds": "myeloid",
+      "label": "Myeloid AML RCT (overall survival, trt A vs B)",
+      "true_HR": 0.708,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 0.62,
+        "logHR_err": 0.132,
+        "median_pcterr": 100,
+        "RMSTdiff_err": 5.63
+      },
+      "digitized_noisy": {
+        "HR": 0.682,
+        "logHR_err": 0.0371,
+        "median_pcterr": 100,
+        "RMSTdiff_err": 19.65
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 0.62,
+          "logHR_err": 0.132,
+          "median_pcterr": 100,
+          "RMSTdiff_err": 5.63
+        },
+        "digitized_noisy": {
+          "HR": 0.69,
+          "logHR_err": 0.0251,
+          "median_pcterr": 0.8,
+          "RMSTdiff_err": 16.4
+        }
+      }
+    },
+    {
+      "ds": "kidtran",
+      "label": "Kidney transplant (graft survival, by sex)",
+      "true_HR": 0.907,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 1.094,
+        "logHR_err": 0.1869,
+        "median_pcterr": null,
+        "RMSTdiff_err": 27.88
+      },
+      "digitized_noisy": {
+        "HR": 1.136,
+        "logHR_err": 0.2247,
+        "median_pcterr": null,
+        "RMSTdiff_err": 41.59
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 1.094,
+          "logHR_err": 0.1869,
+          "median_pcterr": null,
+          "RMSTdiff_err": 27.88
+        },
+        "digitized_noisy": {
+          "HR": 1.089,
+          "logHR_err": 0.1826,
+          "median_pcterr": null,
+          "RMSTdiff_err": 38.91
+        }
+      }
+    },
+    {
+      "ds": "udca2",
+      "label": "UDCA in PBC RCT (progression, UDCA vs placebo)",
+      "true_HR": 0.445,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 0.511,
+        "logHR_err": 0.1377,
+        "median_pcterr": null,
+        "RMSTdiff_err": 41.94
+      },
+      "digitized_noisy": {
+        "HR": 0.392,
+        "logHR_err": 0.126,
+        "median_pcterr": null,
+        "RMSTdiff_err": 37.49
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 0.511,
+          "logHR_err": 0.1377,
+          "median_pcterr": null,
+          "RMSTdiff_err": 41.94
+        },
+        "digitized_noisy": {
+          "HR": 0.513,
+          "logHR_err": 0.1414,
+          "median_pcterr": null,
+          "RMSTdiff_err": 45.05
+        }
+      }
+    },
+    {
+      "ds": "retinopathy",
+      "label": "Diabetic retinopathy (laser, time to vision loss)",
+      "true_HR": 0.46,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 0.397,
+        "logHR_err": 0.1478,
+        "median_pcterr": null,
+        "RMSTdiff_err": 2.43
+      },
+      "digitized_noisy": {
+        "HR": 0.437,
+        "logHR_err": 0.0516,
+        "median_pcterr": null,
+        "RMSTdiff_err": 2.72
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 0.397,
+          "logHR_err": 0.1478,
+          "median_pcterr": null,
+          "RMSTdiff_err": 2.43
+        },
+        "digitized_noisy": {
+          "HR": 0.434,
+          "logHR_err": 0.0597,
+          "median_pcterr": null,
+          "RMSTdiff_err": 0.19
+        }
+      }
+    },
+    {
+      "ds": "mgus2",
+      "label": "MGUS cohort (death, by sex)",
+      "true_HR": 1.223,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 1.058,
+        "logHR_err": 0.1449,
+        "median_pcterr": 32.5,
+        "RMSTdiff_err": 4.08
+      },
+      "digitized_noisy": {
+        "HR": 1.043,
+        "logHR_err": 0.1589,
+        "median_pcterr": 35.3,
+        "RMSTdiff_err": 3.04
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 1.058,
+          "logHR_err": 0.1449,
+          "median_pcterr": 32.5,
+          "RMSTdiff_err": 4.08
+        },
+        "digitized_noisy": {
+          "HR": 1.229,
+          "logHR_err": 0.0051,
+          "median_pcterr": 26.1,
+          "RMSTdiff_err": 10.83
+        }
+      }
+    },
+    {
+      "ds": "flchain",
+      "label": "Free light chain cohort (death, by sex)",
+      "true_HR": 1.1,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 0.944,
+        "logHR_err": 0.1532,
+        "median_pcterr": null,
+        "RMSTdiff_err": 22.42
+      },
+      "digitized_noisy": {
+        "HR": 0.929,
+        "logHR_err": 0.1685,
+        "median_pcterr": null,
+        "RMSTdiff_err": 59.43
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 0.944,
+          "logHR_err": 0.1532,
+          "median_pcterr": null,
+          "RMSTdiff_err": 22.42
+        },
+        "digitized_noisy": {
+          "HR": 1.09,
+          "logHR_err": 0.0091,
+          "median_pcterr": null,
+          "RMSTdiff_err": 29.15
+        }
+      }
+    },
+    {
+      "ds": "nafld1",
+      "label": "NAFLD cohort (death, by sex)",
+      "true_HR": 1.05,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 1.26,
+        "logHR_err": 0.1826,
+        "median_pcterr": null,
+        "RMSTdiff_err": 55.56
+      },
+      "digitized_noisy": {
+        "HR": 1.273,
+        "logHR_err": 0.1926,
+        "median_pcterr": null,
+        "RMSTdiff_err": 78.53
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 1.26,
+          "logHR_err": 0.1826,
+          "median_pcterr": null,
+          "RMSTdiff_err": 55.56
+        },
+        "digitized_noisy": {
+          "HR": 1.027,
+          "logHR_err": 0.0224,
+          "median_pcterr": null,
+          "RMSTdiff_err": 67.53
+        }
+      }
+    },
+    {
+      "ds": "prostateSurvival",
+      "label": "Prostate cancer (cancer death, grade)",
+      "true_HR": 5.485,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 6.96,
+        "logHR_err": 0.2381,
+        "median_pcterr": null,
+        "RMSTdiff_err": 9.66
+      },
+      "digitized_noisy": {
+        "HR": 7.15,
+        "logHR_err": 0.2651,
+        "median_pcterr": null,
+        "RMSTdiff_err": 9.91
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 6.96,
+          "logHR_err": 0.2381,
+          "median_pcterr": null,
+          "RMSTdiff_err": 9.66
+        },
+        "digitized_noisy": {
+          "HR": 5.96,
+          "logHR_err": 0.083,
+          "median_pcterr": null,
+          "RMSTdiff_err": 8.8
+        }
+      }
+    },
+    {
+      "ds": "bmt",
+      "label": "Bone marrow transplant (DFS, risk group)",
+      "true_HR": 1.491,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 1.049,
+        "logHR_err": 0.3513,
+        "median_pcterr": 54.6,
+        "RMSTdiff_err": 55.85
+      },
+      "digitized_noisy": {
+        "HR": 1.001,
+        "logHR_err": 0.3986,
+        "median_pcterr": 55.6,
+        "RMSTdiff_err": 86.93
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 1.049,
+          "logHR_err": 0.3513,
+          "median_pcterr": 54.6,
+          "RMSTdiff_err": 55.85
+        },
+        "digitized_noisy": {
+          "HR": 1.381,
+          "logHR_err": 0.0769,
+          "median_pcterr": 9.5,
+          "RMSTdiff_err": 0.76
+        }
+      }
+    },
+    {
+      "ds": "melanoma",
+      "label": "Melanoma (cancer death, ulceration)",
+      "true_HR": 4.357,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 4.351,
+        "logHR_err": 0.0013,
+        "median_pcterr": 100,
+        "RMSTdiff_err": 180.37
+      },
+      "digitized_noisy": {
+        "HR": 4.382,
+        "logHR_err": 0.0057,
+        "median_pcterr": 100,
+        "RMSTdiff_err": 181.17
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 4.351,
+          "logHR_err": 0.0013,
+          "median_pcterr": 100,
+          "RMSTdiff_err": 180.37
+        },
+        "digitized_noisy": {
+          "HR": 4.512,
+          "logHR_err": 0.035,
+          "median_pcterr": 100,
+          "RMSTdiff_err": 127.22
+        }
+      }
+    },
+    {
+      "ds": "pharmacoSmoking",
+      "label": "Smoking-cessation RCT (time to relapse)",
+      "true_HR": 1.795,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 1.641,
+        "logHR_err": 0.0893,
+        "median_pcterr": 28.6,
+        "RMSTdiff_err": 3.39
+      },
+      "digitized_noisy": {
+        "HR": 1.512,
+        "logHR_err": 0.1714,
+        "median_pcterr": 36.9,
+        "RMSTdiff_err": 3.4
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 1.641,
+          "logHR_err": 0.0893,
+          "median_pcterr": 28.6,
+          "RMSTdiff_err": 3.39
+        },
+        "digitized_noisy": {
+          "HR": 1.698,
+          "logHR_err": 0.0554,
+          "median_pcterr": 17.5,
+          "RMSTdiff_err": 2.13
+        }
+      }
+    },
+    {
+      "ds": "gehan",
+      "label": "Gehan leukemia RCT (remission, 6-MP vs control)",
+      "true_HR": 0.221,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 0.126,
+        "logHR_err": 0.5619,
+        "median_pcterr": 100,
+        "RMSTdiff_err": 0.4
+      },
+      "digitized_noisy": {
+        "HR": 0.126,
+        "logHR_err": 0.5619,
+        "median_pcterr": 100,
+        "RMSTdiff_err": 0.42
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 0.126,
+          "logHR_err": 0.5619,
+          "median_pcterr": 100,
+          "RMSTdiff_err": 0.4
+        },
+        "digitized_noisy": {
+          "HR": 0.159,
+          "logHR_err": 0.3315,
+          "median_pcterr": 100,
+          "RMSTdiff_err": 0.03
+        }
+      }
+    },
+    {
+      "ds": "tongue",
+      "label": "Tongue cancer (death, ploidy)",
+      "true_HR": 1.586,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 2.05,
+        "logHR_err": 0.2571,
+        "median_pcterr": 83.6,
+        "RMSTdiff_err": 12.85
+      },
+      "digitized_noisy": {
+        "HR": 2.193,
+        "logHR_err": 0.3243,
+        "median_pcterr": 42.7,
+        "RMSTdiff_err": 19.38
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 2.05,
+          "logHR_err": 0.2571,
+          "median_pcterr": 83.6,
+          "RMSTdiff_err": 12.85
+        },
+        "digitized_noisy": {
+          "HR": 1.89,
+          "logHR_err": 0.1756,
+          "median_pcterr": 39.2,
+          "RMSTdiff_err": 12.76
+        }
+      }
+    },
+    {
+      "ds": "cancer",
+      "label": "NCCTG lung cancer (OS, by sex)",
+      "true_HR": 0.588,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 0.567,
+        "logHR_err": 0.0375,
+        "median_pcterr": 47.8,
+        "RMSTdiff_err": 45.93
+      },
+      "digitized_noisy": {
+        "HR": 0.58,
+        "logHR_err": 0.0147,
+        "median_pcterr": 48.4,
+        "RMSTdiff_err": 45.78
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 0.567,
+          "logHR_err": 0.0375,
+          "median_pcterr": 47.8,
+          "RMSTdiff_err": 45.93
+        },
+        "digitized_noisy": {
+          "HR": 0.498,
+          "logHR_err": 0.1667,
+          "median_pcterr": 34.3,
+          "RMSTdiff_err": 52.06
+        }
+      }
+    },
+    {
+      "ds": "ebmt3",
+      "label": "EBMT transplant (relapse-free survival, T-cell depletion)",
+      "true_HR": 1.285,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 1.265,
+        "logHR_err": 0.016,
+        "median_pcterr": 68.7,
+        "RMSTdiff_err": 104.67
+      },
+      "digitized_noisy": {
+        "HR": 1.253,
+        "logHR_err": 0.0248,
+        "median_pcterr": 68.1,
+        "RMSTdiff_err": 82.35
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 1.265,
+          "logHR_err": 0.016,
+          "median_pcterr": 68.7,
+          "RMSTdiff_err": 104.67
+        },
+        "digitized_noisy": {
+          "HR": 1.445,
+          "logHR_err": 0.1177,
+          "median_pcterr": 60.7,
+          "RMSTdiff_err": 126.34
+        }
+      }
+    },
+    {
+      "ds": "aidssi",
+      "label": "AIDS cohort (time to AIDS, CCR5 genotype)",
+      "true_HR": 0.291,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 0.369,
+        "logHR_err": 0.2401,
+        "median_pcterr": null,
+        "RMSTdiff_err": 1
+      },
+      "digitized_noisy": {
+        "HR": 0.376,
+        "logHR_err": 0.2572,
+        "median_pcterr": null,
+        "RMSTdiff_err": 1.04
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 0.369,
+          "logHR_err": 0.2401,
+          "median_pcterr": null,
+          "RMSTdiff_err": 1
+        },
+        "digitized_noisy": {
+          "HR": 0.345,
+          "logHR_err": 0.1704,
+          "median_pcterr": null,
+          "RMSTdiff_err": 0.97
+        }
+      }
+    },
+    {
+      "ds": "ebmt1",
+      "label": "EBMT transplant (overall survival, risk score)",
+      "true_HR": 3.966,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 5.329,
+        "logHR_err": 0.2954,
+        "median_pcterr": 76.6,
+        "RMSTdiff_err": 186.17
+      },
+      "digitized_noisy": {
+        "HR": 5.347,
+        "logHR_err": 0.2986,
+        "median_pcterr": 58.1,
+        "RMSTdiff_err": 200.67
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 5.329,
+          "logHR_err": 0.2954,
+          "median_pcterr": 76.6,
+          "RMSTdiff_err": 186.17
+        },
+        "digitized_noisy": {
+          "HR": 4.066,
+          "logHR_err": 0.0248,
+          "median_pcterr": 53.2,
+          "RMSTdiff_err": 57.57
+        }
+      }
+    },
+    {
+      "ds": "cgd_fe",
+      "label": "CGD RCT (time to first serious infection, rIFN-g vs placebo; recurrent→first-event)",
+      "true_HR": 0.335,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 0.381,
+        "logHR_err": 0.1283,
+        "median_pcterr": null,
+        "RMSTdiff_err": 33.09
+      },
+      "digitized_noisy": {
+        "HR": 0.38,
+        "logHR_err": 0.1261,
+        "median_pcterr": null,
+        "RMSTdiff_err": 30.46
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 0.381,
+          "logHR_err": 0.1283,
+          "median_pcterr": null,
+          "RMSTdiff_err": 33.09
+        },
+        "digitized_noisy": {
+          "HR": 0.379,
+          "logHR_err": 0.1231,
+          "median_pcterr": null,
+          "RMSTdiff_err": 24.55
+        }
+      }
+    },
+    {
+      "ds": "bladder_fe",
+      "label": "Bladder cancer (time to first recurrence, thiotepa vs placebo; recurrent→first-event)",
+      "true_HR": 0.696,
+      "equal_density_K": 8,
+      "registry_exact": {
+        "HR": 0.677,
+        "logHR_err": 0.028,
+        "median_pcterr": 100,
+        "RMSTdiff_err": 0.07
+      },
+      "digitized_noisy": {
+        "HR": 0.711,
+        "logHR_err": 0.0216,
+        "median_pcterr": 100,
+        "RMSTdiff_err": 0.65
+      },
+      "realistic": {
+        "registry_K": 8,
+        "digitized_K": 25,
+        "registry_exact": {
+          "HR": 0.677,
+          "logHR_err": 0.028,
+          "median_pcterr": 100,
+          "RMSTdiff_err": 0.07
+        },
+        "digitized_noisy": {
+          "HR": 0.7,
+          "logHR_err": 0.0067,
+          "median_pcterr": 100,
+          "RMSTdiff_err": 2.01
+        }
+      }
+    }
+  ]
+}

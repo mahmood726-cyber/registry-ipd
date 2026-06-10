@@ -150,6 +150,17 @@ KM-estimate timepoints makes a trial reconstructable. Unlike digitisation tools,
 anchor digitisation error and full registry provenance, at the cost of applying only to the subset of
 trials that post structured survival data.
 
+A head-to-head on the same real datasets (`HEADTOHEAD.md`) sharpens — and honestly tempers — the
+"no-digitisation-error" advantage. Reconstructing the same true curve from exact registry anchors
+versus a pixel-noised figure shows that at *equal* anchor density the digitisation noise itself costs
+little (median |log HR| 0.148 exact vs 0.139 noised; exact wins 17/25), while a densely digitised
+figure (25 points) recovers the HR *better* than few exact registry anchors (8 points) — median |log
+HR| 0.041 vs 0.148. The registry path's binding weakness is therefore **anchor sparsity, not pixel
+error**: it is competitive with and cleaner than digitisation *only when enough timepoints are posted*
+(the ≥5–6 standard), and the two methods are complementary — digitise a published figure for dense
+shape; reconstruct natively from the registry for exactness and provenance. This directly motivates the
+reporting recommendation in `POLICY.md`: the native path's value is unlocked by anchor density.
+
 ## 6. Limitations
 
 Registry coverage is the binding limit (hundreds of trials, not all). The censoring level is

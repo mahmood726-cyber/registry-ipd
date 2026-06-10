@@ -69,8 +69,8 @@ function coxHR(expIpd, ctlIpd) {
     .concat(ctlIpd.map(r => ({ time: r.time, status: r.status, x: 0 }))));
 }
 
-function run(cfg, K) {
-  K = K || 8;  // number of registry-style posted KM timepoints
+// Load the two true patient-level arms for a dataset config (shared by run() and the head-to-head).
+function loadArms(cfg) {
   const rows = parseCSV(path.join(dir, cfg.ds + '.csv'));
   const toEvent = (s) => cfg.eventVal != null ? (s === cfg.eventVal ? 1 : 0) : (s >= 1 ? 1 : 0);
   const arm = (which) => rows.filter(r => String(r[cfg.arm]) === which)
@@ -78,7 +78,12 @@ function run(cfg, K) {
     .filter(r => r.time != null && r.status != null && r.time > 0)
     .map(r => ({ time: r.time, status: toEvent(r.status) }));
   const subsample = (a) => { if (a.length <= CAP) return a; const step = a.length / CAP, s = []; for (let i = 0; i < CAP; i++) s.push(a[Math.floor(i * step)]); return s; };
-  const expT = subsample(arm(cfg.exp)), ctlT = subsample(arm(cfg.ctl));
+  return { expT: subsample(arm(cfg.exp)), ctlT: subsample(arm(cfg.ctl)) };
+}
+
+function run(cfg, K) {
+  K = K || 8;  // number of registry-style posted KM timepoints
+  const { expT, ctlT } = loadArms(cfg);
   if (expT.length < 20 || ctlT.length < 20) return { ds: cfg.ds, error: 'too few rows' };
 
   // ---- TRUE estimates from full IPD ----
@@ -136,5 +141,5 @@ if (require.main === module) {
   fs.writeFileSync(path.join(dir, 'goldstandard_results.json'), JSON.stringify(results, null, 2));
   console.log(JSON.stringify(results, null, 2));
 } else {
-  module.exports = { CONFIGS, run, dir };
+  module.exports = { CONFIGS, run, dir, loadArms, coxHR };
 }

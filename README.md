@@ -110,6 +110,12 @@ full-snapshot census with `harvest/census_full_aact.py`; the per-arm detail over
 trials with `validate/census_cohort.js`. This is the evidence base for the reporting recommendation in
 **`POLICY.md`** (two structured fields + a timepoint threshold for CTTI/AACT + EU CTIS).
 
+A real-data **head-to-head** (`HEADTOHEAD.md`, `validate/headtohead.js`) tests the "no digitisation
+error" claim honestly: at equal anchor density, exact-vs-pixel-noised is a near-tie, and a *densely*
+digitised figure actually recovers the HR better than few exact registry anchors. The registry path's
+binding weakness is **anchor sparsity, not noise** — so the two methods are complementary, and the
+native path's value is unlocked precisely by the anchor-density standard above.
+
 **Where this method sits vs prior art.** Every established KM-IPD reconstruction tool (Guyot 2012,
 IPDfromKM, ipdfc, RESOLVE-IPD, KM-GPT) digitises a *figure image*; the closest tabular-input neighbour,
 Titman 2026, uses *journal-article* tables. To our knowledge this is the first reconstruction native to
