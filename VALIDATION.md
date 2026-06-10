@@ -220,13 +220,23 @@ engine never sees the patient-level data. (`validate/goldstandard.js`.)
 | **Myeloid** AML (OS) | 329/317 | 0.708 | **0.639 (10%)** | 9.7% | — |
 | **Kidtran** kidney tx | 339/524 | 0.907 | 1.046 (14%) | n/r | — |
 | **Veteran** lung (OS) | 68/69 | 1.016 | 0.755 (30%) | 58% | 31 / **−0.7** |
+| **Leukemia** allo/auto tx | 50/51 | 0.838 | 0.678 (21%) | n/r | 4.1 / **3.6** |
+| **Larynx** cancer (stage III/I) | 27/33 | 1.837 | **1.711 (7%)** | 1.5% | −1.6 / **−1.7** |
+| **Burn** RCT (staph infection) | 84/70 | 0.571 | 0.466 (20%) | n/r | 9.4 / 11.9 |
+| **Pneumonia** infant (smoking) | 838/2285 | 2.237 | **2.30 (3%)** | n/r | −0.1 / **−0.1** |
+| **Breastfeeding** (smoking) | 270/657 | 1.245 | 2.179 (56%) | 26% | −12.2 / −3.8 |
+| **HCC** liver (vasc. invasion) | 41/186 | 2.18 | **2.01 (8%)** | 1.1% | −14.4 / **−15.6** |
 
-**Aggregate over 15 adequately-sized datasets (≥100/arm; of 25 real datasets tried, incl. 2 recurrent-event collapsed to first-event): curve-only
-recovers HR to a median log-error of 0.11 (~11% fold), with 12/13 within 20%, and the median to
-~3.4%** — matching the registry-cohort numbers, now on real patient data across 13 RCTs/cohorts.
-Large effects recovered cleanly (Wilms 5.1→5.18, prostate 5.49→5.17, melanoma 4.36→3.99); the classic
-1965 Gehan leukemia RCT (6-MP) recovers 0.221→0.201 (9%); UDCA-in-PBC RCT 0.445→0.415. The expanded
-set spans breast/colon/lung/AML/melanoma/leukemia/transplant/PBC/MGUS/NAFLD/prostate/retinopathy.
+**Aggregate over 17 adequately-sized datasets (≥100/arm; of 31 real datasets tried, incl. 2 recurrent-event collapsed to first-event): curve-only
+recovers HR to a median log-error of 0.11 (~12% fold), with 13/17 within 20%, and the median to
+~3%** — matching the registry-cohort numbers, now on real patient data across 31 RCTs/cohorts (six
+added 2026-06-10 from `KMsurv`/`asaur` via the open Rdatasets mirror). Large effects recovered cleanly
+(Wilms 5.1→5.18, prostate 5.49→5.17, melanoma 4.36→3.99, HCC 2.18→2.01); the classic 1965 Gehan
+leukemia RCT (6-MP) recovers 0.221→0.201 (9%); UDCA-in-PBC RCT 0.445→0.415. The set spans
+breast/colon/lung/AML/melanoma/leukemia/transplant/PBC/MGUS/NAFLD/prostate/retinopathy/larynx/burn/
+pneumonia/HCC. The **worst case is `bfeed`** (fold 1.75): breastfeeding duration in discrete weeks
+with ~96% events — a heavily-tied discrete-time series, not the smooth KM curve the method targets;
+kept as an honest out-of-scope boundary rather than dropped.
 
 ### Anchor density: how many posted timepoints does reconstruction need?
 

@@ -8,10 +8,14 @@
  * summary alone; (4) compare reconstruction vs TRUTH. This is real-data validation (real hazard
  * shapes, censoring, non-PH), not synthetic, and not circular: the engine never sees the true IPD.
  *
- * Datasets (Rdatasets mirror of R survival::): gbsg, veteran, rotterdam. Re-download (public):
- *   for ds in rotterdam gbsg colon veteran; do
- *     curl -L -o realipd/$ds.csv https://vincentarelbundock.github.io/Rdatasets/csv/survival/$ds.csv
- *   done
+ * Datasets (open, Rdatasets mirror of R packages). Re-download (public), by source package:
+ *   base=https://vincentarelbundock.github.io/Rdatasets/csv
+ *   for ds in rotterdam gbsg colon veteran pbc diabetic nwtco myeloid kidtran retinopathy mgus2 \
+ *             flchain nafld1 cancer ovarian; do curl -L -o realipd/$ds.csv $base/survival/$ds.csv; done
+ *   for ds in alloauto larynx burn pneumon bfeed; do curl -L -o realipd/$ds.csv $base/KMsurv/$ds.csv; done
+ *   for ds in prostateSurvival pharmacoSmoking hepatoCellular; do curl -L -o realipd/$ds.csv $base/asaur/$ds.csv; done
+ *   # remaining (udca2, gehan, tongue, bmt, melanoma, ebmt1/3, aidssi, kidney, etc.) live under
+ *   # realipd/ already or in their respective packages; see CONFIGS below for the per-dataset source.
  * Usage: node validate/goldstandard.js [realipd_dir]
  */
 const fs = require('fs');
@@ -61,6 +65,13 @@ const CONFIGS = [
   { ds: 'bnct', label: 'BNCT brain tumour (OS, treated vs untreated; small)', time: 'time', status: 'death', arm: 'trt', exp: '3', ctl: '1' },
   { ds: 'cgd_fe', label: 'CGD RCT (time to first serious infection, rIFN-g vs placebo; recurrent→first-event)', time: 'time', status: 'status', arm: 'arm', exp: 'rIFN-g', ctl: 'placebo' },
   { ds: 'bladder_fe', label: 'Bladder cancer (time to first recurrence, thiotepa vs placebo; recurrent→first-event)', time: 'time', status: 'status', arm: 'arm', exp: '2', ctl: '1' },
+  // --- open packaged datasets added 2026-06-10 (KMsurv / asaur via Rdatasets mirror) ---
+  { ds: 'alloauto', label: 'Leukemia transplant (DFS, allogeneic vs autologous)', time: 'time', status: 'delta', arm: 'type', exp: '1', ctl: '2' },
+  { ds: 'larynx', label: 'Larynx cancer (death, stage III vs I)', time: 'time', status: 'delta', arm: 'stage', exp: '3', ctl: '1' },
+  { ds: 'burn', label: 'Burn RCT (time to staph infection, body cleansing vs routine bathing)', time: 'T3', status: 'D3', arm: 'Z1', exp: '1', ctl: '0' },
+  { ds: 'pneumon', label: 'Infant pneumonia (time to hospitalization, mother smoking)', time: 'chldage', status: 'hospital', arm: 'smoke', exp: '1', ctl: '0' },
+  { ds: 'bfeed', label: 'Breastfeeding (time to weaning, mother smoking)', time: 'duration', status: 'delta', arm: 'smoke', exp: '1', ctl: '0' },
+  { ds: 'hepatoCellular', label: 'Hepatocellular carcinoma (OS, vascular invasion)', time: 'OS', status: 'Death', arm: 'Vascularinvasion', exp: '1', ctl: '0' },
 ];
 const CAP = 2500; // subsample cap per arm (file order; keeps huge cohorts tractable)
 

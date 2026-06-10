@@ -552,5 +552,137 @@
       "median_exp_pcterr": null,
       "RMSTdiff": 6.8
     }
+  },
+  {
+    "ds": "alloauto",
+    "label": "Leukemia transplant (DFS, allogeneic vs autologous)",
+    "n_exp": 50,
+    "n_ctl": 51,
+    "true_HR": 0.838,
+    "true_median_exp": null,
+    "true_median_ctl": 16.6,
+    "true_RMST_diff": 3.6,
+    "curve_only": {
+      "HR": 0.678,
+      "HR_logerr": 0.213,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 4.1
+    },
+    "censoring_informed": {
+      "HR": 0.715,
+      "HR_logerr": 0.159,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 3.1
+    }
+  },
+  {
+    "ds": "larynx",
+    "label": "Larynx cancer (death, stage III vs I)",
+    "n_exp": 27,
+    "n_ctl": 33,
+    "true_HR": 1.837,
+    "true_median_exp": 4.9,
+    "true_median_ctl": 6.5,
+    "true_RMST_diff": -1.7,
+    "curve_only": {
+      "HR": 1.711,
+      "HR_logerr": 0.071,
+      "median_exp_pcterr": 1.5,
+      "RMSTdiff": -1.6
+    },
+    "censoring_informed": {
+      "HR": 1.926,
+      "HR_logerr": 0.047,
+      "median_exp_pcterr": 30.3,
+      "RMSTdiff": -1.5
+    }
+  },
+  {
+    "ds": "burn",
+    "label": "Burn RCT (time to staph infection, body cleansing vs routine bathing)",
+    "n_exp": 84,
+    "n_ctl": 70,
+    "true_HR": 0.571,
+    "true_median_exp": null,
+    "true_median_ctl": 46.1,
+    "true_RMST_diff": 11.9,
+    "curve_only": {
+      "HR": 0.466,
+      "HR_logerr": 0.203,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 9.4
+    },
+    "censoring_informed": {
+      "HR": 0.553,
+      "HR_logerr": 0.033,
+      "median_exp_pcterr": null,
+      "RMSTdiff": 4.5
+    }
+  },
+  {
+    "ds": "pneumon",
+    "label": "Infant pneumonia (time to hospitalization, mother smoking)",
+    "n_exp": 838,
+    "n_ctl": 2285,
+    "true_HR": 2.237,
+    "true_median_exp": null,
+    "true_median_ctl": null,
+    "true_RMST_diff": -0.1,
+    "curve_only": {
+      "HR": 2.3,
+      "HR_logerr": 0.028,
+      "median_exp_pcterr": null,
+      "RMSTdiff": -0.1
+    },
+    "censoring_informed": {
+      "HR": 2.26,
+      "HR_logerr": 0.01,
+      "median_exp_pcterr": null,
+      "RMSTdiff": -0.1
+    }
+  },
+  {
+    "ds": "bfeed",
+    "label": "Breastfeeding (time to weaning, mother smoking)",
+    "n_exp": 270,
+    "n_ctl": 657,
+    "true_HR": 1.245,
+    "true_median_exp": 7.7,
+    "true_median_ctl": 11.3,
+    "true_RMST_diff": -3.8,
+    "curve_only": {
+      "HR": 2.179,
+      "HR_logerr": 0.56,
+      "median_exp_pcterr": 26.1,
+      "RMSTdiff": -12.2
+    },
+    "censoring_informed": {
+      "HR": 2.213,
+      "HR_logerr": 0.575,
+      "median_exp_pcterr": 29.2,
+      "RMSTdiff": -13
+    }
+  },
+  {
+    "ds": "hepatoCellular",
+    "label": "Hepatocellular carcinoma (OS, vascular invasion)",
+    "n_exp": 41,
+    "n_ctl": 186,
+    "true_HR": 2.18,
+    "true_median_exp": 20.5,
+    "true_median_ctl": null,
+    "true_RMST_diff": -15.6,
+    "curve_only": {
+      "HR": 2.01,
+      "HR_logerr": 0.081,
+      "median_exp_pcterr": 1.1,
+      "RMSTdiff": -14.4
+    },
+    "censoring_informed": {
+      "HR": 2.249,
+      "HR_logerr": 0.031,
+      "median_exp_pcterr": 1.1,
+      "RMSTdiff": -15.9
+    }
   }
 ]
