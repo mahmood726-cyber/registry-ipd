@@ -1,0 +1,19 @@
+{
+  "trial": "NCT01524783",
+  "condition": "Advanced NET of GI Origin; Advanced NET of Lung Origin; Neuroendocrine Tumors",
+  "exp": "Everolimus + BSC",
+  "ctl": "Placebo + BSC",
+  "n_exp": 205,
+  "n_ctl": 97,
+  "events_exp": 107,
+  "events_ctl": 77,
+  "posted_hr": 0.48,
+  "posted_ci": [
+    0.35,
+    0.67
+  ],
+  "registry_only_hr": 0.83,
+  "registry_only_fold": 1.73,
+  "fusion_hr": 0.561,
+  "fusion_fold": 1.169
+}

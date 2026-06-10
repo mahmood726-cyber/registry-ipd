@@ -46,6 +46,33 @@ reconstructed log-rank HR against the true HR (same estimator both sides).
 exact curve rescues kmcurve's pixel noise; the at-risk table rescues registry-IPD's missing censoring.
 The deepest claim — *fusion is strictly ≥ either alone* — holds across 42 real datasets.
 
+## Real-trial demonstration — RADIANT-4 (NCT01524783), validated vs the posted HR
+
+The 42-dataset experiment establishes the mechanism on rendered curves. This grounds it on a **real
+trial present in both worlds**, validated against the trial's **published** hazard ratio
+(`kmcurve/ipd_km_pipeline/fusion_real_trial.py`; artifact
+`validate/fusion_real_trial_radiant4.json`):
+
+- **registry side** — this repo's harvested AACT record `NCT01524783.json`: the exact posted
+  KM-estimate anchors (10/11 points) + N=205/97. AACT posts no number-at-risk.
+- **figure side** — the published KM figure's "N (events)" totals (107/77), which kmcurve OCRs.
+- **ground truth** — the registry-posted Cox HR **0.48 (95% CI 0.35–0.67)**, held out.
+
+| reconstruction | HR | fold vs posted | inside posted 95% CI? |
+|---|---:|---:|:--:|
+| registry-only (exact anchors, NO censoring) | 0.83 | 1.73 | **no** |
+| **FUSION (anchors + figure event counts)** | **0.56** | **1.17** | **yes** |
+
+On a real trial with a real posted effect, registry-only falls **outside** the published CI — the
+identifiability trap — and the figure's event count pulls the fusion estimate **inside** it. This is
+the same worked example `VALIDATION.md` documents (curve-only 0.68 → censoring-informed 0.47 vs posted
+0.48); the exact numbers differ because the reconstruction runs through kmcurve's Guyot/QP engine rather
+than this repo's JS, but the conclusion is identical and now expressed as a fusion of the two projects'
+**real** data. (Honest link: the event counts are taken from the AACT harvest — registry-ipd derived
+them from participant-flow `drop_withdrawals`; kmcurve OCRs the identical totals from the figure's
+at-risk table in production. The RADIANT-4 Lancet primary is not open-access here, so the figure-OCR
+step itself is exercised separately by the corpus benchmark, not on this specific figure.)
+
 ## Why this matters for the paper
 
 The `advanced_estimators.js` / `method_zoo.js` investigations concluded the curve-only censoring
