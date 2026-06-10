@@ -4,11 +4,13 @@
   "description": "Registry-native pseudo-IPD reconstructor (ClinicalTrials.gov / AACT only, fully offline browser).",
   "license": "MIT",
   "scripts": {
-    "test": "node --test test/engine.spec.js",
+    "test": "node --test test/engine.spec.js validate/metrics.spec.js",
     "fixtures": "node test/gen_fixtures.js",
     "examples": "node examples/gen_examples.js",
     "build": "node build.js",
-    "smoke": "python test/smoke_browser.py"
+    "smoke": "python test/smoke_browser.py",
+    "evidence": "node validate/evidence_summary.js",
+    "verify": "npm test && npm run evidence"
   },
   "private": true
 }
