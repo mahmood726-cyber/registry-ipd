@@ -50,11 +50,18 @@ three "elevate toward breakthrough" items without re-reading the whole history.
 - ✅ **Noise sweep** (`validate/noise_sweep.js` → `noise_sweep_results.json`): σ 0–5 pp; confirms the
   head-to-head ordering is robust (K=25 digitized beats registry across the whole range).
 
-## What's autonomously left (smaller polish, optional)
-- Extend the true-IPD gold standard with more **open** datasets (R/Python packages, Dryad/Zenodo/OSF,
-  open-access paper supplements) — NOT credentialed repos (Vivli/YODA/PDS need a DUA; do not scrape).
-- Surface the same census/head-to-head panels inside the live tool (`index.html`), not just the
-  dashboard.
+- ✅ **Gold standard expanded 25 → 31** (2026-06-10) via open packaged datasets (KMsurv/asaur):
+  alloauto, larynx, burn, pneumon, bfeed, hepatoCellular. Median HR fold-error holds at 1.12;
+  bfeed is the documented worst case (discrete-time). Configs in `goldstandard.js`; CSVs gitignored
+  (download paths in the file header).
+
+## What's autonomously left (optional, in priority order)
+- **More open IPD** to push 31 → 60+: cBioPortal/TCGA APIs (open cancer survival IPD), Dryad/Zenodo/OSF
+  (CC0/CC-BY trial deposits), open-access paper supplements. NOT credentialed repos (Vivli/YODA/PDS
+  need a DUA — do not scrape). This is the "both, repositories second" half.
+- **Re-run uncertainty + competing-risks validations on the expanded set** (currently 14/14 coverage
+  and CR are on the original subset; extending them would grow those headline N's).
+- Surface the census/head-to-head panels inside the live tool (`index.html`), not just the dashboard.
 
 ## Honest framing (carry forward)
 Novel registry-native data path + calibrated uncertainty + unusually rigorous validation; bounded by
