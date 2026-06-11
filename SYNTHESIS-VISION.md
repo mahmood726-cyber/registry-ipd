@@ -159,6 +159,38 @@ synthesis needs both: the lever to shrink `r²`, **and** the reconstruction trea
 non-obvious lesson — and it sets the agenda: model the reconstruction bias as an identified-set offset, not
 just inflate the variance. Locked by `test/phase2b_lever.spec.js`.
 
+## 4d. Phase 2c — reconstruction bias is partially-identified heterogeneity
+
+Phase 2b's corrective has a precise statistical name. A **deterministic per-trial reconstruction bias `b_i`
+is observationally identical to between-trial heterogeneity** — "this trial reconstructed 8% high" and
+"this trial truly differs by 8%" leave the same footprint in the data. So **τ² is not point-identified from
+reconstructed trials; it is partially identified** (Manski). The honest object is an *identified set*,
+calibrated against a true-IPD gold standard (which the project has).
+
+`validate/phase2c_bias_offset.js` does exactly this, all **leave-one-out** (each held-out cohort calibrated
+from the other 13, so it is out-of-sample): the systematic offset `β = mean(e)` is identifiable, so we
+**de-bias** it; the residual per-trial bias is bounded `|b_i| ≤ 1.64·SD(e)` and the pooled effect and τ²
+range over all configurations inside those boxes.
+
+| quantity | true IPD (held out) | naive event-pinned POINT | de-biased POINT | **identified SET** | set ∋ truth? |
+|---|---:|---:|---:|---:|:--:|
+| pooled HR | 2.49 | 2.63 | **2.44** | **[1.59, 3.75]** | **yes** |
+| τ² | 0.131 | 0.173 | 0.182 | **[0, 0.765]** | **yes** |
+
+Two clean results. **De-biasing the LOO systematic offset (0.075 log-HR ≈ 7.8%) recovers the pooled HR**
+(2.63 → 2.44 vs true 2.49). And **the calibrated identified set brackets the truth on both axes**, where
+the naive point is a precise-but-wrong single number. The τ² set is wide ([0, 0.765]) — that width is the
+*honest price* of residual reconstruction bias: it is exactly how much the synthesis cannot resolve, and it
+is what the lever (Phase 2b, shrinking the per-trial error) and a better reconstruction narrow. Reporting
+the set, not a false point, is the correct treatment. Locked by `test/phase2c_set.spec.js`.
+
+**The arc closes.** Phase 1: propagate the reconstruction variance (Rubin) — necessary. Phase 2: on real
+data, when `r²` is large it absorbs τ²; the lever shrinks `r²`. Phase 2b: the lever shrinks `r²` 5.2×, but
+variance ≠ bias. Phase 2c: the residual bias is partially-identified heterogeneity, handled by a
+gold-standard-calibrated identified set that brackets the truth. A reconstructed trial joins a synthesis as
+a **de-biased point with a calibrated identification interval** — not a fake-exact IPD row, and not a
+discarded curve.
+
 ## 5. Development roadmap
 
 - **Phase 1 — honest pooling (DONE).** Rubin's-rules propagation; Monte-Carlo proof it recovers τ²/PI where
@@ -169,12 +201,13 @@ just inflate the variance. Locked by `test/phase2b_lever.spec.js`.
   what shrinks `r²` into the usable range.
 - **Phase 2b — lever-shrinks-r² (DONE, §4c).** The event count pins the censoring, shrinking reconstruction
   SD **5.2×** — but it surfaced an honest corrective: variance propagation is necessary, not sufficient.
-- **Phase 2c — reconstruction bias as an identified-set offset.** Phase 2b showed variance propagation is
-  necessary but not sufficient: estimate the residual reconstruction *bias* (e.g. the curve-only→event
-  fold the QP leaves) and carry it as a partial-identification interval on each trial's contribution, so a
-  small `r²` no longer leaks bias into τ². This is the concrete next build.
-- **Phase 3 — granularity-mixed survival NMA.** One model ingesting {IPD, reconstructed-pseudo-IPD-with-UQ,
-  HR-only} trials, each weighted by identified information (the Jansen extension with propagated UQ).
+- **Phase 2c — reconstruction bias as a partially-identified set (DONE, §4d).** De-bias the LOO systematic
+  offset (recovers the pooled HR) and report the τ² / pooled-effect identified set over residual-bias boxes;
+  validated to bracket the held-out truth where a naive point does not.
+- **Phase 3 — granularity-mixed survival NMA.** One model ingesting {IPD, reconstructed-pseudo-IPD as a
+  de-biased point + identification interval (§4d), HR-only} trials, each weighted by identified information
+  (the Jansen extension with propagated UQ). The Phase-2c machinery — de-bias + calibrated set — is the
+  per-trial contribution this model pools.
 - **Phase 4 — an evidence-completeness atlas.** For a real review question, harvest every trial, classify
   each by posted-statistics granularity, compute a per-trial *identification/information score* for the
   target estimand, and map what fraction of the evidence is point- vs partially-identified. A new artefact:

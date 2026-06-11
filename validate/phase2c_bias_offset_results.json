@@ -1,0 +1,106 @@
+{
+  "k": 14,
+  "true_ipd": {
+    "pooled_HR": 2.488,
+    "tau2": 0.131,
+    "PI": [
+      1.085,
+      5.705
+    ]
+  },
+  "event_pinned_point": {
+    "pooled_HR": 2.629,
+    "tau2": 0.173
+  },
+  "debiased_point": {
+    "pooled_HR": 2.441,
+    "tau2": 0.182
+  },
+  "identified_set": {
+    "HR": [
+      1.59,
+      3.75
+    ],
+    "tau2": [
+      0,
+      0.765
+    ]
+  },
+  "contains_truth": {
+    "HR": true,
+    "tau2": true
+  },
+  "mean_recon_bias_logHR": 0.075,
+  "per_trial": [
+    {
+      "ds": "luad",
+      "e": 0.006,
+      "r_ens": 0.035
+    },
+    {
+      "ds": "coadread",
+      "e": 0.052,
+      "r_ens": 0.037
+    },
+    {
+      "ds": "stad",
+      "e": 0.05,
+      "r_ens": 0.037
+    },
+    {
+      "ds": "kirc",
+      "e": 0.054,
+      "r_ens": 0.037
+    },
+    {
+      "ds": "hnsc",
+      "e": -0.054,
+      "r_ens": 0.04
+    },
+    {
+      "ds": "skcm",
+      "e": 0.083,
+      "r_ens": 0.037
+    },
+    {
+      "ds": "blca",
+      "e": 0.015,
+      "r_ens": 0.039
+    },
+    {
+      "ds": "lusc",
+      "e": 0.014,
+      "r_ens": 0.038
+    },
+    {
+      "ds": "esca",
+      "e": -0.003,
+      "r_ens": 0.057
+    },
+    {
+      "ds": "lihc",
+      "e": 0.049,
+      "r_ens": 0.038
+    },
+    {
+      "ds": "kirp",
+      "e": 0.934,
+      "r_ens": 0.054
+    },
+    {
+      "ds": "acc",
+      "e": -0.293,
+      "r_ens": 0.027
+    },
+    {
+      "ds": "brca",
+      "e": 0.017,
+      "r_ens": 0.036
+    },
+    {
+      "ds": "meso",
+      "e": 0.119,
+      "r_ens": 0.059
+    }
+  ]
+}
