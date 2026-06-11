@@ -156,8 +156,12 @@ fractional-polynomial fit (Royston/Jansen style) estimates HR(t) and tests propo
 
 A ladder of increasing independence (full numbers in `VALIDATION.md`):
 
-1. **AACT-internal** (registry HR as held-out truth, 30 two-arm trials): HR within the registry CI
-   83→94% (curve-only→censoring-informed), median fold-error ~1.1.
+1. **AACT-internal** (registry HR as held-out truth): on the 30 trials posting an HR in the curve's own
+   outcome, HR within the registry CI 83→94% (curve-only→censoring-informed), median fold-error ~1.1.
+   Recovering HRs the registry posts in a **sibling** survival outcome (endpoint-matched; the harvester
+   scoped the lookup to the curve outcome and dropped them) expands this to **57 endpoint-clean trials**:
+   reconstructed HR within the registry 95% CI **47/57 (82%)**, and **24/25 (96%)** when the HR shares the
+   curve's outcome record (`gallery_expanded.json`).
 2. **Primary publication** (RADIANT-4, Yao et al. *Lancet* 2016): reconstructed HR 0.47–0.48 vs
    published 0.48; median 11/4 vs 11.0/3.9 months.
 3. **Published literature, systematically** (independent of the registry, at cohort scale): for every

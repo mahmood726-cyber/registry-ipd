@@ -21,9 +21,12 @@ summary data only**, fully offline in the browser. No R, no Shiny, no server, no
 The scoped claim we stand behind: *on trials where ct.gov posts a structured KM-estimate curve,
 AACT-only reconstruction uses the exact registry anchors (zero digitization error on the anchors)
 with full provenance; elsewhere it degrades explicitly via tiered verdicts.* See **`VALIDATION.md`**
-for what is and isn't validated — in short: HR recovery ~12% median / ~83–94% within the registry CI
-(n≈18, not significant between methods); RMST/median "fidelity" numbers are **round-trip
-self-consistency, not external accuracy**; the curve-vs-digitization head-to-head has now been run with
+for what is and isn't validated — in short: HR recovery ~12% median / ~83–94% within the registry CI,
+expanded to 57 endpoint-clean trials (82% within the registry CI) and cross-checked against the
+**independent published HR** (PubMed) at median fold ~1.10 (17/20 inside the published CI, 12 of them
+with no registry HR at all); RMST/median "fidelity" numbers against the registry are **round-trip
+self-consistency**, but the median is **separately** confirmed against published medians (~7% across
+endpoint-matched trials; ~3% on OS/clean-PFS); the curve-vs-digitization head-to-head has now been run with
 a **real raster extractor** (the `kmcurve` pipeline on rendered gold-standard curves, `HEADTOHEAD.md`)
 — it recovers the HR to ~9% only with the at-risk table, confirming the at-risk information (not the
 pixels) is the binding constraint.
@@ -189,8 +192,11 @@ tiered engine, and the self-audit checks are net-new.
 - **Live AACT run: done.** Coverage measured (table above); **250 real AACT trials reconstructed
   end-to-end** with the shipped Titman-QP engine (`GALLERY.md`, `validate/gallery.js`) across
   breast/HIV/AF/lymphoma/MS/myeloma/rare-disease — median fold 1.13 vs the registry HR on the 30 that
-  report one; **only 27% post a total-event count** (the rest fall back to curve-only), reinforcing the
-  policy ask. A real trial (NCT00725985) is bundled as an in-tool example.
+  report one in the curve's outcome, expanding to **57 endpoint-clean trials (47/57, 82%, within the
+  registry CI)** once HRs posted in a sibling survival outcome are recovered, and cross-checked against
+  the **independent published HR** (PubMed) on 20 trials (`GALLERY.md`); **only 27% post a total-event
+  count** (the rest fall back to curve-only), reinforcing the policy ask. A real trial (NCT00725985) is
+  bundled as an in-tool example.
 - **At scale (`SCALE.md`, `validate/scale_run.js`):** across the cohort, **399 trials yield 904 pairwise
   pseudo-IPD comparisons** (multi-arm trials compound — a 4-arm trial is up to 6 comparisons) spanning
   **277 distinct conditions** (HIV, breast cancer, asthma, RA, MS, …) — 104 gold / 782 silver, 886
