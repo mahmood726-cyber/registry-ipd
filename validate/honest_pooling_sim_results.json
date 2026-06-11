@@ -1,0 +1,34 @@
+{
+  "config": {
+    "reps": 4000,
+    "k": 12,
+    "MU": -0.35667494393873245,
+    "tau2": 0.05,
+    "s_mean": 0.16,
+    "r_mean": 0.22,
+    "seed": 12345
+  },
+  "nominal": 0.95,
+  "true_tau2": 0.05,
+  "true_ipd": {
+    "coverage_mu": 0.95,
+    "coverage_PI": 0.892,
+    "mean_tau2": 0.0446,
+    "mean_ci_width": 0.342,
+    "mean_PI_width": 0.938
+  },
+  "naive": {
+    "coverage_mu": 0.942,
+    "coverage_PI": 0.967,
+    "mean_tau2": 0.0894,
+    "mean_ci_width": 0.439,
+    "mean_PI_width": 1.335
+  },
+  "honest": {
+    "coverage_mu": 0.953,
+    "coverage_PI": 0.827,
+    "mean_tau2": 0.0436,
+    "mean_ci_width": 0.443,
+    "mean_PI_width": 0.916
+  }
+}
