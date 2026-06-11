@@ -76,6 +76,27 @@ def enrich_from_abstract(trial: dict, abstract: str, endpoint: str = None) -> di
     return summary
 
 
+def enrich_trial_with_fetcher(trial: dict, pmid, fetch_abstract, endpoint: str = None) -> dict:
+    """Resolve the abstract via the injected `fetch_abstract(pmid) -> str|None` and enrich the trial.
+
+    The PMID->abstract source is injected so the production path (cached PubMed efetch) and tests (a stub)
+    share one code path. Fail-soft: a missing PMID or a fetch that returns nothing is a no-op (enrichment
+    is additive — it must never block or corrupt a harvest). Returns the enrichment summary + the pmid.
+    """
+    base = {"pmid": pmid, "events": {"patched": 0}, "hr": {"set_as": None, "confident": False},
+            "median": {"attached": False}}
+    if not pmid:
+        return base
+    try:
+        abstract = fetch_abstract(pmid) or ""
+    except Exception as e:  # noqa: BLE001  -- a fetch failure must not break the harvest
+        base["error"] = f"{type(e).__name__}: {e}"
+        return base
+    summary = enrich_from_abstract(trial, abstract, endpoint=endpoint)
+    summary["pmid"] = pmid
+    return summary
+
+
 if __name__ == "__main__":
     import json
     trial = json.load(open(sys.argv[1], encoding="utf-8"))

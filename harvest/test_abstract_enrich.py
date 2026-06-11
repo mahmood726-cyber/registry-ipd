@@ -60,6 +60,23 @@ def test_noop_on_empty_abstract():
     assert s["events"]["patched"] == 0 and "hr" not in t and "median_abstract" not in t
 
 
+def test_fetcher_path_enriches_and_is_failsoft():
+    fake_cache = {"99999": SINGLE}
+    t = _trial()
+    s = A.enrich_trial_with_fetcher(t, "99999", fake_cache.get)
+    assert s["pmid"] == "99999" and s["events"]["patched"] == 2 and t["hr"]["value"] == 0.48
+    # no pmid -> no-op, trial untouched
+    t2 = _trial()
+    s2 = A.enrich_trial_with_fetcher(t2, None, fake_cache.get)
+    assert s2["events"]["patched"] == 0 and "hr" not in t2
+    # fetcher raises -> fail-soft, error recorded, harvest not broken
+    def boom(_):
+        raise RuntimeError("network down")
+    t3 = _trial()
+    s3 = A.enrich_trial_with_fetcher(t3, "123", boom)
+    assert s3["events"]["patched"] == 0 and "error" in s3 and t3["arms"][0]["total_events"] is None
+
+
 def test_adverse_only_abstract_sets_no_events_but_keeps_hr():
     # RADIANT-4 shape: AE "X of N" counts only (rejected) + a clean HR -> HR promoted, no events
     ab = ("Grade 3 or 4 adverse events included stomatitis (18 of 202 vs 0 of 98). "

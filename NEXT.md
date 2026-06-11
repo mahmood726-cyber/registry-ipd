@@ -127,7 +127,11 @@ locked by `test/abstract_lever.spec.js`). See `KMCURVE-SYNERGY.md` Idea 5 + `VAL
 event-count lever". **Unified entry point** `harvest/abstract_enrich.py::enrich_from_abstract` now applies
 all three in-scope abstract levers to a trial (events→`total_events`; confident HR→`trial.hr` if AACT has
 none else `trial.hr_abstract`; median→`trial.median_abstract`), with provenance + hard HR-confidence
-gating; never overwrites an AACT value. 25 Python + 26 JS tests green.
+gating; never overwrites an AACT value. **Wired live into the harvester**: `harvest_trial.py
+--enrich-abstract` resolves the results-publication PMID from AACT `study_references`, fetches the cached
+abstract, and enriches — opt-in (off by default; network call when on), fail-soft (never breaks a
+harvest). The PMID→abstract fetch is dependency-injected (`enrich_trial_with_fetcher`) so the glue is
+unit-tested offline with a stub. 26 Python + 26 JS tests green.
 
 ## Honest framing (carry forward)
 Novel registry-native data path + calibrated uncertainty + unusually rigorous validation; bounded by
