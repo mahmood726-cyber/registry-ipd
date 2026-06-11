@@ -2,7 +2,7 @@
   "summary": {
     "validation_grade_population": 112,
     "reconstructed_2arm_tierA": 84,
-    "scored_against_registry_HR": 64,
+    "scored_against_registry_HR": 57,
     "original_gallery_n": 30,
     "by_source": {
       "curve": {
@@ -11,17 +11,17 @@
         "within_1_2": "17/25"
       },
       "sibling": {
-        "n": 39,
-        "median_fold": 1.205,
-        "within_1_2": "19/39"
+        "n": 32,
+        "median_fold": 1.19,
+        "within_1_2": "18/32"
       }
     },
     "all_scored": {
-      "n": 64,
+      "n": 57,
       "median_fold": 1.149,
-      "within_1_2": "36/64"
+      "within_1_2": "35/57"
     },
-    "no_hr_recovered": 20,
+    "no_hr_recovered": 27,
     "not_2arm_tierA": 28,
     "note": "fold = reconstructed Cox HR vs registry HR (coarse held-out truth; arm-reference assumed to match the exp/ctl convention, same as the original gallery). \"sibling\" rows took the HR from a survival sibling outcome (harvester.select_trial_hr) and carry an extra OS-vs-PFS endpoint caveat -- reported separately so they do not inflate the curve-sourced headline."
   },
@@ -35,16 +35,6 @@
       "recon_HR": 0.55,
       "fold": 1.928,
       "events": 10
-    },
-    {
-      "nct": "NCT00143403",
-      "condition": "Colorectal Neoplasms",
-      "badge": "silver",
-      "source": "sibling",
-      "registry_HR": 0.9,
-      "recon_HR": 1,
-      "fold": 1.111,
-      "events": 86
     },
     {
       "nct": "NCT00185211",
@@ -107,16 +97,6 @@
       "events": 293
     },
     {
-      "nct": "NCT00374322",
-      "condition": "Neoplasms, Breast",
-      "badge": "silver",
-      "source": "sibling",
-      "registry_HR": 0.91,
-      "recon_HR": 8.551,
-      "fold": 9.397,
-      "events": 1834
-    },
-    {
       "nct": "NCT00409188",
       "condition": "Non-small Cell Lung Cancer",
       "badge": "gold",
@@ -161,9 +141,9 @@
       "condition": "High Risk Stage III Melanoma",
       "badge": "silver",
       "source": "sibling",
-      "registry_HR": 0.75,
+      "registry_HR": 0.72,
       "recon_HR": 0.611,
-      "fold": 1.227,
+      "fold": 1.178,
       "events": 133
     },
     {
@@ -237,16 +217,6 @@
       "events": 38
     },
     {
-      "nct": "NCT01108445",
-      "condition": "Advanced Non-clear Cell Renal Cell Carci",
-      "badge": "silver",
-      "source": "sibling",
-      "registry_HR": 1.406,
-      "recon_HR": 1,
-      "fold": 1.406,
-      "events": 74
-    },
-    {
       "nct": "NCT01144364",
       "condition": "Non-Hodgkin's Lymphoma",
       "badge": "silver",
@@ -295,26 +265,6 @@
       "recon_HR": 1,
       "fold": 1.111,
       "events": 628
-    },
-    {
-      "nct": "NCT01358877",
-      "condition": "Breast Cancer",
-      "badge": "silver",
-      "source": "sibling",
-      "registry_HR": 0.81,
-      "recon_HR": 0.768,
-      "fold": 1.055,
-      "events": 546
-    },
-    {
-      "nct": "NCT01374451",
-      "condition": "Islet Cell Tumor",
-      "badge": "silver",
-      "source": "sibling",
-      "registry_HR": 0.991,
-      "recon_HR": 1,
-      "fold": 1.009,
-      "events": 36
     },
     {
       "nct": "NCT01404312",
@@ -371,29 +321,19 @@
       "condition": "Carcinoid Tumor of the Small Bowel",
       "badge": "silver",
       "source": "sibling",
-      "registry_HR": 0.177,
+      "registry_HR": 0.84,
       "recon_HR": 1,
-      "fold": 5.65,
+      "fold": 1.19,
       "events": 140
-    },
-    {
-      "nct": "NCT01642004",
-      "condition": "Squamous Cell Non-small Cell Lung Cancer",
-      "badge": "silver",
-      "source": "sibling",
-      "registry_HR": 0.59,
-      "recon_HR": 1,
-      "fold": 1.695,
-      "events": 210
     },
     {
       "nct": "NCT01721772",
       "condition": "Melanoma",
       "badge": "silver",
       "source": "sibling",
-      "registry_HR": 0.42,
+      "registry_HR": 0.44,
       "recon_HR": 2.207,
-      "fold": 5.254,
+      "fold": 5.015,
       "events": 299
     },
     {
@@ -461,9 +401,9 @@
       "condition": "Pancreatic Cancer",
       "badge": "silver",
       "source": "sibling",
-      "registry_HR": 0.969,
+      "registry_HR": 1.056,
       "recon_HR": 1.034,
-      "fold": 1.067,
+      "fold": 1.021,
       "events": 259
     },
     {
@@ -511,9 +451,9 @@
       "condition": "Stage IB-IIIA Non-small Cell Lung Carcin",
       "badge": "silver",
       "source": "sibling",
-      "registry_HR": 0.23,
+      "registry_HR": 0.4913,
       "recon_HR": 0.513,
-      "fold": 2.229,
+      "fold": 1.043,
       "events": 119
     },
     {
@@ -617,16 +557,6 @@
       "events": 72
     },
     {
-      "nct": "NCT03676192",
-      "condition": "Adenocarcinoma of Lung",
-      "badge": "silver",
-      "source": "sibling",
-      "registry_HR": 0.92,
-      "recon_HR": 1,
-      "fold": 1.087,
-      "events": 234
-    },
-    {
       "nct": "NCT04305496",
       "condition": "Locally Advanced (Inoperable) or Metasta",
       "badge": "silver",
@@ -651,9 +581,9 @@
       "condition": "Refractory Metastatic Colorectal Cancer",
       "badge": "silver",
       "source": "sibling",
-      "registry_HR": 0.61,
+      "registry_HR": 0.44,
       "recon_HR": 1,
-      "fold": 1.639,
+      "fold": 2.273,
       "events": 382
     },
     {

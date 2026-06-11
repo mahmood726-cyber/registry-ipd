@@ -134,6 +134,45 @@ def test_select_trial_hr_sibling_must_be_survival_typed():
     assert hr is None and from_sibling is False
 
 
+@pytest.mark.parametrize("title,fam", [
+    ("Overall Survival (OS)", "OS"),
+    ("Progression-free Survival Rate", "PFS"),
+    ("Progression Free Survival (PFS) at 12 Months", "PFS"),   # 'survival' present but PFS wins
+    ("Event-free Survival", "EFS"),
+    ("Disease-Free Survival (DFS)", "DFS"),
+    ("Recurrence-free Survival", "RFS"),
+    ("Time to Progression", "TTP"),
+    ("Number of Participants With Adverse Events", None),
+])
+def test_endpoint_family(title, fam):
+    assert H.endpoint_family(title) == fam
+
+
+def test_select_trial_hr_drops_endpoint_mismatched_sibling():
+    # curve outcome 10 = OS (no HR); sibling 20 carries an HR but is PFS -> must be DROPPED, not used.
+    an = pd.DataFrame([
+        {"outcome_id": 10, "param_type": "Survival Probability", "param_value": "0.6", "method": ""},
+        {"outcome_id": 20, "param_type": "Hazard Ratio (HR)", "param_value": "0.7",
+         "ci_lower_limit": "0.5", "ci_upper_limit": "0.95", "method": "Cox"},
+    ])
+    ep = {10: "OS", 20: "PFS"}
+    hr, from_sibling = H.select_trial_hr(an, tte=10, survival_outcome_ids={10, 20},
+                                         ep_by_outcome=ep, curve_family="OS")
+    assert hr is None and from_sibling is False        # OS curve not validated against a PFS HR
+
+
+def test_select_trial_hr_keeps_endpoint_matched_sibling():
+    an = pd.DataFrame([
+        {"outcome_id": 10, "param_type": "Survival Probability", "param_value": "0.6", "method": ""},
+        {"outcome_id": 20, "param_type": "Hazard Ratio (HR)", "param_value": "0.7",
+         "ci_lower_limit": "0.5", "ci_upper_limit": "0.95", "method": "Cox"},
+    ])
+    ep = {10: "OS", 20: "OS"}                            # sibling on the SAME endpoint
+    hr, from_sibling = H.select_trial_hr(an, tte=10, survival_outcome_ids={10, 20},
+                                         ep_by_outcome=ep, curve_family="OS")
+    assert hr is not None and hr["value"] == pytest.approx(0.7) and from_sibling is True
+
+
 # --------------------------------------------------------------- arm assembly (Tier A shape)
 def _synthetic_tables():
     outcomes = pd.DataFrame([{

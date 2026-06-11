@@ -50,7 +50,7 @@ def main():
     me = me[me["nct_id"].isin(vgset)]
 
     out = {}
-    n_curve = n_sibling = n_nodir = n_nohr = n_nocohort = 0
+    n_curve = n_sibling = n_nodir = n_nohr = n_nocohort = n_endpoint_dropped = 0
     for nct in sorted(vgset):
         fp = os.path.join(COHORT, f"{nct}.json")
         if not os.path.isfile(fp):
@@ -62,9 +62,16 @@ def main():
         sub_an = an[an["nct_id"] == nct]
         sub_me = me[me["nct_id"] == nct]
         surv_ids = H._survival_outcome_ids(sub_me)
-        hr, from_sib = H.select_trial_hr(sub_an, tte, surv_ids)
+        ep_by = H.endpoint_by_outcome(sub_me)
+        curve_fam = ep_by.get(int(tte)) if tte is not None else None
+        hr, from_sib = H.select_trial_hr(sub_an, tte, surv_ids, ep_by, curve_fam)
         if hr is None:
-            n_nohr += 1
+            # distinguish "no HR anywhere" from "HR dropped because its endpoint differs from the curve"
+            legacy, legacy_sib = H.select_trial_hr(sub_an, tte, surv_ids)
+            if legacy is not None and legacy_sib:
+                n_endpoint_dropped += 1
+            else:
+                n_nohr += 1
             continue
         hr = H.resolve_hr_direction(hr, arms)
         if from_sib:
@@ -84,6 +91,7 @@ def main():
         "from_curve_outcome": n_curve,
         "from_sibling_outcome": n_sibling,
         "direction_unresolved": n_nodir,
+        "endpoint_mismatch_dropped": n_endpoint_dropped,
         "no_hr_found": n_nohr,
         "not_in_cohort": n_nocohort,
         "hr": out,
@@ -91,8 +99,9 @@ def main():
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=1)
     print(f"\nrecovered HR for {len(out)}/{len(vgset)} validation-grade trials")
-    print(f"  from curve outcome: {n_curve} | from survival sibling: {n_sibling} | "
-          f"direction unresolved: {n_nodir} | no HR: {n_nohr} | not in cohort: {n_nocohort}")
+    print(f"  from curve outcome: {n_curve} | from same-endpoint sibling: {n_sibling} | "
+          f"endpoint-mismatch dropped: {n_endpoint_dropped} | direction unresolved: {n_nodir} | "
+          f"no HR: {n_nohr} | not in cohort: {n_nocohort}")
     print(f"  wrote {os.path.relpath(OUT, ROOT)}")
     return 0
 

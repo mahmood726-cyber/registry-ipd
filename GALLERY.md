@@ -18,20 +18,22 @@ The census finds **112** validation-grade trials (curve **+** HR; see `POLICY.md
 HR scoring originally covered only **30** — because the harvester scoped the HR lookup to the *curve's
 own outcome* and silently dropped HRs posted in a **sibling survival outcome** (the common "OS rate over
 time" curve + separate "Overall Survival" HR layout). Fixing that (`harvester.select_trial_hr`, with a
-one-pass `harvest/backfill_validation_hr.py` over the validation-grade set) recovers **49** dropped HRs
-and **more than doubles** the held-out validation, scored by HR source (`node validate/gallery_expanded.js`):
+one-pass `harvest/backfill_validation_hr.py` over the validation-grade set) recovers those HRs and
+roughly **doubles** the held-out validation, scored by HR source (`node validate/gallery_expanded.js`):
 
 | HR source | trials scored | median fold | within 1.2× |
 |---|---:|---:|---:|
 | **curve outcome** (the original basis) | 25 | **1.119** | 17/25 |
-| **survival sibling outcome** (newly recovered) | 39 | 1.205 | 19/39 |
-| **all validation-grade scored** | **64** | **1.149** | 36/64 |
+| **same-endpoint sibling outcome** (newly recovered) | 32 | 1.190 | 18/32 |
+| **all validation-grade scored** | **57** | **1.149** | 35/57 |
 
-The curve-sourced subset reproduces the original **1.13** (consistency check); sibling-sourced rows are
-reported **separately** and run slightly looser (1.205) because a sibling survival outcome can be a
-different endpoint (OS vs PFS) than the curve, and they carry that caveat honestly. Either way the
-production held-out HR evidence base goes from 30 to **64** real trials. Numbers from
-`realipd/gallery_expanded.json`.
+The sibling fallback is **endpoint-aware**: an OS curve is never scored against a PFS hazard ratio —
+explicit endpoint mismatches (8 of them) are *dropped*, not validated, so the sibling rows are a genuine
+like-for-like check (fold **1.19**, vs the contaminated 1.205 before endpoint-matching). The curve-sourced
+subset reproduces the original **1.13** (consistency check). Either way the production held-out HR
+evidence base goes from 30 to **57** real, endpoint-clean trials. Numbers from
+`realipd/gallery_expanded.json`; the recovery's provenance counts (curve / same-endpoint sibling /
+endpoint-mismatch dropped) are in `realipd/validation_hr_backfill.json`.
 
 ## Worked examples (diverse conditions, best-fit per condition)
 

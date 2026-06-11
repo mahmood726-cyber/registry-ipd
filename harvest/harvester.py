@@ -144,14 +144,53 @@ def _survival_outcome_ids(measurements) -> set:
     return set(int(x) for x in ids)
 
 
-def select_trial_hr(analyses, tte, survival_outcome_ids):
+# survival endpoint families, most-specific first; used to keep a sibling-outcome HR on the SAME
+# endpoint as the curve (never validate an OS reconstruction against a PFS hazard ratio).
+_ENDPOINT_RE = [
+    ("PFS", re.compile(r"progression[\s-]*free|\bpfs\b", re.I)),
+    ("EFS", re.compile(r"event[\s-]*free|\befs\b", re.I)),
+    ("DFS", re.compile(r"disease[\s-]*free|\bdfs\b", re.I)),
+    ("RFS", re.compile(r"recurrence[\s-]*free|relapse[\s-]*free|\brfs\b", re.I)),
+    ("MFS", re.compile(r"metastasis[\s-]*free|\bmfs\b", re.I)),
+    ("TTP", re.compile(r"time[\s-]*to[\s-]*progress|\bttp\b", re.I)),
+    ("OS", re.compile(r"overall[\s-]*surviv|\bos\b", re.I)),  # last: 'survival' alone is too broad
+]
+
+
+def endpoint_family(title: str):
+    """Classify a survival outcome title into an endpoint family (OS/PFS/EFS/DFS/RFS/MFS/TTP) or None
+    if it cannot be told. Checked most-specific first so 'progression-free survival' -> PFS, not OS."""
+    t = title or ""
+    for fam, rx in _ENDPOINT_RE:
+        if rx.search(t):
+            return fam
+    return None
+
+
+def endpoint_by_outcome(measurements) -> dict:
+    """Map each outcome_id -> endpoint family from its measurement titles (None-family omitted)."""
+    out = {}
+    if measurements is None or getattr(measurements, "empty", True) or "outcome_id" not in measurements:
+        return out
+    for oid, sub in measurements.groupby("outcome_id"):
+        fam = endpoint_family(" ".join(sub["title"].dropna().astype(str).tolist()))
+        if fam:
+            out[int(oid)] = fam
+    return out
+
+
+def select_trial_hr(analyses, tte, survival_outcome_ids, ep_by_outcome=None, curve_family=None):
     """Pick the trial HR for a curve posted in outcome `tte`. Trials commonly post the
     KM curve in one outcome ('OS rate over time') and the hazard ratio in a SIBLING
     survival outcome ('Overall Survival') -- scoping the HR to the curve outcome alone
     silently drops it. Prefer the curve outcome's own HR; if absent, fall back to a
-    survival-typed sibling outcome's HR. Returns (hr_dict_or_None, from_sibling: bool).
-    The sibling fallback is endpoint-guarded (survival outcomes only) but cannot
-    distinguish OS-vs-PFS within that set, so the caller flags sibling-sourced HRs."""
+    survival sibling outcome's HR. Returns (hr_dict_or_None, from_sibling: bool).
+
+    Endpoint-aware: when the curve's endpoint family is known (`curve_family`) and an
+    `ep_by_outcome` map is given, a sibling HR is recovered ONLY from a sibling whose
+    endpoint family MATCHES the curve -- explicit-mismatch siblings (OS curve vs PFS HR)
+    are dropped, not validated. With no endpoint info it falls back to the first survival
+    sibling (legacy best-effort). The caller flags sibling-sourced HRs either way."""
     if analyses is None or getattr(analyses, "empty", True) or "outcome_id" not in analyses:
         return parse_hazard_ratio(analyses), False
     own = parse_hazard_ratio(analyses[analyses["outcome_id"] == tte])
@@ -160,6 +199,12 @@ def select_trial_hr(analyses, tte, survival_outcome_ids):
     sib_ids = set(survival_outcome_ids) - {tte}
     if not sib_ids:
         return None, False
+    if ep_by_outcome and curve_family and curve_family != "other":
+        matched = {oid for oid in sib_ids if ep_by_outcome.get(oid) == curve_family}
+        if not matched:
+            return None, False    # curve endpoint known but only differing-endpoint siblings -> drop
+        sib = parse_hazard_ratio(analyses[analyses["outcome_id"].isin(matched)])
+        return sib, (sib is not None)
     sib = parse_hazard_ratio(analyses[analyses["outcome_id"].isin(sib_ids)])
     return sib, (sib is not None)
 
@@ -323,10 +368,12 @@ def harvest_trial(nct_id: str, location=None, outcome_id=None) -> dict:
     # pick the time-to-event outcome with the most parseable KM timepoints
     tte = _pick_tte_outcome(outcomes, measurements, analyses) if outcome_id is None else outcome_id
     arms = assemble_arms(outcomes, measurements, groups, counts, tte)
-    # HR: prefer the curve outcome's own analysis; fall back to a survival-typed sibling
-    # outcome (trials often post the curve and the HR in separate outcomes -- this recovered
-    # ~59 validation-grade HRs the curve-scoped lookup had been dropping).
-    hr, hr_from_sibling = select_trial_hr(analyses, tte, _survival_outcome_ids(measurements))
+    # HR: prefer the curve outcome's own analysis; fall back to a SAME-ENDPOINT survival sibling
+    # outcome (trials often post the curve and the HR in separate outcomes -- this recovers HRs the
+    # curve-scoped lookup dropped, while refusing to validate an OS curve against a PFS hazard ratio).
+    ep_by = endpoint_by_outcome(measurements)
+    curve_fam = ep_by.get(int(tte)) if tte is not None else None
+    hr, hr_from_sibling = select_trial_hr(analyses, tte, _survival_outcome_ids(measurements), ep_by, curve_fam)
     hr = resolve_hr_direction(hr, arms)
     if hr is not None and hr_from_sibling:
         hr["from_sibling_outcome"] = True

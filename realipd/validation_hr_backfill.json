@@ -1,16 +1,17 @@
 {
  "n_validation_grade": 112,
- "n_hr_recovered": 81,
+ "n_hr_recovered": 73,
  "from_curve_outcome": 32,
- "from_sibling_outcome": 49,
- "direction_unresolved": 42,
+ "from_sibling_outcome": 41,
+ "direction_unresolved": 37,
+ "endpoint_mismatch_dropped": 8,
  "no_hr_found": 31,
  "not_in_cohort": 0,
  "hr": {
   "NCT00045032": {
-   "value": 0.54,
-   "ci_low": 0.44,
-   "ci_high": 0.67,
+   "value": 0.75,
+   "ci_low": 0.47,
+   "ci_high": 1.21,
    "favors_arm_id": null,
    "from_sibling_outcome": true
   },
@@ -27,13 +28,6 @@
    "ci_high": 3.72,
    "favors_arm_id": "OG001",
    "from_sibling_outcome": false
-  },
-  "NCT00143403": {
-   "value": 0.9,
-   "ci_low": 0.67,
-   "ci_high": 1.2,
-   "favors_arm_id": null,
-   "from_sibling_outcome": true
   },
   "NCT00185211": {
    "value": 0.764,
@@ -77,13 +71,6 @@
    "favors_arm_id": "OG000",
    "from_sibling_outcome": true
   },
-  "NCT00374322": {
-   "value": 0.91,
-   "ci_low": 0.77,
-   "ci_high": 1.08,
-   "favors_arm_id": "OG000",
-   "from_sibling_outcome": true
-  },
   "NCT00409188": {
    "value": 0.893,
    "ci_low": 0.763,
@@ -96,13 +83,6 @@
    "ci_low": 0.9487,
    "ci_high": 1.5789,
    "favors_arm_id": null,
-   "from_sibling_outcome": true
-  },
-  "NCT00436280": {
-   "value": 0.512,
-   "ci_low": 0.217,
-   "ci_high": 1.206,
-   "favors_arm_id": "OG000",
    "from_sibling_outcome": true
   },
   "NCT00559988": {
@@ -120,9 +100,9 @@
    "from_sibling_outcome": false
   },
   "NCT00636168": {
-   "value": 0.75,
-   "ci_low": 0.64,
-   "ci_high": 0.9,
+   "value": 0.72,
+   "ci_low": 0.58,
+   "ci_high": 0.88,
    "favors_arm_id": "OG000",
    "from_sibling_outcome": true
   },
@@ -196,13 +176,6 @@
    "favors_arm_id": null,
    "from_sibling_outcome": false
   },
-  "NCT01108445": {
-   "value": 1.406,
-   "ci_low": null,
-   "ci_high": null,
-   "favors_arm_id": null,
-   "from_sibling_outcome": true
-  },
   "NCT01144364": {
    "value": 0.58,
    "ci_low": 0.31,
@@ -235,20 +208,6 @@
    "value": 0.9,
    "ci_low": 0.7,
    "ci_high": 1.16,
-   "favors_arm_id": null,
-   "from_sibling_outcome": true
-  },
-  "NCT01358877": {
-   "value": 0.81,
-   "ci_low": 0.67,
-   "ci_high": 0.98,
-   "favors_arm_id": "OG000",
-   "from_sibling_outcome": true
-  },
-  "NCT01374451": {
-   "value": 0.991,
-   "ci_low": 0.636,
-   "ci_high": 1.543,
    "favors_arm_id": null,
    "from_sibling_outcome": true
   },
@@ -295,23 +254,16 @@
    "from_sibling_outcome": true
   },
   "NCT01578239": {
-   "value": 0.177,
-   "ci_low": 0.108,
-   "ci_high": 0.289,
-   "favors_arm_id": null,
-   "from_sibling_outcome": true
-  },
-  "NCT01642004": {
-   "value": 0.59,
-   "ci_low": 0.43,
-   "ci_high": 0.81,
+   "value": 0.84,
+   "ci_low": 0.6,
+   "ci_high": 1.17,
    "favors_arm_id": null,
    "from_sibling_outcome": true
   },
   "NCT01721772": {
-   "value": 0.42,
-   "ci_low": 0.3,
-   "ci_high": 0.6,
+   "value": 0.44,
+   "ci_low": 0.34,
+   "ci_high": 0.56,
    "favors_arm_id": null,
    "from_sibling_outcome": true
   },
@@ -337,9 +289,9 @@
    "from_sibling_outcome": true
   },
   "NCT01844505": {
-   "value": 0.57,
-   "ci_low": 0.43,
-   "ci_high": 0.76,
+   "value": 0.63,
+   "ci_low": 0.5,
+   "ci_high": 0.78,
    "favors_arm_id": null,
    "from_sibling_outcome": true
   },
@@ -372,10 +324,10 @@
    "from_sibling_outcome": false
   },
   "NCT02117479": {
-   "value": 0.969,
-   "ci_low": 0.747,
-   "ci_high": 1.256,
-   "favors_arm_id": "OG000",
+   "value": 1.056,
+   "ci_low": 0.827,
+   "ci_high": 1.348,
+   "favors_arm_id": "OG001",
    "from_sibling_outcome": true
   },
   "NCT02120417": {
@@ -414,9 +366,9 @@
    "from_sibling_outcome": false
   },
   "NCT02511106": {
-   "value": 0.23,
-   "ci_low": 0.18,
-   "ci_high": 0.3,
+   "value": 0.4913,
+   "ci_low": 0.3307,
+   "ci_high": 0.7299,
    "favors_arm_id": "OG000",
    "from_sibling_outcome": true
   },
@@ -505,9 +457,9 @@
    "from_sibling_outcome": false
   },
   "NCT03555149": {
-   "value": 1.35,
-   "ci_low": 0.67,
-   "ci_high": 2.73,
+   "value": 1.44,
+   "ci_low": 0.71,
+   "ci_high": 2.93,
    "favors_arm_id": null,
    "from_sibling_outcome": true
   },
@@ -515,13 +467,6 @@
    "value": 0.968,
    "ci_low": 0.658,
    "ci_high": 1.424,
-   "favors_arm_id": null,
-   "from_sibling_outcome": true
-  },
-  "NCT03676192": {
-   "value": 0.92,
-   "ci_low": 0.77,
-   "ci_high": 1.1,
    "favors_arm_id": null,
    "from_sibling_outcome": true
   },
@@ -561,9 +506,9 @@
    "from_sibling_outcome": false
   },
   "NCT04737187": {
-   "value": 0.61,
-   "ci_low": 0.49,
-   "ci_high": 0.77,
+   "value": 0.44,
+   "ci_low": 0.36,
+   "ci_high": 0.54,
    "favors_arm_id": null,
    "from_sibling_outcome": true
   },

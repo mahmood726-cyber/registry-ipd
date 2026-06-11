@@ -78,8 +78,9 @@ const summary = {
   no_hr_recovered: nNoHR, not_2arm_tierA: nNot2arm,
   note: 'fold = reconstructed Cox HR vs registry HR (coarse held-out truth; arm-reference assumed to '
     + 'match the exp/ctl convention, same as the original gallery). "sibling" rows took the HR from a '
-    + 'survival sibling outcome (harvester.select_trial_hr) and carry an extra OS-vs-PFS endpoint caveat '
-    + '-- reported separately so they do not inflate the curve-sourced headline.',
+    + 'SAME-ENDPOINT survival sibling outcome (harvester.select_trial_hr is endpoint-aware: an OS curve '
+    + 'is never scored against a PFS HR -- explicit-mismatch siblings are dropped). Reported separately '
+    + 'from curve-sourced only because the HR sits in a different outcome record, not a different endpoint.',
 };
 fs.writeFileSync(path.join(RIPDdir, 'gallery_expanded.json'), JSON.stringify({ summary, rows }, null, 2));
 
