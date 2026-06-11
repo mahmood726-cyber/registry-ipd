@@ -255,6 +255,26 @@ calibrated identification interval**, pooled alongside IPD and HR-only trials in
 - **Phase 5 — position formally** vs ML-NMR (time-to-event extension), Jansen survival NMA (uncertainty
   propagation), and Manski partial identification (the identified-set formalism).
 
+## 5b. Reuse map — the portfolio already has the synthesis engines
+
+Phase 3b should **wire into existing, verified machinery in the portfolio**, not re-implement it. Surveyed
+and path-verified:
+
+| need | existing engine | path / entry point | how registry-IPD plugs in |
+|---|---|---|---|
+| honest pooling of under-identified specs | **spec-collapse-atlas** (Py) | `spec_collapse/aggregators.py::weighted_likelihood(specs, cl, weights)` | the canonical tool my Phase 1 (Rubin) / Phase 2c (set) approximate. Map each trial to a spec `{theta: logHR, var: s²+r²+(δ/z)², k}`; its mixture-CDF interval is never narrower than a single spec (no false robustness) |
+| random-effects NMA + consistency | **advanced-nma-pooling** (Py) | `src/nma_pool/models/core_ad.py::ADNMAPooler.fit`; `validation/inconsistency.py::design_by_treatment_test`, `node_splitting_diagnostics` | feed reconstructed-curve trials as contrast-level inputs with the Phase-2c inflated variance |
+| **ML-NMR** (mixed IPD + AD) | **advanced-nma-pooling** (Py) | `src/nma_pool/models/ml_nmr.py::MLNMRPooler.fit` | the §3 "extend ML-NMR to time-to-event" is largely *already built*; the new input is registry-IPD's reconstructed pseudo-IPD-with-UQ |
+| **non-PH survival NMA** | **advanced-nma-pooling** (Py) | `src/nma_pool/models/survival_nph.py::SurvivalNPHPooler.fit` (piecewise-exponential, interval-specific effects) | reconstructed pseudo-IPD → per-interval events/at-risk as a survival-AD trial |
+| **fractional-polynomial survival NMA** (Jansen) | **allmeta** (JS) | `HTA/src/engine/fpNMA.js::fitFPCoefficients(times, logHRs, weights, powers)` | encode the partial-ID variance in the weight `w = 1/(var+δ²)` |
+| browser IPD+AgD NMA, forest/league/network UI | **IPDNMA** (JS) | `IPDNMA/index.html` | validation / visualization reference |
+
+The key realisation: the vision's "extends ML-NMR (Phillippo) and Jansen survival NMA" is not aspirational —
+**those engines exist in the portfolio**, and registry-IPD supplies the missing input they were never given:
+a curve- or HR-only trial as a *de-biased point with a calibrated identification interval*. Phase 3b is an
+integration, and `weighted_likelihood` is the honest aggregator to route the mixed-granularity contributions
+through (a cross-check against this repo's `metaRE` is the natural first step, despite the Py↔JS boundary).
+
 ## 6. Honest risks (carry forward)
 
 - Reconstruction **bias** (not just variance) is not always imputed away; some estimands stay
