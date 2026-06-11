@@ -1,0 +1,28 @@
+{
+  "config": {
+    "reps": 300,
+    "k": 12,
+    "tau_true_var": 0.1,
+    "tau_true_sd": 0.316,
+    "r_recon": 0.25,
+    "network": "A/B/C log-HR, 6 IPD + 6 reconstructed-curve"
+  },
+  "true": {
+    "mean_tau": 0.3057,
+    "coverage_B": 0.913,
+    "coverage_C": 0.923,
+    "n_fits": 300
+  },
+  "naive": {
+    "mean_tau": 0.3446,
+    "coverage_B": 0.927,
+    "coverage_C": 0.903,
+    "n_fits": 300
+  },
+  "honest": {
+    "mean_tau": 0.2952,
+    "coverage_B": 0.913,
+    "coverage_C": 0.91,
+    "n_fits": 300
+  }
+}

@@ -248,11 +248,14 @@ calibrated identification interval**, pooled alongside IPD and HR-only trials in
   `weighted_likelihood` to aggregate the M reconstruction imputations honestly (covers truth 3/4 vs naive
   IV 0/4, ~21× wider). Establishes the two-level architecture (weighted_likelihood within-trial → metaRE
   across-trial) and verifies cross-project reuse.
-- **Phase 3b step 2 — extend to a survival NMA** (multiple treatments, indirect comparisons): carry the
-  per-trial contribution (weighted_likelihood variance + §4d de-bias/identification interval) through
-  `advanced-nma-pooling`'s `MLNMRPooler` / `SurvivalNPHPooler` with `design_by_treatment_test` /
-  `node_splitting_diagnostics` consistency checks — the Jansen FP-NMA extended with propagated UQ + partial
-  identification, reusing the lab's engines rather than re-implementing.
+- **Phase 3b step 2 — granularity-mixed survival NMA (DONE, §4g).** Real 3-treatment network on
+  `advanced-nma-pooling`'s `ADNMAPooler`, half IPD + half reconstructed-curve; naive pooling inflates the
+  network τ, propagating `r²` recovers it. The vision runs on a real NMA engine.
+- **Phase 3c — add the §4d bias/identification interval + consistency to the NMA.** Carry the de-bias offset
+  and identification half-width through the same `ADNMAPooler` network, and add `design_by_treatment_test` /
+  `node_splitting_diagnostics` (already in `advanced-nma-pooling`) — does ignored reconstruction noise also
+  produce *spurious inconsistency*? And extend to `SurvivalNPHPooler` (non-PH) / `MLNMRPooler` (effect
+  modifiers).
 - **Phase 4 — an evidence-completeness atlas.** For a real review question, harvest every trial, classify
   each by posted-statistics granularity, compute a per-trial *identification/information score* for the
   target estimand, and map what fraction of the evidence is point- vs partially-identified. A new artefact:
@@ -288,6 +291,33 @@ is *biased* (heavily-censored high-HR), even the honest *variance* interval fall
 identified-set is still required on top. So the full per-trial contribution is: `weighted_likelihood` over
 the imputations (honest variance) **+** the Phase-2c de-bias and identification half-width (bias), pooled
 across trials by `metaRE`. Cross-project reuse verified end-to-end; locked by `harvest/test_phase3b_wl.py`.
+
+## 4g. Phase 3b (step 2) — a granularity-mixed survival NMA on the lab's ADNMAPooler
+
+The capstone: a real **network** meta-analysis (3 treatments A/B/C, log-HR scale) pooled with
+`advanced-nma-pooling`'s `ADNMAPooler`, where half the studies are full IPD and half are reconstructed-from-
+curve carrying the reconstruction variance the earlier phases established. `validate/phase3b_step2_survival_nma.py`
+imports the engine cross-repo and runs a seeded 300-rep Monte-Carlo, pooling the reconstructed studies with
+their `r²` ignored (naive) vs propagated (honest), against an all-IPD truth:
+
+| pool | mean τ-SD (true 0.316) | network contrast coverage (B, C) |
+|---|---:|---:|
+| all-IPD (gold) | 0.306 | 0.91, 0.92 |
+| **NAIVE** (ignore `r²`) | **0.345 (inflated)** | 0.93, 0.90 |
+| **HONEST** (propagate `r²`) | **0.295 (recovered)** | 0.91, 0.91 |
+
+The Phase-1 lesson reproduces **at the network level on a real NMA engine**: ignoring the reconstructed
+studies' reconstruction variance inflates the network heterogeneity τ (0.345 vs gold 0.306 — reconstruction
+noise read as between-study disagreement); propagating it recovers τ (0.295, 3.5× closer to gold), while the
+network contrasts stay calibrated either way (τ self-compensates the mean, as in Phase 1). Locked by
+`harvest/test_phase3b_step2.py`.
+
+**The vision is realised end-to-end.** The engine is the lab's own `ADNMAPooler`; the new input is the
+partially-identified survival trial registry-IPD supplies — a reconstructed curve joining a network
+meta-analysis as a de-biased contrast with a propagated reconstruction variance, pooled honestly alongside
+IPD and HR-only trials. "One model, many granularities" now runs on a real network, not just a pairwise pool.
+(Next: wire the §4d de-bias/identification interval through the same NMA, and add `design_by_treatment_test`
+consistency — both already in `advanced-nma-pooling`.)
 
 ## 5b. Reuse map — the portfolio already has the synthesis engines
 
