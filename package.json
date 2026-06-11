@@ -10,7 +10,8 @@
     "build": "node build.js",
     "smoke": "python test/smoke_browser.py",
     "evidence": "node validate/evidence_summary.js",
-    "verify": "npm test && npm run evidence"
+    "verify:headlines": "node validate/verify_headlines.js",
+    "verify": "npm test && node validate/verify_headlines.js && npm run evidence"
   },
   "private": true
 }

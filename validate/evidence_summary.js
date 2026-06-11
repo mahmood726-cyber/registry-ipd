@@ -72,6 +72,9 @@ if (cuv) add('Uncertainty on real registry curves', `the reconstructed 95% credi
 // --- independent median validation (vs published medians) ---
 const pmm = g(load('pubmed_median_validation.json'), 'summary');
 if (pmm) add('Independent median validation', `reconstructed per-arm median vs the PUBLISHED median (PubMed, endpoint-matched): ${g(pmm, 'arm_medians_compared')} arm-medians across ${g(pmm, 'trials_validated')} trials, median fold ${g(pmm, 'median_arm_fold')} (within 20%: ${g(pmm, 'arm_medians_within_20pct')}) — independent of the registry and the HR`, 'python harvest/pubmed_medians.py && node validate/pubmed_median_validation.js');
+// --- registry-side median cross-check (larger n) ---
+const rmv = g(load('registry_median_validation.json'), 'summary');
+if (rmv) add('Registry-posted median cross-check', `reconstructed per-arm median vs the AACT-posted same-endpoint median: ${g(rmv, 'arm_medians')} arm-medians across ${g(rmv, 'trials_curve_consistent')} curve-consistent trials, median fold ${g(rmv, 'median_arm_fold')} (within 20%: ${g(rmv, 'within_20pct')}); surfaced ${g(rmv, 'registry_curve_median_inconsistent')} trials where the registry's posted curve and median disagree`, 'python harvest/registry_medians.py && node validate/registry_median_validation.js');
 // --- expanded validation-grade HR scoring (sibling-outcome fix) ---
 const gx = g(load('gallery_expanded.json'), 'summary');
 if (gx) add('Expanded held-out HR validation', `${g(gx, 'scored_against_registry_HR')} validation-grade trials scored vs registry HR (was 30); reconstructed HR inside the registry's posted 95% CI **${g(gx, 'all_scored', 'in_registry_CI')}** (curve-sourced ${g(gx, 'by_source', 'curve', 'in_registry_CI')}). Endpoint-aware sibling-HR recovery; OS-vs-PFS mismatches dropped`, 'python harvest/backfill_validation_hr.py && node validate/gallery_expanded.js');

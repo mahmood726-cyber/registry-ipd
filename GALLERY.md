@@ -108,6 +108,21 @@ The 3 misses are the same verified-genuine cases (the CheckMate-067 multi-arm re
 degenerate fit, and one registry-vs-published divergence where the interval correctly covers the registry
 HR it was built from). Numbers from `realipd/cohort_uncertainty_validation.json`.
 
+### Registry-side median cross-check (breadth)
+
+The independent published-median check is small (clean two-arm abstract pairs are rare). For breadth, the
+registry *itself* posts a median for many trials — in a sibling survival outcome, recovered endpoint-matched
+by `harvest/registry_medians.py` (`node validate/registry_median_validation.js`). The reconstruction does
+not use the posted median (Tier A reconstructs from the KM timepoints), so this is a genuine recovery
+check: **22 arm-medians across 11 curve-consistent trials, median fold 1.133** (13/22 within 20%) —
+registry-provenance, so read it for breadth alongside the PubMed check for independence.
+
+The check also earns its keep as a **data-quality probe**: it flagged **2 trials whose registry-posted
+median grossly contradicts the registry's own posted curve** (e.g. `NCT01626664`, posted median ~44 mo
+while the posted curve is already below 50% survival by month 1 — the reconstruction faithfully follows
+the curve, so the registry's curve and median simply disagree). A curve-consistency gate excludes these
+from the headline and reports them as the finding they are.
+
 ### …and vs the published *median* (the tightest estimand)
 
 The HR is the reconstruction's hardest quantity; the **median** is its tightest (~3% on the open gold

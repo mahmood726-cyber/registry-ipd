@@ -1,0 +1,240 @@
+{
+  "summary": {
+    "trials_curve_consistent": 11,
+    "arm_medians": 22,
+    "median_arm_fold": 1.133,
+    "within_10pct": "11/22",
+    "within_20pct": "13/22",
+    "registry_curve_median_inconsistent": 2,
+    "inconsistent_ncts": [
+      "NCT02117479",
+      "NCT01626664"
+    ],
+    "note": "Reconstructed per-arm median vs the AACT-POSTED same-endpoint median (harvest/registry_medians.py), matched by sorted magnitude. Registry-provenance (NOT independent), but the reconstruction does not use the posted median (Tier A reconstructs from the KM timepoints), so this is a genuine recovery check at larger n than the independent PubMed median validation. A curve-consistency gate excludes trials whose registry-posted median grossly exceeds the observed curve follow-up while the curve is already below 0.5 -- there the registry’s OWN curve and median disagree (a registry data-quality finding the cross-check surfaces; the reconstruction faithfully follows the posted curve). Read with the PubMed median check: this for breadth, PubMed for independence."
+  },
+  "rows": [
+    {
+      "nct": "NCT01642004",
+      "endpoint": "PFS",
+      "posted_medians": [
+        2.83,
+        3.48
+      ],
+      "reconstructed_medians": [
+        3.88,
+        4.88
+      ],
+      "arm_folds": [
+        1.371,
+        1.402
+      ],
+      "last_curve_timepoint": 84
+    },
+    {
+      "nct": "NCT00699816",
+      "endpoint": "RFS",
+      "posted_medians": [
+        30,
+        44
+      ],
+      "reconstructed_medians": [
+        36,
+        48
+      ],
+      "arm_folds": [
+        1.2,
+        1.091
+      ],
+      "last_curve_timepoint": 48
+    },
+    {
+      "nct": "NCT01574716",
+      "endpoint": "PFS",
+      "posted_medians": [
+        4.3,
+        5.54
+      ],
+      "reconstructed_medians": [
+        4.25,
+        5.24
+      ],
+      "arm_folds": [
+        1.012,
+        1.057
+      ],
+      "last_curve_timepoint": 11.9589
+    },
+    {
+      "nct": "NCT00623766",
+      "endpoint": "OS",
+      "posted_medians": [
+        3.75,
+        6.97
+      ],
+      "reconstructed_medians": [
+        6,
+        12
+      ],
+      "arm_folds": [
+        1.6,
+        1.722
+      ],
+      "last_curve_timepoint": 36
+    },
+    {
+      "nct": "NCT01721772",
+      "endpoint": "PFS",
+      "posted_medians": [
+        2.17,
+        5.06
+      ],
+      "reconstructed_medians": [
+        3.74,
+        5.75
+      ],
+      "arm_folds": [
+        1.724,
+        1.136
+      ],
+      "last_curve_timepoint": 84
+    },
+    {
+      "nct": "NCT02896855",
+      "endpoint": "PFS",
+      "posted_medians": [
+        12.4,
+        14.5
+      ],
+      "reconstructed_medians": [
+        15,
+        19.5
+      ],
+      "arm_folds": [
+        1.21,
+        1.345
+      ],
+      "last_curve_timepoint": 36
+    },
+    {
+      "nct": "NCT00861614",
+      "endpoint": "OS",
+      "posted_medians": [
+        10.02,
+        11.04
+      ],
+      "reconstructed_medians": [
+        10.1,
+        11.24
+      ],
+      "arm_folds": [
+        1.008,
+        1.018
+      ],
+      "last_curve_timepoint": 60
+    },
+    {
+      "nct": "NCT01335399",
+      "endpoint": "PFS",
+      "posted_medians": [
+        29.47,
+        31.38
+      ],
+      "reconstructed_medians": [
+        28.67,
+        32.77
+      ],
+      "arm_folds": [
+        1.028,
+        1.044
+      ],
+      "last_curve_timepoint": 60
+    },
+    {
+      "nct": "NCT04680052",
+      "endpoint": "PFS",
+      "posted_medians": [
+        13.93,
+        22.37
+      ],
+      "reconstructed_medians": [
+        18,
+        24
+      ],
+      "arm_folds": [
+        1.292,
+        1.073
+      ],
+      "last_curve_timepoint": 24
+    },
+    {
+      "nct": "NCT01578239",
+      "endpoint": "OS",
+      "posted_medians": [
+        36.3,
+        48
+      ],
+      "reconstructed_medians": [
+        36.86,
+        46.62
+      ],
+      "arm_folds": [
+        1.015,
+        1.03
+      ],
+      "last_curve_timepoint": 60
+    },
+    {
+      "nct": "NCT04737187",
+      "endpoint": "PFS",
+      "posted_medians": [
+        2.4,
+        5.55
+      ],
+      "reconstructed_medians": [
+        2.72,
+        5.29
+      ],
+      "arm_folds": [
+        1.133,
+        1.049
+      ],
+      "last_curve_timepoint": 12
+    }
+  ],
+  "flagged": [
+    {
+      "nct": "NCT02117479",
+      "endpoint": "PFS",
+      "posted_medians": [
+        18.9,
+        19.8
+      ],
+      "reconstructed_medians": [
+        1.84,
+        1.86
+      ],
+      "arm_folds": [
+        10.272,
+        10.645
+      ],
+      "last_curve_timepoint": 12
+    },
+    {
+      "nct": "NCT01626664",
+      "endpoint": "PFS",
+      "posted_medians": [
+        44.1,
+        47.5
+      ],
+      "reconstructed_medians": [
+        1,
+        1
+      ],
+      "arm_folds": [
+        44.1,
+        47.5
+      ],
+      "last_curve_timepoint": 6
+    }
+  ]
+}
