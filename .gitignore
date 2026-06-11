@@ -27,3 +27,6 @@ realipd/*.csv
 
 # credentialed IPD exports (DUA-protected) — NEVER commit
 realipd/credentialed/
+
+# cached PubMed abstracts (public, but bulky)
+.pubmed_cache.json

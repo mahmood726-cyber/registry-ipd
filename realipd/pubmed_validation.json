@@ -1,0 +1,725 @@
+{
+ "summary": {
+  "scored_trials_with_pmid": 50,
+  "published_HR_extracted": 24,
+  "high_confidence_extractions": 16,
+  "high_confidence": {
+   "recon_vs_published_median_fold": 1.165,
+   "recon_within_published_95CI": "13/16",
+   "registry_vs_published_agree": "13/16"
+  },
+  "all_extractions": {
+   "recon_vs_published_median_fold": 1.19,
+   "recon_within_published_95CI": "16/21"
+  },
+  "note": "published HR = first non-covariate HR-with-CI in the abstract (deterministic abstract_hr extractor; prognostic/per-unit HRs skipped, parenthetical (HR) + bracket [95% CI] forms handled). HIGH-CONFIDENCE = has CI and <=2 HR candidates (low ambiguity); multi-arm / multi-HR abstracts are excluded from the headline because the right pairwise HR can't be auto-matched. registry-vs-published agreement is a check on the held-out truth itself (two INDEPENDENT sources). Abstracts via NCBI E-utilities; cached in .pubmed_cache.json."
+ },
+ "rows": [
+  {
+   "nct": "NCT00185211",
+   "pmid": "19748319",
+   "condition": "Multiple Sclerosis",
+   "recon_HR": 0.827,
+   "registry_HR": 0.764,
+   "published_HR": 0.63,
+   "published_CI": [
+    0.48,
+    0.83
+   ],
+   "n_hr_candidates": 1,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.313,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.213,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT00191477",
+   "pmid": "34125951",
+   "condition": "Bladder Neoplasms",
+   "recon_HR": 0.616,
+   "registry_HR": 0.946,
+   "published_HR": 0.77,
+   "published_CI": [
+    0.54,
+    1.09
+   ],
+   "n_hr_candidates": 1,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.25,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.229,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT00261443",
+   "pmid": "21443567",
+   "condition": "Bipolar Disorder",
+   "recon_HR": 0.31,
+   "registry_HR": 0.348,
+   "published_HR": 0.54,
+   "published_CI": [
+    0.33,
+    0.89
+   ],
+   "n_hr_candidates": 1,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.742,
+   "recon_in_published_CI": false,
+   "registry_vs_published_fold": 1.552,
+   "registry_published_agree": false
+  },
+  {
+   "nct": "NCT00324155",
+   "pmid": "25713437",
+   "condition": "Melanoma",
+   "recon_HR": 0.751,
+   "registry_HR": 0.716,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT00409188",
+   "pmid": "24331154",
+   "condition": "Non-small Cell Lung Cancer",
+   "recon_HR": 0.922,
+   "registry_HR": 0.893,
+   "published_HR": 0.88,
+   "published_CI": [
+    0.75,
+    1.03
+   ],
+   "n_hr_candidates": 3,
+   "high_confidence": false,
+   "recon_vs_published_fold": 1.048,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.015,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT00435409",
+   "pmid": "23857972",
+   "condition": "Breast Neoplasms",
+   "recon_HR": 1,
+   "registry_HR": 1.2239,
+   "published_HR": 1.22,
+   "published_CI": [
+    0.95,
+    1.58
+   ],
+   "n_hr_candidates": 1,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.22,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.003,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT00559988",
+   "pmid": "25908774",
+   "condition": "Atrial Fibrillation",
+   "recon_HR": 1,
+   "registry_HR": 1.064,
+   "published_HR": 1.06,
+   "published_CI": [
+    0.75,
+    1.51
+   ],
+   "n_hr_candidates": 1,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.06,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.004,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT00636168",
+   "pmid": "39378385",
+   "condition": "High Risk Stage III Melanoma",
+   "recon_HR": 0.611,
+   "registry_HR": 0.72,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT00686959",
+   "pmid": "31125266",
+   "condition": "Non Small Cell Lung Cancer",
+   "recon_HR": 1,
+   "registry_HR": 0.98,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT00699816",
+   "pmid": "11022927",
+   "condition": "Hepatocellular Carcinoma",
+   "recon_HR": 0.718,
+   "registry_HR": 0.63,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT00790036",
+   "pmid": "29253068",
+   "condition": "Diffuse Large B-cell Lymphoma",
+   "recon_HR": 0.845,
+   "registry_HR": 0.75,
+   "published_HR": 0.92,
+   "published_CI": [
+    0.69,
+    1.22
+   ],
+   "n_hr_candidates": 1,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.089,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.227,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT00861614",
+   "pmid": "25907621",
+   "condition": "Prostate Cancer",
+   "recon_HR": 0.858,
+   "registry_HR": 0.83,
+   "published_HR": 0.85,
+   "published_CI": [
+    0.72,
+    1.0
+   ],
+   "n_hr_candidates": 2,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.009,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.024,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT00863655",
+   "pmid": "29522361",
+   "condition": "Breast Cancer",
+   "recon_HR": 0.824,
+   "registry_HR": 0.43,
+   "published_HR": 0.64,
+   "published_CI": [
+    0.591,
+    0.696
+   ],
+   "n_hr_candidates": 4,
+   "high_confidence": false,
+   "recon_vs_published_fold": 1.287,
+   "recon_in_published_CI": false,
+   "registry_vs_published_fold": 1.488,
+   "registry_published_agree": false
+  },
+  {
+   "nct": "NCT00878709",
+   "pmid": "36898233",
+   "condition": "Breast Cancer",
+   "recon_HR": 0.959,
+   "registry_HR": 0.952,
+   "published_HR": 0.95,
+   "published_CI": [
+    0.75,
+    1.21
+   ],
+   "n_hr_candidates": 1,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.009,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.002,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT00989235",
+   "pmid": "25550337",
+   "condition": "Rheumatoid Arthritis",
+   "recon_HR": 1,
+   "registry_HR": 0.87,
+   "published_HR": 0.87,
+   "published_CI": [
+    0.45,
+    1.69
+   ],
+   "n_hr_candidates": 1,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.149,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.0,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT01144364",
+   "pmid": "24085766",
+   "condition": "Non-Hodgkin's Lymphoma",
+   "recon_HR": 1,
+   "registry_HR": 0.58,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT01151137",
+   "pmid": "22082198",
+   "condition": "Atrial Fibrillation",
+   "recon_HR": 2.377,
+   "registry_HR": 2.294,
+   "published_HR": 2.29,
+   "published_CI": [
+    1.34,
+    3.94
+   ],
+   "n_hr_candidates": 5,
+   "high_confidence": false,
+   "recon_vs_published_fold": 1.038,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.002,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT01286272",
+   "pmid": "35787017",
+   "condition": "Ann Arbor Stage III Grade 1 Follicular L",
+   "recon_HR": 1,
+   "registry_HR": 0.94,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT01335399",
+   "pmid": "35550060",
+   "condition": "Multiple Myeloma",
+   "recon_HR": 1,
+   "registry_HR": 0.93,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT01345019",
+   "pmid": "29480139",
+   "condition": "Cancer",
+   "recon_HR": 1,
+   "registry_HR": 0.9,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT01404312",
+   "pmid": "19525621",
+   "condition": "Tuberculosis",
+   "recon_HR": 1,
+   "registry_HR": 1.396,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT01442038",
+   "pmid": "26474810",
+   "condition": "Coronary Artery Disease",
+   "recon_HR": 0.904,
+   "registry_HR": 1.073,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT01515189",
+   "pmid": "32503946",
+   "condition": "Melanoma",
+   "recon_HR": 1,
+   "registry_HR": 0.84,
+   "published_HR": 0.84,
+   "published_CI": [
+    0.71,
+    0.99
+   ],
+   "n_hr_candidates": 1,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.19,
+   "recon_in_published_CI": false,
+   "registry_vs_published_fold": 1.0,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT01524783",
+   "pmid": "33560090",
+   "condition": "Advanced NET of GI Origin",
+   "recon_HR": 0.577,
+   "registry_HR": 0.48,
+   "published_HR": 0.69,
+   "published_CI": null,
+   "n_hr_candidates": 2,
+   "high_confidence": false,
+   "recon_vs_published_fold": 1.196,
+   "registry_vs_published_fold": 1.437,
+   "registry_published_agree": false
+  },
+  {
+   "nct": "NCT01574716",
+   "pmid": "31034598",
+   "condition": "Metastatic Soft Tissue Sarcoma",
+   "recon_HR": 1.114,
+   "registry_HR": 1.08,
+   "published_HR": 1.07,
+   "published_CI": [
+    0.77,
+    1.49
+   ],
+   "n_hr_candidates": 2,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.041,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.009,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT01578239",
+   "pmid": "34793718",
+   "condition": "Carcinoid Tumor of the Small Bowel",
+   "recon_HR": 1,
+   "registry_HR": 0.84,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT01721772",
+   "pmid": "39504507",
+   "condition": "Melanoma",
+   "recon_HR": 2.207,
+   "registry_HR": 0.44,
+   "published_HR": 0.78,
+   "published_CI": [
+    0.67,
+    0.91
+   ],
+   "n_hr_candidates": 1,
+   "high_confidence": true,
+   "recon_vs_published_fold": 2.829,
+   "recon_in_published_CI": false,
+   "registry_vs_published_fold": 1.773,
+   "registry_published_agree": false
+  },
+  {
+   "nct": "NCT01740427",
+   "pmid": "38951507",
+   "condition": "Breast Neoplasms",
+   "recon_HR": 1.471,
+   "registry_HR": 0.576,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT01755767",
+   "pmid": "29625879",
+   "condition": "Hepatocellular Carcinoma",
+   "recon_HR": 1.208,
+   "registry_HR": 0.9682,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT01883362",
+   "pmid": "33288862",
+   "condition": "Acute Myeloid Leukemia",
+   "recon_HR": 0.536,
+   "registry_HR": 0.6,
+   "published_HR": 0.46,
+   "published_CI": [
+    0.12,
+    1.86
+   ],
+   "n_hr_candidates": 1,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.165,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.304,
+   "registry_published_agree": false
+  },
+  {
+   "nct": "NCT01942135",
+   "pmid": "38861871",
+   "condition": "Metastatic Breast Cancer",
+   "recon_HR": 0.962,
+   "registry_HR": 0.422,
+   "published_HR": 0.79,
+   "published_CI": [
+    0.48,
+    1.3
+   ],
+   "n_hr_candidates": 4,
+   "high_confidence": false,
+   "recon_vs_published_fold": 1.218,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.872,
+   "registry_published_agree": false
+  },
+  {
+   "nct": "NCT01983683",
+   "pmid": "30709665",
+   "condition": "Clostridium Difficile Infection",
+   "recon_HR": 1,
+   "registry_HR": 1.04,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT01987895",
+   "pmid": "30709665",
+   "condition": "Clostridium Difficile Infection",
+   "recon_HR": 1,
+   "registry_HR": 0.96,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT02117479",
+   "pmid": "29508247",
+   "condition": "Pancreatic Cancer",
+   "recon_HR": 1.034,
+   "registry_HR": 1.056,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT02211131",
+   "pmid": "34608333",
+   "condition": "Completely Resectable Stage IIIB, IIIC, ",
+   "recon_HR": 1,
+   "registry_HR": 0.75,
+   "published_HR": 0.75,
+   "published_CI": null,
+   "n_hr_candidates": 2,
+   "high_confidence": false,
+   "recon_vs_published_fold": 1.333,
+   "registry_vs_published_fold": 1.0,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT02272803",
+   "pmid": "32398792",
+   "condition": "Multiple Myeloma",
+   "recon_HR": 1,
+   "registry_HR": 0.83,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT02485899",
+   "pmid": "38776275",
+   "condition": "Jansky-Bielschowsky Disease",
+   "recon_HR": 0.151,
+   "registry_HR": 0.14,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT02511106",
+   "pmid": "33596365",
+   "condition": "Stage IB-IIIA Non-small Cell Lung Carcin",
+   "recon_HR": 0.513,
+   "registry_HR": 0.4913,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT02586025",
+   "pmid": "31647503",
+   "condition": "Breast Cancer",
+   "recon_HR": 0.528,
+   "registry_HR": 0.52,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT02896855",
+   "pmid": "32564260",
+   "condition": "Breast Cancer",
+   "recon_HR": 0.641,
+   "registry_HR": 0.69,
+   "published_HR": 0.62,
+   "published_CI": null,
+   "n_hr_candidates": 3,
+   "high_confidence": false,
+   "recon_vs_published_fold": 1.034,
+   "registry_vs_published_fold": 1.113,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT02959944",
+   "pmid": "36608310",
+   "condition": "Chronic Graft Versus Host Disease",
+   "recon_HR": 1.191,
+   "registry_HR": 0.994,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT03112603",
+   "pmid": "42180389",
+   "condition": "Graft-versus-host Disease (GVHD)",
+   "recon_HR": 1,
+   "registry_HR": 0.37,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT03259373",
+   "pmid": "35639381",
+   "condition": "Atrial Fibrillation",
+   "recon_HR": 1,
+   "registry_HR": 1.01,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT03260023",
+   "pmid": "37506588",
+   "condition": "HPV-Related Carcinoma",
+   "recon_HR": 1,
+   "registry_HR": 0.87,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT03452137",
+   "pmid": "40079944",
+   "condition": "Locally Advanced Squamous Cell Carcinoma",
+   "recon_HR": 0.992,
+   "registry_HR": 0.94,
+   "published_HR": 0.94,
+   "published_CI": [
+    0.7,
+    1.26
+   ],
+   "n_hr_candidates": 1,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.055,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.0,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT03493854",
+   "pmid": "33357420",
+   "condition": "Early Breast Cancer",
+   "recon_HR": 1,
+   "registry_HR": 1.2,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT03596866",
+   "pmid": "37574132",
+   "condition": "ALK+ Advanced NSCLC",
+   "recon_HR": 1,
+   "registry_HR": 0.968,
+   "published_HR": 0.97,
+   "published_CI": [
+    0.66,
+    1.42
+   ],
+   "n_hr_candidates": 2,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.031,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.002,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT04305496",
+   "pmid": "37256976",
+   "condition": "Locally Advanced (Inoperable) or Metasta",
+   "recon_HR": 0.597,
+   "registry_HR": 0.6,
+   "published_HR": 0.5,
+   "published_CI": [
+    0.38,
+    0.65
+   ],
+   "n_hr_candidates": 2,
+   "high_confidence": true,
+   "recon_vs_published_fold": 1.194,
+   "recon_in_published_CI": true,
+   "registry_vs_published_fold": 1.2,
+   "registry_published_agree": true
+  },
+  {
+   "nct": "NCT04680052",
+   "pmid": "41360064",
+   "condition": "Follicular Lymphoma",
+   "recon_HR": 0.637,
+   "registry_HR": 0.5,
+   "published_HR": null,
+   "published_CI": null,
+   "n_hr_candidates": null,
+   "high_confidence": false
+  },
+  {
+   "nct": "NCT04737187",
+   "pmid": "37133585",
+   "condition": "Refractory Metastatic Colorectal Cancer",
+   "recon_HR": 1,
+   "registry_HR": 0.44,
+   "published_HR": 0.54,
+   "published_CI": [
+    0.43,
+    0.67
+   ],
+   "n_hr_candidates": 3,
+   "high_confidence": false,
+   "recon_vs_published_fold": 1.852,
+   "recon_in_published_CI": false,
+   "registry_vs_published_fold": 1.227,
+   "registry_published_agree": true
+  }
+ ]
+}

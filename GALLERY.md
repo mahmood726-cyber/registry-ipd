@@ -40,6 +40,34 @@ HR evidence base goes from 30 to **57** real, endpoint-clean trials. Numbers fro
 `realipd/gallery_expanded.json`; recovery provenance (curve / same-endpoint sibling / endpoint-mismatch
 dropped) in `realipd/validation_hr_backfill.json`.
 
+## Independent validation: reconstructed HR vs the *published* HR
+
+The registry HR shares provenance with the posted curve (same sponsor submission). The trial's
+**published HR**, parsed from its primary paper's PubMed abstract, is an **independent** source. For each
+validation-grade trial we get its PMID from AACT `study_references`, efetch the abstract (NCBI
+E-utilities), and extract the published HR with a deterministic, unit-tested parser
+(`harvest/abstract_hr.py`: handles `[HR]`/`(HR)` labels, `95% CI`/`[95% CI, x to y]` forms, skips
+prognostic/per-unit covariate HRs, and flags multi-HR abstracts). Restricting to **high-confidence**
+extractions (a CI present, ≤2 HR candidates — multi-arm/multi-endpoint abstracts are too ambiguous to
+auto-match the right pairwise HR) gives **16** independent comparisons:
+
+| comparison | result |
+|---|---|
+| reconstructed vs **published** HR, median fold | **1.165** (≈ the 1.149 vs registry) |
+| reconstructed HR inside the **published** 95% CI | **13/16** |
+| **registry vs published** HR agree (both held-out sources) | **13/16** |
+
+Two things matter here. First, the reconstruction agrees with the *independent* published HR about as
+well as with the registry HR — it is not merely echoing the registry. Second, the two held-out "truths"
+themselves agree only **13/16 (81%)**: registry and published HRs diverge on ~1 in 5 trials (different
+analysis populations, ITT vs per-protocol, data cuts, or endpoint). So a residual ~1.15× fold is partly
+irreducible *"which HR did you mean"* noise, not reconstruction error — a ceiling on what *any* method can
+score against registry truth. Numbers from `realipd/pubmed_validation.json`; `python
+harvest/pubmed_validation.py` to reproduce. Honest limit: the abstract HR is the first non-covariate
+HR-with-CI; the high-confidence filter and per-row provenance keep this a triangulation, not a gold
+standard (e.g. the one CheckMate-067-style 3-arm trial where the reconstruction picks the wrong arm pair
+shows up correctly as an out-of-CI miss).
+
 ## Worked examples (diverse conditions, best-fit per condition)
 
 | NCT | condition | N exp/ctl | events | anchors | badge | registry HR | reconstructed HR | fold |
