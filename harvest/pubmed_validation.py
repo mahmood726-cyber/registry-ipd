@@ -97,6 +97,12 @@ def main():
     by_nct = {r["nct"]: r for r in gx["rows"]}
 
     cache = json.load(open(CACHE, encoding="utf-8")) if os.path.exists(CACHE) else {}
+    # curve endpoint per trial (from the HR backfill) -> match the published HR to the curve's endpoint.
+    try:
+        curve_ep = json.load(open(os.path.join(RIPD, "validation_hr_backfill.json"),
+                                  encoding="utf-8")).get("curve_endpoint", {})
+    except FileNotFoundError:
+        curve_ep = {}
     want = {nct: _clean_pmid(p) for nct, p in pmids_map.items() if nct in by_nct}
     print(f"scored validation-grade trials with a PMID: {len(want)}")
     cache = fetch_abstracts(sorted(set(want.values())), cache)
@@ -104,17 +110,21 @@ def main():
     rows, n_pub = [], 0
     for nct, pmid in want.items():
         ab = cache.get(pmid, "")
-        pub = A.extract_hr(ab) if ab else None
+        ep = curve_ep.get(nct)
+        pub = A.extract_hr(ab, endpoint=ep) if ab else None
         r = by_nct[nct]
         recon, reg = r["recon_HR"], r["registry_HR"]
-        # high-confidence extraction: has a CI AND few HR candidates (low ambiguity). Multi-HR /
-        # multi-arm abstracts are kept but excluded from the headline agreement metrics.
+        # high-confidence extraction: a CI present AND few HR candidates (low ambiguity). Endpoint
+        # matching (when the curve endpoint is known) is used to PICK the right HR among candidates, not
+        # to gate confidence -- a single primary HR is usually the curve's endpoint even if the abstract
+        # doesn't repeat the word next to it.
         conf = bool(pub) and pub["has_ci"] and pub["n_hr_candidates"] <= 2
-        row = {"nct": nct, "pmid": pmid, "condition": r.get("condition"),
+        row = {"nct": nct, "pmid": pmid, "condition": r.get("condition"), "curve_endpoint": ep,
                "recon_HR": recon, "registry_HR": reg,
                "published_HR": pub["value"] if pub else None,
                "published_CI": ([pub["ci_low"], pub["ci_high"]] if pub and pub["has_ci"] else None),
                "n_hr_candidates": pub["n_hr_candidates"] if pub else None,
+               "endpoint_matched": pub.get("endpoint_matched") if pub else None,
                "high_confidence": conf}
         if pub:
             n_pub += 1
@@ -154,12 +164,14 @@ def main():
             "recon_within_published_95CI": frac(lambda r: r.get("recon_in_published_CI"),
                                                 lambda r: r.get("recon_in_published_CI") is not None),
         },
-        "note": "published HR = first non-covariate HR-with-CI in the abstract (deterministic abstract_hr "
+        "note": "published HR = primary non-covariate HR-with-CI in the abstract (deterministic abstract_hr "
                 "extractor; prognostic/per-unit HRs skipped, parenthetical (HR) + bracket [95% CI] forms "
-                "handled). HIGH-CONFIDENCE = has CI and <=2 HR candidates (low ambiguity); multi-arm / "
-                "multi-HR abstracts are excluded from the headline because the right pairwise HR can't be "
-                "auto-matched. registry-vs-published agreement is a check on the held-out truth itself "
-                "(two INDEPENDENT sources). Abstracts via NCBI E-utilities; cached in .pubmed_cache.json.",
+                "handled; when the curve endpoint is known the HR is matched to that endpoint to PICK among "
+                "candidates -- though for single-HR abstracts the endpoint is rarely adjacent, so matching "
+                "mainly disambiguates multi-HR abstracts). HIGH-CONFIDENCE = has CI and <=2 HR candidates "
+                "(low ambiguity); multi-arm / multi-HR abstracts are excluded from the headline because the "
+                "right pairwise HR can't be auto-matched. registry-vs-published agreement is a check on the "
+                "held-out truth itself (two INDEPENDENT sources). Abstracts via NCBI E-utilities; cached.",
     }
     json.dump({"summary": summary, "rows": rows}, open(os.path.join(RIPD, "pubmed_validation.json"), "w"),
               indent=1)

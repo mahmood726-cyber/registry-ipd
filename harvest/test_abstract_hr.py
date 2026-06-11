@@ -70,6 +70,21 @@ def test_bracket_ci_form():
     assert hr["value"] == 0.78 and hr["ci_low"] == 0.67 and hr["ci_high"] == 0.91
 
 
+def test_endpoint_aware_prefers_matching_endpoint_hr():
+    ab = ("Overall survival favored treatment (HR 0.70, 95% CI 0.55-0.89). Progression-free survival "
+          "also improved (HR 0.55, 95% CI 0.42-0.72).")
+    os_hr = A.extract_hr(ab, endpoint="OS")
+    pfs_hr = A.extract_hr(ab, endpoint="PFS")
+    assert os_hr["value"] == 0.70 and os_hr["endpoint_matched"] is True
+    assert pfs_hr["value"] == 0.55 and pfs_hr["endpoint_matched"] is True
+
+
+def test_endpoint_aware_flags_when_no_matching_endpoint():
+    ab = "Progression-free survival improved (HR 0.55, 95% CI 0.42-0.72)."
+    hr = A.extract_hr(ab, endpoint="OS")            # no OS HR present
+    assert hr["value"] == 0.55 and hr["endpoint_matched"] is False   # fallback, flagged
+
+
 def test_endpoint_labeled_hrs_counted_as_ambiguous():
     # 3 endpoint-labeled HRs; only the clean one parses to a value, but ambiguity must be flagged (>2)
     ab = ("(hazard ratio for death, 0.61; 95% CI, 0.49-0.77) and (hazard ratio for disease progression "

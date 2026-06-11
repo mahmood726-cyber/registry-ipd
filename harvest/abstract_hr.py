@@ -43,10 +43,25 @@ _COVARIATE = re.compile(
     re.IGNORECASE,
 )
 
+# endpoint context regexes -- to prefer the HR whose surrounding text names the curve's endpoint, so an
+# OS HR is not scored against a PFS curve (the HR analogue of the endpoint-aware median match).
+_ENDPOINT_CTX = {
+    "OS": re.compile(r"overall\s+survival|\bOS\b", re.IGNORECASE),
+    "PFS": re.compile(r"progression[-\s]*free\s+survival|\bPFS\b", re.IGNORECASE),
+    "EFS": re.compile(r"event[-\s]*free\s+survival|\bEFS\b", re.IGNORECASE),
+    "DFS": re.compile(r"disease[-\s]*free\s+survival|\bDFS\b", re.IGNORECASE),
+    "RFS": re.compile(r"recurrence[-\s]*free\s+survival|relapse[-\s]*free\s+survival|\bRFS\b", re.IGNORECASE),
+}
 
-def extract_hr(abstract: str):
-    """Return {value, ci_low, ci_high, n_hr_candidates, context} for the first plausible
-    HR-with-CI in the abstract (falls back to the first bare HR if none carry a CI), or None."""
+
+def extract_hr(abstract: str, endpoint: str = None):
+    """Return {value, ci_low, ci_high, n_hr_candidates, has_ci, endpoint_matched, context} for the
+    primary HR in the abstract, or None.
+
+    If `endpoint` (OS/PFS/...) is given, prefer the HR whose surrounding text (±~90 chars) names that
+    endpoint -- so the published HR is matched to the reconstructed curve's endpoint. endpoint_matched is
+    True if such an HR was found, False if the endpoint is known but no HR sits near it (the returned
+    value is then the first HR as a flagged fallback), or None when no endpoint was requested."""
     if not abstract:
         return None
     text = re.sub(r"\s+", " ", html.unescape(abstract))
@@ -73,6 +88,18 @@ def extract_hr(abstract: str):
     pool = with_ci or bare
     if not pool:
         return None
+    # endpoint match: prefer the HR whose surrounding text names the curve's endpoint (an OS HR not scored
+    # against a PFS curve). If the endpoint is known but no HR sits near it, keep the first HR but flag it.
+    endpoint_matched = None
+    if endpoint:
+        ep_rx = _ENDPOINT_CTX.get(endpoint)
+        if ep_rx:
+            matched = [r for r in pool if ep_rx.search(text[max(0, r["pos"] - 90):r["pos"] + 30])]
+            if matched:
+                pool = matched
+                endpoint_matched = True
+            else:
+                endpoint_matched = False
     # honest ambiguity count: distinct non-covariate HR mentions (incl. endpoint-labeled forms the strict
     # pattern skips), so multi-endpoint abstracts are flagged even when only one value parses cleanly.
     n_mentions = 0
@@ -86,7 +113,7 @@ def extract_hr(abstract: str):
     best = pool[0]                                      # first reported = usually primary endpoint
     return {"value": best["value"], "ci_low": best["ci_low"], "ci_high": best["ci_high"],
             "n_hr_candidates": max(len(with_ci) + len(bare), n_mentions), "has_ci": bool(with_ci),
-            "context": best["context"].strip()}
+            "endpoint_matched": endpoint_matched, "context": best["context"].strip()}
 
 
 if __name__ == "__main__":                             # smoke: run against a saved metadata JSON
