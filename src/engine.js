@@ -1144,10 +1144,19 @@
         const E0 = e0[a.arm_id];
         if (E0 != null && E0 > 0) {
           const reg = a.total_events;
-          const lo = Math.round(0.55 * E0), hiB = E0;
-          let e = Math.round(lo + rng() * (hiB - lo));
-          if (reg != null) { // mixture: half the draws hug the registry count (±15%), half span the band
-            e = rng() < 0.5 ? Math.max(0, Math.round(reg * (1 + (rng() - 0.5) * 0.30))) : e;
+          let e;
+          if (opts.pinEvents && reg != null) {
+            // event count TRUSTED: the censoring split is pinned, leaving only a small residual
+            // (event timing within intervals). A tight ±5% band — the reconstruction variance a
+            // posted total-event count actually leaves, much smaller than the curve-only band.
+            e = Math.max(0, Math.round(reg * (1 + (rng() - 0.5) * 0.10)));
+          } else {
+            // censoring-level uncertainty unbounded by a count: sample the full plausible band.
+            const lo = Math.round(0.55 * E0), hiB = E0;
+            e = Math.round(lo + rng() * (hiB - lo));
+            if (reg != null) { // mixture: half hug the registry count (±30%), half span the band
+              e = rng() < 0.5 ? Math.max(0, Math.round(reg * (1 + (rng() - 0.5) * 0.30))) : e;
+            }
           }
           a.total_events = Math.min(a.N != null ? a.N : e, Math.max(1, e));
         }

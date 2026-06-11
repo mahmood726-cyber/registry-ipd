@@ -1,0 +1,143 @@
+{
+  "k": 14,
+  "mean_r_curve": 0.219,
+  "mean_r_event": 0.042,
+  "r_shrink_factor": 5.2,
+  "true_ipd": {
+    "k": 14,
+    "pooled_logHR": 0.9116153575234379,
+    "pooled_HR": 2.488,
+    "tau2": 0.1314409775893443,
+    "I2": 21.8,
+    "seHK": 0.12739649703260392,
+    "CI": [
+      1.89,
+      3.276
+    ],
+    "PI": [
+      1.085,
+      5.705
+    ],
+    "PI_width_log": 1.659
+  },
+  "honest_curve_only": {
+    "k": 14,
+    "pooled_logHR": 0.970001928464414,
+    "pooled_HR": 2.638,
+    "tau2": 0.12167500729310857,
+    "I2": 28.3,
+    "seHK": 0.14652595799447837,
+    "CI": [
+      1.923,
+      3.62
+    ],
+    "PI": [
+      1.165,
+      5.971
+    ],
+    "PI_width_log": 1.634
+  },
+  "honest_event_pinned": {
+    "k": 14,
+    "pooled_logHR": 0.9665346710064336,
+    "pooled_HR": 2.629,
+    "tau2": 0.17312545486809777,
+    "I2": 27.4,
+    "seHK": 0.14750770068140084,
+    "CI": [
+      1.912,
+      3.615
+    ],
+    "PI": [
+      1.013,
+      6.819
+    ],
+    "PI_width_log": 1.906
+  },
+  "per_trial": [
+    {
+      "ds": "luad",
+      "r_curve": 0.208,
+      "r_event": 0.035,
+      "shrink": 5.9
+    },
+    {
+      "ds": "coadread",
+      "r_curve": 0.224,
+      "r_event": 0.037,
+      "shrink": 6
+    },
+    {
+      "ds": "stad",
+      "r_curve": 0.215,
+      "r_event": 0.037,
+      "shrink": 5.8
+    },
+    {
+      "ds": "kirc",
+      "r_curve": 0.21,
+      "r_event": 0.037,
+      "shrink": 5.6
+    },
+    {
+      "ds": "hnsc",
+      "r_curve": 0.217,
+      "r_event": 0.04,
+      "shrink": 5.4
+    },
+    {
+      "ds": "skcm",
+      "r_curve": 0.221,
+      "r_event": 0.037,
+      "shrink": 6
+    },
+    {
+      "ds": "blca",
+      "r_curve": 0.211,
+      "r_event": 0.039,
+      "shrink": 5.5
+    },
+    {
+      "ds": "lusc",
+      "r_curve": 0.236,
+      "r_event": 0.038,
+      "shrink": 6.2
+    },
+    {
+      "ds": "esca",
+      "r_curve": 0.23,
+      "r_event": 0.057,
+      "shrink": 4
+    },
+    {
+      "ds": "lihc",
+      "r_curve": 0.219,
+      "r_event": 0.038,
+      "shrink": 5.8
+    },
+    {
+      "ds": "kirp",
+      "r_curve": 0.224,
+      "r_event": 0.054,
+      "shrink": 4.2
+    },
+    {
+      "ds": "acc",
+      "r_curve": 0.197,
+      "r_event": 0.027,
+      "shrink": 7.2
+    },
+    {
+      "ds": "brca",
+      "r_curve": 0.204,
+      "r_event": 0.036,
+      "shrink": 5.6
+    },
+    {
+      "ds": "meso",
+      "r_curve": 0.244,
+      "r_event": 0.059,
+      "shrink": 4.2
+    }
+  ]
+}

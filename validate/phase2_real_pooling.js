@@ -122,4 +122,4 @@ if (require.main === module) {
   console.log(`  PI width (log): true ${out.true_ipd.PI_width_log} | naive ${out.naive.PI_width_log} | honest ${out.honest.PI_width_log}`);
   console.log('\n  wrote validate/phase2_real_pooling_results.json');
 }
-module.exports = { run, metaRE, coxBetaSE };
+module.exports = { run, metaRE, coxBetaSE, coarse };

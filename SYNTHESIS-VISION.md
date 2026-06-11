@@ -132,6 +132,33 @@ weightless for heterogeneity (`r²` swamps the signal); the same curve plus an e
 becomes a real synthesis participant. The reconstruction-uncertainty magnitude is the currency, and the
 lever is how you earn it. Locked by `test/phase2_pooling.spec.js`.
 
+## 4c. Phase 2b — the lever shrinks r², and the honest corrective
+
+`validate/phase2b_lever_shrinks_r2.js` measures `r²` on the same 14 cohorts in two regimes from the
+ensemble: **curve-only** (no event count → full censoring band) vs **event-pinned** (the engine's new
+`reconstructEnsemble({pinEvents:true})`, which samples a tight ±5% band when a total-event count is posted).
+
+**The mechanism is confirmed: the event count shrinks the reconstruction SD 5.2× (0.219 → 0.042)**, for
+≥80% of cohorts individually. That is the lever turning a near-weightless curve-only trial into an
+informative one.
+
+But pooling honest under each `r²` surfaced a corrective that *deepens* the framing rather than confirming
+the tidy story:
+
+| honest pool | τ² (true 0.131) | why |
+|---|---:|---|
+| curve-only `r²` (large) | 0.122 | large within-trial variance **absorbs** the spread |
+| event-pinned `r²` (tiny) | 0.173 | tiny within-trial variance → residual spread → **τ² overstated** |
+
+**Shrinking the variance is not enough.** Even with the event count, the reconstructed point estimates
+retain a residual ~5–6% per-trial error (pooled HR 2.63 vs true 2.49 — the documented QP fold ≈1.05), and
+when `r²` is driven small that residual **bias** is mis-read as heterogeneity, *over*-stating τ². The
+ensemble's variance captures the censoring *uncertainty* but not the censoring *bias*. So the honest
+synthesis needs both: the lever to shrink `r²`, **and** the reconstruction treated as a partially-identified
+**set with a possibly-off centre** (the Manski point in §3), not a point-with-variance. This is the real,
+non-obvious lesson — and it sets the agenda: model the reconstruction bias as an identified-set offset, not
+just inflate the variance. Locked by `test/phase2b_lever.spec.js`.
+
 ## 5. Development roadmap
 
 - **Phase 1 — honest pooling (DONE).** Rubin's-rules propagation; Monte-Carlo proof it recovers τ²/PI where
@@ -140,9 +167,12 @@ lever is how you earn it. Locked by `test/phase2_pooling.spec.js`.
   real ensemble `r²`. Finding: honest recovers the pooled HR and beats naive, but when `r²` dominates `s²`
   (heavily-censored curve-only trials) τ² is under-identified from either side — the censoring lever is
   what shrinks `r²` into the usable range.
-- **Phase 2b — lever-shrinks-r² demonstration.** Re-run §4b on the *same* cohorts with the event-count /
-  NAR-fusion reconstruction and show `r²` (hence the τ² bias) shrinks — closing the loop between the
-  per-trial levers and synthesis-level heterogeneity honesty.
+- **Phase 2b — lever-shrinks-r² (DONE, §4c).** The event count pins the censoring, shrinking reconstruction
+  SD **5.2×** — but it surfaced an honest corrective: variance propagation is necessary, not sufficient.
+- **Phase 2c — reconstruction bias as an identified-set offset.** Phase 2b showed variance propagation is
+  necessary but not sufficient: estimate the residual reconstruction *bias* (e.g. the curve-only→event
+  fold the QP leaves) and carry it as a partial-identification interval on each trial's contribution, so a
+  small `r²` no longer leaks bias into τ². This is the concrete next build.
 - **Phase 3 — granularity-mixed survival NMA.** One model ingesting {IPD, reconstructed-pseudo-IPD-with-UQ,
   HR-only} trials, each weighted by identified information (the Jansen extension with propagated UQ).
 - **Phase 4 — an evidence-completeness atlas.** For a real review question, harvest every trial, classify
