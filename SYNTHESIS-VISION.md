@@ -251,11 +251,13 @@ calibrated identification interval**, pooled alongside IPD and HR-only trials in
 - **Phase 3b step 2 — granularity-mixed survival NMA (DONE, §4g).** Real 3-treatment network on
   `advanced-nma-pooling`'s `ADNMAPooler`, half IPD + half reconstructed-curve; naive pooling inflates the
   network τ, propagating `r²` recovers it. The vision runs on a real NMA engine.
-- **Phase 3c — add the §4d bias/identification interval + consistency to the NMA.** Carry the de-bias offset
-  and identification half-width through the same `ADNMAPooler` network, and add `design_by_treatment_test` /
-  `node_splitting_diagnostics` (already in `advanced-nma-pooling`) — does ignored reconstruction noise also
-  produce *spurious inconsistency*? And extend to `SurvivalNPHPooler` (non-PH) / `MLNMRPooler` (effect
-  modifiers).
+- **Phase 3c — the §4d bias/identification interval + consistency on the NMA (DONE, §4h).** Carried the de-bias
+  offset and identification half-width through the same `ADNMAPooler` network, and ran `design_by_treatment_test` /
+  `node_splitting_diagnostics`. Finding: per-edge reconstruction bias makes naive pooling flag **spurious
+  inconsistency ~4× over the α baseline** (0.245 vs gold 0.065) on a consistent network; the §4d de-bias +
+  identification-interval object returns the flag rate to baseline (0.045 ≈ α) and restores contrast coverage. The
+  partially-identified object survives a real NMA's consistency diagnostics. **Next:** extend to
+  `SurvivalNPHPooler` (non-PH) / `MLNMRPooler` (effect modifiers) — both already in `advanced-nma-pooling`.
 - **Phase 4 — an evidence-completeness atlas.** For a real review question, harvest every trial, classify
   each by posted-statistics granularity, compute a per-trial *identification/information score* for the
   target estimand, and map what fraction of the evidence is point- vs partially-identified. A new artefact:
@@ -316,8 +318,43 @@ network contrasts stay calibrated either way (τ self-compensates the mean, as i
 partially-identified survival trial registry-IPD supplies — a reconstructed curve joining a network
 meta-analysis as a de-biased contrast with a propagated reconstruction variance, pooled honestly alongside
 IPD and HR-only trials. "One model, many granularities" now runs on a real network, not just a pairwise pool.
-(Next: wire the §4d de-bias/identification interval through the same NMA, and add `design_by_treatment_test`
-consistency — both already in `advanced-nma-pooling`.)
+
+## 4h. Phase 3c — the de-bias/identification interval AND consistency, on the NMA
+
+Step 2 (§4g) carried only the reconstruction *variance* `r²` through the network. Phase 3c
+(`validate/phase3c_nma_inconsistency.py`) finishes the arc two ways. First, it carries the full **Phase-2c
+object** (§4d) — a reconstructed contrast as a **de-biased point** (subtract the LOO-identifiable offset `β`)
+**plus a calibrated identification half-width `δ`**, folded into the contrast variance as `s²+r²+(δ/z)²` — through the
+same `ADNMAPooler`. Second, it asks the question only a *network* can pose: **does ignored reconstruction
+noise/bias also manufacture spurious inconsistency?** A closed A–B–C loop lets direct evidence on each edge be
+checked against the indirect path (`design_by_treatment_test`, `node_splitting_diagnostics`, both already in
+`advanced-nma-pooling`). Reconstruction bias is **not uniform** — heavily-censored / strong-effect edges
+reconstruct worse (the §4d finding) — so a *per-edge differential* bias breaks the consistency equation
+`d_AC = d_AB + d_BC` even when the truth is perfectly consistent.
+
+The experiment is a **homogeneous, consistent** network (τ=0, the deliberate control: the design-by-treatment Q
+is a fixed-effect statistic, so genuine heterogeneity would itself inflate Q and confound the false-positive
+baseline). 400-rep seeded Monte-Carlo, 6 IPD + 6 reconstructed-curve, per-edge severity {A–B 0.3, A–C 2.0, B–C 1.0}:
+
+| pool | spurious-inconsistency rate | mean Q_incon (E[χ²₁]=1) | node-split flag rate | coverage B, C |
+|---|---:|---:|---:|---:|
+| all-IPD (gold) | **0.065** (≈α) | 1.00 | 0.044 | 0.97, 0.96 |
+| **NAIVE** (face value, `s²`) | **0.245** (~4× α) | 2.53 | 0.087 | 0.94, **0.87** |
+| **HONEST** (§4d object) | **0.045** (≈α) | 1.00 | 0.037 | 0.96, **0.98** |
+
+Two results lock the phase. **The gold-standard false-positive rate sits at α** (0.065; mean Q≈1.00 = exactly
+`E[χ²₁]` under the null — the consistency test is well-calibrated on the homogeneous control). And **naive pooling
+manufactures spurious inconsistency ~4× over baseline** (0.245), because the per-edge reconstruction bias breaks
+the loop and the tight `s²`-only variance makes the broken loop look significant — it also degrades the C-contrast
+coverage to 0.87. **The Phase-2c de-bias + identification interval returns the spurious-inconsistency rate to the
+gold baseline** (0.045 ≈ α; Q back to 1.00) — the inflated variance widens the contrast CIs exactly enough that the
+GLS Q no longer reads the residual reconstruction bias as a broken loop — **and restores the contrast coverage**
+(0.98). Node-splitting corroborates (gold 0.044, naive 0.087, honest 0.037). So the §4d partially-identified object
+travels through a real NMA engine intact: a reconstructed curve joins a network as a de-biased contrast with a
+propagated identification interval, and the network's own consistency diagnostics stay trustworthy — ignoring the
+reconstruction would have you chasing inconsistency that the data never contained. Locked by
+`harvest/test_phase3c.py`. (Next: extend to `SurvivalNPHPooler` (non-PH, interval-specific effects) and
+`MLNMRPooler` (effect modifiers) — both already in `advanced-nma-pooling`.)
 
 ## 5b. Reuse map — the portfolio already has the synthesis engines
 

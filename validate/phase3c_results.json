@@ -1,0 +1,46 @@
+{
+  "config": {
+    "reps": 400,
+    "k": 12,
+    "tau_true_sd": 0.0,
+    "s_mean": 0.13,
+    "r_recon": 0.22,
+    "alpha": 0.05,
+    "beta_global": 0.075,
+    "beta_debias": 0.0825,
+    "identification_halfwidth_delta": 0.4294,
+    "edge_severity": {
+      "A-B": 0.3,
+      "A-C": 2.0,
+      "B-C": 1.0
+    },
+    "network": "A/B/C log-HR triangle, 6 IPD + 6 reconstructed-curve, truth CONSISTENT"
+  },
+  "true": {
+    "mean_tau": 0.0341,
+    "coverage_B": 0.973,
+    "coverage_C": 0.96,
+    "spurious_inconsistency_rate": 0.065,
+    "mean_q_inconsistency": 0.9953,
+    "node_split_flag_rate": 0.044,
+    "n_fits": 400
+  },
+  "naive": {
+    "mean_tau": 0.1508,
+    "coverage_B": 0.94,
+    "coverage_C": 0.868,
+    "spurious_inconsistency_rate": 0.245,
+    "mean_q_inconsistency": 2.5338,
+    "node_split_flag_rate": 0.087,
+    "n_fits": 400
+  },
+  "honest": {
+    "mean_tau": 0.0327,
+    "coverage_B": 0.958,
+    "coverage_C": 0.98,
+    "spurious_inconsistency_rate": 0.045,
+    "mean_q_inconsistency": 0.9965,
+    "node_split_flag_rate": 0.037,
+    "n_fits": 400
+  }
+}

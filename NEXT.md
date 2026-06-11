@@ -7,17 +7,25 @@
 > cohorts + a real network, **reusing the lab's own engines** (spec-collapse-atlas `weighted_likelihood`,
 > advanced-nma-pooling `ADNMAPooler`).
 >
-> **Done (Phases 1 → 3b·2), each with a `test/*.spec.js` or `harvest/test_*.py`:**
+> **Done (Phases 1 → 3c), each with a `test/*.spec.js` or `harvest/test_*.py`:**
 > `validate/honest_pooling_sim.js` (P1 Rubin) · `phase2_real_pooling.js` (P2) · `phase2b_lever_shrinks_r2.js`
 > (P2b, engine got `reconstructEnsemble({pinEvents})`) · `phase2c_bias_offset.js` (P2c partial-ID set) ·
 > `phase3_granularity_mixed.js` (P3 + evidence-completeness curve) · `phase3b_export_imputations.js` +
-> `phase3b_weighted_likelihood.py` (P3b·1, within-trial) · `phase3b_step2_survival_nma.py` (P3b·2, network NMA).
+> `phase3b_weighted_likelihood.py` (P3b·1, within-trial) · `phase3b_step2_survival_nma.py` (P3b·2, network NMA) ·
+> `phase3c_nma_inconsistency.py` (P3c, §4h — de-bias + identification interval AND consistency on the NMA).
 >
-> **RESUME HERE → Phase 3c:** carry the §4d **de-bias offset + identification half-width** (not just the
-> variance) through the `ADNMAPooler` network, and add `design_by_treatment_test` / `node_splitting_diagnostics`
-> (both in `C:\Projects\advanced-nma-pooling`) to test whether ignored reconstruction noise produces
-> **spurious inconsistency**; then extend to `SurvivalNPHPooler` (non-PH) / `MLNMRPooler`. Roadmap in
-> `SYNTHESIS-VISION.md` §5; reuse map (exact engine paths) in §5b.
+> **Phase 3c finding (§4h):** carried the §4d **de-bias offset + identification half-width** (not just the
+> variance) through the `ADNMAPooler` network and ran `design_by_treatment_test` / `node_splitting_diagnostics`.
+> On a homogeneous-consistent A–B–C network, per-edge reconstruction bias makes **naive pooling flag spurious
+> inconsistency ~4× over the α baseline** (0.245 vs gold 0.065; mean Q≈1.00=E[χ²₁] on gold/honest); the §4d
+> object returns the flag rate to baseline (0.045 ≈ α) and restores contrast coverage. Locked by
+> `harvest/test_phase3c.py`. Suite green: 87 Py + 34 JS.
+>
+> **RESUME HERE → Phase 3c extension / Phase 4:** extend the granularity-mixed survival NMA to
+> `SurvivalNPHPooler` (non-PH, piecewise-exponential interval-specific effects — feed reconstructed pseudo-IPD
+> as per-interval events/at-risk) and `MLNMRPooler` (effect modifiers); both already in
+> `C:\Projects\advanced-nma-pooling` (paths in `SYNTHESIS-VISION.md` §5b). Then Phase 4 (evidence-completeness
+> atlas, §5). Roadmap in `SYNTHESIS-VISION.md` §5; reuse map (exact engine paths) in §5b.
 >
 > **Verify cross-repo deps exist before starting:** `C:\Projects\spec-collapse-atlas` (Py) and
 > `C:\Projects\advanced-nma-pooling\src` (Py) must be importable; the Monte-Carlo demos re-run from the
