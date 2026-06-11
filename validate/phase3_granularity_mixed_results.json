@@ -1,0 +1,98 @@
+{
+  "k": 14,
+  "true_all_ipd": {
+    "pooled_HR": 2.488,
+    "tau2": 0.131
+  },
+  "mixed_corpus": {
+    "composition": {
+      "IPD": 5,
+      "CURVE": 5,
+      "HRONLY": 4
+    },
+    "pooled_HR": 2.571,
+    "tau2": 0.228,
+    "HR_set": [
+      2.28,
+      2.92
+    ],
+    "tau2_set": [
+      0.07,
+      0.514
+    ],
+    "HR_set_width": 0.638,
+    "brackets_truth": true
+  },
+  "completeness_curve": [
+    {
+      "curve_fraction": 0,
+      "n_curve": 0,
+      "pooled_HR": 2.488,
+      "HR_set": [
+        2.49,
+        2.49
+      ],
+      "HR_set_width": 0,
+      "tau2_set": [
+        0.131,
+        0.131
+      ]
+    },
+    {
+      "curve_fraction": 0.25,
+      "n_curve": 4,
+      "pooled_HR": 2.456,
+      "HR_set": [
+        2.13,
+        2.86
+      ],
+      "HR_set_width": 0.737,
+      "tau2_set": [
+        0.078,
+        0.276
+      ]
+    },
+    {
+      "curve_fraction": 0.5,
+      "n_curve": 7,
+      "pooled_HR": 2.424,
+      "HR_set": [
+        1.93,
+        3.12
+      ],
+      "HR_set_width": 1.186,
+      "tau2_set": [
+        0.039,
+        0.416
+      ]
+    },
+    {
+      "curve_fraction": 0.75,
+      "n_curve": 11,
+      "pooled_HR": 2.509,
+      "HR_set": [
+        1.8,
+        3.57
+      ],
+      "HR_set_width": 1.767,
+      "tau2_set": [
+        0,
+        0.662
+      ]
+    },
+    {
+      "curve_fraction": 1,
+      "n_curve": 14,
+      "pooled_HR": 2.441,
+      "HR_set": [
+        1.59,
+        3.75
+      ],
+      "HR_set_width": 2.154,
+      "tau2_set": [
+        0,
+        0.765
+      ]
+    }
+  ]
+}

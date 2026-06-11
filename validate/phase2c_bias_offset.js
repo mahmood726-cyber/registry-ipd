@@ -36,7 +36,10 @@ function r2eventPinned(trial) {
   return ((Math.log(h.hi) - Math.log(h.lo)) / (2 * 1.959964)) ** 2;
 }
 
-function run() {
+// Per-trial corpus: true (logHR, s^2), the event-informed reconstruction (logHR, s^2), its ensemble
+// reconstruction variance r^2, and the observed error e (needs true IPD; used for gold-standard
+// calibration). Shared by Phase 2c and Phase 3.
+function buildCorpus() {
   const rows = [];
   for (const cfg of GS.CONFIGS) {
     if (!cfg.ds.startsWith('cbio_')) continue;
@@ -53,6 +56,11 @@ function run() {
     rows.push({ ds: cfg.ds.replace('cbio_', ''), yTrue: t.logHR, sTrue2: t.se * t.se,
       yRec: rc.logHR, sRec2: rc.se * rc.se, r2ens: r2, e: rc.logHR - t.logHR });
   }
+  return rows;
+}
+
+function run() {
+  const rows = buildCorpus();
   const k = rows.length;
   const yTrue = rows.map(r => r.yTrue), vTrue = rows.map(r => r.sTrue2), yRec = rows.map(r => r.yRec);
   const vEvent = rows.map(r => r.sRec2 + r.r2ens);
@@ -104,4 +112,4 @@ if (require.main === module) {
   console.log(`  the naive point does not. mean systematic offset (de-biased) = ${out.mean_recon_bias_logHR} log-HR.`);
   console.log('\n  wrote validate/phase2c_bias_offset_results.json');
 }
-module.exports = { run };
+module.exports = { run, buildCorpus, mean, variance };

@@ -191,6 +191,43 @@ gold-standard-calibrated identified set that brackets the truth. A reconstructed
 a **de-biased point with a calibrated identification interval** — not a fake-exact IPD row, and not a
 discarded curve.
 
+## 4e. Phase 3 — granularity-mixed synthesis, and the evidence-completeness curve
+
+The capstone (`validate/phase3_granularity_mixed.js`): one pooled survival contrast over a corpus whose
+trials sit at **different granularities**, each contributing what it identifies — IPD and HR-only trials as
+**identified points** `(logHR, s²)`, reconstructed-curve trials as the **Phase-2c object** (de-biased
+point + inflated variance + residual-bias half-width `δ`). The pool is REML/HKSJ; because curve trials
+carry identification intervals, the output is an **identified set** (the pooled HR and τ² range over the
+curve trials' bias boxes; IPD/HR-only are fixed). All curve calibration is leave-one-out.
+
+**A realistic mixed corpus (5 IPD · 5 curve · 4 HR-only)** pools to HR **2.57, identified set [2.28, 2.92]**
+— which **brackets the all-IPD truth (2.49)** — with a τ² set [0.07, 0.51]. A synthesis that *mixes*
+granularities gives an honest answer with an interval that reflects exactly how much the low-granularity
+trials cost.
+
+And the new artefact — the **evidence-completeness curve**: sweep the fraction of trials that are curve-only
+(rest IPD) and the identified-set width grows **smoothly from a point to its widest**, while the central HR
+stays put:
+
+| curve-only fraction | pooled HR | HR identified set | set width |
+|---:|---:|---:|---:|
+| 0.00 (all IPD) | 2.49 | [2.49, 2.49] | **0** |
+| 0.25 | 2.46 | [2.13, 2.86] | 0.74 |
+| 0.50 | 2.42 | [1.93, 3.12] | 1.19 |
+| 0.75 | 2.51 | [1.80, 3.57] | 1.77 |
+| 1.00 (all curve) | 2.44 | [1.59, 3.75] | **2.15** |
+
+This is the reframing made quantitative: you **can** add trials that posted only a curve (or only an HR) to
+a synthesis, and the model **honestly widens the interval** to price their reduced information instead of
+faking precision — the central estimate is stable, the *uncertainty* tracks the evidence granularity. The
+curve also reads as guidance: it says how much precision a review buys by obtaining IPD / a posted HR vs
+working from curves, and (with Phase 2b) how much each censoring lever recovers. Locked by
+`test/phase3_mixed.spec.js`.
+
+This realises the §3 vision — "one model, many granularities" — end to end on real reconstructions: a
+reconstructed trial is neither a discarded curve nor a fake-exact IPD row, but a **de-biased point with a
+calibrated identification interval**, pooled alongside IPD and HR-only trials in a single honest synthesis.
+
 ## 5. Development roadmap
 
 - **Phase 1 — honest pooling (DONE).** Rubin's-rules propagation; Monte-Carlo proof it recovers τ²/PI where
@@ -204,10 +241,13 @@ discarded curve.
 - **Phase 2c — reconstruction bias as a partially-identified set (DONE, §4d).** De-bias the LOO systematic
   offset (recovers the pooled HR) and report the τ² / pooled-effect identified set over residual-bias boxes;
   validated to bracket the held-out truth where a naive point does not.
-- **Phase 3 — granularity-mixed survival NMA.** One model ingesting {IPD, reconstructed-pseudo-IPD as a
-  de-biased point + identification interval (§4d), HR-only} trials, each weighted by identified information
-  (the Jansen extension with propagated UQ). The Phase-2c machinery — de-bias + calibrated set — is the
-  per-trial contribution this model pools.
+- **Phase 3 — granularity-mixed synthesis (DONE, §4e).** One pooled contrast over {IPD, reconstructed-curve
+  as a de-biased point + identification interval, HR-only}; the mixed corpus brackets the all-IPD truth, and
+  the evidence-completeness curve quantifies the precision↔granularity trade-off.
+- **Phase 3b — extend to a survival NMA** (multiple treatments, indirect comparisons): carry the §4e
+  per-trial identified-interval contribution through a network model with consistency checks (the Jansen
+  fractional-polynomial NMA extended with propagated UQ + partial identification). Reuse the lab's existing
+  NMA machinery rather than re-implement (see `allmeta`/capsule node-split + design-by-treatment).
 - **Phase 4 — an evidence-completeness atlas.** For a real review question, harvest every trial, classify
   each by posted-statistics granularity, compute a per-trial *identification/information score* for the
   target estimand, and map what fraction of the evidence is point- vs partially-identified. A new artefact:
