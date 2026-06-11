@@ -1,0 +1,17 @@
+{
+  "generated": "Tier-B scale: parametric reconstruction of median+HR trials with no posted KM curve",
+  "harvested_tierb_trials": 1144,
+  "reconstructed_tierB": 1144,
+  "rejected_tierC": 0,
+  "skipped_pathological": 0,
+  "errors": 0,
+  "badge_distribution": {
+    "silver": 46,
+    "bronze": 7,
+    "none": 1091
+  },
+  "median_registry_HR": 0.83,
+  "badge_interpretation": "Most Tier-B trials self-audit to badge \"none\" because the exponential PH coupling cannot honor BOTH the posted experimental median AND the posted HR at once — the reconstructed exp median is forced to cMed/HR, so it disagrees with the independently-posted exp median whenever the trial is non-exponential (the common case). silver/bronze flag the minority where they happen to be consistent. This badge split is itself the honest signal: Tier B is coverage, not fidelity.",
+  "honest_note": "Tier B is a COVERAGE tier, not an HR-recovery tier: the curve is assumed exponential, the HR is imposed (not recovered), RMST carries ~7% error and worse on non-exponential survival. Use Tier-B pseudo-IPD for triage/scoping only; the curve-based Tier-A cohort remains the validated-fidelity deliverable.",
+  "reproduce": "python harvest/harvest_tierb.py && node validate/tierb_scale.js"
+}

@@ -36,3 +36,26 @@ ClinicalTrials.gov can yield as reconstructed survival evidence today.*
 *The multi-arm trials are where scale compounds: a 4-arm trial is up to 6 pairwise comparisons.
 The binding limit remains coverage (only a fraction of AACT posts a curve; see the census) and the
 posted event count (only a minority enables the QP; see the production gallery).*
+
+## Beyond the curve: the Tier-B population
+
+The curve-based Tier-A cohort is **saturated** — 595 harvested trials already exceed the broad-census
+count of 514 curve-posting trials, so re-harvesting Tier A does not widen the reconstructable set. The
+remaining expansion lives in **Tier B**: trials that post a survival **median + a hazard ratio + arm N**
+but no KM curve. Harvesting the full snapshot for this pattern
+(`python harvest/harvest_tierb.py`) yields **1,144 Tier-B trials**, every one of which reconstructs via
+the engine's parametric (exponential) path (`node validate/tierb_scale.js` → `realipd/tierb_scale.json`).
+
+That roughly **triples** the reconstructable registry (≈400 Tier-A comparison-bearing trials → +1,144
+Tier-B), but the fidelity is deliberately lower, and the self-audit says so out loud:
+
+| Tier-B self-audit badge | trials | meaning |
+|---|---:|---|
+| silver / bronze | 53 | exponential PH happens to reconcile the posted median **and** HR |
+| **none** | 1,091 | it cannot — the reconstructed exp median is forced to `cMed/HR`, disagreeing with the independently-posted exp median (the non-exponential common case) |
+
+The **1,091 badge-`none`** split is the honest headline: Tier B is a **coverage/triage tier, not an
+HR-recovery tier**. The HR is *imposed*, not recovered; the curve is *assumed* exponential; RMST carries
+~7% error and worse on non-exponential survival (`VALIDATION.md` → Tier B). Use Tier-B pseudo-IPD for
+scoping and feasibility, never as a fidelity claim — the curve-based Tier-A cohort remains the validated
+deliverable.*

@@ -63,6 +63,9 @@ add('Production (real AACT trials)', gal && `${gal.cohort_trials_reconstructed} 
 // --- scale run (registry-wide) ---
 const sc = g(load('scale_index.json'), 'summary');
 add('Scale (registry-wide)', sc && `${sc.reconstructable_trials} trials → ${sc.total_pairwise_comparisons} pairwise pseudo-IPD comparisons across ${sc.distinct_conditions} conditions; ${sc.exportable_comparisons} exportable`, 'node validate/scale_run.js');
+// --- Tier-B scale (beyond the curve) ---
+const tbs = load('tierb_scale.json');
+if (tbs) { const bd = tbs.badge_distribution || {}; add('Tier-B scale (median+HR, no curve)', `${tbs.reconstructed_tierB} trials reconstruct (≈3× the Tier-A set); ${(bd.silver || 0) + (bd.bronze || 0)} self-audit silver/bronze, ${bd.none || 0} badge "none" ⇒ coverage tier, not fidelity`, 'python harvest/harvest_tierb.py && node validate/tierb_scale.js'); }
 // --- censoring stratified ---
 const cs = g(load('censoring_stratified_results.json'), 'summary');
 add('When does the event count matter', cs && `QP gap over curve-only mean ~${cs.mean_event_count_value_gap} fold but not predictable (Spearman vs censoring ${g(cs, 'spearman_curveonly_fold_vs', 'pooled_censoring')}) ⇒ always prefer the event count`, 'node validate/censoring_stratified.js');

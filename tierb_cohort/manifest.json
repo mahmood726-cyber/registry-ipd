@@ -1,0 +1,9157 @@
+{
+ "n_trials": 1144,
+ "trials": [
+  {
+   "nct": "NCT02987543",
+   "median_exp": 5.8,
+   "median_ctl": 3.5,
+   "N_exp": 256,
+   "N_ctl": 131,
+   "hr": 0.49
+  },
+  {
+   "nct": "NCT02263508",
+   "median_exp": 14.3,
+   "median_ctl": 8.5,
+   "N_exp": 346,
+   "N_ctl": 346,
+   "hr": 0.86
+  },
+  {
+   "nct": "NCT04011033",
+   "median_exp": 5.7,
+   "median_ctl": 2.7,
+   "N_exp": 27,
+   "N_ctl": 27,
+   "hr": 0.32
+  },
+  {
+   "nct": "NCT02577406",
+   "median_exp": 6.5,
+   "median_ctl": 6.2,
+   "N_exp": 158,
+   "N_ctl": 161,
+   "hr": 0.86
+  },
+  {
+   "nct": "NCT03400332",
+   "median_exp": 3.3,
+   "median_ctl": 2.1,
+   "N_exp": 60,
+   "N_ctl": 62,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT02555657",
+   "median_exp": 12.7,
+   "median_ctl": 11.6,
+   "N_exp": 312,
+   "N_ctl": 310,
+   "hr": 0.78
+  },
+  {
+   "nct": "NCT01998880",
+   "median_exp": 16.5,
+   "median_ctl": 11.1,
+   "N_exp": 233,
+   "N_ctl": 118,
+   "hr": 0.46
+  },
+  {
+   "nct": "NCT04475939",
+   "median_exp": 5.5,
+   "median_ctl": 5.5,
+   "N_exp": 335,
+   "N_ctl": 331,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT01300351",
+   "median_exp": 8.0,
+   "median_ctl": 4.0,
+   "N_exp": 111,
+   "N_ctl": 110,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT03072238",
+   "median_exp": 18.5,
+   "median_ctl": 16.5,
+   "N_exp": 551,
+   "N_ctl": 554,
+   "hr": 0.77
+  },
+  {
+   "nct": "NCT03740165",
+   "median_exp": 23.9,
+   "median_ctl": 15.2,
+   "N_exp": 455,
+   "N_ctl": 454,
+   "hr": 0.66
+  },
+  {
+   "nct": "NCT02008227",
+   "median_exp": 13.8,
+   "median_ctl": 9.6,
+   "N_exp": 613,
+   "N_ctl": 612,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT01611090",
+   "median_exp": 65.1,
+   "median_ctl": 14.3,
+   "N_exp": 289,
+   "N_ctl": 289,
+   "hr": 0.229
+  },
+  {
+   "nct": "NCT02003924",
+   "median_exp": 36.6,
+   "median_ctl": 14.7,
+   "N_exp": 933,
+   "N_ctl": 468,
+   "hr": 0.292
+  },
+  {
+   "nct": "NCT03447769",
+   "median_exp": 35.0,
+   "median_ctl": 29.7,
+   "N_exp": 693,
+   "N_ctl": 689,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT01485861",
+   "median_exp": 8.3,
+   "median_ctl": 6.4,
+   "N_exp": 88,
+   "N_ctl": 83,
+   "hr": 0.77
+  },
+  {
+   "nct": "NCT03563716",
+   "median_exp": 5.4,
+   "median_ctl": 3.6,
+   "N_exp": 67,
+   "N_ctl": 68,
+   "hr": 0.57
+  },
+  {
+   "nct": "NCT00636168",
+   "median_exp": 26.1,
+   "median_ctl": 17.1,
+   "N_exp": 475,
+   "N_ctl": 476,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT02657434",
+   "median_exp": 13.6,
+   "median_ctl": 7.7,
+   "N_exp": 291,
+   "N_ctl": 292,
+   "hr": 0.562
+  },
+  {
+   "nct": "NCT00191477",
+   "median_exp": 40.2,
+   "median_ctl": 37.2,
+   "N_exp": 162,
+   "N_ctl": 166,
+   "hr": 0.946
+  },
+  {
+   "nct": "NCT02042443",
+   "median_exp": 7.9,
+   "median_ctl": 4.3,
+   "N_exp": 20,
+   "N_ctl": 24,
+   "hr": 2.02
+  },
+  {
+   "nct": "NCT03488524",
+   "median_exp": 23.5,
+   "median_ctl": 18.7,
+   "N_exp": 89,
+   "N_ctl": 90,
+   "hr": 0.644
+  },
+  {
+   "nct": "NCT04063163",
+   "median_exp": 5.8,
+   "median_ctl": 4.3,
+   "N_exp": 389,
+   "N_ctl": 196,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT01721876",
+   "median_exp": 6.5,
+   "median_ctl": 5.6,
+   "N_exp": 222,
+   "N_ctl": 444,
+   "hr": 0.97
+  },
+  {
+   "nct": "NCT00876395",
+   "median_exp": 14.9,
+   "median_ctl": 14.5,
+   "N_exp": 480,
+   "N_ctl": 239,
+   "hr": 0.89
+  },
+  {
+   "nct": "NCT02088541",
+   "median_exp": 5.6,
+   "median_ctl": 3.1,
+   "N_exp": 57,
+   "N_ctl": 118,
+   "hr": 1.18
+  },
+  {
+   "nct": "NCT00967330",
+   "median_exp": 16.6,
+   "median_ctl": 6.0,
+   "N_exp": 119,
+   "N_ctl": 55,
+   "hr": 0.588
+  },
+  {
+   "nct": "NCT04177108",
+   "median_exp": 7.1,
+   "median_ctl": 3.7,
+   "N_exp": 43,
+   "N_ctl": 41,
+   "hr": 0.49
+  },
+  {
+   "nct": "NCT01360554",
+   "median_exp": 2.6,
+   "median_ctl": 2.5,
+   "N_exp": 439,
+   "N_ctl": 439,
+   "hr": 0.933
+  },
+  {
+   "nct": "NCT01041781",
+   "median_exp": 5.3,
+   "median_ctl": 5.2,
+   "N_exp": 158,
+   "N_ctl": 154,
+   "hr": 1.076
+  },
+  {
+   "nct": "NCT00073528",
+   "median_exp": 8.1,
+   "median_ctl": 3.0,
+   "N_exp": 654,
+   "N_ctl": 644,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT02119676",
+   "median_exp": 11.4,
+   "median_ctl": 4.6,
+   "N_exp": 110,
+   "N_ctl": 87,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT02542293",
+   "median_exp": 11.7,
+   "median_ctl": 9.1,
+   "N_exp": 410,
+   "N_ctl": 413,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT02823574",
+   "median_exp": 12.3,
+   "median_ctl": 9.5,
+   "N_exp": 143,
+   "N_ctl": 282,
+   "hr": 1.05
+  },
+  {
+   "nct": "NCT02775435",
+   "median_exp": 6.4,
+   "median_ctl": 4.8,
+   "N_exp": 278,
+   "N_ctl": 281,
+   "hr": 0.56
+  },
+  {
+   "nct": "NCT03659136",
+   "median_exp": 12.7,
+   "median_ctl": 11.0,
+   "N_exp": 52,
+   "N_ctl": 51,
+   "hr": 1.19
+  },
+  {
+   "nct": "NCT01227889",
+   "median_exp": 20.0,
+   "median_ctl": 2.7,
+   "N_exp": 734,
+   "N_ctl": 63,
+   "hr": 0.4
+  },
+  {
+   "nct": "NCT03660826",
+   "median_exp": 6.0,
+   "median_ctl": 2.0,
+   "N_exp": 43,
+   "N_ctl": 40,
+   "hr": 1.45
+  },
+  {
+   "nct": "NCT00382018",
+   "median_exp": 13.0,
+   "median_ctl": 10.7,
+   "N_exp": 123,
+   "N_ctl": 276,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT00473590",
+   "median_exp": 24.0,
+   "median_ctl": 6.2,
+   "N_exp": 53,
+   "N_ctl": 50,
+   "hr": 0.956
+  },
+  {
+   "nct": "NCT02546986",
+   "median_exp": 11.9,
+   "median_ctl": 4.0,
+   "N_exp": 51,
+   "N_ctl": 49,
+   "hr": 1.374
+  },
+  {
+   "nct": "NCT00686959",
+   "median_exp": 26.8,
+   "median_ctl": 25.0,
+   "N_exp": 301,
+   "N_ctl": 297,
+   "hr": 0.98
+  },
+  {
+   "nct": "NCT02870920",
+   "median_exp": 6.6,
+   "median_ctl": 4.1,
+   "N_exp": 119,
+   "N_ctl": 61,
+   "hr": 0.72
+  },
+  {
+   "nct": "NCT03834519",
+   "median_exp": 14.6,
+   "median_ctl": 4.4,
+   "N_exp": 264,
+   "N_ctl": 529,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT03976375",
+   "median_exp": 12.0,
+   "median_ctl": 11.3,
+   "N_exp": 189,
+   "N_ctl": 185,
+   "hr": 0.98
+  },
+  {
+   "nct": "NCT01479465",
+   "median_exp": 5.8,
+   "median_ctl": 5.4,
+   "N_exp": 80,
+   "N_ctl": 85,
+   "hr": 1.45
+  },
+  {
+   "nct": "NCT03158688",
+   "median_exp": 50.8,
+   "median_ctl": 43.6,
+   "N_exp": 312,
+   "N_ctl": 154,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT04035486",
+   "median_exp": 25.5,
+   "median_ctl": 16.7,
+   "N_exp": 279,
+   "N_ctl": 278,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT02411448",
+   "median_exp": 19.4,
+   "median_ctl": 12.4,
+   "N_exp": 224,
+   "N_ctl": 225,
+   "hr": 0.591
+  },
+  {
+   "nct": "NCT01136733",
+   "median_exp": 14.6,
+   "median_ctl": 5.5,
+   "N_exp": 51,
+   "N_ctl": 50,
+   "hr": 0.4
+  },
+  {
+   "nct": "NCT00434642",
+   "median_exp": 33.6,
+   "median_ctl": 8.4,
+   "N_exp": 247,
+   "N_ctl": 242,
+   "hr": 0.484
+  },
+  {
+   "nct": "NCT04059484",
+   "median_exp": 3.7,
+   "median_ctl": 3.7,
+   "N_exp": 143,
+   "N_ctl": 147,
+   "hr": 1.051
+  },
+  {
+   "nct": "NCT03596866",
+   "median_exp": 19.3,
+   "median_ctl": 19.2,
+   "N_exp": 125,
+   "N_ctl": 123,
+   "hr": 0.968
+  },
+  {
+   "nct": "NCT00760929",
+   "median_exp": 12.1,
+   "median_ctl": 8.1,
+   "N_exp": 57,
+   "N_ctl": 57,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT03086369",
+   "median_exp": 10.8,
+   "median_ctl": 9.1,
+   "N_exp": 80,
+   "N_ctl": 82,
+   "hr": 1.054
+  },
+  {
+   "nct": "NCT04889118",
+   "median_exp": 6.1,
+   "median_ctl": 2.0,
+   "N_exp": 64,
+   "N_ctl": 67,
+   "hr": 0.55
+  },
+  {
+   "nct": "NCT01107665",
+   "median_exp": 18.0,
+   "median_ctl": 11.3,
+   "N_exp": 60,
+   "N_ctl": 46,
+   "hr": 0.784
+  },
+  {
+   "nct": "NCT02978716",
+   "median_exp": 17.8,
+   "median_ctl": 9.4,
+   "N_exp": 35,
+   "N_ctl": 33,
+   "hr": 0.4
+  },
+  {
+   "nct": "NCT03504397",
+   "median_exp": 11.0,
+   "median_ctl": 8.9,
+   "N_exp": 283,
+   "N_ctl": 282,
+   "hr": 0.734
+  },
+  {
+   "nct": "NCT01120184",
+   "median_exp": 15.2,
+   "median_ctl": 13.7,
+   "N_exp": 366,
+   "N_ctl": 365,
+   "hr": 0.91
+  },
+  {
+   "nct": "NCT00753688",
+   "median_exp": 10.7,
+   "median_ctl": 4.6,
+   "N_exp": 123,
+   "N_ctl": 246,
+   "hr": 0.35
+  },
+  {
+   "nct": "NCT00835978",
+   "median_exp": 16.6,
+   "median_ctl": 14.5,
+   "N_exp": 91,
+   "N_ctl": 56,
+   "hr": 0.849
+  },
+  {
+   "nct": "NCT04028388",
+   "median_exp": 11.1,
+   "median_ctl": 9.5,
+   "N_exp": 49,
+   "N_ctl": 52,
+   "hr": 1.22
+  },
+  {
+   "nct": "NCT01659021",
+   "median_exp": 16.2,
+   "median_ctl": 8.0,
+   "N_exp": 174,
+   "N_ctl": 87,
+   "hr": 0.26
+  },
+  {
+   "nct": "NCT04256421",
+   "median_exp": 13.1,
+   "median_ctl": 5.4,
+   "N_exp": 247,
+   "N_ctl": 243,
+   "hr": 1.08
+  },
+  {
+   "nct": "NCT01000025",
+   "median_exp": 6.8,
+   "median_ctl": 6.3,
+   "N_exp": 480,
+   "N_ctl": 240,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT01938001",
+   "median_exp": 39.4,
+   "median_ctl": 14.1,
+   "N_exp": 178,
+   "N_ctl": 180,
+   "hr": 0.46
+  },
+  {
+   "nct": "NCT04269200",
+   "median_exp": 15.1,
+   "median_ctl": 9.6,
+   "N_exp": 239,
+   "N_ctl": 241,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT01140347",
+   "median_exp": 9.2,
+   "median_ctl": 7.6,
+   "N_exp": 283,
+   "N_ctl": 282,
+   "hr": 0.866
+  },
+  {
+   "nct": "NCT01946204",
+   "median_exp": 40.5,
+   "median_ctl": 14.7,
+   "N_exp": 806,
+   "N_ctl": 401,
+   "hr": 0.271
+  },
+  {
+   "nct": "NCT04251533",
+   "median_exp": 7.2,
+   "median_ctl": 5.6,
+   "N_exp": 52,
+   "N_ctl": 50,
+   "hr": 1.49
+  },
+  {
+   "nct": "NCT00108953",
+   "median_exp": 13.7,
+   "median_ctl": 6.5,
+   "N_exp": 47,
+   "N_ctl": 49,
+   "hr": 0.6
+  },
+  {
+   "nct": "NCT02409342",
+   "median_exp": 20.2,
+   "median_ctl": 13.1,
+   "N_exp": 286,
+   "N_ctl": 282,
+   "hr": 0.595
+  },
+  {
+   "nct": "NCT04740918",
+   "median_exp": 8.6,
+   "median_ctl": 7.5,
+   "N_exp": 47,
+   "N_ctl": 50,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT05226598",
+   "median_exp": 23.5,
+   "median_ctl": 20.0,
+   "N_exp": 373,
+   "N_ctl": 366,
+   "hr": 1.14
+  },
+  {
+   "nct": "NCT04665856",
+   "median_exp": 5.6,
+   "median_ctl": 5.4,
+   "N_exp": 61,
+   "N_ctl": 63,
+   "hr": 0.65
+  },
+  {
+   "nct": "NCT02367794",
+   "median_exp": 6.5,
+   "median_ctl": 5.6,
+   "N_exp": 343,
+   "N_ctl": 343,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT00993655",
+   "median_exp": 40.6,
+   "median_ctl": 12.5,
+   "N_exp": 72,
+   "N_ctl": 102,
+   "hr": 1.22
+  },
+  {
+   "nct": "NCT00403403",
+   "median_exp": 5.5,
+   "median_ctl": 4.4,
+   "N_exp": 52,
+   "N_ctl": 50,
+   "hr": 0.528
+  },
+  {
+   "nct": "NCT05169567",
+   "median_exp": 6.0,
+   "median_ctl": 5.3,
+   "N_exp": 182,
+   "N_ctl": 186,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT00654420",
+   "median_exp": 6.9,
+   "median_ctl": 1.6,
+   "N_exp": 37,
+   "N_ctl": 38,
+   "hr": 0.86
+  },
+  {
+   "nct": "NCT00854308",
+   "median_exp": 2.9,
+   "median_ctl": 1.5,
+   "N_exp": 69,
+   "N_ctl": 68,
+   "hr": 1.086
+  },
+  {
+   "nct": "NCT02000622",
+   "median_exp": 19.3,
+   "median_ctl": 4.2,
+   "N_exp": 205,
+   "N_ctl": 97,
+   "hr": 0.58
+  },
+  {
+   "nct": "NCT01809691",
+   "median_exp": 81.1,
+   "median_ctl": 70.2,
+   "N_exp": 638,
+   "N_ctl": 641,
+   "hr": 0.86
+  },
+  {
+   "nct": "NCT03829319",
+   "median_exp": 12.1,
+   "median_ctl": 9.5,
+   "N_exp": 375,
+   "N_ctl": 373,
+   "hr": 0.88
+  },
+  {
+   "nct": "NCT03673501",
+   "median_exp": 8.3,
+   "median_ctl": 7.0,
+   "N_exp": 226,
+   "N_ctl": 227,
+   "hr": 0.88
+  },
+  {
+   "nct": "NCT02337946",
+   "median_exp": 9.3,
+   "median_ctl": 9.1,
+   "N_exp": 57,
+   "N_ctl": 56,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT00932893",
+   "median_exp": 7.7,
+   "median_ctl": 3.0,
+   "N_exp": 173,
+   "N_ctl": 174,
+   "hr": 0.487
+  },
+  {
+   "nct": "NCT04689828",
+   "median_exp": 23.1,
+   "median_ctl": 9.3,
+   "N_exp": 234,
+   "N_ctl": 234,
+   "hr": 0.41
+  },
+  {
+   "nct": "NCT05089734",
+   "median_exp": 11.1,
+   "median_ctl": 9.8,
+   "N_exp": 299,
+   "N_ctl": 304,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT03459846",
+   "median_exp": 4.2,
+   "median_ctl": 3.5,
+   "N_exp": 78,
+   "N_ctl": 76,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT03390504",
+   "median_exp": 12.1,
+   "median_ctl": 8.7,
+   "N_exp": 143,
+   "N_ctl": 165,
+   "hr": 0.65
+  },
+  {
+   "nct": "NCT02743494",
+   "median_exp": 35.2,
+   "median_ctl": 22.4,
+   "N_exp": 262,
+   "N_ctl": 532,
+   "hr": 0.69
+  },
+  {
+   "nct": "NCT00327171",
+   "median_exp": 3.1,
+   "median_ctl": 3.0,
+   "N_exp": 109,
+   "N_ctl": 106,
+   "hr": 1.123
+  },
+  {
+   "nct": "NCT03898180",
+   "median_exp": 4.5,
+   "median_ctl": 4.0,
+   "N_exp": 245,
+   "N_ctl": 242,
+   "hr": 0.9
+  },
+  {
+   "nct": "NCT00376623",
+   "median_exp": 5.9,
+   "median_ctl": 1.6,
+   "N_exp": 21,
+   "N_ctl": 48,
+   "hr": 1.02
+  },
+  {
+   "nct": "NCT00460603",
+   "median_exp": 15.9,
+   "median_ctl": 11.0,
+   "N_exp": 43,
+   "N_ctl": 42,
+   "hr": 1.08
+  },
+  {
+   "nct": "NCT01056510",
+   "median_exp": 39.6,
+   "median_ctl": 29.9,
+   "N_exp": 178,
+   "N_ctl": 179,
+   "hr": 0.525
+  },
+  {
+   "nct": "NCT01609790",
+   "median_exp": 11.5,
+   "median_ctl": 7.5,
+   "N_exp": 58,
+   "N_ctl": 57,
+   "hr": 1.46
+  },
+  {
+   "nct": "NCT01041404",
+   "median_exp": 6.7,
+   "median_ctl": 5.5,
+   "N_exp": 294,
+   "N_ctl": 290,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT00824265",
+   "median_exp": 28.9,
+   "median_ctl": 18.8,
+   "N_exp": 183,
+   "N_ctl": 182,
+   "hr": 0.67
+  },
+  {
+   "nct": "NCT00869401",
+   "median_exp": 19.3,
+   "median_ctl": 15.6,
+   "N_exp": 66,
+   "N_ctl": 138,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT02726581",
+   "median_exp": 8.4,
+   "median_ctl": 7.3,
+   "N_exp": 75,
+   "N_ctl": 71,
+   "hr": 0.9
+  },
+  {
+   "nct": "NCT05171647",
+   "median_exp": 11.5,
+   "median_ctl": 3.8,
+   "N_exp": 138,
+   "N_ctl": 70,
+   "hr": 0.41
+  },
+  {
+   "nct": "NCT04339738",
+   "median_exp": 8.3,
+   "median_ctl": 5.6,
+   "N_exp": 33,
+   "N_ctl": 31,
+   "hr": 1.23
+  },
+  {
+   "nct": "NCT03713593",
+   "median_exp": 21.2,
+   "median_ctl": 19.0,
+   "N_exp": 395,
+   "N_ctl": 399,
+   "hr": 0.834
+  },
+  {
+   "nct": "NCT02481830",
+   "median_exp": 8.4,
+   "median_ctl": 7.5,
+   "N_exp": 285,
+   "N_ctl": 284,
+   "hr": 0.86
+  },
+  {
+   "nct": "NCT00091572",
+   "median_exp": 2.3,
+   "median_ctl": 2.2,
+   "N_exp": 429,
+   "N_ctl": 430,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT04776148",
+   "median_exp": 3.8,
+   "median_ctl": 3.3,
+   "N_exp": 241,
+   "N_ctl": 239,
+   "hr": 0.69
+  },
+  {
+   "nct": "NCT02763566",
+   "median_exp": 14.7,
+   "median_ctl": 11.5,
+   "N_exp": 101,
+   "N_ctl": 207,
+   "hr": 0.499
+  },
+  {
+   "nct": "NCT02085408",
+   "median_exp": 12.9,
+   "median_ctl": 11.6,
+   "N_exp": 363,
+   "N_ctl": 364,
+   "hr": 1.1
+  },
+  {
+   "nct": "NCT00791778",
+   "median_exp": 15.7,
+   "median_ctl": 12.7,
+   "N_exp": 123,
+   "N_ctl": 123,
+   "hr": 1.09
+  },
+  {
+   "nct": "NCT04338269",
+   "median_exp": 10.8,
+   "median_ctl": 10.6,
+   "N_exp": 259,
+   "N_ctl": 263,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT00514917",
+   "median_exp": 25.4,
+   "median_ctl": 23.3,
+   "N_exp": 207,
+   "N_ctl": 206,
+   "hr": 1.29
+  },
+  {
+   "nct": "NCT02270450",
+   "median_exp": 5.1,
+   "median_ctl": 2.6,
+   "N_exp": 58,
+   "N_ctl": 25,
+   "hr": 0.7
+  },
+  {
+   "nct": "NCT02421588",
+   "median_exp": 3.6,
+   "median_ctl": 3.5,
+   "N_exp": 221,
+   "N_ctl": 221,
+   "hr": 1.057
+  },
+  {
+   "nct": "NCT05323656",
+   "median_exp": 5.0,
+   "median_ctl": 2.9,
+   "N_exp": 27,
+   "N_ctl": 28,
+   "hr": 0.58
+  },
+  {
+   "nct": "NCT00785291",
+   "median_exp": 11.0,
+   "median_ctl": 7.4,
+   "N_exp": 275,
+   "N_ctl": 241,
+   "hr": 1.2
+  },
+  {
+   "nct": "NCT02896855",
+   "median_exp": 14.5,
+   "median_ctl": 12.4,
+   "N_exp": 122,
+   "N_ctl": 121,
+   "hr": 0.69
+  },
+  {
+   "nct": "NCT01423604",
+   "median_exp": 4.5,
+   "median_ctl": 4.3,
+   "N_exp": 64,
+   "N_ctl": 63,
+   "hr": 0.733
+  },
+  {
+   "nct": "NCT00674973",
+   "median_exp": 1.4,
+   "median_ctl": 1.4,
+   "N_exp": 104,
+   "N_ctl": 103,
+   "hr": 0.83
+  },
+  {
+   "nct": "NCT00154102",
+   "median_exp": 8.9,
+   "median_ctl": 8.0,
+   "N_exp": 600,
+   "N_ctl": 602,
+   "hr": 0.853
+  },
+  {
+   "nct": "NCT03517449",
+   "median_exp": 18.0,
+   "median_ctl": 3.8,
+   "N_exp": 411,
+   "N_ctl": 416,
+   "hr": 0.6
+  },
+  {
+   "nct": "NCT02924883",
+   "median_exp": 8.2,
+   "median_ctl": 6.8,
+   "N_exp": 133,
+   "N_ctl": 131,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT02184195",
+   "median_exp": 7.4,
+   "median_ctl": 3.8,
+   "N_exp": 92,
+   "N_ctl": 62,
+   "hr": 0.531
+  },
+  {
+   "nct": "NCT00281918",
+   "median_exp": 56.0,
+   "median_ctl": 32.2,
+   "N_exp": 408,
+   "N_ctl": 409,
+   "hr": 0.57
+  },
+  {
+   "nct": "NCT03019588",
+   "median_exp": 8.4,
+   "median_ctl": 7.7,
+   "N_exp": 47,
+   "N_ctl": 47,
+   "hr": 0.89
+  },
+  {
+   "nct": "NCT02314117",
+   "median_exp": 5.7,
+   "median_ctl": 5.4,
+   "N_exp": 326,
+   "N_ctl": 319,
+   "hr": 0.753
+  },
+  {
+   "nct": "NCT03425643",
+   "median_exp": 47.2,
+   "median_ctl": 18.3,
+   "N_exp": 397,
+   "N_ctl": 400,
+   "hr": 0.59
+  },
+  {
+   "nct": "NCT01017874",
+   "median_exp": 9.6,
+   "median_ctl": 8.4,
+   "N_exp": 118,
+   "N_ctl": 118,
+   "hr": 0.85
+  },
+  {
+   "nct": "NCT01572727",
+   "median_exp": 9.2,
+   "median_ctl": 8.0,
+   "N_exp": 209,
+   "N_ctl": 207,
+   "hr": 1.18
+  },
+  {
+   "nct": "NCT01258608",
+   "median_exp": 10.1,
+   "median_ctl": 10.0,
+   "N_exp": 51,
+   "N_ctl": 50,
+   "hr": 1.192
+  },
+  {
+   "nct": "NCT02234050",
+   "median_exp": 4.2,
+   "median_ctl": 2.4,
+   "N_exp": 24,
+   "N_ctl": 57,
+   "hr": 1.42
+  },
+  {
+   "nct": "NCT01345682",
+   "median_exp": 2.6,
+   "median_ctl": 1.7,
+   "N_exp": 322,
+   "N_ctl": 161,
+   "hr": 0.792
+  },
+  {
+   "nct": "NCT02258451",
+   "median_exp": 25.0,
+   "median_ctl": 19.9,
+   "N_exp": 142,
+   "N_ctl": 141,
+   "hr": 0.891
+  },
+  {
+   "nct": "NCT04390763",
+   "median_exp": 2.5,
+   "median_ctl": 1.2,
+   "N_exp": 50,
+   "N_ctl": 51,
+   "hr": 0.7
+  },
+  {
+   "nct": "NCT00105443",
+   "median_exp": 10.7,
+   "median_ctl": 7.9,
+   "N_exp": 299,
+   "N_ctl": 303,
+   "hr": 0.6931
+  },
+  {
+   "nct": "NCT00449033",
+   "median_exp": 12.4,
+   "median_ctl": 5.5,
+   "N_exp": 452,
+   "N_ctl": 452,
+   "hr": 0.98
+  },
+  {
+   "nct": "NCT01659658",
+   "median_exp": 15.8,
+   "median_ctl": 11.0,
+   "N_exp": 90,
+   "N_ctl": 87,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT00090051",
+   "median_exp": 26.7,
+   "median_ctl": 21.7,
+   "N_exp": 276,
+   "N_ctl": 276,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT00556322",
+   "median_exp": 5.3,
+   "median_ctl": 2.0,
+   "N_exp": 203,
+   "N_ctl": 221,
+   "hr": 0.96
+  },
+  {
+   "nct": "NCT01998906",
+   "median_exp": 64.5,
+   "median_ctl": 43.6,
+   "N_exp": 99,
+   "N_ctl": 116,
+   "hr": 0.65
+  },
+  {
+   "nct": "NCT01063517",
+   "median_exp": 3.9,
+   "median_ctl": 3.5,
+   "N_exp": 62,
+   "N_ctl": 62,
+   "hr": 0.8
+  },
+  {
+   "nct": "NCT03061812",
+   "median_exp": 8.6,
+   "median_ctl": 6.3,
+   "N_exp": 148,
+   "N_ctl": 296,
+   "hr": 1.46
+  },
+  {
+   "nct": "NCT05218499",
+   "median_exp": 8.4,
+   "median_ctl": 7.2,
+   "N_exp": 148,
+   "N_ctl": 162,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT03257267",
+   "median_exp": 11.7,
+   "median_ctl": 8.5,
+   "N_exp": 304,
+   "N_ctl": 304,
+   "hr": 0.665
+  },
+  {
+   "nct": "NCT02853305",
+   "median_exp": 8.3,
+   "median_ctl": 7.1,
+   "N_exp": 351,
+   "N_ctl": 352,
+   "hr": 0.78
+  },
+  {
+   "nct": "NCT02632409",
+   "median_exp": 20.8,
+   "median_ctl": 10.8,
+   "N_exp": 353,
+   "N_ctl": 356,
+   "hr": 0.7
+  },
+  {
+   "nct": "NCT00492752",
+   "median_exp": 6.5,
+   "median_ctl": 4.2,
+   "N_exp": 150,
+   "N_ctl": 76,
+   "hr": 0.6783
+  },
+  {
+   "nct": "NCT00875667",
+   "median_exp": 8.6,
+   "median_ctl": 5.2,
+   "N_exp": 170,
+   "N_ctl": 84,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT01734928",
+   "median_exp": 35.6,
+   "median_ctl": 31.6,
+   "N_exp": 281,
+   "N_ctl": 278,
+   "hr": 0.61
+  },
+  {
+   "nct": "NCT01214720",
+   "median_exp": 4.6,
+   "median_ctl": 3.6,
+   "N_exp": 306,
+   "N_ctl": 301,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT02374099",
+   "median_exp": 5.5,
+   "median_ctl": 5.5,
+   "N_exp": 48,
+   "N_ctl": 49,
+   "hr": 0.87
+  },
+  {
+   "nct": "NCT01610206",
+   "median_exp": 5.3,
+   "median_ctl": 2.9,
+   "N_exp": 75,
+   "N_ctl": 73,
+   "hr": 0.81
+  },
+  {
+   "nct": "NCT02545283",
+   "median_exp": 9.1,
+   "median_ctl": 8.3,
+   "N_exp": 149,
+   "N_ctl": 292,
+   "hr": 1.08
+  },
+  {
+   "nct": "NCT02675231",
+   "median_exp": 8.3,
+   "median_ctl": 5.7,
+   "N_exp": 79,
+   "N_ctl": 79,
+   "hr": 0.68
+  },
+  {
+   "nct": "NCT01133977",
+   "median_exp": 4.4,
+   "median_ctl": 1.6,
+   "N_exp": 40,
+   "N_ctl": 37,
+   "hr": 0.4
+  },
+  {
+   "nct": "NCT01689519",
+   "median_exp": 9.9,
+   "median_ctl": 6.2,
+   "N_exp": 247,
+   "N_ctl": 248,
+   "hr": 0.51
+  },
+  {
+   "nct": "NCT01183780",
+   "median_exp": 13.3,
+   "median_ctl": 11.7,
+   "N_exp": 536,
+   "N_ctl": 536,
+   "hr": 0.844
+  },
+  {
+   "nct": "NCT02425891",
+   "median_exp": 7.2,
+   "median_ctl": 5.5,
+   "N_exp": 451,
+   "N_ctl": 460,
+   "hr": 0.8
+  },
+  {
+   "nct": "NCT01836029",
+   "median_exp": 6.1,
+   "median_ctl": 5.9,
+   "N_exp": 100,
+   "N_ctl": 95,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT02264990",
+   "median_exp": 12.1,
+   "median_ctl": 12.1,
+   "N_exp": 298,
+   "N_ctl": 297,
+   "hr": 0.644
+  },
+  {
+   "nct": "NCT02322593",
+   "median_exp": 16.0,
+   "median_ctl": 15.1,
+   "N_exp": 347,
+   "N_ctl": 334,
+   "hr": 0.83
+  },
+  {
+   "nct": "NCT01513174",
+   "median_exp": 10.9,
+   "median_ctl": 10.9,
+   "N_exp": 91,
+   "N_ctl": 91,
+   "hr": 1.38
+  },
+  {
+   "nct": "NCT03262935",
+   "median_exp": 21.0,
+   "median_ctl": 4.9,
+   "N_exp": 291,
+   "N_ctl": 146,
+   "hr": 0.6401
+  },
+  {
+   "nct": "NCT03273153",
+   "median_exp": 5.7,
+   "median_ctl": 5.5,
+   "N_exp": 224,
+   "N_ctl": 222,
+   "hr": 1.15
+  },
+  {
+   "nct": "NCT00373256",
+   "median_exp": 9.2,
+   "median_ctl": 7.4,
+   "N_exp": 243,
+   "N_ctl": 242,
+   "hr": 1.6299
+  },
+  {
+   "nct": "NCT00915018",
+   "median_exp": 12.9,
+   "median_ctl": 12.9,
+   "N_exp": 237,
+   "N_ctl": 242,
+   "hr": 1.015
+  },
+  {
+   "nct": "NCT00300885",
+   "median_exp": 10.6,
+   "median_ctl": 10.6,
+   "N_exp": 464,
+   "N_ctl": 462,
+   "hr": 1.15
+  },
+  {
+   "nct": "NCT00631371",
+   "median_exp": 9.3,
+   "median_ctl": 9.1,
+   "N_exp": 391,
+   "N_ctl": 400,
+   "hr": 1.1
+  },
+  {
+   "nct": "NCT00134056",
+   "median_exp": 17.8,
+   "median_ctl": 17.6,
+   "N_exp": 498,
+   "N_ctl": 496,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT00804856",
+   "median_exp": 5.6,
+   "median_ctl": 2.3,
+   "N_exp": 56,
+   "N_ctl": 50,
+   "hr": 0.57
+  },
+  {
+   "nct": "NCT00777101",
+   "median_exp": 6.8,
+   "median_ctl": 4.5,
+   "N_exp": 116,
+   "N_ctl": 117,
+   "hr": 1.19
+  },
+  {
+   "nct": "NCT00887822",
+   "median_exp": 11.4,
+   "median_ctl": 10.5,
+   "N_exp": 102,
+   "N_ctl": 100,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT01874353",
+   "median_exp": 19.1,
+   "median_ctl": 5.5,
+   "N_exp": 196,
+   "N_ctl": 99,
+   "hr": 0.3
+  },
+  {
+   "nct": "NCT00651261",
+   "median_exp": 74.7,
+   "median_ctl": 25.6,
+   "N_exp": 360,
+   "N_ctl": 357,
+   "hr": 0.78
+  },
+  {
+   "nct": "NCT01108445",
+   "median_exp": 8.3,
+   "median_ctl": 5.6,
+   "N_exp": 51,
+   "N_ctl": 57,
+   "hr": 1.406
+  },
+  {
+   "nct": "NCT00638690",
+   "median_exp": 14.8,
+   "median_ctl": 10.9,
+   "N_exp": 797,
+   "N_ctl": 398,
+   "hr": 0.646
+  },
+  {
+   "nct": "NCT02005471",
+   "median_exp": 54.7,
+   "median_ctl": 17.0,
+   "N_exp": 194,
+   "N_ctl": 195,
+   "hr": 0.23
+  },
+  {
+   "nct": "NCT01308580",
+   "median_exp": 14.5,
+   "median_ctl": 13.4,
+   "N_exp": 602,
+   "N_ctl": 598,
+   "hr": 1.024
+  },
+  {
+   "nct": "NCT01457846",
+   "median_exp": 3.5,
+   "median_ctl": 1.8,
+   "N_exp": 30,
+   "N_ctl": 41,
+   "hr": 1.57
+  },
+  {
+   "nct": "NCT03099187",
+   "median_exp": 5.8,
+   "median_ctl": 5.7,
+   "N_exp": 127,
+   "N_ctl": 126,
+   "hr": 1.22
+  },
+  {
+   "nct": "NCT01959139",
+   "median_exp": 14.4,
+   "median_ctl": 7.7,
+   "N_exp": 56,
+   "N_ctl": 55,
+   "hr": 2.07
+  },
+  {
+   "nct": "NCT02915523",
+   "median_exp": 10.6,
+   "median_ctl": 1.6,
+   "N_exp": 41,
+   "N_ctl": 85,
+   "hr": 0.899
+  },
+  {
+   "nct": "NCT00390806",
+   "median_exp": 4.0,
+   "median_ctl": 3.6,
+   "N_exp": 236,
+   "N_ctl": 236,
+   "hr": 0.88
+  },
+  {
+   "nct": "NCT04313881",
+   "median_exp": 18.6,
+   "median_ctl": 15.9,
+   "N_exp": 271,
+   "N_ctl": 268,
+   "hr": 1.203
+  },
+  {
+   "nct": "NCT00774345",
+   "median_exp": 95.1,
+   "median_ctl": 73.3,
+   "N_exp": 160,
+   "N_ctl": 157,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT00424047",
+   "median_exp": 12.0,
+   "median_ctl": 4.6,
+   "N_exp": 176,
+   "N_ctl": 175,
+   "hr": 0.324
+  },
+  {
+   "nct": "NCT01024920",
+   "median_exp": 8.4,
+   "median_ctl": 8.4,
+   "N_exp": 64,
+   "N_ctl": 32,
+   "hr": 1.12
+  },
+  {
+   "nct": "NCT02125461",
+   "median_exp": 16.8,
+   "median_ctl": 5.6,
+   "N_exp": 476,
+   "N_ctl": 237,
+   "hr": 0.52
+  },
+  {
+   "nct": "NCT00724503",
+   "median_exp": 10.7,
+   "median_ctl": 10.2,
+   "N_exp": 267,
+   "N_ctl": 263,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT01907100",
+   "median_exp": 9.4,
+   "median_ctl": 5.7,
+   "N_exp": 273,
+   "N_ctl": 272,
+   "hr": 0.555
+  },
+  {
+   "nct": "NCT03615326",
+   "median_exp": 10.0,
+   "median_ctl": 8.1,
+   "N_exp": 350,
+   "N_ctl": 348,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT01121393",
+   "median_exp": 11.0,
+   "median_ctl": 5.6,
+   "N_exp": 242,
+   "N_ctl": 210,
+   "hr": 0.281
+  },
+  {
+   "nct": "NCT01582269",
+   "median_exp": 8.0,
+   "median_ctl": 6.7,
+   "N_exp": 114,
+   "N_ctl": 79,
+   "hr": 0.9336
+  },
+  {
+   "nct": "NCT01245062",
+   "median_exp": 4.8,
+   "median_ctl": 1.4,
+   "N_exp": 214,
+   "N_ctl": 108,
+   "hr": 0.44
+  },
+  {
+   "nct": "NCT03626545",
+   "median_exp": 10.6,
+   "median_ctl": 4.2,
+   "N_exp": 120,
+   "N_ctl": 120,
+   "hr": 1.06
+  },
+  {
+   "nct": "NCT00326898",
+   "median_exp": 79.2,
+   "median_ctl": 69.6,
+   "N_exp": 647,
+   "N_ctl": 647,
+   "hr": 1.02
+  },
+  {
+   "nct": "NCT00265317",
+   "median_exp": 8.2,
+   "median_ctl": 6.2,
+   "N_exp": 162,
+   "N_ctl": 67,
+   "hr": 0.898
+  },
+  {
+   "nct": "NCT00722137",
+   "median_exp": 24.7,
+   "median_ctl": 14.4,
+   "N_exp": 243,
+   "N_ctl": 244,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT01362608",
+   "median_exp": 48.0,
+   "median_ctl": 24.0,
+   "N_exp": 69,
+   "N_ctl": 67,
+   "hr": 0.26
+  },
+  {
+   "nct": "NCT00004259",
+   "median_exp": 86.4,
+   "median_ctl": 45.6,
+   "N_exp": 97,
+   "N_ctl": 99,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT02352948",
+   "median_exp": 11.7,
+   "median_ctl": 6.8,
+   "N_exp": 174,
+   "N_ctl": 118,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT03602859",
+   "median_exp": 20.6,
+   "median_ctl": 19.2,
+   "N_exp": 753,
+   "N_ctl": 745,
+   "hr": 0.85
+  },
+  {
+   "nct": "NCT00257608",
+   "median_exp": 4.8,
+   "median_ctl": 3.7,
+   "N_exp": 370,
+   "N_ctl": 524,
+   "hr": 0.708
+  },
+  {
+   "nct": "NCT00267748",
+   "median_exp": 6.1,
+   "median_ctl": 3.5,
+   "N_exp": 146,
+   "N_ctl": 146,
+   "hr": 1.089
+  },
+  {
+   "nct": "NCT02973789",
+   "median_exp": 13.2,
+   "median_ctl": 9.9,
+   "N_exp": 145,
+   "N_ctl": 146,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT01835158",
+   "median_exp": 8.2,
+   "median_ctl": 5.6,
+   "N_exp": 79,
+   "N_ctl": 78,
+   "hr": 0.66
+  },
+  {
+   "nct": "NCT00157209",
+   "median_exp": 17.2,
+   "median_ctl": 13.0,
+   "N_exp": 88,
+   "N_ctl": 83,
+   "hr": 0.745
+  },
+  {
+   "nct": "NCT01843374",
+   "median_exp": 2.8,
+   "median_ctl": 2.7,
+   "N_exp": 382,
+   "N_ctl": 382,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT00304031",
+   "median_exp": 16.6,
+   "median_ctl": 14.9,
+   "N_exp": 676,
+   "N_ctl": 508,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT01308567",
+   "median_exp": 25.2,
+   "median_ctl": 24.3,
+   "N_exp": 388,
+   "N_ctl": 391,
+   "hr": 0.975
+  },
+  {
+   "nct": "NCT00596830",
+   "median_exp": 9.8,
+   "median_ctl": 8.6,
+   "N_exp": 339,
+   "N_ctl": 342,
+   "hr": 1.179
+  },
+  {
+   "nct": "NCT02057666",
+   "median_exp": 11.0,
+   "median_ctl": 7.5,
+   "N_exp": 96,
+   "N_ctl": 50,
+   "hr": 0.406
+  },
+  {
+   "nct": "NCT05091567",
+   "median_exp": 13.2,
+   "median_ctl": 10.6,
+   "N_exp": 242,
+   "N_ctl": 241,
+   "hr": 0.54
+  },
+  {
+   "nct": "NCT02477826",
+   "median_exp": 8.3,
+   "median_ctl": 4.2,
+   "N_exp": 377,
+   "N_ctl": 396,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT02752074",
+   "median_exp": 4.9,
+   "median_ctl": 4.7,
+   "N_exp": 352,
+   "N_ctl": 354,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT00987935",
+   "median_exp": 3.7,
+   "median_ctl": 2.7,
+   "N_exp": 32,
+   "N_ctl": 63,
+   "hr": 1.357
+  },
+  {
+   "nct": "NCT01740427",
+   "median_exp": 24.8,
+   "median_ctl": 14.5,
+   "N_exp": 444,
+   "N_ctl": 222,
+   "hr": 0.576
+  },
+  {
+   "nct": "NCT00471146",
+   "median_exp": 8.5,
+   "median_ctl": 8.2,
+   "N_exp": 314,
+   "N_ctl": 316,
+   "hr": 1.014
+  },
+  {
+   "nct": "NCT00820222",
+   "median_exp": 8.1,
+   "median_ctl": 6.6,
+   "N_exp": 269,
+   "N_ctl": 271,
+   "hr": 1.3
+  },
+  {
+   "nct": "NCT00789373",
+   "median_exp": 4.1,
+   "median_ctl": 2.8,
+   "N_exp": 359,
+   "N_ctl": 180,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT00769067",
+   "median_exp": 2.9,
+   "median_ctl": 1.9,
+   "N_exp": 94,
+   "N_ctl": 94,
+   "hr": 0.657
+  },
+  {
+   "nct": "NCT02578641",
+   "median_exp": 24.9,
+   "median_ctl": 7.9,
+   "N_exp": 166,
+   "N_ctl": 164,
+   "hr": 1.19
+  },
+  {
+   "nct": "NCT03215706",
+   "median_exp": 14.1,
+   "median_ctl": 10.7,
+   "N_exp": 361,
+   "N_ctl": 358,
+   "hr": 0.69
+  },
+  {
+   "nct": "NCT04958785",
+   "median_exp": 15.7,
+   "median_ctl": 10.0,
+   "N_exp": 42,
+   "N_ctl": 53,
+   "hr": 0.456
+  },
+  {
+   "nct": "NCT00130728",
+   "median_exp": 9.3,
+   "median_ctl": 9.2,
+   "N_exp": 319,
+   "N_ctl": 317,
+   "hr": 0.97
+  },
+  {
+   "nct": "NCT03833167",
+   "median_exp": 53.7,
+   "median_ctl": 53.3,
+   "N_exp": 225,
+   "N_ctl": 225,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT00071799",
+   "median_exp": 24.5,
+   "median_ctl": 15.0,
+   "N_exp": 179,
+   "N_ctl": 179,
+   "hr": 0.58
+  },
+  {
+   "nct": "NCT01391130",
+   "median_exp": 12.2,
+   "median_ctl": 8.1,
+   "N_exp": 36,
+   "N_ctl": 72,
+   "hr": 1.2149
+  },
+  {
+   "nct": "NCT01160744",
+   "median_exp": 7.2,
+   "median_ctl": 5.4,
+   "N_exp": 69,
+   "N_ctl": 69,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT04222972",
+   "median_exp": 39.8,
+   "median_ctl": 18.7,
+   "N_exp": 113,
+   "N_ctl": 110,
+   "hr": 0.59
+  },
+  {
+   "nct": "NCT01750281",
+   "median_exp": 4.3,
+   "median_ctl": 3.0,
+   "N_exp": 43,
+   "N_ctl": 85,
+   "hr": 1.12
+  },
+  {
+   "nct": "NCT02763319",
+   "median_exp": 8.3,
+   "median_ctl": 7.1,
+   "N_exp": 227,
+   "N_ctl": 226,
+   "hr": 1.06
+  },
+  {
+   "nct": "NCT02588261",
+   "median_exp": 9.6,
+   "median_ctl": 9.3,
+   "N_exp": 263,
+   "N_ctl": 267,
+   "hr": 1.611
+  },
+  {
+   "nct": "NCT01196741",
+   "median_exp": 12.3,
+   "median_ctl": 10.1,
+   "N_exp": 35,
+   "N_ctl": 69,
+   "hr": 0.89
+  },
+  {
+   "nct": "NCT05654623",
+   "median_exp": 3.7,
+   "median_ctl": 3.6,
+   "N_exp": 313,
+   "N_ctl": 311,
+   "hr": 0.83
+  },
+  {
+   "nct": "NCT01167712",
+   "median_exp": 24.0,
+   "median_ctl": 14.7,
+   "N_exp": 346,
+   "N_ctl": 346,
+   "hr": 0.89
+  },
+  {
+   "nct": "NCT01124786",
+   "median_exp": 6.1,
+   "median_ctl": 5.7,
+   "N_exp": 118,
+   "N_ctl": 114,
+   "hr": 0.994
+  },
+  {
+   "nct": "NCT00447057",
+   "median_exp": 3.2,
+   "median_ctl": 2.9,
+   "N_exp": 102,
+   "N_ctl": 102,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT02007512",
+   "median_exp": 11.8,
+   "median_ctl": 3.6,
+   "N_exp": 114,
+   "N_ctl": 61,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT02611960",
+   "median_exp": 17.2,
+   "median_ctl": 15.3,
+   "N_exp": 117,
+   "N_ctl": 116,
+   "hr": 0.9
+  },
+  {
+   "nct": "NCT01439568",
+   "median_exp": 5.9,
+   "median_ctl": 5.8,
+   "N_exp": 47,
+   "N_ctl": 42,
+   "hr": 1.0608
+  },
+  {
+   "nct": "NCT02627963",
+   "median_exp": 5.6,
+   "median_ctl": 3.9,
+   "N_exp": 175,
+   "N_ctl": 175,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT00676663",
+   "median_exp": 28.1,
+   "median_ctl": 19.8,
+   "N_exp": 64,
+   "N_ctl": 66,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT02450539",
+   "median_exp": 4.2,
+   "median_ctl": 2.5,
+   "N_exp": 53,
+   "N_ctl": 106,
+   "hr": 1.765
+  },
+  {
+   "nct": "NCT02162719",
+   "median_exp": 6.2,
+   "median_ctl": 4.9,
+   "N_exp": 62,
+   "N_ctl": 62,
+   "hr": 0.6
+  },
+  {
+   "nct": "NCT04472429",
+   "median_exp": 9.3,
+   "median_ctl": 7.4,
+   "N_exp": 154,
+   "N_ctl": 154,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT02610777",
+   "median_exp": 21.8,
+   "median_ctl": 19.0,
+   "N_exp": 58,
+   "N_ctl": 62,
+   "hr": 0.861
+  },
+  {
+   "nct": "NCT02576574",
+   "median_exp": 8.4,
+   "median_ctl": 5.6,
+   "N_exp": 366,
+   "N_ctl": 526,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT01057810",
+   "median_exp": 29.7,
+   "median_ctl": 28.6,
+   "N_exp": 202,
+   "N_ctl": 400,
+   "hr": 1.11
+  },
+  {
+   "nct": "NCT00805194",
+   "median_exp": 3.4,
+   "median_ctl": 2.7,
+   "N_exp": 655,
+   "N_ctl": 659,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT00602641",
+   "median_exp": 21.0,
+   "median_ctl": 18.7,
+   "N_exp": 154,
+   "N_ctl": 152,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT02748213",
+   "median_exp": 17.9,
+   "median_ctl": 12.8,
+   "N_exp": 112,
+   "N_ctl": 110,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT00091442",
+   "median_exp": 20.7,
+   "median_ctl": 20.4,
+   "N_exp": 373,
+   "N_ctl": 378,
+   "hr": 1.06
+  },
+  {
+   "nct": "NCT00418574",
+   "median_exp": 13.2,
+   "median_ctl": 13.2,
+   "N_exp": 593,
+   "N_ctl": 295,
+   "hr": 1.099
+  },
+  {
+   "nct": "NCT02111577",
+   "median_exp": 24.3,
+   "median_ctl": 23.9,
+   "N_exp": 395,
+   "N_ctl": 787,
+   "hr": 1.042
+  },
+  {
+   "nct": "NCT01876784",
+   "median_exp": 10.0,
+   "median_ctl": 5.7,
+   "N_exp": 119,
+   "N_ctl": 119,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT01074047",
+   "median_exp": 10.4,
+   "median_ctl": 6.5,
+   "N_exp": 241,
+   "N_ctl": 247,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT02899299",
+   "median_exp": 18.1,
+   "median_ctl": 13.3,
+   "N_exp": 303,
+   "N_ctl": 302,
+   "hr": 0.74
+  },
+  {
+   "nct": "NCT03875092",
+   "median_exp": 8.3,
+   "median_ctl": 4.2,
+   "N_exp": 65,
+   "N_ctl": 60,
+   "hr": 0.35
+  },
+  {
+   "nct": "NCT01721772",
+   "median_exp": 10.8,
+   "median_ctl": 5.1,
+   "N_exp": 208,
+   "N_ctl": 210,
+   "hr": 0.42
+  },
+  {
+   "nct": "NCT02819518",
+   "median_exp": 7.5,
+   "median_ctl": 5.6,
+   "N_exp": 566,
+   "N_ctl": 281,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT04975308",
+   "median_exp": 5.5,
+   "median_ctl": 5.5,
+   "N_exp": 331,
+   "N_ctl": 330,
+   "hr": 0.867
+  },
+  {
+   "nct": "NCT00073307",
+   "median_exp": 17.8,
+   "median_ctl": 15.1,
+   "N_exp": 451,
+   "N_ctl": 452,
+   "hr": 0.88
+  },
+  {
+   "nct": "NCT01578239",
+   "median_exp": 48.0,
+   "median_ctl": 8.5,
+   "N_exp": 117,
+   "N_ctl": 114,
+   "hr": 0.177
+  },
+  {
+   "nct": "NCT00748189",
+   "median_exp": 22.4,
+   "median_ctl": 13.1,
+   "N_exp": 221,
+   "N_ctl": 227,
+   "hr": 0.57
+  },
+  {
+   "nct": "NCT00377156",
+   "median_exp": 10.4,
+   "median_ctl": 7.4,
+   "N_exp": 111,
+   "N_ctl": 102,
+   "hr": 1.02
+  },
+  {
+   "nct": "NCT02075840",
+   "median_exp": 81.1,
+   "median_ctl": 11.1,
+   "N_exp": 152,
+   "N_ctl": 151,
+   "hr": 0.47
+  },
+  {
+   "nct": "NCT02451943",
+   "median_exp": 20.4,
+   "median_ctl": 19.8,
+   "N_exp": 258,
+   "N_ctl": 251,
+   "hr": 1.047
+  },
+  {
+   "nct": "NCT02725268",
+   "median_exp": 5.6,
+   "median_ctl": 2.0,
+   "N_exp": 90,
+   "N_ctl": 20,
+   "hr": 0.8
+  },
+  {
+   "nct": "NCT02893917",
+   "median_exp": 8.5,
+   "median_ctl": 4.0,
+   "N_exp": 45,
+   "N_ctl": 45,
+   "hr": 0.617
+  },
+  {
+   "nct": "NCT01575548",
+   "median_exp": 17.0,
+   "median_ctl": 14.2,
+   "N_exp": 66,
+   "N_ctl": 63,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT01708954",
+   "median_exp": 4.7,
+   "median_ctl": 1.8,
+   "N_exp": 39,
+   "N_ctl": 40,
+   "hr": 0.37
+  },
+  {
+   "nct": "NCT01395017",
+   "median_exp": 12.9,
+   "median_ctl": 12.3,
+   "N_exp": 102,
+   "N_ctl": 100,
+   "hr": 1.19
+  },
+  {
+   "nct": "NCT01064622",
+   "median_exp": 4.0,
+   "median_ctl": 2.5,
+   "N_exp": 53,
+   "N_ctl": 53,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT00644228",
+   "median_exp": 75.0,
+   "median_ctl": 64.0,
+   "N_exp": 242,
+   "N_ctl": 229,
+   "hr": 0.712
+  },
+  {
+   "nct": "NCT00880334",
+   "median_exp": 2.6,
+   "median_ctl": 1.6,
+   "N_exp": 70,
+   "N_ctl": 72,
+   "hr": 1.02
+  },
+  {
+   "nct": "NCT01841736",
+   "median_exp": 11.6,
+   "median_ctl": 8.5,
+   "N_exp": 97,
+   "N_ctl": 74,
+   "hr": 0.53
+  },
+  {
+   "nct": "NCT01844986",
+   "median_exp": 13.8,
+   "median_ctl": 9.3,
+   "N_exp": 131,
+   "N_ctl": 20,
+   "hr": 0.3
+  },
+  {
+   "nct": "NCT02231749",
+   "median_exp": 25.9,
+   "median_ctl": 11.6,
+   "N_exp": 546,
+   "N_ctl": 550,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT01390948",
+   "median_exp": 11.8,
+   "median_ctl": 8.2,
+   "N_exp": 59,
+   "N_ctl": 62,
+   "hr": 1.44
+  },
+  {
+   "nct": "NCT04195750",
+   "median_exp": 18.2,
+   "median_ctl": 5.6,
+   "N_exp": 372,
+   "N_ctl": 374,
+   "hr": 0.74
+  },
+  {
+   "nct": "NCT01856478",
+   "median_exp": 2.9,
+   "median_ctl": 2.6,
+   "N_exp": 228,
+   "N_ctl": 112,
+   "hr": 0.627
+  },
+  {
+   "nct": "NCT00531934",
+   "median_exp": 2.3,
+   "median_ctl": 2.1,
+   "N_exp": 74,
+   "N_ctl": 73,
+   "hr": 0.763
+  },
+  {
+   "nct": "NCT02115282",
+   "median_exp": 3.3,
+   "median_ctl": 3.1,
+   "N_exp": 305,
+   "N_ctl": 303,
+   "hr": 0.87
+  },
+  {
+   "nct": "NCT03811002",
+   "median_exp": 34.9,
+   "median_ctl": 27.8,
+   "N_exp": 270,
+   "N_ctl": 274,
+   "hr": 1.05
+  },
+  {
+   "nct": "NCT01483027",
+   "median_exp": 8.0,
+   "median_ctl": 7.2,
+   "N_exp": 215,
+   "N_ctl": 213,
+   "hr": 0.69
+  },
+  {
+   "nct": "NCT02275533",
+   "median_exp": 13.2,
+   "median_ctl": 10.9,
+   "N_exp": 38,
+   "N_ctl": 41,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT04214249",
+   "median_exp": 8.5,
+   "median_ctl": 8.4,
+   "N_exp": 25,
+   "N_ctl": 23,
+   "hr": 1.54
+  },
+  {
+   "nct": "NCT03762018",
+   "median_exp": 20.5,
+   "median_ctl": 18.1,
+   "N_exp": 200,
+   "N_ctl": 200,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT03330847",
+   "median_exp": 7.4,
+   "median_ctl": 3.8,
+   "N_exp": 112,
+   "N_ctl": 47,
+   "hr": 1.02
+  },
+  {
+   "nct": "NCT03924869",
+   "median_exp": 31.2,
+   "median_ctl": 28.3,
+   "N_exp": 227,
+   "N_ctl": 221,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT02297438",
+   "median_exp": 51.5,
+   "median_ctl": 50.3,
+   "N_exp": 171,
+   "N_ctl": 169,
+   "hr": 0.677
+  },
+  {
+   "nct": "NCT00852995",
+   "median_exp": 71.0,
+   "median_ctl": 50.0,
+   "N_exp": 50,
+   "N_ctl": 46,
+   "hr": 1.83
+  },
+  {
+   "nct": "NCT02366143",
+   "median_exp": 11.3,
+   "median_ctl": 6.8,
+   "N_exp": 402,
+   "N_ctl": 400,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT00569127",
+   "median_exp": 47.3,
+   "median_ctl": 35.2,
+   "N_exp": 202,
+   "N_ctl": 200,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT03024996",
+   "median_exp": 57.2,
+   "median_ctl": 49.5,
+   "N_exp": 390,
+   "N_ctl": 388,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT01942135",
+   "median_exp": 9.2,
+   "median_ctl": 3.8,
+   "N_exp": 347,
+   "N_ctl": 174,
+   "hr": 0.422
+  },
+  {
+   "nct": "NCT05330429",
+   "median_exp": 6.7,
+   "median_ctl": 6.2,
+   "N_exp": 37,
+   "N_ctl": 44,
+   "hr": 0.956
+  },
+  {
+   "nct": "NCT02477696",
+   "median_exp": 38.4,
+   "median_ctl": 38.4,
+   "N_exp": 265,
+   "N_ctl": 268,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT04223856",
+   "median_exp": 12.5,
+   "median_ctl": 6.3,
+   "N_exp": 442,
+   "N_ctl": 444,
+   "hr": 0.45
+  },
+  {
+   "nct": "NCT02123823",
+   "median_exp": 7.3,
+   "median_ctl": 5.6,
+   "N_exp": 70,
+   "N_ctl": 70,
+   "hr": 0.97
+  },
+  {
+   "nct": "NCT04666038",
+   "median_exp": 14.0,
+   "median_ctl": 8.7,
+   "N_exp": 119,
+   "N_ctl": 119,
+   "hr": 0.536
+  },
+  {
+   "nct": "NCT01208662",
+   "median_exp": 67.5,
+   "median_ctl": 46.2,
+   "N_exp": 365,
+   "N_ctl": 357,
+   "hr": 1.53
+  },
+  {
+   "nct": "NCT01064648",
+   "median_exp": 7.2,
+   "median_ctl": 5.6,
+   "N_exp": 45,
+   "N_ctl": 47,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT01721746",
+   "median_exp": 15.7,
+   "median_ctl": 3.6,
+   "N_exp": 272,
+   "N_ctl": 133,
+   "hr": 0.86
+  },
+  {
+   "nct": "NCT00075218",
+   "median_exp": 5.3,
+   "median_ctl": 1.4,
+   "N_exp": 243,
+   "N_ctl": 118,
+   "hr": 0.329
+  },
+  {
+   "nct": "NCT00457691",
+   "median_exp": 8.4,
+   "median_ctl": 7.7,
+   "N_exp": 382,
+   "N_ctl": 386,
+   "hr": 1.095
+  },
+  {
+   "nct": "NCT04246047",
+   "median_exp": 36.6,
+   "median_ctl": 13.4,
+   "N_exp": 243,
+   "N_ctl": 251,
+   "hr": 0.41
+  },
+  {
+   "nct": "NCT03755791",
+   "median_exp": 6.8,
+   "median_ctl": 4.2,
+   "N_exp": 432,
+   "N_ctl": 217,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT03706365",
+   "median_exp": 24.9,
+   "median_ctl": 20.3,
+   "N_exp": 206,
+   "N_ctl": 187,
+   "hr": 0.829
+  },
+  {
+   "nct": "NCT01950390",
+   "median_exp": 20.4,
+   "median_ctl": 20.1,
+   "N_exp": 85,
+   "N_ctl": 84,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT01664923",
+   "median_exp": 19.4,
+   "median_ctl": 5.7,
+   "N_exp": 198,
+   "N_ctl": 198,
+   "hr": 0.24
+  },
+  {
+   "nct": "NCT02446600",
+   "median_exp": 10.4,
+   "median_ctl": 8.2,
+   "N_exp": 189,
+   "N_ctl": 189,
+   "hr": 0.856
+  },
+  {
+   "nct": "NCT00617656",
+   "median_exp": 5.5,
+   "median_ctl": 2.5,
+   "N_exp": 49,
+   "N_ctl": 43,
+   "hr": 1.13
+  },
+  {
+   "nct": "NCT01116648",
+   "median_exp": 16.5,
+   "median_ctl": 8.2,
+   "N_exp": 44,
+   "N_ctl": 46,
+   "hr": 0.5
+  },
+  {
+   "nct": "NCT02252042",
+   "median_exp": 2.3,
+   "median_ctl": 2.1,
+   "N_exp": 248,
+   "N_ctl": 247,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT00463788",
+   "median_exp": 3.7,
+   "median_ctl": 1.5,
+   "N_exp": 115,
+   "N_ctl": 58,
+   "hr": 0.675
+  },
+  {
+   "nct": "NCT03867084",
+   "median_exp": 46.7,
+   "median_ctl": 45.5,
+   "N_exp": 476,
+   "N_ctl": 483,
+   "hr": 1.13
+  },
+  {
+   "nct": "NCT03112174",
+   "median_exp": 31.9,
+   "median_ctl": 22.1,
+   "N_exp": 134,
+   "N_ctl": 133,
+   "hr": 0.629
+  },
+  {
+   "nct": "NCT03358875",
+   "median_exp": 17.2,
+   "median_ctl": 2.6,
+   "N_exp": 535,
+   "N_ctl": 270,
+   "hr": 0.64
+  },
+  {
+   "nct": "NCT02053610",
+   "median_exp": 26.7,
+   "median_ctl": 15.7,
+   "N_exp": 333,
+   "N_ctl": 330,
+   "hr": 0.49
+  },
+  {
+   "nct": "NCT01790503",
+   "median_exp": 7.6,
+   "median_ctl": 6.1,
+   "N_exp": 43,
+   "N_ctl": 53,
+   "hr": 0.98
+  },
+  {
+   "nct": "NCT01641939",
+   "median_exp": 8.6,
+   "median_ctl": 7.9,
+   "N_exp": 117,
+   "N_ctl": 228,
+   "hr": 1.15
+  },
+  {
+   "nct": "NCT01013740",
+   "median_exp": 6.2,
+   "median_ctl": 6.2,
+   "N_exp": 75,
+   "N_ctl": 37,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT02604342",
+   "median_exp": 10.9,
+   "median_ctl": 1.4,
+   "N_exp": 79,
+   "N_ctl": 40,
+   "hr": 0.2
+  },
+  {
+   "nct": "NCT03382561",
+   "median_exp": 5.5,
+   "median_ctl": 4.9,
+   "N_exp": 75,
+   "N_ctl": 69,
+   "hr": 0.78
+  },
+  {
+   "nct": "NCT01903811",
+   "median_exp": 8.0,
+   "median_ctl": 3.0,
+   "N_exp": 57,
+   "N_ctl": 64,
+   "hr": 1.061
+  },
+  {
+   "nct": "NCT03088813",
+   "median_exp": 8.3,
+   "median_ctl": 7.9,
+   "N_exp": 232,
+   "N_ctl": 229,
+   "hr": 1.11
+  },
+  {
+   "nct": "NCT01996865",
+   "median_exp": 60.5,
+   "median_ctl": 52.7,
+   "N_exp": 500,
+   "N_ctl": 134,
+   "hr": 0.8
+  },
+  {
+   "nct": "NCT05224141",
+   "median_exp": 12.9,
+   "median_ctl": 11.5,
+   "N_exp": 230,
+   "N_ctl": 230,
+   "hr": 1.26
+  },
+  {
+   "nct": "NCT00903175",
+   "median_exp": 22.4,
+   "median_ctl": 10.7,
+   "N_exp": 238,
+   "N_ctl": 233,
+   "hr": 1.43
+  },
+  {
+   "nct": "NCT01024036",
+   "median_exp": 86.3,
+   "median_ctl": 79.5,
+   "N_exp": 53,
+   "N_ctl": 26,
+   "hr": 0.418
+  },
+  {
+   "nct": "NCT00143455",
+   "median_exp": 10.6,
+   "median_ctl": 9.4,
+   "N_exp": 176,
+   "N_ctl": 186,
+   "hr": 1.236
+  },
+  {
+   "nct": "NCT02151149",
+   "median_exp": 7.2,
+   "median_ctl": 3.9,
+   "N_exp": 72,
+   "N_ctl": 71,
+   "hr": 0.52
+  },
+  {
+   "nct": "NCT02017717",
+   "median_exp": 15.9,
+   "median_ctl": 9.8,
+   "N_exp": 28,
+   "N_ctl": 184,
+   "hr": 1.1
+  },
+  {
+   "nct": "NCT00519285",
+   "median_exp": 22.1,
+   "median_ctl": 21.2,
+   "N_exp": 612,
+   "N_ctl": 612,
+   "hr": 0.942
+  },
+  {
+   "nct": "NCT02711553",
+   "median_exp": 7.0,
+   "median_ctl": 6.5,
+   "N_exp": 102,
+   "N_ctl": 106,
+   "hr": 1.123
+  },
+  {
+   "nct": "NCT01212991",
+   "median_exp": 32.4,
+   "median_ctl": 30.2,
+   "N_exp": 872,
+   "N_ctl": 845,
+   "hr": 0.706
+  },
+  {
+   "nct": "NCT02655016",
+   "median_exp": 13.8,
+   "median_ctl": 8.2,
+   "N_exp": 487,
+   "N_ctl": 246,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT01227928",
+   "median_exp": 18.1,
+   "median_ctl": 18.1,
+   "N_exp": 73,
+   "N_ctl": 72,
+   "hr": 0.984
+  },
+  {
+   "nct": "NCT04322539",
+   "median_exp": 7.4,
+   "median_ctl": 4.8,
+   "N_exp": 545,
+   "N_ctl": 232,
+   "hr": 0.662
+  },
+  {
+   "nct": "NCT02601209",
+   "median_exp": 13.7,
+   "median_ctl": 12.2,
+   "N_exp": 58,
+   "N_ctl": 56,
+   "hr": 1.36
+  },
+  {
+   "nct": "NCT02927262",
+   "median_exp": 24.0,
+   "median_ctl": 15.8,
+   "N_exp": 63,
+   "N_ctl": 35,
+   "hr": 0.738
+  },
+  {
+   "nct": "NCT00454779",
+   "median_exp": 6.9,
+   "median_ctl": 5.5,
+   "N_exp": 52,
+   "N_ctl": 51,
+   "hr": 0.629
+  },
+  {
+   "nct": "NCT01622868",
+   "median_exp": 15.6,
+   "median_ctl": 15.3,
+   "N_exp": 90,
+   "N_ctl": 116,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT05740566",
+   "median_exp": 13.6,
+   "median_ctl": 8.3,
+   "N_exp": 254,
+   "N_ctl": 255,
+   "hr": 0.599
+  },
+  {
+   "nct": "NCT04221945",
+   "median_exp": 47.6,
+   "median_ctl": 47.5,
+   "N_exp": 529,
+   "N_ctl": 531,
+   "hr": 0.72
+  },
+  {
+   "nct": "NCT04940052",
+   "median_exp": 12.8,
+   "median_ctl": 3.7,
+   "N_exp": 101,
+   "N_ctl": 52,
+   "hr": 0.38
+  },
+  {
+   "nct": "NCT02591615",
+   "median_exp": 5.8,
+   "median_ctl": 4.0,
+   "N_exp": 43,
+   "N_ctl": 47,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT01250379",
+   "median_exp": 19.7,
+   "median_ctl": 18.7,
+   "N_exp": 247,
+   "N_ctl": 247,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT01125566",
+   "median_exp": 5.5,
+   "median_ctl": 5.5,
+   "N_exp": 169,
+   "N_ctl": 339,
+   "hr": 1.1
+  },
+  {
+   "nct": "NCT01328951",
+   "median_exp": 9.7,
+   "median_ctl": 9.5,
+   "N_exp": 322,
+   "N_ctl": 321,
+   "hr": 1.02
+  },
+  {
+   "nct": "NCT05983367",
+   "median_exp": 8.8,
+   "median_ctl": 8.1,
+   "N_exp": 38,
+   "N_ctl": 38,
+   "hr": 0.81
+  },
+  {
+   "nct": "NCT03906071",
+   "median_exp": 12.2,
+   "median_ctl": 10.6,
+   "N_exp": 284,
+   "N_ctl": 293,
+   "hr": 0.86
+  },
+  {
+   "nct": "NCT02435433",
+   "median_exp": 8.5,
+   "median_ctl": 7.3,
+   "N_exp": 197,
+   "N_ctl": 95,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT04738487",
+   "median_exp": 20.3,
+   "median_ctl": 15.7,
+   "N_exp": 612,
+   "N_ctl": 594,
+   "hr": 1.06
+  },
+  {
+   "nct": "NCT02551159",
+   "median_exp": 11.2,
+   "median_ctl": 10.9,
+   "N_exp": 413,
+   "N_ctl": 204,
+   "hr": 0.96
+  },
+  {
+   "nct": "NCT02288247",
+   "median_exp": 9.5,
+   "median_ctl": 8.3,
+   "N_exp": 136,
+   "N_ctl": 135,
+   "hr": 0.72
+  },
+  {
+   "nct": "NCT04677504",
+   "median_exp": 8.3,
+   "median_ctl": 7.9,
+   "N_exp": 81,
+   "N_ctl": 83,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT01385748",
+   "median_exp": 58.8,
+   "median_ctl": 41.8,
+   "N_exp": 121,
+   "N_ctl": 62,
+   "hr": 0.677
+  },
+  {
+   "nct": "NCT00372996",
+   "median_exp": 11.0,
+   "median_ctl": 9.2,
+   "N_exp": 106,
+   "N_ctl": 103,
+   "hr": 0.912
+  },
+  {
+   "nct": "NCT00405756",
+   "median_exp": 31.3,
+   "median_ctl": 12.9,
+   "N_exp": 152,
+   "N_ctl": 154,
+   "hr": 0.395
+  },
+  {
+   "nct": "NCT00676650",
+   "median_exp": 13.1,
+   "median_ctl": 11.8,
+   "N_exp": 584,
+   "N_ctl": 289,
+   "hr": 0.914
+  },
+  {
+   "nct": "NCT02528643",
+   "median_exp": 7.8,
+   "median_ctl": 7.7,
+   "N_exp": 110,
+   "N_ctl": 96,
+   "hr": 1.146
+  },
+  {
+   "nct": "NCT03298451",
+   "median_exp": 16.6,
+   "median_ctl": 13.8,
+   "N_exp": 389,
+   "N_ctl": 389,
+   "hr": 0.78
+  },
+  {
+   "nct": "NCT00820755",
+   "median_exp": 16.1,
+   "median_ctl": 15.5,
+   "N_exp": 583,
+   "N_ctl": 154,
+   "hr": 0.959
+  },
+  {
+   "nct": "NCT04676412",
+   "median_exp": 11.4,
+   "median_ctl": 10.3,
+   "N_exp": 49,
+   "N_ctl": 58,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT00266799",
+   "median_exp": 26.8,
+   "median_ctl": 23.3,
+   "N_exp": 105,
+   "N_ctl": 105,
+   "hr": 1.08
+  },
+  {
+   "nct": "NCT00700180",
+   "median_exp": 6.8,
+   "median_ctl": 6.7,
+   "N_exp": 154,
+   "N_ctl": 149,
+   "hr": 1.01
+  },
+  {
+   "nct": "NCT01210495",
+   "median_exp": 3.6,
+   "median_ctl": 1.9,
+   "N_exp": 134,
+   "N_ctl": 68,
+   "hr": 0.907
+  },
+  {
+   "nct": "NCT01642004",
+   "median_exp": 8.5,
+   "median_ctl": 6.0,
+   "N_exp": 135,
+   "N_ctl": 137,
+   "hr": 0.59
+  },
+  {
+   "nct": "NCT00656136",
+   "median_exp": 12.0,
+   "median_ctl": 10.8,
+   "N_exp": 195,
+   "N_ctl": 390,
+   "hr": 1.077
+  },
+  {
+   "nct": "NCT00110994",
+   "median_exp": 4.9,
+   "median_ctl": 2.7,
+   "N_exp": 51,
+   "N_ctl": 50,
+   "hr": 0.665
+  },
+  {
+   "nct": "NCT01646021",
+   "median_exp": 15.6,
+   "median_ctl": 6.2,
+   "N_exp": 139,
+   "N_ctl": 141,
+   "hr": 0.45
+  },
+  {
+   "nct": "NCT00002651",
+   "median_exp": 69.6,
+   "median_ctl": 61.2,
+   "N_exp": 765,
+   "N_ctl": 770,
+   "hr": 1.1
+  },
+  {
+   "nct": "NCT02654132",
+   "median_exp": 29.8,
+   "median_ctl": 4.7,
+   "N_exp": 60,
+   "N_ctl": 57,
+   "hr": 0.51
+  },
+  {
+   "nct": "NCT00849667",
+   "median_exp": 9.7,
+   "median_ctl": 9.0,
+   "N_exp": 366,
+   "N_ctl": 364,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT00466440",
+   "median_exp": 7.5,
+   "median_ctl": 7.0,
+   "N_exp": 48,
+   "N_ctl": 47,
+   "hr": 0.86
+  },
+  {
+   "nct": "NCT03765918",
+   "median_exp": 51.8,
+   "median_ctl": 30.4,
+   "N_exp": 363,
+   "N_ctl": 351,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT02453282",
+   "median_exp": 16.3,
+   "median_ctl": 11.9,
+   "N_exp": 374,
+   "N_ctl": 372,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT01482962",
+   "median_exp": 3.8,
+   "median_ctl": 3.4,
+   "N_exp": 138,
+   "N_ctl": 133,
+   "hr": 0.87
+  },
+  {
+   "nct": "NCT01657799",
+   "median_exp": 6.9,
+   "median_ctl": 6.1,
+   "N_exp": 102,
+   "N_ctl": 102,
+   "hr": 0.985
+  },
+  {
+   "nct": "NCT00566852",
+   "median_exp": 6.7,
+   "median_ctl": 5.5,
+   "N_exp": 256,
+   "N_ctl": 252,
+   "hr": 0.78
+  },
+  {
+   "nct": "NCT01271504",
+   "median_exp": 3.6,
+   "median_ctl": 2.4,
+   "N_exp": 42,
+   "N_ctl": 42,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT02598661",
+   "median_exp": 55.3,
+   "median_ctl": 40.4,
+   "N_exp": 170,
+   "N_ctl": 118,
+   "hr": 0.25
+  },
+  {
+   "nct": "NCT00478699",
+   "median_exp": 38.7,
+   "median_ctl": 32.7,
+   "N_exp": 101,
+   "N_ctl": 355,
+   "hr": 0.946
+  },
+  {
+   "nct": "NCT00112294",
+   "median_exp": 4.4,
+   "median_ctl": 4.2,
+   "N_exp": 338,
+   "N_ctl": 338,
+   "hr": 0.902
+  },
+  {
+   "nct": "NCT01757535",
+   "median_exp": 10.2,
+   "median_ctl": 4.8,
+   "N_exp": 238,
+   "N_ctl": 234,
+   "hr": 0.69
+  },
+  {
+   "nct": "NCT01234337",
+   "median_exp": 18.9,
+   "median_ctl": 5.4,
+   "N_exp": 266,
+   "N_ctl": 271,
+   "hr": 0.973
+  },
+  {
+   "nct": "NCT04576455",
+   "median_exp": 5.5,
+   "median_ctl": 5.4,
+   "N_exp": 151,
+   "N_ctl": 152,
+   "hr": 0.81
+  },
+  {
+   "nct": "NCT03768414",
+   "median_exp": 14.0,
+   "median_ctl": 13.6,
+   "N_exp": 294,
+   "N_ctl": 147,
+   "hr": 0.91
+  },
+  {
+   "nct": "NCT03434379",
+   "median_exp": 19.2,
+   "median_ctl": 13.2,
+   "N_exp": 336,
+   "N_ctl": 329,
+   "hr": 0.58
+  },
+  {
+   "nct": "NCT00428597",
+   "median_exp": 11.4,
+   "median_ctl": 5.5,
+   "N_exp": 86,
+   "N_ctl": 85,
+   "hr": 0.418
+  },
+  {
+   "nct": "NCT04746924",
+   "median_exp": 31.9,
+   "median_ctl": 29.4,
+   "N_exp": 287,
+   "N_ctl": 287,
+   "hr": 0.97
+  },
+  {
+   "nct": "NCT01351415",
+   "median_exp": 11.9,
+   "median_ctl": 10.2,
+   "N_exp": 245,
+   "N_ctl": 240,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT03173560",
+   "median_exp": 14.7,
+   "median_ctl": 11.1,
+   "N_exp": 443,
+   "N_ctl": 173,
+   "hr": 1.42
+  },
+  {
+   "nct": "NCT01374451",
+   "median_exp": 16.8,
+   "median_ctl": 16.6,
+   "N_exp": 79,
+   "N_ctl": 81,
+   "hr": 0.991
+  },
+  {
+   "nct": "NCT02472145",
+   "median_exp": 7.3,
+   "median_ctl": 5.4,
+   "N_exp": 159,
+   "N_ctl": 157,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT01673867",
+   "median_exp": 12.2,
+   "median_ctl": 9.4,
+   "N_exp": 292,
+   "N_ctl": 290,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT00332163",
+   "median_exp": 13.6,
+   "median_ctl": 11.2,
+   "N_exp": 47,
+   "N_ctl": 48,
+   "hr": 0.4
+  },
+  {
+   "nct": "NCT02278120",
+   "median_exp": 23.8,
+   "median_ctl": 13.0,
+   "N_exp": 335,
+   "N_ctl": 337,
+   "hr": 0.553
+  },
+  {
+   "nct": "NCT02107703",
+   "median_exp": 16.4,
+   "median_ctl": 9.3,
+   "N_exp": 446,
+   "N_ctl": 223,
+   "hr": 0.553
+  },
+  {
+   "nct": "NCT00940875",
+   "median_exp": 4.9,
+   "median_ctl": 3.9,
+   "N_exp": 28,
+   "N_ctl": 26,
+   "hr": 1.3
+  },
+  {
+   "nct": "NCT01001377",
+   "median_exp": 10.4,
+   "median_ctl": 10.0,
+   "N_exp": 499,
+   "N_ctl": 503,
+   "hr": 0.966
+  },
+  {
+   "nct": "NCT02576509",
+   "median_exp": 16.4,
+   "median_ctl": 14.7,
+   "N_exp": 371,
+   "N_ctl": 372,
+   "hr": 0.85
+  },
+  {
+   "nct": "NCT03068455",
+   "median_exp": 33.2,
+   "median_ctl": 25.3,
+   "N_exp": 920,
+   "N_ctl": 924,
+   "hr": 0.9
+  },
+  {
+   "nct": "NCT01964430",
+   "median_exp": 37.7,
+   "median_ctl": 19.4,
+   "N_exp": 434,
+   "N_ctl": 432,
+   "hr": 0.88
+  },
+  {
+   "nct": "NCT03512197",
+   "median_exp": 9.1,
+   "median_ctl": 6.0,
+   "N_exp": 251,
+   "N_ctl": 250,
+   "hr": 1.0239
+  },
+  {
+   "nct": "NCT01469000",
+   "median_exp": 16.2,
+   "median_ctl": 11.1,
+   "N_exp": 126,
+   "N_ctl": 65,
+   "hr": 0.67
+  },
+  {
+   "nct": "NCT02252172",
+   "median_exp": 90.2,
+   "median_ctl": 64.1,
+   "N_exp": 368,
+   "N_ctl": 369,
+   "hr": 0.56
+  },
+  {
+   "nct": "NCT00956930",
+   "median_exp": 18.6,
+   "median_ctl": 17.7,
+   "N_exp": 24,
+   "N_ctl": 21,
+   "hr": 0.122
+  },
+  {
+   "nct": "NCT03288987",
+   "median_exp": 7.6,
+   "median_ctl": 6.9,
+   "N_exp": 82,
+   "N_ctl": 44,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT01776840",
+   "median_exp": 80.6,
+   "median_ctl": 52.9,
+   "N_exp": 261,
+   "N_ctl": 262,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT01072175",
+   "median_exp": 41.5,
+   "median_ctl": 5.8,
+   "N_exp": 94,
+   "N_ctl": 59,
+   "hr": 0.58
+  },
+  {
+   "nct": "NCT01847274",
+   "median_exp": 21.0,
+   "median_ctl": 5.5,
+   "N_exp": 234,
+   "N_ctl": 116,
+   "hr": 0.27
+  },
+  {
+   "nct": "NCT02000531",
+   "median_exp": 26.3,
+   "median_ctl": 23.4,
+   "N_exp": 21,
+   "N_ctl": 24,
+   "hr": 1.26
+  },
+  {
+   "nct": "NCT05014815",
+   "median_exp": 8.2,
+   "median_ctl": 8.1,
+   "N_exp": 136,
+   "N_ctl": 136,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT03735121",
+   "median_exp": 2.9,
+   "median_ctl": 2.8,
+   "N_exp": 228,
+   "N_ctl": 247,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT00723957",
+   "median_exp": 13.0,
+   "median_ctl": 4.3,
+   "N_exp": 98,
+   "N_ctl": 99,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT01763164",
+   "median_exp": 11.0,
+   "median_ctl": 10.1,
+   "N_exp": 269,
+   "N_ctl": 133,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT03346070",
+   "median_exp": 34.5,
+   "median_ctl": 1.7,
+   "N_exp": 38,
+   "N_ctl": 38,
+   "hr": 1.92
+  },
+  {
+   "nct": "NCT00317642",
+   "median_exp": 8.7,
+   "median_ctl": 5.1,
+   "N_exp": 76,
+   "N_ctl": 88,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT01933932",
+   "median_exp": 3.9,
+   "median_ctl": 2.8,
+   "N_exp": 254,
+   "N_ctl": 256,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT01684878",
+   "median_exp": 4.3,
+   "median_ctl": 2.7,
+   "N_exp": 78,
+   "N_ctl": 78,
+   "hr": 0.88
+  },
+  {
+   "nct": "NCT02574455",
+   "median_exp": 4.8,
+   "median_ctl": 1.7,
+   "N_exp": 267,
+   "N_ctl": 262,
+   "hr": 0.387
+  },
+  {
+   "nct": "NCT00527735",
+   "median_exp": 9.7,
+   "median_ctl": 4.6,
+   "N_exp": 113,
+   "N_ctl": 111,
+   "hr": 0.806
+  },
+  {
+   "nct": "NCT00988208",
+   "median_exp": 17.7,
+   "median_ctl": 10.6,
+   "N_exp": 533,
+   "N_ctl": 526,
+   "hr": 1.53
+  },
+  {
+   "nct": "NCT02989857",
+   "median_exp": 2.7,
+   "median_ctl": 1.4,
+   "N_exp": 142,
+   "N_ctl": 61,
+   "hr": 0.37
+  },
+  {
+   "nct": "NCT04732494",
+   "median_exp": 10.2,
+   "median_ctl": 3.4,
+   "N_exp": 62,
+   "N_ctl": 63,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT00703326",
+   "median_exp": 28.7,
+   "median_ctl": 9.5,
+   "N_exp": 385,
+   "N_ctl": 759,
+   "hr": 0.88
+  },
+  {
+   "nct": "NCT00913835",
+   "median_exp": 4.2,
+   "median_ctl": 4.0,
+   "N_exp": 62,
+   "N_ctl": 61,
+   "hr": 1.054
+  },
+  {
+   "nct": "NCT03975647",
+   "median_exp": 9.5,
+   "median_ctl": 7.4,
+   "N_exp": 231,
+   "N_ctl": 235,
+   "hr": 0.759
+  },
+  {
+   "nct": "NCT03322566",
+   "median_exp": 8.2,
+   "median_ctl": 8.0,
+   "N_exp": 87,
+   "N_ctl": 91,
+   "hr": 1.47
+  },
+  {
+   "nct": "NCT00600340",
+   "median_exp": 30.2,
+   "median_ctl": 26.1,
+   "N_exp": 285,
+   "N_ctl": 279,
+   "hr": 1.042
+  },
+  {
+   "nct": "NCT00373425",
+   "median_exp": 48.2,
+   "median_ctl": 47.8,
+   "N_exp": 350,
+   "N_ctl": 623,
+   "hr": 0.9
+  },
+  {
+   "nct": "NCT03093155",
+   "median_exp": 5.5,
+   "median_ctl": 2.2,
+   "N_exp": 39,
+   "N_ctl": 37,
+   "hr": 0.31
+  },
+  {
+   "nct": "NCT05775289",
+   "median_exp": 7.6,
+   "median_ctl": 7.1,
+   "N_exp": 90,
+   "N_ctl": 91,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT03706690",
+   "median_exp": 14.0,
+   "median_ctl": 6.5,
+   "N_exp": 272,
+   "N_ctl": 135,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT00110019",
+   "median_exp": 11.3,
+   "median_ctl": 11.1,
+   "N_exp": 413,
+   "N_ctl": 410,
+   "hr": 1.01
+  },
+  {
+   "nct": "NCT02743221",
+   "median_exp": 16.2,
+   "median_ctl": 9.2,
+   "N_exp": 76,
+   "N_ctl": 77,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT02625610",
+   "median_exp": 10.9,
+   "median_ctl": 10.4,
+   "N_exp": 250,
+   "N_ctl": 249,
+   "hr": 0.91
+  },
+  {
+   "nct": "NCT00779402",
+   "median_exp": 7.6,
+   "median_ctl": 6.8,
+   "N_exp": 117,
+   "N_ctl": 59,
+   "hr": 0.997
+  },
+  {
+   "nct": "NCT02119650",
+   "median_exp": 7.5,
+   "median_ctl": 5.9,
+   "N_exp": 39,
+   "N_ctl": 37,
+   "hr": 0.877
+  },
+  {
+   "nct": "NCT00125034",
+   "median_exp": 22.8,
+   "median_ctl": 18.0,
+   "N_exp": 170,
+   "N_ctl": 168,
+   "hr": 0.931
+  },
+  {
+   "nct": "NCT01695135",
+   "median_exp": 19.0,
+   "median_ctl": 18.4,
+   "N_exp": 143,
+   "N_ctl": 71,
+   "hr": 0.528
+  },
+  {
+   "nct": "NCT00363415",
+   "median_exp": 10.4,
+   "median_ctl": 8.1,
+   "N_exp": 455,
+   "N_ctl": 453,
+   "hr": 1.56
+  },
+  {
+   "nct": "NCT01450761",
+   "median_exp": 9.9,
+   "median_ctl": 4.6,
+   "N_exp": 566,
+   "N_ctl": 566,
+   "hr": 0.936
+  },
+  {
+   "nct": "NCT03036098",
+   "median_exp": 19.1,
+   "median_ctl": 13.2,
+   "N_exp": 349,
+   "N_ctl": 357,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT02511106",
+   "median_exp": 65.8,
+   "median_ctl": 21.9,
+   "N_exp": 339,
+   "N_ctl": 343,
+   "hr": 0.23
+  },
+  {
+   "nct": "NCT01081951",
+   "median_exp": 12.2,
+   "median_ctl": 9.6,
+   "N_exp": 81,
+   "N_ctl": 81,
+   "hr": 0.51
+  },
+  {
+   "nct": "NCT01010061",
+   "median_exp": 31.1,
+   "median_ctl": 11.1,
+   "N_exp": 238,
+   "N_ctl": 118,
+   "hr": 0.21
+  },
+  {
+   "nct": "NCT05577702",
+   "median_exp": 11.6,
+   "median_ctl": 11.4,
+   "N_exp": 20,
+   "N_ctl": 20,
+   "hr": 2.54
+  },
+  {
+   "nct": "NCT00540514",
+   "median_exp": 6.3,
+   "median_ctl": 5.8,
+   "N_exp": 521,
+   "N_ctl": 531,
+   "hr": 0.902
+  },
+  {
+   "nct": "NCT02655601",
+   "median_exp": 22.2,
+   "median_ctl": 11.9,
+   "N_exp": 80,
+   "N_ctl": 80,
+   "hr": 0.791
+  },
+  {
+   "nct": "NCT02181413",
+   "median_exp": 26.5,
+   "median_ctl": 21.3,
+   "N_exp": 395,
+   "N_ctl": 393,
+   "hr": 0.72
+  },
+  {
+   "nct": "NCT03275285",
+   "median_exp": 50.6,
+   "median_ctl": 47.2,
+   "N_exp": 172,
+   "N_ctl": 179,
+   "hr": 0.425
+  },
+  {
+   "nct": "NCT02998528",
+   "median_exp": 31.6,
+   "median_ctl": 20.8,
+   "N_exp": 179,
+   "N_ctl": 179,
+   "hr": 0.66
+  },
+  {
+   "nct": "NCT00994123",
+   "median_exp": 1.9,
+   "median_ctl": 1.8,
+   "N_exp": 85,
+   "N_ctl": 44,
+   "hr": 0.35
+  },
+  {
+   "nct": "NCT01098266",
+   "median_exp": 8.5,
+   "median_ctl": 8.0,
+   "N_exp": 200,
+   "N_ctl": 200,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT00929240",
+   "median_exp": 11.9,
+   "median_ctl": 4.3,
+   "N_exp": 91,
+   "N_ctl": 102,
+   "hr": 0.383
+  },
+  {
+   "nct": "NCT02302807",
+   "median_exp": 10.6,
+   "median_ctl": 2.1,
+   "N_exp": 467,
+   "N_ctl": 467,
+   "hr": 0.87
+  },
+  {
+   "nct": "NCT02119663",
+   "median_exp": 2.0,
+   "median_ctl": 1.6,
+   "N_exp": 43,
+   "N_ctl": 43,
+   "hr": 1.584
+  },
+  {
+   "nct": "NCT04854499",
+   "median_exp": 9.1,
+   "median_ctl": 5.5,
+   "N_exp": 41,
+   "N_ctl": 54,
+   "hr": 1.314
+  },
+  {
+   "nct": "NCT02204072",
+   "median_exp": 13.6,
+   "median_ctl": 13.6,
+   "N_exp": 43,
+   "N_ctl": 43,
+   "hr": 0.98
+  },
+  {
+   "nct": "NCT05064059",
+   "median_exp": 8.5,
+   "median_ctl": 7.3,
+   "N_exp": 220,
+   "N_ctl": 221,
+   "hr": 0.98
+  },
+  {
+   "nct": "NCT00080301",
+   "median_exp": 5.8,
+   "median_ctl": 4.2,
+   "N_exp": 375,
+   "N_ctl": 377,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT00976456",
+   "median_exp": 6.8,
+   "median_ctl": 4.8,
+   "N_exp": 134,
+   "N_ctl": 119,
+   "hr": 1.29
+  },
+  {
+   "nct": "NCT04199104",
+   "median_exp": 15.0,
+   "median_ctl": 2.8,
+   "N_exp": 256,
+   "N_ctl": 255,
+   "hr": 0.68
+  },
+  {
+   "nct": "NCT01908426",
+   "median_exp": 8.0,
+   "median_ctl": 5.2,
+   "N_exp": 237,
+   "N_ctl": 470,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT00453154",
+   "median_exp": 3.7,
+   "median_ctl": 2.1,
+   "N_exp": 44,
+   "N_ctl": 41,
+   "hr": 1.62
+  },
+  {
+   "nct": "NCT03523585",
+   "median_exp": 17.8,
+   "median_ctl": 6.9,
+   "N_exp": 406,
+   "N_ctl": 202,
+   "hr": 0.3589
+  },
+  {
+   "nct": "NCT03163667",
+   "median_exp": 3.8,
+   "median_ctl": 1.9,
+   "N_exp": 46,
+   "N_ctl": 23,
+   "hr": 0.64
+  },
+  {
+   "nct": "NCT01015833",
+   "median_exp": 10.5,
+   "median_ctl": 8.9,
+   "N_exp": 176,
+   "N_ctl": 180,
+   "hr": 1.06
+  },
+  {
+   "nct": "NCT03043872",
+   "median_exp": 13.0,
+   "median_ctl": 5.4,
+   "N_exp": 268,
+   "N_ctl": 269,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT01546038",
+   "median_exp": 37.8,
+   "median_ctl": 4.9,
+   "N_exp": 41,
+   "N_ctl": 84,
+   "hr": 0.569
+  },
+  {
+   "nct": "NCT02613507",
+   "median_exp": 12.0,
+   "median_ctl": 9.6,
+   "N_exp": 338,
+   "N_ctl": 166,
+   "hr": 0.68
+  },
+  {
+   "nct": "NCT03941093",
+   "median_exp": 17.9,
+   "median_ctl": 17.2,
+   "N_exp": 141,
+   "N_ctl": 143,
+   "hr": 1.08
+  },
+  {
+   "nct": "NCT00101686",
+   "median_exp": 23.1,
+   "median_ctl": 17.6,
+   "N_exp": 213,
+   "N_ctl": 217,
+   "hr": 1.433
+  },
+  {
+   "nct": "NCT04665843",
+   "median_exp": 13.6,
+   "median_ctl": 4.1,
+   "N_exp": 74,
+   "N_ctl": 80,
+   "hr": 0.89
+  },
+  {
+   "nct": "NCT02041533",
+   "median_exp": 5.9,
+   "median_ctl": 4.2,
+   "N_exp": 270,
+   "N_ctl": 271,
+   "hr": 1.15
+  },
+  {
+   "nct": "NCT02117024",
+   "median_exp": 12.2,
+   "median_ctl": 5.8,
+   "N_exp": 21,
+   "N_ctl": 45,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT03924986",
+   "median_exp": 9.2,
+   "median_ctl": 7.4,
+   "N_exp": 133,
+   "N_ctl": 132,
+   "hr": 0.52
+  },
+  {
+   "nct": "NCT03521154",
+   "median_exp": 39.1,
+   "median_ctl": 5.5,
+   "N_exp": 143,
+   "N_ctl": 73,
+   "hr": 0.16
+  },
+  {
+   "nct": "NCT00606021",
+   "median_exp": 3.2,
+   "median_ctl": 3.2,
+   "N_exp": 27,
+   "N_ctl": 28,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT00982111",
+   "median_exp": 11.5,
+   "median_ctl": 5.6,
+   "N_exp": 318,
+   "N_ctl": 315,
+   "hr": 1.01
+  },
+  {
+   "nct": "NCT03875235",
+   "median_exp": 12.8,
+   "median_ctl": 11.5,
+   "N_exp": 341,
+   "N_ctl": 344,
+   "hr": 0.8
+  },
+  {
+   "nct": "NCT01211483",
+   "median_exp": 2.5,
+   "median_ctl": 1.4,
+   "N_exp": 71,
+   "N_ctl": 77,
+   "hr": 0.978
+  },
+  {
+   "nct": "NCT00274469",
+   "median_exp": 54.1,
+   "median_ctl": 48.4,
+   "N_exp": 102,
+   "N_ctl": 103,
+   "hr": 0.6266
+  },
+  {
+   "nct": "NCT01154140",
+   "median_exp": 10.9,
+   "median_ctl": 7.0,
+   "N_exp": 172,
+   "N_ctl": 171,
+   "hr": 0.454
+  },
+  {
+   "nct": "NCT03182244",
+   "median_exp": 5.4,
+   "median_ctl": 3.9,
+   "N_exp": 139,
+   "N_ctl": 137,
+   "hr": 0.612
+  },
+  {
+   "nct": "NCT02807636",
+   "median_exp": 6.3,
+   "median_ctl": 2.7,
+   "N_exp": 454,
+   "N_ctl": 451,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT02250326",
+   "median_exp": 4.5,
+   "median_ctl": 3.2,
+   "N_exp": 79,
+   "N_ctl": 81,
+   "hr": 1.3
+  },
+  {
+   "nct": "NCT03820986",
+   "median_exp": 9.1,
+   "median_ctl": 4.2,
+   "N_exp": 334,
+   "N_ctl": 340,
+   "hr": 0.81
+  },
+  {
+   "nct": "NCT03410693",
+   "median_exp": 4.0,
+   "median_ctl": 2.7,
+   "N_exp": 63,
+   "N_ctl": 87,
+   "hr": 1.226
+  },
+  {
+   "nct": "NCT02437318",
+   "median_exp": 11.0,
+   "median_ctl": 5.7,
+   "N_exp": 284,
+   "N_ctl": 288,
+   "hr": 0.65
+  },
+  {
+   "nct": "NCT02289690",
+   "median_exp": 10.1,
+   "median_ctl": 5.6,
+   "N_exp": 61,
+   "N_ctl": 61,
+   "hr": 0.665
+  },
+  {
+   "nct": "NCT04396860",
+   "median_exp": 8.5,
+   "median_ctl": 7.7,
+   "N_exp": 80,
+   "N_ctl": 79,
+   "hr": 1.47
+  },
+  {
+   "nct": "NCT02178358",
+   "median_exp": 4.1,
+   "median_ctl": 1.4,
+   "N_exp": 38,
+   "N_ctl": 91,
+   "hr": 0.776
+  },
+  {
+   "nct": "NCT01566695",
+   "median_exp": 17.3,
+   "median_ctl": 16.7,
+   "N_exp": 107,
+   "N_ctl": 109,
+   "hr": 1.08
+  },
+  {
+   "nct": "NCT00236899",
+   "median_exp": 23.8,
+   "median_ctl": 19.1,
+   "N_exp": 124,
+   "N_ctl": 118,
+   "hr": 1.14
+  },
+  {
+   "nct": "NCT03675737",
+   "median_exp": 11.4,
+   "median_ctl": 6.9,
+   "N_exp": 789,
+   "N_ctl": 790,
+   "hr": 0.78
+  },
+  {
+   "nct": "NCT03412773",
+   "median_exp": 15.9,
+   "median_ctl": 4.0,
+   "N_exp": 342,
+   "N_ctl": 332,
+   "hr": 0.85
+  },
+  {
+   "nct": "NCT00332202",
+   "median_exp": 43.1,
+   "median_ctl": 42.8,
+   "N_exp": 254,
+   "N_ctl": 504,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT03033576",
+   "median_exp": 3.1,
+   "median_ctl": 2.7,
+   "N_exp": 69,
+   "N_ctl": 23,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT00981058",
+   "median_exp": 11.5,
+   "median_ctl": 9.9,
+   "N_exp": 545,
+   "N_ctl": 548,
+   "hr": 0.842
+  },
+  {
+   "nct": "NCT02412878",
+   "median_exp": 11.2,
+   "median_ctl": 7.6,
+   "N_exp": 240,
+   "N_ctl": 238,
+   "hr": 0.693
+  },
+  {
+   "nct": "NCT01602380",
+   "median_exp": 16.6,
+   "median_ctl": 13.8,
+   "N_exp": 230,
+   "N_ctl": 232,
+   "hr": 0.797
+  },
+  {
+   "nct": "NCT03302234",
+   "median_exp": 21.9,
+   "median_ctl": 21.4,
+   "N_exp": 284,
+   "N_ctl": 284,
+   "hr": 1.08
+  },
+  {
+   "nct": "NCT03125902",
+   "median_exp": 28.3,
+   "median_ctl": 6.0,
+   "N_exp": 342,
+   "N_ctl": 432,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT05104866",
+   "median_exp": 6.9,
+   "median_ctl": 4.9,
+   "N_exp": 365,
+   "N_ctl": 367,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT04907227",
+   "median_exp": 16.3,
+   "median_ctl": 13.9,
+   "N_exp": 41,
+   "N_ctl": 40,
+   "hr": 0.88
+  },
+  {
+   "nct": "NCT01830621",
+   "median_exp": 4.8,
+   "median_ctl": 1.8,
+   "N_exp": 144,
+   "N_ctl": 138,
+   "hr": 1.13
+  },
+  {
+   "nct": "NCT01491737",
+   "median_exp": 18.9,
+   "median_ctl": 15.8,
+   "N_exp": 129,
+   "N_ctl": 129,
+   "hr": 0.65
+  },
+  {
+   "nct": "NCT01492101",
+   "median_exp": 10.3,
+   "median_ctl": 2.4,
+   "N_exp": 423,
+   "N_ctl": 429,
+   "hr": 0.872
+  },
+  {
+   "nct": "NCT00762034",
+   "median_exp": 13.4,
+   "median_ctl": 12.6,
+   "N_exp": 467,
+   "N_ctl": 472,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT01288911",
+   "median_exp": 15.7,
+   "median_ctl": 5.8,
+   "N_exp": 184,
+   "N_ctl": 191,
+   "hr": 0.44
+  },
+  {
+   "nct": "NCT01191801",
+   "median_exp": 7.5,
+   "median_ctl": 6.1,
+   "N_exp": 356,
+   "N_ctl": 355,
+   "hr": 0.67
+  },
+  {
+   "nct": "NCT00128102",
+   "median_exp": 7.1,
+   "median_ctl": 1.4,
+   "N_exp": 329,
+   "N_ctl": 332,
+   "hr": 0.98
+  },
+  {
+   "nct": "NCT02566993",
+   "median_exp": 8.6,
+   "median_ctl": 7.6,
+   "N_exp": 307,
+   "N_ctl": 306,
+   "hr": 0.967
+  },
+  {
+   "nct": "NCT01721954",
+   "median_exp": 25.9,
+   "median_ctl": 25.0,
+   "N_exp": 105,
+   "N_ctl": 104,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT00514943",
+   "median_exp": 3.6,
+   "median_ctl": 3.5,
+   "N_exp": 62,
+   "N_ctl": 62,
+   "hr": 0.942
+  },
+  {
+   "nct": "NCT01006252",
+   "median_exp": 9.4,
+   "median_ctl": 6.8,
+   "N_exp": 168,
+   "N_ctl": 168,
+   "hr": 1.23
+  },
+  {
+   "nct": "NCT03268954",
+   "median_exp": 16.1,
+   "median_ctl": 15.7,
+   "N_exp": 227,
+   "N_ctl": 227,
+   "hr": 0.968
+  },
+  {
+   "nct": "NCT01121406",
+   "median_exp": 4.7,
+   "median_ctl": 3.0,
+   "N_exp": 55,
+   "N_ctl": 54,
+   "hr": 1.01
+  },
+  {
+   "nct": "NCT01640808",
+   "median_exp": 26.6,
+   "median_ctl": 21.1,
+   "N_exp": 301,
+   "N_ctl": 304,
+   "hr": 0.9
+  },
+  {
+   "nct": "NCT00883779",
+   "median_exp": 7.6,
+   "median_ctl": 6.0,
+   "N_exp": 226,
+   "N_ctl": 225,
+   "hr": 0.57
+  },
+  {
+   "nct": "NCT02580058",
+   "median_exp": 15.7,
+   "median_ctl": 11.8,
+   "N_exp": 188,
+   "N_ctl": 188,
+   "hr": 1.14
+  },
+  {
+   "nct": "NCT04266795",
+   "median_exp": 11.2,
+   "median_ctl": 7.7,
+   "N_exp": 81,
+   "N_ctl": 83,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT00460265",
+   "median_exp": 11.1,
+   "median_ctl": 9.0,
+   "N_exp": 327,
+   "N_ctl": 330,
+   "hr": 0.873
+  },
+  {
+   "nct": "NCT01602510",
+   "median_exp": 6.2,
+   "median_ctl": 6.0,
+   "N_exp": 130,
+   "N_ctl": 133,
+   "hr": 0.86
+  },
+  {
+   "nct": "NCT01524783",
+   "median_exp": 43.1,
+   "median_ctl": 41.8,
+   "N_exp": 205,
+   "N_ctl": 97,
+   "hr": 0.48
+  },
+  {
+   "nct": "NCT00609622",
+   "median_exp": 15.4,
+   "median_ctl": 9.3,
+   "N_exp": 95,
+   "N_ctl": 96,
+   "hr": 2.705
+  },
+  {
+   "nct": "NCT02450331",
+   "median_exp": 61.4,
+   "median_ctl": 16.6,
+   "N_exp": 406,
+   "N_ctl": 403,
+   "hr": 0.892
+  },
+  {
+   "nct": "NCT03653507",
+   "median_exp": 8.2,
+   "median_ctl": 6.8,
+   "N_exp": 254,
+   "N_ctl": 253,
+   "hr": 0.689
+  },
+  {
+   "nct": "NCT02625623",
+   "median_exp": 5.0,
+   "median_ctl": 4.6,
+   "N_exp": 186,
+   "N_ctl": 185,
+   "hr": 1.11
+  },
+  {
+   "nct": "NCT02633800",
+   "median_exp": 5.6,
+   "median_ctl": 5.6,
+   "N_exp": 25,
+   "N_ctl": 26,
+   "hr": 0.9291
+  },
+  {
+   "nct": "NCT01170663",
+   "median_exp": 9.6,
+   "median_ctl": 7.4,
+   "N_exp": 330,
+   "N_ctl": 335,
+   "hr": 0.807
+  },
+  {
+   "nct": "NCT00842712",
+   "median_exp": 13.6,
+   "median_ctl": 5.0,
+   "N_exp": 85,
+   "N_ctl": 84,
+   "hr": 0.718
+  },
+  {
+   "nct": "NCT02038647",
+   "median_exp": 6.1,
+   "median_ctl": 5.4,
+   "N_exp": 89,
+   "N_ctl": 89,
+   "hr": 0.77
+  },
+  {
+   "nct": "NCT02407054",
+   "median_exp": 3.8,
+   "median_ctl": 2.8,
+   "N_exp": 65,
+   "N_ctl": 64,
+   "hr": 0.5871
+  },
+  {
+   "nct": "NCT00689221",
+   "median_exp": 26.3,
+   "median_ctl": 26.3,
+   "N_exp": 272,
+   "N_ctl": 273,
+   "hr": 1.021
+  },
+  {
+   "nct": "NCT01062399",
+   "median_exp": 10.2,
+   "median_ctl": 8.2,
+   "N_exp": 83,
+   "N_ctl": 88,
+   "hr": 1.15
+  },
+  {
+   "nct": "NCT01246960",
+   "median_exp": 6.7,
+   "median_ctl": 6.4,
+   "N_exp": 84,
+   "N_ctl": 84,
+   "hr": 0.98
+  },
+  {
+   "nct": "NCT01783444",
+   "median_exp": 25.6,
+   "median_ctl": 6.8,
+   "N_exp": 102,
+   "N_ctl": 103,
+   "hr": 0.74
+  },
+  {
+   "nct": "NCT01151215",
+   "median_exp": 14.0,
+   "median_ctl": 10.9,
+   "N_exp": 121,
+   "N_ctl": 118,
+   "hr": 1.16
+  },
+  {
+   "nct": "NCT03189719",
+   "median_exp": 13.9,
+   "median_ctl": 8.8,
+   "N_exp": 373,
+   "N_ctl": 376,
+   "hr": 0.57
+  },
+  {
+   "nct": "NCT01568866",
+   "median_exp": 18.7,
+   "median_ctl": 9.4,
+   "N_exp": 464,
+   "N_ctl": 465,
+   "hr": 0.533
+  },
+  {
+   "nct": "NCT01327885",
+   "median_exp": 13.5,
+   "median_ctl": 11.5,
+   "N_exp": 228,
+   "N_ctl": 224,
+   "hr": 0.768
+  },
+  {
+   "nct": "NCT03049189",
+   "median_exp": 23.9,
+   "median_ctl": 14.1,
+   "N_exp": 207,
+   "N_ctl": 102,
+   "hr": 0.673
+  },
+  {
+   "nct": "NCT00060944",
+   "median_exp": 3.3,
+   "median_ctl": 2.3,
+   "N_exp": 136,
+   "N_ctl": 134,
+   "hr": 0.734
+  },
+  {
+   "nct": "NCT02294461",
+   "median_exp": 39.1,
+   "median_ctl": 27.1,
+   "N_exp": 202,
+   "N_ctl": 193,
+   "hr": 0.7
+  },
+  {
+   "nct": "NCT00446225",
+   "median_exp": 9.4,
+   "median_ctl": 5.2,
+   "N_exp": 86,
+   "N_ctl": 87,
+   "hr": 0.42
+  },
+  {
+   "nct": "NCT00982592",
+   "median_exp": 8.8,
+   "median_ctl": 8.3,
+   "N_exp": 64,
+   "N_ctl": 60,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT04649060",
+   "median_exp": 11.0,
+   "median_ctl": 4.9,
+   "N_exp": 27,
+   "N_ctl": 27,
+   "hr": 0.184
+  },
+  {
+   "nct": "NCT01362296",
+   "median_exp": 8.1,
+   "median_ctl": 2.6,
+   "N_exp": 87,
+   "N_ctl": 43,
+   "hr": 1.14
+  },
+  {
+   "nct": "NCT01740297",
+   "median_exp": 8.2,
+   "median_ctl": 6.4,
+   "N_exp": 98,
+   "N_ctl": 100,
+   "hr": 1.41
+  },
+  {
+   "nct": "NCT00864253",
+   "median_exp": 12.8,
+   "median_ctl": 10.7,
+   "N_exp": 264,
+   "N_ctl": 265,
+   "hr": 0.792
+  },
+  {
+   "nct": "NCT02120417",
+   "median_exp": 11.2,
+   "median_ctl": 10.9,
+   "N_exp": 76,
+   "N_ctl": 73,
+   "hr": 0.932
+  },
+  {
+   "nct": "NCT03635983",
+   "median_exp": 5.0,
+   "median_ctl": 4.2,
+   "N_exp": 392,
+   "N_ctl": 391,
+   "hr": 1.09
+  },
+  {
+   "nct": "NCT04005716",
+   "median_exp": 15.5,
+   "median_ctl": 13.5,
+   "N_exp": 227,
+   "N_ctl": 230,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT02368886",
+   "median_exp": 9.8,
+   "median_ctl": 6.0,
+   "N_exp": 54,
+   "N_ctl": 62,
+   "hr": 0.72
+  },
+  {
+   "nct": "NCT03066778",
+   "median_exp": 10.8,
+   "median_ctl": 9.7,
+   "N_exp": 228,
+   "N_ctl": 225,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT03016312",
+   "median_exp": 16.6,
+   "median_ctl": 15.2,
+   "N_exp": 380,
+   "N_ctl": 386,
+   "hr": 1.184
+  },
+  {
+   "nct": "NCT01770431",
+   "median_exp": 17.4,
+   "median_ctl": 15.8,
+   "N_exp": 686,
+   "N_ctl": 316,
+   "hr": 0.67
+  },
+  {
+   "nct": "NCT00265850",
+   "median_exp": 30.0,
+   "median_ctl": 29.0,
+   "N_exp": 578,
+   "N_ctl": 559,
+   "hr": 0.88
+  },
+  {
+   "nct": "NCT00863655",
+   "median_exp": 26.6,
+   "median_ctl": 6.9,
+   "N_exp": 239,
+   "N_ctl": 485,
+   "hr": 0.43
+  },
+  {
+   "nct": "NCT05260684",
+   "median_exp": 30.0,
+   "median_ctl": 16.1,
+   "N_exp": 275,
+   "N_ctl": 387,
+   "hr": 1.32
+  },
+  {
+   "nct": "NCT02654587",
+   "median_exp": 11.1,
+   "median_ctl": 7.5,
+   "N_exp": 103,
+   "N_ctl": 116,
+   "hr": 0.59
+  },
+  {
+   "nct": "NCT00561470",
+   "median_exp": 13.5,
+   "median_ctl": 12.1,
+   "N_exp": 612,
+   "N_ctl": 614,
+   "hr": 0.817
+  },
+  {
+   "nct": "NCT00667251",
+   "median_exp": 11.3,
+   "median_ctl": 9.0,
+   "N_exp": 326,
+   "N_ctl": 326,
+   "hr": 1.367
+  },
+  {
+   "nct": "NCT05613088",
+   "median_exp": 4.4,
+   "median_ctl": 4.0,
+   "N_exp": 36,
+   "N_ctl": 70,
+   "hr": 1.23
+  },
+  {
+   "nct": "NCT01523587",
+   "median_exp": 2.6,
+   "median_ctl": 1.9,
+   "N_exp": 398,
+   "N_ctl": 397,
+   "hr": 0.814
+  },
+  {
+   "nct": "NCT03191786",
+   "median_exp": 10.3,
+   "median_ctl": 9.2,
+   "N_exp": 302,
+   "N_ctl": 151,
+   "hr": 0.78
+  },
+  {
+   "nct": "NCT01080391",
+   "median_exp": 26.3,
+   "median_ctl": 17.6,
+   "N_exp": 396,
+   "N_ctl": 396,
+   "hr": 0.69
+  },
+  {
+   "nct": "NCT01578499",
+   "median_exp": 16.7,
+   "median_ctl": 3.5,
+   "N_exp": 66,
+   "N_ctl": 64,
+   "hr": 0.378
+  },
+  {
+   "nct": "NCT03110562",
+   "median_exp": 13.9,
+   "median_ctl": 3.9,
+   "N_exp": 195,
+   "N_ctl": 31,
+   "hr": 0.702
+  },
+  {
+   "nct": "NCT02383966",
+   "median_exp": 10.2,
+   "median_ctl": 4.2,
+   "N_exp": 164,
+   "N_ctl": 79,
+   "hr": 0.566
+  },
+  {
+   "nct": "NCT02486718",
+   "median_exp": 65.6,
+   "median_ctl": 47.8,
+   "N_exp": 507,
+   "N_ctl": 498,
+   "hr": 0.848
+  },
+  {
+   "nct": "NCT00048997",
+   "median_exp": 28.5,
+   "median_ctl": 25.3,
+   "N_exp": 163,
+   "N_ctl": 177,
+   "hr": 1.07
+  },
+  {
+   "nct": "NCT00419159",
+   "median_exp": 1.8,
+   "median_ctl": 1.8,
+   "N_exp": 100,
+   "N_ctl": 99,
+   "hr": 0.814
+  },
+  {
+   "nct": "NCT00917384",
+   "median_exp": 5.2,
+   "median_ctl": 3.8,
+   "N_exp": 238,
+   "N_ctl": 117,
+   "hr": 0.776
+  },
+  {
+   "nct": "NCT03584009",
+   "median_exp": 2.7,
+   "median_ctl": 1.9,
+   "N_exp": 51,
+   "N_ctl": 52,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT01693068",
+   "median_exp": 3.0,
+   "median_ctl": 1.6,
+   "N_exp": 130,
+   "N_ctl": 64,
+   "hr": 0.59
+  },
+  {
+   "nct": "NCT00940602",
+   "median_exp": 47.3,
+   "median_ctl": 35.8,
+   "N_exp": 149,
+   "N_ctl": 76,
+   "hr": 0.636
+  },
+  {
+   "nct": "NCT01133704",
+   "median_exp": 19.0,
+   "median_ctl": 15.7,
+   "N_exp": 65,
+   "N_ctl": 33,
+   "hr": 1.09
+  },
+  {
+   "nct": "NCT05079230",
+   "median_exp": 14.1,
+   "median_ctl": 10.7,
+   "N_exp": 189,
+   "N_ctl": 189,
+   "hr": 1.178
+  },
+  {
+   "nct": "NCT05004350",
+   "median_exp": 8.2,
+   "median_ctl": 4.2,
+   "N_exp": 32,
+   "N_ctl": 65,
+   "hr": 0.37
+  },
+  {
+   "nct": "NCT05520138",
+   "median_exp": 22.5,
+   "median_ctl": 20.6,
+   "N_exp": 2591,
+   "N_ctl": 2912,
+   "hr": 1.1
+  },
+  {
+   "nct": "NCT00045032",
+   "median_exp": 81.0,
+   "median_ctl": 73.7,
+   "N_exp": 1700,
+   "N_ctl": 1744,
+   "hr": 0.54
+  },
+  {
+   "nct": "NCT02898077",
+   "median_exp": 4.1,
+   "median_ctl": 3.1,
+   "N_exp": 294,
+   "N_ctl": 146,
+   "hr": 0.765
+  },
+  {
+   "nct": "NCT01005680",
+   "median_exp": 17.5,
+   "median_ctl": 15.5,
+   "N_exp": 126,
+   "N_ctl": 130,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT01180049",
+   "median_exp": 4.5,
+   "median_ctl": 4.3,
+   "N_exp": 48,
+   "N_ctl": 53,
+   "hr": 0.731
+  },
+  {
+   "nct": "NCT01392183",
+   "median_exp": 5.2,
+   "median_ctl": 2.7,
+   "N_exp": 34,
+   "N_ctl": 35,
+   "hr": 1.36
+  },
+  {
+   "nct": "NCT04303780",
+   "median_exp": 5.6,
+   "median_ctl": 4.5,
+   "N_exp": 171,
+   "N_ctl": 174,
+   "hr": 0.663
+  },
+  {
+   "nct": "NCT02514551",
+   "median_exp": 5.4,
+   "median_ctl": 5.2,
+   "N_exp": 123,
+   "N_ctl": 122,
+   "hr": 0.617
+  },
+  {
+   "nct": "NCT01715285",
+   "median_exp": 53.3,
+   "median_ctl": 14.8,
+   "N_exp": 597,
+   "N_ctl": 602,
+   "hr": 0.466
+  },
+  {
+   "nct": "NCT02282020",
+   "median_exp": 13.4,
+   "median_ctl": 9.2,
+   "N_exp": 178,
+   "N_ctl": 88,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT01972217",
+   "median_exp": 13.8,
+   "median_ctl": 8.2,
+   "N_exp": 71,
+   "N_ctl": 71,
+   "hr": 0.651
+  },
+  {
+   "nct": "NCT00553358",
+   "median_exp": 109.2,
+   "median_ctl": 97.0,
+   "N_exp": 283,
+   "N_ctl": 154,
+   "hr": 0.878
+  },
+  {
+   "nct": "NCT00253422",
+   "median_exp": 4.8,
+   "median_ctl": 3.5,
+   "N_exp": 226,
+   "N_ctl": 239,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT00143403",
+   "median_exp": 24.7,
+   "median_ctl": 21.6,
+   "N_exp": 153,
+   "N_ctl": 153,
+   "hr": 0.9
+  },
+  {
+   "nct": "NCT00117637",
+   "median_exp": 14.8,
+   "median_ctl": 5.6,
+   "N_exp": 97,
+   "N_ctl": 92,
+   "hr": 0.88
+  },
+  {
+   "nct": "NCT00415194",
+   "median_exp": 7.3,
+   "median_ctl": 6.3,
+   "N_exp": 398,
+   "N_ctl": 397,
+   "hr": 0.87
+  },
+  {
+   "nct": "NCT00861614",
+   "median_exp": 11.0,
+   "median_ctl": 10.0,
+   "N_exp": 399,
+   "N_ctl": 400,
+   "hr": 0.83
+  },
+  {
+   "nct": "NCT01015118",
+   "median_exp": 62.8,
+   "median_ctl": 62.0,
+   "N_exp": 455,
+   "N_ctl": 911,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT05523323",
+   "median_exp": 7.0,
+   "median_ctl": 1.5,
+   "N_exp": 61,
+   "N_ctl": 51,
+   "hr": 0.34
+  },
+  {
+   "nct": "NCT00942331",
+   "median_exp": 14.5,
+   "median_ctl": 6.7,
+   "N_exp": 252,
+   "N_ctl": 254,
+   "hr": 0.87
+  },
+  {
+   "nct": "NCT00430781",
+   "median_exp": 10.1,
+   "median_ctl": 2.9,
+   "N_exp": 78,
+   "N_ctl": 74,
+   "hr": 1.05
+  },
+  {
+   "nct": "NCT04305496",
+   "median_exp": 5.7,
+   "median_ctl": 3.6,
+   "N_exp": 355,
+   "N_ctl": 353,
+   "hr": 0.6
+  },
+  {
+   "nct": "NCT01160211",
+   "median_exp": 11.0,
+   "median_ctl": 5.6,
+   "N_exp": 124,
+   "N_ctl": 123,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT04489771",
+   "median_exp": 9.1,
+   "median_ctl": 7.3,
+   "N_exp": 78,
+   "N_ctl": 76,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT01077518",
+   "median_exp": 16.7,
+   "median_ctl": 13.8,
+   "N_exp": 173,
+   "N_ctl": 173,
+   "hr": 0.87
+  },
+  {
+   "nct": "NCT00887159",
+   "median_exp": 4.6,
+   "median_ctl": 4.4,
+   "N_exp": 52,
+   "N_ctl": 48,
+   "hr": 0.98
+  },
+  {
+   "nct": "NCT02388906",
+   "median_exp": 54.7,
+   "median_ctl": 38.7,
+   "N_exp": 453,
+   "N_ctl": 453,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT01091168",
+   "median_exp": 9.3,
+   "median_ctl": 9.1,
+   "N_exp": 296,
+   "N_ctl": 298,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT03164616",
+   "median_exp": 5.5,
+   "median_ctl": 4.8,
+   "N_exp": 338,
+   "N_ctl": 338,
+   "hr": 0.74
+  },
+  {
+   "nct": "NCT01085136",
+   "median_exp": 13.1,
+   "median_ctl": 5.5,
+   "N_exp": 134,
+   "N_ctl": 1154,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT00530621",
+   "median_exp": 3.0,
+   "median_ctl": 3.0,
+   "N_exp": 80,
+   "N_ctl": 80,
+   "hr": 1.13
+  },
+  {
+   "nct": "NCT04194944",
+   "median_exp": 24.8,
+   "median_ctl": 11.2,
+   "N_exp": 159,
+   "N_ctl": 102,
+   "hr": 0.465
+  },
+  {
+   "nct": "NCT02563002",
+   "median_exp": 16.5,
+   "median_ctl": 8.2,
+   "N_exp": 153,
+   "N_ctl": 154,
+   "hr": 0.59
+  },
+  {
+   "nct": "NCT01765582",
+   "median_exp": 11.9,
+   "median_ctl": 9.5,
+   "N_exp": 93,
+   "N_ctl": 95,
+   "hr": 0.68
+  },
+  {
+   "nct": "NCT00391092",
+   "median_exp": 38.3,
+   "median_ctl": 16.5,
+   "N_exp": 208,
+   "N_ctl": 216,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT01564784",
+   "median_exp": 7.7,
+   "median_ctl": 6.2,
+   "N_exp": 164,
+   "N_ctl": 162,
+   "hr": 0.751
+  },
+  {
+   "nct": "NCT02684006",
+   "median_exp": 13.8,
+   "median_ctl": 7.2,
+   "N_exp": 442,
+   "N_ctl": 444,
+   "hr": 0.61
+  },
+  {
+   "nct": "NCT02149108",
+   "median_exp": 1.5,
+   "median_ctl": 1.4,
+   "N_exp": 386,
+   "N_ctl": 382,
+   "hr": 0.58
+  },
+  {
+   "nct": "NCT00767520",
+   "median_exp": 4.2,
+   "median_ctl": 3.7,
+   "N_exp": 79,
+   "N_ctl": 78,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT00435409",
+   "median_exp": 5.9,
+   "median_ctl": 5.5,
+   "N_exp": 221,
+   "N_ctl": 221,
+   "hr": 1.2239
+  },
+  {
+   "nct": "NCT01007942",
+   "median_exp": 23.5,
+   "median_ctl": 5.8,
+   "N_exp": 284,
+   "N_ctl": 285,
+   "hr": 0.78
+  },
+  {
+   "nct": "NCT02043678",
+   "median_exp": 26.0,
+   "median_ctl": 22.3,
+   "N_exp": 405,
+   "N_ctl": 401,
+   "hr": 1.122
+  },
+  {
+   "nct": "NCT03901339",
+   "median_exp": 11.2,
+   "median_ctl": 5.5,
+   "N_exp": 271,
+   "N_ctl": 272,
+   "hr": 0.653
+  },
+  {
+   "nct": "NCT00079001",
+   "median_exp": 37.9,
+   "median_ctl": 36.0,
+   "N_exp": 323,
+   "N_ctl": 322,
+   "hr": 0.97
+  },
+  {
+   "nct": "NCT00110214",
+   "median_exp": 22.6,
+   "median_ctl": 21.5,
+   "N_exp": 524,
+   "N_ctl": 526,
+   "hr": 0.91
+  },
+  {
+   "nct": "NCT03069352",
+   "median_exp": 4.7,
+   "median_ctl": 4.1,
+   "N_exp": 143,
+   "N_ctl": 68,
+   "hr": 0.749
+  },
+  {
+   "nct": "NCT03474107",
+   "median_exp": 12.9,
+   "median_ctl": 9.0,
+   "N_exp": 301,
+   "N_ctl": 307,
+   "hr": 0.702
+  },
+  {
+   "nct": "NCT02369874",
+   "median_exp": 9.8,
+   "median_ctl": 6.5,
+   "N_exp": 240,
+   "N_ctl": 247,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT00609518",
+   "median_exp": 9.2,
+   "median_ctl": 8.2,
+   "N_exp": 47,
+   "N_ctl": 51,
+   "hr": 0.9
+  },
+  {
+   "nct": "NCT02761057",
+   "median_exp": 9.0,
+   "median_ctl": 2.8,
+   "N_exp": 44,
+   "N_ctl": 28,
+   "hr": 0.6
+  },
+  {
+   "nct": "NCT00949650",
+   "median_exp": 28.2,
+   "median_ctl": 11.2,
+   "N_exp": 115,
+   "N_ctl": 230,
+   "hr": 0.576
+  },
+  {
+   "nct": "NCT03414983",
+   "median_exp": 31.8,
+   "median_ctl": 11.9,
+   "N_exp": 68,
+   "N_ctl": 127,
+   "hr": 0.81
+  },
+  {
+   "nct": "NCT00744497",
+   "median_exp": 21.5,
+   "median_ctl": 21.2,
+   "N_exp": 762,
+   "N_ctl": 760,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT00858364",
+   "median_exp": 9.5,
+   "median_ctl": 9.3,
+   "N_exp": 1685,
+   "N_ctl": 836,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT00943826",
+   "median_exp": 10.6,
+   "median_ctl": 6.2,
+   "N_exp": 461,
+   "N_ctl": 463,
+   "hr": 0.64
+  },
+  {
+   "nct": "NCT02426125",
+   "median_exp": 4.1,
+   "median_ctl": 2.8,
+   "N_exp": 263,
+   "N_ctl": 267,
+   "hr": 0.757
+  },
+  {
+   "nct": "NCT00508404",
+   "median_exp": 8.9,
+   "median_ctl": 7.2,
+   "N_exp": 86,
+   "N_ctl": 59,
+   "hr": 0.283
+  },
+  {
+   "nct": "NCT04540211",
+   "median_exp": 6.2,
+   "median_ctl": 5.4,
+   "N_exp": 229,
+   "N_ctl": 232,
+   "hr": 0.56
+  },
+  {
+   "nct": "NCT01014208",
+   "median_exp": 13.9,
+   "median_ctl": 13.2,
+   "N_exp": 222,
+   "N_ctl": 223,
+   "hr": 1.12
+  },
+  {
+   "nct": "NCT02465268",
+   "median_exp": 20.6,
+   "median_ctl": 16.2,
+   "N_exp": 41,
+   "N_ctl": 34,
+   "hr": 1.29
+  },
+  {
+   "nct": "NCT02755597",
+   "median_exp": 23.2,
+   "median_ctl": 11.5,
+   "N_exp": 194,
+   "N_ctl": 97,
+   "hr": 0.656
+  },
+  {
+   "nct": "NCT00083889",
+   "median_exp": 11.0,
+   "median_ctl": 5.1,
+   "N_exp": 375,
+   "N_ctl": 375,
+   "hr": 0.5268
+  },
+  {
+   "nct": "NCT00883116",
+   "median_exp": 12.3,
+   "median_ctl": 10.9,
+   "N_exp": 248,
+   "N_ctl": 248,
+   "hr": 1.3
+  },
+  {
+   "nct": "NCT03937219",
+   "median_exp": 41.9,
+   "median_ctl": 11.3,
+   "N_exp": 226,
+   "N_ctl": 217,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT02367040",
+   "median_exp": 21.5,
+   "median_ctl": 13.8,
+   "N_exp": 307,
+   "N_ctl": 151,
+   "hr": 0.52
+  },
+  {
+   "nct": "NCT00753545",
+   "median_exp": 8.4,
+   "median_ctl": 4.8,
+   "N_exp": 136,
+   "N_ctl": 129,
+   "hr": 0.35
+  },
+  {
+   "nct": "NCT02848651",
+   "median_exp": 5.0,
+   "median_ctl": 3.5,
+   "N_exp": 49,
+   "N_ctl": 152,
+   "hr": 0.8
+  },
+  {
+   "nct": "NCT02151981",
+   "median_exp": 10.1,
+   "median_ctl": 4.4,
+   "N_exp": 279,
+   "N_ctl": 140,
+   "hr": 0.3
+  },
+  {
+   "nct": "NCT02220894",
+   "median_exp": 20.0,
+   "median_ctl": 12.2,
+   "N_exp": 637,
+   "N_ctl": 637,
+   "hr": 0.7
+  },
+  {
+   "nct": "NCT00710710",
+   "median_exp": 1.5,
+   "median_ctl": 1.5,
+   "N_exp": 43,
+   "N_ctl": 43,
+   "hr": 1.22
+  },
+  {
+   "nct": "NCT04590963",
+   "median_exp": 8.8,
+   "median_ctl": 8.6,
+   "N_exp": 246,
+   "N_ctl": 122,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT00871403",
+   "median_exp": 5.7,
+   "median_ctl": 5.3,
+   "N_exp": 62,
+   "N_ctl": 35,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT00457392",
+   "median_exp": 8.5,
+   "median_ctl": 3.6,
+   "N_exp": 480,
+   "N_ctl": 480,
+   "hr": 0.942
+  },
+  {
+   "nct": "NCT01974440",
+   "median_exp": 40.5,
+   "median_ctl": 23.8,
+   "N_exp": 202,
+   "N_ctl": 201,
+   "hr": 0.806
+  },
+  {
+   "nct": "NCT00520975",
+   "median_exp": 63.0,
+   "median_ctl": 11.1,
+   "N_exp": 48,
+   "N_ctl": 48,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT05287113",
+   "median_exp": 5.8,
+   "median_ctl": 5.3,
+   "N_exp": 60,
+   "N_ctl": 57,
+   "hr": 1.05
+  },
+  {
+   "nct": "NCT01015443",
+   "median_exp": 8.7,
+   "median_ctl": 7.0,
+   "N_exp": 93,
+   "N_ctl": 191,
+   "hr": 1.032
+  },
+  {
+   "nct": "NCT02340221",
+   "median_exp": 7.4,
+   "median_ctl": 5.4,
+   "N_exp": 416,
+   "N_ctl": 417,
+   "hr": 0.7
+  },
+  {
+   "nct": "NCT01476787",
+   "median_exp": 123.8,
+   "median_ctl": 120.2,
+   "N_exp": 517,
+   "N_ctl": 513,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT00075764",
+   "median_exp": 47.7,
+   "median_ctl": 41.3,
+   "N_exp": 349,
+   "N_ctl": 345,
+   "hr": 0.8
+  },
+  {
+   "nct": "NCT01648348",
+   "median_exp": 3.2,
+   "median_ctl": 2.9,
+   "N_exp": 49,
+   "N_ctl": 52,
+   "hr": 1.14
+  },
+  {
+   "nct": "NCT01040832",
+   "median_exp": 6.3,
+   "median_ctl": 1.9,
+   "N_exp": 54,
+   "N_ctl": 53,
+   "hr": 1.1
+  },
+  {
+   "nct": "NCT00450619",
+   "median_exp": 3.7,
+   "median_ctl": 1.7,
+   "N_exp": 22,
+   "N_ctl": 21,
+   "hr": 0.5019
+  },
+  {
+   "nct": "NCT00699374",
+   "median_exp": 10.1,
+   "median_ctl": 7.9,
+   "N_exp": 544,
+   "N_ctl": 530,
+   "hr": 1.31
+  },
+  {
+   "nct": "NCT00626990",
+   "median_exp": 82.3,
+   "median_ctl": 46.9,
+   "N_exp": 374,
+   "N_ctl": 377,
+   "hr": 0.97
+  },
+  {
+   "nct": "NCT01446159",
+   "median_exp": 39.4,
+   "median_ctl": 38.3,
+   "N_exp": 89,
+   "N_ctl": 85,
+   "hr": 0.991
+  },
+  {
+   "nct": "NCT03062358",
+   "median_exp": 14.6,
+   "median_ctl": 13.0,
+   "N_exp": 300,
+   "N_ctl": 153,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT04785820",
+   "median_exp": 8.1,
+   "median_ctl": 4.8,
+   "N_exp": 82,
+   "N_ctl": 27,
+   "hr": 1.05
+  },
+  {
+   "nct": "NCT01607957",
+   "median_exp": 7.1,
+   "median_ctl": 5.3,
+   "N_exp": 534,
+   "N_ctl": 266,
+   "hr": 0.68
+  },
+  {
+   "nct": "NCT03137771",
+   "median_exp": 13.7,
+   "median_ctl": 11.1,
+   "N_exp": 134,
+   "N_ctl": 81,
+   "hr": 0.98
+  },
+  {
+   "nct": "NCT00333775",
+   "median_exp": 8.8,
+   "median_ctl": 8.0,
+   "N_exp": 247,
+   "N_ctl": 241,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT01059630",
+   "median_exp": 36.0,
+   "median_ctl": 13.2,
+   "N_exp": 204,
+   "N_ctl": 209,
+   "hr": 0.53
+  },
+  {
+   "nct": "NCT01610284",
+   "median_exp": 6.9,
+   "median_ctl": 4.0,
+   "N_exp": 576,
+   "N_ctl": 571,
+   "hr": 0.78
+  },
+  {
+   "nct": "NCT02630693",
+   "median_exp": 20.7,
+   "median_ctl": 11.3,
+   "N_exp": 90,
+   "N_ctl": 90,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT01374425",
+   "median_exp": 12.6,
+   "median_ctl": 10.1,
+   "N_exp": 244,
+   "N_ctl": 208,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT01655693",
+   "median_exp": 10.1,
+   "median_ctl": 8.9,
+   "N_exp": 130,
+   "N_ctl": 133,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT02256436",
+   "median_exp": 3.3,
+   "median_ctl": 2.1,
+   "N_exp": 272,
+   "N_ctl": 270,
+   "hr": 0.98
+  },
+  {
+   "nct": "NCT00643565",
+   "median_exp": 32.8,
+   "median_ctl": 24.0,
+   "N_exp": 74,
+   "N_ctl": 80,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT01276379",
+   "median_exp": 11.4,
+   "median_ctl": 5.9,
+   "N_exp": 218,
+   "N_ctl": 20,
+   "hr": 2.01
+  },
+  {
+   "nct": "NCT01183858",
+   "median_exp": 6.8,
+   "median_ctl": 1.6,
+   "N_exp": 154,
+   "N_ctl": 159,
+   "hr": 1.05
+  },
+  {
+   "nct": "NCT01896531",
+   "median_exp": 7.5,
+   "median_ctl": 6.6,
+   "N_exp": 82,
+   "N_ctl": 71,
+   "hr": 1.12
+  },
+  {
+   "nct": "NCT00556712",
+   "median_exp": 12.4,
+   "median_ctl": 11.0,
+   "N_exp": 438,
+   "N_ctl": 451,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT02052960",
+   "median_exp": 6.4,
+   "median_ctl": 6.1,
+   "N_exp": 117,
+   "N_ctl": 123,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT05440786",
+   "median_exp": 21.2,
+   "median_ctl": 6.9,
+   "N_exp": 30,
+   "N_ctl": 26,
+   "hr": 0.53
+  },
+  {
+   "nct": "NCT03829462",
+   "median_exp": 9.0,
+   "median_ctl": 5.5,
+   "N_exp": 33,
+   "N_ctl": 33,
+   "hr": 1.18
+  },
+  {
+   "nct": "NCT05361655",
+   "median_exp": 49.1,
+   "median_ctl": 43.2,
+   "N_exp": 1572,
+   "N_ctl": 1137,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT04003636",
+   "median_exp": 12.7,
+   "median_ctl": 10.9,
+   "N_exp": 533,
+   "N_ctl": 536,
+   "hr": 0.83
+  },
+  {
+   "nct": "NCT02122185",
+   "median_exp": 40.7,
+   "median_ctl": 14.3,
+   "N_exp": 54,
+   "N_ctl": 54,
+   "hr": 1.49
+  },
+  {
+   "nct": "NCT02576977",
+   "median_exp": 39.6,
+   "median_ctl": 5.7,
+   "N_exp": 125,
+   "N_ctl": 126,
+   "hr": 1.5
+  },
+  {
+   "nct": "NCT02595892",
+   "median_exp": 13.7,
+   "median_ctl": 3.4,
+   "N_exp": 34,
+   "N_ctl": 36,
+   "hr": 0.57
+  },
+  {
+   "nct": "NCT00661830",
+   "median_exp": 4.9,
+   "median_ctl": 3.0,
+   "N_exp": 48,
+   "N_ctl": 49,
+   "hr": 1.281
+  },
+  {
+   "nct": "NCT01666444",
+   "median_exp": 18.9,
+   "median_ctl": 18.1,
+   "N_exp": 149,
+   "N_ctl": 148,
+   "hr": 1.22
+  },
+  {
+   "nct": "NCT03386357",
+   "median_exp": 4.2,
+   "median_ctl": 4.0,
+   "N_exp": 57,
+   "N_ctl": 58,
+   "hr": 0.96
+  },
+  {
+   "nct": "NCT02747004",
+   "median_exp": 9.1,
+   "median_ctl": 6.5,
+   "N_exp": 78,
+   "N_ctl": 79,
+   "hr": 1.045
+  },
+  {
+   "nct": "NCT02737501",
+   "median_exp": 24.0,
+   "median_ctl": 11.1,
+   "N_exp": 137,
+   "N_ctl": 138,
+   "hr": 0.481
+  },
+  {
+   "nct": "NCT02141295",
+   "median_exp": 11.1,
+   "median_ctl": 10.2,
+   "N_exp": 94,
+   "N_ctl": 95,
+   "hr": 0.91
+  },
+  {
+   "nct": "NCT02485691",
+   "median_exp": 13.6,
+   "median_ctl": 11.0,
+   "N_exp": 129,
+   "N_ctl": 126,
+   "hr": 0.54
+  },
+  {
+   "nct": "NCT02981342",
+   "median_exp": 3.2,
+   "median_ctl": 1.8,
+   "N_exp": 33,
+   "N_ctl": 33,
+   "hr": 1.6
+  },
+  {
+   "nct": "NCT00411450",
+   "median_exp": 6.0,
+   "median_ctl": 4.4,
+   "N_exp": 115,
+   "N_ctl": 45,
+   "hr": 0.8
+  },
+  {
+   "nct": "NCT01147822",
+   "median_exp": 11.1,
+   "median_ctl": 8.4,
+   "N_exp": 179,
+   "N_ctl": 188,
+   "hr": 1.0184
+  },
+  {
+   "nct": "NCT03515837",
+   "median_exp": 15.9,
+   "median_ctl": 5.5,
+   "N_exp": 245,
+   "N_ctl": 247,
+   "hr": 0.8
+  },
+  {
+   "nct": "NCT03428217",
+   "median_exp": 9.3,
+   "median_ctl": 9.2,
+   "N_exp": 223,
+   "N_ctl": 221,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT03957590",
+   "median_exp": 29.0,
+   "median_ctl": 28.9,
+   "N_exp": 185,
+   "N_ctl": 185,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT01774721",
+   "median_exp": 14.7,
+   "median_ctl": 9.2,
+   "N_exp": 227,
+   "N_ctl": 225,
+   "hr": 0.589
+  },
+  {
+   "nct": "NCT02504372",
+   "median_exp": 53.8,
+   "median_ctl": 47.6,
+   "N_exp": 590,
+   "N_ctl": 587,
+   "hr": 0.81
+  },
+  {
+   "nct": "NCT02152631",
+   "median_exp": 7.8,
+   "median_ctl": 7.4,
+   "N_exp": 183,
+   "N_ctl": 270,
+   "hr": 0.968
+  },
+  {
+   "nct": "NCT04191499",
+   "median_exp": 15.0,
+   "median_ctl": 7.3,
+   "N_exp": 161,
+   "N_ctl": 164,
+   "hr": 0.43
+  },
+  {
+   "nct": "NCT04685135",
+   "median_exp": 5.5,
+   "median_ctl": 3.8,
+   "N_exp": 301,
+   "N_ctl": 152,
+   "hr": 0.58
+  },
+  {
+   "nct": "NCT03143153",
+   "median_exp": 12.7,
+   "median_ctl": 5.8,
+   "N_exp": 325,
+   "N_ctl": 321,
+   "hr": 0.64
+  },
+  {
+   "nct": "NCT01507545",
+   "median_exp": 1.9,
+   "median_ctl": 1.9,
+   "N_exp": 84,
+   "N_ctl": 42,
+   "hr": 1.13
+  },
+  {
+   "nct": "NCT04778397",
+   "median_exp": 6.6,
+   "median_ctl": 4.4,
+   "N_exp": 129,
+   "N_ctl": 128,
+   "hr": 1.132
+  },
+  {
+   "nct": "NCT01663727",
+   "median_exp": 11.0,
+   "median_ctl": 8.8,
+   "N_exp": 239,
+   "N_ctl": 242,
+   "hr": 0.68
+  },
+  {
+   "nct": "NCT01193244",
+   "median_exp": 13.8,
+   "median_ctl": 8.7,
+   "N_exp": 784,
+   "N_ctl": 779,
+   "hr": 0.707
+  },
+  {
+   "nct": "NCT02626455",
+   "median_exp": 33.3,
+   "median_ctl": 32.9,
+   "N_exp": 262,
+   "N_ctl": 263,
+   "hr": 1.125
+  },
+  {
+   "nct": "NCT00324805",
+   "median_exp": 85.8,
+   "median_ctl": 42.9,
+   "N_exp": 752,
+   "N_ctl": 749,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT01828099",
+   "median_exp": 16.6,
+   "median_ctl": 8.1,
+   "N_exp": 189,
+   "N_ctl": 187,
+   "hr": 0.55
+  },
+  {
+   "nct": "NCT01846611",
+   "median_exp": 23.8,
+   "median_ctl": 22.2,
+   "N_exp": 289,
+   "N_ctl": 287,
+   "hr": 0.925
+  },
+  {
+   "nct": "NCT01905657",
+   "median_exp": 14.9,
+   "median_ctl": 8.5,
+   "N_exp": 344,
+   "N_ctl": 343,
+   "hr": 0.54
+  },
+  {
+   "nct": "NCT02105636",
+   "median_exp": 7.5,
+   "median_ctl": 5.1,
+   "N_exp": 240,
+   "N_ctl": 121,
+   "hr": 0.7
+  },
+  {
+   "nct": "NCT01966003",
+   "median_exp": 7.9,
+   "median_ctl": 6.6,
+   "N_exp": 314,
+   "N_ctl": 328,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT03839823",
+   "median_exp": 21.8,
+   "median_ctl": 12.8,
+   "N_exp": 112,
+   "N_ctl": 110,
+   "hr": 0.611
+  },
+  {
+   "nct": "NCT00872989",
+   "median_exp": 3.5,
+   "median_ctl": 3.0,
+   "N_exp": 66,
+   "N_ctl": 63,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT02639182",
+   "median_exp": 13.1,
+   "median_ctl": 5.7,
+   "N_exp": 67,
+   "N_ctl": 66,
+   "hr": 1.423
+  },
+  {
+   "nct": "NCT02494583",
+   "median_exp": 6.9,
+   "median_ctl": 6.4,
+   "N_exp": 257,
+   "N_ctl": 250,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT03511664",
+   "median_exp": 5.9,
+   "median_ctl": 2.4,
+   "N_exp": 551,
+   "N_ctl": 280,
+   "hr": 0.4
+  },
+  {
+   "nct": "NCT02101788",
+   "median_exp": 13.0,
+   "median_ctl": 6.3,
+   "N_exp": 130,
+   "N_ctl": 42,
+   "hr": 0.55
+  },
+  {
+   "nct": "NCT02947347",
+   "median_exp": 42.0,
+   "median_ctl": 32.8,
+   "N_exp": 334,
+   "N_ctl": 111,
+   "hr": 0.713
+  },
+  {
+   "nct": "NCT03070392",
+   "median_exp": 21.7,
+   "median_ctl": 16.0,
+   "N_exp": 252,
+   "N_ctl": 126,
+   "hr": 0.51
+  },
+  {
+   "nct": "NCT03635489",
+   "median_exp": 48.9,
+   "median_ctl": 22.6,
+   "N_exp": 50,
+   "N_ctl": 51,
+   "hr": 0.3
+  },
+  {
+   "nct": "NCT02567409",
+   "median_exp": 8.0,
+   "median_ctl": 8.0,
+   "N_exp": 41,
+   "N_ctl": 46,
+   "hr": 1.17
+  },
+  {
+   "nct": "NCT02756364",
+   "median_exp": 7.2,
+   "median_ctl": 3.5,
+   "N_exp": 47,
+   "N_ctl": 46,
+   "hr": 0.77
+  },
+  {
+   "nct": "NCT04008030",
+   "median_exp": 39.3,
+   "median_ctl": 5.8,
+   "N_exp": 353,
+   "N_ctl": 354,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT00532155",
+   "median_exp": 10.4,
+   "median_ctl": 10.1,
+   "N_exp": 457,
+   "N_ctl": 456,
+   "hr": 1.01
+  },
+  {
+   "nct": "NCT02420821",
+   "median_exp": 11.2,
+   "median_ctl": 7.5,
+   "N_exp": 454,
+   "N_ctl": 461,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT01988493",
+   "median_exp": 9.3,
+   "median_ctl": 8.6,
+   "N_exp": 38,
+   "N_ctl": 37,
+   "hr": 0.46
+  },
+  {
+   "nct": "NCT00111007",
+   "median_exp": 4.1,
+   "median_ctl": 4.0,
+   "N_exp": 135,
+   "N_ctl": 135,
+   "hr": 0.906
+  },
+  {
+   "nct": "NCT03430843",
+   "median_exp": 8.6,
+   "median_ctl": 6.3,
+   "N_exp": 256,
+   "N_ctl": 256,
+   "hr": 0.7
+  },
+  {
+   "nct": "NCT01844505",
+   "median_exp": 71.9,
+   "median_ctl": 2.9,
+   "N_exp": 314,
+   "N_ctl": 315,
+   "hr": 0.57
+  },
+  {
+   "nct": "NCT01763788",
+   "median_exp": 14.9,
+   "median_ctl": 10.8,
+   "N_exp": 90,
+   "N_ctl": 91,
+   "hr": 0.656
+  },
+  {
+   "nct": "NCT01515189",
+   "median_exp": 15.7,
+   "median_ctl": 2.8,
+   "N_exp": 365,
+   "N_ctl": 362,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT03332017",
+   "median_exp": 27.4,
+   "median_ctl": 11.2,
+   "N_exp": 145,
+   "N_ctl": 142,
+   "hr": 0.47
+  },
+  {
+   "nct": "NCT02257567",
+   "median_exp": 7.5,
+   "median_ctl": 2.0,
+   "N_exp": 106,
+   "N_ctl": 62,
+   "hr": 0.42
+  },
+  {
+   "nct": "NCT01381874",
+   "median_exp": 4.5,
+   "median_ctl": 3.6,
+   "N_exp": 106,
+   "N_ctl": 89,
+   "hr": 1.143
+  },
+  {
+   "nct": "NCT00910910",
+   "median_exp": 30.8,
+   "median_ctl": 21.4,
+   "N_exp": 225,
+   "N_ctl": 225,
+   "hr": 1.21
+  },
+  {
+   "nct": "NCT00785785",
+   "median_exp": 29.7,
+   "median_ctl": 25.9,
+   "N_exp": 320,
+   "N_ctl": 324,
+   "hr": 1.466
+  },
+  {
+   "nct": "NCT01039376",
+   "median_exp": 73.6,
+   "median_ctl": 33.7,
+   "N_exp": 241,
+   "N_ctl": 240,
+   "hr": 0.55
+  },
+  {
+   "nct": "NCT00122460",
+   "median_exp": 10.1,
+   "median_ctl": 3.3,
+   "N_exp": 222,
+   "N_ctl": 220,
+   "hr": 0.797
+  },
+  {
+   "nct": "NCT01506609",
+   "median_exp": 28.3,
+   "median_ctl": 7.4,
+   "N_exp": 95,
+   "N_ctl": 91,
+   "hr": 0.789
+  },
+  {
+   "nct": "NCT01755767",
+   "median_exp": 9.1,
+   "median_ctl": 8.4,
+   "N_exp": 114,
+   "N_ctl": 226,
+   "hr": 0.9682
+  },
+  {
+   "nct": "NCT01204710",
+   "median_exp": 14.2,
+   "median_ctl": 12.8,
+   "N_exp": 62,
+   "N_ctl": 59,
+   "hr": 1.29
+  },
+  {
+   "nct": "NCT03117049",
+   "median_exp": 12.1,
+   "median_ctl": 8.1,
+   "N_exp": 275,
+   "N_ctl": 275,
+   "hr": 0.56
+  },
+  {
+   "nct": "NCT01850524",
+   "median_exp": 35.3,
+   "median_ctl": 21.8,
+   "N_exp": 351,
+   "N_ctl": 354,
+   "hr": 0.83
+  },
+  {
+   "nct": "NCT01194219",
+   "median_exp": 4.1,
+   "median_ctl": 1.2,
+   "N_exp": 804,
+   "N_ctl": 560,
+   "hr": 2.649
+  },
+  {
+   "nct": "NCT03038100",
+   "median_exp": 19.5,
+   "median_ctl": 18.4,
+   "N_exp": 651,
+   "N_ctl": 650,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT01633060",
+   "median_exp": 3.9,
+   "median_ctl": 1.8,
+   "N_exp": 289,
+   "N_ctl": 143,
+   "hr": 0.67
+  },
+  {
+   "nct": "NCT02028507",
+   "median_exp": 10.0,
+   "median_ctl": 7.3,
+   "N_exp": 156,
+   "N_ctl": 268,
+   "hr": 0.7
+  },
+  {
+   "nct": "NCT01556490",
+   "median_exp": 13.8,
+   "median_ctl": 13.2,
+   "N_exp": 240,
+   "N_ctl": 241,
+   "hr": 1.08
+  },
+  {
+   "nct": "NCT01951586",
+   "median_exp": 10.9,
+   "median_ctl": 10.7,
+   "N_exp": 104,
+   "N_ctl": 148,
+   "hr": 1.11
+  },
+  {
+   "nct": "NCT01668784",
+   "median_exp": 25.0,
+   "median_ctl": 19.6,
+   "N_exp": 410,
+   "N_ctl": 411,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT01353222",
+   "median_exp": 18.0,
+   "median_ctl": 17.2,
+   "N_exp": 72,
+   "N_ctl": 70,
+   "hr": 1.141
+  },
+  {
+   "nct": "NCT02864251",
+   "median_exp": 5.6,
+   "median_ctl": 1.5,
+   "N_exp": 144,
+   "N_ctl": 73,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT03091192",
+   "median_exp": 7.0,
+   "median_ctl": 5.6,
+   "N_exp": 33,
+   "N_ctl": 27,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT02246127",
+   "median_exp": 32.6,
+   "median_ctl": 8.8,
+   "N_exp": 69,
+   "N_ctl": 72,
+   "hr": 1.4
+  },
+  {
+   "nct": "NCT01850563",
+   "median_exp": 17.0,
+   "median_ctl": 12.4,
+   "N_exp": 25,
+   "N_ctl": 27,
+   "hr": 0.87
+  },
+  {
+   "nct": "NCT02873195",
+   "median_exp": 10.6,
+   "median_ctl": 4.4,
+   "N_exp": 46,
+   "N_ctl": 82,
+   "hr": 0.725
+  },
+  {
+   "nct": "NCT00911170",
+   "median_exp": 24.6,
+   "median_ctl": 21.8,
+   "N_exp": 423,
+   "N_ctl": 422,
+   "hr": 1.05
+  },
+  {
+   "nct": "NCT00391274",
+   "median_exp": 3.1,
+   "median_ctl": 2.8,
+   "N_exp": 104,
+   "N_ctl": 107,
+   "hr": 1.05
+  },
+  {
+   "nct": "NCT00705016",
+   "median_exp": 6.4,
+   "median_ctl": 5.6,
+   "N_exp": 62,
+   "N_ctl": 60,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT01196390",
+   "median_exp": 19.6,
+   "median_ctl": 14.2,
+   "N_exp": 98,
+   "N_ctl": 96,
+   "hr": 0.97
+  },
+  {
+   "nct": "NCT03133546",
+   "median_exp": 15.4,
+   "median_ctl": 12.3,
+   "N_exp": 78,
+   "N_ctl": 77,
+   "hr": 0.96
+  },
+  {
+   "nct": "NCT02609984",
+   "median_exp": 2.6,
+   "median_ctl": 1.6,
+   "N_exp": 45,
+   "N_ctl": 44,
+   "hr": 0.8568
+  },
+  {
+   "nct": "NCT02668653",
+   "median_exp": 31.9,
+   "median_ctl": 15.1,
+   "N_exp": 268,
+   "N_ctl": 271,
+   "hr": 0.776
+  },
+  {
+   "nct": "NCT01564537",
+   "median_exp": 20.6,
+   "median_ctl": 14.7,
+   "N_exp": 361,
+   "N_ctl": 362,
+   "hr": 0.742
+  },
+  {
+   "nct": "NCT01152788",
+   "median_exp": 24.5,
+   "median_ctl": 22.4,
+   "N_exp": 28,
+   "N_ctl": 32,
+   "hr": 1.1
+  },
+  {
+   "nct": "NCT01597908",
+   "median_exp": 26.0,
+   "median_ctl": 17.8,
+   "N_exp": 352,
+   "N_ctl": 352,
+   "hr": 0.7
+  },
+  {
+   "nct": "NCT01828112",
+   "median_exp": 6.2,
+   "median_ctl": 1.6,
+   "N_exp": 115,
+   "N_ctl": 116,
+   "hr": 0.49
+  },
+  {
+   "nct": "NCT03314740",
+   "median_exp": 5.6,
+   "median_ctl": 3.1,
+   "N_exp": 41,
+   "N_ctl": 41,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT02990338",
+   "median_exp": 24.6,
+   "median_ctl": 6.5,
+   "N_exp": 154,
+   "N_ctl": 153,
+   "hr": 0.596
+  },
+  {
+   "nct": "NCT03694522",
+   "median_exp": 9.5,
+   "median_ctl": 7.4,
+   "N_exp": 77,
+   "N_ctl": 78,
+   "hr": 0.68
+  },
+  {
+   "nct": "NCT01285609",
+   "median_exp": 13.4,
+   "median_ctl": 12.4,
+   "N_exp": 479,
+   "N_ctl": 477,
+   "hr": 0.907
+  },
+  {
+   "nct": "NCT01881230",
+   "median_exp": 12.1,
+   "median_ctl": 6.0,
+   "N_exp": 61,
+   "N_ctl": 66,
+   "hr": 1.692
+  },
+  {
+   "nct": "NCT02358031",
+   "median_exp": 5.2,
+   "median_ctl": 4.9,
+   "N_exp": 300,
+   "N_ctl": 281,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT00720941",
+   "median_exp": 9.5,
+   "median_ctl": 8.4,
+   "N_exp": 553,
+   "N_ctl": 557,
+   "hr": 1.0466
+  },
+  {
+   "nct": "NCT03382912",
+   "median_exp": 1.9,
+   "median_ctl": 1.9,
+   "N_exp": 25,
+   "N_ctl": 27,
+   "hr": 1.006
+  },
+  {
+   "nct": "NCT00118755",
+   "median_exp": 9.4,
+   "median_ctl": 9.0,
+   "N_exp": 217,
+   "N_ctl": 218,
+   "hr": 0.89
+  },
+  {
+   "nct": "NCT03636893",
+   "median_exp": 25.5,
+   "median_ctl": 23.0,
+   "N_exp": 34,
+   "N_ctl": 40,
+   "hr": 1.06
+  },
+  {
+   "nct": "NCT01234402",
+   "median_exp": 15.5,
+   "median_ctl": 1.7,
+   "N_exp": 52,
+   "N_ctl": 49,
+   "hr": 0.691
+  },
+  {
+   "nct": "NCT03057106",
+   "median_exp": 16.6,
+   "median_ctl": 14.1,
+   "N_exp": 151,
+   "N_ctl": 150,
+   "hr": 0.88
+  },
+  {
+   "nct": "NCT01313689",
+   "median_exp": 10.1,
+   "median_ctl": 3.6,
+   "N_exp": 24,
+   "N_ctl": 43,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT03365882",
+   "median_exp": 4.7,
+   "median_ctl": 3.7,
+   "N_exp": 26,
+   "N_ctl": 27,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT03362177",
+   "median_exp": 0.5,
+   "median_ctl": 0.3,
+   "N_exp": 56,
+   "N_ctl": 110,
+   "hr": 2.673
+  },
+  {
+   "nct": "NCT02967692",
+   "median_exp": 61.5,
+   "median_ctl": 16.2,
+   "N_exp": 267,
+   "N_ctl": 267,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT03703375",
+   "median_exp": 18.4,
+   "median_ctl": 2.8,
+   "N_exp": 42,
+   "N_ctl": 44,
+   "hr": 0.67
+  },
+  {
+   "nct": "NCT00409188",
+   "median_exp": 25.6,
+   "median_ctl": 22.3,
+   "N_exp": 1024,
+   "N_ctl": 477,
+   "hr": 0.893
+  },
+  {
+   "nct": "NCT02492711",
+   "median_exp": 5.6,
+   "median_ctl": 4.9,
+   "N_exp": 266,
+   "N_ctl": 270,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT03663205",
+   "median_exp": 9.7,
+   "median_ctl": 7.6,
+   "N_exp": 223,
+   "N_ctl": 111,
+   "hr": 0.651
+  },
+  {
+   "nct": "NCT02200614",
+   "median_exp": 40.4,
+   "median_ctl": 18.4,
+   "N_exp": 955,
+   "N_ctl": 554,
+   "hr": 0.413
+  },
+  {
+   "nct": "NCT01450696",
+   "median_exp": 5.4,
+   "median_ctl": 4.4,
+   "N_exp": 124,
+   "N_ctl": 124,
+   "hr": 1.24
+  },
+  {
+   "nct": "NCT01955837",
+   "median_exp": 7.8,
+   "median_ctl": 7.1,
+   "N_exp": 271,
+   "N_ctl": 135,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT01544179",
+   "median_exp": 5.4,
+   "median_ctl": 5.4,
+   "N_exp": 132,
+   "N_ctl": 133,
+   "hr": 0.86
+  },
+  {
+   "nct": "NCT04494425",
+   "median_exp": 13.2,
+   "median_ctl": 8.1,
+   "N_exp": 436,
+   "N_ctl": 430,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT00520676",
+   "median_exp": 14.9,
+   "median_ctl": 0.7,
+   "N_exp": 106,
+   "N_ctl": 105,
+   "hr": 0.45
+  },
+  {
+   "nct": "NCT01642251",
+   "median_exp": 10.3,
+   "median_ctl": 5.5,
+   "N_exp": 64,
+   "N_ctl": 64,
+   "hr": 0.34
+  },
+  {
+   "nct": "NCT02387216",
+   "median_exp": 4.1,
+   "median_ctl": 3.4,
+   "N_exp": 49,
+   "N_ctl": 103,
+   "hr": 1.382
+  },
+  {
+   "nct": "NCT02129699",
+   "median_exp": 8.8,
+   "median_ctl": 7.8,
+   "N_exp": 255,
+   "N_ctl": 207,
+   "hr": 0.96
+  },
+  {
+   "nct": "NCT00400179",
+   "median_exp": 5.5,
+   "median_ctl": 4.8,
+   "N_exp": 508,
+   "N_ctl": 521,
+   "hr": 0.77
+  },
+  {
+   "nct": "NCT04765059",
+   "median_exp": 8.4,
+   "median_ctl": 4.4,
+   "N_exp": 49,
+   "N_ctl": 49,
+   "hr": 0.43
+  },
+  {
+   "nct": "NCT04094688",
+   "median_exp": 11.8,
+   "median_ctl": 10.3,
+   "N_exp": 228,
+   "N_ctl": 227,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT01903993",
+   "median_exp": 12.6,
+   "median_ctl": 9.7,
+   "N_exp": 144,
+   "N_ctl": 144,
+   "hr": 0.69
+  },
+  {
+   "nct": "NCT04602611",
+   "median_exp": 3.1,
+   "median_ctl": 2.2,
+   "N_exp": 87,
+   "N_ctl": 95,
+   "hr": 0.864
+  },
+  {
+   "nct": "NCT05954546",
+   "median_exp": 33.6,
+   "median_ctl": 24.0,
+   "N_exp": 192,
+   "N_ctl": 83,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT03710876",
+   "median_exp": 17.6,
+   "median_ctl": 15.5,
+   "N_exp": 27,
+   "N_ctl": 22,
+   "hr": 0.83
+  },
+  {
+   "nct": "NCT01605396",
+   "median_exp": 7.3,
+   "median_ctl": 5.4,
+   "N_exp": 40,
+   "N_ctl": 40,
+   "hr": 1.18
+  },
+  {
+   "nct": "NCT02500043",
+   "median_exp": 5.7,
+   "median_ctl": 3.6,
+   "N_exp": 337,
+   "N_ctl": 170,
+   "hr": 0.6917
+  },
+  {
+   "nct": "NCT02907359",
+   "median_exp": 9.1,
+   "median_ctl": 8.3,
+   "N_exp": 277,
+   "N_ctl": 140,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT01335399",
+   "median_exp": 31.4,
+   "median_ctl": 29.5,
+   "N_exp": 374,
+   "N_ctl": 374,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT00373113",
+   "median_exp": 4.2,
+   "median_ctl": 2.8,
+   "N_exp": 244,
+   "N_ctl": 238,
+   "hr": 1.47
+  },
+  {
+   "nct": "NCT02499120",
+   "median_exp": 9.7,
+   "median_ctl": 7.8,
+   "N_exp": 65,
+   "N_ctl": 60,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT02296125",
+   "median_exp": 18.9,
+   "median_ctl": 9.8,
+   "N_exp": 279,
+   "N_ctl": 65,
+   "hr": 0.46
+  },
+  {
+   "nct": "NCT02890355",
+   "median_exp": 6.5,
+   "median_ctl": 5.4,
+   "N_exp": 58,
+   "N_ctl": 59,
+   "hr": 1.23
+  },
+  {
+   "nct": "NCT03382899",
+   "median_exp": 16.3,
+   "median_ctl": 6.1,
+   "N_exp": 51,
+   "N_ctl": 50,
+   "hr": 1.53
+  },
+  {
+   "nct": "NCT01231581",
+   "median_exp": 8.4,
+   "median_ctl": 6.7,
+   "N_exp": 80,
+   "N_ctl": 80,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT02541383",
+   "median_exp": 83.7,
+   "median_ctl": 46.7,
+   "N_exp": 543,
+   "N_ctl": 542,
+   "hr": 0.53
+  },
+  {
+   "nct": "NCT03522246",
+   "median_exp": 28.7,
+   "median_ctl": 11.3,
+   "N_exp": 436,
+   "N_ctl": 427,
+   "hr": 0.47
+  },
+  {
+   "nct": "NCT01625286",
+   "median_exp": 32.8,
+   "median_ctl": 8.4,
+   "N_exp": 54,
+   "N_ctl": 56,
+   "hr": 0.8
+  },
+  {
+   "nct": "NCT02117479",
+   "median_exp": 1.4,
+   "median_ctl": 1.4,
+   "N_exp": 160,
+   "N_ctl": 161,
+   "hr": 0.969
+  },
+  {
+   "nct": "NCT00769704",
+   "median_exp": 23.3,
+   "median_ctl": 18.9,
+   "N_exp": 295,
+   "N_ctl": 141,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT01239797",
+   "median_exp": 39.6,
+   "median_ctl": 19.4,
+   "N_exp": 325,
+   "N_ctl": 321,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT00005947",
+   "median_exp": 25.9,
+   "median_ctl": 21.4,
+   "N_exp": 82,
+   "N_ctl": 45,
+   "hr": 1.45
+  },
+  {
+   "nct": "NCT02502266",
+   "median_exp": 13.6,
+   "median_ctl": 2.3,
+   "N_exp": 173,
+   "N_ctl": 52,
+   "hr": 0.649
+  },
+  {
+   "nct": "NCT02923921",
+   "median_exp": 6.3,
+   "median_ctl": 5.8,
+   "N_exp": 284,
+   "N_ctl": 283,
+   "hr": 1.045
+  },
+  {
+   "nct": "NCT03703297",
+   "median_exp": 55.9,
+   "median_ctl": 9.2,
+   "N_exp": 264,
+   "N_ctl": 266,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT02879318",
+   "median_exp": 9.8,
+   "median_ctl": 8.8,
+   "N_exp": 119,
+   "N_ctl": 61,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT03391466",
+   "median_exp": 14.7,
+   "median_ctl": 2.0,
+   "N_exp": 180,
+   "N_ctl": 179,
+   "hr": 0.398
+  },
+  {
+   "nct": "NCT04191135",
+   "median_exp": 5.6,
+   "median_ctl": 5.5,
+   "N_exp": 136,
+   "N_ctl": 135,
+   "hr": 0.98
+  },
+  {
+   "nct": "NCT03519971",
+   "median_exp": 13.8,
+   "median_ctl": 9.4,
+   "N_exp": 219,
+   "N_ctl": 109,
+   "hr": 0.85
+  },
+  {
+   "nct": "NCT02718417",
+   "median_exp": 18.1,
+   "median_ctl": 15.0,
+   "N_exp": 331,
+   "N_ctl": 335,
+   "hr": 1.43
+  },
+  {
+   "nct": "NCT01574716",
+   "median_exp": 5.5,
+   "median_ctl": 4.3,
+   "N_exp": 70,
+   "N_ctl": 139,
+   "hr": 1.08
+  },
+  {
+   "nct": "NCT00678535",
+   "median_exp": 5.6,
+   "median_ctl": 4.4,
+   "N_exp": 449,
+   "N_ctl": 455,
+   "hr": 1.091
+  },
+  {
+   "nct": "NCT02578680",
+   "median_exp": 11.3,
+   "median_ctl": 8.8,
+   "N_exp": 206,
+   "N_ctl": 410,
+   "hr": 0.52
+  },
+  {
+   "nct": "NCT03106987",
+   "median_exp": 5.3,
+   "median_ctl": 2.8,
+   "N_exp": 72,
+   "N_ctl": 38,
+   "hr": 0.566
+  },
+  {
+   "nct": "NCT00974311",
+   "median_exp": 18.4,
+   "median_ctl": 13.6,
+   "N_exp": 800,
+   "N_ctl": 399,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT02291289",
+   "median_exp": 11.6,
+   "median_ctl": 3.8,
+   "N_exp": 40,
+   "N_ctl": 65,
+   "hr": 0.95
+  },
+  {
+   "nct": "NCT01237327",
+   "median_exp": 29.2,
+   "median_ctl": 16.3,
+   "N_exp": 43,
+   "N_ctl": 41,
+   "hr": 0.7799
+  },
+  {
+   "nct": "NCT01461928",
+   "median_exp": 65.4,
+   "median_ctl": 25.0,
+   "N_exp": 692,
+   "N_ctl": 692,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT01013649",
+   "median_exp": 29.9,
+   "median_ctl": 28.1,
+   "N_exp": 174,
+   "N_ctl": 352,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT00936221",
+   "median_exp": 13.9,
+   "median_ctl": 10.5,
+   "N_exp": 45,
+   "N_ctl": 46,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT01622543",
+   "median_exp": 9.1,
+   "median_ctl": 7.3,
+   "N_exp": 52,
+   "N_ctl": 51,
+   "hr": 1.59
+  },
+  {
+   "nct": "NCT03377491",
+   "median_exp": 16.2,
+   "median_ctl": 9.3,
+   "N_exp": 285,
+   "N_ctl": 286,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT00900627",
+   "median_exp": 9.1,
+   "median_ctl": 8.7,
+   "N_exp": 96,
+   "N_ctl": 94,
+   "hr": 1.08
+  },
+  {
+   "nct": "NCT02004093",
+   "median_exp": 9.2,
+   "median_ctl": 7.8,
+   "N_exp": 75,
+   "N_ctl": 74,
+   "hr": 1.17
+  },
+  {
+   "nct": "NCT01285557",
+   "median_exp": 7.5,
+   "median_ctl": 6.6,
+   "N_exp": 239,
+   "N_ctl": 122,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT02855125",
+   "median_exp": 4.2,
+   "median_ctl": 3.6,
+   "N_exp": 64,
+   "N_ctl": 64,
+   "hr": 1.16
+  },
+  {
+   "nct": "NCT03170882",
+   "median_exp": 7.1,
+   "median_ctl": 4.8,
+   "N_exp": 73,
+   "N_ctl": 49,
+   "hr": 0.847
+  },
+  {
+   "nct": "NCT02864381",
+   "median_exp": 7.2,
+   "median_ctl": 1.9,
+   "N_exp": 72,
+   "N_ctl": 72,
+   "hr": 0.836
+  },
+  {
+   "nct": "NCT04363801",
+   "median_exp": 10.4,
+   "median_ctl": 7.7,
+   "N_exp": 85,
+   "N_ctl": 85,
+   "hr": 1.42
+  },
+  {
+   "nct": "NCT02603432",
+   "median_exp": 21.4,
+   "median_ctl": 14.3,
+   "N_exp": 350,
+   "N_ctl": 350,
+   "hr": 0.69
+  },
+  {
+   "nct": "NCT01265849",
+   "median_exp": 58.1,
+   "median_ctl": 46.3,
+   "N_exp": 282,
+   "N_ctl": 395,
+   "hr": 1.09
+  },
+  {
+   "nct": "NCT03452137",
+   "median_exp": 59.5,
+   "median_ctl": 52.7,
+   "N_exp": 203,
+   "N_ctl": 203,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT01193257",
+   "median_exp": 17.1,
+   "median_ctl": 15.3,
+   "N_exp": 734,
+   "N_ctl": 365,
+   "hr": 0.875
+  },
+  {
+   "nct": "NCT00069095",
+   "median_exp": 8.5,
+   "median_ctl": 7.9,
+   "N_exp": 990,
+   "N_ctl": 1008,
+   "hr": 1.05
+  },
+  {
+   "nct": "NCT00705406",
+   "median_exp": 106.9,
+   "median_ctl": 91.1,
+   "N_exp": 149,
+   "N_ctl": 133,
+   "hr": 0.927
+  },
+  {
+   "nct": "NCT00065182",
+   "median_exp": 7.1,
+   "median_ctl": 6.6,
+   "N_exp": 202,
+   "N_ctl": 197,
+   "hr": 1.007
+  },
+  {
+   "nct": "NCT02908672",
+   "median_exp": 15.1,
+   "median_ctl": 10.6,
+   "N_exp": 256,
+   "N_ctl": 279,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT02023697",
+   "median_exp": 12.9,
+   "median_ctl": 9.6,
+   "N_exp": 130,
+   "N_ctl": 131,
+   "hr": 1.057
+  },
+  {
+   "nct": "NCT00439517",
+   "median_exp": 12.9,
+   "median_ctl": 8.2,
+   "N_exp": 152,
+   "N_ctl": 150,
+   "hr": 0.677
+  },
+  {
+   "nct": "NCT03834493",
+   "median_exp": 10.4,
+   "median_ctl": 9.0,
+   "N_exp": 621,
+   "N_ctl": 623,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT03777657",
+   "median_exp": 12.9,
+   "median_ctl": 6.9,
+   "N_exp": 496,
+   "N_ctl": 501,
+   "hr": 0.74
+  },
+  {
+   "nct": "NCT00069108",
+   "median_exp": 12.6,
+   "median_ctl": 11.9,
+   "N_exp": 314,
+   "N_ctl": 313,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT02322814",
+   "median_exp": 15.6,
+   "median_ctl": 3.8,
+   "N_exp": 32,
+   "N_ctl": 47,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT00113607",
+   "median_exp": 7.3,
+   "median_ctl": 5.8,
+   "N_exp": 337,
+   "N_ctl": 335,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT02538666",
+   "median_exp": 10.2,
+   "median_ctl": 1.5,
+   "N_exp": 280,
+   "N_ctl": 279,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT01287741",
+   "median_exp": 74.5,
+   "median_ctl": 68.3,
+   "N_exp": 712,
+   "N_ctl": 706,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT04716933",
+   "median_exp": 15.3,
+   "median_ctl": 9.2,
+   "N_exp": 101,
+   "N_ctl": 100,
+   "hr": 0.68
+  },
+  {
+   "nct": "NCT04026412",
+   "median_exp": 39.8,
+   "median_ctl": 15.6,
+   "N_exp": 318,
+   "N_ctl": 320,
+   "hr": 0.95
+  },
+  {
+   "nct": "NCT02864394",
+   "median_exp": 12.3,
+   "median_ctl": 10.9,
+   "N_exp": 213,
+   "N_ctl": 212,
+   "hr": 0.83
+  },
+  {
+   "nct": "NCT00813943",
+   "median_exp": 16.3,
+   "median_ctl": 5.9,
+   "N_exp": 89,
+   "N_ctl": 88,
+   "hr": 0.686
+  },
+  {
+   "nct": "NCT02811861",
+   "median_exp": 23.9,
+   "median_ctl": 9.2,
+   "N_exp": 355,
+   "N_ctl": 357,
+   "hr": 0.65
+  },
+  {
+   "nct": "NCT00960115",
+   "median_exp": 32.4,
+   "median_ctl": 8.0,
+   "N_exp": 114,
+   "N_ctl": 58,
+   "hr": 0.953
+  },
+  {
+   "nct": "NCT01089413",
+   "median_exp": 12.7,
+   "median_ctl": 11.5,
+   "N_exp": 79,
+   "N_ctl": 120,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT04737187",
+   "median_exp": 5.5,
+   "median_ctl": 2.4,
+   "N_exp": 246,
+   "N_ctl": 246,
+   "hr": 0.61
+  },
+  {
+   "nct": "NCT01478594",
+   "median_exp": 10.7,
+   "median_ctl": 9.4,
+   "N_exp": 88,
+   "N_ctl": 177,
+   "hr": 1.091
+  },
+  {
+   "nct": "NCT04921358",
+   "median_exp": 4.4,
+   "median_ctl": 2.9,
+   "N_exp": 187,
+   "N_ctl": 190,
+   "hr": 1.02
+  },
+  {
+   "nct": "NCT04154189",
+   "median_exp": 6.5,
+   "median_ctl": 5.5,
+   "N_exp": 40,
+   "N_ctl": 41,
+   "hr": 0.54
+  },
+  {
+   "nct": "NCT00946712",
+   "median_exp": 10.9,
+   "median_ctl": 9.2,
+   "N_exp": 656,
+   "N_ctl": 657,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT00434161",
+   "median_exp": 50.6,
+   "median_ctl": 18.3,
+   "N_exp": 220,
+   "N_ctl": 79,
+   "hr": 0.64
+  },
+  {
+   "nct": "NCT04428333",
+   "median_exp": 5.5,
+   "median_ctl": 4.7,
+   "N_exp": 52,
+   "N_ctl": 65,
+   "hr": 2.16
+  },
+  {
+   "nct": "NCT03594747",
+   "median_exp": 7.6,
+   "median_ctl": 5.5,
+   "N_exp": 119,
+   "N_ctl": 121,
+   "hr": 0.52
+  },
+  {
+   "nct": "NCT01372774",
+   "median_exp": 3.7,
+   "median_ctl": 3.0,
+   "N_exp": 98,
+   "N_ctl": 96,
+   "hr": 0.47
+  },
+  {
+   "nct": "NCT00375674",
+   "median_exp": 6.8,
+   "median_ctl": 5.6,
+   "N_exp": 309,
+   "N_ctl": 306,
+   "hr": 0.929
+  },
+  {
+   "nct": "NCT00829166",
+   "median_exp": 9.6,
+   "median_ctl": 6.4,
+   "N_exp": 495,
+   "N_ctl": 496,
+   "hr": 0.65
+  },
+  {
+   "nct": "NCT03611556",
+   "median_exp": 22.2,
+   "median_ctl": 8.9,
+   "N_exp": 38,
+   "N_ctl": 38,
+   "hr": 1.26
+  },
+  {
+   "nct": "NCT01724346",
+   "median_exp": 106.9,
+   "median_ctl": 15.0,
+   "N_exp": 136,
+   "N_ctl": 133,
+   "hr": 0.155
+  },
+  {
+   "nct": "NCT03972488",
+   "median_exp": 22.8,
+   "median_ctl": 8.5,
+   "N_exp": 151,
+   "N_ctl": 75,
+   "hr": 0.276
+  },
+  {
+   "nct": "NCT00976911",
+   "median_exp": 6.8,
+   "median_ctl": 3.4,
+   "N_exp": 179,
+   "N_ctl": 182,
+   "hr": 0.45
+  },
+  {
+   "nct": "NCT03033511",
+   "median_exp": 9.8,
+   "median_ctl": 8.5,
+   "N_exp": 376,
+   "N_ctl": 372,
+   "hr": 1.07
+  },
+  {
+   "nct": "NCT03336216",
+   "median_exp": 3.7,
+   "median_ctl": 1.9,
+   "N_exp": 48,
+   "N_ctl": 49,
+   "hr": 1.47
+  },
+  {
+   "nct": "NCT00365105",
+   "median_exp": 32.1,
+   "median_ctl": 26.9,
+   "N_exp": 124,
+   "N_ctl": 124,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT03414684",
+   "median_exp": 5.5,
+   "median_ctl": 4.2,
+   "N_exp": 30,
+   "N_ctl": 32,
+   "hr": 0.95
+  },
+  {
+   "nct": "NCT00899548",
+   "median_exp": 5.8,
+   "median_ctl": 2.1,
+   "N_exp": 67,
+   "N_ctl": 129,
+   "hr": 1.76
+  },
+  {
+   "nct": "NCT01797120",
+   "median_exp": 10.3,
+   "median_ctl": 5.1,
+   "N_exp": 66,
+   "N_ctl": 65,
+   "hr": 0.61
+  },
+  {
+   "nct": "NCT00856375",
+   "median_exp": 8.4,
+   "median_ctl": 4.0,
+   "N_exp": 41,
+   "N_ctl": 42,
+   "hr": 0.645
+  },
+  {
+   "nct": "NCT01958021",
+   "median_exp": 63.9,
+   "median_ctl": 14.7,
+   "N_exp": 334,
+   "N_ctl": 334,
+   "hr": 0.556
+  },
+  {
+   "nct": "NCT04988295",
+   "median_exp": 8.3,
+   "median_ctl": 4.2,
+   "N_exp": 263,
+   "N_ctl": 263,
+   "hr": 0.44
+  },
+  {
+   "nct": "NCT05269355",
+   "median_exp": 3.6,
+   "median_ctl": 2.6,
+   "N_exp": 238,
+   "N_ctl": 120,
+   "hr": 0.61
+  },
+  {
+   "nct": "NCT05116189",
+   "median_exp": 8.3,
+   "median_ctl": 7.2,
+   "N_exp": 322,
+   "N_ctl": 321,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT01447706",
+   "median_exp": 13.7,
+   "median_ctl": 3.7,
+   "N_exp": 140,
+   "N_ctl": 83,
+   "hr": 0.37
+  },
+  {
+   "nct": "NCT00320385",
+   "median_exp": 11.9,
+   "median_ctl": 9.0,
+   "N_exp": 148,
+   "N_ctl": 148,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT01256359",
+   "median_exp": 4.2,
+   "median_ctl": 3.9,
+   "N_exp": 386,
+   "N_ctl": 400,
+   "hr": 0.753
+  },
+  {
+   "nct": "NCT04924062",
+   "median_exp": 14.1,
+   "median_ctl": 9.9,
+   "N_exp": 75,
+   "N_ctl": 83,
+   "hr": 0.74
+  },
+  {
+   "nct": "NCT05116202",
+   "median_exp": 22.5,
+   "median_ctl": 2.1,
+   "N_exp": 20,
+   "N_ctl": 22,
+   "hr": 2.09
+  },
+  {
+   "nct": "NCT03834506",
+   "median_exp": 19.6,
+   "median_ctl": 19.0,
+   "N_exp": 515,
+   "N_ctl": 515,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT03850444",
+   "median_exp": 20.0,
+   "median_ctl": 14.0,
+   "N_exp": 128,
+   "N_ctl": 134,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT00286091",
+   "median_exp": 29.5,
+   "median_ctl": 25.2,
+   "N_exp": 716,
+   "N_ctl": 716,
+   "hr": 0.85
+  },
+  {
+   "nct": "NCT03371017",
+   "median_exp": 12.1,
+   "median_ctl": 11.2,
+   "N_exp": 297,
+   "N_ctl": 298,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT01465464",
+   "median_exp": 32.3,
+   "median_ctl": 31.1,
+   "N_exp": 206,
+   "N_ctl": 174,
+   "hr": 1.09
+  },
+  {
+   "nct": "NCT03748641",
+   "median_exp": 16.5,
+   "median_ctl": 13.7,
+   "N_exp": 212,
+   "N_ctl": 211,
+   "hr": 0.729
+  },
+  {
+   "nct": "NCT02872116",
+   "median_exp": 14.4,
+   "median_ctl": 11.1,
+   "N_exp": 789,
+   "N_ctl": 792,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT02763579",
+   "median_exp": 10.3,
+   "median_ctl": 5.2,
+   "N_exp": 202,
+   "N_ctl": 201,
+   "hr": 0.77
+  },
+  {
+   "nct": "NCT04647526",
+   "median_exp": 9.5,
+   "median_ctl": 6.0,
+   "N_exp": 276,
+   "N_ctl": 136,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT04538664",
+   "median_exp": 11.4,
+   "median_ctl": 6.7,
+   "N_exp": 153,
+   "N_ctl": 155,
+   "hr": 0.395
+  },
+  {
+   "nct": "NCT03815058",
+   "median_exp": 62.2,
+   "median_ctl": 7.9,
+   "N_exp": 84,
+   "N_ctl": 41,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT02272413",
+   "median_exp": 9.0,
+   "median_ctl": 8.3,
+   "N_exp": 328,
+   "N_ctl": 335,
+   "hr": 1.22
+  },
+  {
+   "nct": "NCT02367781",
+   "median_exp": 7.0,
+   "median_ctl": 5.5,
+   "N_exp": 483,
+   "N_ctl": 240,
+   "hr": 0.639
+  },
+  {
+   "nct": "NCT02039674",
+   "median_exp": 34.5,
+   "median_ctl": 21.1,
+   "N_exp": 60,
+   "N_ctl": 63,
+   "hr": 0.54
+  },
+  {
+   "nct": "NCT04152863",
+   "median_exp": 12.7,
+   "median_ctl": 7.3,
+   "N_exp": 28,
+   "N_ctl": 28,
+   "hr": 1.06
+  },
+  {
+   "nct": "NCT03933449",
+   "median_exp": 8.4,
+   "median_ctl": 5.6,
+   "N_exp": 62,
+   "N_ctl": 61,
+   "hr": 0.55
+  },
+  {
+   "nct": "NCT02033993",
+   "median_exp": 8.8,
+   "median_ctl": 7.5,
+   "N_exp": 100,
+   "N_ctl": 99,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT00390455",
+   "median_exp": 4.7,
+   "median_ctl": 3.8,
+   "N_exp": 146,
+   "N_ctl": 145,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT01466660",
+   "median_exp": 12.8,
+   "median_ctl": 11.2,
+   "N_exp": 160,
+   "N_ctl": 159,
+   "hr": 0.822
+  },
+  {
+   "nct": "NCT01585987",
+   "median_exp": 16.8,
+   "median_ctl": 4.9,
+   "N_exp": 57,
+   "N_ctl": 57,
+   "hr": 1.439
+  },
+  {
+   "nct": "NCT02258464",
+   "median_exp": 43.0,
+   "median_ctl": 18.4,
+   "N_exp": 49,
+   "N_ctl": 50,
+   "hr": 0.745
+  },
+  {
+   "nct": "NCT01151046",
+   "median_exp": 3.7,
+   "median_ctl": 2.5,
+   "N_exp": 56,
+   "N_ctl": 59,
+   "hr": 0.26
+  },
+  {
+   "nct": "NCT00770874",
+   "median_exp": 21.9,
+   "median_ctl": 19.5,
+   "N_exp": 188,
+   "N_ctl": 174,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT01774786",
+   "median_exp": 14.2,
+   "median_ctl": 8.5,
+   "N_exp": 392,
+   "N_ctl": 388,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT04266301",
+   "median_exp": 22.3,
+   "median_ctl": 18.8,
+   "N_exp": 265,
+   "N_ctl": 265,
+   "hr": 0.847
+  },
+  {
+   "nct": "NCT03946670",
+   "median_exp": 11.1,
+   "median_ctl": 8.5,
+   "N_exp": 65,
+   "N_ctl": 62,
+   "hr": 0.795
+  },
+  {
+   "nct": "NCT04487080",
+   "median_exp": 23.7,
+   "median_ctl": 16.6,
+   "N_exp": 429,
+   "N_ctl": 429,
+   "hr": 0.7
+  },
+  {
+   "nct": "NCT02370238",
+   "median_exp": 5.6,
+   "median_ctl": 5.5,
+   "N_exp": 61,
+   "N_ctl": 62,
+   "hr": 1.14
+  },
+  {
+   "nct": "NCT02054338",
+   "median_exp": 8.4,
+   "median_ctl": 8.0,
+   "N_exp": 501,
+   "N_ctl": 503,
+   "hr": 1.05
+  },
+  {
+   "nct": "NCT00324155",
+   "median_exp": 9.1,
+   "median_ctl": 2.7,
+   "N_exp": 252,
+   "N_ctl": 250,
+   "hr": 0.716
+  },
+  {
+   "nct": "NCT03971474",
+   "median_exp": 14.5,
+   "median_ctl": 11.6,
+   "N_exp": 69,
+   "N_ctl": 67,
+   "hr": 0.69
+  },
+  {
+   "nct": "NCT02684058",
+   "median_exp": 20.3,
+   "median_ctl": 7.2,
+   "N_exp": 73,
+   "N_ctl": 55,
+   "hr": 0.31
+  },
+  {
+   "nct": "NCT00699751",
+   "median_exp": 14.9,
+   "median_ctl": 11.3,
+   "N_exp": 614,
+   "N_ctl": 307,
+   "hr": 0.691
+  },
+  {
+   "nct": "NCT02470585",
+   "median_exp": 34.7,
+   "median_ctl": 21.1,
+   "N_exp": 382,
+   "N_ctl": 383,
+   "hr": 0.435
+  },
+  {
+   "nct": "NCT00219557",
+   "median_exp": 6.9,
+   "median_ctl": 5.6,
+   "N_exp": 69,
+   "N_ctl": 34,
+   "hr": 0.758
+  },
+  {
+   "nct": "NCT03786094",
+   "median_exp": 4.0,
+   "median_ctl": 3.5,
+   "N_exp": 213,
+   "N_ctl": 219,
+   "hr": 1.1
+  },
+  {
+   "nct": "NCT03221426",
+   "median_exp": 44.4,
+   "median_ctl": 25.7,
+   "N_exp": 502,
+   "N_ctl": 505,
+   "hr": 0.81
+  },
+  {
+   "nct": "NCT01303796",
+   "median_exp": 5.9,
+   "median_ctl": 5.7,
+   "N_exp": 241,
+   "N_ctl": 241,
+   "hr": 1.013
+  },
+  {
+   "nct": "NCT00418028",
+   "median_exp": 27.3,
+   "median_ctl": 24.1,
+   "N_exp": 95,
+   "N_ctl": 97,
+   "hr": 1.3
+  },
+  {
+   "nct": "NCT00537381",
+   "median_exp": 11.0,
+   "median_ctl": 7.6,
+   "N_exp": 65,
+   "N_ctl": 66,
+   "hr": 1.728
+  },
+  {
+   "nct": "NCT00096265",
+   "median_exp": 13.4,
+   "median_ctl": 6.1,
+   "N_exp": 44,
+   "N_ctl": 41,
+   "hr": 1.43
+  },
+  {
+   "nct": "NCT02013167",
+   "median_exp": 7.7,
+   "median_ctl": 4.0,
+   "N_exp": 271,
+   "N_ctl": 171,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT01102426",
+   "median_exp": 2.6,
+   "median_ctl": 1.7,
+   "N_exp": 171,
+   "N_ctl": 84,
+   "hr": 0.65
+  },
+  {
+   "nct": "NCT05461794",
+   "median_exp": 5.6,
+   "median_ctl": 2.6,
+   "N_exp": 38,
+   "N_ctl": 38,
+   "hr": 0.85
+  },
+  {
+   "nct": "NCT00115765",
+   "median_exp": 11.4,
+   "median_ctl": 10.0,
+   "N_exp": 410,
+   "N_ctl": 413,
+   "hr": 1.27
+  },
+  {
+   "nct": "NCT04083235",
+   "median_exp": 11.1,
+   "median_ctl": 9.2,
+   "N_exp": 383,
+   "N_ctl": 387,
+   "hr": 0.83
+  },
+  {
+   "nct": "NCT01004003",
+   "median_exp": 5.3,
+   "median_ctl": 3.9,
+   "N_exp": 62,
+   "N_ctl": 31,
+   "hr": 1.437
+  },
+  {
+   "nct": "NCT00680901",
+   "median_exp": 12.2,
+   "median_ctl": 10.5,
+   "N_exp": 272,
+   "N_ctl": 273,
+   "hr": 0.91
+  },
+  {
+   "nct": "NCT00678392",
+   "median_exp": 20.1,
+   "median_ctl": 4.7,
+   "N_exp": 361,
+   "N_ctl": 362,
+   "hr": 0.665
+  },
+  {
+   "nct": "NCT01218516",
+   "median_exp": 14.1,
+   "median_ctl": 10.5,
+   "N_exp": 64,
+   "N_ctl": 67,
+   "hr": 1.23
+  },
+  {
+   "nct": "NCT01232452",
+   "median_exp": 5.5,
+   "median_ctl": 5.2,
+   "N_exp": 87,
+   "N_ctl": 85,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT00550173",
+   "median_exp": 7.4,
+   "median_ctl": 3.8,
+   "N_exp": 78,
+   "N_ctl": 83,
+   "hr": 0.57
+  },
+  {
+   "nct": "NCT01855750",
+   "median_exp": 54.8,
+   "median_ctl": 49.6,
+   "N_exp": 419,
+   "N_ctl": 419,
+   "hr": 0.922
+  },
+  {
+   "nct": "NCT01498289",
+   "median_exp": 11.4,
+   "median_ctl": 5.3,
+   "N_exp": 98,
+   "N_ctl": 104,
+   "hr": 0.68
+  },
+  {
+   "nct": "NCT04680052",
+   "median_exp": 22.4,
+   "median_ctl": 13.9,
+   "N_exp": 326,
+   "N_ctl": 328,
+   "hr": 0.434
+  },
+  {
+   "nct": "NCT01644890",
+   "median_exp": 8.5,
+   "median_ctl": 8.4,
+   "N_exp": 211,
+   "N_ctl": 211,
+   "hr": 1.255
+  },
+  {
+   "nct": "NCT01774344",
+   "median_exp": 10.6,
+   "median_ctl": 7.8,
+   "N_exp": 379,
+   "N_ctl": 194,
+   "hr": 0.624
+  },
+  {
+   "nct": "NCT04128696",
+   "median_exp": 10.1,
+   "median_ctl": 3.7,
+   "N_exp": 159,
+   "N_ctl": 156,
+   "hr": 1.51
+  },
+  {
+   "nct": "NCT05600309",
+   "median_exp": 9.6,
+   "median_ctl": 2.1,
+   "N_exp": 50,
+   "N_ctl": 44,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT01026493",
+   "median_exp": 10.7,
+   "median_ctl": 4.7,
+   "N_exp": 73,
+   "N_ctl": 32,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT00699816",
+   "median_exp": 44.0,
+   "median_ctl": 30.0,
+   "N_exp": 114,
+   "N_ctl": 112,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT01569295",
+   "median_exp": 56.2,
+   "median_ctl": 11.1,
+   "N_exp": 207,
+   "N_ctl": 209,
+   "hr": 0.35
+  },
+  {
+   "nct": "NCT02724020",
+   "median_exp": 22.4,
+   "median_ctl": 3.1,
+   "N_exp": 32,
+   "N_ctl": 32,
+   "hr": 1.33
+  },
+  {
+   "nct": "NCT01454934",
+   "median_exp": 9.5,
+   "median_ctl": 9.5,
+   "N_exp": 270,
+   "N_ctl": 270,
+   "hr": 1.16
+  },
+  {
+   "nct": "NCT02027428",
+   "median_exp": 5.5,
+   "median_ctl": 3.1,
+   "N_exp": 420,
+   "N_ctl": 420,
+   "hr": 0.85
+  },
+  {
+   "nct": "NCT03778931",
+   "median_exp": 3.8,
+   "median_ctl": 1.9,
+   "N_exp": 239,
+   "N_ctl": 239,
+   "hr": 0.546
+  },
+  {
+   "nct": "NCT01798485",
+   "median_exp": 10.9,
+   "median_ctl": 10.5,
+   "N_exp": 338,
+   "N_ctl": 342,
+   "hr": 1.111
+  },
+  {
+   "nct": "NCT02659020",
+   "median_exp": 19.8,
+   "median_ctl": 4.2,
+   "N_exp": 178,
+   "N_ctl": 88,
+   "hr": 0.945
+  },
+  {
+   "nct": "NCT03312738",
+   "median_exp": 7.4,
+   "median_ctl": 2.0,
+   "N_exp": 80,
+   "N_ctl": 79,
+   "hr": 0.53
+  },
+  {
+   "nct": "NCT01373164",
+   "median_exp": 8.9,
+   "median_ctl": 7.1,
+   "N_exp": 104,
+   "N_ctl": 52,
+   "hr": 0.794
+  },
+  {
+   "nct": "NCT01095003",
+   "median_exp": 5.6,
+   "median_ctl": 4.3,
+   "N_exp": 384,
+   "N_ctl": 386,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT00738530",
+   "median_exp": 23.3,
+   "median_ctl": 21.3,
+   "N_exp": 337,
+   "N_ctl": 322,
+   "hr": 0.91
+  },
+  {
+   "nct": "NCT03776812",
+   "median_exp": 5.5,
+   "median_ctl": 3.8,
+   "N_exp": 60,
+   "N_ctl": 60,
+   "hr": 0.83
+  },
+  {
+   "nct": "NCT00395083",
+   "median_exp": 5.5,
+   "median_ctl": 5.4,
+   "N_exp": 209,
+   "N_ctl": 217,
+   "hr": 1.13
+  },
+  {
+   "nct": "NCT00615056",
+   "median_exp": 7.6,
+   "median_ctl": 5.7,
+   "N_exp": 36,
+   "N_ctl": 49,
+   "hr": 1.273
+  },
+  {
+   "nct": "NCT00533949",
+   "median_exp": 28.7,
+   "median_ctl": 9.8,
+   "N_exp": 444,
+   "N_ctl": 207,
+   "hr": 1.38
+  },
+  {
+   "nct": "NCT00274456",
+   "median_exp": 14.6,
+   "median_ctl": 7.5,
+   "N_exp": 74,
+   "N_ctl": 74,
+   "hr": 0.607
+  },
+  {
+   "nct": "NCT03353753",
+   "median_exp": 6.3,
+   "median_ctl": 0.9,
+   "N_exp": 85,
+   "N_ctl": 44,
+   "hr": 0.15
+  },
+  {
+   "nct": "NCT04662710",
+   "median_exp": 12.9,
+   "median_ctl": 12.6,
+   "N_exp": 437,
+   "N_ctl": 443,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT02370498",
+   "median_exp": 9.1,
+   "median_ctl": 4.1,
+   "N_exp": 296,
+   "N_ctl": 296,
+   "hr": 1.27
+  },
+  {
+   "nct": "NCT01103323",
+   "median_exp": 6.4,
+   "median_ctl": 5.0,
+   "N_exp": 505,
+   "N_ctl": 255,
+   "hr": 0.774
+  },
+  {
+   "nct": "NCT00114140",
+   "median_exp": 54.0,
+   "median_ctl": 24.0,
+   "N_exp": 129,
+   "N_ctl": 95,
+   "hr": 3.52
+  },
+  {
+   "nct": "NCT00576758",
+   "median_exp": 25.4,
+   "median_ctl": 17.6,
+   "N_exp": 86,
+   "N_ctl": 87,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT01357161",
+   "median_exp": 7.9,
+   "median_ctl": 7.3,
+   "N_exp": 59,
+   "N_ctl": 62,
+   "hr": 0.63
+  },
+  {
+   "nct": "NCT00961415",
+   "median_exp": 10.2,
+   "median_ctl": 6.6,
+   "N_exp": 128,
+   "N_ctl": 125,
+   "hr": 0.5
+  },
+  {
+   "nct": "NCT00866697",
+   "median_exp": 17.9,
+   "median_ctl": 12.3,
+   "N_exp": 477,
+   "N_ctl": 468,
+   "hr": 0.766
+  },
+  {
+   "nct": "NCT01100502",
+   "median_exp": 42.9,
+   "median_ctl": 24.1,
+   "N_exp": 167,
+   "N_ctl": 164,
+   "hr": 0.57
+  },
+  {
+   "nct": "NCT00673049",
+   "median_exp": 6.2,
+   "median_ctl": 5.7,
+   "N_exp": 290,
+   "N_ctl": 360,
+   "hr": 1.091
+  },
+  {
+   "nct": "NCT00958776",
+   "median_exp": 49.5,
+   "median_ctl": 42.5,
+   "N_exp": 116,
+   "N_ctl": 222,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT02039726",
+   "median_exp": 6.2,
+   "median_ctl": 0.9,
+   "N_exp": 245,
+   "N_ctl": 122,
+   "hr": 0.758
+  },
+  {
+   "nct": "NCT01228734",
+   "median_exp": 16.5,
+   "median_ctl": 9.2,
+   "N_exp": 200,
+   "N_ctl": 193,
+   "hr": 0.629
+  },
+  {
+   "nct": "NCT02701634",
+   "median_exp": 3.3,
+   "median_ctl": 2.8,
+   "N_exp": 33,
+   "N_ctl": 33,
+   "hr": 1.09
+  },
+  {
+   "nct": "NCT02975934",
+   "median_exp": 21.7,
+   "median_ctl": 11.2,
+   "N_exp": 135,
+   "N_ctl": 270,
+   "hr": 0.5
+  },
+  {
+   "nct": "NCT00806819",
+   "median_exp": 12.7,
+   "median_ctl": 12.0,
+   "N_exp": 360,
+   "N_ctl": 353,
+   "hr": 0.83
+  },
+  {
+   "nct": "NCT01927419",
+   "median_exp": 58.4,
+   "median_ctl": 4.3,
+   "N_exp": 73,
+   "N_ctl": 37,
+   "hr": 0.36
+  },
+  {
+   "nct": "NCT01730937",
+   "median_exp": 14.7,
+   "median_ctl": 12.0,
+   "N_exp": 85,
+   "N_ctl": 92,
+   "hr": 0.77
+  },
+  {
+   "nct": "NCT03147287",
+   "median_exp": 8.1,
+   "median_ctl": 4.6,
+   "N_exp": 54,
+   "N_ctl": 111,
+   "hr": 1.11
+  },
+  {
+   "nct": "NCT01824875",
+   "median_exp": 58.7,
+   "median_ctl": 15.1,
+   "N_exp": 68,
+   "N_ctl": 65,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT00692770",
+   "median_exp": 33.7,
+   "median_ctl": 33.3,
+   "N_exp": 600,
+   "N_ctl": 632,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT04865289",
+   "median_exp": 10.3,
+   "median_ctl": 10.2,
+   "N_exp": 74,
+   "N_ctl": 56,
+   "hr": 0.85
+  },
+  {
+   "nct": "NCT00824408",
+   "median_exp": 22.9,
+   "median_ctl": 3.3,
+   "N_exp": 34,
+   "N_ctl": 46,
+   "hr": 2.045
+  },
+  {
+   "nct": "NCT01639001",
+   "median_exp": 11.1,
+   "median_ctl": 6.8,
+   "N_exp": 238,
+   "N_ctl": 533,
+   "hr": 0.402
+  },
+  {
+   "nct": "NCT01995513",
+   "median_exp": 5.7,
+   "median_ctl": 5.6,
+   "N_exp": 509,
+   "N_ctl": 125,
+   "hr": 0.828
+  },
+  {
+   "nct": "NCT00892177",
+   "median_exp": 7.9,
+   "median_ctl": 7.3,
+   "N_exp": 38,
+   "N_ctl": 83,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT01818752",
+   "median_exp": 22.3,
+   "median_ctl": 22.1,
+   "N_exp": 478,
+   "N_ctl": 477,
+   "hr": 0.906
+  },
+  {
+   "nct": "NCT03829332",
+   "median_exp": 6.6,
+   "median_ctl": 4.2,
+   "N_exp": 309,
+   "N_ctl": 314,
+   "hr": 0.78
+  },
+  {
+   "nct": "NCT00920816",
+   "median_exp": 10.1,
+   "median_ctl": 6.5,
+   "N_exp": 192,
+   "N_ctl": 96,
+   "hr": 0.767
+  },
+  {
+   "nct": "NCT01704287",
+   "median_exp": 17.5,
+   "median_ctl": 2.8,
+   "N_exp": 181,
+   "N_ctl": 179,
+   "hr": 0.58
+  },
+  {
+   "nct": "NCT01667419",
+   "median_exp": 36.9,
+   "median_ctl": 15.4,
+   "N_exp": 157,
+   "N_ctl": 91,
+   "hr": 0.54
+  },
+  {
+   "nct": "NCT02246621",
+   "median_exp": 28.2,
+   "median_ctl": 14.8,
+   "N_exp": 328,
+   "N_ctl": 165,
+   "hr": 0.54
+  },
+  {
+   "nct": "NCT00614393",
+   "median_exp": 14.0,
+   "median_ctl": 10.8,
+   "N_exp": 178,
+   "N_ctl": 180,
+   "hr": 1.41
+  },
+  {
+   "nct": "NCT00082433",
+   "median_exp": 16.4,
+   "median_ctl": 4.4,
+   "N_exp": 609,
+   "N_ctl": 612,
+   "hr": 0.79
+  },
+  {
+   "nct": "NCT02504489",
+   "median_exp": 10.5,
+   "median_ctl": 9.4,
+   "N_exp": 278,
+   "N_ctl": 281,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT00951496",
+   "median_exp": 74.2,
+   "median_ctl": 24.9,
+   "N_exp": 518,
+   "N_ctl": 521,
+   "hr": 0.94
+  },
+  {
+   "nct": "NCT00451178",
+   "median_exp": 36.2,
+   "median_ctl": 22.6,
+   "N_exp": 57,
+   "N_ctl": 43,
+   "hr": 0.989
+  },
+  {
+   "nct": "NCT04456699",
+   "median_exp": 5.5,
+   "median_ctl": 3.6,
+   "N_exp": 109,
+   "N_ctl": 115,
+   "hr": 1.41
+  },
+  {
+   "nct": "NCT01271712",
+   "median_exp": 4.8,
+   "median_ctl": 0.9,
+   "N_exp": 133,
+   "N_ctl": 66,
+   "hr": 0.268
+  },
+  {
+   "nct": "NCT01026142",
+   "median_exp": 11.1,
+   "median_ctl": 9.0,
+   "N_exp": 228,
+   "N_ctl": 224,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT00628251",
+   "median_exp": 8.8,
+   "median_ctl": 6.5,
+   "N_exp": 32,
+   "N_ctl": 32,
+   "hr": 0.88
+  },
+  {
+   "nct": "NCT02364557",
+   "median_exp": 23.0,
+   "median_ctl": 19.5,
+   "N_exp": 65,
+   "N_ctl": 60,
+   "hr": 0.92
+  },
+  {
+   "nct": "NCT02702401",
+   "median_exp": 3.0,
+   "median_ctl": 2.8,
+   "N_exp": 279,
+   "N_ctl": 135,
+   "hr": 0.775
+  },
+  {
+   "nct": "NCT01185964",
+   "median_exp": 6.6,
+   "median_ctl": 4.1,
+   "N_exp": 66,
+   "N_ctl": 67,
+   "hr": 0.672
+  },
+  {
+   "nct": "NCT03631199",
+   "median_exp": 6.8,
+   "median_ctl": 6.8,
+   "N_exp": 323,
+   "N_ctl": 320,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT00393939",
+   "median_exp": 26.0,
+   "median_ctl": 8.3,
+   "N_exp": 296,
+   "N_ctl": 297,
+   "hr": 0.9222
+  },
+  {
+   "nct": "NCT03884101",
+   "median_exp": 10.2,
+   "median_ctl": 9.6,
+   "N_exp": 422,
+   "N_ctl": 420,
+   "hr": 1.01
+  },
+  {
+   "nct": "NCT02799602",
+   "median_exp": 51.2,
+   "median_ctl": 39.7,
+   "N_exp": 652,
+   "N_ctl": 654,
+   "hr": 0.675
+  },
+  {
+   "nct": "NCT03116152",
+   "median_exp": 7.2,
+   "median_ctl": 2.9,
+   "N_exp": 95,
+   "N_ctl": 95,
+   "hr": 0.701
+  },
+  {
+   "nct": "NCT00984282",
+   "median_exp": 10.8,
+   "median_ctl": 5.7,
+   "N_exp": 207,
+   "N_ctl": 210,
+   "hr": 0.587
+  },
+  {
+   "nct": "NCT01232556",
+   "median_exp": 9.5,
+   "median_ctl": 9.5,
+   "N_exp": 172,
+   "N_ctl": 166,
+   "hr": 1.083
+  },
+  {
+   "nct": "NCT04182204",
+   "median_exp": 19.5,
+   "median_ctl": 7.4,
+   "N_exp": 129,
+   "N_ctl": 129,
+   "hr": 0.6
+  },
+  {
+   "nct": "NCT03416179",
+   "median_exp": 20.4,
+   "median_ctl": 17.3,
+   "N_exp": 203,
+   "N_ctl": 201,
+   "hr": 1.08
+  },
+  {
+   "nct": "NCT00094653",
+   "median_exp": 9.9,
+   "median_ctl": 6.4,
+   "N_exp": 403,
+   "N_ctl": 137,
+   "hr": 0.68
+  },
+  {
+   "nct": "NCT00372567",
+   "median_exp": 8.6,
+   "median_ctl": 6.4,
+   "N_exp": 31,
+   "N_ctl": 26,
+   "hr": 1.04
+  },
+  {
+   "nct": "NCT00768755",
+   "median_exp": 17.0,
+   "median_ctl": 7.1,
+   "N_exp": 55,
+   "N_ctl": 57,
+   "hr": 0.831
+  },
+  {
+   "nct": "NCT02606461",
+   "median_exp": 10.4,
+   "median_ctl": 2.1,
+   "N_exp": 188,
+   "N_ctl": 97,
+   "hr": 0.7026
+  },
+  {
+   "nct": "NCT01984242",
+   "median_exp": 11.7,
+   "median_ctl": 6.1,
+   "N_exp": 101,
+   "N_ctl": 103,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT02853331",
+   "median_exp": 15.1,
+   "median_ctl": 11.0,
+   "N_exp": 432,
+   "N_ctl": 429,
+   "hr": 0.69
+  },
+  {
+   "nct": "NCT01332266",
+   "median_exp": 3.6,
+   "median_ctl": 3.6,
+   "N_exp": 41,
+   "N_ctl": 42,
+   "hr": 0.89
+  },
+  {
+   "nct": "NCT01945775",
+   "median_exp": 19.3,
+   "median_ctl": 5.6,
+   "N_exp": 287,
+   "N_ctl": 144,
+   "hr": 0.542
+  },
+  {
+   "nct": "NCT00718549",
+   "median_exp": 37.2,
+   "median_ctl": 25.2,
+   "N_exp": 97,
+   "N_ctl": 33,
+   "hr": 0.418
+  },
+  {
+   "nct": "NCT02178956",
+   "median_exp": 7.4,
+   "median_ctl": 6.9,
+   "N_exp": 357,
+   "N_ctl": 357,
+   "hr": 1.01
+  },
+  {
+   "nct": "NCT00600821",
+   "median_exp": 6.1,
+   "median_ctl": 5.7,
+   "N_exp": 60,
+   "N_ctl": 58,
+   "hr": 1.093
+  },
+  {
+   "nct": "NCT03976323",
+   "median_exp": 23.0,
+   "median_ctl": 20.7,
+   "N_exp": 335,
+   "N_ctl": 337,
+   "hr": 1.12
+  },
+  {
+   "nct": "NCT01605227",
+   "median_exp": 11.0,
+   "median_ctl": 9.8,
+   "N_exp": 682,
+   "N_ctl": 346,
+   "hr": 0.48
+  },
+  {
+   "nct": "NCT01244191",
+   "median_exp": 8.5,
+   "median_ctl": 7.8,
+   "N_exp": 526,
+   "N_ctl": 522,
+   "hr": 0.981
+  },
+  {
+   "nct": "NCT04154956",
+   "median_exp": 11.5,
+   "median_ctl": 5.4,
+   "N_exp": 195,
+   "N_ctl": 194,
+   "hr": 1.143
+  },
+  {
+   "nct": "NCT02395172",
+   "median_exp": 11.4,
+   "median_ctl": 10.6,
+   "N_exp": 396,
+   "N_ctl": 396,
+   "hr": 0.87
+  },
+  {
+   "nct": "NCT02436668",
+   "median_exp": 6.0,
+   "median_ctl": 5.3,
+   "N_exp": 213,
+   "N_ctl": 213,
+   "hr": 1.525
+  },
+  {
+   "nct": "NCT00262847",
+   "median_exp": 15.3,
+   "median_ctl": 11.0,
+   "N_exp": 623,
+   "N_ctl": 625,
+   "hr": 0.954
+  },
+  {
+   "nct": "NCT01419197",
+   "median_exp": 22.7,
+   "median_ctl": 3.3,
+   "N_exp": 404,
+   "N_ctl": 198,
+   "hr": 0.528
+  },
+  {
+   "nct": "NCT00486954",
+   "median_exp": 11.0,
+   "median_ctl": 8.9,
+   "N_exp": 132,
+   "N_ctl": 129,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT02714218",
+   "median_exp": 10.2,
+   "median_ctl": 10.0,
+   "N_exp": 180,
+   "N_ctl": 178,
+   "hr": 1.08
+  },
+  {
+   "nct": "NCT03635567",
+   "median_exp": 10.5,
+   "median_ctl": 8.2,
+   "N_exp": 308,
+   "N_ctl": 309,
+   "hr": 0.58
+  },
+  {
+   "nct": "NCT01341652",
+   "median_exp": 9.0,
+   "median_ctl": 8.9,
+   "N_exp": 49,
+   "N_ctl": 48,
+   "hr": 1.6
+  },
+  {
+   "nct": "NCT03409614",
+   "median_exp": 6.5,
+   "median_ctl": 6.4,
+   "N_exp": 312,
+   "N_ctl": 154,
+   "hr": 0.786
+  },
+  {
+   "nct": "NCT00700102",
+   "median_exp": 11.2,
+   "median_ctl": 9.8,
+   "N_exp": 409,
+   "N_ctl": 410,
+   "hr": 0.81
+  },
+  {
+   "nct": "NCT00721409",
+   "median_exp": 37.5,
+   "median_ctl": 33.3,
+   "N_exp": 84,
+   "N_ctl": 48,
+   "hr": 0.488
+  },
+  {
+   "nct": "NCT02438722",
+   "median_exp": 13.4,
+   "median_ctl": 11.9,
+   "N_exp": 85,
+   "N_ctl": 83,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT00828139",
+   "median_exp": 6.0,
+   "median_ctl": 1.4,
+   "N_exp": 92,
+   "N_ctl": 51,
+   "hr": 1.32
+  },
+  {
+   "nct": "NCT00086580",
+   "median_exp": 23.6,
+   "median_ctl": 16.5,
+   "N_exp": 168,
+   "N_ctl": 167,
+   "hr": 0.61
+  },
+  {
+   "nct": "NCT00281658",
+   "median_exp": 27.8,
+   "median_ctl": 20.5,
+   "N_exp": 222,
+   "N_ctl": 222,
+   "hr": 0.74
+  },
+  {
+   "nct": "NCT00863746",
+   "median_exp": 8.3,
+   "median_ctl": 8.1,
+   "N_exp": 353,
+   "N_ctl": 350,
+   "hr": 0.9934
+  },
+  {
+   "nct": "NCT04428151",
+   "median_exp": 11.3,
+   "median_ctl": 8.4,
+   "N_exp": 142,
+   "N_ctl": 144,
+   "hr": 1.48
+  },
+  {
+   "nct": "NCT01302392",
+   "median_exp": 10.2,
+   "median_ctl": 10.0,
+   "N_exp": 157,
+   "N_ctl": 158,
+   "hr": 0.975
+  },
+  {
+   "nct": "NCT02164916",
+   "median_exp": 9.6,
+   "median_ctl": 2.0,
+   "N_exp": 49,
+   "N_ctl": 50,
+   "hr": 0.48
+  },
+  {
+   "nct": "NCT02421939",
+   "median_exp": 9.3,
+   "median_ctl": 5.6,
+   "N_exp": 247,
+   "N_ctl": 124,
+   "hr": 0.637
+  },
+  {
+   "nct": "NCT01839487",
+   "median_exp": 6.0,
+   "median_ctl": 5.3,
+   "N_exp": 166,
+   "N_ctl": 113,
+   "hr": 0.74
+  },
+  {
+   "nct": "NCT00689936",
+   "median_exp": 25.5,
+   "median_ctl": 14.1,
+   "N_exp": 535,
+   "N_ctl": 547,
+   "hr": 0.72
+  },
+  {
+   "nct": "NCT03173248",
+   "median_exp": 0.0,
+   "median_ctl": 0.0,
+   "N_exp": 74,
+   "N_ctl": 72,
+   "hr": 0.33
+  },
+  {
+   "nct": "NCT00095199",
+   "median_exp": 7.8,
+   "median_ctl": 1.5,
+   "N_exp": 304,
+   "N_ctl": 166,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT02348489",
+   "median_exp": 8.3,
+   "median_ctl": 7.0,
+   "N_exp": 407,
+   "N_ctl": 408,
+   "hr": 0.97
+  },
+  {
+   "nct": "NCT01602315",
+   "median_exp": 3.9,
+   "median_ctl": 2.8,
+   "N_exp": 71,
+   "N_ctl": 35,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT03141177",
+   "median_exp": 16.6,
+   "median_ctl": 8.3,
+   "N_exp": 323,
+   "N_ctl": 328,
+   "hr": 0.51
+  },
+  {
+   "nct": "NCT04205812",
+   "median_exp": 18.1,
+   "median_ctl": 13.4,
+   "N_exp": 391,
+   "N_ctl": 192,
+   "hr": 0.75
+  },
+  {
+   "nct": "NCT03003962",
+   "median_exp": 14.6,
+   "median_ctl": 12.8,
+   "N_exp": 335,
+   "N_ctl": 334,
+   "hr": 0.84
+  },
+  {
+   "nct": "NCT00065442",
+   "median_exp": 25.8,
+   "median_ctl": 21.7,
+   "N_exp": 341,
+   "N_ctl": 171,
+   "hr": 0.775
+  },
+  {
+   "nct": "NCT01478048",
+   "median_exp": 9.7,
+   "median_ctl": 6.9,
+   "N_exp": 77,
+   "N_ctl": 75,
+   "hr": 0.72
+  },
+  {
+   "nct": "NCT01532089",
+   "median_exp": 17.9,
+   "median_ctl": 13.5,
+   "N_exp": 43,
+   "N_ctl": 59,
+   "hr": 0.81
+  },
+  {
+   "nct": "NCT00687297",
+   "median_exp": 4.5,
+   "median_ctl": 4.2,
+   "N_exp": 162,
+   "N_ctl": 82,
+   "hr": 1.49
+  },
+  {
+   "nct": "NCT04471428",
+   "median_exp": 10.7,
+   "median_ctl": 10.5,
+   "N_exp": 186,
+   "N_ctl": 185,
+   "hr": 0.884
+  },
+  {
+   "nct": "NCT02993523",
+   "median_exp": 14.7,
+   "median_ctl": 9.6,
+   "N_exp": 286,
+   "N_ctl": 145,
+   "hr": 0.58
+  },
+  {
+   "nct": "NCT00813150",
+   "median_exp": 12.6,
+   "median_ctl": 9.9,
+   "N_exp": 43,
+   "N_ctl": 47,
+   "hr": 0.71
+  },
+  {
+   "nct": "NCT04725188",
+   "median_exp": 5.6,
+   "median_ctl": 2.7,
+   "N_exp": 87,
+   "N_ctl": 83,
+   "hr": 0.77
+  },
+  {
+   "nct": "NCT04162210",
+   "median_exp": 11.2,
+   "median_ctl": 7.0,
+   "N_exp": 218,
+   "N_ctl": 107,
+   "hr": 1.03
+  },
+  {
+   "nct": "NCT04478266",
+   "median_exp": 16.6,
+   "median_ctl": 14.1,
+   "N_exp": 534,
+   "N_ctl": 534,
+   "hr": 1.209
+  },
+  {
+   "nct": "NCT02753127",
+   "median_exp": 14.3,
+   "median_ctl": 13.8,
+   "N_exp": 624,
+   "N_ctl": 629,
+   "hr": 0.976
+  },
+  {
+   "nct": "NCT02610140",
+   "median_exp": 9.5,
+   "median_ctl": 4.5,
+   "N_exp": 166,
+   "N_ctl": 82,
+   "hr": 1.215
+  },
+  {
+   "nct": "NCT02564263",
+   "median_exp": 8.2,
+   "median_ctl": 7.1,
+   "N_exp": 314,
+   "N_ctl": 314,
+   "hr": 0.77
+  },
+  {
+   "nct": "NCT02312258",
+   "median_exp": 17.4,
+   "median_ctl": 9.4,
+   "N_exp": 426,
+   "N_ctl": 423,
+   "hr": 1.09
+  },
+  {
+   "nct": "NCT01062425",
+   "median_exp": 14.5,
+   "median_ctl": 13.8,
+   "N_exp": 97,
+   "N_ctl": 52,
+   "hr": 0.87
+  },
+  {
+   "nct": "NCT01998919",
+   "median_exp": 7.0,
+   "median_ctl": 5.4,
+   "N_exp": 76,
+   "N_ctl": 78,
+   "hr": 0.42
+  },
+  {
+   "nct": "NCT01229943",
+   "median_exp": 16.7,
+   "median_ctl": 14.0,
+   "N_exp": 75,
+   "N_ctl": 75,
+   "hr": 0.8
+  },
+  {
+   "nct": "NCT04214288",
+   "median_exp": 7.7,
+   "median_ctl": 3.7,
+   "N_exp": 73,
+   "N_ctl": 73,
+   "hr": 0.59
+  },
+  {
+   "nct": "NCT00246571",
+   "median_exp": 2.7,
+   "median_ctl": 2.0,
+   "N_exp": 104,
+   "N_ctl": 113,
+   "hr": 1.203
+  },
+  {
+   "nct": "NCT02209948",
+   "median_exp": 23.3,
+   "median_ctl": 18.2,
+   "N_exp": 79,
+   "N_ctl": 80,
+   "hr": 1.3
+  },
+  {
+   "nct": "NCT03976362",
+   "median_exp": 8.3,
+   "median_ctl": 5.4,
+   "N_exp": 296,
+   "N_ctl": 295,
+   "hr": 0.77
+  },
+  {
+   "nct": "NCT02810457",
+   "median_exp": 7.7,
+   "median_ctl": 7.6,
+   "N_exp": 364,
+   "N_ctl": 367,
+   "hr": 0.97
+  },
+  {
+   "nct": "NCT02752035",
+   "median_exp": 9.8,
+   "median_ctl": 5.2,
+   "N_exp": 89,
+   "N_ctl": 54,
+   "hr": 0.87
+  },
+  {
+   "nct": "NCT02788279",
+   "median_exp": 8.9,
+   "median_ctl": 7.1,
+   "N_exp": 183,
+   "N_ctl": 90,
+   "hr": 1.0
+  },
+  {
+   "nct": "NCT03783442",
+   "median_exp": 17.2,
+   "median_ctl": 10.6,
+   "N_exp": 326,
+   "N_ctl": 323,
+   "hr": 0.66
+  },
+  {
+   "nct": "NCT03337724",
+   "median_exp": 29.0,
+   "median_ctl": 22.8,
+   "N_exp": 146,
+   "N_ctl": 102,
+   "hr": 1.02
+  },
+  {
+   "nct": "NCT02130466",
+   "median_exp": 17.0,
+   "median_ctl": 9.9,
+   "N_exp": 60,
+   "N_ctl": 60,
+   "hr": 0.46
+  },
+  {
+   "nct": "NCT00085254",
+   "median_exp": 20.8,
+   "median_ctl": 17.4,
+   "N_exp": 48,
+   "N_ctl": 112,
+   "hr": 0.83
+  },
+  {
+   "nct": "NCT00693992",
+   "median_exp": 4.3,
+   "median_ctl": 2.6,
+   "N_exp": 106,
+   "N_ctl": 104,
+   "hr": 0.62
+  },
+  {
+   "nct": "NCT06504524",
+   "median_exp": 14.3,
+   "median_ctl": 13.3,
+   "N_exp": 277,
+   "N_ctl": 118,
+   "hr": 1.128
+  },
+  {
+   "nct": "NCT02337530",
+   "median_exp": 7.2,
+   "median_ctl": 4.0,
+   "N_exp": 20,
+   "N_ctl": 21,
+   "hr": 0.82
+  },
+  {
+   "nct": "NCT00117598",
+   "median_exp": 4.8,
+   "median_ctl": 1.8,
+   "N_exp": 54,
+   "N_ctl": 54,
+   "hr": 0.39
+  },
+  {
+   "nct": "NCT01522443",
+   "median_exp": 9.0,
+   "median_ctl": 7.9,
+   "N_exp": 61,
+   "N_ctl": 58,
+   "hr": 0.7
+  },
+  {
+   "nct": "NCT00844649",
+   "median_exp": 8.5,
+   "median_ctl": 6.7,
+   "N_exp": 431,
+   "N_ctl": 430,
+   "hr": 0.72
+  },
+  {
+   "nct": "NCT00093470",
+   "median_exp": 8.9,
+   "median_ctl": 5.3,
+   "N_exp": 73,
+   "N_ctl": 71,
+   "hr": 0.76
+  },
+  {
+   "nct": "NCT01866319",
+   "median_exp": 5.5,
+   "median_ctl": 2.8,
+   "N_exp": 279,
+   "N_ctl": 278,
+   "hr": 0.58
+  },
+  {
+   "nct": "NCT00865709",
+   "median_exp": 9.1,
+   "median_ctl": 8.7,
+   "N_exp": 97,
+   "N_ctl": 101,
+   "hr": 0.884
+  },
+  {
+   "nct": "NCT01311687",
+   "median_exp": 3.6,
+   "median_ctl": 1.8,
+   "N_exp": 302,
+   "N_ctl": 153,
+   "hr": 0.45
+  },
+  {
+   "nct": "NCT03296163",
+   "median_exp": 8.6,
+   "median_ctl": 8.3,
+   "N_exp": 312,
+   "N_ctl": 315,
+   "hr": 1.187
+  },
+  {
+   "nct": "NCT01949337",
+   "median_exp": 34.2,
+   "median_ctl": 32.5,
+   "N_exp": 654,
+   "N_ctl": 657,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT01494506",
+   "median_exp": 6.1,
+   "median_ctl": 1.6,
+   "N_exp": 117,
+   "N_ctl": 149,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT00877006",
+   "median_exp": 65.0,
+   "median_ctl": 33.4,
+   "N_exp": 224,
+   "N_ctl": 223,
+   "hr": 0.99
+  },
+  {
+   "nct": "NCT00453362",
+   "median_exp": 6.5,
+   "median_ctl": 2.8,
+   "N_exp": 85,
+   "N_ctl": 46,
+   "hr": 0.31
+  },
+  {
+   "nct": "NCT00334282",
+   "median_exp": 9.2,
+   "median_ctl": 4.2,
+   "N_exp": 290,
+   "N_ctl": 145,
+   "hr": 0.46
+  },
+  {
+   "nct": "NCT01769196",
+   "median_exp": 15.4,
+   "median_ctl": 12.6,
+   "N_exp": 272,
+   "N_ctl": 272,
+   "hr": 1.13
+  },
+  {
+   "nct": "NCT00075270",
+   "median_exp": 23.8,
+   "median_ctl": 5.2,
+   "N_exp": 293,
+   "N_ctl": 288,
+   "hr": 0.87
+  },
+  {
+   "nct": "NCT00153803",
+   "median_exp": 16.5,
+   "median_ctl": 8.1,
+   "N_exp": 118,
+   "N_ctl": 117,
+   "hr": 0.93
+  },
+  {
+   "nct": "NCT01584648",
+   "median_exp": 10.2,
+   "median_ctl": 8.8,
+   "N_exp": 211,
+   "N_ctl": 212,
+   "hr": 0.73
+  },
+  {
+   "nct": "NCT02741570",
+   "median_exp": 17.6,
+   "median_ctl": 14.6,
+   "N_exp": 472,
+   "N_ctl": 475,
+   "hr": 0.78
+  }
+ ]
+}
