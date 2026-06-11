@@ -167,7 +167,9 @@ A ladder of increasing independence (full numbers in `VALIDATION.md`):
 3. **Published literature, systematically** (independent of the registry, at cohort scale): for every
    reconstructed two-arm trial we recover the trial's **published** HR and median from its PubMed abstract
    with deterministic, endpoint-matched, covariate-guarded extractors (`harvest/abstract_hr.py`,
-   `abstract_median.py`; abstracts via NCBI E-utilities, PMIDs via AACT `study_references`). Across **20**
+   `abstract_median.py`, and `abstract_events.py` for per-arm "X of N" event counts — unified in
+   `abstract_enrich.py`, which promotes a confident abstract HR only when the registry posts none;
+   abstracts via NCBI E-utilities, PMIDs via AACT `study_references`). Across **20**
    high-confidence published HRs — **12 of which the registry never posted an HR for**, making them purely
    registry-independent — the reconstructed HR is within median fold **1.10** of the published value and
    falls inside the published 95% CI **17/20 (85%)**; on the curve's own endpoint the reconstructed
@@ -275,6 +277,27 @@ TCGA cohorts (`validate/nar_fusion.js`; `KMCURVE-SYNERGY.md`). The figure's at-r
 substitutes for the missing registry event count, dissolving the identifiability limit and making the
 structured-registry and figure-digitisation paths genuinely complementary: the exact curve from the
 registry, the at-risk table from the figure, neither sufficient alone.
+
+**Is it usable for meta-analysis, or is there always too little data?** Both are true, of different
+meta-analyses — the distinction is what the pooling needs. (i) For an **aggregate hazard-ratio
+meta-analysis** — the common kind, needing only (log HR, SE) per trial — coverage is broad, not sparse:
+the binding "few hundred curve-posters" limit applies to the *curve*, but a trial needs no curve to
+contribute an HR. Beyond the AACT-posted HRs, the in-scope **PubMed abstract supplies a usable HR for a
+further ~15% of reconstructable trials that the registry omits entirely** (`harvest/abstract_enrich.py`;
+applied across the cohort, 8/155 trials gained a registry-absent HR and 26 more an independent cross-check,
+`harvest/enrich_cohort.py`), and where reconstruction *is* possible the **pooled** random-effects estimate
+is faithful: pooling 14 reconstructed cohorts gives a pooled HR of **2.64 vs 2.50** on the true IPD (fold
+1.06), with τ² 0.20 vs 0.15 and overlapping CIs and prediction intervals (`validate/ipd_meta_fidelity.js`).
+So per-trial reconstruction noise **washes out in the pool rather than compounding**, and the abstract HR
+lever widens the contributable set well past the curve subset. (ii) For a **full individual-patient-data
+meta-analysis** — time-varying effects, RMST, non-PH, IPD subgroups — the curve *is* required, so it is
+genuinely limited to the structured-curve subset (~0.4–0.8% of AACT results-trials, ~34% of those with
+≥6 timepoints), and for many review topics that will be too few trials to stand alone. The honest framing
+is therefore an **augmentation/triangulation layer, not a standalone MA engine**: it fills IPD where a
+trial posts a curve and fills (log HR, SE) where a trial posts only an HR/abstract, inside a review that
+also uses conventionally extracted data — and it is most likely to fall short exactly where evidence is
+already thinnest (older or paywalled trials whose primaries post neither a structured curve nor an HR, and
+the ~36% of registered trials that never publish results at all).
 
 ## 6. Limitations
 
