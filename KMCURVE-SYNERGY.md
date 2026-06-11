@@ -123,6 +123,15 @@ RADIANT-4's own abstract posts only adverse-event counts (correctly rejected →
 its in-scope event source is AACT participant-flow. See `VALIDATION.md` "Abstract event-count lever";
 locked by `test/abstract_lever.spec.js`.
 
+**Unified abstract enrichment (`harvest/abstract_enrich.py`).** The three abstract extractors are now one
+entry point that makes the PubMed abstract a first-class enrichment source: `enrich_from_abstract(trial,
+abstract)` fills per-arm `total_events` (events lever), promotes a **confident** primary HR to `trial.hr`
+only if AACT posted none (else keeps it as a flagged `trial.hr_abstract` cross-check), and attaches any
+published median as a cross-check — each with provenance, never overwriting an AACT value. HR promotion is
+gated hard (CI-backed AND unambiguous-or-endpoint-matched), so a multi-HR abstract (DAPA-HF: 4 HRs;
+RADIANT-4: PFS+OS) is correctly held as a cross-check, not promoted. On the real DAPA-HF abstract the
+unified path fills 386/502 and parks HR 0.74 as the flagged cross-check. 5 tests.
+
 ## Recommended next step
 
 **Idea 2 (NAR fusion)** is the scientifically strongest: it directly dissolves the identifiability
