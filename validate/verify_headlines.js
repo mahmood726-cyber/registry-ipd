@@ -73,6 +73,29 @@ consistency('pubmed_median_validation.json', (d) => {
   check('pubmed_median fold (rederived)', medJS(folds), d.summary.median_arm_fold, 1e-6);
 });
 
+// ---------------------------------------------------------------- (3) DOC CLAIMS: prose ↔ data
+// The hand-written manuscript/README/GALLERY cite these numbers; assert the value DERIVED FROM THE JSON
+// still appears verbatim in the doc, so the prose cannot silently drift from the data it reports. Only
+// distinctive fraction/decimal strings (no bare integers, which would substring-match spuriously).
+const docCache = {};
+const readDoc = (f) => (docCache[f] || (docCache[f] = fs.readFileSync(path.join(__dirname, '..', f), 'utf8')));
+const firstTok = (s) => String(s).split(' ')[0];   // "28/29 (97%)" -> "28/29"
+const DOC_CLAIMS = [
+  ['PAPER.md', get(load('gallery_expanded.json'), 'summary.all_scored.in_registry_CI'), 'gallery all-in-CI'],
+  ['PAPER.md', get(load('gallery_expanded.json'), 'summary.by_source.curve.in_registry_CI'), 'gallery curve-in-CI'],
+  ['PAPER.md', get(load('cohort_pubmed_validation.json'), 'summary.HR.recon_within_published_95CI'), 'published-HR in CI'],
+  ['PAPER.md', firstTok(get(load('goldstandard_uncertainty.json'), 'true_HR_in_95pct_credible_interval')), 'gold uncertainty'],
+  ['GALLERY.md', get(load('gallery_expanded.json'), 'summary.all_scored.in_registry_CI'), 'gallery all-in-CI'],
+  ['GALLERY.md', get(load('pubmed_validation.json'), 'summary.high_confidence.recon_within_published_95CI'), 'pubmed HR in CI'],
+  ['GALLERY.md', get(load('cohort_uncertainty_validation.json'), 'summary.published_HR_in_reconstructed_95CI'), 'uncertainty coverage'],
+  ['GALLERY.md', String(get(load('registry_median_validation.json'), 'summary.median_arm_fold')), 'registry-median fold'],
+  ['README.md', get(load('gallery_expanded.json'), 'summary.all_scored.in_registry_CI'), 'gallery all-in-CI'],
+];
+for (const [doc, val, label] of DOC_CLAIMS) {
+  const present = val != null && readDoc(doc).includes(String(val));
+  check(`${doc} cites ${label} (${val})`, present ? val : 'NOT-FOUND', val);
+}
+
 // ---------------------------------------------------------------- report
 console.log(`headline verification: ${pass} passed, ${fail} failed`);
 if (fail) { console.error('\nFAILURES:'); for (const f of fails) console.error('  ✗ ' + f); process.exit(1); }
