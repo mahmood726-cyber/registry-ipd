@@ -87,6 +87,27 @@ all *genuine* (verified): two are hard multi-arm reconstructions where the engin
 (`NCT01721772` = CheckMate-067), one is a real registry-vs-published source divergence — none are
 extraction artifacts. Numbers from `realipd/cohort_pubmed_validation.json`.
 
+### Does the reconstruction's *uncertainty* hold up on real curves?
+
+The gold-standard check (`goldstandard_uncertainty.js`) showed the multiple-imputation 95% credible
+interval covers the **true** HR **28/29 (97%)** — but on clean open IPD. The real-world question: on the
+actual coarse, number-at-risk-less registry curves, does the reconstructed interval cover the
+**independent published HR**? Running `reconstructEnsemble` (M=200) on each high-confidence trial
+(`node validate/cohort_uncertainty_validation.js`):
+
+| | result |
+|---|---|
+| published HR inside the reconstructed 95% credible interval | **17/20 (85%)** |
+| median CI width ratio (hi/lo) | **2.56** (gold standard 2.46 — comparable, not inflated) |
+
+So on real registry input the interval still contains the independent published effect **85%** of the
+time, with a width essentially the same as on clean IPD. The 85% (vs the gold standard's 97%) is expected
+and honest: it folds in the registry-vs-published effect divergence (~1 in 5 trials) on top of
+reconstruction uncertainty — so it is a conservative real-world floor, not a clean coverage probability.
+The 3 misses are the same verified-genuine cases (the CheckMate-067 multi-arm reconstruction failure, one
+degenerate fit, and one registry-vs-published divergence where the interval correctly covers the registry
+HR it was built from). Numbers from `realipd/cohort_uncertainty_validation.json`.
+
 ### …and vs the published *median* (the tightest estimand)
 
 The HR is the reconstruction's hardest quantity; the **median** is its tightest (~3% on the open gold

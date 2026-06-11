@@ -1116,8 +1116,16 @@
     trial.arms.forEach(a => { med[a.arm_id] = []; rmstA[a.arm_id] = []; });
     const tau = Math.min.apply(null, trial.arms.filter(a => (a.km_points || []).length)
       .map(a => a.km_points[a.km_points.length - 1].t)) || 1;
-    const ei = trial.arms.findIndex(a => a.role === 'experimental');
-    const ci = trial.arms.findIndex(a => a.role === 'comparator');
+    // Resolve arm indices with the same fallback the rest of the codebase uses (gallery/export):
+    // when the harvester could not role-label the arms (e.g. two active treatments), default to
+    // experimental = arms[1], comparator = arms[0] so the HR credible interval is still produced.
+    let ei = trial.arms.findIndex(a => a.role === 'experimental');
+    let ci = trial.arms.findIndex(a => a.role === 'comparator');
+    if (trial.arms.length === 2) {
+      if (ei < 0 && ci < 0) { ei = 1; ci = 0; }
+      else if (ei < 0) ei = (ci === 0 ? 1 : 0);
+      else if (ci < 0) ci = (ei === 0 ? 1 : 0);
+    }
     // The dominant under-identified DOF is the CENSORING LEVEL. Anchor it to the curve-only event
     // count E0 (≈ no intermediate censoring, the maximum plausible events) and the registry-reported
     // total_events when present; impute total_events across [floor, E0] so the ensemble spans the

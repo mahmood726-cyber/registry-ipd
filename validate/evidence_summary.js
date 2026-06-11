@@ -66,6 +66,9 @@ if (pv) add('Independent validation vs published HR', `${g(pv, 'high_confidence_
 // --- full-cohort independent validation (vs published HR, most with no registry HR) ---
 const cpv = g(load('cohort_pubmed_validation.json'), 'summary');
 if (cpv) add('Full-cohort independent validation', `${g(cpv, 'published_HR_high_confidence')} high-confidence published HRs across the reconstructed cohort (${g(cpv, 'of_which_no_registry_HR')} with **no** registry HR — pure registry-independent): recon-vs-published median fold ${g(cpv, 'HR', 'recon_vs_published_median_fold')}, recon inside the published 95% CI ${g(cpv, 'HR', 'recon_within_published_95CI')}`, 'node validate/cohort_recon_export.js && python harvest/cohort_pubmed.py');
+// --- uncertainty calibration on real data (vs published HR) ---
+const cuv = g(load('cohort_uncertainty_validation.json'), 'summary');
+if (cuv) add('Uncertainty on real registry curves', `the reconstructed 95% credible interval covers the INDEPENDENT published HR ${g(cuv, 'published_HR_in_reconstructed_95CI')} (${g(cuv, 'coverage_pct')}%) on real coarse curves; CI width comparable to the gold standard (ratio ${g(cuv, 'median_CI_width_ratio_hi_over_lo')})`, 'node validate/cohort_uncertainty_validation.js');
 // --- independent median validation (vs published medians) ---
 const pmm = g(load('pubmed_median_validation.json'), 'summary');
 if (pmm) add('Independent median validation', `reconstructed per-arm median vs the PUBLISHED median (PubMed, endpoint-matched): ${g(pmm, 'arm_medians_compared')} arm-medians across ${g(pmm, 'trials_validated')} trials, median fold ${g(pmm, 'median_arm_fold')} (within 20%: ${g(pmm, 'arm_medians_within_20pct')}) — independent of the registry and the HR`, 'python harvest/pubmed_medians.py && node validate/pubmed_median_validation.js');

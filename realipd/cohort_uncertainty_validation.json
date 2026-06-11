@@ -1,0 +1,252 @@
+{
+  "summary": {
+    "trials": 20,
+    "published_HR_in_reconstructed_95CI": "17/20",
+    "coverage_pct": 85,
+    "median_CI_width_ratio_hi_over_lo": 2.556,
+    "gold_standard_reference": "clean open IPD: interval covers the TRUE HR 28/29 (97%), median CI width fold 2.46 (goldstandard_uncertainty.js)",
+    "note": "Reconstructed multiple-imputation 95% credible interval (reconstructEnsemble, M=200) vs the INDEPENDENT published HR, on real coarse registry curves. Coverage here folds in reconstruction uncertainty AND the published-vs-registry effect divergence (~1 in 5 trials, see GALLERY.md), so it is a conservative real-world floor, not a clean coverage probability. A wide-ish median CI width ratio reflects the genuine censoring-level under-identification the interval is meant to span."
+  },
+  "rows": [
+    {
+      "nct": "NCT02201108",
+      "condition": "Multiple Sclerosis",
+      "published_HR": 0.62,
+      "recon_HR_est": 0.7248,
+      "recon_95CI": [
+        0.4529,
+        1.0819
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": null
+    },
+    {
+      "nct": "NCT00185211",
+      "condition": "Multiple Sclerosis",
+      "published_HR": 0.63,
+      "recon_HR_est": 0.8469,
+      "recon_95CI": [
+        0.5203,
+        1.33
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": 0.764
+    },
+    {
+      "nct": "NCT00861614",
+      "condition": "Prostate Cancer",
+      "published_HR": 0.85,
+      "recon_HR_est": 0.8942,
+      "recon_95CI": [
+        0.0457,
+        16.7006
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": null
+    },
+    {
+      "nct": "NCT00435409",
+      "condition": "Breast Neoplasms",
+      "published_HR": 1.22,
+      "recon_HR_est": 1.0454,
+      "recon_95CI": [
+        0.0469,
+        23.6879
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": null
+    },
+    {
+      "nct": "NCT03596866",
+      "condition": "ALK+ Advanced NSCLC",
+      "published_HR": 0.97,
+      "recon_HR_est": 1.6468,
+      "recon_95CI": [
+        1.1062,
+        2.3639
+      ],
+      "published_in_recon_CI": false,
+      "registry_HR": null
+    },
+    {
+      "nct": "NCT01883362",
+      "condition": "Acute Myeloid Leukemia",
+      "published_HR": 0.46,
+      "recon_HR_est": 0.9154,
+      "recon_95CI": [
+        0.3116,
+        1.6453
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": 0.6
+    },
+    {
+      "nct": "NCT00559988",
+      "condition": "Atrial Fibrillation",
+      "published_HR": 1.06,
+      "recon_HR_est": 1.0726,
+      "recon_95CI": [
+        0.6875,
+        1.6283
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": 1.064
+    },
+    {
+      "nct": "NCT01515189",
+      "condition": "Melanoma",
+      "published_HR": 0.84,
+      "recon_HR_est": 1.2097,
+      "recon_95CI": [
+        0.0774,
+        14.5717
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": null
+    },
+    {
+      "nct": "NCT00989235",
+      "condition": "Rheumatoid Arthritis",
+      "published_HR": 0.87,
+      "recon_HR_est": 0.8574,
+      "recon_95CI": [
+        0.5293,
+        1.3032
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": 0.87
+    },
+    {
+      "nct": "NCT00790036",
+      "condition": "Diffuse Large B-cell Lymphoma",
+      "published_HR": 0.92,
+      "recon_HR_est": 0.8705,
+      "recon_95CI": [
+        0.5916,
+        1.2943
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": 0.75
+    },
+    {
+      "nct": "NCT01574716",
+      "condition": "Metastatic Soft Tissue Sarcoma",
+      "published_HR": 1.07,
+      "recon_HR_est": 1.1414,
+      "recon_95CI": [
+        0.7713,
+        1.727
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": null
+    },
+    {
+      "nct": "NCT00412061",
+      "condition": "Carcinoid Tumor",
+      "published_HR": 1.17,
+      "recon_HR_est": 0.7267,
+      "recon_95CI": [
+        0.0501,
+        14.0146
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": null
+    },
+    {
+      "nct": "NCT00397540",
+      "condition": "Carcinoma, Hepatocellular",
+      "published_HR": 1,
+      "recon_HR_est": 0.7192,
+      "recon_95CI": [
+        0.4412,
+        1.1041
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": null
+    },
+    {
+      "nct": "NCT04305496",
+      "condition": "Locally Advanced (Inoperable) or Metastatic Br",
+      "published_HR": 0.5,
+      "recon_HR_est": 0.804,
+      "recon_95CI": [
+        0.0653,
+        9.718
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": 0.6
+    },
+    {
+      "nct": "NCT00878709",
+      "condition": "Breast Cancer",
+      "published_HR": 0.95,
+      "recon_HR_est": 0.9266,
+      "recon_95CI": [
+        0.5785,
+        1.5151
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": 0.952
+    },
+    {
+      "nct": "NCT03452137",
+      "condition": "Locally Advanced Squamous Cell Carcinoma of th",
+      "published_HR": 0.94,
+      "recon_HR_est": 0.992,
+      "recon_95CI": [
+        0.6805,
+        1.4157
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": null
+    },
+    {
+      "nct": "NCT01721772",
+      "condition": "Melanoma",
+      "published_HR": 0.78,
+      "recon_HR_est": 1.8959,
+      "recon_95CI": [
+        1.2015,
+        2.5231
+      ],
+      "published_in_recon_CI": false,
+      "registry_HR": null
+    },
+    {
+      "nct": "NCT00191477",
+      "condition": "Bladder Neoplasms",
+      "published_HR": 0.77,
+      "recon_HR_est": 0.6282,
+      "recon_95CI": [
+        0.3925,
+        1.0077
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": null
+    },
+    {
+      "nct": "NCT00261443",
+      "condition": "Bipolar Disorder",
+      "published_HR": 0.54,
+      "recon_HR_est": 0.3063,
+      "recon_95CI": [
+        0.1624,
+        0.5142
+      ],
+      "published_in_recon_CI": false,
+      "registry_HR": 0.348
+    },
+    {
+      "nct": "NCT01358877",
+      "condition": "Breast Cancer",
+      "published_HR": 0.7,
+      "recon_HR_est": 0.726,
+      "recon_95CI": [
+        0.5493,
+        1.1361
+      ],
+      "published_in_recon_CI": true,
+      "registry_HR": null
+    }
+  ]
+}
