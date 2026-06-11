@@ -95,6 +95,14 @@ def main(argv=None):
         return sum(1 for k in best.values() if (k >= lo and (hi is None or k <= hi)))
 
     tierB = (med_trials & hr_trials) - A_broad
+    # VALIDATION-GRADE population: trials that post BOTH a reconstructable curve AND a hazard ratio.
+    # This is the only subset where a reconstructed HR can be scored against a held-out registry HR
+    # (the gallery's 30 trials are exactly this intersection within the harvested cohort). It is the
+    # precise upper bound on how much of ClinicalTrials.gov can be validated against registry truth
+    # without an external IPD source -- the number behind "end-to-end registry-truth validation is
+    # bounded" in POLICY.md.
+    A_strict_and_hr = A_strict & hr_trials
+    A_broad_and_hr = A_broad & hr_trials
     report = {
         "aact_location": str(loc),
         "universe_trials_with_results": len(universe),
@@ -104,10 +112,17 @@ def main(argv=None):
         "tierA_strict_kaplan_survival_pfs_efs": len(A_strict),
         "tierA_broad_harvester_surv_re": len(A_broad),
         "tierB_median_plus_hr": len(tierB),
+        "validation_grade_curve_and_hr_strict": len(A_strict_and_hr),
+        "validation_grade_curve_and_hr_broad": len(A_broad_and_hr),
+        "pct_of_curve_trials_also_posting_hr": {
+            "strict": round(100 * len(A_strict_and_hr) / len(A_strict), 1) if A_strict else None,
+            "broad": round(100 * len(A_broad_and_hr) / len(A_broad), 1) if A_broad else None,
+        },
         "pct_of_universe": {
             "tierA_strict": round(100 * len(A_strict) / len(universe), 3),
             "tierA_broad": round(100 * len(A_broad) / len(universe), 3),
             "tierA_broad_plus_tierB": round(100 * (len(A_broad) + len(tierB)) / len(universe), 3),
+            "validation_grade_broad": round(100 * len(A_broad_and_hr) / len(universe), 3),
         },
         "anchor_density_hist_broad": hist_broad,
         "anchor_density_hist_strict": hist_strict,
@@ -120,7 +135,9 @@ def main(argv=None):
                 "reconstructable endpoint), so this histogram is an UPPER bound on per-trial anchor "
                 "density; the cohort census (validate/census_cohort.js) uses the stricter binding "
                 "MIN-across-arms. Strict vs broad brackets how liberally a 'survival curve' is "
-                "detected. 0 structured NAR rows across all of AACT is the exact zero-NAR finding.",
+                "detected. 0 structured NAR rows across all of AACT is the exact zero-NAR finding. "
+                "validation_grade_curve_and_hr_* = trials posting both a curve AND an HR (the only "
+                "registry-truth-validatable subset; the gallery's 30 are this intersection in-cohort).",
     }
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as f:

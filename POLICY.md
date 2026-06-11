@@ -33,12 +33,21 @@ and `validate/census_cohort.js`.*
 | Posts a reconstructable KM curve (≥3 timepoints) | 288–~600¹ | 0.4–0.8% |
 | — of those, ≥6 timepoints (reliably reconstructable) | ≈174 | ≈34% of curve-posters |
 | — of those, only 3–4 timepoints (weak) | ≈281 | ≈55% of curve-posters |
+| **Posts BOTH a curve AND a hazard ratio** (validation-grade²) | **77–112** | **0.10–0.15%** |
 | Reconstructable at *some* tier (curve, or median+HR) | ≈3,800 | ≈5.0% |
 
 ¹ 288 when a "survival curve" is detected strictly (title says Kaplan-Meier / survival / progression-
 or event-free); ≈514–605 under a broader net (adds disease-free survival, "probability of event",
 cumulative incidence). Either way it is well under 1% of posted-results trials. Reproduce:
 `harvest/census_full_aact.py` (full snapshot) and `validate/census_cohort.js` (per-arm detail).
+
+² Only **77** (strict) to **112** (broad) trials in *all* of ClinicalTrials.gov post both a
+reconstructable curve **and** a Cox hazard ratio — i.e. just **21.8% of curve-posters also post an
+HR**. This intersection is the *entire* population whose reconstructed effect can be checked against a
+held-out registry HR without an external IPD source; it is the hard ceiling on registry-truth
+self-validation (the production gallery's 30 worked examples are exactly this set within the harvested
+cohort). The other ~78% of curve-posting trials publish a survival figure with no posted effect to
+validate against — a second, independent argument for the structured-field ask.
 
 The result: a survival result that an agency *required* the sponsor to post is, in most cases, not
 accurately reusable for the meta-analysis and cost-effectiveness work it was meant to inform — not

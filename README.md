@@ -102,6 +102,7 @@ Coverage scan over the **2026-06-01 AACT snapshot** (76,067 trials with posted r
 | **Tier C** — sparser | 72,496 | refused |
 | trials with any HR/Cox | 5,567 | |
 | trials with a median | 18,761 | |
+| **curve AND hazard ratio (validation-grade)** | **77–112** | only subset checkable against a held-out registry HR (21.8% of curve-posters) |
 | **structured number-at-risk rows in *all* of AACT** | **0** | — |
 
 Two findings that shaped the design:

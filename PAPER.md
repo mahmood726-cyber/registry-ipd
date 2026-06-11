@@ -96,9 +96,13 @@ as cumulative *incidence* ("probability of event"), requiring data-driven orient
 scale. A full-snapshot census (`census_full_aact.py`) sizes the reconstructable population: **288**
 trials post a survival curve under strict detection (Kaplan-Meier/survival/PFS/EFS at ≥3 timepoints)
 and **≈514–605** under a broader net (adding disease-free survival, cumulative incidence); a further
-**3,263** are parametrically reconstructable from a posted median + HR (Tier B). The median
-curve-posting trial reports only **3–4** timepoints, and only **≈34%** post the **≥5–6** needed for
-reliable reconstruction (see §4.6) — motivating the registry-reporting recommendation in `POLICY.md`.
+**3,263** are parametrically reconstructable from a posted median + HR (Tier B). Crucially, only
+**77–112** trials post both a reconstructable curve **and** a hazard ratio — just **21.8%** of
+curve-posters also post an HR — so this intersection is the entire population whose reconstructed effect
+can be scored against a held-out registry HR without an external IPD source (the §4.x production gallery
+of 30 worked HR comparisons is exactly this set within the harvested cohort). The median curve-posting
+trial reports only **3–4** timepoints, and only **≈34%** post the **≥5–6** needed for reliable
+reconstruction (see §4.6) — motivating the registry-reporting recommendation in `POLICY.md`.
 
 ## 3. Methods
 

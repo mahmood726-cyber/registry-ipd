@@ -56,7 +56,7 @@ const ma = g(load('ipd_meta_fidelity_results.json'), 'summary');
 add('IPD meta-analysis fidelity', ma && `pooled HR true ${g(ma, 'true_IPD', 'pooled_HR')} vs reconstructed ${g(ma, 'reconstructed_QP', 'pooled_HR')} (within ${ma.pooled_HR_fold_diff}); τ² ${g(ma, 'true_IPD', 'tau2')}→${g(ma, 'reconstructed_QP', 'tau2')} (conservative)`, 'node validate/ipd_meta_fidelity.js');
 // --- coverage census ---
 const cf = load('census_full_aact.json');
-add('AACT coverage census', cf && `${cf.universe_trials_with_results} results-trials; ${cf.structured_number_at_risk_rows} structured NAR rows; ${cf.tierA_strict_kaplan_survival_pfs_efs}–${cf.tierA_broad_harvester_surv_re} post a reconstructable curve`, 'node harvest/census_full_aact.py');
+add('AACT coverage census', cf && `${cf.universe_trials_with_results} results-trials; ${cf.structured_number_at_risk_rows} structured NAR rows; ${cf.tierA_strict_kaplan_survival_pfs_efs}–${cf.tierA_broad_harvester_surv_re} post a reconstructable curve; only **${cf.validation_grade_curve_and_hr_strict}–${cf.validation_grade_curve_and_hr_broad}** post curve **+** HR (validation-grade, ${cf.pct_of_curve_trials_also_posting_hr ? cf.pct_of_curve_trials_also_posting_hr.broad : '?'}% of curve-posters)`, 'python harvest/census_full_aact.py');
 // --- production gallery ---
 const gal = g(load('gallery_results.json'), 'summary');
 add('Production (real AACT trials)', gal && `${gal.cohort_trials_reconstructed} trials reconstructed; median fold vs registry HR ${gal.median_fold_vs_registry_HR}; only ${Math.round(100 * gal.method_qp / (gal.method_qp + gal.method_other))}% post an event count`, 'node validate/gallery.js');

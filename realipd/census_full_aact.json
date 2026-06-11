@@ -7,10 +7,17 @@
   "tierA_strict_kaplan_survival_pfs_efs": 288,
   "tierA_broad_harvester_surv_re": 514,
   "tierB_median_plus_hr": 3263,
+  "validation_grade_curve_and_hr_strict": 77,
+  "validation_grade_curve_and_hr_broad": 112,
+  "pct_of_curve_trials_also_posting_hr": {
+    "strict": 26.7,
+    "broad": 21.8
+  },
   "pct_of_universe": {
     "tierA_strict": 0.379,
     "tierA_broad": 0.676,
-    "tierA_broad_plus_tierB": 4.965
+    "tierA_broad_plus_tierB": 4.965,
+    "validation_grade_broad": 0.147
   },
   "anchor_density_hist_broad": {
     "3": 185,
@@ -41,5 +48,5 @@
     "borderline_K_eq_5": 59,
     "weak_K_3_to_4": 281
   },
-  "note": "Binding K here = MAX timepoints over a trial's qualifying survival outcomes (best reconstructable endpoint), so this histogram is an UPPER bound on per-trial anchor density; the cohort census (validate/census_cohort.js) uses the stricter binding MIN-across-arms. Strict vs broad brackets how liberally a 'survival curve' is detected. 0 structured NAR rows across all of AACT is the exact zero-NAR finding."
+  "note": "Binding K here = MAX timepoints over a trial's qualifying survival outcomes (best reconstructable endpoint), so this histogram is an UPPER bound on per-trial anchor density; the cohort census (validate/census_cohort.js) uses the stricter binding MIN-across-arms. Strict vs broad brackets how liberally a 'survival curve' is detected. 0 structured NAR rows across all of AACT is the exact zero-NAR finding. validation_grade_curve_and_hr_* = trials posting both a curve AND an HR (the only registry-truth-validatable subset; the gallery's 30 are this intersection in-cohort)."
 }
