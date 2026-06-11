@@ -80,6 +80,39 @@ validates on digitised curves. Running kmcurve's Guyot backend and registry-IPD'
 true-IPD coarse summaries (already built here) gives a clean, shared, apples-to-apples engine
 comparison — and the gold-standard harness (`validate/goldstandard.js`) is the natural host.
 
+## Idea 5 — the abstract event-count lever: NAR fusion's gain, INSIDE the data-scope contract ★★ — **BUILT (2026-06-11)**
+
+Idea 2 (NAR fusion) is scientifically the strongest, but it imports a *figure's* at-risk table — and a
+published figure is **out of this project's production data scope** (AACT + PubMed abstracts only; figures
+are validation-only). The key realisation: **the censoring lever the QP needs is a per-arm total-event
+count, and the PubMed abstract — which IS in scope — routinely prints exactly that**:
+
+> "death occurred in **107 of 205** patients in the everolimus group versus **77 of 97** ..."
+> "the mortality rate was 20.2% (**19 of 94**) for sabizabulin versus 45.1% (**23 of 51**) ..."
+
+So the production-legal analogue of kmcurve's number-at-risk OCR is a deterministic **abstract
+event-count extractor** — same lever, in-scope source, no figure. Built and validated:
+
+- **`harvest/abstract_events.py`** — bounded-regex per-arm "X of N" event-fraction extractor +
+  `match_to_arms` (aligns a count to the right arm by registry N, label-independent) +
+  `enrich_trial_events` (fills a trial's missing `total_events`, stamps `events_source='pubmed_abstract'`,
+  **never overwrites** an AACT participant-flow count). Mirrors the existing `abstract_hr.py` /
+  `abstract_median.py` design.
+- **High-precision by construction** (a wrong count corrupts the QP, so over-inclusion is the enemy):
+  clause-scoped guards reject the dominant false-positive classes — **adverse-event / safety counts**
+  ("serious adverse events ... 22 of 218"), **enrolment / response** fractions, **negation** ("no
+  deaths"), **count > N**, and **drug-name slashes** ("CDK4/6 inhibitor" → not 4/6). 19 unit tests.
+- **Validated on the real abstract cache** (`.pubmed_cache.json`, 161 abstracts): after the guards,
+  **1 hit, a true positive** (mortality 19/94 vs 23/51) and **0 false positives** — 100% precision.
+  Recall is honestly low: abstracts report per-arm "X of N" event counts far less often than they report
+  a median or an HR, so this is **one lever among several** (HR→`calibrateHR`, median→cross-check), not a
+  universal fix. When an abstract does post the fractions, the QP gets its censoring lever with no figure.
+
+This closes the constraint-respecting version of the identifiability fix: registry-IPD's binding limit is
+the missing event count; the **abstract supplies it within the AACT+PubMed-abstract contract**, and the
+figure-NAR fusion (Idea 2) remains the *validation-only* upper bound on what an out-of-scope figure could
+add.
+
 ## Recommended next step
 
 **Idea 2 (NAR fusion)** is the scientifically strongest: it directly dissolves the identifiability

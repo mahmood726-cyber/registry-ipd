@@ -111,6 +111,17 @@ three "elevate toward breakthrough" items without re-reading the whole history.
   carried into `dist/registry-ipd.html` by `build.js`. Headless smoke extended to assert all three
   panels render (`test/smoke_browser.py`). README usage note added.
 
+## Abstract event-count lever — production-legal censoring fix (done 2026-06-11)
+The kmcurve mirror's NAR-fusion lever (figure at-risk table → QP censoring) is figure-sourced, hence
+**validation-only** under this project's AACT+PubMed-abstract data contract. Its in-scope analogue is now
+built: **`harvest/abstract_events.py`** deterministically extracts per-arm "X of N" event counts from the
+PubMed abstract ("death occurred in 107 of 205 … versus 77 of 97"), the exact `total_events` the QP needs
+— no figure. `enrich_trial_events` fills a trial's missing `total_events` with `events_source=
+'pubmed_abstract'` and never overwrites an AACT count. Clause-scoped guards (adverse-event/safety,
+enrolment/response, negation, count>N, drug-name slash) give **100% precision on the 161-abstract cache**
+(1 true positive, 0 false positives); recall is honestly low (abstracts post per-arm counts less often
+than medians/HRs). 19 unit tests; full Python suite 75 green, JS 25 green. See `KMCURVE-SYNERGY.md` Idea 5.
+
 ## Honest framing (carry forward)
 Novel registry-native data path + calibrated uncertainty + unusually rigorous validation; bounded by
 **coverage** (a minority of trials post a structured curve) → it complements, not replaces,
