@@ -244,16 +244,50 @@ calibrated identification interval**, pooled alongside IPD and HR-only trials in
 - **Phase 3 — granularity-mixed synthesis (DONE, §4e).** One pooled contrast over {IPD, reconstructed-curve
   as a de-biased point + identification interval, HR-only}; the mixed corpus brackets the all-IPD truth, and
   the evidence-completeness curve quantifies the precision↔granularity trade-off.
-- **Phase 3b — extend to a survival NMA** (multiple treatments, indirect comparisons): carry the §4e
-  per-trial identified-interval contribution through a network model with consistency checks (the Jansen
-  fractional-polynomial NMA extended with propagated UQ + partial identification). Reuse the lab's existing
-  NMA machinery rather than re-implement (see `allmeta`/capsule node-split + design-by-treatment).
+- **Phase 3b step 1 — within-trial weighted_likelihood (DONE, §4f).** Reused spec-collapse-atlas's
+  `weighted_likelihood` to aggregate the M reconstruction imputations honestly (covers truth 3/4 vs naive
+  IV 0/4, ~21× wider). Establishes the two-level architecture (weighted_likelihood within-trial → metaRE
+  across-trial) and verifies cross-project reuse.
+- **Phase 3b step 2 — extend to a survival NMA** (multiple treatments, indirect comparisons): carry the
+  per-trial contribution (weighted_likelihood variance + §4d de-bias/identification interval) through
+  `advanced-nma-pooling`'s `MLNMRPooler` / `SurvivalNPHPooler` with `design_by_treatment_test` /
+  `node_splitting_diagnostics` consistency checks — the Jansen FP-NMA extended with propagated UQ + partial
+  identification, reusing the lab's engines rather than re-implementing.
 - **Phase 4 — an evidence-completeness atlas.** For a real review question, harvest every trial, classify
   each by posted-statistics granularity, compute a per-trial *identification/information score* for the
   target estimand, and map what fraction of the evidence is point- vs partially-identified. A new artefact:
   the synthesis "information map" of a question, before any pooling.
 - **Phase 5 — position formally** vs ML-NMR (time-to-event extension), Jansen survival NMA (uncertainty
   propagation), and Manski partial identification (the identified-set formalism).
+
+## 4f. Phase 3b (step 1) — the two-level architecture, via spec-collapse's weighted_likelihood
+
+Integration, not re-implementation: the first wiring routes registry-IPD's reconstruction through the
+portfolio's honest aggregator. The key realisation is a **two-level structure**:
+
+- **within a trial** — the M imputations of one curve (sampling the under-identified censoring level) are
+  a *multiverse of one dataset*: correlated specs, not M independent studies. Inverse-variance pooling them
+  collapses the variance by ~M (false precision — the cardinal sin both `advanced-stats.md` and
+  spec-collapse name). The honest aggregator is **spec-collapse-atlas's `weighted_likelihood`** (a t-mixture
+  whose interval is never narrower than a single draw).
+- **across trials** — the resulting one `(θ, var)` per trial feeds the random-effects `metaRE` pool (§4–§4e).
+
+`validate/phase3b_export_imputations.js` emits each cohort's M=120 imputation specs `{θ=logHR, var=se², k}`;
+`validate/phase3b_weighted_likelihood.py` **imports the real `weighted_likelihood` from
+`C:\Projects\spec-collapse-atlas`** and pools them. On four held-out TCGA cohorts:
+
+| aggregator | covers the true effect | interval vs naive |
+|---|---:|---:|
+| naive inverse-variance | **0 / 4** (variance collapsed) | 1× |
+| **weighted_likelihood** | **3 / 4** (honest) | **~21× wider** |
+
+Naive IV pooling produces tight intervals (e.g. kirc [2.56, 2.69]) that miss the truth every time;
+`weighted_likelihood` keeps the honest reconstruction interval (kirc [1.59, 4.45] ∋ 4.05) and is ~21× wider.
+The one miss (coadread, true HR 3.11, interval [1.03, 2.91]) **reconfirms Phase 2c**: when the reconstruction
+is *biased* (heavily-censored high-HR), even the honest *variance* interval falls short — the de-bias +
+identified-set is still required on top. So the full per-trial contribution is: `weighted_likelihood` over
+the imputations (honest variance) **+** the Phase-2c de-bias and identification half-width (bias), pooled
+across trials by `metaRE`. Cross-project reuse verified end-to-end; locked by `harvest/test_phase3b_wl.py`.
 
 ## 5b. Reuse map — the portfolio already has the synthesis engines
 

@@ -1,0 +1,112 @@
+{
+  "n_cohorts": 4,
+  "weighted_likelihood_covers_true": 3,
+  "naive_ivre_covers_true": 0,
+  "mean_collapse_ratio": 21.2,
+  "cohorts": [
+    {
+      "ds": "kirc",
+      "true_HR": 4.052,
+      "M": 120,
+      "wl": {
+        "HR": 2.63,
+        "CI": [
+          1.59,
+          4.45
+        ],
+        "width_log": 1.028,
+        "var": 0.0732,
+        "covers_true": true
+      },
+      "iv": {
+        "HR": 2.63,
+        "CI": [
+          2.56,
+          2.69
+        ],
+        "width_log": 0.049,
+        "var": 0.0002,
+        "covers_true": false
+      },
+      "collapse_ratio": 21.0
+    },
+    {
+      "ds": "coadread",
+      "true_HR": 3.107,
+      "M": 120,
+      "wl": {
+        "HR": 1.71,
+        "CI": [
+          1.03,
+          2.91
+        ],
+        "width_log": 1.041,
+        "var": 0.0753,
+        "covers_true": false
+      },
+      "iv": {
+        "HR": 1.71,
+        "CI": [
+          1.67,
+          1.75
+        ],
+        "width_log": 0.047,
+        "var": 0.0001,
+        "covers_true": false
+      },
+      "collapse_ratio": 22.0
+    },
+    {
+      "ds": "luad",
+      "true_HR": 2.65,
+      "M": 120,
+      "wl": {
+        "HR": 2.74,
+        "CI": [
+          1.64,
+          4.6
+        ],
+        "width_log": 1.033,
+        "var": 0.0739,
+        "covers_true": true
+      },
+      "iv": {
+        "HR": 2.77,
+        "CI": [
+          2.7,
+          2.84
+        ],
+        "width_log": 0.05,
+        "var": 0.0002,
+        "covers_true": false
+      },
+      "collapse_ratio": 20.7
+    },
+    {
+      "ds": "hnsc",
+      "true_HR": 1.762,
+      "M": 120,
+      "wl": {
+        "HR": 1.12,
+        "CI": [
+          0.67,
+          1.95
+        ],
+        "width_log": 1.064,
+        "var": 0.0779,
+        "covers_true": true
+      },
+      "iv": {
+        "HR": 1.11,
+        "CI": [
+          1.08,
+          1.14
+        ],
+        "width_log": 0.051,
+        "var": 0.0002,
+        "covers_true": false
+      },
+      "collapse_ratio": 21.0
+    }
+  ]
+}
