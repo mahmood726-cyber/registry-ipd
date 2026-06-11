@@ -8,22 +8,25 @@
       "curve": {
         "n": 25,
         "median_fold": 1.119,
-        "within_1_2": "17/25"
+        "within_1_2": "17/25",
+        "in_registry_CI": "24/25"
       },
       "sibling": {
         "n": 32,
         "median_fold": 1.19,
-        "within_1_2": "18/32"
+        "within_1_2": "18/32",
+        "in_registry_CI": "23/32"
       }
     },
     "all_scored": {
       "n": 57,
       "median_fold": 1.149,
-      "within_1_2": "35/57"
+      "within_1_2": "35/57",
+      "in_registry_CI": "47/57"
     },
     "no_hr_recovered": 27,
     "not_2arm_tierA": 28,
-    "note": "fold = reconstructed Cox HR vs registry HR (coarse held-out truth; arm-reference assumed to match the exp/ctl convention, same as the original gallery). \"sibling\" rows took the HR from a survival sibling outcome (harvester.select_trial_hr) and carry an extra OS-vs-PFS endpoint caveat -- reported separately so they do not inflate the curve-sourced headline."
+    "note": "fold = reconstructed Cox HR vs registry HR (coarse held-out truth; arm-reference assumed to match the exp/ctl convention, same as the original gallery). \"sibling\" rows took the HR from a SAME-ENDPOINT survival sibling outcome (harvester.select_trial_hr is endpoint-aware: an OS curve is never scored against a PFS HR -- explicit-mismatch siblings are dropped). Reported separately from curve-sourced only because the HR sits in a different outcome record, not a different endpoint."
   },
   "rows": [
     {
@@ -32,8 +35,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 1.06,
+      "registry_CI": [
+        0.3,
+        3.72
+      ],
       "recon_HR": 0.55,
-      "fold": 1.928,
+      "fold": 1.927,
+      "in_registry_CI": true,
       "events": 10
     },
     {
@@ -42,8 +50,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.764,
+      "registry_CI": [
+        0.497,
+        1.174
+      ],
       "recon_HR": 0.827,
-      "fold": 1.083,
+      "fold": 1.082,
+      "in_registry_CI": true,
       "events": 124
     },
     {
@@ -52,8 +65,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.946,
+      "registry_CI": [
+        0.643,
+        1.392
+      ],
       "recon_HR": 0.616,
       "fold": 1.536,
+      "in_registry_CI": false,
       "events": 127
     },
     {
@@ -62,8 +80,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.97,
+      "registry_CI": [
+        0.5,
+        1.88
+      ],
       "recon_HR": 1,
       "fold": 1.031,
+      "in_registry_CI": true,
       "events": 30
     },
     {
@@ -72,8 +95,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.348,
+      "registry_CI": [
+        0.146,
+        0.829
+      ],
       "recon_HR": 0.31,
-      "fold": 1.121,
+      "fold": 1.123,
+      "in_registry_CI": true,
       "events": 33
     },
     {
@@ -82,8 +110,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.671,
+      "registry_CI": [
+        0.446,
+        1.011
+      ],
       "recon_HR": 0.478,
-      "fold": 1.405,
+      "fold": 1.404,
+      "in_registry_CI": true,
       "events": 60
     },
     {
@@ -92,8 +125,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.716,
+      "registry_CI": [
+        0.588,
+        0.872
+      ],
       "recon_HR": 0.751,
       "fold": 1.049,
+      "in_registry_CI": true,
       "events": 293
     },
     {
@@ -102,8 +140,13 @@
       "badge": "gold",
       "source": "sibling",
       "registry_HR": 0.893,
+      "registry_CI": [
+        0.763,
+        1.044
+      ],
       "recon_HR": 0.922,
-      "fold": 1.033,
+      "fold": 1.032,
+      "in_registry_CI": true,
       "events": 754
     },
     {
@@ -112,8 +155,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 1.2239,
+      "registry_CI": [
+        0.9487,
+        1.5789
+      ],
       "recon_HR": 1,
       "fold": 1.224,
+      "in_registry_CI": true,
       "events": 162
     },
     {
@@ -122,8 +170,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 1.064,
+      "registry_CI": [
+        0.75,
+        1.51
+      ],
       "recon_HR": 1,
       "fold": 1.064,
+      "in_registry_CI": true,
       "events": 294
     },
     {
@@ -132,8 +185,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.3,
+      "registry_CI": [
+        0.05,
+        1.81
+      ],
       "recon_HR": 0.401,
-      "fold": 1.336,
+      "fold": 1.337,
+      "in_registry_CI": true,
       "events": 6
     },
     {
@@ -142,8 +200,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.72,
+      "registry_CI": [
+        0.58,
+        0.88
+      ],
       "recon_HR": 0.611,
       "fold": 1.178,
+      "in_registry_CI": true,
       "events": 133
     },
     {
@@ -152,8 +215,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.98,
+      "registry_CI": [
+        0.79,
+        1.2
+      ],
       "recon_HR": 1,
       "fold": 1.02,
+      "in_registry_CI": true,
       "events": 248
     },
     {
@@ -162,8 +230,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.63,
+      "registry_CI": [
+        0.43,
+        0.94
+      ],
       "recon_HR": 0.718,
-      "fold": 1.139,
+      "fold": 1.14,
+      "in_registry_CI": true,
       "events": 125
     },
     {
@@ -172,8 +245,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.75,
+      "registry_CI": [
+        0.52,
+        1.09
+      ],
       "recon_HR": 0.845,
-      "fold": 1.126,
+      "fold": 1.127,
+      "in_registry_CI": true,
       "events": 157
     },
     {
@@ -182,8 +260,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.83,
+      "registry_CI": [
+        0.71,
+        0.96
+      ],
       "recon_HR": 0.858,
       "fold": 1.034,
+      "in_registry_CI": true,
       "events": 450
     },
     {
@@ -192,8 +275,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.43,
+      "registry_CI": [
+        0.35,
+        0.54
+      ],
       "recon_HR": 0.824,
-      "fold": 1.917,
+      "fold": 1.916,
+      "in_registry_CI": false,
       "events": 336
     },
     {
@@ -202,8 +290,13 @@
       "badge": "gold",
       "source": "curve",
       "registry_HR": 0.952,
+      "registry_CI": [
+        0.747,
+        1.212
+      ],
       "recon_HR": 0.959,
-      "fold": 1.008,
+      "fold": 1.007,
+      "in_registry_CI": true,
       "events": 316
     },
     {
@@ -212,8 +305,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.87,
+      "registry_CI": [
+        0.45,
+        1.69
+      ],
       "recon_HR": 1,
       "fold": 1.149,
+      "in_registry_CI": true,
       "events": 38
     },
     {
@@ -222,8 +320,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.58,
+      "registry_CI": [
+        0.31,
+        1.12
+      ],
       "recon_HR": 1,
       "fold": 1.724,
+      "in_registry_CI": true,
       "events": 60
     },
     {
@@ -232,8 +335,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 2.294,
+      "registry_CI": [
+        1.337,
+        3.936
+      ],
       "recon_HR": 2.377,
       "fold": 1.036,
+      "in_registry_CI": true,
       "events": 41
     },
     {
@@ -242,8 +350,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.94,
+      "registry_CI": [
+        0.51,
+        1.74
+      ],
       "recon_HR": 1,
       "fold": 1.064,
+      "in_registry_CI": true,
       "events": 56
     },
     {
@@ -252,8 +365,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.93,
+      "registry_CI": [
+        0.78,
+        1.12
+      ],
       "recon_HR": 1,
       "fold": 1.075,
+      "in_registry_CI": true,
       "events": 286
     },
     {
@@ -262,8 +380,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.9,
+      "registry_CI": [
+        0.7,
+        1.16
+      ],
       "recon_HR": 1,
       "fold": 1.111,
+      "in_registry_CI": true,
       "events": 628
     },
     {
@@ -272,8 +395,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 1.396,
+      "registry_CI": [
+        0.762,
+        2.559
+      ],
       "recon_HR": 1,
       "fold": 1.396,
+      "in_registry_CI": true,
       "events": 1150
     },
     {
@@ -282,8 +410,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 1.073,
+      "registry_CI": [
+        0.579,
+        1.994
+      ],
       "recon_HR": 0.904,
       "fold": 1.187,
+      "in_registry_CI": true,
       "events": 2558
     },
     {
@@ -292,8 +425,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.84,
+      "registry_CI": [
+        0.7,
+        0.99
+      ],
       "recon_HR": 1,
       "fold": 1.19,
+      "in_registry_CI": false,
       "events": 334
     },
     {
@@ -302,8 +440,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.48,
+      "registry_CI": [
+        0.35,
+        0.67
+      ],
       "recon_HR": 0.577,
       "fold": 1.202,
+      "in_registry_CI": true,
       "events": 183
     },
     {
@@ -312,8 +455,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 1.08,
+      "registry_CI": [
+        0.77,
+        1.5
+      ],
       "recon_HR": 1.114,
       "fold": 1.031,
+      "in_registry_CI": true,
       "events": 112
     },
     {
@@ -322,8 +470,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.84,
+      "registry_CI": [
+        0.6,
+        1.17
+      ],
       "recon_HR": 1,
       "fold": 1.19,
+      "in_registry_CI": true,
       "events": 140
     },
     {
@@ -332,8 +485,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.44,
+      "registry_CI": [
+        0.34,
+        0.56
+      ],
       "recon_HR": 2.207,
-      "fold": 5.015,
+      "fold": 5.016,
+      "in_registry_CI": false,
       "events": 299
     },
     {
@@ -342,8 +500,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.576,
+      "registry_CI": [
+        0.463,
+        0.718
+      ],
       "recon_HR": 1.471,
       "fold": 2.554,
+      "in_registry_CI": false,
       "events": 49
     },
     {
@@ -352,8 +515,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.9682,
+      "registry_CI": [
+        0.7483,
+        1.2529
+      ],
       "recon_HR": 1.208,
-      "fold": 1.247,
+      "fold": 1.248,
+      "in_registry_CI": true,
       "events": 109
     },
     {
@@ -362,8 +530,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.6,
+      "registry_CI": [
+        0.17,
+        2.14
+      ],
       "recon_HR": 0.536,
       "fold": 1.119,
+      "in_registry_CI": true,
       "events": 11
     },
     {
@@ -372,8 +545,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.422,
+      "registry_CI": [
+        0.318,
+        0.56
+      ],
       "recon_HR": 0.962,
-      "fold": 2.278,
+      "fold": 2.28,
+      "in_registry_CI": false,
       "events": 76
     },
     {
@@ -382,8 +560,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 1.04,
+      "registry_CI": [
+        0.86,
+        1.24
+      ],
       "recon_HR": 1,
       "fold": 1.04,
+      "in_registry_CI": true,
       "events": 152
     },
     {
@@ -392,8 +575,13 @@
       "badge": "gold",
       "source": "curve",
       "registry_HR": 0.96,
+      "registry_CI": [
+        0.8,
+        1.14
+      ],
       "recon_HR": 1,
       "fold": 1.042,
+      "in_registry_CI": true,
       "events": 506
     },
     {
@@ -402,8 +590,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 1.056,
+      "registry_CI": [
+        0.827,
+        1.348
+      ],
       "recon_HR": 1.034,
       "fold": 1.021,
+      "in_registry_CI": true,
       "events": 259
     },
     {
@@ -412,8 +605,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.932,
+      "registry_CI": [
+        0.694,
+        1.252
+      ],
       "recon_HR": 0.694,
       "fold": 1.343,
+      "in_registry_CI": true,
       "events": 40
     },
     {
@@ -422,8 +620,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.75,
+      "registry_CI": [
+        0.58,
+        0.96
+      ],
       "recon_HR": 1,
       "fold": 1.333,
+      "in_registry_CI": false,
       "events": 116
     },
     {
@@ -432,8 +635,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.83,
+      "registry_CI": [
+        0.41,
+        1.67
+      ],
       "recon_HR": 1,
       "fold": 1.205,
+      "in_registry_CI": true,
       "events": 30
     },
     {
@@ -442,8 +650,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.14,
+      "registry_CI": [
+        0.06,
+        0.33
+      ],
       "recon_HR": 0.151,
-      "fold": 1.08,
+      "fold": 1.079,
+      "in_registry_CI": true,
       "events": 54
     },
     {
@@ -452,8 +665,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.4913,
+      "registry_CI": [
+        0.3307,
+        0.7299
+      ],
       "recon_HR": 0.513,
-      "fold": 1.043,
+      "fold": 1.044,
+      "in_registry_CI": true,
       "events": 119
     },
     {
@@ -462,8 +680,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.52,
+      "registry_CI": [
+        0.3,
+        0.88
+      ],
       "recon_HR": 0.528,
       "fold": 1.015,
+      "in_registry_CI": true,
       "events": 55
     },
     {
@@ -472,8 +695,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.091,
+      "registry_CI": [
+        0.021,
+        0.393
+      ],
       "recon_HR": 0.167,
-      "fold": 1.836,
+      "fold": 1.835,
+      "in_registry_CI": true,
       "events": 24
     },
     {
@@ -482,8 +710,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.69,
+      "registry_CI": [
+        0.49,
+        0.99
+      ],
       "recon_HR": 0.641,
       "fold": 1.076,
+      "in_registry_CI": true,
       "events": 104
     },
     {
@@ -492,8 +725,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.994,
+      "registry_CI": [
+        0.507,
+        1.949
+      ],
       "recon_HR": 1.191,
-      "fold": 1.199,
+      "fold": 1.198,
+      "in_registry_CI": true,
       "events": 32
     },
     {
@@ -502,8 +740,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.37,
+      "registry_CI": [
+        0.268,
+        0.51
+      ],
       "recon_HR": 1,
       "fold": 2.703,
+      "in_registry_CI": false,
       "events": 46
     },
     {
@@ -512,8 +755,13 @@
       "badge": "gold",
       "source": "sibling",
       "registry_HR": 1.01,
+      "registry_CI": [
+        0.95,
+        1.07
+      ],
       "recon_HR": 1,
       "fold": 1.01,
+      "in_registry_CI": true,
       "events": 0
     },
     {
@@ -522,8 +770,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.87,
+      "registry_CI": [
+        0.59,
+        1.29
+      ],
       "recon_HR": 1,
       "fold": 1.149,
+      "in_registry_CI": true,
       "events": 0
     },
     {
@@ -532,8 +785,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.94,
+      "registry_CI": [
+        0.7,
+        1.26
+      ],
       "recon_HR": 0.992,
       "fold": 1.055,
+      "in_registry_CI": true,
       "events": 136
     },
     {
@@ -542,8 +800,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 1.2,
+      "registry_CI": [
+        0.68,
+        2.11
+      ],
       "recon_HR": 1,
       "fold": 1.2,
+      "in_registry_CI": true,
       "events": 50
     },
     {
@@ -552,8 +815,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.968,
+      "registry_CI": [
+        0.658,
+        1.424
+      ],
       "recon_HR": 1,
       "fold": 1.033,
+      "in_registry_CI": true,
       "events": 72
     },
     {
@@ -562,8 +830,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.6,
+      "registry_CI": [
+        0.51,
+        0.71
+      ],
       "recon_HR": 0.597,
       "fold": 1.005,
+      "in_registry_CI": true,
       "events": 411
     },
     {
@@ -572,8 +845,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.5,
+      "registry_CI": [
+        0.383,
+        0.653
+      ],
       "recon_HR": 0.637,
-      "fold": 1.275,
+      "fold": 1.274,
+      "in_registry_CI": true,
       "events": 389
     },
     {
@@ -582,8 +860,13 @@
       "badge": "silver",
       "source": "sibling",
       "registry_HR": 0.44,
+      "registry_CI": [
+        0.36,
+        0.54
+      ],
       "recon_HR": 1,
       "fold": 2.273,
+      "in_registry_CI": false,
       "events": 382
     },
     {
@@ -592,8 +875,13 @@
       "badge": "silver",
       "source": "curve",
       "registry_HR": 0.448,
+      "registry_CI": [
+        0.24,
+        0.85
+      ],
       "recon_HR": 0.219,
-      "fold": 2.047,
+      "fold": 2.046,
+      "in_registry_CI": false,
       "events": 9
     }
   ]

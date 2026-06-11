@@ -99,10 +99,14 @@ and **≈514–605** under a broader net (adding disease-free survival, cumulati
 **3,263** are parametrically reconstructable from a posted median + HR (Tier B). Crucially, only
 **77–112** trials post both a reconstructable curve **and** a hazard ratio — just **21.8%** of
 curve-posters also post an HR — so this intersection is the entire population whose reconstructed effect
-can be scored against a held-out registry HR without an external IPD source (the §4.x production gallery
-of 30 worked HR comparisons is exactly this set within the harvested cohort). The median curve-posting
-trial reports only **3–4** timepoints, and only **≈34%** post the **≥5–6** needed for reliable
-reconstruction (see §4.6) — motivating the registry-reporting recommendation in `POLICY.md`.
+can be scored against a held-out registry HR without an external IPD source. An endpoint-aware harvest of
+this set (recovering HRs posted in a sibling survival outcome, never cross-endpoint) yields **57**
+endpoint-clean held-out comparisons, on which the reconstructed Cox HR falls **within the registry's own
+posted 95% CI in 47/57 (82%)** trials — and in **24/25 (96%)** when the curve and HR share an outcome
+record (`GALLERY.md`); i.e. reconstruction error is typically smaller than the trial's sampling
+uncertainty. The median curve-posting trial reports only **3–4** timepoints, and only **≈34%** post the
+**≥5–6** needed for reliable reconstruction (see §4.6) — motivating the registry-reporting recommendation
+in `POLICY.md`.
 
 ## 3. Methods
 

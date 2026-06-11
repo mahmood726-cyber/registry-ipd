@@ -45,36 +45,43 @@ for (const nct of vg) {
   let r; try { r = RIPD.reconstruct(t); } catch { continue; }
   if (r.tier !== 'A' || !r.arms || r.arms.length !== 2) { nNot2arm++; continue; }
   n2arm++;
-  // registry HR: prefer the cohort-native HR (curve outcome, direction-resolved); else the backfill.
-  let regHR = (t.hr && t.hr.value != null) ? t.hr.value : null;
-  let source = 'curve';
-  if (regHR == null && backfillHR[nct] && backfillHR[nct].value != null) {
-    regHR = backfillHR[nct].value;
-    source = backfillHR[nct].from_sibling_outcome ? 'sibling' : 'curve';
+  // registry HR (+ its posted CI): prefer the cohort-native HR (curve outcome, direction-resolved);
+  // else the backfill. The CI lets us ask the stronger question — does the reconstructed HR fall
+  // within the registry's OWN reported uncertainty — instead of treating the point HR as exact truth.
+  let regHR = null, ciLow = null, ciHigh = null, source = 'curve';
+  if (t.hr && t.hr.value != null) { regHR = t.hr.value; ciLow = t.hr.ci_low; ciHigh = t.hr.ci_high; }
+  else if (backfillHR[nct] && backfillHR[nct].value != null) {
+    const b = backfillHR[nct]; regHR = b.value; ciLow = b.ci_low; ciHigh = b.ci_high;
+    source = b.from_sibling_outcome ? 'sibling' : 'curve';
   }
   if (regHR == null) { nNoHR++; continue; }
   const exp = r.arms.find(a => a.role === 'experimental') || r.arms[1];
   const ctl = r.arms.find(a => a.role === 'comparator') || r.arms[0];
-  const recon = coxHR(exp.ipd, ctl.ipd);
+  const recon = +coxHR(exp.ipd, ctl.ipd).toFixed(3);
   const ev = exp.ipd.filter(x => x.status === 1).length + ctl.ipd.filter(x => x.status === 1).length;
+  const hasCI = Number.isFinite(ciLow) && Number.isFinite(ciHigh) && ciLow > 0 && ciHigh > ciLow;
+  const inCI = hasCI ? (recon >= ciLow && recon <= ciHigh) : null;
   rows.push({ nct, condition: (t.condition || '').split(';')[0].trim().slice(0, 40),
-    badge: r.audit && r.audit.badge, source, registry_HR: regHR, recon_HR: +recon.toFixed(3),
-    fold: fold(recon, regHR), events: ev });
+    badge: r.audit && r.audit.badge, source, registry_HR: regHR,
+    registry_CI: hasCI ? [ciLow, ciHigh] : null, recon_HR: recon,
+    fold: fold(recon, regHR), in_registry_CI: inCI, events: ev });
 }
 
 const curve = rows.filter(r => r.source === 'curve');
 const sibling = rows.filter(r => r.source === 'sibling');
 const within20 = (set) => `${set.filter(r => r.fold < 1.2).length}/${set.length}`;
+// CI coverage: of rows with a posted registry CI, how many contain the reconstructed HR.
+const ciCov = (set) => { const w = set.filter(r => r.in_registry_CI !== null); return `${w.filter(r => r.in_registry_CI).length}/${w.length}`; };
 const summary = {
   validation_grade_population: vg.length,
   reconstructed_2arm_tierA: n2arm,
   scored_against_registry_HR: rows.length,
   original_gallery_n: 30,
   by_source: {
-    curve: { n: curve.length, median_fold: med(curve.map(r => r.fold)), within_1_2: within20(curve) },
-    sibling: { n: sibling.length, median_fold: med(sibling.map(r => r.fold)), within_1_2: within20(sibling) },
+    curve: { n: curve.length, median_fold: med(curve.map(r => r.fold)), within_1_2: within20(curve), in_registry_CI: ciCov(curve) },
+    sibling: { n: sibling.length, median_fold: med(sibling.map(r => r.fold)), within_1_2: within20(sibling), in_registry_CI: ciCov(sibling) },
   },
-  all_scored: { n: rows.length, median_fold: med(rows.map(r => r.fold)), within_1_2: within20(rows) },
+  all_scored: { n: rows.length, median_fold: med(rows.map(r => r.fold)), within_1_2: within20(rows), in_registry_CI: ciCov(rows) },
   no_hr_recovered: nNoHR, not_2arm_tierA: nNot2arm,
   note: 'fold = reconstructed Cox HR vs registry HR (coarse held-out truth; arm-reference assumed to '
     + 'match the exp/ctl convention, same as the original gallery). "sibling" rows took the HR from a '
@@ -86,4 +93,5 @@ fs.writeFileSync(path.join(RIPDdir, 'gallery_expanded.json'), JSON.stringify({ s
 
 console.log(JSON.stringify(summary, null, 2));
 console.log(`\nExpanded validation-grade scoring: ${rows.length} trials (was 30) — curve ${curve.length} (median fold ${summary.by_source.curve.median_fold}), sibling ${sibling.length} (median fold ${summary.by_source.sibling.median_fold})`);
+console.log(`reconstructed HR within the registry's posted 95% CI: ${summary.all_scored.in_registry_CI}`);
 console.log('wrote realipd/gallery_expanded.json');
