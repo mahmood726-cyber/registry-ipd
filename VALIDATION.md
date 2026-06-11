@@ -469,6 +469,24 @@ counts but its curve is not in local AACT data. This restates, for the abstract 
 the figure path found ("1 usable pair in 1500 OA PDFs", `FUSION.md`): the data sources exist and each
 half is validated on real data, but the trials that publish *every* piece openly are rare. (`KMCURVE-SYNERGY.md` idea 5.)
 
+**Real cohort coverage of the abstract levers (`harvest/abstract_events_coverage.py`).** Measured on the
+155 harvested trials that have a cached PubMed abstract (no network, no AACT re-harvest), the abstract's
+three in-scope levers cover very different shares:
+
+| lever | available | share |
+|---|---:|---:|
+| HR → calibration / cross-check | 34 | **22%** |
+| published median → cross-check | 17 | 11% |
+| per-arm event count → QP lever | 1 | 1% |
+| **any lever** | **42** | **27%** |
+
+So **the PubMed abstract enriches ~27% of reconstructable trials**, but the value is overwhelmingly the
+**HR** (22%) and median (11%); the per-arm "X of N" *event count* is genuinely rare (1%, and the lone hit
+did not N-match an arm → 0 marginal gain here). This is the honest yield: the event-count lever is precise
+and validated but seldom available, which is exactly why the unified enrichment (`abstract_enrich.py`)
+captures all three — the HR carries the coverage, the event count is the occasional high-value bonus when
+a trial happens to print it.
+
 ### Anchor density: how many posted timepoints does reconstruction need?
 
 Sweeping K (number of posted KM timepoints) across the 7 true-IPD datasets
