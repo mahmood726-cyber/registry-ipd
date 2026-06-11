@@ -30,3 +30,6 @@ realipd/credentialed/
 
 # cached PubMed abstracts (public, but bulky)
 .pubmed_cache.json
+
+# enriched cohort (derived from gitignored cohort/ + cached abstracts)
+cohort_enriched/

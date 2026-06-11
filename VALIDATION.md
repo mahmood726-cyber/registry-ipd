@@ -492,6 +492,13 @@ and validated but seldom available, which is exactly why the unified enrichment 
 captures all three — the HR carries the coverage, the event count is the occasional high-value bonus when
 a trial happens to print it.
 
+**Applied at cohort scale (`harvest/enrich_cohort.py`).** Running the unified enrichment over the cohort
+(cached abstracts + AACT-resolved PMIDs, no re-harvest) materially enriched **41/155 trials (26%)**:
+**8** gained a usable HR they lacked (confident + AACT posted none — promoted to `trial.hr`), **26** got an
+independent cross-check HR (`trial.hr_abstract`), **17** got a median, **0** an event count. The enriched
+trial records are written to `cohort_enriched/` with a committed manifest
+(`realipd/cohort_enrichment_manifest.json`). This is the lever in production, not just measured.
+
 **The HR lever's *marginal* value is the real headline.** AACT posts a usable HR for only **25/155** of
 these trials, while the abstract yields one for 34 — and in **23/155 (15%)** the registry posts **no HR at
 all but the abstract supplies one**. That is the production payoff: for ~1 in 7 reconstructable trials the

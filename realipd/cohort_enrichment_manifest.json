@@ -1,0 +1,348 @@
+{
+  "considered": 155,
+  "enriched": 41,
+  "events_filled": 0,
+  "hr_promoted": 8,
+  "hr_crosscheck": 26,
+  "median_attached": 17,
+  "trials": [
+    {
+      "nct": "NCT02201108",
+      "pmid": "38619037",
+      "had_aact_hr": false,
+      "gained": [
+        "hr=0.62"
+      ]
+    },
+    {
+      "nct": "NCT00185211",
+      "pmid": "19748319",
+      "had_aact_hr": true,
+      "gained": [
+        "hr_xcheck=0.63"
+      ]
+    },
+    {
+      "nct": "NCT04680052",
+      "pmid": "41360064",
+      "had_aact_hr": true,
+      "gained": [
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT03084237",
+      "pmid": "39954568",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=0.86",
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT00861614",
+      "pmid": "25907621",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=0.85",
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT00409188",
+      "pmid": "24331154",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=0.88",
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT00435409",
+      "pmid": "23857972",
+      "had_aact_hr": false,
+      "gained": [
+        "hr=1.22"
+      ]
+    },
+    {
+      "nct": "NCT03596866",
+      "pmid": "37574132",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=0.97",
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT01883362",
+      "pmid": "33288862",
+      "had_aact_hr": true,
+      "gained": [
+        "hr_xcheck=0.46"
+      ]
+    },
+    {
+      "nct": "NCT02211131",
+      "pmid": "34608333",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=0.75"
+      ]
+    },
+    {
+      "nct": "NCT00303459",
+      "pmid": "26113687",
+      "had_aact_hr": true,
+      "gained": [
+        "hr_xcheck=0.83"
+      ]
+    },
+    {
+      "nct": "NCT04737187",
+      "pmid": "37133585",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=0.54",
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT00559988",
+      "pmid": "25908774",
+      "had_aact_hr": true,
+      "gained": [
+        "hr_xcheck=1.06"
+      ]
+    },
+    {
+      "nct": "NCT01151137",
+      "pmid": "22082198",
+      "had_aact_hr": true,
+      "gained": [
+        "hr_xcheck=2.29"
+      ]
+    },
+    {
+      "nct": "NCT01515189",
+      "pmid": "32503946",
+      "had_aact_hr": false,
+      "gained": [
+        "hr=0.84",
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT01942135",
+      "pmid": "38861871",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=0.79"
+      ]
+    },
+    {
+      "nct": "NCT01755767",
+      "pmid": "29625879",
+      "had_aact_hr": false,
+      "gained": [
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT00989235",
+      "pmid": "25550337",
+      "had_aact_hr": true,
+      "gained": [
+        "hr_xcheck=0.87"
+      ]
+    },
+    {
+      "nct": "NCT00790036",
+      "pmid": "29253068",
+      "had_aact_hr": true,
+      "gained": [
+        "hr_xcheck=0.92"
+      ]
+    },
+    {
+      "nct": "NCT01335399",
+      "pmid": "35550060",
+      "had_aact_hr": true,
+      "gained": [
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT01574716",
+      "pmid": "31034598",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=1.07"
+      ]
+    },
+    {
+      "nct": "NCT00412061",
+      "pmid": "28444114",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=1.17",
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT01524783",
+      "pmid": "33560090",
+      "had_aact_hr": true,
+      "gained": [
+        "hr_xcheck=0.69",
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT00397540",
+      "pmid": "23461618",
+      "had_aact_hr": false,
+      "gained": [
+        "hr=1.0"
+      ]
+    },
+    {
+      "nct": "NCT03456882",
+      "pmid": "39182589",
+      "had_aact_hr": false,
+      "gained": [
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT04305496",
+      "pmid": "37256976",
+      "had_aact_hr": true,
+      "gained": [
+        "hr_xcheck=0.5",
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT00686725",
+      "pmid": "26481741",
+      "had_aact_hr": false,
+      "gained": [
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT00878709",
+      "pmid": "36898233",
+      "had_aact_hr": true,
+      "gained": [
+        "hr_xcheck=0.95"
+      ]
+    },
+    {
+      "nct": "NCT03452137",
+      "pmid": "40079944",
+      "had_aact_hr": false,
+      "gained": [
+        "hr=0.94"
+      ]
+    },
+    {
+      "nct": "NCT00612313",
+      "pmid": "24935082",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=1.26"
+      ]
+    },
+    {
+      "nct": "NCT02573259",
+      "pmid": "39671539",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=0.46"
+      ]
+    },
+    {
+      "nct": "NCT00623766",
+      "pmid": "25667295",
+      "had_aact_hr": false,
+      "gained": [
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT00172042",
+      "pmid": "22730101",
+      "had_aact_hr": false,
+      "gained": [
+        "median"
+      ]
+    },
+    {
+      "nct": "NCT01721772",
+      "pmid": "39504507",
+      "had_aact_hr": false,
+      "gained": [
+        "hr=0.78"
+      ]
+    },
+    {
+      "nct": "NCT01108445",
+      "pmid": "37146227",
+      "had_aact_hr": false,
+      "gained": [
+        "hr=0.73"
+      ]
+    },
+    {
+      "nct": "NCT00191477",
+      "pmid": "34125951",
+      "had_aact_hr": false,
+      "gained": [
+        "hr=0.77"
+      ]
+    },
+    {
+      "nct": "NCT00863655",
+      "pmid": "29522361",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=0.64"
+      ]
+    },
+    {
+      "nct": "NCT00261443",
+      "pmid": "21443567",
+      "had_aact_hr": true,
+      "gained": [
+        "hr_xcheck=0.54"
+      ]
+    },
+    {
+      "nct": "NCT01235962",
+      "pmid": "20100962",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=0.46"
+      ]
+    },
+    {
+      "nct": "NCT01358877",
+      "pmid": "41934626",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=0.7"
+      ]
+    },
+    {
+      "nct": "NCT02896855",
+      "pmid": "32564260",
+      "had_aact_hr": false,
+      "gained": [
+        "hr_xcheck=0.62",
+        "median"
+      ]
+    }
+  ]
+}

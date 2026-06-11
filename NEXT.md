@@ -131,7 +131,10 @@ gating; never overwrites an AACT value. **Wired live into the harvester**: `harv
 --enrich-abstract` resolves the results-publication PMID from AACT `study_references`, fetches the cached
 abstract, and enriches — opt-in (off by default; network call when on), fail-soft (never breaks a
 harvest). The PMID→abstract fetch is dependency-injected (`enrich_trial_with_fetcher`) so the glue is
-unit-tested offline with a stub. 26 Python + 26 JS tests green.
+unit-tested offline with a stub. **Applied at cohort scale** (`harvest/enrich_cohort.py`): enriched 41/155
+trials (26%) — 8 gained a usable HR they lacked, 26 cross-check HRs, 17 medians, 0 event counts; enriched
+records in `cohort_enriched/` (gitignored) + committed `realipd/cohort_enrichment_manifest.json`. Live HR
+calibration exposed in the tool (`index.html` "Calibrate to the reported HR"). 28 Python + 27 JS green.
 
 ## Honest framing (carry forward)
 Novel registry-native data path + calibrated uncertainty + unusually rigorous validation; bounded by
