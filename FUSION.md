@@ -99,15 +99,19 @@ number-at-risk). Until they do, the AACT+figure union is the bridge.
   not capability-bounded — so we **doubled the corpus and re-ran**: 663 PDFs → 373 carry an NCT ID →
   592 unique NCTs → 106 have AACT posted results → **2** now have *both* a posted survival curve **and**
   an open-access figure (`NCT01658878`/PMC7530824 OS, 5 timepoints; `NCT03110107`/PMC13006393 PFS,
-  3 timepoints). The 0→2 jump confirms the bottleneck was corpus size. **But both are early-phase
-  multi-cohort dose-finding trials (Phase 1/2, 15 and 9 groups) with no posted hazard ratio** — usable
-  as OCR-pipeline demonstration targets, but *not* validation-grade: a clean **2-arm + posted-HR**
-  open-access pair (the held-out-ground-truth case) is still absent at 663 PDFs. So the mechanism is
-  validated (42 rendered datasets + the RADIANT-4 worked example), the matched-pair corpus is no longer
-  empty, yet the confirmatory-RCT open-access gap persists — which *strengthens* the `POLICY.md` ask:
-  the trials that post a structured curve **and** an HR are predominantly the paywalled industry RCTs,
-  exactly the anti-correlation that registry-posted number-at-risk would dissolve. (Scaling the corpus
-  further, or targeting OA primaries of 2-arm RCTs specifically, is the open work.)
+  3 timepoints), but both were early-phase multi-cohort dose-finding trials with no posted HR. Growing
+  the mirror further to **1500 PDFs** (and making the scan tractable with a ~10× faster fitz-based NCT
+  extractor) closes the gap: **803 cite an NCT → 1297 unique NCTs → 254 with AACT results → 6
+  dual-available candidates, 4 of which post a hazard ratio.** The trajectory **0 → 2 → 6** (and **0 → 0
+  → 4** with an HR) confirms the bottleneck was always *corpus size, not capability*. The first clean
+  **validation-grade** pair is **`NCT00636168` (PMC9893404): an Overall-Survival curve, 6 timepoints,
+  posted HR 0.75 (0.64–0.90), in an open-access publication** — a held-out ground truth for a fully real
+  end-to-end fusion: harvest the AACT anchors, OCR the figure's at-risk table, reconstruct, and score the
+  reconstructed HR against the posted 0.75. So the mechanism (42 rendered datasets + RADIANT-4) now has a
+  real matched pair to run on; the remaining open-access gap is narrower but still argues the `POLICY.md`
+  case — confirmatory 2-arm RCTs that post both a curve and an HR remain disproportionately paywalled.
+  (Two of the six are response-time, not survival, curves; see kmcurve `CORPUS_FINDINGS.md` for the
+  per-candidate endpoint caveats.)
 
 Reproduce (from the kmcurve repo): `python realipd_benchmark.py --fusion --registry <this repo>`;
 cross-match: `python ipd_km_pipeline/fusion_crossmatch.py`.
