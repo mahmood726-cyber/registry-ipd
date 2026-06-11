@@ -1,5 +1,28 @@
 # NEXT — handoff for a fresh session
 
+> ## ⭐ ACTIVE THREAD (2026-06-11): evidence-synthesis reframing — see `SYNTHESIS-VISION.md`
+> The current work reframes evidence synthesis as a partially-identified **granularity manifold**:
+> reconstruction-with-calibrated-UQ lets a curve-/HR-only trial join an IPD-level synthesis as a
+> *de-biased point with a calibrated identification interval*. Proven end-to-end on the 14 TCGA true-IPD
+> cohorts + a real network, **reusing the lab's own engines** (spec-collapse-atlas `weighted_likelihood`,
+> advanced-nma-pooling `ADNMAPooler`).
+>
+> **Done (Phases 1 → 3b·2), each with a `test/*.spec.js` or `harvest/test_*.py`:**
+> `validate/honest_pooling_sim.js` (P1 Rubin) · `phase2_real_pooling.js` (P2) · `phase2b_lever_shrinks_r2.js`
+> (P2b, engine got `reconstructEnsemble({pinEvents})`) · `phase2c_bias_offset.js` (P2c partial-ID set) ·
+> `phase3_granularity_mixed.js` (P3 + evidence-completeness curve) · `phase3b_export_imputations.js` +
+> `phase3b_weighted_likelihood.py` (P3b·1, within-trial) · `phase3b_step2_survival_nma.py` (P3b·2, network NMA).
+>
+> **RESUME HERE → Phase 3c:** carry the §4d **de-bias offset + identification half-width** (not just the
+> variance) through the `ADNMAPooler` network, and add `design_by_treatment_test` / `node_splitting_diagnostics`
+> (both in `C:\Projects\advanced-nma-pooling`) to test whether ignored reconstruction noise produces
+> **spurious inconsistency**; then extend to `SurvivalNPHPooler` (non-PH) / `MLNMRPooler`. Roadmap in
+> `SYNTHESIS-VISION.md` §5; reuse map (exact engine paths) in §5b.
+>
+> **Verify cross-repo deps exist before starting:** `C:\Projects\spec-collapse-atlas` (Py) and
+> `C:\Projects\advanced-nma-pooling\src` (Py) must be importable; the Monte-Carlo demos re-run from the
+> committed JSONs' deterministic inputs, and the tests assert the committed result JSONs (no live dep).
+
 Repo is complete, validated, green, and live. This note lets a new session resume cleanly on the
 three "elevate toward breakthrough" items without re-reading the whole history.
 
