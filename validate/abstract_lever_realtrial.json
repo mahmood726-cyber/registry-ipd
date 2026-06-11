@@ -1,0 +1,30 @@
+{
+  "trial": "NCT01524783",
+  "arms": [
+    {
+      "label": "Everolimus + BSC",
+      "N": 205,
+      "total_events": 107
+    },
+    {
+      "label": "Placebo + BSC",
+      "N": 97,
+      "total_events": 77
+    }
+  ],
+  "posted_hr": 0.48,
+  "posted_ci": [
+    0.35,
+    0.67
+  ],
+  "curve_only": {
+    "hr": 0.679,
+    "fold": 1.415,
+    "inside_ci": false
+  },
+  "censoring_informed": {
+    "hr": 0.577,
+    "fold": 1.202,
+    "inside_ci": true
+  }
+}

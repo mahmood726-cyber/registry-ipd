@@ -428,6 +428,47 @@ not beat the sparse OCR'd table, so a real 4-column risk table suffices. This is
 exact registry curve + the figure's NAR dissolves the identifiability limit *without* the registry
 changing its reporting. (`KMCURVE-SYNERGY.md` idea 2, now validated.)
 
+### Abstract event-count lever — the in-scope version of the NAR fusion (`harvest/abstract_events.py`)
+
+The NAR fusion above imports a *figure*, which is **out of this project's production data scope** (AACT +
+PubMed abstracts only — a figure is validation-only). The censoring lever the QP actually needs is just a
+per-arm total-event count, and the **PubMed abstract** — which IS in scope — routinely prints it. So the
+production-legal analogue of the figure's at-risk table is a deterministic abstract event-count
+extractor. The full chain is grounded on **real** data, in two halves (the two halves fall on different
+trials because the triple intersection — real curve + posted HR + abstract event counts for one trial —
+is empty in local data; see the honest caveat below).
+
+**Half 1 — abstract → per-arm event count (real, fresh, non-cache).** On the DAPA-HF primary publication
+(McMurray et al., *N Engl J Med* 2019;381:1995-2008, [DOI](https://doi.org/10.1056/NEJMoa1911303),
+PubMed PMID 31535829), `abstract_events` extracts the per-arm composite-outcome counts directly from the
+sentence *"the primary outcome occurred in 386 of 2373 patients … and in 502 of 2371 patients …"* →
+`events=[386,502]`, `ns=[2373,2371]`, matched to arms by N; `abstract_hr` → 0.74 (directionally
+consistent, 16.3% vs 21.2%). *Per PubMed attribution requirements, this article is cited with its DOI.*
+On the 161-abstract local cache the guards give **100% precision** (1 true positive — a mortality count —
+0 false positives); recall is honestly low because abstracts post per-arm "X of N" counts less often than
+a median or HR. A flagship counter-example: RADIANT-4's Lancet abstract (Yao et al., *Lancet*
+2016;387:968-977, [DOI](https://doi.org/10.1016/S0140-6736(15)00817-X), PMID 26703889) reports only
+*adverse-event* "X of N" counts, which `abstract_events` correctly returns **None** for (no fabricated
+efficacy count), while `abstract_hr` recovers the posted 0.48.
+
+**Half 2 — event count → QP → recovered HR vs truth (real curve + truth; `validate/abstract_lever_realtrial.js`).**
+On RADIANT-4 (NCT01524783), holding the exact AACT curve and the posted PFS HR 0.48 (95% CI 0.35-0.67):
+
+| reconstruction | HR | fold vs posted | inside posted 95% CI? |
+|---|---:|---:|:--:|
+| curve-only (no event count) | 0.679 | 1.42 | **no** (the identifiability trap) |
+| **censoring-informed (107/77 → QP)** | **0.577** | **1.20** | **yes** |
+
+Feeding the per-arm event count to the QP pulls the estimate from **outside** the posted CI to **inside**
+it — the same lever the figure-NAR supplies, here sourced (for this trial) from AACT participant-flow
+because RADIANT-4's abstract posts no efficacy count. Locked by `test/abstract_lever.spec.js`.
+
+**Honest caveat.** No single local trial has *all three* of {exact curve, posted HR, abstract event
+counts}: RADIANT-4 has the curve + HR but its abstract gives only AE counts; DAPA-HF's abstract gives the
+counts but its curve is not in local AACT data. This restates, for the abstract path, the same scarcity
+the figure path found ("1 usable pair in 1500 OA PDFs", `FUSION.md`): the data sources exist and each
+half is validated on real data, but the trials that publish *every* piece openly are rare. (`KMCURVE-SYNERGY.md` idea 5.)
+
 ### Anchor density: how many posted timepoints does reconstruction need?
 
 Sweeping K (number of posted KM timepoints) across the 7 true-IPD datasets

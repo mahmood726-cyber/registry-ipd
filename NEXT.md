@@ -118,9 +118,13 @@ built: **`harvest/abstract_events.py`** deterministically extracts per-arm "X of
 PubMed abstract ("death occurred in 107 of 205 … versus 77 of 97"), the exact `total_events` the QP needs
 — no figure. `enrich_trial_events` fills a trial's missing `total_events` with `events_source=
 'pubmed_abstract'` and never overwrites an AACT count. Clause-scoped guards (adverse-event/safety,
-enrolment/response, negation, count>N, drug-name slash) give **100% precision on the 161-abstract cache**
-(1 true positive, 0 false positives); recall is honestly low (abstracts post per-arm counts less often
-than medians/HRs). 19 unit tests; full Python suite 75 green, JS 25 green. See `KMCURVE-SYNERGY.md` Idea 5.
+enrolment/response/achieved, negation, count>N, drug-name slash, composite-endpoint trigger) give
+**100% precision on the 161-abstract cache** (1 true positive, 0 false positives); recall is honestly low
+(abstracts post per-arm counts less often than medians/HRs). **Grounded end-to-end on real PubMed data**:
+abstract→count on DAPA-HF (PMID 31535829, `386 of 2373` vs `502 of 2371`) + count→QP→truth on RADIANT-4
+(NCT01524783, HR 0.679 outside CI → 0.577 inside, vs posted 0.48; `validate/abstract_lever_realtrial.js`,
+locked by `test/abstract_lever.spec.js`). 20 unit + 26 JS tests green. See `KMCURVE-SYNERGY.md` Idea 5 +
+`VALIDATION.md` "Abstract event-count lever".
 
 ## Honest framing (carry forward)
 Novel registry-native data path + calibrated uncertainty + unusually rigorous validation; bounded by

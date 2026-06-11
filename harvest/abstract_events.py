@@ -40,10 +40,14 @@ _FRACTION = re.compile(
     re.IGNORECASE,
 )
 
-# an EVENT (the thing being counted) must be nearby, or it is not an event fraction.
+# an EVENT (the thing being counted) must be nearby, or it is not an event fraction. Includes the
+# composite-endpoint phrasing ("the PRIMARY OUTCOME occurred in 386 of 2373"), which event-driven
+# cardiology/renal trials use instead of a death/progression word — narrowly, to avoid a bare "outcome".
 _EVENT_KW = re.compile(
     r"death|died|dying|fatal|mortalit|\bevents?\b|progress(?:ion|ed|ive|ing)|"
-    r"recurren(?:ce|t)|relaps(?:e|ed|ing)|metastas|\bPD\b|disease\s+progression",
+    r"recurren(?:ce|t)|relaps(?:e|ed|ing)|metastas|\bPD\b|disease\s+progression|"
+    r"(?:primary|secondary|composite|key|main)\s+(?:composite\s+)?(?:outcome|end[\s-]?point)|"
+    r"(?:outcome|end[\s-]?point)s?\s+(?:event|occurred|occurr|were\s+observed)",
     re.IGNORECASE,
 )
 # negation anywhere in the left window -> "no deaths occurred in 0 of 50" — skip the fraction.
@@ -54,7 +58,8 @@ _COMPARATOR = re.compile(r"\b(?:versus|vs\.?|compared\s+(?:with|to)|and)\b|,", r
 # enrolment / baseline / response context -> the fraction is patients assigned/female/responding, not events.
 _ENROLL = re.compile(
     r"random|enroll|recruit|assign|allocat|includ|eligib|female|male|\baged\b|baseline|"
-    r"screen|response|respond|remission|\bORR\b|complete\s+response|partial\s+response",
+    r"screen|response|respond|remission|\bORR\b|complete\s+response|partial\s+response|"
+    r"achiev|attain",   # "achieved/attained the primary endpoint" = a responder proportion, not a TTE count
     re.IGNORECASE,
 )
 # SAFETY / adverse-event context -> these "X of N had an event" counts are toxicity, NOT the efficacy

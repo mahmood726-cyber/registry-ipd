@@ -113,6 +113,16 @@ the missing event count; the **abstract supplies it within the AACT+PubMed-abstr
 figure-NAR fusion (Idea 2) remains the *validation-only* upper bound on what an out-of-scope figure could
 add.
 
+**Grounded end-to-end on real PubMed data (2026-06-11).** Both halves of the chain are now validated on
+real trials (different trials, because no local trial publishes all three pieces openly — the same
+scarcity the figure path found): (1) **abstract → count** on DAPA-HF (PMID 31535829, NEJM 2019) —
+`abstract_events` pulls `386 of 2373` vs `502 of 2371` straight from "the primary outcome occurred in …",
+matched to arms by N; (2) **count → QP → truth** on RADIANT-4 (NCT01524783) — the 107/77 event count fed
+to the QP moves the HR from **0.679 (outside the posted 95% CI) to 0.577 (inside it)** vs truth 0.48.
+RADIANT-4's own abstract posts only adverse-event counts (correctly rejected → None) + the HR 0.48, so
+its in-scope event source is AACT participant-flow. See `VALIDATION.md` "Abstract event-count lever";
+locked by `test/abstract_lever.spec.js`.
+
 ## Recommended next step
 
 **Idea 2 (NAR fusion)** is the scientifically strongest: it directly dissolves the identifiability
