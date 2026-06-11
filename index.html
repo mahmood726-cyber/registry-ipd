@@ -300,6 +300,22 @@
     } else if(document.getElementById('calibrate').checked && res.tier==='A'){
       verdict.innerHTML += ' · <span class="muted">(calibration skipped — no posted HR on this trial)</span>';
     }
+    // input provenance: show which inputs came from a PubMed abstract vs the registry/AACT
+    var prov = [];
+    if(trial.hr && trial.hr.value!=null){
+      var src = (trial.hr.source==='pubmed_abstract') ? 'PubMed abstract' : 'registry/AACT';
+      prov.push('HR '+trial.hr.value+' <span class="muted">('+src+')</span>');
+    }
+    if(trial.hr_abstract && trial.hr_abstract.value!=null && !(trial.hr && trial.hr.source==='pubmed_abstract')){
+      prov.push('abstract-HR cross-check '+trial.hr_abstract.value+' <span class="muted">(PubMed abstract)</span>');
+    }
+    var absEvents = (trial.arms||[]).filter(function(a){ return a.events_source==='pubmed_abstract'; }).length;
+    if(absEvents) prov.push(absEvents+' arm event count(s) <span class="muted">(PubMed abstract)</span>');
+    if(trial.median_abstract) prov.push('median cross-check <span class="muted">(PubMed abstract)</span>');
+    if(prov.length){
+      verdict.innerHTML += '<div class="muted" id="provenance" style="margin-top:6px">'
+        + '<b style="color:var(--ink)">Input provenance:</b> ' + prov.join(' · ') + '</div>';
+    }
     document.getElementById('exportBtn').disabled = !res.exportable;
     drawPlot(trial, res);
     drawChecks(res);

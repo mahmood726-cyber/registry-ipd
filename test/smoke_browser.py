@@ -77,6 +77,22 @@ def main():
             failures.append("HR calibration toggle did not calibrate (no 'calibrated' in verdict)")
         driver.find_element(By.ID, "calibrate").click()        # uncheck to restore default
 
+        # input provenance: an abstract-enriched trial shows where its inputs came from
+        Select(driver.find_element(By.ID, "example")).select_by_value("tierA")
+        driver.find_element(By.ID, "loadEx").click()
+        driver.execute_script(
+            "var t=JSON.parse(document.getElementById('paste').value);"
+            "t.hr={value:0.5, source:'pubmed_abstract'};"
+            "if(t.arms&&t.arms[0]) t.arms[0].events_source='pubmed_abstract';"
+            "document.getElementById('paste').value=JSON.stringify(t);")
+        driver.find_element(By.ID, "run").click()
+        wait.until(EC.visibility_of_element_located((By.ID, "out")))
+        time.sleep(0.3)
+        prov = driver.find_element(By.ID, "verdict").text
+        print(f"  provenance: ...{prov[-90:]}")
+        if "provenance" not in prov.lower() or "pubmed abstract" not in prov.lower():
+            failures.append("input provenance for abstract-sourced fields not shown")
+
         # Tier B
         tier, badge, exp_dis, nchecks, npaths = reconstruct("tierB")
         print(f"Tier B -> {tier}, badge={badge}, exportDisabled={exp_dis}, checks={nchecks}, curves={npaths}")
