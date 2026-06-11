@@ -1,0 +1,1487 @@
+{
+ "summary": {
+  "reconstructed_trials": 250,
+  "with_pmid": 164,
+  "with_abstract": 155,
+  "published_HR_high_confidence": 20,
+  "of_which_no_registry_HR": 12,
+  "HR": {
+   "recon_vs_published_median_fold": 1.097,
+   "recon_within_published_95CI": "17/20",
+   "registry_vs_published_agree": "6/8"
+  },
+  "median": {
+   "trials": 5,
+   "arm_medians": 10,
+   "median_arm_fold": 1.071,
+   "within_20pct": "7/10"
+  },
+  "note": "Full reconstructed cohort vs the PUBLISHED HR + median (PubMed abstracts), endpoint-matched. Most trials have NO registry HR, so the published HR is the only held-out truth -- a pure registry-independent validation. High-confidence published HR = CI present + <=2 candidates; median matched to the curve endpoint. Triangulation, not a gold standard."
+ },
+ "rows": [
+  {
+   "nct": "NCT03917472",
+   "pmid": "37971723",
+   "condition": "Diabetic Macular Edema",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT04533737",
+   "pmid": "38300408",
+   "condition": "Plaque Psoriasis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00389207",
+   "pmid": "21628668",
+   "condition": "HIV Infections",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01404312",
+   "pmid": "19525621",
+   "condition": "Tuberculosis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00427934",
+   "pmid": "22251436",
+   "condition": "Arthritis, Rheumatoid",
+   "curve_endpoint": null,
+   "recon_HR": 0.723,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01144364",
+   "pmid": "24085766",
+   "condition": "Non-Hodgkin's Lymphoma",
+   "curve_endpoint": "DFS",
+   "recon_HR": 1,
+   "registry_HR": 0.58
+  },
+  {
+   "nct": "NCT01983683",
+   "pmid": "30709665",
+   "condition": "Clostridium Difficile Infection",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": 1.04
+  },
+  {
+   "nct": "NCT02201108",
+   "pmid": "38619037",
+   "condition": "Multiple Sclerosis",
+   "curve_endpoint": "RFS",
+   "recon_HR": 0.678,
+   "registry_HR": null,
+   "published_HR": 0.62,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.094,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT03493854",
+   "pmid": "33357420",
+   "condition": "Early Breast Cancer",
+   "curve_endpoint": "EFS",
+   "recon_HR": 1,
+   "registry_HR": 1.2
+  },
+  {
+   "nct": "NCT02951052",
+   "pmid": "34261093",
+   "condition": "Infection, Human Immunodeficiency Virus",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00185211",
+   "pmid": "19748319",
+   "condition": "Multiple Sclerosis",
+   "curve_endpoint": null,
+   "recon_HR": 0.827,
+   "registry_HR": 0.764,
+   "published_HR": 0.63,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.313,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT01740427",
+   "pmid": "38951507",
+   "condition": "Breast Neoplasms",
+   "curve_endpoint": null,
+   "recon_HR": 1.471,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02193074",
+   "pmid": "38705943",
+   "condition": "Spinal Muscular Atrophy",
+   "curve_endpoint": null,
+   "recon_HR": 0.267,
+   "registry_HR": 0.24
+  },
+  {
+   "nct": "NCT00840658",
+   "pmid": "30126411",
+   "condition": "HIV",
+   "curve_endpoint": null,
+   "recon_HR": 0.895,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02022111",
+   "pmid": "2698445",
+   "condition": "Diabetes",
+   "curve_endpoint": null,
+   "recon_HR": 0.954,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT04680052",
+   "pmid": "41360064",
+   "condition": "Follicular Lymphoma",
+   "curve_endpoint": "PFS",
+   "recon_HR": 0.637,
+   "registry_HR": 0.5,
+   "published_medians": [
+    13.9,
+    22.4
+   ],
+   "recon_medians": [
+    18,
+    24
+   ],
+   "median_arm_folds": [
+    1.295,
+    1.071
+   ]
+  },
+  {
+   "nct": "NCT02227238",
+   "pmid": "30732940",
+   "condition": "HIV Infections",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03084237",
+   "pmid": "39954568",
+   "condition": "Breast Cancer",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null,
+   "published_HR": 0.86,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 2,
+   "recon_vs_published_HR_fold": 1.163
+  },
+  {
+   "nct": "NCT00861614",
+   "pmid": "25907621",
+   "condition": "Prostate Cancer",
+   "curve_endpoint": "OS",
+   "recon_HR": 0.858,
+   "registry_HR": null,
+   "published_HR": 0.85,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 2,
+   "recon_vs_published_HR_fold": 1.009,
+   "recon_in_published_HR_CI": true,
+   "published_medians": [
+    10.0,
+    11.2
+   ],
+   "recon_medians": [
+    10.1,
+    11.24
+   ],
+   "median_arm_folds": [
+    1.01,
+    1.004
+   ]
+  },
+  {
+   "nct": "NCT01442038",
+   "pmid": "26474810",
+   "condition": "Coronary Artery Disease",
+   "curve_endpoint": null,
+   "recon_HR": 0.904,
+   "registry_HR": 1.073
+  },
+  {
+   "nct": "NCT02744755",
+   "pmid": "33651341",
+   "condition": "Rheumatoid Arthritis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02714595",
+   "pmid": "35076335",
+   "condition": "Healthcare-associated Pneumonia (HCAP)",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03259373",
+   "pmid": "35639381",
+   "condition": "Atrial Fibrillation",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT05292586",
+   "pmid": "33329598",
+   "condition": "Asthma",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00324155",
+   "pmid": "25713437",
+   "condition": "Melanoma",
+   "curve_endpoint": null,
+   "recon_HR": 0.751,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00409188",
+   "pmid": "24331154",
+   "condition": "Non-small Cell Lung Cancer",
+   "curve_endpoint": null,
+   "recon_HR": 0.922,
+   "registry_HR": null,
+   "published_HR": 0.88,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 3,
+   "recon_vs_published_HR_fold": 1.048,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT04878055",
+   "pmid": "37798468",
+   "condition": "Pneumonia, Viral",
+   "curve_endpoint": null,
+   "recon_HR": 0.646,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00908544",
+   "pmid": "29760693",
+   "condition": "HIV Infections",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT04842747",
+   "pmid": "38319812",
+   "condition": "SARS-CoV Infection",
+   "curve_endpoint": null,
+   "recon_HR": 0.071,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00682643",
+   "pmid": "23806459",
+   "condition": "Rhinitis, Allergic, Perennial",
+   "curve_endpoint": null,
+   "recon_HR": 2.434,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00377637",
+   "pmid": "22922564",
+   "condition": "Lupus Nephritis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00435409",
+   "pmid": "23857972",
+   "condition": "Breast Neoplasms",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null,
+   "published_HR": 1.22,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.22,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT01578239",
+   "pmid": "34793718",
+   "condition": "Carcinoid Tumor of the Small Bowel",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03596866",
+   "pmid": "37574132",
+   "condition": "ALK+ Advanced NSCLC",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null,
+   "published_HR": 0.97,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 2,
+   "recon_vs_published_HR_fold": 1.031,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT01883362",
+   "pmid": "33288862",
+   "condition": "Acute Myeloid Leukemia",
+   "curve_endpoint": "RFS",
+   "recon_HR": 0.536,
+   "registry_HR": 0.6,
+   "published_HR": 0.46,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.165,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT00909532",
+   "pmid": "22047557",
+   "condition": "Cystic Fibrosis",
+   "curve_endpoint": null,
+   "recon_HR": 0.477,
+   "registry_HR": 0.4
+  },
+  {
+   "nct": "NCT02211131",
+   "pmid": "34608333",
+   "condition": "Completely Resectable Stage IIIB, IIIC, or IVM",
+   "curve_endpoint": "RFS",
+   "recon_HR": 1,
+   "registry_HR": null,
+   "published_HR": 0.75,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 2,
+   "recon_vs_published_HR_fold": 1.333
+  },
+  {
+   "nct": "NCT02162667",
+   "pmid": "34148205",
+   "condition": "HER2-positive Carcinoma of Breast",
+   "curve_endpoint": "DFS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00075829",
+   "pmid": "21962393",
+   "condition": "Multiple Myeloma",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00303459",
+   "pmid": "26113687",
+   "condition": "Pulmonary Arterial Hypertension",
+   "curve_endpoint": null,
+   "recon_HR": 0.855,
+   "registry_HR": 0.963,
+   "published_HR": 0.83,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.03
+  },
+  {
+   "nct": "NCT01782131",
+   "pmid": "37676612",
+   "condition": "Fungal Infections",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02793544",
+   "pmid": "33905264",
+   "condition": "Myelodysplastic Syndrome (MDS)",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT04355143",
+   "pmid": "35783822",
+   "condition": "COVID-19",
+   "curve_endpoint": "EFS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01910402",
+   "pmid": "28729158",
+   "condition": "Infection, Human Immunodeficiency Virus",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT04737187",
+   "pmid": "37133585",
+   "condition": "Refractory Metastatic Colorectal Cancer",
+   "curve_endpoint": "PFS",
+   "recon_HR": 1,
+   "registry_HR": null,
+   "published_HR": 0.54,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 3,
+   "recon_vs_published_HR_fold": 1.852,
+   "recon_in_published_HR_CI": false,
+   "published_medians": [
+    2.4,
+    5.6
+   ],
+   "recon_medians": [
+    2.72,
+    5.29
+   ],
+   "median_arm_folds": [
+    1.133,
+    1.059
+   ]
+  },
+  {
+   "nct": "NCT02283853",
+   "pmid": "36169959",
+   "condition": "Relapsing-Remitting Multiple Sclerosis",
+   "curve_endpoint": "RFS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00559988",
+   "pmid": "25908774",
+   "condition": "Atrial Fibrillation",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": 1.064,
+   "published_HR": 1.06,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.06,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT02052739",
+   "pmid": "28779545",
+   "condition": "Super-refractory Status Epilepticus",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01006603",
+   "pmid": "27823868",
+   "condition": "Type 2 Diabetes Mellitus",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01345019",
+   "pmid": "29480139",
+   "condition": "Cancer",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01151137",
+   "pmid": "22082198",
+   "condition": "Atrial Fibrillation",
+   "curve_endpoint": null,
+   "recon_HR": 2.377,
+   "registry_HR": 2.294,
+   "published_HR": 2.29,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 5,
+   "recon_vs_published_HR_fold": 1.038,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT01286272",
+   "pmid": "35787017",
+   "condition": "Ann Arbor Stage III Grade 1 Follicular Lymphom",
+   "curve_endpoint": "PFS",
+   "recon_HR": 1,
+   "registry_HR": 0.94
+  },
+  {
+   "nct": "NCT01853384",
+   "pmid": "29037354",
+   "condition": "Venous Ulcer",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01515189",
+   "pmid": "32503946",
+   "condition": "Melanoma",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null,
+   "published_HR": 0.84,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.19,
+   "recon_in_published_HR_CI": false
+  },
+  {
+   "nct": "NCT03139604",
+   "pmid": "35689489",
+   "condition": "Graft-versus-host Disease (GVHD)",
+   "curve_endpoint": null,
+   "recon_HR": 0.903,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00032591",
+   "pmid": "20628787",
+   "condition": "Atrial Fibrillation",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": 0.88
+  },
+  {
+   "nct": "NCT02132949",
+   "pmid": "29253081",
+   "condition": "Breast Cancer",
+   "curve_endpoint": "EFS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03120949",
+   "pmid": "42142212",
+   "condition": "Rheumatoid Arthritis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01974206",
+   "pmid": "29745007",
+   "condition": "Kidney Transplantation Cytomegalovirus (CMV) N",
+   "curve_endpoint": null,
+   "recon_HR": 0.963,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02938520",
+   "pmid": "32130806",
+   "condition": "HIV Infections",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00088166",
+   "pmid": "23382470",
+   "condition": "Brain Edema",
+   "curve_endpoint": null,
+   "recon_HR": 0.524,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00636168",
+   "pmid": "39378385",
+   "condition": "High Risk Stage III Melanoma",
+   "curve_endpoint": "OS",
+   "recon_HR": 0.611,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01942135",
+   "pmid": "38861871",
+   "condition": "Metastatic Breast Cancer",
+   "curve_endpoint": null,
+   "recon_HR": 0.962,
+   "registry_HR": null,
+   "published_HR": 0.79,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 4,
+   "recon_vs_published_HR_fold": 1.218,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT01566721",
+   "pmid": "30018134",
+   "condition": "Breast Neoplasms",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00223080",
+   "pmid": "15272397",
+   "condition": "HIV Infection",
+   "curve_endpoint": null,
+   "recon_HR": 0.404,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00372229",
+   "pmid": "39807668",
+   "condition": "Cytomegalovirus Infections",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01755767",
+   "pmid": "29625879",
+   "condition": "Hepatocellular Carcinoma",
+   "curve_endpoint": "OS",
+   "recon_HR": 1.208,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03158727",
+   "pmid": "37918129",
+   "condition": "Bacterial Pneumonia",
+   "curve_endpoint": null,
+   "recon_HR": 1.338,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01071356",
+   "pmid": "14516234",
+   "condition": "Methamphetamine Dependence",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00552760",
+   "pmid": "22963894",
+   "condition": "Bipolar Disorder",
+   "curve_endpoint": null,
+   "recon_HR": 0.453,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02117479",
+   "pmid": "29508247",
+   "condition": "Pancreatic Cancer",
+   "curve_endpoint": "PFS",
+   "recon_HR": 1.034,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT04313400",
+   "pmid": "38846687",
+   "condition": "Atopic Dermatitis",
+   "curve_endpoint": null,
+   "recon_HR": 0.792,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01332019",
+   "pmid": "30181780",
+   "condition": "Relapsing Multiple Sclerosis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": 0.57
+  },
+  {
+   "nct": "NCT00333840",
+   "pmid": "28273028",
+   "condition": "Chronic Myelogenous Leukemia",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00989235",
+   "pmid": "25550337",
+   "condition": "Rheumatoid Arthritis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": 0.87,
+   "published_HR": 0.87,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.149,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT00790036",
+   "pmid": "29253068",
+   "condition": "Diffuse Large B-cell Lymphoma",
+   "curve_endpoint": "OS",
+   "recon_HR": 0.845,
+   "registry_HR": 0.75,
+   "published_HR": 0.92,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.089,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT03041467",
+   "pmid": "41689689",
+   "condition": "Arteriovenous Fistula Stenosis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01312961",
+   "pmid": "23688323",
+   "condition": "Asthma",
+   "curve_endpoint": null,
+   "recon_HR": 0.112,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT05120856",
+   "pmid": "23218805",
+   "condition": "Alcohol Use Disorder (AUD)",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03696160",
+   "pmid": "22748590",
+   "condition": "HIV/AIDS",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT04402957",
+   "pmid": "38490660",
+   "condition": "COVID",
+   "curve_endpoint": null,
+   "recon_HR": 0.682,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00541385",
+   "pmid": "23113947",
+   "condition": "Malaria",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01500278",
+   "pmid": "27863807",
+   "condition": "Rheumatoid Arthritis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02959944",
+   "pmid": "36608310",
+   "condition": "Chronic Graft Versus Host Disease",
+   "curve_endpoint": null,
+   "recon_HR": 1.191,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01335399",
+   "pmid": "35550060",
+   "condition": "Multiple Myeloma",
+   "curve_endpoint": "PFS",
+   "recon_HR": 1,
+   "registry_HR": 0.93,
+   "published_medians": [
+    29.5,
+    31.4
+   ],
+   "recon_medians": [
+    28.67,
+    32.77
+   ],
+   "median_arm_folds": [
+    1.029,
+    1.044
+   ]
+  },
+  {
+   "nct": "NCT01111305",
+   "pmid": "2193099",
+   "condition": "Loiasis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01574716",
+   "pmid": "31034598",
+   "condition": "Metastatic Soft Tissue Sarcoma",
+   "curve_endpoint": "PFS",
+   "recon_HR": 1.114,
+   "registry_HR": null,
+   "published_HR": 1.07,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 2,
+   "recon_vs_published_HR_fold": 1.041,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT00412061",
+   "pmid": "28444114",
+   "condition": "Carcinoid Tumor",
+   "curve_endpoint": "OS",
+   "recon_HR": 1.095,
+   "registry_HR": null,
+   "published_HR": 1.17,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 2,
+   "recon_vs_published_HR_fold": 1.068,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT03260023",
+   "pmid": "37506588",
+   "condition": "HPV-Related Carcinoma",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00950859",
+   "pmid": "23225901",
+   "condition": "Infection, Human Immunodeficiency Virus",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03639311",
+   "pmid": "40655875",
+   "condition": "HIV Infections",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01524783",
+   "pmid": "33560090",
+   "condition": "Advanced NET of GI Origin",
+   "curve_endpoint": "PFS",
+   "recon_HR": 0.577,
+   "registry_HR": 0.48,
+   "published_HR": 0.69,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 2,
+   "recon_vs_published_HR_fold": 1.196
+  },
+  {
+   "nct": "NCT01972789",
+   "pmid": "27009515",
+   "condition": "Subfoveal Choroidal Neovascularization CNV Sec",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00397540",
+   "pmid": "23461618",
+   "condition": "Carcinoma, Hepatocellular",
+   "curve_endpoint": "DFS",
+   "recon_HR": 1,
+   "registry_HR": null,
+   "published_HR": 1.0,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.0,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT02485899",
+   "pmid": "38776275",
+   "condition": "Jansky-Bielschowsky Disease",
+   "curve_endpoint": null,
+   "recon_HR": 0.151,
+   "registry_HR": 0.14
+  },
+  {
+   "nct": "NCT03575351",
+   "pmid": "42044466",
+   "condition": "Lymphoma, Non-Hodgkin",
+   "curve_endpoint": "EFS",
+   "recon_HR": 0.382,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03213938",
+   "pmid": "34399062",
+   "condition": "Chronic Prostatitis With Chronic Pelvic Pain S",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03456882",
+   "pmid": "39182589",
+   "condition": "Amyotrophic Lateral Sclerosis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT04305496",
+   "pmid": "37256976",
+   "condition": "Locally Advanced (Inoperable) or Metastatic Br",
+   "curve_endpoint": "PFS",
+   "recon_HR": 0.597,
+   "registry_HR": 0.6,
+   "published_HR": 0.5,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 2,
+   "recon_vs_published_HR_fold": 1.194,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT00549302",
+   "pmid": "22818063",
+   "condition": "Hypertension, Pulmonary",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00686725",
+   "pmid": "26481741",
+   "condition": "Glioblastoma",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01424670",
+   "pmid": "30630778",
+   "condition": "Multidrug-resistant Tuberculosis",
+   "curve_endpoint": null,
+   "recon_HR": 0.062,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00124748",
+   "pmid": "24859364",
+   "condition": "Leukemia, Myeloid, Chronic Phase",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00878709",
+   "pmid": "36898233",
+   "condition": "Breast Cancer",
+   "curve_endpoint": "OS",
+   "recon_HR": 0.959,
+   "registry_HR": 0.952,
+   "published_HR": 0.95,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.009,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT00699816",
+   "pmid": "11022927",
+   "condition": "Hepatocellular Carcinoma",
+   "curve_endpoint": "RFS",
+   "recon_HR": 0.718,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03452137",
+   "pmid": "40079944",
+   "condition": "Locally Advanced Squamous Cell Carcinoma of th",
+   "curve_endpoint": "EFS",
+   "recon_HR": 0.992,
+   "registry_HR": null,
+   "published_HR": 0.94,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.055,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT00612313",
+   "pmid": "24935082",
+   "condition": "Depression",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null,
+   "published_HR": 1.26,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 2,
+   "recon_vs_published_HR_fold": 1.26
+  },
+  {
+   "nct": "NCT00265148",
+   "pmid": "20930300",
+   "condition": "Alzheimer's Disease",
+   "curve_endpoint": null,
+   "recon_HR": 39,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02573259",
+   "pmid": "39671539",
+   "condition": "Part 1",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null,
+   "published_HR": 0.46,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 4,
+   "recon_vs_published_HR_fold": 2.174,
+   "recon_in_published_HR_CI": false
+  },
+  {
+   "nct": "NCT00623766",
+   "pmid": "25667295",
+   "condition": "Melanoma",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03112603",
+   "pmid": "42180389",
+   "condition": "Graft-versus-host Disease (GVHD)",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00581555",
+   "pmid": "24682319",
+   "condition": "Psoriasis",
+   "curve_endpoint": "RFS",
+   "recon_HR": 0.42,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01201798",
+   "pmid": "24677110",
+   "condition": "Endogenous Anterior Uveitis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00172042",
+   "pmid": "22730101",
+   "condition": "Non-Small-Cell Lung Cancer",
+   "curve_endpoint": null,
+   "recon_HR": 0.881,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03562195",
+   "pmid": "38770009",
+   "condition": "Asthma",
+   "curve_endpoint": null,
+   "recon_HR": 0.452,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01721772",
+   "pmid": "39504507",
+   "condition": "Melanoma",
+   "curve_endpoint": "PFS",
+   "recon_HR": 2.207,
+   "registry_HR": null,
+   "published_HR": 0.78,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 2.829,
+   "recon_in_published_HR_CI": false
+  },
+  {
+   "nct": "NCT01902290",
+   "pmid": "30945020",
+   "condition": "Asthma",
+   "curve_endpoint": null,
+   "recon_HR": 0.847,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01108445",
+   "pmid": "37146227",
+   "condition": "Advanced Non-clear Cell Renal Cell Carcinoma",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null,
+   "published_HR": 0.73,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 6,
+   "recon_vs_published_HR_fold": 1.37,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT00324259",
+   "pmid": "19690310",
+   "condition": "Breast Neoplasms",
+   "curve_endpoint": "PFS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00191477",
+   "pmid": "34125951",
+   "condition": "Bladder Neoplasms",
+   "curve_endpoint": "RFS",
+   "recon_HR": 0.616,
+   "registry_HR": null,
+   "published_HR": 0.77,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.25,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT02047045",
+   "pmid": "33273258",
+   "condition": "Constipation",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00422084",
+   "pmid": "20417857",
+   "condition": "Malaria",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03646123",
+   "pmid": "41460964",
+   "condition": "Hodgkin Lymphoma",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01642004",
+   "pmid": "36897427",
+   "condition": "Squamous Cell Non-small Cell Lung Cancer",
+   "curve_endpoint": "PFS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02638259",
+   "pmid": "40279006",
+   "condition": "Rheumatoid Arthritis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01481779",
+   "pmid": "36542287",
+   "condition": "Diabetes Mellitus, Type 1",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01568892",
+   "pmid": "25321146",
+   "condition": "HIV Infections",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00075803",
+   "pmid": "20826719",
+   "condition": "Lymphoma",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03186378",
+   "pmid": "33400412",
+   "condition": "Molluscum Contagiosum",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02353871",
+   "pmid": "36206385",
+   "condition": "Moderate to Severe Glabellar Lines",
+   "curve_endpoint": null,
+   "recon_HR": 0.803,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03439748",
+   "pmid": "40652976",
+   "condition": "Depression",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT04144322",
+   "pmid": "24818208",
+   "condition": "Bone Loss, Alveolar",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03676192",
+   "pmid": "40795416",
+   "condition": "Adenocarcinoma of Lung",
+   "curve_endpoint": "TTP",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03851705",
+   "pmid": "37850379",
+   "condition": "Homozygous Familial Hypercholesterolemia",
+   "curve_endpoint": null,
+   "recon_HR": 0.728,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00863655",
+   "pmid": "29522361",
+   "condition": "Breast Cancer",
+   "curve_endpoint": null,
+   "recon_HR": 0.824,
+   "registry_HR": null,
+   "published_HR": 0.64,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 4,
+   "recon_vs_published_HR_fold": 1.287,
+   "recon_in_published_HR_CI": false
+  },
+  {
+   "nct": "NCT03029247",
+   "pmid": "36005278",
+   "condition": "Anaemia",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03299049",
+   "pmid": "33308425",
+   "condition": "HIV Infections",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02913261",
+   "pmid": "42180389",
+   "condition": "Corticosteroid Refractory Acute Graft vs Host ",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02814838",
+   "pmid": "37409229",
+   "condition": "Diabetes Mellitus, Insulin-Dependent",
+   "curve_endpoint": null,
+   "recon_HR": 0.941,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02260804",
+   "pmid": "34686445",
+   "condition": "Follicular Lymphoma",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00261443",
+   "pmid": "21443567",
+   "condition": "Bipolar Disorder",
+   "curve_endpoint": null,
+   "recon_HR": 0.31,
+   "registry_HR": 0.348,
+   "published_HR": 0.54,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 1,
+   "recon_vs_published_HR_fold": 1.742,
+   "recon_in_published_HR_CI": false
+  },
+  {
+   "nct": "NCT03494725",
+   "pmid": "10461128",
+   "condition": "Healthy",
+   "curve_endpoint": null,
+   "recon_HR": 1.074,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT04860323",
+   "pmid": "40462491",
+   "condition": "HIV Infection",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01235962",
+   "pmid": "20100962",
+   "condition": "Renal Cell Carcinoma (RCC)",
+   "curve_endpoint": "DFS",
+   "recon_HR": 0.82,
+   "registry_HR": null,
+   "published_HR": 0.46,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 3,
+   "recon_vs_published_HR_fold": 1.783,
+   "recon_in_published_HR_CI": false
+  },
+  {
+   "nct": "NCT01987895",
+   "pmid": "30709665",
+   "condition": "Clostridium Difficile Infection",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": 0.96
+  },
+  {
+   "nct": "NCT03371706",
+   "pmid": "35698099",
+   "condition": "Primary Progressive Aphasia",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT01358877",
+   "pmid": "41934626",
+   "condition": "Breast Cancer",
+   "curve_endpoint": "EFS",
+   "recon_HR": 0.768,
+   "registry_HR": null,
+   "published_HR": 0.7,
+   "hr_high_confidence": true,
+   "n_hr_candidates": 2,
+   "recon_vs_published_HR_fold": 1.097,
+   "recon_in_published_HR_CI": true
+  },
+  {
+   "nct": "NCT02883452",
+   "pmid": "38365502",
+   "condition": "Crohn's Disease",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT03446612",
+   "pmid": "36005278",
+   "condition": "Anaemia",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT00232505",
+   "pmid": "22665533",
+   "condition": "Breast Cancer",
+   "curve_endpoint": "OS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02896855",
+   "pmid": "32564260",
+   "condition": "Breast Cancer",
+   "curve_endpoint": "PFS",
+   "recon_HR": 0.641,
+   "registry_HR": null,
+   "published_HR": 0.62,
+   "hr_high_confidence": false,
+   "n_hr_candidates": 3,
+   "recon_vs_published_HR_fold": 1.034,
+   "published_medians": [
+    12.4,
+    14.5
+   ],
+   "recon_medians": [
+    15,
+    19.5
+   ],
+   "median_arm_folds": [
+    1.21,
+    1.345
+   ]
+  },
+  {
+   "nct": "NCT03053440",
+   "pmid": "29869556",
+   "condition": "Waldenstr\u00f6m's Macroglobulinemia",
+   "curve_endpoint": "EFS",
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT02586025",
+   "pmid": "31647503",
+   "condition": "Breast Cancer",
+   "curve_endpoint": "EFS",
+   "recon_HR": 0.528,
+   "registry_HR": 0.52
+  },
+  {
+   "nct": "NCT03968978",
+   "pmid": "33907423",
+   "condition": "Asthma",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  },
+  {
+   "nct": "NCT05565820",
+   "pmid": "22715834",
+   "condition": "Pediculosis Capitis",
+   "curve_endpoint": null,
+   "recon_HR": 1,
+   "registry_HR": null
+  }
+ ]
+}

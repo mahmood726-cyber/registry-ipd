@@ -1,0 +1,2706 @@
+[
+ {
+  "nct": "NCT00032591",
+  "condition": "Atrial Fibrillation",
+  "badge": "gold",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": 0.88,
+  "events": 664
+ },
+ {
+  "nct": "NCT00058552",
+  "condition": "Ovarian Cancer",
+  "badge": "gold",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   3,
+   3
+  ],
+  "registry_HR": null,
+  "events": 110
+ },
+ {
+  "nct": "NCT00075803",
+  "condition": "Lymphoma",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 176
+ },
+ {
+  "nct": "NCT00075829",
+  "condition": "Multiple Myeloma",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 146
+ },
+ {
+  "nct": "NCT00088166",
+  "condition": "Brain Edema",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.524,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 60
+ },
+ {
+  "nct": "NCT00123487",
+  "condition": "Myeloid Leukemia, Chronic, Accelerated Phase",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 348
+ },
+ {
+  "nct": "NCT00124748",
+  "condition": "Leukemia, Myeloid, Chronic Phase",
+  "badge": "silver",
+  "anchors": 11,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 8
+ },
+ {
+  "nct": "NCT00135356",
+  "condition": "HIV-Associated Lipodystrophy Syndrome",
+  "badge": "silver",
+  "anchors": 8,
+  "recon_HR": 0.55,
+  "recon_medians": null,
+  "registry_HR": 1.06,
+  "events": 10
+ },
+ {
+  "nct": "NCT00143403",
+  "condition": "Colorectal Neoplasms",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 86
+ },
+ {
+  "nct": "NCT00172042",
+  "condition": "Non-Small-Cell Lung Cancer",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.881,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 57
+ },
+ {
+  "nct": "NCT00185211",
+  "condition": "Multiple Sclerosis",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.827,
+  "recon_medians": null,
+  "registry_HR": 0.764,
+  "events": 124
+ },
+ {
+  "nct": "NCT00191477",
+  "condition": "Bladder Neoplasms",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 0.616,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 127
+ },
+ {
+  "nct": "NCT00207142",
+  "condition": "HIV Infections",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": 0.97,
+  "events": 30
+ },
+ {
+  "nct": "NCT00223080",
+  "condition": "HIV Infection",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.404,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 5637
+ },
+ {
+  "nct": "NCT00232505",
+  "condition": "Breast Cancer",
+  "badge": "silver",
+  "anchors": 10,
+  "recon_HR": 1,
+  "recon_medians": [
+   4,
+   8
+  ],
+  "registry_HR": null,
+  "events": 62
+ },
+ {
+  "nct": "NCT00244855",
+  "condition": "Contiguous Stage II Grade 1 Follicular Lymphom",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 2
+ },
+ {
+  "nct": "NCT00261443",
+  "condition": "Bipolar Disorder",
+  "badge": "silver",
+  "anchors": 14,
+  "recon_HR": 0.31,
+  "recon_medians": null,
+  "registry_HR": 0.348,
+  "events": 33
+ },
+ {
+  "nct": "NCT00265148",
+  "condition": "Alzheimer's Disease",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 39,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 40
+ },
+ {
+  "nct": "NCT00277212",
+  "condition": "Bipolar Disorder",
+  "badge": "silver",
+  "anchors": 16,
+  "recon_HR": 0.478,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 60
+ },
+ {
+  "nct": "NCT00303459",
+  "condition": "Pulmonary Arterial Hypertension",
+  "badge": "silver",
+  "anchors": 21,
+  "recon_HR": 0.855,
+  "recon_medians": null,
+  "registry_HR": 0.963,
+  "events": 81
+ },
+ {
+  "nct": "NCT00324155",
+  "condition": "Melanoma",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.751,
+  "recon_medians": [
+   11.32,
+   9.35
+  ],
+  "registry_HR": null,
+  "events": 293
+ },
+ {
+  "nct": "NCT00324259",
+  "condition": "Breast Neoplasms",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": [
+   2.76,
+   2.76
+  ],
+  "registry_HR": null,
+  "events": 64
+ },
+ {
+  "nct": "NCT00333840",
+  "condition": "Chronic Myelogenous Leukemia",
+  "badge": "silver",
+  "anchors": 12,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 130
+ },
+ {
+  "nct": "NCT00350272",
+  "condition": "HIV Infections",
+  "badge": "gold",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": [
+   2.3,
+   1.84
+  ],
+  "registry_HR": null,
+  "events": 42
+ },
+ {
+  "nct": "NCT00371254",
+  "condition": "Breast Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   1.7,
+   1.55
+  ],
+  "registry_HR": null,
+  "events": 28
+ },
+ {
+  "nct": "NCT00372229",
+  "condition": "Cytomegalovirus Infections",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 22
+ },
+ {
+  "nct": "NCT00374322",
+  "condition": "Neoplasms, Breast",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 8.551,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 1834
+ },
+ {
+  "nct": "NCT00377637",
+  "condition": "Lupus Nephritis",
+  "badge": "silver",
+  "anchors": 11,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 42
+ },
+ {
+  "nct": "NCT00389207",
+  "condition": "HIV Infections",
+  "badge": "silver",
+  "anchors": 14,
+  "recon_HR": 1,
+  "recon_medians": [
+   2.76,
+   5.52
+  ],
+  "registry_HR": null,
+  "events": 730
+ },
+ {
+  "nct": "NCT00397540",
+  "condition": "Carcinoma, Hepatocellular",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 32
+ },
+ {
+  "nct": "NCT00409188",
+  "condition": "Non-small Cell Lung Cancer",
+  "badge": "gold",
+  "anchors": 3,
+  "recon_HR": 0.922,
+  "recon_medians": [
+   36,
+   24
+  ],
+  "registry_HR": null,
+  "events": 754
+ },
+ {
+  "nct": "NCT00412061",
+  "condition": "Carcinoid Tumor",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1.095,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 89
+ },
+ {
+  "nct": "NCT00422084",
+  "condition": "Malaria",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 180
+ },
+ {
+  "nct": "NCT00427934",
+  "condition": "Arthritis, Rheumatoid",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 0.723,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 8
+ },
+ {
+  "nct": "NCT00435409",
+  "condition": "Breast Neoplasms",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 162
+ },
+ {
+  "nct": "NCT00482703",
+  "condition": "Myeloid Leukemia, Chronic",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 1,
+  "recon_medians": [
+   4,
+   4
+  ],
+  "registry_HR": null,
+  "events": 12
+ },
+ {
+  "nct": "NCT00541385",
+  "condition": "Malaria",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 26
+ },
+ {
+  "nct": "NCT00549302",
+  "condition": "Hypertension, Pulmonary",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 8
+ },
+ {
+  "nct": "NCT00552760",
+  "condition": "Bipolar Disorder",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 0.453,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 41
+ },
+ {
+  "nct": "NCT00559988",
+  "condition": "Atrial Fibrillation",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": 1.064,
+  "events": 294
+ },
+ {
+  "nct": "NCT00562965",
+  "condition": "Lymphoma, Follicular",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.401,
+  "recon_medians": null,
+  "registry_HR": 0.3,
+  "events": 6
+ },
+ {
+  "nct": "NCT00581555",
+  "condition": "Psoriasis",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 0.42,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 75
+ },
+ {
+  "nct": "NCT00612313",
+  "condition": "Depression",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 28
+ },
+ {
+  "nct": "NCT00617305",
+  "condition": "Pulmonary Arterial Hypertension",
+  "badge": "silver",
+  "anchors": 12,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 2
+ },
+ {
+  "nct": "NCT00623766",
+  "condition": "Melanoma",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": [
+   12,
+   6
+  ],
+  "registry_HR": null,
+  "events": 76
+ },
+ {
+  "nct": "NCT00636168",
+  "condition": "High Risk Stage III Melanoma",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 0.611,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 133
+ },
+ {
+  "nct": "NCT00676806",
+  "condition": "Leukemia",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   5.91,
+   1.48
+  ],
+  "registry_HR": null,
+  "events": 4
+ },
+ {
+  "nct": "NCT00682643",
+  "condition": "Rhinitis, Allergic, Perennial",
+  "badge": "silver",
+  "anchors": 8,
+  "recon_HR": 2.434,
+  "recon_medians": [
+   8.28,
+   5.52
+  ],
+  "registry_HR": null,
+  "events": 496
+ },
+ {
+  "nct": "NCT00682786",
+  "condition": "Rectal Carcinoma",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 44
+ },
+ {
+  "nct": "NCT00686725",
+  "condition": "Glioblastoma",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 18
+ },
+ {
+  "nct": "NCT00686959",
+  "condition": "Non Small Cell Lung Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   309.6,
+   315
+  ],
+  "registry_HR": null,
+  "events": 248
+ },
+ {
+  "nct": "NCT00699816",
+  "condition": "Hepatocellular Carcinoma",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.718,
+  "recon_medians": [
+   48,
+   36
+  ],
+  "registry_HR": null,
+  "events": 125
+ },
+ {
+  "nct": "NCT00736255",
+  "condition": "Attention Deficit Hyperactivity Disorder",
+  "badge": "silver",
+  "anchors": 8,
+  "recon_HR": 0.882,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 4
+ },
+ {
+  "nct": "NCT00743093",
+  "condition": "Drug Toxicity",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 5.558,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 38
+ },
+ {
+  "nct": "NCT00761280",
+  "condition": "Anaplastic Astrocytoma",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   21,
+   12
+  ],
+  "registry_HR": null,
+  "events": 28
+ },
+ {
+  "nct": "NCT00790036",
+  "condition": "Diffuse Large B-cell Lymphoma",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 0.845,
+  "recon_medians": null,
+  "registry_HR": 0.75,
+  "events": 157
+ },
+ {
+  "nct": "NCT00819052",
+  "condition": "HIV Infections",
+  "badge": "gold",
+  "anchors": 8,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 16
+ },
+ {
+  "nct": "NCT00840658",
+  "condition": "HIV",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.895,
+  "recon_medians": [
+   4,
+   4
+  ],
+  "registry_HR": null,
+  "events": 362
+ },
+ {
+  "nct": "NCT00861614",
+  "condition": "Prostate Cancer",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 0.858,
+  "recon_medians": [
+   11.24,
+   10.1
+  ],
+  "registry_HR": null,
+  "events": 450
+ },
+ {
+  "nct": "NCT00863655",
+  "condition": "Breast Cancer",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.824,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 336
+ },
+ {
+  "nct": "NCT00878709",
+  "condition": "Breast Cancer",
+  "badge": "gold",
+  "anchors": 5,
+  "recon_HR": 0.959,
+  "recon_medians": null,
+  "registry_HR": 0.952,
+  "events": 316
+ },
+ {
+  "nct": "NCT00905840",
+  "condition": "Jaw, Edentulous",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 48
+ },
+ {
+  "nct": "NCT00908544",
+  "condition": "HIV Infections",
+  "badge": "silver",
+  "anchors": 15,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 34
+ },
+ {
+  "nct": "NCT00909532",
+  "condition": "Cystic Fibrosis",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 0.477,
+  "recon_medians": null,
+  "registry_HR": 0.4,
+  "events": 73
+ },
+ {
+  "nct": "NCT00950859",
+  "condition": "Infection, Human Immunodeficiency Virus",
+  "badge": "silver",
+  "anchors": 16,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 16
+ },
+ {
+  "nct": "NCT00986440",
+  "condition": "Colorectal Cancer",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.67,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 31
+ },
+ {
+  "nct": "NCT00989235",
+  "condition": "Rheumatoid Arthritis",
+  "badge": "silver",
+  "anchors": 12,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": 0.87,
+  "events": 38
+ },
+ {
+  "nct": "NCT01006122",
+  "condition": "Excessive Daytime Sleepiness",
+  "badge": "gold",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 0
+ },
+ {
+  "nct": "NCT01006603",
+  "condition": "Type 2 Diabetes Mellitus",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 264
+ },
+ {
+  "nct": "NCT01036529",
+  "condition": "Failed Back Surgery Syndrome",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 4
+ },
+ {
+  "nct": "NCT01055496",
+  "condition": "Lymphoma, B-Cell",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   24,
+   12
+  ],
+  "registry_HR": null,
+  "events": 24
+ },
+ {
+  "nct": "NCT01059773",
+  "condition": "Psoriasis",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 1,
+  "recon_medians": [
+   2.76,
+   2.76
+  ],
+  "registry_HR": null,
+  "events": 442
+ },
+ {
+  "nct": "NCT01071356",
+  "condition": "Methamphetamine Dependence",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 56
+ },
+ {
+  "nct": "NCT01108445",
+  "condition": "Advanced Non-clear Cell Renal Cell Carcinoma",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": [
+   24,
+   36
+  ],
+  "registry_HR": null,
+  "events": 74
+ },
+ {
+  "nct": "NCT01111305",
+  "condition": "Loiasis",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 0
+ },
+ {
+  "nct": "NCT01144364",
+  "condition": "Non-Hodgkin's Lymphoma",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": 0.58,
+  "events": 60
+ },
+ {
+  "nct": "NCT01151137",
+  "condition": "Atrial Fibrillation",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 2.377,
+  "recon_medians": null,
+  "registry_HR": 2.294,
+  "events": 41
+ },
+ {
+  "nct": "NCT01201798",
+  "condition": "Endogenous Anterior Uveitis",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.46,
+   0.92
+  ],
+  "registry_HR": null,
+  "events": 66
+ },
+ {
+  "nct": "NCT01235962",
+  "condition": "Renal Cell Carcinoma (RCC)",
+  "badge": "gold",
+  "anchors": 4,
+  "recon_HR": 0.82,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 630
+ },
+ {
+  "nct": "NCT01249274",
+  "condition": "Cocaine Abuse",
+  "badge": "silver",
+  "anchors": 12,
+  "recon_HR": 0.714,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 12
+ },
+ {
+  "nct": "NCT01286272",
+  "condition": "Ann Arbor Stage III Grade 1 Follicular Lymphom",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": 0.94,
+  "events": 56
+ },
+ {
+  "nct": "NCT01312961",
+  "condition": "Asthma",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.112,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 27
+ },
+ {
+  "nct": "NCT01332019",
+  "condition": "Relapsing Multiple Sclerosis",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": 0.57,
+  "events": 20
+ },
+ {
+  "nct": "NCT01335399",
+  "condition": "Multiple Myeloma",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": [
+   32.77,
+   28.67
+  ],
+  "registry_HR": 0.93,
+  "events": 286
+ },
+ {
+  "nct": "NCT01345019",
+  "condition": "Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 628
+ },
+ {
+  "nct": "NCT01358877",
+  "condition": "Breast Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.768,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 546
+ },
+ {
+  "nct": "NCT01371851",
+  "condition": "Methamphetamine or Cocaine Dependence",
+  "badge": "silver",
+  "anchors": 8,
+  "recon_HR": 0.247,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 97
+ },
+ {
+  "nct": "NCT01374451",
+  "condition": "Islet Cell Tumor",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 36
+ },
+ {
+  "nct": "NCT01380080",
+  "condition": "HIV Infection",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 390
+ },
+ {
+  "nct": "NCT01404312",
+  "condition": "Tuberculosis",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 1150
+ },
+ {
+  "nct": "NCT01424670",
+  "condition": "Multidrug-resistant Tuberculosis",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.062,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 22
+ },
+ {
+  "nct": "NCT01442038",
+  "condition": "Coronary Artery Disease",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 0.904,
+  "recon_medians": [
+   24,
+   24
+  ],
+  "registry_HR": 1.073,
+  "events": 2558
+ },
+ {
+  "nct": "NCT01471197",
+  "condition": "Lung Cancer - Non Small Cell",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 12
+ },
+ {
+  "nct": "NCT01471444",
+  "condition": "Disorder Related to Bone Marrow Transplantatio",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 94
+ },
+ {
+  "nct": "NCT01481779",
+  "condition": "Diabetes Mellitus, Type 1",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   17.94,
+   5.98
+  ],
+  "registry_HR": null,
+  "events": 574
+ },
+ {
+  "nct": "NCT01500278",
+  "condition": "Rheumatoid Arthritis",
+  "badge": "gold",
+  "anchors": 8,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 186
+ },
+ {
+  "nct": "NCT01515072",
+  "condition": "Organ Transplantation",
+  "badge": "gold",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 154
+ },
+ {
+  "nct": "NCT01515189",
+  "condition": "Melanoma",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 334
+ },
+ {
+  "nct": "NCT01524783",
+  "condition": "Advanced NET of GI Origin",
+  "badge": "silver",
+  "anchors": 10,
+  "recon_HR": 0.577,
+  "recon_medians": [
+   10.38,
+   3.96
+  ],
+  "registry_HR": 0.48,
+  "events": 183
+ },
+ {
+  "nct": "NCT01551173",
+  "condition": "Lipid Metabolism Disorders",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.92,
+   0.92
+  ],
+  "registry_HR": null,
+  "events": 292
+ },
+ {
+  "nct": "NCT01566721",
+  "condition": "Breast Neoplasms",
+  "badge": "silver",
+  "anchors": 8,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 54
+ },
+ {
+  "nct": "NCT01568892",
+  "condition": "HIV Infections",
+  "badge": "silver",
+  "anchors": 11,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.26,
+   0.26
+  ],
+  "registry_HR": null,
+  "events": 30
+ },
+ {
+  "nct": "NCT01574716",
+  "condition": "Metastatic Soft Tissue Sarcoma",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1.114,
+  "recon_medians": [
+   4.25,
+   5.24
+  ],
+  "registry_HR": null,
+  "events": 112
+ },
+ {
+  "nct": "NCT01578239",
+  "condition": "Carcinoid Tumor of the Small Bowel",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": [
+   46.62,
+   36.86
+  ],
+  "registry_HR": null,
+  "events": 140
+ },
+ {
+  "nct": "NCT01626664",
+  "condition": "Adult T-cell Leukemia-Lymphoma",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": [
+   1,
+   1
+  ],
+  "registry_HR": null,
+  "events": 82
+ },
+ {
+  "nct": "NCT01642004",
+  "condition": "Squamous Cell Non-small Cell Lung Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   4.88,
+   3.88
+  ],
+  "registry_HR": null,
+  "events": 210
+ },
+ {
+  "nct": "NCT01721772",
+  "condition": "Melanoma",
+  "badge": "silver",
+  "anchors": 9,
+  "recon_HR": 2.207,
+  "recon_medians": [
+   5.75,
+   3.74
+  ],
+  "registry_HR": null,
+  "events": 299
+ },
+ {
+  "nct": "NCT01740427",
+  "condition": "Breast Neoplasms",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1.471,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 49
+ },
+ {
+  "nct": "NCT01755767",
+  "condition": "Hepatocellular Carcinoma",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1.208,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 109
+ },
+ {
+  "nct": "NCT01782131",
+  "condition": "Fungal Infections",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   2.76,
+   2.76
+  ],
+  "registry_HR": null,
+  "events": 208
+ },
+ {
+  "nct": "NCT01842958",
+  "condition": "Jaw, Edentulous, Partially",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.23,
+   0.23
+  ],
+  "registry_HR": null,
+  "events": 52
+ },
+ {
+  "nct": "NCT01850446",
+  "condition": "Influenza",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.16,
+   0.1
+  ],
+  "registry_HR": null,
+  "events": 90
+ },
+ {
+  "nct": "NCT01853384",
+  "condition": "Venous Ulcer",
+  "badge": "silver",
+  "anchors": 12,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 32
+ },
+ {
+  "nct": "NCT01875237",
+  "condition": "Leukemia",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 0
+ },
+ {
+  "nct": "NCT01883362",
+  "condition": "Acute Myeloid Leukemia",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.536,
+  "recon_medians": null,
+  "registry_HR": 0.6,
+  "events": 11
+ },
+ {
+  "nct": "NCT01884675",
+  "condition": "Hypertension",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 7.177,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 17
+ },
+ {
+  "nct": "NCT01902290",
+  "condition": "Asthma",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 0.847,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 90
+ },
+ {
+  "nct": "NCT01910402",
+  "condition": "Infection, Human Immunodeficiency Virus",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 10
+ },
+ {
+  "nct": "NCT01942135",
+  "condition": "Metastatic Breast Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.962,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 76
+ },
+ {
+  "nct": "NCT01972789",
+  "condition": "Subfoveal Choroidal Neovascularization CNV Sec",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 124
+ },
+ {
+  "nct": "NCT01974206",
+  "condition": "Kidney Transplantation Cytomegalovirus (CMV) N",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 0.963,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 30
+ },
+ {
+  "nct": "NCT01983683",
+  "condition": "Clostridium Difficile Infection",
+  "badge": "silver",
+  "anchors": 10,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": 1.04,
+  "events": 152
+ },
+ {
+  "nct": "NCT01987895",
+  "condition": "Clostridium Difficile Infection",
+  "badge": "gold",
+  "anchors": 10,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.07,
+   0.07
+  ],
+  "registry_HR": 0.96,
+  "events": 506
+ },
+ {
+  "nct": "NCT02022111",
+  "condition": "Diabetes",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.954,
+  "recon_medians": [
+   12,
+   12
+  ],
+  "registry_HR": null,
+  "events": 393
+ },
+ {
+  "nct": "NCT02038049",
+  "condition": "Relapse Remitting Multiple Sclerosis",
+  "badge": "gold",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": [
+   3.68,
+   3.68
+  ],
+  "registry_HR": null,
+  "events": 8
+ },
+ {
+  "nct": "NCT02047045",
+  "condition": "Constipation",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 352
+ },
+ {
+  "nct": "NCT02052739",
+  "condition": "Super-refractory Status Epilepticus",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 2
+ },
+ {
+  "nct": "NCT02106884",
+  "condition": "Pancreatic Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   12,
+   12
+  ],
+  "registry_HR": null,
+  "events": 86
+ },
+ {
+  "nct": "NCT02117479",
+  "condition": "Pancreatic Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1.034,
+  "recon_medians": [
+   1.84,
+   1.86
+  ],
+  "registry_HR": null,
+  "events": 259
+ },
+ {
+  "nct": "NCT02120417",
+  "condition": "Breast Cancer",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 0.694,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 40
+ },
+ {
+  "nct": "NCT02132949",
+  "condition": "Breast Cancer",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 22
+ },
+ {
+  "nct": "NCT02134210",
+  "condition": "Plaque Psoriasis",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": [
+   2.76,
+   2.76
+  ],
+  "registry_HR": null,
+  "events": 332
+ },
+ {
+  "nct": "NCT02162667",
+  "condition": "HER2-positive Carcinoma of Breast",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 90
+ },
+ {
+  "nct": "NCT02193074",
+  "condition": "Spinal Muscular Atrophy",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 0.267,
+  "recon_medians": null,
+  "registry_HR": 0.24,
+  "events": 27
+ },
+ {
+  "nct": "NCT02201108",
+  "condition": "Multiple Sclerosis",
+  "badge": "silver",
+  "anchors": 8,
+  "recon_HR": 0.678,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 81
+ },
+ {
+  "nct": "NCT02211131",
+  "condition": "Completely Resectable Stage IIIB, IIIC, or IVM",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": [
+   7.55,
+   9
+  ],
+  "registry_HR": null,
+  "events": 116
+ },
+ {
+  "nct": "NCT02227238",
+  "condition": "HIV Infections",
+  "badge": "gold",
+  "anchors": 7,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 12
+ },
+ {
+  "nct": "NCT02260804",
+  "condition": "Follicular Lymphoma",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 6
+ },
+ {
+  "nct": "NCT02272803",
+  "condition": "Multiple Myeloma",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 30
+ },
+ {
+  "nct": "NCT02283853",
+  "condition": "Relapsing-Remitting Multiple Sclerosis",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 52
+ },
+ {
+  "nct": "NCT02300987",
+  "condition": "Teratoma",
+  "badge": "silver",
+  "anchors": 11,
+  "recon_HR": 0.441,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 3
+ },
+ {
+  "nct": "NCT02340962",
+  "condition": "Hepatitis C, Chronic",
+  "badge": "silver",
+  "anchors": 11,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 4
+ },
+ {
+  "nct": "NCT02353871",
+  "condition": "Moderate to Severe Glabellar Lines",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 0.803,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 85
+ },
+ {
+  "nct": "NCT02485899",
+  "condition": "Jansky-Bielschowsky Disease",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 0.151,
+  "recon_medians": [
+   66.46,
+   22.31
+  ],
+  "registry_HR": 0.14,
+  "events": 54
+ },
+ {
+  "nct": "NCT02486367",
+  "condition": "Aortic Stenosis",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.03,
+   0.03
+  ],
+  "registry_HR": null,
+  "events": 50
+ },
+ {
+  "nct": "NCT02511106",
+  "condition": "Stage IB-IIIA Non-small Cell Lung Carcinoma",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.513,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 119
+ },
+ {
+  "nct": "NCT02522767",
+  "condition": "Ulcerative Colitis",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1.461,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 78
+ },
+ {
+  "nct": "NCT02522780",
+  "condition": "Ulcerative Colitis",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.333,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 20
+ },
+ {
+  "nct": "NCT02562625",
+  "condition": "Melanoma",
+  "badge": "gold",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   6,
+   6
+  ],
+  "registry_HR": null,
+  "events": 16
+ },
+ {
+  "nct": "NCT02573259",
+  "condition": "Part 1",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   18,
+   11.57
+  ],
+  "registry_HR": null,
+  "events": 62
+ },
+ {
+  "nct": "NCT02586025",
+  "condition": "Breast Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.528,
+  "recon_medians": null,
+  "registry_HR": 0.52,
+  "events": 55
+ },
+ {
+  "nct": "NCT02638259",
+  "condition": "Rheumatoid Arthritis",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.92,
+   0.92
+  ],
+  "registry_HR": null,
+  "events": 288
+ },
+ {
+  "nct": "NCT02649894",
+  "condition": "Malignant Pleural Effusion",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 46
+ },
+ {
+  "nct": "NCT02678689",
+  "condition": "Jansky-Bielschowsky Disease",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.167,
+  "recon_medians": null,
+  "registry_HR": 0.091,
+  "events": 24
+ },
+ {
+  "nct": "NCT02684188",
+  "condition": "All Causes Hospital Admissions",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.69,
+   0.46
+  ],
+  "registry_HR": null,
+  "events": 124
+ },
+ {
+  "nct": "NCT02710422",
+  "condition": "Prostate Cancer",
+  "badge": "gold",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 12
+ },
+ {
+  "nct": "NCT02713867",
+  "condition": "Lung Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 64
+ },
+ {
+  "nct": "NCT02714595",
+  "condition": "Healthcare-associated Pneumonia (HCAP)",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.03,
+   0.03
+  ],
+  "registry_HR": null,
+  "events": 160
+ },
+ {
+  "nct": "NCT02715258",
+  "condition": "Type 2 Diabetes Mellitus",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 3.829,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 65
+ },
+ {
+  "nct": "NCT02744755",
+  "condition": "Rheumatoid Arthritis",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 124
+ },
+ {
+  "nct": "NCT02784106",
+  "condition": "Rheumatoid Arthritis",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.915,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 14
+ },
+ {
+  "nct": "NCT02793544",
+  "condition": "Myelodysplastic Syndrome (MDS)",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 8
+ },
+ {
+  "nct": "NCT02814838",
+  "condition": "Diabetes Mellitus, Insulin-Dependent",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.941,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 17
+ },
+ {
+  "nct": "NCT02883452",
+  "condition": "Crohn's Disease",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 10
+ },
+ {
+  "nct": "NCT02896855",
+  "condition": "Breast Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.641,
+  "recon_medians": [
+   15,
+   19.5
+  ],
+  "registry_HR": null,
+  "events": 104
+ },
+ {
+  "nct": "NCT02913261",
+  "condition": "Corticosteroid Refractory Acute Graft vs Host ",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 68
+ },
+ {
+  "nct": "NCT02913924",
+  "condition": "Cannabis Use Disorder",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 1.238,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 22
+ },
+ {
+  "nct": "NCT02938520",
+  "condition": "HIV Infections",
+  "badge": "silver",
+  "anchors": 13,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.03,
+   0.03
+  ],
+  "registry_HR": null,
+  "events": 322
+ },
+ {
+  "nct": "NCT02947984",
+  "condition": "Benign Meningioma",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 16
+ },
+ {
+  "nct": "NCT02951052",
+  "condition": "Infection, Human Immunodeficiency Virus",
+  "badge": "silver",
+  "anchors": 12,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 350
+ },
+ {
+  "nct": "NCT02959944",
+  "condition": "Chronic Graft Versus Host Disease",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1.191,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 32
+ },
+ {
+  "nct": "NCT03000439",
+  "condition": "Arthritis Juvenile Idiopathic",
+  "badge": "silver",
+  "anchors": 13,
+  "recon_HR": 0.652,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 28
+ },
+ {
+  "nct": "NCT03016598",
+  "condition": "Stimulant Use & Co-occuring Opioid Use Disorde",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 0.212,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 6
+ },
+ {
+  "nct": "NCT03029247",
+  "condition": "Anaemia",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.03,
+   0.03
+  ],
+  "registry_HR": null,
+  "events": 62
+ },
+ {
+  "nct": "NCT03041467",
+  "condition": "Arteriovenous Fistula Stenosis",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 106
+ },
+ {
+  "nct": "NCT03053440",
+  "condition": "Waldenström's Macroglobulinemia",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 36
+ },
+ {
+  "nct": "NCT03084237",
+  "condition": "Breast Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 276
+ },
+ {
+  "nct": "NCT03112603",
+  "condition": "Graft-versus-host Disease (GVHD)",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 46
+ },
+ {
+  "nct": "NCT03120949",
+  "condition": "Rheumatoid Arthritis",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 0
+ },
+ {
+  "nct": "NCT03126227",
+  "condition": "Peanut Allergy",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 20
+ },
+ {
+  "nct": "NCT03139604",
+  "condition": "Graft-versus-host Disease (GVHD)",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.903,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 181
+ },
+ {
+  "nct": "NCT03158727",
+  "condition": "Bacterial Pneumonia",
+  "badge": "silver",
+  "anchors": 9,
+  "recon_HR": 1.338,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 20
+ },
+ {
+  "nct": "NCT03186378",
+  "condition": "Molluscum Contagiosum",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 4
+ },
+ {
+  "nct": "NCT03192137",
+  "condition": "Inflammation and Pain Associated With Cataract",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 0
+ },
+ {
+  "nct": "NCT03207243",
+  "condition": "Asthma",
+  "badge": "silver",
+  "anchors": 10,
+  "recon_HR": 23.615,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 74
+ },
+ {
+  "nct": "NCT03213938",
+  "condition": "Chronic Prostatitis With Chronic Pelvic Pain S",
+  "badge": "silver",
+  "anchors": 8,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 282
+ },
+ {
+  "nct": "NCT03259373",
+  "condition": "Atrial Fibrillation",
+  "badge": "gold",
+  "anchors": 7,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 0
+ },
+ {
+  "nct": "NCT03259789",
+  "condition": "Type2 Diabetes Mellitus",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 4.198,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 76
+ },
+ {
+  "nct": "NCT03260023",
+  "condition": "HPV-Related Carcinoma",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 0
+ },
+ {
+  "nct": "NCT03264157",
+  "condition": "Healthy",
+  "badge": "silver",
+  "anchors": 8,
+  "recon_HR": 0.563,
+  "recon_medians": [
+   0.46,
+   0.1
+  ],
+  "registry_HR": null,
+  "events": 103
+ },
+ {
+  "nct": "NCT03298022",
+  "condition": "Ulcerative Colitis",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": [
+   1.38,
+   5.98
+  ],
+  "registry_HR": null,
+  "events": 16
+ },
+ {
+  "nct": "NCT03299049",
+  "condition": "HIV Infections",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 6
+ },
+ {
+  "nct": "NCT03371706",
+  "condition": "Primary Progressive Aphasia",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 44
+ },
+ {
+  "nct": "NCT03395314",
+  "condition": "Borderline Personality Disorder",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.1,
+   0.1
+  ],
+  "registry_HR": null,
+  "events": 16
+ },
+ {
+  "nct": "NCT03439748",
+  "condition": "Depression",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 42
+ },
+ {
+  "nct": "NCT03446612",
+  "condition": "Anaemia",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 2
+ },
+ {
+  "nct": "NCT03452137",
+  "condition": "Locally Advanced Squamous Cell Carcinoma of th",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.992,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 136
+ },
+ {
+  "nct": "NCT03456882",
+  "condition": "Amyotrophic Lateral Sclerosis",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 10
+ },
+ {
+  "nct": "NCT03481114",
+  "condition": "Non-small Cell Lung Cancer",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.95,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 16
+ },
+ {
+  "nct": "NCT03493854",
+  "condition": "Early Breast Cancer",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": 1.2,
+  "events": 50
+ },
+ {
+  "nct": "NCT03494725",
+  "condition": "Healthy",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 1.074,
+  "recon_medians": [
+   0.23,
+   0.23
+  ],
+  "registry_HR": null,
+  "events": 62
+ },
+ {
+  "nct": "NCT03562195",
+  "condition": "Asthma",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.452,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 123
+ },
+ {
+  "nct": "NCT03575351",
+  "condition": "Lymphoma, Non-Hodgkin",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 0.382,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 88
+ },
+ {
+  "nct": "NCT03590366",
+  "condition": "Rosacea",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.23,
+   0.23
+  ],
+  "registry_HR": null,
+  "events": 142
+ },
+ {
+  "nct": "NCT03596866",
+  "condition": "ALK+ Advanced NSCLC",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 72
+ },
+ {
+  "nct": "NCT03605862",
+  "condition": "Enterovirus",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1.403,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 169
+ },
+ {
+  "nct": "NCT03639311",
+  "condition": "HIV Infections",
+  "badge": "gold",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 180
+ },
+ {
+  "nct": "NCT03646123",
+  "condition": "Hodgkin Lymphoma",
+  "badge": "gold",
+  "anchors": 14,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 2
+ },
+ {
+  "nct": "NCT03676192",
+  "condition": "Adenocarcinoma of Lung",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": [
+   9.61,
+   9.99
+  ],
+  "registry_HR": null,
+  "events": 234
+ },
+ {
+  "nct": "NCT03696160",
+  "condition": "HIV/AIDS",
+  "badge": "gold",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 0
+ },
+ {
+  "nct": "NCT03732209",
+  "condition": "Type 2 Diabetes",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.125,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 11
+ },
+ {
+  "nct": "NCT03802630",
+  "condition": "Branch Retinal Vein Occlusion",
+  "badge": "silver",
+  "anchors": 19,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 258
+ },
+ {
+  "nct": "NCT03810313",
+  "condition": "Central Retinal Vein Occlusion",
+  "badge": "silver",
+  "anchors": 19,
+  "recon_HR": 1,
+  "recon_medians": [
+   2.12,
+   3.22
+  ],
+  "registry_HR": null,
+  "events": 218
+ },
+ {
+  "nct": "NCT03817190",
+  "condition": "Atopic Dermatitis",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 3.665,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 52
+ },
+ {
+  "nct": "NCT03851705",
+  "condition": "Homozygous Familial Hypercholesterolemia",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.728,
+  "recon_medians": [
+   23.66,
+   22.67
+  ],
+  "registry_HR": null,
+  "events": 36
+ },
+ {
+  "nct": "NCT03917472",
+  "condition": "Diabetic Macular Edema",
+  "badge": "silver",
+  "anchors": 14,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 116
+ },
+ {
+  "nct": "NCT03968978",
+  "condition": "Asthma",
+  "badge": "gold",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 0
+ },
+ {
+  "nct": "NCT04058067",
+  "condition": "Diabetic Macular Edema",
+  "badge": "silver",
+  "anchors": 15,
+  "recon_HR": 1,
+  "recon_medians": [
+   1.38,
+   1.84
+  ],
+  "registry_HR": null,
+  "events": 252
+ },
+ {
+  "nct": "NCT04144322",
+  "condition": "Bone Loss, Alveolar",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 28
+ },
+ {
+  "nct": "NCT04305496",
+  "condition": "Locally Advanced (Inoperable) or Metastatic Br",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.597,
+  "recon_medians": null,
+  "registry_HR": 0.6,
+  "events": 411
+ },
+ {
+  "nct": "NCT04313400",
+  "condition": "Atopic Dermatitis",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 0.792,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 11
+ },
+ {
+  "nct": "NCT04338581",
+  "condition": "Vitiligo",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1.211,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 30
+ },
+ {
+  "nct": "NCT04352101",
+  "condition": "Major Depression",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.46,
+   0.46
+  ],
+  "registry_HR": null,
+  "events": 10
+ },
+ {
+  "nct": "NCT04355143",
+  "condition": "COVID-19",
+  "badge": "silver",
+  "anchors": 10,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.33,
+   0.33
+  ],
+  "registry_HR": null,
+  "events": 64
+ },
+ {
+  "nct": "NCT04388826",
+  "condition": "Respiratory Distress Syndrome, Adult",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1.064,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 6
+ },
+ {
+  "nct": "NCT04402957",
+  "condition": "COVID",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.682,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 10
+ },
+ {
+  "nct": "NCT04475588",
+  "condition": "Acute Respiratory Distress Syndrome",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 2
+ },
+ {
+  "nct": "NCT04533737",
+  "condition": "Plaque Psoriasis",
+  "badge": "silver",
+  "anchors": 15,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 74
+ },
+ {
+  "nct": "NCT04540406",
+  "condition": "Suspected or Confirmed COVID-19",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.711,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 5
+ },
+ {
+  "nct": "NCT04680052",
+  "condition": "Follicular Lymphoma",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.637,
+  "recon_medians": [
+   24,
+   18
+  ],
+  "registry_HR": 0.5,
+  "events": 389
+ },
+ {
+  "nct": "NCT04705597",
+  "condition": "Covid19",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1.159,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 56
+ },
+ {
+  "nct": "NCT04737187",
+  "condition": "Refractory Metastatic Colorectal Cancer",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": [
+   5.29,
+   2.72
+  ],
+  "registry_HR": null,
+  "events": 382
+ },
+ {
+  "nct": "NCT04801758",
+  "condition": "HIV Infection",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1.336,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 1
+ },
+ {
+  "nct": "NCT04817189",
+  "condition": "Chemotherapy-induced Nausea and Vomiting",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.755,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 79
+ },
+ {
+  "nct": "NCT04842747",
+  "condition": "SARS-CoV Infection",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 0.071,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 49
+ },
+ {
+  "nct": "NCT04860323",
+  "condition": "HIV Infection",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 0
+ },
+ {
+  "nct": "NCT04878055",
+  "condition": "Pneumonia, Viral",
+  "badge": "silver",
+  "anchors": 5,
+  "recon_HR": 0.646,
+  "recon_medians": [
+   2.96,
+   2.96
+  ],
+  "registry_HR": null,
+  "events": 239
+ },
+ {
+  "nct": "NCT04964089",
+  "condition": "Wet Age-related Macular Degeneration",
+  "badge": "silver",
+  "anchors": 13,
+  "recon_HR": 1,
+  "recon_medians": [
+   0.46,
+   0.46
+  ],
+  "registry_HR": null,
+  "events": 398
+ },
+ {
+  "nct": "NCT05032755",
+  "condition": "Chronic Pain",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 30
+ },
+ {
+  "nct": "NCT05120856",
+  "condition": "Alcohol Use Disorder (AUD)",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 26
+ },
+ {
+  "nct": "NCT05254990",
+  "condition": "Infectious Pneumonia",
+  "badge": "silver",
+  "anchors": 6,
+  "recon_HR": 1.006,
+  "recon_medians": [
+   0.46,
+   0.46
+  ],
+  "registry_HR": null,
+  "events": 362
+ },
+ {
+  "nct": "NCT05292586",
+  "condition": "Asthma",
+  "badge": "gold",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 0
+ },
+ {
+  "nct": "NCT05321810",
+  "condition": "Non-valvular Atrial Fibrillation",
+  "badge": "gold",
+  "anchors": 5,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 1278
+ },
+ {
+  "nct": "NCT05323656",
+  "condition": "Squamous Cell Carcinoma of Head and Neck",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 0.219,
+  "recon_medians": null,
+  "registry_HR": 0.448,
+  "events": 9
+ },
+ {
+  "nct": "NCT05386030",
+  "condition": "Moderate to Severe Midface Volume Deficit",
+  "badge": "gold",
+  "anchors": 6,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 0
+ },
+ {
+  "nct": "NCT05565820",
+  "condition": "Pediculosis Capitis",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 40
+ },
+ {
+  "nct": "NCT05710640",
+  "condition": "Juvenile Idiopathic Arthritis (JIA)",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 14
+ },
+ {
+  "nct": "NCT05856526",
+  "condition": "Netherton Syndrome",
+  "badge": "silver",
+  "anchors": 4,
+  "recon_HR": 2.348,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 10
+ },
+ {
+  "nct": "NCT05941442",
+  "condition": "Panic Disorder",
+  "badge": "silver",
+  "anchors": 7,
+  "recon_HR": 0.051,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 31
+ },
+ {
+  "nct": "NCT06597084",
+  "condition": "Post Stroke Epilepsy",
+  "badge": "silver",
+  "anchors": 3,
+  "recon_HR": 1,
+  "recon_medians": null,
+  "registry_HR": null,
+  "events": 8
+ }
+]

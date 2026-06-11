@@ -68,6 +68,25 @@ HR-with-CI; the high-confidence filter and per-row provenance keep this a triang
 standard (e.g. the one CheckMate-067-style 3-arm trial where the reconstruction picks the wrong arm pair
 shows up correctly as an out-of-CI miss).
 
+### Scaled to the whole reconstructed cohort (registry-independent)
+
+The validation-grade set above needs both a curve *and* a registry HR. But the published HR is held-out
+truth even when **AACT posts no HR at all** — so we extend the check to **every** reconstructed 2-arm
+trial (`node validate/cohort_recon_export.js` → `python harvest/cohort_pubmed.py`): 250 reconstructed →
+164 with a PMID → 155 abstracts → **20 high-confidence published HRs**, of which **12 have no registry
+HR** (pure, registry-independent validations the gallery could not provide):
+
+| full-cohort independent check | result |
+|---|---|
+| reconstructed vs published HR, median fold | **1.097** |
+| reconstructed HR inside the published 95% CI | **17/20 (85%)** |
+| …of these with **no** registry HR (registry-independent) | **12/20** |
+
+More data tightened the central estimate (1.097 vs the validation-grade 1.165). The 3 out-of-CI cases are
+all *genuine* (verified): two are hard multi-arm reconstructions where the engine picks the wrong arm pair
+(`NCT01721772` = CheckMate-067), one is a real registry-vs-published source divergence — none are
+extraction artifacts. Numbers from `realipd/cohort_pubmed_validation.json`.
+
 ### …and vs the published *median* (the tightest estimand)
 
 The HR is the reconstruction's hardest quantity; the **median** is its tightest (~3% on the open gold
