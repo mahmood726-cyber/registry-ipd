@@ -1,0 +1,95 @@
+{
+  "summary": {
+    "trials_with_clean_published_pair": 8,
+    "trials_validated": 5,
+    "arm_medians_compared": 10,
+    "median_arm_fold": 1.071,
+    "arm_medians_within_10pct": "6/10",
+    "arm_medians_within_20pct": "7/10",
+    "skipped_nonmonth_unit": 0,
+    "skipped_reconstruction": 3,
+    "note": "Reconstructed per-arm median survival vs the trial’s PUBLISHED per-arm medians (PubMed abstract), matched by SORTED magnitude so arm labelling is irrelevant. Independent of the registry and of the HR; validates the reconstruction’s tightest quantity. fold = exp|log(recon/pub)|."
+  },
+  "rows": [
+    {
+      "nct": "NCT00861614",
+      "pmid": "25907621",
+      "published_medians": [
+        10,
+        11.2
+      ],
+      "reconstructed_medians": [
+        10.1,
+        11.2
+      ],
+      "arm_folds": [
+        1.01,
+        1.004
+      ]
+    },
+    {
+      "nct": "NCT01335399",
+      "pmid": "35550060",
+      "published_medians": [
+        29.5,
+        31.4
+      ],
+      "reconstructed_medians": [
+        28.7,
+        32.8
+      ],
+      "arm_folds": [
+        1.029,
+        1.044
+      ]
+    },
+    {
+      "nct": "NCT02896855",
+      "pmid": "32564260",
+      "published_medians": [
+        12.4,
+        14.5
+      ],
+      "reconstructed_medians": [
+        15,
+        19.5
+      ],
+      "arm_folds": [
+        1.21,
+        1.345
+      ]
+    },
+    {
+      "nct": "NCT04680052",
+      "pmid": "41360064",
+      "published_medians": [
+        13.9,
+        22.4
+      ],
+      "reconstructed_medians": [
+        18,
+        24
+      ],
+      "arm_folds": [
+        1.295,
+        1.071
+      ]
+    },
+    {
+      "nct": "NCT04737187",
+      "pmid": "37133585",
+      "published_medians": [
+        2.4,
+        5.6
+      ],
+      "reconstructed_medians": [
+        2.7,
+        5.3
+      ],
+      "arm_folds": [
+        1.134,
+        1.058
+      ]
+    }
+  ]
+}

@@ -50,6 +50,7 @@ def main():
     me = me[me["nct_id"].isin(vgset)]
 
     out = {}
+    curve_endpoint = {}     # nct -> endpoint family of the reconstructed curve (OS/PFS/...) when known
     n_curve = n_sibling = n_nodir = n_nohr = n_nocohort = n_endpoint_dropped = 0
     for nct in sorted(vgset):
         fp = os.path.join(COHORT, f"{nct}.json")
@@ -64,6 +65,8 @@ def main():
         surv_ids = H._survival_outcome_ids(sub_me)
         ep_by = H.endpoint_by_outcome(sub_me)
         curve_fam = ep_by.get(int(tte)) if tte is not None else None
+        if curve_fam:
+            curve_endpoint[nct] = curve_fam
         hr, from_sib = H.select_trial_hr(sub_an, tte, surv_ids, ep_by, curve_fam)
         if hr is None:
             # distinguish "no HR anywhere" from "HR dropped because its endpoint differs from the curve"
@@ -94,6 +97,7 @@ def main():
         "endpoint_mismatch_dropped": n_endpoint_dropped,
         "no_hr_found": n_nohr,
         "not_in_cohort": n_nocohort,
+        "curve_endpoint": curve_endpoint,
         "hr": out,
     }
     with open(OUT, "w", encoding="utf-8") as f:

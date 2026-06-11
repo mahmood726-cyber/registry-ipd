@@ -68,6 +68,23 @@ HR-with-CI; the high-confidence filter and per-row provenance keep this a triang
 standard (e.g. the one CheckMate-067-style 3-arm trial where the reconstruction picks the wrong arm pair
 shows up correctly as an out-of-CI miss).
 
+### …and vs the published *median* (the tightest estimand)
+
+The HR is the reconstruction's hardest quantity; the **median** is its tightest (~3% on the open gold
+standard). We check that against the same abstracts: extract the **published per-arm medians**
+(`harvest/abstract_median.py` — handles two-arm "X vs Y months" forms, Lancet middle-dot decimals,
+weeks/years, skips "improved by X months" differences) for the **endpoint matching the reconstructed
+curve** (the curve's OS/PFS family from `validation_hr_backfill.json` — an OS abstract-median is never
+scored against a PFS curve, exactly as for the HR), reconstruct the per-arm medians, and compare by
+sorted magnitude. Across **5** endpoint-matched trials (**10** arm-medians): median fold **1.071**,
+**7/10 within 20%**, with the OS and clean-PFS trials at ~3% (e.g. `NCT00861614` published 10.0/11.2 →
+reconstructed 10.1/11.2). This is an estimand independent of *both* the registry and the HR, confirming
+the median claim holds on real registry curves. Endpoint-matching was decisive: before it, an
+OS-median-vs-PFS-curve mix inflated the fold to 1.21 (one trial 4× off); matching collapsed that to
+1.071. Numbers from `realipd/pubmed_median_validation.json`. Honest limit: small n (abstracts that state
+a clean two-arm same-endpoint median pair), and coarsely-sampled PFS curves run looser (~20–35% on two
+trials) — shown per-row, not hidden.
+
 ## Worked examples (diverse conditions, best-fit per condition)
 
 | NCT | condition | N exp/ctl | events | anchors | badge | registry HR | reconstructed HR | fold |

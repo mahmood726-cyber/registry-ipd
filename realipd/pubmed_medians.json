@@ -1,0 +1,91 @@
+{
+ "NCT00861614": {
+  "pmid": "25907621",
+  "endpoint": "OS",
+  "medians": [
+   11.2,
+   10.0
+  ],
+  "n_numbers": 2,
+  "not_reached": false
+ },
+ "NCT01335399": {
+  "pmid": "35550060",
+  "endpoint": "PFS",
+  "medians": [
+   31.4,
+   29.5
+  ],
+  "n_numbers": 2,
+  "not_reached": false
+ },
+ "NCT01515189": {
+  "pmid": "32503946",
+  "endpoint": "OS",
+  "medians": [
+   15.7,
+   11.5
+  ],
+  "n_numbers": 2,
+  "not_reached": false
+ },
+ "NCT01524783": {
+  "pmid": "33560090",
+  "endpoint": "PFS",
+  "medians": [
+   11.1
+  ],
+  "n_numbers": 1,
+  "not_reached": false
+ },
+ "NCT01755767": {
+  "pmid": "29625879",
+  "endpoint": "OS",
+  "medians": [
+   8.4,
+   9.1
+  ],
+  "n_numbers": 2,
+  "not_reached": false
+ },
+ "NCT02896855": {
+  "pmid": "32564260",
+  "endpoint": "PFS",
+  "medians": [
+   14.5,
+   12.4
+  ],
+  "n_numbers": 2,
+  "not_reached": false
+ },
+ "NCT04305496": {
+  "pmid": "37256976",
+  "endpoint": "PFS",
+  "medians": [
+   7.2,
+   3.6
+  ],
+  "n_numbers": 2,
+  "not_reached": false
+ },
+ "NCT04680052": {
+  "pmid": "41360064",
+  "endpoint": "PFS",
+  "medians": [
+   22.4,
+   13.9
+  ],
+  "n_numbers": 2,
+  "not_reached": false
+ },
+ "NCT04737187": {
+  "pmid": "37133585",
+  "endpoint": "PFS",
+  "medians": [
+   5.6,
+   2.4
+  ],
+  "n_numbers": 2,
+  "not_reached": false
+ }
+}

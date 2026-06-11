@@ -63,6 +63,9 @@ add('Production (real AACT trials)', gal && `${gal.cohort_trials_reconstructed} 
 // --- independent PubMed-abstract HR validation ---
 const pv = g(load('pubmed_validation.json'), 'summary');
 if (pv) add('Independent validation vs published HR', `${g(pv, 'high_confidence_extractions')} high-confidence published HRs (PubMed abstracts): reconstructed-vs-published median fold ${g(pv, 'high_confidence', 'recon_vs_published_median_fold')}, reconstructed inside the published 95% CI ${g(pv, 'high_confidence', 'recon_within_published_95CI')}; the two INDEPENDENT held-out sources (registry vs published) themselves agree only ${g(pv, 'high_confidence', 'registry_vs_published_agree')}`, 'python harvest/pubmed_validation.py');
+// --- independent median validation (vs published medians) ---
+const pmm = g(load('pubmed_median_validation.json'), 'summary');
+if (pmm) add('Independent median validation', `reconstructed per-arm median vs the PUBLISHED median (PubMed, endpoint-matched): ${g(pmm, 'arm_medians_compared')} arm-medians across ${g(pmm, 'trials_validated')} trials, median fold ${g(pmm, 'median_arm_fold')} (within 20%: ${g(pmm, 'arm_medians_within_20pct')}) — independent of the registry and the HR`, 'python harvest/pubmed_medians.py && node validate/pubmed_median_validation.js');
 // --- expanded validation-grade HR scoring (sibling-outcome fix) ---
 const gx = g(load('gallery_expanded.json'), 'summary');
 if (gx) add('Expanded held-out HR validation', `${g(gx, 'scored_against_registry_HR')} validation-grade trials scored vs registry HR (was 30); reconstructed HR inside the registry's posted 95% CI **${g(gx, 'all_scored', 'in_registry_CI')}** (curve-sourced ${g(gx, 'by_source', 'curve', 'in_registry_CI')}). Endpoint-aware sibling-HR recovery; OS-vs-PFS mismatches dropped`, 'python harvest/backfill_validation_hr.py && node validate/gallery_expanded.js');
