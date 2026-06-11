@@ -106,7 +106,10 @@ three "elevate toward breakthrough" items without re-reading the whole history.
   need a DUA — do not scrape).
 - **Re-run competing-risks** on any new datasets with competing-event structure (current additions
   don't have it).
-- Surface the census/head-to-head panels inside the live tool (`index.html`), not just the dashboard.
+- ✅ **DONE (2026-06-11).** Surfaced the census / head-to-head / noise-sweep panels inside the live
+  tool (`index.html`) as a collapsible "Validation at a glance" section — embedded data, fully offline,
+  carried into `dist/registry-ipd.html` by `build.js`. Headless smoke extended to assert all three
+  panels render (`test/smoke_browser.py`). README usage note added.
 
 ## Honest framing (carry forward)
 Novel registry-native data path + calibrated uncertainty + unusually rigorous validation; bounded by

@@ -106,6 +106,117 @@
   </section>
 </main>
 
+<!-- Validation at a glance: embedded results from the repo's validation runs; fully offline.
+     Full interactive version lives in validation-dashboard.html. -->
+<details id="validation" style="margin:0 22px 22px">
+  <summary style="cursor:pointer;color:var(--mut);font-size:13px;padding:8px 0">
+    <b style="color:var(--ink)">Validation at a glance</b> — how reliable is registry-native reconstruction?
+    (AACT coverage · registry vs digitization · noise sensitivity)
+  </summary>
+  <div class="caveat" style="margin:10px 0 0;max-width:none">
+    Numbers below are embedded from this repo's validation runs — <code>census_full_aact.py</code>,
+    <code>headtohead.js</code>, <code>noise_sweep.js</code> — against true patient-level data. Full
+    interactive dashboard (gold standard, calibrated uncertainty, competing risks):
+    <a href="validation-dashboard.html" style="color:var(--exp)">validation-dashboard.html</a>.
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:14px">
+    <section class="panel">
+      <h2>AACT coverage — what is reconstructable</h2>
+      <p class="muted">Full 2026-06-01 snapshot: <b>76,067</b> trials with posted results, but a structured
+        KM curve (≥3 timepoints) appears in only a few hundred — and <b>zero</b> post a structured
+        number-at-risk row. Reconstructability is coverage-bound, not method-bound.</p>
+      <svg id="vCensus" viewBox="0 0 460 300"></svg>
+      <div id="vCensusStats" style="margin-top:8px"></div>
+    </section>
+    <section class="panel">
+      <h2>Registry-structured vs figure-digitization</h2>
+      <p class="muted">Median |log&nbsp;HR| error on 25 true-IPD datasets. At <b>equal density</b> it's a
+        near-tie (pixel noise costs little); a dense digitized figure beats few exact registry anchors —
+        the registry path is <b>anchor-density-limited, not noise-limited</b>.</p>
+      <svg id="vH2h" viewBox="0 0 460 300"></svg>
+    </section>
+    <section class="panel">
+      <h2>Digitization-noise sensitivity</h2>
+      <p class="muted">Sweeping the digitization noise σ (survival, pp). Registry-exact is the flat
+        noise-free reference; equal-density digitized crosses above it as noise grows, but a dense
+        (K=25) digitized curve stays below registry across the whole range.</p>
+      <svg id="vNoise" viewBox="0 0 460 300"></svg>
+    </section>
+  </div>
+</details>
+
+<!-- Validation panels renderer — embedded results, standalone (own SVG helpers), fully offline.
+     Does not touch the reconstruction script below. -->
+<script>
+(function(){
+  "use strict";
+  var CENSUS={universe:76067,nar:0,strict:288,broad:514,reliableK6:174,
+    hist:[['3',185],['4',96],['5',59],['6',45],['7',25],['8',25],['9',15],['10',10],['11',9],['12+',45]]};
+  var H2H={eqReg:0.148,eqDig:0.139,eqWin:'17/25',realReg:0.148,realDig:0.041,realWin:'4/25'};
+  // rows: [sigma_pp, registry_exact, digitized_equalK, digitized_K25]
+  var NOISE=[[0,0.1478,0.1478,0.0559],[0.5,0.1478,0.146,0.0538],[1,0.1478,0.1388,0.0406],
+    [2,0.1478,0.1683,0.0624],[3,0.1478,0.1937,0.0384],[5,0.1478,0.1469,0.0987]];
+  function el(t){return document.createElementNS('http://www.w3.org/2000/svg',t);}
+  function L(s,x1,y1,x2,y2,c,w){var e=el('line');e.setAttribute('x1',x1);e.setAttribute('y1',y1);e.setAttribute('x2',x2);e.setAttribute('y2',y2);e.setAttribute('stroke',c);e.setAttribute('stroke-width',w||1);s.appendChild(e);}
+  function T(s,x,y,t,c,anc,fs){var e=el('text');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('fill',c);e.setAttribute('text-anchor',anc||'start');e.setAttribute('font-size',fs||11);e.textContent=t;s.appendChild(e);}
+  function C(s,cx,cy,r,c){var e=el('circle');e.setAttribute('cx',cx);e.setAttribute('cy',cy);e.setAttribute('r',r);e.setAttribute('fill',c);s.appendChild(e);}
+  function R(s,x,y,w,h,c){var e=el('rect');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('width',Math.max(0,w));e.setAttribute('height',Math.max(0,h));e.setAttribute('fill',c);s.appendChild(e);}
+  // census: anchor-density histogram, K>=6 shaded as "reliable"
+  (function(){var s=document.getElementById('vCensus'),W=460,H=300,p=40;var bars=CENSUS.hist;
+   var maxC=Math.max.apply(null,bars.map(function(b){return b[1];}));
+   var bw=(W-p-14)/bars.length;var Y=function(c){return H-p-c/maxC*(H-p-20);};
+   var sx=p+3*bw;R(s,sx,16,W-14-sx,H-p-16,'#3fb95014');
+   T(s,sx+4,28,'reliable (≥6 timepoints)','#3fb950','start',10);
+   [0,Math.round(maxC/2),maxC].forEach(function(v){L(s,p,Y(v),W-14,Y(v),'#1b2129',1);T(s,p-6,Y(v)+3,v,'#8b949e','end',10);});
+   bars.forEach(function(b,i){var x=p+i*bw+bw*0.15,h=H-p-Y(b[1]);var c=i>=3?'#3fb950':'#58a6ff';
+     R(s,x,Y(b[1]),bw*0.7,h,c);T(s,x+bw*0.35,H-p+15,b[0],'#8b949e','middle',10);
+     if(b[1]>=20)T(s,x+bw*0.35,Y(b[1])-4,b[1],'#8b949e','middle',9);});
+   T(s,(W+p)/2,H-6,'posted KM timepoints (K)','#8b949e','middle',11);
+   T(s,14,12,'trials','#8b949e','start',11);
+  })();
+  (function(){var d=document.getElementById('vCensusStats');
+   function row(big,lab,col){return '<div style="display:inline-block;margin:0 18px 4px 0;vertical-align:top"><div style="font-size:22px;font-weight:700;color:'+(col||'#e6edf3')+'">'+big+'</div><div class="muted">'+lab+'</div></div>';}
+   d.innerHTML=row('0','structured number-at-risk rows','#f85149')
+     +row('288–605','reconstructable KM curve (0.4–0.8%)','#58a6ff')
+     +row('~34%','of curve-posters reach ≥6 timepoints','#d29922');
+  })();
+  // head-to-head grouped bars: equal-density vs realistic, registry vs digitized
+  (function(){var s=document.getElementById('vH2h'),W=460,H=300,p=44;var ymax=0.20;
+   var groups=[{lab:'equal density (K=8)',reg:H2H.eqReg,dig:H2H.eqDig,win:H2H.eqWin},
+               {lab:'realistic (8 vs 25)',reg:H2H.realReg,dig:H2H.realDig,win:H2H.realWin}];
+   var Y=function(v){return H-p-v/ymax*(H-p-26);};
+   [0,0.05,0.1,0.15,0.2].forEach(function(v){L(s,p,Y(v),W-14,Y(v),'#1b2129',1);T(s,p-6,Y(v)+3,v.toFixed(2),'#8b949e','end',10);});
+   var gw=(W-p-14)/groups.length;
+   groups.forEach(function(g,i){var gx=p+i*gw;var bw=gw*0.28;
+     R(s,gx+gw*0.12,Y(g.reg),bw,H-p-Y(g.reg),'#58a6ff');
+     R(s,gx+gw*0.5,Y(g.dig),bw,H-p-Y(g.dig),'#f778ba');
+     T(s,gx+gw*0.12+bw/2,Y(g.reg)-4,g.reg.toFixed(3),'#8b949e','middle',9);
+     T(s,gx+gw*0.5+bw/2,Y(g.dig)-4,g.dig.toFixed(3),'#8b949e','middle',9);
+     T(s,gx+gw*0.4,H-p+15,g.lab,'#8b949e','middle',10);
+     T(s,gx+gw*0.4,H-p+28,'registry wins '+g.win,'#6e7681','middle',9);});
+   T(s,14,12,'median |log HR| error','#8b949e','start',11);
+   R(s,W-150,18,10,10,'#58a6ff');T(s,W-135,27,'registry (exact)','#8b949e','start',10);
+   R(s,W-150,32,10,10,'#f778ba');T(s,W-135,41,'digitized (noisy)','#8b949e','start',10);
+  })();
+  // noise sweep: 3 lines vs sigma
+  (function(){var s=document.getElementById('vNoise'),W=460,H=300,p=46;var ymax=0.22;
+   var xs=NOISE.map(function(r){return r[0];});var xmax=Math.max.apply(null,xs);
+   var X=function(x){return p+x/xmax*(W-p-16);},Y=function(v){return H-p-v/ymax*(H-p-22);};
+   [0,0.05,0.1,0.15,0.2].forEach(function(v){L(s,p,Y(v),W-16,Y(v),'#1b2129',1);T(s,p-6,Y(v)+3,v.toFixed(2),'#8b949e','end',10);});
+   xs.forEach(function(x){T(s,X(x),H-p+15,x,'#8b949e','middle',10);});
+   T(s,(W+p)/2,H-6,'digitization noise σ (survival, pp)','#8b949e','middle',11);
+   T(s,14,12,'median |log HR| error','#8b949e','start',11);
+   function line(idx,col,lab,ly){var d='';NOISE.forEach(function(r,i){d+=(i?' L ':'M ')+X(r[0])+' '+Y(r[idx]);});
+     var pth=el('path');pth.setAttribute('d',d);pth.setAttribute('fill','none');pth.setAttribute('stroke',col);pth.setAttribute('stroke-width',2);s.appendChild(pth);
+     NOISE.forEach(function(r){C(s,X(r[0]),Y(r[idx]),3,col);});
+     R(s,W-160,ly,10,3,col);T(s,W-145,ly+5,lab,'#8b949e','start',10);}
+   line(1,'#3fb950','registry exact',18);
+   line(2,'#f778ba','digitized K=8',32);
+   line(3,'#d29922','digitized K=25',46);
+  })();
+})();
+</script>
+
 <!-- engine (works offline via local script src; build.js inlines it for distribution) -->
 <script>
 /*
@@ -518,6 +629,59 @@
       n = after;
     }
     const ipd = normalizeAndExpand(tS, D, C, N, arm.total_events, arm.follow_up_max, flags);
+    return { ipd, tS, Svec };
+  }
+
+  // Titman (2026) quadratic-programming reconstruction, adapted to the structured-registry regime.
+  // On the cumulative-hazard scale the posted curve fixes the per-interval hazards h_k, so events are
+  // d_k = h_k·n_k and the at-risk recursion n_{k+1} = n_k(1-h_k) - c_k is LINEAR in the unknown
+  // censoring counts c_k; the registry total-event count E is a LINEAR constraint E = Σ h_k n_k. The
+  // remaining censoring degree of freedom is resolved by the convex QP  min ½‖c‖²  s.t. E(c)=E, c≥0,
+  // whose minimum-norm non-negative solution is closed-form: c_k = max(0, λ A_k), A_k = ∂E/∂c_k,
+  // λ = (E - E0)/Σ A_k², E0 = N(1 - S_K). With NAR/marked censoring this is exact; here it best-fits
+  // the curve under the event-count constraint. Beats anchor-exact under heavy administrative censoring
+  // (validate/titman_qp.js). Degrades to curve-only when no total_events is posted.
+  function reconstructArmQP(arm, flags) {
+    let pts = arm.km_points.slice().filter(p => isFinite(p.t) && isFinite(p.S)).sort((a, b) => a.t - b.t);
+    if (!(pts[0] && Math.abs(pts[0].t) < 1e-9)) pts = [{ t: 0, S: 1 }].concat(pts);
+    const tS = pts.map(p => p.t);
+    const Svec = pavaDecreasing(pts.map(p => Math.min(1, Math.max(0, p.S)))).y;
+    const nt = tS.length;
+    const N = arm.N != null ? arm.N : 1;
+    const h = [0];                                   // h[k] = discrete hazard over interval ending at tS[k]
+    for (let k = 1; k < nt; k++) h[k] = Math.min(0.999, Math.max(0, Svec[k - 1] > 0 ? 1 - Svec[k] / Svec[k - 1] : 0));
+    // curve-only at-risk n0 and event ceiling E0 = N(1 - S_K)
+    const n0 = new Array(nt + 1); n0[1] = N;
+    for (let k = 1; k < nt; k++) n0[k + 1] = n0[k] * (1 - h[k]);
+    let E0 = 0; for (let k = 1; k < nt; k++) E0 += h[k] * n0[k];
+    // sensitivities A_k = ∂E/∂c_k = -Σ_{m>k} h_m Π_{l=k+1}^{m-1}(1-h_l)  (≤ 0, constant)
+    const A = new Array(nt).fill(0);
+    for (let k = 1; k < nt; k++) {
+      let a = 0;
+      for (let m = k + 1; m < nt; m++) { let prod = 1; for (let l = k + 1; l <= m - 1; l++) prod *= (1 - h[l]); a += h[m] * prod; }
+      A[k] = -a;
+    }
+    let sumA2 = 0; for (let k = 1; k < nt; k++) sumA2 += A[k] * A[k]; if (sumA2 <= 0) sumA2 = 1;
+    const E = arm.total_events;
+    const Etarget = (E != null && E > 0) ? Math.min(E, E0) : E0;
+    const lambda = (Etarget - E0) / sumA2;            // ≤ 0
+    const c = new Array(nt).fill(0);
+    for (let k = 1; k < nt; k++) c[k] = Math.max(0, lambda * A[k]);
+    // Realise pseudo-IPD directly: d_k events SPREAD across interval (tS[k-1], tS[k]] and c_k censored
+    // at the interval end tS[k]. Spreading (not piling at the anchor) is what makes the at-risk sets —
+    // and hence the Cox HR — correct; placing every event at the anchor time biases the HR.
+    const ipd = [];
+    let n = N;
+    for (let k = 1; k < nt; k++) {
+      const dk = Math.min(Math.round(h[k] * n), n);
+      const t0 = tS[k - 1], t1 = tS[k];
+      for (let i = 0; i < dk; i++) ipd.push({ time: t0 + (t1 - t0) * (i + 0.5) / Math.max(1, dk), status: 1 });
+      const ck = Math.min(Math.round(c[k]), n - dk);
+      for (let i = 0; i < ck; i++) ipd.push({ time: t1, status: 0 });
+      n -= dk + ck;
+    }
+    const tailT = arm.follow_up_max != null ? arm.follow_up_max : tS[nt - 1];
+    for (let i = 0; i < Math.max(0, Math.round(n)); i++) ipd.push({ time: tailT, status: 0 });
     return { ipd, tS, Svec };
   }
 
@@ -964,9 +1128,17 @@
     if (tier === 'A') {
       // Best-of ensemble: run Guyot (constant-censoring) and anchor-exact (censoring-informed),
       // select the method with the lower total 1-Wasserstein to the registry anchors per trial.
+      // When the registry posts a total-event count, the Titman QP is the validated-best censoring-
+      // informed reconstruction — use it directly. The anchor-Wasserstein best-of CANNOT select it,
+      // because censoring is invisible to the anchors (it does not change the KM at the posted points),
+      // so a method that fits anchors equally well but mis-places censoring would be chosen instead.
+      // Without an event count, fall back to the curve-only best-of (Guyot vs anchor-exact).
+      const hasEvents = trial.arms.length > 0 && trial.arms.every(a => a.total_events != null && a.total_events > 0);
       const METHODS = (opts.method === 'guyot') ? { guyot: reconstructArmGuyot }
         : (opts.method === 'anchor-exact') ? { 'anchor-exact': reconstructArmAnchorExact }
-          : { guyot: reconstructArmGuyot, 'anchor-exact': reconstructArmAnchorExact };
+          : (opts.method === 'qp') ? { qp: reconstructArmQP }
+            : (hasEvents) ? { qp: reconstructArmQP }
+              : { guyot: reconstructArmGuyot, 'anchor-exact': reconstructArmAnchorExact };
       let best = null;
       for (const name in METHODS) {
         const f2 = [], arms = []; let w = 0;
@@ -1165,8 +1337,16 @@
     trial.arms.forEach(a => { med[a.arm_id] = []; rmstA[a.arm_id] = []; });
     const tau = Math.min.apply(null, trial.arms.filter(a => (a.km_points || []).length)
       .map(a => a.km_points[a.km_points.length - 1].t)) || 1;
-    const ei = trial.arms.findIndex(a => a.role === 'experimental');
-    const ci = trial.arms.findIndex(a => a.role === 'comparator');
+    // Resolve arm indices with the same fallback the rest of the codebase uses (gallery/export):
+    // when the harvester could not role-label the arms (e.g. two active treatments), default to
+    // experimental = arms[1], comparator = arms[0] so the HR credible interval is still produced.
+    let ei = trial.arms.findIndex(a => a.role === 'experimental');
+    let ci = trial.arms.findIndex(a => a.role === 'comparator');
+    if (trial.arms.length === 2) {
+      if (ei < 0 && ci < 0) { ei = 1; ci = 0; }
+      else if (ei < 0) ei = (ci === 0 ? 1 : 0);
+      else if (ci < 0) ci = (ei === 0 ? 1 : 0);
+    }
     // The dominant under-identified DOF is the CENSORING LEVEL. Anchor it to the curve-only event
     // count E0 (≈ no intermediate censoring, the maximum plausible events) and the registry-reported
     // total_events when present; impute total_events across [floor, E0] so the ensemble spans the
@@ -1226,7 +1406,7 @@
       pavaDecreasing, mulberry32, hashStr, quantileSorted,
       kmFromIPD, medianFromKM, rmst, evalKM, wasserstein1,
       coxLogHR, guyotCore, buildRiskIndices, normalizeAndExpand,
-      reconstructArmGuyot, reconstructArmAnchorExact, armAnchorWasserstein, anchorStepFn,
+      reconstructArmGuyot, reconstructArmAnchorExact, reconstructArmQP, armAnchorWasserstein, anchorStepFn,
       reconstructTierB, selfAudit, parametricArm, solveCutoffExp,
       fitRoystonParmar, rcsBasis, densifyWithRP, cifAalenJohansen, cifNaive1
     }

@@ -81,6 +81,17 @@ def main():
         if not exp_dis: failures.append("Tier C export MUST be refused (disabled)")
         if badge.lower() != "none": failures.append("Tier C badge must be NONE")
 
+        # validation panels (embedded, offline): expand the <details>, then assert render
+        driver.execute_script("document.getElementById('validation').open = true;")
+        time.sleep(0.2)
+        for pid in ("vCensus", "vH2h", "vNoise"):
+            shapes = driver.find_elements(By.CSS_SELECTOR, f"#{pid} *")
+            print(f"  validation panel #{pid}: {len(shapes)} svg nodes")
+            if len(shapes) < 5:
+                failures.append(f"validation panel #{pid} did not render (got {len(shapes)} nodes)")
+        if not driver.find_element(By.ID, "vCensusStats").text.strip():
+            failures.append("validation census stat callouts empty")
+
         # console errors (ignore favicon)
         severe = [e for e in driver.get_log("browser")
                   if e["level"] == "SEVERE" and "favicon" not in e["message"]]

@@ -147,7 +147,10 @@ Open **`index.html`** (or the single-file **`dist/registry-ipd.html`**) in any b
 bundled example or upload a harvested `trial.json`, click **Reconstruct**, export pseudo-IPD CSV.
 For Tier-A two-arm trials a **Run advanced analysis** button surfaces the cutting-edge methods:
 multiple-imputation **credible intervals** (HR/median), **time-varying HR** with a non-PH check,
-and the **Aalen–Johansen CIF** when competing-event counts are present.
+and the **Aalen–Johansen CIF** when competing-event counts are present. A collapsible
+**Validation at a glance** section embeds the key validation panels (AACT coverage census,
+registry-vs-digitization head-to-head, digitization-noise sensitivity) directly in the tool — the
+full interactive set lives in **`validation-dashboard.html`**.
 
 ### Harvest a real trial (needs a local AACT snapshot)
 ```bash
