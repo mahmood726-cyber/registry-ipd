@@ -77,6 +77,11 @@
     <div id="inputErr" class="err"></div>
     <p class="muted" style="margin-top:14px">Bootstrap replicates (Tier B): <span id="bval">300</span>
       <input id="boot" type="range" min="50" max="1000" step="50" value="300" style="width:100%"></p>
+    <label class="row" for="calibrate" style="margin-top:8px;font-size:12.5px;color:var(--mut);cursor:pointer;align-items:flex-start">
+      <input type="checkbox" id="calibrate" style="width:auto;margin:2px 8px 0 0">
+      <span>Calibrate to the reported HR <span class="muted">— imposes the registry- or abstract-posted
+      HR (the high-coverage in-scope lever) for IPD-MA consistency, solving the experimental event count.
+      Tier A with a posted HR only.</span></span></label>
   </section>
 
   <section class="panel" id="results">
@@ -261,8 +266,10 @@
     if(!trial.arms){ setErr('Trial JSON must have an "arms" array.'); return; }
     setErr('');
     var B = parseInt(document.getElementById('boot').value,10);
+    var opts = {bootstrap:B};
+    if(document.getElementById('calibrate').checked) opts.calibrateHR = true;
     var res;
-    try { res = RIPD.reconstruct(trial, {bootstrap:B}); }
+    try { res = RIPD.reconstruct(trial, opts); }
     catch(e){ setErr('Reconstruction error: '+e.message); return; }
     lastResult = res; lastTrial = trial;
     render(trial, res);
@@ -285,6 +292,13 @@
       var w = (res.wasserstein_to_anchors!=null)?(' · 1-Wasserstein to anchors '+res.wasserstein_to_anchors.toFixed(4)):'';
       verdict.innerHTML = 'Reconstructed '+res.arms.length+' arm(s) · method <b>'+(res.method||'?')+'</b> '
         +'<span class="muted">(best-of Guyot vs censoring-informed anchor-exact, selected by min-Wasserstein)</span>'+w;
+    }
+    if(res.calibrated){
+      verdict.innerHTML += ' · <span style="color:var(--ok)">HR calibrated to '+res.calibrated.target_hr
+        +' (achieved '+res.calibrated.achieved_hr+', solved experimental events '
+        +res.calibrated.exp_total_events+')</span>';
+    } else if(document.getElementById('calibrate').checked && res.tier==='A'){
+      verdict.innerHTML += ' · <span class="muted">(calibration skipped — no posted HR on this trial)</span>';
     }
     document.getElementById('exportBtn').disabled = !res.exportable;
     drawPlot(trial, res);

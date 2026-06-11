@@ -68,6 +68,15 @@ def main():
         except Exception as e:
             failures.append(f"advanced panel: {e}")
 
+        # HR calibration toggle (the high-coverage in-scope HR lever)
+        driver.find_element(By.ID, "calibrate").click()        # check it
+        reconstruct("tierA")                                   # re-run Tier A with calibration on
+        cal_txt = driver.find_element(By.ID, "verdict").text.lower()
+        print(f"  calibration verdict: ...{cal_txt[-70:]}")
+        if "calibrated" not in cal_txt:
+            failures.append("HR calibration toggle did not calibrate (no 'calibrated' in verdict)")
+        driver.find_element(By.ID, "calibrate").click()        # uncheck to restore default
+
         # Tier B
         tier, badge, exp_dis, nchecks, npaths = reconstruct("tierB")
         print(f"Tier B -> {tier}, badge={badge}, exportDisabled={exp_dis}, checks={nchecks}, curves={npaths}")
