@@ -19,6 +19,7 @@ via the command shown. Engine: `src/engine.js` (Titman-QP default when a total-e
 | **IPD meta-analysis fidelity** | pooled HR true 2.497 vs reconstructed 2.643 (within 1.059); τ² 0.15→0.204 (conservative) | `node validate/ipd_meta_fidelity.js` |
 | **AACT coverage census** | 76067 results-trials; 0 structured NAR rows; 288–514 post a reconstructable curve; only **77–112** post curve **+** HR (validation-grade, 21.8% of curve-posters) | `python harvest/census_full_aact.py` |
 | **Production (real AACT trials)** | 250 trials reconstructed; median fold vs registry HR 1.13; only 27% post an event count | `node validate/gallery.js` |
+| **Expanded held-out HR validation** | 64 validation-grade trials scored vs registry HR (was 30): curve-sourced 25 median fold 1.119, sibling-sourced 39 median fold 1.205 (harvester sibling-outcome HR fix recovered 49 dropped HRs) | `python harvest/backfill_validation_hr.py && node validate/gallery_expanded.js` |
 | **Scale (registry-wide)** | 399 trials → 904 pairwise pseudo-IPD comparisons across 277 conditions; 886 exportable | `node validate/scale_run.js` |
 | **Tier-B scale (median+HR, no curve)** | 1144 trials reconstruct (≈3× the Tier-A set); 53 self-audit silver/bronze, 1091 badge "none" ⇒ coverage tier, not fidelity | `python harvest/harvest_tierb.py && node validate/tierb_scale.js` |
 | **When does the event count matter** | QP gap over curve-only mean ~0.186 fold but not predictable (Spearman vs censoring -0.017) ⇒ always prefer the event count | `node validate/censoring_stratified.js` |

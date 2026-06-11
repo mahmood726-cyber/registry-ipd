@@ -1,0 +1,670 @@
+{
+  "summary": {
+    "validation_grade_population": 112,
+    "reconstructed_2arm_tierA": 84,
+    "scored_against_registry_HR": 64,
+    "original_gallery_n": 30,
+    "by_source": {
+      "curve": {
+        "n": 25,
+        "median_fold": 1.119,
+        "within_1_2": "17/25"
+      },
+      "sibling": {
+        "n": 39,
+        "median_fold": 1.205,
+        "within_1_2": "19/39"
+      }
+    },
+    "all_scored": {
+      "n": 64,
+      "median_fold": 1.149,
+      "within_1_2": "36/64"
+    },
+    "no_hr_recovered": 20,
+    "not_2arm_tierA": 28,
+    "note": "fold = reconstructed Cox HR vs registry HR (coarse held-out truth; arm-reference assumed to match the exp/ctl convention, same as the original gallery). \"sibling\" rows took the HR from a survival sibling outcome (harvester.select_trial_hr) and carry an extra OS-vs-PFS endpoint caveat -- reported separately so they do not inflate the curve-sourced headline."
+  },
+  "rows": [
+    {
+      "nct": "NCT00135356",
+      "condition": "HIV-Associated Lipodystrophy Syndrome",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 1.06,
+      "recon_HR": 0.55,
+      "fold": 1.928,
+      "events": 10
+    },
+    {
+      "nct": "NCT00143403",
+      "condition": "Colorectal Neoplasms",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.9,
+      "recon_HR": 1,
+      "fold": 1.111,
+      "events": 86
+    },
+    {
+      "nct": "NCT00185211",
+      "condition": "Multiple Sclerosis",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.764,
+      "recon_HR": 0.827,
+      "fold": 1.083,
+      "events": 124
+    },
+    {
+      "nct": "NCT00191477",
+      "condition": "Bladder Neoplasms",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.946,
+      "recon_HR": 0.616,
+      "fold": 1.536,
+      "events": 127
+    },
+    {
+      "nct": "NCT00207142",
+      "condition": "HIV Infections",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.97,
+      "recon_HR": 1,
+      "fold": 1.031,
+      "events": 30
+    },
+    {
+      "nct": "NCT00261443",
+      "condition": "Bipolar Disorder",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.348,
+      "recon_HR": 0.31,
+      "fold": 1.121,
+      "events": 33
+    },
+    {
+      "nct": "NCT00277212",
+      "condition": "Bipolar Disorder",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.671,
+      "recon_HR": 0.478,
+      "fold": 1.405,
+      "events": 60
+    },
+    {
+      "nct": "NCT00324155",
+      "condition": "Melanoma",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.716,
+      "recon_HR": 0.751,
+      "fold": 1.049,
+      "events": 293
+    },
+    {
+      "nct": "NCT00374322",
+      "condition": "Neoplasms, Breast",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.91,
+      "recon_HR": 8.551,
+      "fold": 9.397,
+      "events": 1834
+    },
+    {
+      "nct": "NCT00409188",
+      "condition": "Non-small Cell Lung Cancer",
+      "badge": "gold",
+      "source": "sibling",
+      "registry_HR": 0.893,
+      "recon_HR": 0.922,
+      "fold": 1.033,
+      "events": 754
+    },
+    {
+      "nct": "NCT00435409",
+      "condition": "Breast Neoplasms",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 1.2239,
+      "recon_HR": 1,
+      "fold": 1.224,
+      "events": 162
+    },
+    {
+      "nct": "NCT00559988",
+      "condition": "Atrial Fibrillation",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 1.064,
+      "recon_HR": 1,
+      "fold": 1.064,
+      "events": 294
+    },
+    {
+      "nct": "NCT00562965",
+      "condition": "Lymphoma, Follicular",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.3,
+      "recon_HR": 0.401,
+      "fold": 1.336,
+      "events": 6
+    },
+    {
+      "nct": "NCT00636168",
+      "condition": "High Risk Stage III Melanoma",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.75,
+      "recon_HR": 0.611,
+      "fold": 1.227,
+      "events": 133
+    },
+    {
+      "nct": "NCT00686959",
+      "condition": "Non Small Cell Lung Cancer",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.98,
+      "recon_HR": 1,
+      "fold": 1.02,
+      "events": 248
+    },
+    {
+      "nct": "NCT00699816",
+      "condition": "Hepatocellular Carcinoma",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.63,
+      "recon_HR": 0.718,
+      "fold": 1.139,
+      "events": 125
+    },
+    {
+      "nct": "NCT00790036",
+      "condition": "Diffuse Large B-cell Lymphoma",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.75,
+      "recon_HR": 0.845,
+      "fold": 1.126,
+      "events": 157
+    },
+    {
+      "nct": "NCT00861614",
+      "condition": "Prostate Cancer",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.83,
+      "recon_HR": 0.858,
+      "fold": 1.034,
+      "events": 450
+    },
+    {
+      "nct": "NCT00863655",
+      "condition": "Breast Cancer",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.43,
+      "recon_HR": 0.824,
+      "fold": 1.917,
+      "events": 336
+    },
+    {
+      "nct": "NCT00878709",
+      "condition": "Breast Cancer",
+      "badge": "gold",
+      "source": "curve",
+      "registry_HR": 0.952,
+      "recon_HR": 0.959,
+      "fold": 1.008,
+      "events": 316
+    },
+    {
+      "nct": "NCT00989235",
+      "condition": "Rheumatoid Arthritis",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.87,
+      "recon_HR": 1,
+      "fold": 1.149,
+      "events": 38
+    },
+    {
+      "nct": "NCT01108445",
+      "condition": "Advanced Non-clear Cell Renal Cell Carci",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 1.406,
+      "recon_HR": 1,
+      "fold": 1.406,
+      "events": 74
+    },
+    {
+      "nct": "NCT01144364",
+      "condition": "Non-Hodgkin's Lymphoma",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.58,
+      "recon_HR": 1,
+      "fold": 1.724,
+      "events": 60
+    },
+    {
+      "nct": "NCT01151137",
+      "condition": "Atrial Fibrillation",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 2.294,
+      "recon_HR": 2.377,
+      "fold": 1.036,
+      "events": 41
+    },
+    {
+      "nct": "NCT01286272",
+      "condition": "Ann Arbor Stage III Grade 1 Follicular L",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.94,
+      "recon_HR": 1,
+      "fold": 1.064,
+      "events": 56
+    },
+    {
+      "nct": "NCT01335399",
+      "condition": "Multiple Myeloma",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.93,
+      "recon_HR": 1,
+      "fold": 1.075,
+      "events": 286
+    },
+    {
+      "nct": "NCT01345019",
+      "condition": "Cancer",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.9,
+      "recon_HR": 1,
+      "fold": 1.111,
+      "events": 628
+    },
+    {
+      "nct": "NCT01358877",
+      "condition": "Breast Cancer",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.81,
+      "recon_HR": 0.768,
+      "fold": 1.055,
+      "events": 546
+    },
+    {
+      "nct": "NCT01374451",
+      "condition": "Islet Cell Tumor",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.991,
+      "recon_HR": 1,
+      "fold": 1.009,
+      "events": 36
+    },
+    {
+      "nct": "NCT01404312",
+      "condition": "Tuberculosis",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 1.396,
+      "recon_HR": 1,
+      "fold": 1.396,
+      "events": 1150
+    },
+    {
+      "nct": "NCT01442038",
+      "condition": "Coronary Artery Disease",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 1.073,
+      "recon_HR": 0.904,
+      "fold": 1.187,
+      "events": 2558
+    },
+    {
+      "nct": "NCT01515189",
+      "condition": "Melanoma",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.84,
+      "recon_HR": 1,
+      "fold": 1.19,
+      "events": 334
+    },
+    {
+      "nct": "NCT01524783",
+      "condition": "Advanced NET of GI Origin",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.48,
+      "recon_HR": 0.577,
+      "fold": 1.202,
+      "events": 183
+    },
+    {
+      "nct": "NCT01574716",
+      "condition": "Metastatic Soft Tissue Sarcoma",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 1.08,
+      "recon_HR": 1.114,
+      "fold": 1.031,
+      "events": 112
+    },
+    {
+      "nct": "NCT01578239",
+      "condition": "Carcinoid Tumor of the Small Bowel",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.177,
+      "recon_HR": 1,
+      "fold": 5.65,
+      "events": 140
+    },
+    {
+      "nct": "NCT01642004",
+      "condition": "Squamous Cell Non-small Cell Lung Cancer",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.59,
+      "recon_HR": 1,
+      "fold": 1.695,
+      "events": 210
+    },
+    {
+      "nct": "NCT01721772",
+      "condition": "Melanoma",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.42,
+      "recon_HR": 2.207,
+      "fold": 5.254,
+      "events": 299
+    },
+    {
+      "nct": "NCT01740427",
+      "condition": "Breast Neoplasms",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.576,
+      "recon_HR": 1.471,
+      "fold": 2.554,
+      "events": 49
+    },
+    {
+      "nct": "NCT01755767",
+      "condition": "Hepatocellular Carcinoma",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.9682,
+      "recon_HR": 1.208,
+      "fold": 1.247,
+      "events": 109
+    },
+    {
+      "nct": "NCT01883362",
+      "condition": "Acute Myeloid Leukemia",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.6,
+      "recon_HR": 0.536,
+      "fold": 1.119,
+      "events": 11
+    },
+    {
+      "nct": "NCT01942135",
+      "condition": "Metastatic Breast Cancer",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.422,
+      "recon_HR": 0.962,
+      "fold": 2.278,
+      "events": 76
+    },
+    {
+      "nct": "NCT01983683",
+      "condition": "Clostridium Difficile Infection",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 1.04,
+      "recon_HR": 1,
+      "fold": 1.04,
+      "events": 152
+    },
+    {
+      "nct": "NCT01987895",
+      "condition": "Clostridium Difficile Infection",
+      "badge": "gold",
+      "source": "curve",
+      "registry_HR": 0.96,
+      "recon_HR": 1,
+      "fold": 1.042,
+      "events": 506
+    },
+    {
+      "nct": "NCT02117479",
+      "condition": "Pancreatic Cancer",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.969,
+      "recon_HR": 1.034,
+      "fold": 1.067,
+      "events": 259
+    },
+    {
+      "nct": "NCT02120417",
+      "condition": "Breast Cancer",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.932,
+      "recon_HR": 0.694,
+      "fold": 1.343,
+      "events": 40
+    },
+    {
+      "nct": "NCT02211131",
+      "condition": "Completely Resectable Stage IIIB, IIIC, ",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.75,
+      "recon_HR": 1,
+      "fold": 1.333,
+      "events": 116
+    },
+    {
+      "nct": "NCT02272803",
+      "condition": "Multiple Myeloma",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.83,
+      "recon_HR": 1,
+      "fold": 1.205,
+      "events": 30
+    },
+    {
+      "nct": "NCT02485899",
+      "condition": "Jansky-Bielschowsky Disease",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.14,
+      "recon_HR": 0.151,
+      "fold": 1.08,
+      "events": 54
+    },
+    {
+      "nct": "NCT02511106",
+      "condition": "Stage IB-IIIA Non-small Cell Lung Carcin",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.23,
+      "recon_HR": 0.513,
+      "fold": 2.229,
+      "events": 119
+    },
+    {
+      "nct": "NCT02586025",
+      "condition": "Breast Cancer",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.52,
+      "recon_HR": 0.528,
+      "fold": 1.015,
+      "events": 55
+    },
+    {
+      "nct": "NCT02678689",
+      "condition": "Jansky-Bielschowsky Disease",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.091,
+      "recon_HR": 0.167,
+      "fold": 1.836,
+      "events": 24
+    },
+    {
+      "nct": "NCT02896855",
+      "condition": "Breast Cancer",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.69,
+      "recon_HR": 0.641,
+      "fold": 1.076,
+      "events": 104
+    },
+    {
+      "nct": "NCT02959944",
+      "condition": "Chronic Graft Versus Host Disease",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.994,
+      "recon_HR": 1.191,
+      "fold": 1.199,
+      "events": 32
+    },
+    {
+      "nct": "NCT03112603",
+      "condition": "Graft-versus-host Disease (GVHD)",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.37,
+      "recon_HR": 1,
+      "fold": 2.703,
+      "events": 46
+    },
+    {
+      "nct": "NCT03259373",
+      "condition": "Atrial Fibrillation",
+      "badge": "gold",
+      "source": "sibling",
+      "registry_HR": 1.01,
+      "recon_HR": 1,
+      "fold": 1.01,
+      "events": 0
+    },
+    {
+      "nct": "NCT03260023",
+      "condition": "HPV-Related Carcinoma",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.87,
+      "recon_HR": 1,
+      "fold": 1.149,
+      "events": 0
+    },
+    {
+      "nct": "NCT03452137",
+      "condition": "Locally Advanced Squamous Cell Carcinoma",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.94,
+      "recon_HR": 0.992,
+      "fold": 1.055,
+      "events": 136
+    },
+    {
+      "nct": "NCT03493854",
+      "condition": "Early Breast Cancer",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 1.2,
+      "recon_HR": 1,
+      "fold": 1.2,
+      "events": 50
+    },
+    {
+      "nct": "NCT03596866",
+      "condition": "ALK+ Advanced NSCLC",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.968,
+      "recon_HR": 1,
+      "fold": 1.033,
+      "events": 72
+    },
+    {
+      "nct": "NCT03676192",
+      "condition": "Adenocarcinoma of Lung",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.92,
+      "recon_HR": 1,
+      "fold": 1.087,
+      "events": 234
+    },
+    {
+      "nct": "NCT04305496",
+      "condition": "Locally Advanced (Inoperable) or Metasta",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.6,
+      "recon_HR": 0.597,
+      "fold": 1.005,
+      "events": 411
+    },
+    {
+      "nct": "NCT04680052",
+      "condition": "Follicular Lymphoma",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.5,
+      "recon_HR": 0.637,
+      "fold": 1.275,
+      "events": 389
+    },
+    {
+      "nct": "NCT04737187",
+      "condition": "Refractory Metastatic Colorectal Cancer",
+      "badge": "silver",
+      "source": "sibling",
+      "registry_HR": 0.61,
+      "recon_HR": 1,
+      "fold": 1.639,
+      "events": 382
+    },
+    {
+      "nct": "NCT05323656",
+      "condition": "Squamous Cell Carcinoma of Head and Neck",
+      "badge": "silver",
+      "source": "curve",
+      "registry_HR": 0.448,
+      "recon_HR": 0.219,
+      "fold": 2.047,
+      "events": 9
+    }
+  ]
+}

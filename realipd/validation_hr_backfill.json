@@ -1,0 +1,578 @@
+{
+ "n_validation_grade": 112,
+ "n_hr_recovered": 81,
+ "from_curve_outcome": 32,
+ "from_sibling_outcome": 49,
+ "direction_unresolved": 42,
+ "no_hr_found": 31,
+ "not_in_cohort": 0,
+ "hr": {
+  "NCT00045032": {
+   "value": 0.54,
+   "ci_low": 0.44,
+   "ci_high": 0.67,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT00134563": {
+   "value": 29.8,
+   "ci_low": null,
+   "ci_high": null,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT00135356": {
+   "value": 1.06,
+   "ci_low": 0.3,
+   "ci_high": 3.72,
+   "favors_arm_id": "OG001",
+   "from_sibling_outcome": false
+  },
+  "NCT00143403": {
+   "value": 0.9,
+   "ci_low": 0.67,
+   "ci_high": 1.2,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT00185211": {
+   "value": 0.764,
+   "ci_low": 0.497,
+   "ci_high": 1.174,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT00191477": {
+   "value": 0.946,
+   "ci_low": 0.643,
+   "ci_high": 1.392,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT00207142": {
+   "value": 0.97,
+   "ci_low": 0.5,
+   "ci_high": 1.88,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT00261443": {
+   "value": 0.348,
+   "ci_low": 0.146,
+   "ci_high": 0.829,
+   "favors_arm_id": "OG001",
+   "from_sibling_outcome": false
+  },
+  "NCT00277212": {
+   "value": 0.671,
+   "ci_low": 0.446,
+   "ci_high": 1.011,
+   "favors_arm_id": "OG001",
+   "from_sibling_outcome": true
+  },
+  "NCT00324155": {
+   "value": 0.716,
+   "ci_low": 0.588,
+   "ci_high": 0.872,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT00374322": {
+   "value": 0.91,
+   "ci_low": 0.77,
+   "ci_high": 1.08,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT00409188": {
+   "value": 0.893,
+   "ci_low": 0.763,
+   "ci_high": 1.044,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT00435409": {
+   "value": 1.2239,
+   "ci_low": 0.9487,
+   "ci_high": 1.5789,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT00436280": {
+   "value": 0.512,
+   "ci_low": 0.217,
+   "ci_high": 1.206,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT00559988": {
+   "value": 1.064,
+   "ci_low": 0.75,
+   "ci_high": 1.51,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT00562965": {
+   "value": 0.3,
+   "ci_low": 0.05,
+   "ci_high": 1.81,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT00636168": {
+   "value": 0.75,
+   "ci_low": 0.64,
+   "ci_high": 0.9,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT00660179": {
+   "value": 0.971,
+   "ci_low": 0.477,
+   "ci_high": 1.976,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT00686959": {
+   "value": 0.98,
+   "ci_low": 0.79,
+   "ci_high": 1.2,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT00699816": {
+   "value": 0.63,
+   "ci_low": 0.43,
+   "ci_high": 0.94,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT00725985": {
+   "value": 0.381,
+   "ci_low": 0.248,
+   "ci_high": 0.584,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT00790036": {
+   "value": 0.75,
+   "ci_low": 0.52,
+   "ci_high": 1.09,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT00852995": {
+   "value": 1.83,
+   "ci_low": 1.09,
+   "ci_high": 3.04,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT00861614": {
+   "value": 0.83,
+   "ci_low": 0.71,
+   "ci_high": 0.96,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT00863655": {
+   "value": 0.43,
+   "ci_low": 0.35,
+   "ci_high": 0.54,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT00878709": {
+   "value": 0.952,
+   "ci_low": 0.747,
+   "ci_high": 1.212,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT00989235": {
+   "value": 0.87,
+   "ci_low": 0.45,
+   "ci_high": 1.69,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT01108445": {
+   "value": 1.406,
+   "ci_low": null,
+   "ci_high": null,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT01144364": {
+   "value": 0.58,
+   "ci_low": 0.31,
+   "ci_high": 1.12,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT01151137": {
+   "value": 2.294,
+   "ci_low": 1.337,
+   "ci_high": 3.936,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT01286272": {
+   "value": 0.94,
+   "ci_low": 0.51,
+   "ci_high": 1.74,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT01335399": {
+   "value": 0.93,
+   "ci_low": 0.78,
+   "ci_high": 1.12,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT01345019": {
+   "value": 0.9,
+   "ci_low": 0.7,
+   "ci_high": 1.16,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT01358877": {
+   "value": 0.81,
+   "ci_low": 0.67,
+   "ci_high": 0.98,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT01374451": {
+   "value": 0.991,
+   "ci_low": 0.636,
+   "ci_high": 1.543,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT01404312": {
+   "value": 1.396,
+   "ci_low": 0.762,
+   "ci_high": 2.559,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT01442038": {
+   "value": 1.073,
+   "ci_low": 0.579,
+   "ci_high": 1.994,
+   "favors_arm_id": "OG001",
+   "from_sibling_outcome": false
+  },
+  "NCT01515189": {
+   "value": 0.84,
+   "ci_low": 0.7,
+   "ci_high": 0.99,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT01524783": {
+   "value": 0.48,
+   "ci_low": 0.35,
+   "ci_high": 0.67,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT01535729": {
+   "value": 0.949,
+   "ci_low": 0.684,
+   "ci_high": 1.318,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT01574716": {
+   "value": 1.08,
+   "ci_low": 0.77,
+   "ci_high": 1.5,
+   "favors_arm_id": "OG001",
+   "from_sibling_outcome": true
+  },
+  "NCT01578239": {
+   "value": 0.177,
+   "ci_low": 0.108,
+   "ci_high": 0.289,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT01642004": {
+   "value": 0.59,
+   "ci_low": 0.43,
+   "ci_high": 0.81,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT01721772": {
+   "value": 0.42,
+   "ci_low": 0.3,
+   "ci_high": 0.6,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT01733628": {
+   "value": 0.94,
+   "ci_low": 0.56,
+   "ci_high": 1.59,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT01740427": {
+   "value": 0.576,
+   "ci_low": 0.463,
+   "ci_high": 0.718,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT01755767": {
+   "value": 0.9682,
+   "ci_low": 0.7483,
+   "ci_high": 1.2529,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT01844505": {
+   "value": 0.57,
+   "ci_low": 0.43,
+   "ci_high": 0.76,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT01883362": {
+   "value": 0.6,
+   "ci_low": 0.17,
+   "ci_high": 2.14,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT01942135": {
+   "value": 0.422,
+   "ci_low": 0.318,
+   "ci_high": 0.56,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT01983683": {
+   "value": 1.04,
+   "ci_low": 0.86,
+   "ci_high": 1.24,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT01987895": {
+   "value": 0.96,
+   "ci_low": 0.8,
+   "ci_high": 1.14,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT02117479": {
+   "value": 0.969,
+   "ci_low": 0.747,
+   "ci_high": 1.256,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT02120417": {
+   "value": 0.932,
+   "ci_low": 0.694,
+   "ci_high": 1.252,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT02211131": {
+   "value": 0.75,
+   "ci_low": 0.58,
+   "ci_high": 0.96,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT02272803": {
+   "value": 0.83,
+   "ci_low": 0.41,
+   "ci_high": 1.67,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT02296125": {
+   "value": 0.46,
+   "ci_low": 0.37,
+   "ci_high": 0.57,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT02485899": {
+   "value": 0.14,
+   "ci_low": 0.06,
+   "ci_high": 0.33,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT02511106": {
+   "value": 0.23,
+   "ci_low": 0.18,
+   "ci_high": 0.3,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT02586025": {
+   "value": 0.52,
+   "ci_low": 0.3,
+   "ci_high": 0.88,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT02678689": {
+   "value": 0.091,
+   "ci_low": 0.021,
+   "ci_high": 0.393,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT02848651": {
+   "value": 0.8,
+   "ci_low": 0.54,
+   "ci_high": 1.18,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT02896855": {
+   "value": 0.69,
+   "ci_low": 0.49,
+   "ci_high": 0.99,
+   "favors_arm_id": "OG001",
+   "from_sibling_outcome": true
+  },
+  "NCT02959944": {
+   "value": 0.994,
+   "ci_low": 0.507,
+   "ci_high": 1.949,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": true
+  },
+  "NCT03112603": {
+   "value": 0.37,
+   "ci_low": 0.268,
+   "ci_high": 0.51,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT03259373": {
+   "value": 1.01,
+   "ci_low": 0.95,
+   "ci_high": 1.07,
+   "favors_arm_id": "OG001",
+   "from_sibling_outcome": true
+  },
+  "NCT03260023": {
+   "value": 0.87,
+   "ci_low": 0.59,
+   "ci_high": 1.29,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT03298451": {
+   "value": 0.78,
+   "ci_low": 0.66,
+   "ci_high": 0.92,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT03409614": {
+   "value": 0.786,
+   "ci_low": 0.581,
+   "ci_high": 1.065,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT03452137": {
+   "value": 0.94,
+   "ci_low": 0.7,
+   "ci_high": 1.26,
+   "favors_arm_id": "OG001",
+   "from_sibling_outcome": true
+  },
+  "NCT03493854": {
+   "value": 1.2,
+   "ci_low": 0.68,
+   "ci_high": 2.11,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT03555149": {
+   "value": 1.35,
+   "ci_low": 0.67,
+   "ci_high": 2.73,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT03596866": {
+   "value": 0.968,
+   "ci_low": 0.658,
+   "ci_high": 1.424,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT03676192": {
+   "value": 0.92,
+   "ci_low": 0.77,
+   "ci_high": 1.1,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT04305496": {
+   "value": 0.6,
+   "ci_low": 0.51,
+   "ci_high": 0.71,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT04324073": {
+   "value": 0.68,
+   "ci_low": 0.23,
+   "ci_high": 2.03,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT04331808": {
+   "value": 1.19,
+   "ci_low": 0.4,
+   "ci_high": 3.55,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT04341584": {
+   "value": 0.56,
+   "ci_low": 0.23,
+   "ci_high": 1.29,
+   "favors_arm_id": null,
+   "from_sibling_outcome": false
+  },
+  "NCT04680052": {
+   "value": 0.5,
+   "ci_low": 0.383,
+   "ci_high": 0.653,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  },
+  "NCT04737187": {
+   "value": 0.61,
+   "ci_low": 0.49,
+   "ci_high": 0.77,
+   "favors_arm_id": null,
+   "from_sibling_outcome": true
+  },
+  "NCT05323656": {
+   "value": 0.448,
+   "ci_low": 0.24,
+   "ci_high": 0.85,
+   "favors_arm_id": "OG000",
+   "from_sibling_outcome": false
+  }
+ }
+}

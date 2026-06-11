@@ -114,6 +114,7 @@ def main(argv=None):
         "tierB_median_plus_hr": len(tierB),
         "validation_grade_curve_and_hr_strict": len(A_strict_and_hr),
         "validation_grade_curve_and_hr_broad": len(A_broad_and_hr),
+        "validation_grade_ncts_broad": sorted(A_broad_and_hr),
         "pct_of_curve_trials_also_posting_hr": {
             "strict": round(100 * len(A_strict_and_hr) / len(A_strict), 1) if A_strict else None,
             "broad": round(100 * len(A_broad_and_hr) / len(A_broad), 1) if A_broad else None,

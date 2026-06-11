@@ -134,6 +134,36 @@ def parse_hazard_ratio(analyses: pd.DataFrame) -> Optional[dict]:
     }
 
 
+def _survival_outcome_ids(measurements) -> set:
+    """outcome_ids whose measurement titles/param-types are survival-typed (_SURV_RE).
+    Used to scope a sibling-outcome HR fallback to survival endpoints only."""
+    if measurements is None or getattr(measurements, "empty", True) or "outcome_id" not in measurements:
+        return set()
+    blob = (measurements["param_type"].fillna("") + " " + measurements["title"].fillna("")).str.lower()
+    ids = measurements[blob.str.contains(_SURV_RE)]["outcome_id"].dropna()
+    return set(int(x) for x in ids)
+
+
+def select_trial_hr(analyses, tte, survival_outcome_ids):
+    """Pick the trial HR for a curve posted in outcome `tte`. Trials commonly post the
+    KM curve in one outcome ('OS rate over time') and the hazard ratio in a SIBLING
+    survival outcome ('Overall Survival') -- scoping the HR to the curve outcome alone
+    silently drops it. Prefer the curve outcome's own HR; if absent, fall back to a
+    survival-typed sibling outcome's HR. Returns (hr_dict_or_None, from_sibling: bool).
+    The sibling fallback is endpoint-guarded (survival outcomes only) but cannot
+    distinguish OS-vs-PFS within that set, so the caller flags sibling-sourced HRs."""
+    if analyses is None or getattr(analyses, "empty", True) or "outcome_id" not in analyses:
+        return parse_hazard_ratio(analyses), False
+    own = parse_hazard_ratio(analyses[analyses["outcome_id"] == tte])
+    if own is not None:
+        return own, False
+    sib_ids = set(survival_outcome_ids) - {tte}
+    if not sib_ids:
+        return None, False
+    sib = parse_hazard_ratio(analyses[analyses["outcome_id"].isin(sib_ids)])
+    return sib, (sib is not None)
+
+
 # ----------------------------------------------------------------- arm assembly
 
 def _group_role(title: str) -> Optional[str]:
@@ -293,8 +323,13 @@ def harvest_trial(nct_id: str, location=None, outcome_id=None) -> dict:
     # pick the time-to-event outcome with the most parseable KM timepoints
     tte = _pick_tte_outcome(outcomes, measurements, analyses) if outcome_id is None else outcome_id
     arms = assemble_arms(outcomes, measurements, groups, counts, tte)
-    hr = parse_hazard_ratio(analyses[analyses["outcome_id"] == tte]) if "outcome_id" in analyses else parse_hazard_ratio(analyses)
+    # HR: prefer the curve outcome's own analysis; fall back to a survival-typed sibling
+    # outcome (trials often post the curve and the HR in separate outcomes -- this recovered
+    # ~59 validation-grade HRs the curve-scoped lookup had been dropping).
+    hr, hr_from_sibling = select_trial_hr(analyses, tte, _survival_outcome_ids(measurements))
     hr = resolve_hr_direction(hr, arms)
+    if hr is not None and hr_from_sibling:
+        hr["from_sibling_outcome"] = True
     return {
         "nct_id": nct_id,
         "source_url": f"https://clinicaltrials.gov/study/{nct_id}",

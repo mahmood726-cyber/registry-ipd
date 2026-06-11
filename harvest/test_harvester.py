@@ -98,6 +98,42 @@ def test_parse_hazard_ratio_none_when_absent():
     assert H.parse_hazard_ratio(analyses) is None
 
 
+def _analyses_curve_vs_sibling():
+    # curve outcome (10) carries NO HR; sibling survival outcome (20) carries the HR;
+    # a non-survival sibling (30) carries an unrelated odds ratio that must NOT be picked.
+    return pd.DataFrame([
+        {"outcome_id": 10, "param_type": "Survival Probability", "param_value": "0.62", "method": ""},
+        {"outcome_id": 20, "param_type": "Hazard Ratio (HR)", "param_value": "0.68",
+         "ci_lower_limit": "0.50", "ci_upper_limit": "0.92", "method": "Cox"},
+        {"outcome_id": 30, "param_type": "Odds Ratio", "param_value": "1.4", "method": "Logistic"},
+    ])
+
+
+def test_select_trial_hr_falls_back_to_survival_sibling():
+    an = _analyses_curve_vs_sibling()
+    hr, from_sibling = H.select_trial_hr(an, tte=10, survival_outcome_ids={10, 20})
+    assert hr is not None and hr["value"] == pytest.approx(0.68)
+    assert from_sibling is True            # flagged: HR came from a sibling outcome
+
+
+def test_select_trial_hr_prefers_curve_outcome_when_present():
+    an = _analyses_curve_vs_sibling().copy()
+    an.loc[len(an)] = {"outcome_id": 10, "param_type": "Hazard Ratio (HR)", "param_value": "0.80",
+                       "ci_lower_limit": "0.6", "ci_upper_limit": "1.05", "method": "Cox"}
+    hr, from_sibling = H.select_trial_hr(an, tte=10, survival_outcome_ids={10, 20})
+    assert hr["value"] == pytest.approx(0.80) and from_sibling is False
+
+
+def test_select_trial_hr_sibling_must_be_survival_typed():
+    # only a NON-survival sibling (30) has the HR -> not in survival_outcome_ids -> no fallback
+    an = pd.DataFrame([
+        {"outcome_id": 10, "param_type": "Survival Probability", "param_value": "0.62", "method": ""},
+        {"outcome_id": 30, "param_type": "Hazard Ratio (HR)", "param_value": "0.9", "method": "Cox"},
+    ])
+    hr, from_sibling = H.select_trial_hr(an, tte=10, survival_outcome_ids={10})
+    assert hr is None and from_sibling is False
+
+
 # --------------------------------------------------------------- arm assembly (Tier A shape)
 def _synthetic_tables():
     outcomes = pd.DataFrame([{

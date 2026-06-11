@@ -60,6 +60,9 @@ add('AACT coverage census', cf && `${cf.universe_trials_with_results} results-tr
 // --- production gallery ---
 const gal = g(load('gallery_results.json'), 'summary');
 add('Production (real AACT trials)', gal && `${gal.cohort_trials_reconstructed} trials reconstructed; median fold vs registry HR ${gal.median_fold_vs_registry_HR}; only ${Math.round(100 * gal.method_qp / (gal.method_qp + gal.method_other))}% post an event count`, 'node validate/gallery.js');
+// --- expanded validation-grade HR scoring (sibling-outcome fix) ---
+const gx = g(load('gallery_expanded.json'), 'summary');
+if (gx) add('Expanded held-out HR validation', `${g(gx, 'scored_against_registry_HR')} validation-grade trials scored vs registry HR (was 30): curve-sourced ${g(gx, 'by_source', 'curve', 'n')} median fold ${g(gx, 'by_source', 'curve', 'median_fold')}, sibling-sourced ${g(gx, 'by_source', 'sibling', 'n')} median fold ${g(gx, 'by_source', 'sibling', 'median_fold')} (harvester sibling-outcome HR fix recovered 49 dropped HRs)`, 'python harvest/backfill_validation_hr.py && node validate/gallery_expanded.js');
 // --- scale run (registry-wide) ---
 const sc = g(load('scale_index.json'), 'summary');
 add('Scale (registry-wide)', sc && `${sc.reconstructable_trials} trials → ${sc.total_pairwise_comparisons} pairwise pseudo-IPD comparisons across ${sc.distinct_conditions} conditions; ${sc.exportable_comparisons} exportable`, 'node validate/scale_run.js');
