@@ -56,6 +56,20 @@ function reconHR(trial, useEvents) {
   return coxHR(e.ipd, c.ipd);
 }
 
+// HR lever: strip the registry HR, supply ONLY the abstract HR, and let the engine calibrate to it.
+// `abstractHR` is the value abstract_hr.py extracts from RADIANT-4's real Lancet abstract (PMID 26703889,
+// verified == 0.48); for a trial where AACT posts no HR this is the in-scope HR the reconstruction would
+// otherwise lack. calibrateHR solves the experimental arm's events so the Cox HR matches, anchors kept.
+function reconCalibrated(trial, abstractHR) {
+  const t2 = JSON.parse(JSON.stringify(trial));
+  t2.arms.forEach(a => { a.total_events = null; });          // pretend AACT posted no event count
+  t2.hr = { value: abstractHR, source: 'pubmed_abstract' };  // ...and no registry HR — only the abstract's
+  const r = RIPD.reconstruct(t2, { calibrateHR: true });
+  const e = r.arms.find(a => a.role === 'experimental');
+  const c = r.arms.find(a => a.role === 'comparator');
+  return { hr: coxHR(e.ipd, c.ipd), calibrated: r.calibrated };
+}
+
 function fold(h, truth) { return +(Math.max(h, truth) / Math.min(h, truth)).toFixed(3); }
 function inCI(h, lo, hi) { return lo != null && hi != null && h >= lo && h <= hi; }
 
@@ -64,12 +78,17 @@ function run() {
   const posted = trial.hr.value, lo = trial.hr.ci_low, hi = trial.hr.ci_high;
   const co = reconHR(trial, false);
   const inf = reconHR(trial, true);
+  const ABSTRACT_HR = 0.48;                 // abstract_hr.py on the real RADIANT-4 abstract (PMID 26703889)
+  const cal = reconCalibrated(trial, ABSTRACT_HR);
   const out = {
     trial: trial.nct_id,
     arms: trial.arms.map(a => ({ label: a.label, N: a.N, total_events: a.total_events })),
     posted_hr: posted, posted_ci: [lo, hi],
     curve_only: { hr: +co.toFixed(3), fold: fold(co, posted), inside_ci: inCI(co, lo, hi) },
     censoring_informed: { hr: +inf.toFixed(3), fold: fold(inf, posted), inside_ci: inCI(inf, lo, hi) },
+    abstract_hr_calibrated: { abstract_hr: ABSTRACT_HR, hr: +cal.hr.toFixed(3),
+      fold: fold(cal.hr, posted), inside_ci: inCI(cal.hr, lo, hi),
+      exp_total_events: cal.calibrated && cal.calibrated.exp_total_events },
   };
   const outPath = path.join(__dirname, 'abstract_lever_realtrial.json');
   fs.mkdirSync(path.dirname(outPath), { recursive: true });
@@ -79,6 +98,7 @@ function run() {
   console.log(`\n  posted Cox HR (truth)          : ${posted}  (95% CI ${lo}-${hi})`);
   console.log(`  curve-only (no event count)    : HR ${out.curve_only.hr}  fold ${out.curve_only.fold}  inside CI? ${out.curve_only.inside_ci}`);
   console.log(`  censoring-informed (107/77 QP) : HR ${out.censoring_informed.hr}  fold ${out.censoring_informed.fold}  inside CI? ${out.censoring_informed.inside_ci}`);
+  console.log(`  abstract-HR calibrated (0.48)  : HR ${out.abstract_hr_calibrated.hr}  fold ${out.abstract_hr_calibrated.fold}  inside CI? ${out.abstract_hr_calibrated.inside_ci}  (solved exp events=${out.abstract_hr_calibrated.exp_total_events})`);
   console.log(`\n  wrote ${outPath}`);
   return out;
 }

@@ -456,12 +456,17 @@ On RADIANT-4 (NCT01524783), holding the exact AACT curve and the posted PFS HR 0
 
 | reconstruction | HR | fold vs posted | inside posted 95% CI? |
 |---|---:|---:|:--:|
-| curve-only (no event count) | 0.679 | 1.42 | **no** (the identifiability trap) |
-| **censoring-informed (107/77 → QP)** | **0.577** | **1.20** | **yes** |
+| curve-only (no lever) | 0.679 | 1.42 | **no** (the identifiability trap) |
+| censoring-informed (107/77 → QP) | 0.577 | 1.20 | **yes** |
+| **abstract-HR calibrated (0.48 → calibrateHR)** | **0.481** | **1.00** | **yes** (solves 112 exp events) |
 
-Feeding the per-arm event count to the QP pulls the estimate from **outside** the posted CI to **inside**
-it — the same lever the figure-NAR supplies, here sourced (for this trial) from AACT participant-flow
-because RADIANT-4's abstract posts no efficacy count. Locked by `test/abstract_lever.spec.js`.
+Two in-scope levers, both pulling the estimate from **outside** the posted CI to **inside** it: (a) the
+per-arm **event count** fed to the QP (here from AACT participant-flow, since RADIANT-4's abstract posts no
+efficacy count) → 0.577; and (b) the **abstract HR** (0.48, extracted by `abstract_hr` from the real
+Lancet abstract) fed to `calibrateHR`, which solves the experimental arm's event count (→112, near the
+true 107) so the Cox HR reproduces the target almost exactly → 0.481. The second is the **high-coverage**
+lever (the abstract supplies an HR in 15% of trials where AACT posts none; see the coverage table below),
+the first the rare-but-exact one. Locked by `test/abstract_lever.spec.js`.
 
 **Honest caveat.** No single local trial has *all three* of {exact curve, posted HR, abstract event
 counts}: RADIANT-4 has the curve + HR but its abstract gives only AE counts; DAPA-HF's abstract gives the

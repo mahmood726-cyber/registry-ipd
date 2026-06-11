@@ -26,5 +26,12 @@
     "hr": 0.577,
     "fold": 1.202,
     "inside_ci": true
+  },
+  "abstract_hr_calibrated": {
+    "abstract_hr": 0.48,
+    "hr": 0.481,
+    "fold": 1.003,
+    "inside_ci": true,
+    "exp_total_events": 112
   }
 }

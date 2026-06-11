@@ -15,3 +15,15 @@ test('RADIANT-4: the event-count lever pulls the HR from outside the posted CI t
   assert.ok(r.censoring_informed.fold < r.curve_only.fold,
     `informed fold ${r.censoring_informed.fold} should beat curve-only ${r.curve_only.fold}`);
 });
+
+test('RADIANT-4: calibrating to the abstract HR reproduces it (the high-coverage lever)', () => {
+  const r = run();
+  const c = r.abstract_hr_calibrated;
+  assert.strictEqual(c.abstract_hr, 0.48);
+  // calibration imposes the abstract HR almost exactly while preserving the anchors -> inside the CI
+  assert.ok(c.inside_ci, `calibrated HR ${c.hr} should be inside the posted CI`);
+  assert.ok(c.fold <= 1.05, `calibrated fold ${c.fold} should be ~1 (HR imposed)`);
+  // it solves a plausible experimental event count near the true 107
+  assert.ok(c.exp_total_events > 80 && c.exp_total_events < 140,
+    `solved exp events ${c.exp_total_events} should be near the true 107`);
+});
