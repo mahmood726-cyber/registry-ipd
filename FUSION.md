@@ -100,18 +100,20 @@ number-at-risk). Until they do, the AACT+figure union is the bridge.
   592 unique NCTs → 106 have AACT posted results → **2** now have *both* a posted survival curve **and**
   an open-access figure (`NCT01658878`/PMC7530824 OS, 5 timepoints; `NCT03110107`/PMC13006393 PFS,
   3 timepoints), but both were early-phase multi-cohort dose-finding trials with no posted HR. Growing
-  the mirror further to **1500 PDFs** (and making the scan tractable with a ~10× faster fitz-based NCT
-  extractor) closes the gap: **803 cite an NCT → 1297 unique NCTs → 254 with AACT results → 6
-  dual-available candidates, 4 of which post a hazard ratio.** The trajectory **0 → 2 → 6** (and **0 → 0
-  → 4** with an HR) confirms the bottleneck was always *corpus size, not capability*. The first clean
-  **validation-grade** pair is **`NCT00636168` (PMC9893404): an Overall-Survival curve, 6 timepoints,
-  posted HR 0.75 (0.64–0.90), in an open-access publication** — a held-out ground truth for a fully real
-  end-to-end fusion: harvest the AACT anchors, OCR the figure's at-risk table, reconstruct, and score the
-  reconstructed HR against the posted 0.75. So the mechanism (42 rendered datasets + RADIANT-4) now has a
-  real matched pair to run on; the remaining open-access gap is narrower but still argues the `POLICY.md`
-  case — confirmatory 2-arm RCTs that post both a curve and an HR remain disproportionately paywalled.
-  (Two of the six are response-time, not survival, curves; see kmcurve `CORPUS_FINDINGS.md` for the
-  per-candidate endpoint caveats.)
+  the mirror to **1500 PDFs** (scan made tractable by a ~10× faster fitz NCT extractor) raised the
+  NCT-citation count to **6** — but verifying the PDFs exposed, and fixed, a real limitation of the
+  cross-match: **citing an NCT ≠ being its primary publication.** A `classify_pdf` filter (likely-primary
+  = ≤3 cited NCTs and not a meta-analysis, *and* an at-risk table present) cuts the 6 to **3 fusion-USABLE
+  primaries, exactly 1 of which posts a hazard ratio.** (The HR-0.75 "OS" candidate `NCT00636168` that a
+  first pass flagged turned out to be a **network meta-analysis citing the trial**, with no at-risk table
+  — corrected.) The one genuinely usable **curve + HR + figure** pair is **`NCT01942135` (PMC9662922): a
+  survival-probability curve with a posted HR 0.42 (0.32–0.56) in an open-access primary that contains an
+  at-risk table** — a real held-out ground truth for an end-to-end NAR fusion (harvest the AACT anchors,
+  OCR the figure's at-risk table, reconstruct, score the reconstructed HR against 0.42). So the mechanism
+  (42 rendered datasets + RADIANT-4) finally has a real, verified matched pair; the narrow count
+  (1 usable HR pair in 1500 OA PDFs) *re-confirms* the `POLICY.md` case — confirmatory 2-arm RCTs that
+  post both a curve and an HR remain disproportionately paywalled, their OA mentions mostly reviews.
+  Per-candidate detail in kmcurve `CORPUS_FINDINGS.md`.
 
 Reproduce (from the kmcurve repo): `python realipd_benchmark.py --fusion --registry <this repo>`;
 cross-match: `python ipd_km_pipeline/fusion_crossmatch.py`.
