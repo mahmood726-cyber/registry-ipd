@@ -103,20 +103,53 @@ residual honest cost — reconstructed point estimates are simply noisier, sligh
 shows how to *add* evidence (curve- and HR-only trials) **without** committing that sin — additive
 evidence with honest uncertainty.
 
+## 4b. Phase 2 — the linchpin on REAL reconstructions, and a sharper finding
+
+`validate/phase2_real_pooling.js` repeats the three-way pool on the **14 TCGA stage cohorts where we hold
+the true IPD**, replacing the simulation's `r²` with each trial's *real* reconstruction variance, measured
+from the engine's multiple-imputation ensemble (`reconstructEnsemble`, M=200): `r_i² = ((ln hi − ln lo)/
+(2·1.96))²` from the HR credible interval.
+
+| pool | pooled HR (true 2.49) | τ² (true 0.131) | PI width (log) |
+|---|---:|---:|---:|
+| true IPD | 2.49 | 0.131 | 1.66 |
+| **NAIVE** (ignore `r²`) | 2.63 | **0.176 (overstates)** | 1.92 |
+| **HONEST** (Rubin `s²+r²`) | **2.51** | **0.077 (understates)** | 1.35 |
+
+Real data sharpens the lesson. The **honest pooled HR is recovered** (2.51 vs 2.49; naive drifts to 2.63),
+and **naive overstates heterogeneity** exactly as the simulation predicted. But here reconstruction
+uncertainty is **huge** — mean per-trial variance inflation **5.4×**, because these are heavily-censored
+*curve-only* cohorts — and at that magnitude **full Rubin propagation over-corrects: it absorbs the genuine
+between-cancer heterogeneity into the large within-trial variance, *under*-stating τ²**. So both extremes
+are biased when `r²` dominates `s²`: naive reads reconstruction noise as heterogeneity; honest reads
+heterogeneity as reconstruction noise. The truth needs `r²` to be *moderate*.
+
+**This unifies the whole project.** The value of the censoring lever — the Titman-QP event count, the
+abstract event count, the NAR fusion — is not only per-trial HR accuracy; it is that **each lever shrinks
+`r²`**, moving a curve-only trial out of the "uninformative about heterogeneity" regime into the range
+where it can honestly contribute to a synthesis's τ²/PI. A curve with no censoring information is nearly
+weightless for heterogeneity (`r²` swamps the signal); the same curve plus an event count or at-risk table
+becomes a real synthesis participant. The reconstruction-uncertainty magnitude is the currency, and the
+lever is how you earn it. Locked by `test/phase2_pooling.spec.js`.
+
 ## 5. Development roadmap
 
-- **Phase 1 — honest pooling (DONE, this note).** Rubin's-rules propagation of the reconstruction credible
-  interval into the meta-analytic variance; Monte-Carlo proof that it recovers τ²/PI where naive pooling
-  distorts them. Next: run it on the 14-cohort true-IPD set (`ipd_meta_fidelity.js`) using the real
-  per-trial ensemble intervals, not a simulation.
-- **Phase 2 — granularity-mixed synthesis.** One random-effects model ingesting {IPD, reconstructed-pseudo-
-  IPD-with-UQ, HR-only} trials, each contributing its identified information; start pairwise, then a
-  survival NMA with propagated reconstruction uncertainty (the Jansen extension).
-- **Phase 3 — an evidence-completeness atlas.** For a real review question, harvest every trial, classify
+- **Phase 1 — honest pooling (DONE).** Rubin's-rules propagation; Monte-Carlo proof it recovers τ²/PI where
+  naive pooling distorts them (`honest_pooling_sim.js`).
+- **Phase 2 — real reconstructions (DONE, §4b).** Same three-way pool on the 14 true-IPD TCGA cohorts with
+  real ensemble `r²`. Finding: honest recovers the pooled HR and beats naive, but when `r²` dominates `s²`
+  (heavily-censored curve-only trials) τ² is under-identified from either side — the censoring lever is
+  what shrinks `r²` into the usable range.
+- **Phase 2b — lever-shrinks-r² demonstration.** Re-run §4b on the *same* cohorts with the event-count /
+  NAR-fusion reconstruction and show `r²` (hence the τ² bias) shrinks — closing the loop between the
+  per-trial levers and synthesis-level heterogeneity honesty.
+- **Phase 3 — granularity-mixed survival NMA.** One model ingesting {IPD, reconstructed-pseudo-IPD-with-UQ,
+  HR-only} trials, each weighted by identified information (the Jansen extension with propagated UQ).
+- **Phase 4 — an evidence-completeness atlas.** For a real review question, harvest every trial, classify
   each by posted-statistics granularity, compute a per-trial *identification/information score* for the
   target estimand, and map what fraction of the evidence is point- vs partially-identified. A new artefact:
   the synthesis "information map" of a question, before any pooling.
-- **Phase 4 — position formally** vs ML-NMR (time-to-event extension), Jansen survival NMA (uncertainty
+- **Phase 5 — position formally** vs ML-NMR (time-to-event extension), Jansen survival NMA (uncertainty
   propagation), and Manski partial identification (the identified-set formalism).
 
 ## 6. Honest risks (carry forward)
