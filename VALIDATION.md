@@ -487,6 +487,15 @@ and validated but seldom available, which is exactly why the unified enrichment 
 captures all three — the HR carries the coverage, the event count is the occasional high-value bonus when
 a trial happens to print it.
 
+**The HR lever's *marginal* value is the real headline.** AACT posts a usable HR for only **25/155** of
+these trials, while the abstract yields one for 34 — and in **23/155 (15%)** the registry posts **no HR at
+all but the abstract supplies one**. That is the production payoff: for ~1 in 7 reconstructable trials the
+abstract hands the reconstruction an HR (for calibration / independent cross-check) it otherwise could not
+have — versus **0** trials where the abstract event count filled a gap here. The lesson the coverage run
+makes quantitative: within the AACT + PubMed-abstract contract, the **abstract HR is the high-coverage
+lever and the event count is the rare-but-exact one**; `abstract_enrich.py` is right to promote a confident
+HR to `trial.hr` when AACT has none.
+
 ### Anchor density: how many posted timepoints does reconstruction need?
 
 Sweeping K (number of posted KM timepoints) across the 7 true-IPD datasets

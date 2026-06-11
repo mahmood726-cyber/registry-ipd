@@ -45,6 +45,8 @@ def analyze(rows, abstracts, trials_by_nct):
     stat = {"rows": len(rows), "with_abstract": 0,
             # the three in-scope abstract levers, measured side by side
             "events_available": 0, "hr_available": 0, "median_available": 0, "any_lever": 0,
+            # HR marginal value: the registry posts no HR but the abstract supplies one
+            "registry_hr_present": 0, "hr_marginal_gain": 0,
             # event-count specifics (the QP's censoring lever)
             "two_arm_fractions": 0, "aact_already_has_events": 0,
             "marginal_gain": 0, "n_matched_both_arms": 0}
@@ -60,8 +62,13 @@ def analyze(rows, abstracts, trials_by_nct):
         ev = E.extract_events(ab, endpoint=ep)
         hr = H.extract_hr(ab, endpoint=ep)
         md = M.extract_medians(ab, endpoint=ep)
+        reg_hr = r.get("registry_HR")
+        if reg_hr is not None:
+            stat["registry_hr_present"] += 1
         if hr:
             stat["hr_available"] += 1
+            if reg_hr is None:                         # abstract supplies an HR the registry lacks
+                stat["hr_marginal_gain"] += 1
         if md and (md.get("medians") or md.get("not_reached")):
             stat["median_available"] += 1
         if ev or hr or md:
@@ -110,6 +117,8 @@ def main():
     print(f"  with a cached abstract + cohort  : {s['with_abstract']}")
     print(f"  -- in-scope levers (share of {s['with_abstract']} abstracts) --")
     print(f"  HR available                     : {s['hr_available']}  ({pct(s['hr_available'])})")
+    print(f"    registry posts an HR            : {s['registry_hr_present']}")
+    print(f"    HR MARGINAL GAIN (registry lacks one, abstract supplies): {s['hr_marginal_gain']}  ({pct(s['hr_marginal_gain'])})")
     print(f"  median available                 : {s['median_available']}  ({pct(s['median_available'])})")
     print(f"  per-arm event count available    : {s['events_available']}  ({pct(s['events_available'])})")
     print(f"  any lever                        : {s['any_lever']}  ({pct(s['any_lever'])})")

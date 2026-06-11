@@ -6,6 +6,8 @@
     "hr_available": 34,
     "median_available": 17,
     "any_lever": 42,
+    "registry_hr_present": 25,
+    "hr_marginal_gain": 23,
     "two_arm_fractions": 1,
     "aact_already_has_events": 0,
     "marginal_gain": 0,

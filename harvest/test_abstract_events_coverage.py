@@ -8,10 +8,12 @@ import abstract_events_coverage as C  # noqa: E402
 
 def test_analyze_tallies_levers_and_marginal_gain():
     rows = [
-        {"nct": "NCT_A", "pmid": "1", "curve_endpoint": None},   # events that N-match + fill an AACT gap
-        {"nct": "NCT_B", "pmid": "2", "curve_endpoint": None},   # HR only
-        {"nct": "NCT_C", "pmid": "3", "curve_endpoint": None},   # no usable lever
-        {"nct": "NCT_D", "pmid": "9", "curve_endpoint": None},   # no cached abstract -> ignored
+        # events that N-match + fill an AACT gap; registry posts an HR (no HR marginal gain)
+        {"nct": "NCT_A", "pmid": "1", "curve_endpoint": None, "registry_HR": 0.5},
+        # HR only, and the registry posts NO HR -> HR marginal gain
+        {"nct": "NCT_B", "pmid": "2", "curve_endpoint": None, "registry_HR": None},
+        {"nct": "NCT_C", "pmid": "3", "curve_endpoint": None, "registry_HR": None},   # no usable lever
+        {"nct": "NCT_D", "pmid": "9", "curve_endpoint": None, "registry_HR": None},   # no abstract -> ignored
     ]
     abstracts = {
         "1": "Death occurred in 107 of 205 in drug versus 77 of 97 in placebo.",
@@ -33,6 +35,8 @@ def test_analyze_tallies_levers_and_marginal_gain():
     assert s["n_matched_both_arms"] == 1
     assert s["marginal_gain"] == 1                  # A: abstract fills the AACT event gap, N-matched
     assert out["gains"][0]["nct"] == "NCT_A" and out["gains"][0]["events"] == [107, 77]
+    # B: registry posts no HR but the abstract supplies one -> HR marginal gain (A's registry has one)
+    assert s["registry_hr_present"] == 1 and s["hr_marginal_gain"] == 1
 
 
 def test_analyze_no_marginal_gain_when_aact_already_has_events():
