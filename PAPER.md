@@ -25,8 +25,10 @@ uncertainty** that samples the under-identified censoring level to produce calib
 intervals; (ii) **competing-risks** reconstruction with the Aalen–Johansen cumulative-incidence
 estimator; (iii) **HR-calibration** that imposes the reported HR for downstream IPD meta-analysis;
 (iv) **fractional-polynomial time-varying-HR** analysis for non-proportional hazards. Validation
-proceeds up a ladder of increasing independence: AACT-internal HR, primary publications, and finally
-**true patient-level IPD** from 51 open RCT/cohort datasets (R `survival::`/`KMsurv`/`asaur` and TCGA via cBioPortal).
+proceeds up a ladder of increasing independence: AACT-internal HR; primary publications; a **systematic
+cross-validation against the published HR and median parsed from PubMed abstracts** (independent of the
+registry); and finally **true patient-level IPD** from 51 open RCT/cohort datasets (R
+`survival::`/`KMsurv`/`asaur` and TCGA via cBioPortal).
 
 **Results.** Of the 76,067 AACT trials with posted results, **zero** contain a structured
 number-at-risk row, and only **288–~600** (0.4–0.8%, depending on detection strictness) post a
@@ -46,7 +48,12 @@ the discrete-time outlier) — empirical coverage matching the nominal 95%. Reco
 CIFs match the true CIFs even under heavy competing risk (`aidssi`: naive 1−KM overstates the AIDS
 incidence by 16 pp, AJ recovers truth within 6 pp). Accuracy rises sharply with posted KM timepoints
 and **plateaus at ≥5–6** (HR fold-error 1.40 at K=3 → 1.15 at K=5 → 1.08 by K=12). Very small trials
-(N≈137) do not reconstruct reliably.
+(N≈137) do not reconstruct reliably. Against the **independent published literature** (HRs parsed from
+PubMed abstracts for the reconstructed cohort), the reconstructed HR is within median fold **1.10** of the
+published value and inside the published 95% CI in **17/20** high-confidence trials — **12 of which the
+registry never posted an HR for** — and the reconstruction's own credible interval covers the published
+HR **17/20** on real curves; tellingly, the registry HR and the published HR *themselves* agree only
+**~80%**, bounding what any method can score against registry truth.
 
 **Conclusions.** Registry-native, image-free reconstruction is **good enough for RMST/median-based
 survival synthesis** of adequately-sized trials and provides a useful, uncertainty-quantified HR
@@ -153,7 +160,22 @@ A ladder of increasing independence (full numbers in `VALIDATION.md`):
    83→94% (curve-only→censoring-informed), median fold-error ~1.1.
 2. **Primary publication** (RADIANT-4, Yao et al. *Lancet* 2016): reconstructed HR 0.47–0.48 vs
    published 0.48; median 11/4 vs 11.0/3.9 months.
-3. **True patient-level IPD**, 51 open datasets (breast/colon/lung/AML/melanoma/leukemia/transplant/
+3. **Published literature, systematically** (independent of the registry, at cohort scale): for every
+   reconstructed two-arm trial we recover the trial's **published** HR and median from its PubMed abstract
+   with deterministic, endpoint-matched, covariate-guarded extractors (`harvest/abstract_hr.py`,
+   `abstract_median.py`; abstracts via NCBI E-utilities, PMIDs via AACT `study_references`). Across **20**
+   high-confidence published HRs — **12 of which the registry never posted an HR for**, making them purely
+   registry-independent — the reconstructed HR is within median fold **1.10** of the published value and
+   falls inside the published 95% CI **17/20 (85%)**; on the curve's own endpoint the reconstructed
+   per-arm median matches the published median to ~7% (OS and clean-PFS to ~3%). The reconstruction's own
+   95% credible interval covers the independent published HR **17/20** on real coarse curves (vs 28/29 on
+   clean IPD, at comparable interval width). Critically, the two held-out "truths" — registry HR vs
+   published HR — themselves agree only **~80%** (different analysis populations, ITT-vs-PP, data cuts), so
+   a residual ~1.1–1.15 fold is partly irreducible *"which HR did you mean"* divergence and a ceiling on
+   what *any* method can score against registry truth, not reconstruction error. Per-trial provenance and
+   the verified-genuine failure cases (e.g. a three-arm CheckMate-067 reconstruction picking the wrong arm
+   pair) are in `GALLERY.md`.
+4. **True patient-level IPD**, 51 open datasets (breast/colon/lung/AML/melanoma/leukemia/transplant/
    PBC/MGUS/NAFLD/prostate/retinopathy/AIDS/larynx/burn/pneumonia/HCC; R `survival::`/`KMsurv`/`asaur`;
    plus 14 TCGA cohorts by stage from cBioPortal). For the 29 adequately-sized (≥100/arm): curve-only HR
    median fold-error **1.15 (15/25 within 20%; 1.12 / 13/17 excluding the TCGA cohorts)**, median
@@ -166,15 +188,15 @@ A ladder of increasing independence (full numbers in `VALIDATION.md`):
    a clean demonstration of why the event-count tier matters. The worst case overall is `bfeed` (fold 1.75) — breastfeeding duration
    in discrete weeks with ~96% events, a heavily-tied discrete-time series, retained as an honest
    out-of-favour boundary.
-4. **Uncertainty coverage**: the 95% credible interval covers the **true HR 28/29 (97%)** (median width
+5. **Uncertainty coverage**: the 95% credible interval covers the **true HR 28/29 (97%)** (median width
    2.3×), with `bfeed` the sole miss. A **multi-level calibration check** (`uncertainty_calibration.js`,
    nominal 50/80/90/95% → empirical 83/90/97/97%) shows the 95% interval is well-calibrated but
    narrower intervals **over-cover**: the band is *conservative* (the safe direction — too wide, never
    over-confident), which we report rather than tune away.
-5. **Competing-risks gold standard**: reconstructed AJ CIF within ~1 pp of truth where competing risk
+6. **Competing-risks gold standard**: reconstructed AJ CIF within ~1 pp of truth where competing risk
    is rare (`survival::colon`) and recovers truth within 6 pp where it is heavy (`aidssi`: naive 1−KM
    overstates AIDS incidence by 16 pp).
-6. **Anchor-density operating curve** (formalized): HR fold-error e(K) is monotone-decreasing and
+7. **Anchor-density operating curve** (formalized): HR fold-error e(K) is monotone-decreasing and
    plateaus — e(3)≈1.40, e(5)≈1.15, e(≥12)≈1.08 — giving a concrete reporting standard: **post ≥5–6
    KM timepoints** (ideally ≥8) for a reliably reconstructable trial.
 
@@ -192,6 +214,17 @@ trial is adequately sized, and read the credible interval; for **registries**, p
 KM-estimate timepoints makes a trial reconstructable. Unlike digitisation tools, the method has zero
 anchor digitisation error and full registry provenance, at the cost of applying only to the subset of
 trials that post structured survival data.
+
+A finding from the systematic published-literature validation deserves emphasis because it bounds every
+registry-truth evaluation, not just ours: the **registry-reported HR and the HR in the trial's own
+primary publication agree only ~80%** of the time (within 25% and same direction, on the high-confidence
+matched set). The two diverge through different analysis populations (ITT vs per-protocol), data cuts, and
+adjustment — neither is "wrong", but it means a residual ~1.1–1.15 fold between a reconstruction and *a*
+posted HR is partly irreducible disagreement about *which* HR, a ceiling any reconstruction method (or any
+re-analysis) shares. It also reframes the reconstruction's ~11% HR fold as close to the noise floor of
+registry truth itself, and adds a second, independent argument to `POLICY.md`: registries should post not
+only the structured curve but the analysis-defining metadata that lets a reader tell which effect a posted
+HR represents.
 
 A head-to-head on the same real datasets (`HEADTOHEAD.md`) sharpens — and honestly tempers — the
 "no-digitisation-error" advantage. Reconstructing the same true curve from exact registry anchors

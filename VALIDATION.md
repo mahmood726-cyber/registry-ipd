@@ -545,9 +545,35 @@ per-trial errors being roughly symmetric on the log-HR scale.)
 - ✅ HR-calibration · ✅ N-matched mapping · ✅ RMST/median validation · ✅ Royston–Parmar (extrapolation).
 - **Same-endpoint external median matching** to clean the contaminated registry-median cross-check.
 
+## Systematic published-literature validation (registry-independent) — `GALLERY.md`, `harvest/pubmed_validation.py`
+
+The registry HR shares provenance with the posted curve. To validate against a genuinely independent
+source we parse the trial's **published** HR and median from its PubMed abstract (PMIDs via AACT
+`study_references`; abstracts via NCBI E-utilities; deterministic endpoint-matched, covariate-guarded
+extractors `harvest/abstract_hr.py` + `abstract_median.py`, with unit tests):
+
+- **Published HR (full reconstructed cohort, endpoint-matched, high-confidence):** 20 trials, **12 with
+  no registry HR at all** (pure registry-independent). Reconstructed-vs-published median fold **1.10**;
+  reconstructed HR inside the published 95% CI **17/20 (85%)**. The 3 misses are verified genuine (a
+  3-arm CheckMate-067 reconstruction picking the wrong arm pair; one degenerate fit; one registry-vs-
+  published divergence where the interval covers the registry HR it was built from).
+- **Published median (endpoint-matched):** 5 trials / 10 arm-medians, median fold **1.071**, OS and
+  clean-PFS to ~3% (e.g. `NCT00861614` published 10.0/11.2 → reconstructed 10.1/11.2).
+- **Uncertainty on real curves:** the reconstruction's own 95% credible interval covers the independent
+  published HR **17/20 (85%)** (gold standard 28/29 on clean IPD; comparable interval width 2.56 vs 2.46).
+- **Held-out-truth divergence:** the registry HR and the published HR *themselves* agree only **~80%**
+  (13/16), so a residual ~1.1–1.15 fold is partly irreducible analysis-population/data-cut disagreement —
+  a ceiling on what any method can score against registry truth.
+
+Reproduce: `node validate/cohort_recon_export.js && python harvest/cohort_pubmed.py`,
+`python harvest/pubmed_medians.py && node validate/pubmed_median_validation.js`,
+`node validate/cohort_uncertainty_validation.js`.
+
 ## Honest limitations of this validation
 - n=30 (18 with determinable direction) — small; widen by mapping multi-arm analyses pairwise.
-- Ground truth is the registry HR, which can itself be model-dependent (log-rank vs Cox) and
-  direction-ambiguous; it is the best available proxy, not patient-level truth.
+- The AACT-internal check uses the registry HR, which can itself be model-dependent (log-rank vs Cox) and
+  direction-ambiguous; it is the best *internal* proxy, not patient-level truth. The systematic
+  published-literature section above is the registry-independent answer (and shows the registry HR itself
+  diverges from the published HR ~20% of the time).
 - Validates HR; RMST / median agreement should be validated separately (RMST is expected to be more
   robust because it depends on the curve area, which the anchors fix directly).
