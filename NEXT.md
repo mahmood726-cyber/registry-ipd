@@ -13,7 +13,8 @@
 > `phase3_granularity_mixed.js` (P3 + evidence-completeness curve) · `phase3b_export_imputations.js` +
 > `phase3b_weighted_likelihood.py` (P3b·1, within-trial) · `phase3b_step2_survival_nma.py` (P3b·2, network NMA) ·
 > `phase3c_nma_inconsistency.py` (P3c·1, §4h — de-bias + identification interval AND consistency on the NMA) ·
-> `phase3c_step2_nonph_nma.py` (P3c·2, §4i — the curve unlocks a non-PH survival NMA on `SurvivalNPHPooler`).
+> `phase3c_step2_nonph_nma.py` (P3c·2, §4i — the curve unlocks a non-PH survival NMA on `SurvivalNPHPooler`) ·
+> `validate/phase4_evidence_atlas.js` (P4, §4j — the evidence-completeness atlas / pre-pooling information map).
 >
 > **Phase 3c step 1 (§4h):** carried the §4d **de-bias offset + identification half-width** through the
 > `ADNMAPooler` network + `design_by_treatment_test` / `node_splitting_diagnostics`. On a homogeneous-consistent
@@ -25,12 +26,20 @@
 > reconstruction bias (late coverage 0.86 → 0.96). Locked by `harvest/test_phase3c.py` + `..._step2.py`. Suite
 > green: **88 Py + 34 JS**.
 >
-> **RESUME HERE → Phase 4 (or MLNMRPooler).** Open NMA piece: `MLNMRPooler` (effect modifiers) is
-> **continuous-only today** — extending it to time-to-event is the wiring task if pursued (it would take the
-> reconstructed pseudo-IPD-with-UQ as the AD input the engine was never given). Otherwise advance to **Phase 4**:
-> the evidence-completeness atlas (§5) — for a real review question, classify each trial by posted-statistics
-> granularity and map what fraction of the evidence is point- vs partially-identified before any pooling. Roadmap
-> in `SYNTHESIS-VISION.md` §5; reuse map (exact engine paths) in §5b.
+> **Phase 4 (§4j):** the evidence-completeness atlas — `validate/phase4_evidence_atlas.js` classifies every
+> harvested trial by what its posted statistics *identify* about the HR (point_nar / point_qp / point_hr /
+> partial_curve / none) and scores each `s²/(s²+δ_recon²)` with δ_recon = measured Phase-2b SDs. On 595 AACT
+> survival trials (401 HR-contributable): **26.9% point-identified (61.8% of poolable info), 73.1% partial
+> (38.2%)**; structured NAR ~0 (1/401). Artifact `realipd/evidence_atlas.json` + per-condition breakdown.
+> Locked by `test/phase4_atlas.spec.js`. JS suite 36/36.
+>
+> **RESUME HERE → Phase 5 (formal positioning) or MLNMRPooler.** Two open threads: (1) **Phase 5** — position
+> the manifold formally vs ML-NMR (time-to-event extension), Jansen survival NMA (UQ propagation), Manski
+> partial identification; this is a writing/positioning task (`PAPER.md` Related Work + a methods note), no new
+> code required. (2) **`MLNMRPooler`** (effect modifiers) is **continuous-only today** — extending it to
+> time-to-event would take the reconstructed pseudo-IPD-with-UQ as the AD input the engine was never given.
+> A dashboard panel for the Phase-4 atlas (offline SVG, like the census panels in `validation-dashboard.html`)
+> is also an easy high-value add. Roadmap in `SYNTHESIS-VISION.md` §5; reuse map in §5b.
 >
 > **Verify cross-repo deps exist before starting:** `C:\Projects\spec-collapse-atlas` (Py) and
 > `C:\Projects\advanced-nma-pooling\src` (Py) must be importable; the Monte-Carlo demos re-run from the

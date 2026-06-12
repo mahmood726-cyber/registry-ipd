@@ -262,10 +262,12 @@ calibrated identification interval**, pooled alongside IPD and HR-only trials in
   whole early→late gap, −0.75 bias), the non-PH pool recovers the interval-specific effects, and the §4d LOO
   de-bias corrects the late-interval (least-identified) reconstruction bias (late coverage 0.86 → 0.96). **Next:**
   `MLNMRPooler` (effect modifiers) is continuous-only today — extending it to time-to-event is the open piece.
-- **Phase 4 — an evidence-completeness atlas.** For a real review question, harvest every trial, classify
-  each by posted-statistics granularity, compute a per-trial *identification/information score* for the
-  target estimand, and map what fraction of the evidence is point- vs partially-identified. A new artefact:
-  the synthesis "information map" of a question, before any pooling.
+- **Phase 4 — an evidence-completeness atlas (DONE, §4j).** Classifies every harvested trial by
+  posted-statistics granularity and assigns a per-trial identification/information score for the HR estimand,
+  computed *before any pooling*. On 595 AACT survival trials (401 HR-contributable): 26.9% point-identified
+  (61.8% of the poolable information), 73.1% partially-identified (38.2%); structured NAR essentially absent
+  (1/401). The synthesis "information map" of a question — `validate/phase4_evidence_atlas.js`,
+  `realipd/evidence_atlas.json`, with a per-condition breakdown.
 - **Phase 5 — position formally** vs ML-NMR (time-to-event extension), Jansen survival NMA (uncertainty
   propagation), and Manski partial identification (the identified-set formalism).
 
@@ -390,6 +392,45 @@ bias +0.01, gap bias −0.01, coverage restored to 0.96). So the §4d object is 
 a non-PH survival NMA, where it both enables the analysis a single HR cannot support **and** corrects the
 time-resolved reconstruction bias. Locked by `harvest/test_phase3c_step2.py`. (Next: `MLNMRPooler` for effect
 modifiers — currently continuous-only, so the time-to-event wiring is the open piece there.)
+
+## 4j. Phase 4 — the evidence-completeness atlas (the information map of a question)
+
+Phases 1–3c proved a reconstructed trial can join a synthesis honestly. Phase 4 turns the manifold into a
+**diagnostic computed before any pooling**: for a target estimand (the HR), classify every harvested trial
+by *what its posted statistics identify*, not by whether it published. `validate/phase4_evidence_atlas.js`
+places each trial on the manifold — `point_nar` (curve + numbers-at-risk → Guyot), `point_qp` (curve + total
+events → Titman-QP), `point_hr` (a posted HR + CI), `partial_curve` (a curve but no lever → HR *partially*
+identified, a region), `none` (no curve and no HR) — and assigns a per-trial **information score**
+`s²/(s²+δ_recon²) ∈ (0,1]`: the fraction of its full-IPD HR information that survives the reconstruction
+uncertainty. Every `δ_recon` is a *measured* value from the earlier phases (Phase 2b curve-only SD 0.219,
+event-pinned 0.042; Guyot dense ≈0.02; posted-HR 0), modulated for `partial_curve` by the anchor-density
+operating curve `e(K)`. Run over the harvested AACT cohort (**595 survival trials, 401 contributable to an HR
+contrast**):
+
+| identification tier | trials | what it identifies about the HR |
+|---|---:|---|
+| `point_nar` (curve + NAR) | **1** | point-identified (Guyot) |
+| `point_qp` (curve + events) | 82 | point-identified (Titman-QP) |
+| `point_hr` (posted HR + CI) | 26 | log-HR point-identified directly |
+| `partial_curve` (curve only) | **293** | **partially identified — a region** |
+| `none` | 193 | not contributable to an HR synthesis |
+
+**HR point-identified: 108 trials (26.9%), but 61.8% of the poolable HR *information*.
+HR partially-identified: 293 trials (73.1%), 38.2% of the information.** (Median per-trial info score 0.87;
+66.9% are time-resolvable — a curve is present, so a non-PH/§4i analysis is even possible.) Two readings.
+By **trial count**, nearly three-quarters of the survival evidence is only *partially* identified for the HR —
+because **structured numbers-at-risk are essentially absent in AACT (1/401)**, so point-identification rests
+on a posted HR or a posted event count, and the curve-only majority is a region, not a point. By
+**information weight** the partial slice is smaller (38%) — the point-identified trials tend to be the
+higher-precision ones — but 38% of the poolable HR information sitting in partially-identified trials is
+exactly what a standard AD review either silently drops or, worse, treats as fake-exact. The per-condition
+view makes it a per-question diagnostic: Breast Cancer is 73% point-identified (info-rich), while Asthma and
+Atopic Dermatitis are **100% partial_curve** — a synthesis there is entirely reconstruction-with-UQ territory.
+This is the §3 vision delivered as a *pre-pooling instrument*: the synthesis information map of a question,
+showing precisely which evidence is point- vs partially-identified and how much each lever (a posted HR, an
+event count, a NAR table) would recover — before a single effect is combined. (Denominator caveat carried in
+the artifact: registry→publication linkage is ~63.6%, so the true evidence base exceeds any registry census.)
+Locked by `test/phase4_atlas.spec.js`; artifact `realipd/evidence_atlas.json`.
 
 ## 5b. Reuse map — the portfolio already has the synthesis engines
 
