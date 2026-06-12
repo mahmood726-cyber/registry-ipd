@@ -8,7 +8,7 @@ misattribution rate, so eyeball inspection is not sufficient — every citation 
 then PubMed `get_article_metadata` / `lookup_article_by_citation` was used to confirm the returned
 title, first author, year, journal, volume and pages match the citation text.
 
-**Date.** 2026-06-10. **Source.** PubMed (NCBI E-utilities).
+**Date.** 2026-06-10 (entries 1–12); 2026-06-12 (entries 13–15, Phase-5 positioning). **Source.** PubMed (NCBI E-utilities).
 
 | # | Citation (PAPER.md) | DOI | PMID | Match | Notes |
 |---|---------------------|-----|------|-------|-------|
@@ -24,9 +24,13 @@ title, first author, year, journal, volume and pages match the citation text.
 | 10 | Wei & Royston 2017 (ipdfc), *Stata J* 17(4):786–802 | — | 29398980 | ✅ | PMCID PMC5796634. Stata J has no DOI; PMID confirms. Figure-digitisation sibling of Guyot. |
 | 11 | Tasneem 2012 (AACT), *PLoS One* 7(3):e33677 | 10.1371/journal.pone.0033677 | 22438982 | ✅ exact | PMCID PMC3306288. The AACT substrate paper; aggregate harvesting, no IPD reconstruction. |
 | 12 | AACT / CTTI, ClinicalTrials.gov; R `survival` (Therneau) + Rdatasets | — | — | data | Data sources, not bibliographic claims. |
+| 13 | Phillippo et al. 2020 (ML-NMR), *J R Stat Soc Ser A* 183(3):1189–1210 | 10.1111/rssa.12579 | 32684669 | ✅ exact | PMCID PMC7362893. "Multilevel network meta-regression for population-adjusted treatment comparisons." Abstract confirms AD+IPD one-model integration over the covariate distribution; framework is GLM-based (the time-to-event gap registry-IPD targets). Added in the Phase-5 positioning pass; see `SYNTHESIS-VISION.md` §7. |
+| 14 | Riley, Lambert & Abo-Zaid 2010 (IPD-MA), *BMJ* 340:c221 | 10.1136/bmj.c221 | 20139215 | ✅ exact | "Meta-analysis of individual participant data: rationale, conduct, and reporting." The IPD-MA gold-standard reference; the δ=0 endpoint of the granularity manifold. Phase-5 positioning. |
+| 15 | Manski 1990, *Am Econ Rev* 80(2):319–323; Manski 2003, *Partial Identification of Probability Distributions*, Springer | — | — | n/a | Econometrics; **not PubMed-indexed**. The identified-set formalism for §4d–§4e/§7; cited from the primary source, consistent with entries 4 and 6. |
 
-**Result.** 8/8 PubMed-indexable references verified exact (5 original + Titman, Wei & Royston,
-Tasneem added in the novelty pass), 0 misattributions, 0 fabrications. The remaining entries are a
-non-indexed 1978 journal article, a book, two arXiv preprints, and the data sources — all correctly
-categorised. The two arXiv preprints are additionally scrutinised by the prior-art / novelty search
-(`NOVELTY.md`).
+**Result.** 11/11 PubMed-indexable references verified exact (5 original; Titman, Wei & Royston, Tasneem
+added in the novelty pass; Phillippo, Riley added in the Phase-5 positioning pass), 0 misattributions,
+0 fabrications. The remaining entries are non-indexed statistics/econometrics works (1978 journal article,
+two books, Manski's AER paper + Springer monograph), two arXiv preprints, and the data sources — all
+correctly categorised. The two arXiv preprints are additionally scrutinised by the prior-art / novelty
+search (`NOVELTY.md`).

@@ -32,14 +32,18 @@
 > survival trials (401 HR-contributable): **26.9% point-identified (61.8% of poolable info), 73.1% partial
 > (38.2%)**; structured NAR ~0 (1/401). Artifact `realipd/evidence_atlas.json` + per-condition breakdown.
 > Locked by `test/phase4_atlas.spec.js`. JS suite 36/36.
+> **Phase 5 (§7):** formal positioning vs IPD-MA (Riley 2010), ML-NMR (Phillippo 2020), Jansen FP survival NMA
+> (2011), Manski partial identification — a **proven-vs-claimed ledger** (proven: IPD endpoint, Manski set,
+> consistency-checked + non-PH networks, the atlas; claimed/open: ML-NMR time-to-event wiring, literal FP
+> form). All new PubMed citations verified (`CITATIONS.md` entries 13–15). No new code.
 >
-> **RESUME HERE → Phase 5 (formal positioning) or MLNMRPooler.** Two open threads: (1) **Phase 5** — position
-> the manifold formally vs ML-NMR (time-to-event extension), Jansen survival NMA (UQ propagation), Manski
-> partial identification; this is a writing/positioning task (`PAPER.md` Related Work + a methods note), no new
-> code required. (2) **`MLNMRPooler`** (effect modifiers) is **continuous-only today** — extending it to
-> time-to-event would take the reconstructed pseudo-IPD-with-UQ as the AD input the engine was never given.
-> A dashboard panel for the Phase-4 atlas (offline SVG, like the census panels in `validation-dashboard.html`)
-> is also an easy high-value add. Roadmap in `SYNTHESIS-VISION.md` §5; reuse map in §5b.
+> **All roadmap phases (1 → 5) are DONE.** Remaining work is optional, code-bearing extensions (not roadmap
+> blockers): (1) **`MLNMRPooler` time-to-event wiring** — the engine is continuous-only today; feed it the
+> reconstructed pseudo-IPD-with-UQ as the AD input it was never given (this would flip §7's one "claimed" cell
+> to proven). (2) The **literal Jansen fractional-polynomial** parameterisation (`allmeta` `fpNMA.js`, §5b),
+> beyond the piecewise-exponential analogue already shown in §4i. (3) A **Phase-4 atlas dashboard panel**
+> (offline SVG, like the census panels in `validation-dashboard.html`). Roadmap in `SYNTHESIS-VISION.md` §5;
+> reuse map in §5b.
 >
 > **Verify cross-repo deps exist before starting:** `C:\Projects\spec-collapse-atlas` (Py) and
 > `C:\Projects\advanced-nma-pooling\src` (Py) must be importable; the Monte-Carlo demos re-run from the

@@ -268,8 +268,11 @@ calibrated identification interval**, pooled alongside IPD and HR-only trials in
   (61.8% of the poolable information), 73.1% partially-identified (38.2%); structured NAR essentially absent
   (1/401). The synthesis "information map" of a question — `validate/phase4_evidence_atlas.js`,
   `realipd/evidence_atlas.json`, with a per-condition breakdown.
-- **Phase 5 — position formally** vs ML-NMR (time-to-event extension), Jansen survival NMA (uncertainty
-  propagation), and Manski partial identification (the identified-set formalism).
+- **Phase 5 — formal positioning (DONE, §7).** Positioned the manifold against IPD-MA (Riley 2010), ML-NMR
+  (Phillippo 2020), Jansen FP survival NMA (2011), and Manski partial identification — each with an explicit
+  proven-vs-claimed status (proven: IPD endpoint, Manski set, consistency-checked + non-PH networks, the atlas;
+  claimed/open: ML-NMR time-to-event wiring, the literal FP parameterisation). All PubMed-indexable citations
+  verified (`CITATIONS.md`).
 
 ## 4f. Phase 3b (step 1) — the two-level architecture, via spec-collapse's weighted_likelihood
 
@@ -461,3 +464,37 @@ through (a cross-check against this repo's `metaRE` is the natural first step, d
 - Coverage is still the binding limit for full-IPD estimands (§ `PAPER.md` "usable for meta-analysis?"):
   this widens the *contributable* set and makes the pooling honest, but it does not conjure trials that
   posted nothing.
+
+## 7. Formal positioning — what is new, against which established lines (Phase 5)
+
+The granularity-manifold reframing is not a new pooling estimator; it is a **missing input plus a discipline**.
+The input is a curve- or HR-only trial rendered as a *de-biased point with a calibrated identification
+interval*; the discipline is to propagate that interval (Rubin variance + Manski set), never collapsing a
+reconstruction to a fake-exact row. Positioned against the four lines it touches — with an explicit
+**proof status** so the claim is not oversold (the lab's "no-marketing" rule):
+
+| established line | what it does | its gap | what registry-IPD supplies | proof status in this repo |
+|---|---|---|---|---|
+| **IPD meta-analysis** (Riley, Lambert & Abo-Zaid 2010) | patient-level pooling — the gold standard | unobtainable for most trials (governance, cost, time) | treats IPD as the δ=0 endpoint of a manifold and **populates the interior** with reconstructed pseudo-IPD carrying calibrated UQ | **proven**: gold-standard calibration on 51 real datasets (`VALIDATION.md`); coverage 28/29 |
+| **ML-NMR** (Phillippo et al. 2020) | one model combining **AD + IPD** by integrating an individual-level GLM over the covariate distribution; cuts uncertainty by explaining within/between-study variation | formulated for **GLM outcomes** (binary/continuous/count); time-to-event is outside the standard framework, and AD trials enter only as marginal summaries | the missing **time-to-event input**: a reconstructed pseudo-IPD survival trial — the partially-identified IPD survival trial ML-NMR would need to run on a survival question | **claimed, not yet proven**: `MLNMRPooler` exists in `advanced-nma-pooling` but is **continuous-only today**; the TTE wiring is the open Phase-3c-extension piece |
+| **fractional-polynomial survival NMA** (Jansen 2011) | a multi-parameter (non-PH) treatment effect for **AD survival** data, relaxing the proportional-hazards assumption the reported HR forces | needs patient-level-like data and in practice uses **digitised pseudo-IPD as if it were exact**, ignoring reconstruction uncertainty → over-confident | the calibrated reconstruction interval to propagate, and per-interval events/at-risk as the input | **proven for the piecewise-exponential form** (§4i, `SurvivalNPHPooler`): naive ignores the reconstruction → spurious late-interval bias; propagating it restores coverage 0.86→0.96. The literal FP form (`allmeta` `fpNMA.js`, §5b) is the natural next port |
+| **partial identification** (Manski 1990, 2003) | each unit contributes an **identified set**, not a point; inference is over sets-with-priors | not previously applied to **reconstruction uncertainty** in evidence synthesis | the calibrated identification interval *is* a Manski identified set; reconstruction **bias is partially-identified heterogeneity** | **proven** (§4d, §4e): the gold-standard-calibrated set brackets the held-out truth where a naive point does not; the evidence-completeness curve and atlas quantify the set width |
+
+**The one-sentence claim, hedged exactly.** Reconstruction-with-calibrated-UQ is the substrate that lets a
+single synthesis pool trials of mixed data granularity *without manufacturing false precision* — and across
+Phases 1–4 this is **proven** for pairwise random-effects pooling (Rubin variance, §4), for the
+partially-identified set treatment of reconstruction bias (Manski, §4d–§4e), for a real **consistency-checked
+network** (§4h) and a real **non-PH survival network** (§4i), and is delivered as a **pre-pooling diagnostic**
+(§4j). It is **not yet proven** for the ML-NMR effect-modifier case (the engine is continuous-only) or for the
+literal Jansen fractional-polynomial parameterisation (only its piecewise-exponential analogue is shown) — both
+are scoped, engine-identified next steps, not finished results. The novelty is narrow and defensible: not a new
+NMA model (those engines exist), but the **missing partially-identified input** they were never given, plus the
+calibrated UQ that makes adding it honest.
+
+> Citations verified against PubMed (NCBI E-utilities), per the project's citation-integrity discipline —
+> logged in `CITATIONS.md`. Phillippo et al. 2020, *J R Stat Soc Ser A* 183(3):1189–1210
+> (doi:10.1111/rssa.12579, PMID 32684669); Jansen 2011, *BMC Med Res Methodol* 11:61
+> (doi:10.1186/1471-2288-11-61, PMID 21548941); Riley, Lambert & Abo-Zaid 2010, *BMJ* 340:c221
+> (doi:10.1136/bmj.c221, PMID 20139215). Manski's partial-identification work (*Am Econ Rev* 1990;80(2):319–323;
+> *Partial Identification of Probability Distributions*, Springer 2003) is econometrics and **not PubMed-indexed**;
+> cited from the primary source, consistent with the non-indexed entries (Aalen–Johansen, Rubin) already in `CITATIONS.md`.
