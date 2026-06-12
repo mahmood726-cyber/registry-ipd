@@ -1,0 +1,25 @@
+{
+  "config": {
+    "reps": 400,
+    "network": "A vs B, 6 IPD + 6 reconstructed-curve studies, literal FP power 0 (log t)",
+    "true_logHR_function": "log(HR(t)) = -0.5 * log(t)",
+    "eval_late_time": 4,
+    "true_logHR_at_late": -0.6931,
+    "late_recon_bias_at_tmax": 0.45,
+    "late_recon_sd_at_tmax": 0.5,
+    "engine": "allmeta HTA/src/engine/fpNMA.js (FPNMAEngine)",
+    "note": "Reconstructed studies carry a late-growing reconstruction bias + variance (the Sec 4i least-identified-late finding). naive ses ignore r(t) (equal weight -> biased late points pull the WLS FP fit); honest ses = sqrt(sampling^2 + r(t)^2) down-weight them (Sec 5b w = 1/(var+delta^2))."
+  },
+  "true": {
+    "late_logHR_bias": 0.0009,
+    "curve_rmse": 0.0163
+  },
+  "naive": {
+    "late_logHR_bias": 0.1695,
+    "curve_rmse": 0.103
+  },
+  "honest": {
+    "late_logHR_bias": 0.0228,
+    "curve_rmse": 0.0242
+  }
+}

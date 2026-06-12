@@ -266,6 +266,11 @@ calibrated identification interval**, pooled alongside IPD and HR-only trials in
   reconstructed-curve trials as AD. Ignoring their `r²` makes the effect-modifier interaction and the
   population-adjusted contrast over-confident (coverage 0.64 / 0.78); propagating it restores calibration
   (0.92 / 0.94). A *native survival-likelihood* ML-NMR is the remaining deeper engine work.
+- **Phase 3c step 4 — literal Jansen fractional-polynomial survival NMA (DONE, §4l).** `allmeta`'s FP engine
+  (`fpNMA.js`, used unmodified) fits `log(HR(t))` by inverse-variance WLS; a reconstructed curve's late points
+  carry a late-growing reconstruction bias+variance. Ignoring it pulls the FP curve off at late times (bias
+  0.17, RMSE 6× gold); encoding `r(t)` in the weight recovers it (bias 0.02). Proves the §4i lesson on the
+  literal FP form, not just its piecewise-exponential analogue.
 - **Phase 4 — an evidence-completeness atlas (DONE, §4j).** Classifies every harvested trial by
   posted-statistics granularity and assigns a per-trial identification/information score for the HR estimand,
   computed *before any pooling*. On 595 AACT survival trials (401 HR-contributable): 26.9% point-identified
@@ -469,6 +474,32 @@ survival-likelihood ML-NMR would be a deeper change to the engine itself (the co
 also sensitive to the weakly-identified prognostic main effect — coverage, the calibration claim, is the
 robust result). Locked by `harvest/test_phase3c_step3.py`.
 
+## 4l. Phase 3c step 4 — the *literal* Jansen fractional-polynomial survival NMA
+
+§4i proved the reconstruction-UQ fix on a piecewise-exponential (interval) analogue of non-PH; §4l proves it
+on the **literal Jansen (2011) fractional-polynomial** parameterisation, reusing `allmeta`'s own FP-NMA engine
+(`HTA/src/engine/fpNMA.js`, `FPNMAEngine`, used unmodified). The engine fits `log(HR(t)) = d·basis(t, power)`
+by **inverse-variance weighted least squares** over each study's reported `(time, HR, se)` tuples — which is
+exactly where the reconstruction variance belongs (the §5b weight `w = 1/(var+δ²)`). A reconstructed curve is
+**least identified at late times** (fewest at risk, most censoring — the §4i finding, time-resolved), so its
+late log-HR points carry a late-growing reconstruction **bias** *and* **variance** `r(t)²`. True effect
+`log(HR(t)) = −0.5·log(t)` (a crossing hazard); 6 IPD + 6 reconstructed-curve studies, 400-rep seeded MC,
+evaluated at the late time `t=4` (true log-HR −0.69):
+
+| pool | late log-HR bias (t=4) | fitted-curve RMSE |
+|---|---:|---:|
+| all-IPD (gold) | 0.00 | 0.016 |
+| **NAIVE** (ignore `r(t)`) | **0.17** | **0.103** |
+| **HONEST** (encode `r(t)` in the weight) | **0.02** | 0.024 |
+
+Ignoring the reconstruction variance equal-weights the biased late points, so the WLS FP fit is **pulled off
+at late times** — a late log-HR bias of 0.17 (≈25% of the true −0.69) and a curve RMSE ~6× the gold. Encoding
+`r(t)` in the inverse-variance weight down-weights those points and **recovers the curve to near-gold** (late
+bias 0.02, RMSE 0.024). So the §4i lesson holds on the literal FP engine, not just its piecewise-exponential
+analogue: the reconstructed survival trial joins a fractional-polynomial NMA honestly when — and only when —
+its time-resolved reconstruction uncertainty is carried into the weights. Locked by
+`test/phase3c_step4_fp.spec.js`.
+
 ## 5b. Reuse map — the portfolio already has the synthesis engines
 
 Phase 3b should **wire into existing, verified machinery in the portfolio**, not re-implement it. Surveyed
@@ -511,20 +542,20 @@ reconstruction to a fake-exact row. Positioned against the four lines it touches
 |---|---|---|---|---|
 | **IPD meta-analysis** (Riley, Lambert & Abo-Zaid 2010) | patient-level pooling — the gold standard | unobtainable for most trials (governance, cost, time) | treats IPD as the δ=0 endpoint of a manifold and **populates the interior** with reconstructed pseudo-IPD carrying calibrated UQ | **proven**: gold-standard calibration on 51 real datasets (`VALIDATION.md`); coverage 28/29 |
 | **ML-NMR** (Phillippo et al. 2020) | one model combining **AD + IPD** by integrating an individual-level GLM over the covariate distribution; cuts uncertainty by explaining within/between-study variation | formulated for **GLM outcomes** (binary/continuous/count); time-to-event is outside the standard framework, and AD trials enter only as marginal summaries | the missing **time-to-event input**: a reconstructed pseudo-IPD survival trial — the partially-identified IPD survival trial ML-NMR would need to run on a survival question | **proven via the curve-derived RMST route** (§4k): `MLNMRPooler` runs unmodified on a survival question (IPD via the per-patient path + reconstructed-curve as AD); ignoring `r²` makes the effect-modifier estimate over-confident (coverage 0.64), propagating it restores calibration (0.92). A *native survival-likelihood* ML-NMR remains deeper engine work |
-| **fractional-polynomial survival NMA** (Jansen 2011) | a multi-parameter (non-PH) treatment effect for **AD survival** data, relaxing the proportional-hazards assumption the reported HR forces | needs patient-level-like data and in practice uses **digitised pseudo-IPD as if it were exact**, ignoring reconstruction uncertainty → over-confident | the calibrated reconstruction interval to propagate, and per-interval events/at-risk as the input | **proven for the piecewise-exponential form** (§4i, `SurvivalNPHPooler`): naive ignores the reconstruction → spurious late-interval bias; propagating it restores coverage 0.86→0.96. The literal FP form (`allmeta` `fpNMA.js`, §5b) is the natural next port |
+| **fractional-polynomial survival NMA** (Jansen 2011) | a multi-parameter (non-PH) treatment effect for **AD survival** data, relaxing the proportional-hazards assumption the reported HR forces | needs patient-level-like data and in practice uses **digitised pseudo-IPD as if it were exact**, ignoring reconstruction uncertainty → over-confident | the calibrated reconstruction interval to propagate (as the inverse-variance weight), and per-interval events/at-risk as the input | **proven on both forms**: the piecewise-exponential analogue (§4i, `SurvivalNPHPooler`, coverage 0.86→0.96) **and the literal FP engine** (§4l, `allmeta` `fpNMA.js`): ignoring `r(t)` pulls the WLS FP curve off at late times (bias 0.17, RMSE 6× gold), encoding it in the weight recovers it (bias 0.02) |
 | **partial identification** (Manski 1990, 2003) | each unit contributes an **identified set**, not a point; inference is over sets-with-priors | not previously applied to **reconstruction uncertainty** in evidence synthesis | the calibrated identification interval *is* a Manski identified set; reconstruction **bias is partially-identified heterogeneity** | **proven** (§4d, §4e): the gold-standard-calibrated set brackets the held-out truth where a naive point does not; the evidence-completeness curve and atlas quantify the set width |
 
 **The one-sentence claim, hedged exactly.** Reconstruction-with-calibrated-UQ is the substrate that lets a
 single synthesis pool trials of mixed data granularity *without manufacturing false precision* — and across
 Phases 1–4 this is **proven** for pairwise random-effects pooling (Rubin variance, §4), for the
 partially-identified set treatment of reconstruction bias (Manski, §4d–§4e), for a real **consistency-checked
-network** (§4h), a real **non-PH survival network** (§4i), and the **ML-NMR effect-modifier case via the curve-derived
-RMST** (§4k, the engine used unmodified); and is delivered as a **pre-pooling diagnostic** (§4j). It is **not
-yet proven** for a *native survival-likelihood* ML-NMR (only the RMST-as-continuous route is shown) or for the
-literal Jansen fractional-polynomial parameterisation (only its piecewise-exponential analogue is shown) — both
-are scoped, engine-identified next steps, not finished results. The novelty is narrow and defensible: not a new
-NMA model (those engines exist), but the **missing partially-identified input** they were never given, plus the
-calibrated UQ that makes adding it honest.
+network** (§4h), a real **non-PH survival network** (§4i), the **ML-NMR effect-modifier case via the curve-derived
+RMST** (§4k, the engine used unmodified), and the **literal Jansen fractional-polynomial NMA** (§4l, `allmeta`'s
+FP engine); and is delivered as a **pre-pooling diagnostic** (§4j). The one remaining unproven item is a
+*native survival-likelihood* ML-NMR (only the RMST-as-continuous route is shown) — a scoped, engine-identified
+next step (a Poisson/piecewise-exponential likelihood inside `MLNMRPooler`), not a finished result. The novelty
+is narrow and defensible: not a new NMA model (those engines exist), but the **missing partially-identified
+input** they were never given, plus the calibrated UQ that makes adding it honest.
 
 > Citations verified against PubMed (NCBI E-utilities), per the project's citation-integrity discipline —
 > logged in `CITATIONS.md`. Phillippo et al. 2020, *J R Stat Soc Ser A* 183(3):1189–1210
