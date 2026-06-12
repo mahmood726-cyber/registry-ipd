@@ -1,0 +1,33 @@
+{
+  "config": {
+    "reps": 400,
+    "k": 12,
+    "network": "A/B/C, non-PH (B early-benefit wanes), 6 IPD + 6 reconstructed-curve, 2 intervals",
+    "true_gap_B_early_to_late": 0.7472,
+    "true_early_B": -0.7985,
+    "true_late_B": -0.0513,
+    "late_recon_bias": 0.34,
+    "beta_debias": 0.3
+  },
+  "ph": {
+    "early_B_bias": 0.2725,
+    "late_B_bias": -0.4747,
+    "gap_B_bias": -0.7472,
+    "late_B_coverage": 0.0,
+    "n_fits": 400
+  },
+  "nph_naive": {
+    "early_B_bias": 0.0254,
+    "late_B_bias": 0.1237,
+    "gap_B_bias": 0.0983,
+    "late_B_coverage": 0.855,
+    "n_fits": 400
+  },
+  "nph_honest": {
+    "early_B_bias": 0.0254,
+    "late_B_bias": 0.0127,
+    "gap_B_bias": -0.0128,
+    "late_B_coverage": 0.96,
+    "n_fits": 400
+  }
+}

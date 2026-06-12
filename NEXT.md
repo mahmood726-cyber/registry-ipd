@@ -12,20 +12,25 @@
 > (P2b, engine got `reconstructEnsemble({pinEvents})`) · `phase2c_bias_offset.js` (P2c partial-ID set) ·
 > `phase3_granularity_mixed.js` (P3 + evidence-completeness curve) · `phase3b_export_imputations.js` +
 > `phase3b_weighted_likelihood.py` (P3b·1, within-trial) · `phase3b_step2_survival_nma.py` (P3b·2, network NMA) ·
-> `phase3c_nma_inconsistency.py` (P3c, §4h — de-bias + identification interval AND consistency on the NMA).
+> `phase3c_nma_inconsistency.py` (P3c·1, §4h — de-bias + identification interval AND consistency on the NMA) ·
+> `phase3c_step2_nonph_nma.py` (P3c·2, §4i — the curve unlocks a non-PH survival NMA on `SurvivalNPHPooler`).
 >
-> **Phase 3c finding (§4h):** carried the §4d **de-bias offset + identification half-width** (not just the
-> variance) through the `ADNMAPooler` network and ran `design_by_treatment_test` / `node_splitting_diagnostics`.
-> On a homogeneous-consistent A–B–C network, per-edge reconstruction bias makes **naive pooling flag spurious
-> inconsistency ~4× over the α baseline** (0.245 vs gold 0.065; mean Q≈1.00=E[χ²₁] on gold/honest); the §4d
-> object returns the flag rate to baseline (0.045 ≈ α) and restores contrast coverage. Locked by
-> `harvest/test_phase3c.py`. Suite green: 87 Py + 34 JS.
+> **Phase 3c step 1 (§4h):** carried the §4d **de-bias offset + identification half-width** through the
+> `ADNMAPooler` network + `design_by_treatment_test` / `node_splitting_diagnostics`. On a homogeneous-consistent
+> A–B–C network, per-edge reconstruction bias makes **naive pooling flag spurious inconsistency ~4× over the α
+> baseline** (0.245 vs gold 0.065; mean Q≈1.00=E[χ²₁]); the §4d object restores the baseline (0.045 ≈ α).
+> **Phase 3c step 2 (§4i):** a reconstructed curve's per-interval events/at-risk drive `SurvivalNPHPooler` — a
+> single-log-HR PH pool is structurally blind to a time-varying effect (misses the whole early→late gap, −0.75
+> bias), the non-PH pool recovers it, and the §4d LOO de-bias corrects the late-interval (least-identified)
+> reconstruction bias (late coverage 0.86 → 0.96). Locked by `harvest/test_phase3c.py` + `..._step2.py`. Suite
+> green: **88 Py + 34 JS**.
 >
-> **RESUME HERE → Phase 3c extension / Phase 4:** extend the granularity-mixed survival NMA to
-> `SurvivalNPHPooler` (non-PH, piecewise-exponential interval-specific effects — feed reconstructed pseudo-IPD
-> as per-interval events/at-risk) and `MLNMRPooler` (effect modifiers); both already in
-> `C:\Projects\advanced-nma-pooling` (paths in `SYNTHESIS-VISION.md` §5b). Then Phase 4 (evidence-completeness
-> atlas, §5). Roadmap in `SYNTHESIS-VISION.md` §5; reuse map (exact engine paths) in §5b.
+> **RESUME HERE → Phase 4 (or MLNMRPooler).** Open NMA piece: `MLNMRPooler` (effect modifiers) is
+> **continuous-only today** — extending it to time-to-event is the wiring task if pursued (it would take the
+> reconstructed pseudo-IPD-with-UQ as the AD input the engine was never given). Otherwise advance to **Phase 4**:
+> the evidence-completeness atlas (§5) — for a real review question, classify each trial by posted-statistics
+> granularity and map what fraction of the evidence is point- vs partially-identified before any pooling. Roadmap
+> in `SYNTHESIS-VISION.md` §5; reuse map (exact engine paths) in §5b.
 >
 > **Verify cross-repo deps exist before starting:** `C:\Projects\spec-collapse-atlas` (Py) and
 > `C:\Projects\advanced-nma-pooling\src` (Py) must be importable; the Monte-Carlo demos re-run from the

@@ -256,8 +256,12 @@ calibrated identification interval**, pooled alongside IPD and HR-only trials in
   `node_splitting_diagnostics`. Finding: per-edge reconstruction bias makes naive pooling flag **spurious
   inconsistency ~4× over the α baseline** (0.245 vs gold 0.065) on a consistent network; the §4d de-bias +
   identification-interval object returns the flag rate to baseline (0.045 ≈ α) and restores contrast coverage. The
-  partially-identified object survives a real NMA's consistency diagnostics. **Next:** extend to
-  `SurvivalNPHPooler` (non-PH) / `MLNMRPooler` (effect modifiers) — both already in `advanced-nma-pooling`.
+  partially-identified object survives a real NMA's consistency diagnostics.
+- **Phase 3c step 2 — non-PH survival NMA (DONE, §4i).** The reconstructed curve's per-interval events/at-risk
+  drive `SurvivalNPHPooler`: a single-log-HR PH pool is structurally blind to a time-varying effect (misses the
+  whole early→late gap, −0.75 bias), the non-PH pool recovers the interval-specific effects, and the §4d LOO
+  de-bias corrects the late-interval (least-identified) reconstruction bias (late coverage 0.86 → 0.96). **Next:**
+  `MLNMRPooler` (effect modifiers) is continuous-only today — extending it to time-to-event is the open piece.
 - **Phase 4 — an evidence-completeness atlas.** For a real review question, harvest every trial, classify
   each by posted-statistics granularity, compute a per-trial *identification/information score* for the
   target estimand, and map what fraction of the evidence is point- vs partially-identified. A new artefact:
@@ -353,8 +357,39 @@ GLS Q no longer reads the residual reconstruction bias as a broken loop — **an
 travels through a real NMA engine intact: a reconstructed curve joins a network as a de-biased contrast with a
 propagated identification interval, and the network's own consistency diagnostics stay trustworthy — ignoring the
 reconstruction would have you chasing inconsistency that the data never contained. Locked by
-`harvest/test_phase3c.py`. (Next: extend to `SurvivalNPHPooler` (non-PH, interval-specific effects) and
-`MLNMRPooler` (effect modifiers) — both already in `advanced-nma-pooling`.)
+`harvest/test_phase3c.py`.
+
+## 4i. Phase 3c step 2 — the reconstructed curve unlocks a *non-PH* survival NMA
+
+Step 1 worked on the proportional-hazards `ADNMAPooler` — one log-HR per contrast. But the whole reason to
+keep a *curve* instead of a single HR is **time-resolved** structure, and a single pooled log-HR
+**cannot represent a treatment effect that changes over time** (non-PH). `validate/phase3c_step2_nonph_nma.py`
+shows the unique value of the curve granularity at the network level, on `advanced-nma-pooling`'s own
+**`SurvivalNPHPooler`** (piecewise-exponential, interval-specific effects). The key fit with the engine: a
+reconstructed curve naturally yields **per-interval (events, person-time)** — exactly the survival-AD input
+`SurvivalNPHPooler` consumes — so a curve-only trial can join a non-PH survival NMA that an abstract-HR trial
+never could. The true network is **non-PH and consistent**: B has a strong early benefit that wanes
+(log-HR vs A: early −0.80, late −0.05; an early→late gap of **0.75** — the non-PH signal), C is roughly
+constant. 6 IPD + 6 reconstructed-curve studies across the A/B/C triangle, two intervals, 400-rep seeded MC:
+
+| method | early B-vs-A bias | late B-vs-A bias | early→late gap bias (truth 0.75) | late-interval coverage |
+|---|---:|---:|---:|---:|
+| **PH pool** (1 log-HR, ADNMAPooler) | +0.27 | −0.47 | **−0.75** (misses the whole gap) | **0.00** |
+| **non-PH NAIVE** (SurvivalNPHPooler) | +0.03 | +0.12 | +0.10 | 0.86 |
+| **non-PH HONEST** (§4d de-bias) | +0.03 | **+0.01** | **−0.01** | **0.96** |
+
+Three results. **The PH pool is structurally blind to non-PH**: a single log-HR sits stuck between the early
+and late truth (biased +0.27 vs early, −0.47 vs late) and reports a **zero early→late gap** — a gap bias of
+−0.75, the entire signal missed, late-interval coverage 0. **Feeding the reconstructed curve's per-interval
+events/at-risk into `SurvivalNPHPooler` recovers the interval-specific effects and the gap** (naive gap bias
+0.10 vs PH's −0.75) — the curve granularity is what unlocks non-PH at the network level. And the **new failure
+mode is time-resolved**: reconstruction is worst where the curve is least identified — the **late interval**
+(fewest at risk, most censoring; §4d's "heavily-censored reconstructs worst", mapped to time). That over-states
+the late contrast (naive late bias +0.12, coverage 0.86); the **same Phase-2c LOO de-bias recovers it** (late
+bias +0.01, gap bias −0.01, coverage restored to 0.96). So the §4d object is not PH-specific: it carries through
+a non-PH survival NMA, where it both enables the analysis a single HR cannot support **and** corrects the
+time-resolved reconstruction bias. Locked by `harvest/test_phase3c_step2.py`. (Next: `MLNMRPooler` for effect
+modifiers — currently continuous-only, so the time-to-event wiring is the open piece there.)
 
 ## 5b. Reuse map — the portfolio already has the synthesis engines
 
