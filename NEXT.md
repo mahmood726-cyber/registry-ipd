@@ -14,7 +14,8 @@
 > `phase3b_weighted_likelihood.py` (P3b·1, within-trial) · `phase3b_step2_survival_nma.py` (P3b·2, network NMA) ·
 > `phase3c_nma_inconsistency.py` (P3c·1, §4h — de-bias + identification interval AND consistency on the NMA) ·
 > `phase3c_step2_nonph_nma.py` (P3c·2, §4i — the curve unlocks a non-PH survival NMA on `SurvivalNPHPooler`) ·
-> `validate/phase4_evidence_atlas.js` (P4, §4j — the evidence-completeness atlas / pre-pooling information map).
+> `validate/phase4_evidence_atlas.js` (P4, §4j — the evidence-completeness atlas / pre-pooling information map) ·
+> `phase3c_step3_mlnmr_rmst.py` (P3c·3, §4k — ML-NMR effect modifier, time-to-event via RMST on `MLNMRPooler`).
 >
 > **Phase 3c step 1 (§4h):** carried the §4d **de-bias offset + identification half-width** through the
 > `ADNMAPooler` network + `design_by_treatment_test` / `node_splitting_diagnostics`. On a homogeneous-consistent
@@ -37,13 +38,13 @@
 > consistency-checked + non-PH networks, the atlas; claimed/open: ML-NMR time-to-event wiring, literal FP
 > form). All new PubMed citations verified (`CITATIONS.md` entries 13–15). No new code.
 >
-> **All roadmap phases (1 → 5) are DONE.** Remaining work is optional, code-bearing extensions (not roadmap
-> blockers): (1) **`MLNMRPooler` time-to-event wiring** — the engine is continuous-only today; feed it the
-> reconstructed pseudo-IPD-with-UQ as the AD input it was never given (this would flip §7's one "claimed" cell
-> to proven). (2) The **literal Jansen fractional-polynomial** parameterisation (`allmeta` `fpNMA.js`, §5b),
-> beyond the piecewise-exponential analogue already shown in §4i. (3) A **Phase-4 atlas dashboard panel**
-> (offline SVG, like the census panels in `validation-dashboard.html`). Roadmap in `SYNTHESIS-VISION.md` §5;
-> reuse map in §5b.
+> **All roadmap phases (1 → 5) are DONE**, plus the ML-NMR extension (§4k) that flipped §7's last "claimed"
+> cell to proven (via the curve-derived RMST route; `MLNMRPooler` ignoring `r²` → coverage 0.64, propagating
+> → 0.92). Remaining work is optional, code-bearing extensions (not roadmap blockers): (1) a **native
+> survival-likelihood ML-NMR** (a deeper change to `advanced-nma-pooling` itself, beyond the RMST-as-continuous
+> route shown). (2) The **literal Jansen fractional-polynomial** parameterisation (`allmeta` `fpNMA.js`, §5b),
+> beyond the piecewise-exponential analogue in §4i. (3) A **Phase-4 atlas dashboard panel** (offline SVG, like
+> the census panels in `validation-dashboard.html`). Roadmap in `SYNTHESIS-VISION.md` §5; reuse map in §5b.
 >
 > **Verify cross-repo deps exist before starting:** `C:\Projects\spec-collapse-atlas` (Py) and
 > `C:\Projects\advanced-nma-pooling\src` (Py) must be importable; the Monte-Carlo demos re-run from the

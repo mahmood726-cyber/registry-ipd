@@ -260,8 +260,12 @@ calibrated identification interval**, pooled alongside IPD and HR-only trials in
 - **Phase 3c step 2 — non-PH survival NMA (DONE, §4i).** The reconstructed curve's per-interval events/at-risk
   drive `SurvivalNPHPooler`: a single-log-HR PH pool is structurally blind to a time-varying effect (misses the
   whole early→late gap, −0.75 bias), the non-PH pool recovers the interval-specific effects, and the §4d LOO
-  de-bias corrects the late-interval (least-identified) reconstruction bias (late coverage 0.86 → 0.96). **Next:**
-  `MLNMRPooler` (effect modifiers) is continuous-only today — extending it to time-to-event is the open piece.
+  de-bias corrects the late-interval (least-identified) reconstruction bias (late coverage 0.86 → 0.96).
+- **Phase 3c step 3 — ML-NMR effect modifier, time-to-event via RMST (DONE, §4k).** `MLNMRPooler` (used
+  unmodified) runs on a survival question through the curve-derived RMST: IPD via the per-patient path,
+  reconstructed-curve trials as AD. Ignoring their `r²` makes the effect-modifier interaction and the
+  population-adjusted contrast over-confident (coverage 0.64 / 0.78); propagating it restores calibration
+  (0.92 / 0.94). A *native survival-likelihood* ML-NMR is the remaining deeper engine work.
 - **Phase 4 — an evidence-completeness atlas (DONE, §4j).** Classifies every harvested trial by
   posted-statistics granularity and assigns a per-trial identification/information score for the HR estimand,
   computed *before any pooling*. On 595 AACT survival trials (401 HR-contributable): 26.9% point-identified
@@ -435,6 +439,36 @@ event count, a NAR table) would recover — before a single effect is combined. 
 the artifact: registry→publication linkage is ~63.6%, so the true evidence base exceeds any registry census.)
 Locked by `test/phase4_atlas.spec.js`; artifact `realipd/evidence_atlas.json`.
 
+## 4k. Phase 3c step 3 — ML-NMR with an effect modifier, time-to-event via reconstruction
+
+The §7 ledger had one cell marked *claimed, not yet proven*: ML-NMR (Phillippo 2020) combines IPD + AD with
+effect modifiers, but its engine is GLM-based and the survival input it needs was never supplied.
+`validate/phase3c_step3_mlnmr_rmst.py` supplies it and proves the cell, on `advanced-nma-pooling`'s own
+**`MLNMRPooler`**, used unmodified. The time-to-event question is encoded through a **curve-derived
+continuous estimand — the restricted mean survival time (RMST)** — which is *point-identified* from a KM
+curve (no censoring-identifiability issue, unlike the HR) and is one of the estimands §3 names. **IPD trials
+enter through the engine's per-patient `ipd` path** (per-patient RMST pseudo-value `min(T, τ)` + a
+patient-level effect modifier); **reconstructed-curve trials enter as AD** (arm RMST + reconstruction
+variance `r²`). An effect modifier modifies the A-vs-B RMST difference (interaction `g_B`); C is unmodified.
+Reconstructed-dominated network (3 IPD + 9 reconstructed), 300-rep seeded MC:
+
+| pool | interaction `g_B` coverage | pop-adjusted B-vs-A contrast coverage |
+|---|---:|---:|
+| all-IPD (gold) | 0.96 | 0.96 |
+| **NAIVE** (ignore `r²`) | **0.64** | **0.78** |
+| **HONEST** (propagate `r²`) | 0.92 | 0.94 |
+
+The Phase-1 lesson reproduces **on the ML-NMR engine**. Reconstructed-curve trials carry most of the edge
+weight; ignoring their reconstruction variance over-weights them (`1/se²` with `se` too small), so **both**
+the effect-modifier interaction and the population-adjusted contrast become **over-confident** — coverage
+collapses to 0.64 / 0.78 against a nominal 0.95. Propagating `r²` restores calibration to the gold level
+(0.92 / 0.94). ML-NMR now runs on a survival question, with registry-IPD supplying the partially-identified
+input the GLM-based engine was never given. **Honest scope:** this is the RMST-as-continuous route — the
+pragmatic time-to-event wiring of a GLM-based ML-NMR via a curve-derived *collapsible* estimand; a native
+survival-likelihood ML-NMR would be a deeper change to the engine itself (the contrast *point* estimate is
+also sensitive to the weakly-identified prognostic main effect — coverage, the calibration claim, is the
+robust result). Locked by `harvest/test_phase3c_step3.py`.
+
 ## 5b. Reuse map — the portfolio already has the synthesis engines
 
 Phase 3b should **wire into existing, verified machinery in the portfolio**, not re-implement it. Surveyed
@@ -476,7 +510,7 @@ reconstruction to a fake-exact row. Positioned against the four lines it touches
 | established line | what it does | its gap | what registry-IPD supplies | proof status in this repo |
 |---|---|---|---|---|
 | **IPD meta-analysis** (Riley, Lambert & Abo-Zaid 2010) | patient-level pooling — the gold standard | unobtainable for most trials (governance, cost, time) | treats IPD as the δ=0 endpoint of a manifold and **populates the interior** with reconstructed pseudo-IPD carrying calibrated UQ | **proven**: gold-standard calibration on 51 real datasets (`VALIDATION.md`); coverage 28/29 |
-| **ML-NMR** (Phillippo et al. 2020) | one model combining **AD + IPD** by integrating an individual-level GLM over the covariate distribution; cuts uncertainty by explaining within/between-study variation | formulated for **GLM outcomes** (binary/continuous/count); time-to-event is outside the standard framework, and AD trials enter only as marginal summaries | the missing **time-to-event input**: a reconstructed pseudo-IPD survival trial — the partially-identified IPD survival trial ML-NMR would need to run on a survival question | **claimed, not yet proven**: `MLNMRPooler` exists in `advanced-nma-pooling` but is **continuous-only today**; the TTE wiring is the open Phase-3c-extension piece |
+| **ML-NMR** (Phillippo et al. 2020) | one model combining **AD + IPD** by integrating an individual-level GLM over the covariate distribution; cuts uncertainty by explaining within/between-study variation | formulated for **GLM outcomes** (binary/continuous/count); time-to-event is outside the standard framework, and AD trials enter only as marginal summaries | the missing **time-to-event input**: a reconstructed pseudo-IPD survival trial — the partially-identified IPD survival trial ML-NMR would need to run on a survival question | **proven via the curve-derived RMST route** (§4k): `MLNMRPooler` runs unmodified on a survival question (IPD via the per-patient path + reconstructed-curve as AD); ignoring `r²` makes the effect-modifier estimate over-confident (coverage 0.64), propagating it restores calibration (0.92). A *native survival-likelihood* ML-NMR remains deeper engine work |
 | **fractional-polynomial survival NMA** (Jansen 2011) | a multi-parameter (non-PH) treatment effect for **AD survival** data, relaxing the proportional-hazards assumption the reported HR forces | needs patient-level-like data and in practice uses **digitised pseudo-IPD as if it were exact**, ignoring reconstruction uncertainty → over-confident | the calibrated reconstruction interval to propagate, and per-interval events/at-risk as the input | **proven for the piecewise-exponential form** (§4i, `SurvivalNPHPooler`): naive ignores the reconstruction → spurious late-interval bias; propagating it restores coverage 0.86→0.96. The literal FP form (`allmeta` `fpNMA.js`, §5b) is the natural next port |
 | **partial identification** (Manski 1990, 2003) | each unit contributes an **identified set**, not a point; inference is over sets-with-priors | not previously applied to **reconstruction uncertainty** in evidence synthesis | the calibrated identification interval *is* a Manski identified set; reconstruction **bias is partially-identified heterogeneity** | **proven** (§4d, §4e): the gold-standard-calibrated set brackets the held-out truth where a naive point does not; the evidence-completeness curve and atlas quantify the set width |
 
@@ -484,8 +518,9 @@ reconstruction to a fake-exact row. Positioned against the four lines it touches
 single synthesis pool trials of mixed data granularity *without manufacturing false precision* — and across
 Phases 1–4 this is **proven** for pairwise random-effects pooling (Rubin variance, §4), for the
 partially-identified set treatment of reconstruction bias (Manski, §4d–§4e), for a real **consistency-checked
-network** (§4h) and a real **non-PH survival network** (§4i), and is delivered as a **pre-pooling diagnostic**
-(§4j). It is **not yet proven** for the ML-NMR effect-modifier case (the engine is continuous-only) or for the
+network** (§4h), a real **non-PH survival network** (§4i), and the **ML-NMR effect-modifier case via the curve-derived
+RMST** (§4k, the engine used unmodified); and is delivered as a **pre-pooling diagnostic** (§4j). It is **not
+yet proven** for a *native survival-likelihood* ML-NMR (only the RMST-as-continuous route is shown) or for the
 literal Jansen fractional-polynomial parameterisation (only its piecewise-exponential analogue is shown) — both
 are scoped, engine-identified next steps, not finished results. The novelty is narrow and defensible: not a new
 NMA model (those engines exist), but the **missing partially-identified input** they were never given, plus the

@@ -1,0 +1,34 @@
+{
+  "config": {
+    "reps": 300,
+    "k": 12,
+    "n_arm": 120,
+    "tau": 24.0,
+    "r_recon": 0.55,
+    "estimand": "effect-modifier interaction g_B AND population-adjusted B-vs-A RMST contrast at mean modifier",
+    "true_g_B": 2.4,
+    "true_contrast_at_xbar": 1.6,
+    "network": "A/B/C RMST, 3 IPD + 9 reconstructed-curve (AD), reconstructed-dominated"
+  },
+  "true": {
+    "g_B_bias": 0.0491,
+    "g_B_coverage": 0.96,
+    "contrast_bias": 0.1956,
+    "contrast_coverage": 0.96,
+    "n_fits": 300
+  },
+  "naive": {
+    "g_B_bias": 0.2306,
+    "g_B_coverage": 0.643,
+    "contrast_bias": -0.4363,
+    "contrast_coverage": 0.783,
+    "n_fits": 300
+  },
+  "honest": {
+    "g_B_bias": 0.101,
+    "g_B_coverage": 0.92,
+    "contrast_bias": 0.5454,
+    "contrast_coverage": 0.94,
+    "n_fits": 300
+  }
+}
