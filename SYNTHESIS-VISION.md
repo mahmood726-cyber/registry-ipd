@@ -271,6 +271,11 @@ calibrated identification interval**, pooled alongside IPD and HR-only trials in
   carry a late-growing reconstruction bias+variance. Ignoring it pulls the FP curve off at late times (bias
   0.17, RMSE 6× gold); encoding `r(t)` in the weight recovers it (bias 0.02). Proves the §4i lesson on the
   literal FP form, not just its piecewise-exponential analogue.
+- **Phase 3c step 5 — native survival-likelihood ML-NMR (DONE, §4m).** A new self-contained piecewise-
+  exponential Poisson ML-NMR (`validate/survival_mlnmr.py`, scipy-cross-validated) with a treatment×covariate
+  effect modifier. Recovers `γ_B` unbiased (coverage 0.95) from mixed IPD + reconstructed-curve survival data;
+  a modifier-ignorant pool is badly biased (−0.42, 0% coverage) off the corpus average. Closes the last
+  "claimed" cell of the §7 ledger — ML-NMR is now proven on a native survival likelihood, not only RMST.
 - **Phase 4 — an evidence-completeness atlas (DONE, §4j).** Classifies every harvested trial by
   posted-statistics granularity and assigns a per-trial identification/information score for the HR estimand,
   computed *before any pooling*. On 595 AACT survival trials (401 HR-contributable): 26.9% point-identified
@@ -500,6 +505,37 @@ analogue: the reconstructed survival trial joins a fractional-polynomial NMA hon
 its time-resolved reconstruction uncertainty is carried into the weights. Locked by
 `test/phase3c_step4_fp.spec.js`.
 
+## 4m. Phase 3c step 5 — a *native* survival-likelihood ML-NMR
+
+Step 3 (§4k) ran ML-NMR on a survival question via the RMST-as-Gaussian route, leaving a *native survival
+likelihood* as the one unproven cell of §7. This step closes it. The portfolio had no survival ML-NMR engine
+(the existing `MLNMRPooler` is continuous-only), so this is the one place the work is a **new engine** rather
+than supplying input to an existing one: `validate/survival_mlnmr.py` is a self-contained **piecewise-
+exponential (Poisson) ML-NMR** — study×interval baselines + treatment effects + a treatment-by-covariate
+**effect-modifier interaction**, fit by Poisson IRLS (the standard PWE↔Poisson likelihood, `events ~
+Poisson(eᶯ·person-time)`), **cross-validated against an independent `scipy.optimize` fit of the same
+log-likelihood** (agree to <1e-3). IPD trials enter as per-patient interval rows; reconstructed-curve trials
+enter as per-arm per-interval aggregate events/person-time — exactly what a reconstruction yields — so a
+curve-only survival trial joins natively. A vs B with an effect modifier (log-HR_B(x) = 0.5 + 1.4·x),
+6 IPD + 6 reconstructed-curve trials, 200-rep seeded MC:
+
+| | effect-modifier `γ_B` | log-HR_B at an off-average target population (x=0.7, true 1.48) |
+|---|---|---|
+| **modifier-aware** (native survival ML-NMR) | bias **0.00**, coverage **0.95** | bias **0.00**, coverage **0.94** |
+| **modifier-ignorant** (PH pool) | — | bias **−0.42**, coverage **0.00** |
+
+Two results. **The native survival ML-NMR recovers the effect modifier** (`γ_B` unbiased, 95% coverage) from a
+mix of IPD and reconstructed-curve survival trials — the curve-only trials, contributing only per-interval
+events/at-risk, join the patient-level likelihood seamlessly. And **the effect-modifier capability matters**: a
+modifier-ignorant pool returns a single log-HR that is badly biased (−0.42) for a target population whose
+modifier differs from the corpus average, never covering the truth (0% coverage), while the modifier-aware
+model is unbiased and calibrated there. So ML-NMR runs on a survival question with a genuine survival
+likelihood, not just the Gaussian-RMST surrogate — and registry-IPD supplies the reconstructed survival input
+it runs on. **Honest scope:** the engine is a first-pass frequentist PWE-ML-NMR (plug-in arm covariate mean,
+no full covariate-distribution integration / MGF correction; a fixed-effects Poisson fit) — a clean,
+cross-validated proof of concept that could be upstreamed to `advanced-nma-pooling`, not a production
+replacement for a Bayesian ML-NMR. Locked by `harvest/test_phase3c_step5.py`.
+
 ## 5b. Reuse map — the portfolio already has the synthesis engines
 
 Phase 3b should **wire into existing, verified machinery in the portfolio**, not re-implement it. Surveyed
@@ -541,21 +577,23 @@ reconstruction to a fake-exact row. Positioned against the four lines it touches
 | established line | what it does | its gap | what registry-IPD supplies | proof status in this repo |
 |---|---|---|---|---|
 | **IPD meta-analysis** (Riley, Lambert & Abo-Zaid 2010) | patient-level pooling — the gold standard | unobtainable for most trials (governance, cost, time) | treats IPD as the δ=0 endpoint of a manifold and **populates the interior** with reconstructed pseudo-IPD carrying calibrated UQ | **proven**: gold-standard calibration on 51 real datasets (`VALIDATION.md`); coverage 28/29 |
-| **ML-NMR** (Phillippo et al. 2020) | one model combining **AD + IPD** by integrating an individual-level GLM over the covariate distribution; cuts uncertainty by explaining within/between-study variation | formulated for **GLM outcomes** (binary/continuous/count); time-to-event is outside the standard framework, and AD trials enter only as marginal summaries | the missing **time-to-event input**: a reconstructed pseudo-IPD survival trial — the partially-identified IPD survival trial ML-NMR would need to run on a survival question | **proven via the curve-derived RMST route** (§4k): `MLNMRPooler` runs unmodified on a survival question (IPD via the per-patient path + reconstructed-curve as AD); ignoring `r²` makes the effect-modifier estimate over-confident (coverage 0.64), propagating it restores calibration (0.92). A *native survival-likelihood* ML-NMR remains deeper engine work |
+| **ML-NMR** (Phillippo et al. 2020) | one model combining **AD + IPD** by integrating an individual-level GLM over the covariate distribution; cuts uncertainty by explaining within/between-study variation | formulated for **GLM outcomes** (binary/continuous/count); time-to-event is outside the standard framework, and AD trials enter only as marginal summaries | the missing **time-to-event input**: a reconstructed pseudo-IPD survival trial — the partially-identified IPD survival trial ML-NMR would need to run on a survival question | **proven on both routes**: the curve-derived RMST route (§4k, `MLNMRPooler` unmodified — ignoring `r²` → over-confident, coverage 0.64; propagating → 0.92) **and a native survival likelihood** (§4l→§4m, a new piecewise-exponential Poisson ML-NMR, scipy-cross-validated): the effect modifier is recovered unbiased (coverage 0.95) from mixed IPD + reconstructed-curve survival data, and a modifier-ignorant pool is badly biased (−0.42, 0% coverage) off the corpus average |
 | **fractional-polynomial survival NMA** (Jansen 2011) | a multi-parameter (non-PH) treatment effect for **AD survival** data, relaxing the proportional-hazards assumption the reported HR forces | needs patient-level-like data and in practice uses **digitised pseudo-IPD as if it were exact**, ignoring reconstruction uncertainty → over-confident | the calibrated reconstruction interval to propagate (as the inverse-variance weight), and per-interval events/at-risk as the input | **proven on both forms**: the piecewise-exponential analogue (§4i, `SurvivalNPHPooler`, coverage 0.86→0.96) **and the literal FP engine** (§4l, `allmeta` `fpNMA.js`): ignoring `r(t)` pulls the WLS FP curve off at late times (bias 0.17, RMSE 6× gold), encoding it in the weight recovers it (bias 0.02) |
 | **partial identification** (Manski 1990, 2003) | each unit contributes an **identified set**, not a point; inference is over sets-with-priors | not previously applied to **reconstruction uncertainty** in evidence synthesis | the calibrated identification interval *is* a Manski identified set; reconstruction **bias is partially-identified heterogeneity** | **proven** (§4d, §4e): the gold-standard-calibrated set brackets the held-out truth where a naive point does not; the evidence-completeness curve and atlas quantify the set width |
 
 **The one-sentence claim, hedged exactly.** Reconstruction-with-calibrated-UQ is the substrate that lets a
-single synthesis pool trials of mixed data granularity *without manufacturing false precision* — and across
-Phases 1–4 this is **proven** for pairwise random-effects pooling (Rubin variance, §4), for the
-partially-identified set treatment of reconstruction bias (Manski, §4d–§4e), for a real **consistency-checked
-network** (§4h), a real **non-PH survival network** (§4i), the **ML-NMR effect-modifier case via the curve-derived
-RMST** (§4k, the engine used unmodified), and the **literal Jansen fractional-polynomial NMA** (§4l, `allmeta`'s
-FP engine); and is delivered as a **pre-pooling diagnostic** (§4j). The one remaining unproven item is a
-*native survival-likelihood* ML-NMR (only the RMST-as-continuous route is shown) — a scoped, engine-identified
-next step (a Poisson/piecewise-exponential likelihood inside `MLNMRPooler`), not a finished result. The novelty
-is narrow and defensible: not a new NMA model (those engines exist), but the **missing partially-identified
-input** they were never given, plus the calibrated UQ that makes adding it honest.
+single synthesis pool trials of mixed data granularity *without manufacturing false precision* — and this is
+now **proven across every line in the ledger**: pairwise random-effects pooling (Rubin variance, §4), the
+partially-identified set treatment of reconstruction bias (Manski, §4d–§4e), a real **consistency-checked
+network** (§4h), a real **non-PH survival network** (§4i), ML-NMR with effect modifiers on **both** the
+curve-derived RMST route (§4k) **and a native survival likelihood** (§4m, a new scipy-cross-validated
+piecewise-exponential Poisson ML-NMR), and the **literal Jansen fractional-polynomial NMA** (§4l); and it is
+delivered as a **pre-pooling diagnostic** (§4j). No cell of the ledger now rests on an unproven claim; the
+remaining refinements are *productionisation*, not proof — a full covariate-distribution integration (vs the
+plug-in mean) and a Bayesian rather than frequentist fit for the survival ML-NMR, and upstreaming the new
+engine into `advanced-nma-pooling`. The novelty is narrow and defensible: mostly not a new NMA model (those
+engines exist), but the **missing partially-identified input** they were never given, plus the calibrated UQ
+that makes adding it honest.
 
 > Citations verified against PubMed (NCBI E-utilities), per the project's citation-integrity discipline —
 > logged in `CITATIONS.md`. Phillippo et al. 2020, *J R Stat Soc Ser A* 183(3):1189–1210

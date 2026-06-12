@@ -1,0 +1,25 @@
+{
+  "config": {
+    "reps": 200,
+    "k": 12,
+    "n_arm": 120,
+    "network": "A vs B piecewise-exponential, 6 IPD (patient rows) + 6 reconstructed-curve (aggregate)",
+    "true_gamma_B": 1.4,
+    "true_d_B": 0.5,
+    "xbar": 0.4,
+    "x_high": 0.7,
+    "true_logHR_B_at_high": 1.48,
+    "engine": "validate/survival_mlnmr.py (piecewise-exponential Poisson ML-NMR, native survival likelihood)"
+  },
+  "modifier_aware": {
+    "gamma_B_bias": 0.0018,
+    "gamma_B_coverage": 0.945,
+    "logHR_high_bias": 0.0047,
+    "logHR_high_coverage": 0.94
+  },
+  "modifier_ignorant": {
+    "logHR_high_bias": -0.4246,
+    "logHR_high_coverage": 0.0
+  },
+  "n_fits": 200
+}

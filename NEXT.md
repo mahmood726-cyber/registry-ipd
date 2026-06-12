@@ -16,7 +16,9 @@
 > `phase3c_step2_nonph_nma.py` (P3c·2, §4i — the curve unlocks a non-PH survival NMA on `SurvivalNPHPooler`) ·
 > `validate/phase4_evidence_atlas.js` (P4, §4j — the evidence-completeness atlas / pre-pooling information map) ·
 > `phase3c_step3_mlnmr_rmst.py` (P3c·3, §4k — ML-NMR effect modifier, time-to-event via RMST on `MLNMRPooler`) ·
-> `validate/phase3c_step4_fp_nma.js` (P3c·4, §4l — literal Jansen fractional-polynomial NMA on `allmeta`'s FPNMAEngine).
+> `validate/phase3c_step4_fp_nma.js` (P3c·4, §4l — literal Jansen fractional-polynomial NMA on `allmeta`'s FPNMAEngine) ·
+> `validate/survival_mlnmr.py` + `phase3c_step5_survival_mlnmr.py` (P3c·5, §4m — NEW native survival-likelihood
+> piecewise-exponential Poisson ML-NMR engine, scipy-cross-validated).
 >
 > **Phase 3c step 1 (§4h):** carried the §4d **de-bias offset + identification half-width** through the
 > `ADNMAPooler` network + `design_by_treatment_test` / `node_splitting_diagnostics`. On a homogeneous-consistent
@@ -39,13 +41,15 @@
 > consistency-checked + non-PH networks, the atlas; claimed/open: ML-NMR time-to-event wiring, literal FP
 > form). All new PubMed citations verified (`CITATIONS.md` entries 13–15). No new code.
 >
-> **All roadmap phases (1 → 5) are DONE**, plus the NMA-engine extensions §4k (ML-NMR via RMST) and §4l
-> (literal Jansen FP), which between them flipped §7's two remaining caveats to proven. The §7 ledger now has
-> **one** unproven item left: a **native survival-likelihood ML-NMR** — a Poisson/piecewise-exponential
-> likelihood *inside* `MLNMRPooler` (a deeper change to `advanced-nma-pooling` itself, beyond the
-> RMST-as-continuous route already shown in §4k). The other easy add is a **Phase-4 atlas dashboard panel**
-> (offline SVG, like the census panels in `validation-dashboard.html`). Roadmap in `SYNTHESIS-VISION.md` §5;
-> reuse map in §5b.
+> **All roadmap phases (1 → 5) are DONE**, plus NMA-engine extensions §4k–§4m. **The entire §7 proven-vs-claimed
+> ledger is now fully PROVEN** — §4m (the new native survival-likelihood PWE Poisson ML-NMR) closed the last
+> open cell. Remaining work is *productionisation / polish*, not proof: (1) a full covariate-distribution
+> integration (vs plug-in mean) and a Bayesian fit for the survival ML-NMR, and **upstreaming
+> `validate/survival_mlnmr.py` into `advanced-nma-pooling`** as a real `SurvivalMLNMRPooler`; (2) the
+> `fpNMA.js` heuristic-CI fix (a P0 found in the GLP/RapidMeta review — the engine fabricates CIs from
+> `0.1*|logHR|+0.05` instead of `(X'WX)^-1`); (3) a **Phase-4 atlas dashboard panel** (offline SVG). See the
+> review-findings report (this session) for the cross-project improvement backlog. Roadmap in
+> `SYNTHESIS-VISION.md` §5; reuse map in §5b.
 >
 > **Verify cross-repo deps exist before starting:** `C:\Projects\spec-collapse-atlas` (Py) and
 > `C:\Projects\advanced-nma-pooling\src` (Py) must be importable; the Monte-Carlo demos re-run from the
