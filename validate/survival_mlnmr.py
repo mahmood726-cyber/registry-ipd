@@ -1,5 +1,7 @@
 #!/usr/bin/env python
-"""A native survival-likelihood ML-NMR engine: piecewise-exponential (Poisson) network meta-regression.
+"""EXPERIMENTAL — no external R/flexsurv oracle; validated only against its own Python output (an independent scipy.optimize fit of the same Poisson log-likelihood in harvest/test_phase3c_step5.py); not for primary published estimates without independent confirmation.
+
+A native survival-likelihood ML-NMR engine: piecewise-exponential (Poisson) network meta-regression.
 
 This is the one synthesis engine the portfolio did NOT already have (SYNTHESIS-VISION.md Sec 7): a ML-NMR
 with a *native survival likelihood* rather than the RMST-as-Gaussian route of Phase 3c step 3. It fits a

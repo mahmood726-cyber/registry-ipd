@@ -639,6 +639,10 @@
   function maxTime(ipd) { return ipd.reduce((m, r) => Math.max(m, r.time), 0); }
 
   // ============================================ 5b. Royston–Parmar flexible parametric (spline)
+  // EXPERIMENTAL — no external R/flexsurv oracle; validated only against its own JS output (reproduces a
+  // known Weibull curve + monotonicity in test/engine.spec.js); the OLS-on-(log t, cloglog S) fit is an
+  // extrapolation from registry anchors, NOT an MLE on IPD; not for primary published estimates without
+  // independent confirmation.
 
   // We have EXACT registry (t,S) anchors, so the RP model log H(t) = s(log t; gamma) is fit by
   // ordinary least squares on (x=log t, y=log(-log S)) — no IPD/MLE needed. Restricted cubic
