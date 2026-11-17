@@ -103,6 +103,13 @@
       <h2 style="margin-top:18px">Self-audit checks</h2>
       <table id="checks"><tbody></tbody></table>
       <div id="flags" style="margin-top:10px"></div>
+      <h2 style="margin-top:18px">Check these numbers in R</h2>
+      <div class="muted">One R script, generated from this trial and the pseudo-IPD just reconstructed, recomputes the page's
+        estimators on the same rows (survival: Kaplan-Meier, medians, RMST, Cox; QP and Aalen-Johansen when used) and prints
+        page value, R value and difference, then MATCH n/n or MISMATCH.</div>
+      <div class="row" style="margin-top:8px"><button id="rDl">Download R script</button> <button id="rWeb">Verify in R</button>
+        <span id="rStatus" style="margin-left:8px;font-family:ui-monospace,Consolas,monospace"></span></div>
+      <pre id="rOut" style="display:none;white-space:pre-wrap;font-size:11px"></pre>
       <div id="advancedWrap" style="margin-top:18px;display:none">
         <button id="advBtn">Run advanced analysis · uncertainty · non-PH · competing risks</button>
         <div id="advanced" style="margin-top:12px"></div>
@@ -272,6 +279,7 @@
     try { res = RIPD.reconstruct(trial, opts); }
     catch(e){ setErr('Reconstruction error: '+e.message); return; }
     lastResult = res; lastTrial = trial;
+    window.RIPD_PAGE_STATE = { trial: trial, result: res };   // read by the R path below
     render(trial, res);
   }
 
@@ -473,6 +481,273 @@
 
   // auto-load first example for convenience
   if(sel.options.length){ sel.selectedIndex=0; document.getElementById('loadEx').click(); }
+})();
+</script>
+<script>
+/* R path: "Download R script" + in-page "Verify in R" (WebR).
+ * One script, generated from the trial in the text box and the pseudo-IPD the page has just
+ * reconstructed. R recomputes, on the SAME pseudo-IPD rows, every estimator the page applies to
+ * them, with the references of the validation archive (PREREG, Gate 1): survival::survfit
+ * Kaplan-Meier (all times and S), step median, survfit rmean (RMST), coxph(ties = "breslow")
+ * log-HR (the ridge specification when the engine penalises), survfit multi-state Aalen-Johansen;
+ * the R specification of the linear-interpolated median and of the QP realisation, with the
+ * closed-form censoring vector cross-checked by quadprog::solve.QP. Tolerances (pre-registered):
+ * 1e-9 relative to max(1,|R|); Cox 1e-7 absolute; QP 1e-8. It prints page value, R value,
+ * difference and ok/DIFF per check, then MATCH n/n or MISMATCH, with anything that could not be
+ * checked named as NOT CHECKED. The reconstruction (Guyot / anchor-exact) itself has no R
+ * equivalent and is never claimed as checked.
+ */
+(function(){
+  "use strict";
+  var RIPD = window.RIPD, WEBR = 'https://webr.r-wasm.org/v0.5.4/';
+  function num(x){ return (x===null||x===undefined||typeof x!=='number'||isNaN(x)) ? 'NA' : String(x); }
+  function vec(a){ return 'c(' + a.map(num).join(', ') + ')'; }
+  function str(s){ return '"' + String(s==null?'':s).replace(/\\/g,'\\\\').replace(/"/g,'\\"').replace(/[\r\n]/g,' ') + '"'; }
+
+  var R_HEAD = [
+    "options(width = 250)",
+    "suppressPackageStartupMessages(library(survival))",
+    "TOL <- 1e-9; TOL_COX <- 1e-7; TOL_QP <- 1e-8",
+    "rows <- list(); notchecked <- character(0)",
+    "add <- function(name, a, r, tol, absolute = FALSE) {",
+    "  a <- as.numeric(a); r <- as.numeric(r)",
+    "  same <- length(a) == length(r) && all(is.na(a) == is.na(r))",
+    "  d <- if (same && any(!is.na(r))) max(abs(a[!is.na(r)] - r[!is.na(r)])) else if (same) 0 else NA",
+    "  ok <- same && (if (any(!is.na(r))) all(abs(a[!is.na(r)] - r[!is.na(r)]) <= tol * (if (absolute) 1 else pmax(1, abs(r[!is.na(r)])))) else TRUE)",
+    "  show <- function(v) if (length(v) == 1) sprintf('%.15g', v) else sprintf('[%d values]', length(v))",
+    "  rows[[length(rows) + 1]] <<- data.frame(check = name, page = show(a), R = show(r), maxdiff = if (is.na(d)) 'length/NA differs' else sprintf('%.3g', d),",
+    "                                       tol = sprintf('%.0e%s', tol, if (absolute) ' abs' else ''), result = if (ok) 'ok' else 'DIFF')",
+    "}",
+    "interp_median <- function(t, S) {   # R specification of medianFromKM(..., {interpolate: true})",
+    "  pt <- 0; ps <- 1",
+    "  for (i in seq_along(t)) {",
+    "    if (S[i] <= 0.5 + 1e-12) {",
+    "      if (ps > 0.5 && ps - S[i] > 1e-12) return(pt + (ps - 0.5) / (ps - S[i]) * (t[i] - pt))",
+    "      return(t[i])",
+    "    }",
+    "    pt <- t[i]; ps <- S[i]",
+    "  }",
+    "  NA_real_",
+    "}",
+    "ridge_breslow <- function(time, status, x, lam = 1) {   # Breslow partial likelihood - lam*b^2/2 (engine's ridge)",
+    "  ev <- sort(unique(time[status == 1])); b <- 0",
+    "  for (it in 1:200) {",
+    "    U <- -lam * b; I <- lam",
+    "    for (et in ev) { r <- time >= et - 1e-12; e <- exp(b * x[r]); S0 <- sum(e); S1 <- sum(x[r] * e)",
+    "      at <- status == 1 & abs(time - et) < 1e-12; dk <- sum(at); sx <- sum(x[at])",
+    "      p <- S1 / S0; U <- U + sx - dk * p; I <- I + dk * (p - p * p) }",
+    "    st <- U / I; b <- b + st; if (abs(st) < 1e-13) break",
+    "  }",
+    "  b",
+    "}",
+    "pava_dec <- function(s) {   # isotonic non-increasing fit, unit weights",
+    "  v <- -s; vals <- c(); wts <- c(); starts <- c()",
+    "  for (i in seq_along(v)) { cv <- v[i]; cw <- 1; cs <- i",
+    "    while (length(vals) && vals[length(vals)] >= cv) { pv <- vals[length(vals)]; pw <- wts[length(wts)]; cs <- starts[length(starts)]",
+    "      vals <- vals[-length(vals)]; wts <- wts[-length(wts)]; starts <- starts[-length(starts)]",
+    "      cv <- (pv * pw + cv * cw) / (pw + cw); cw <- pw + cw }",
+    "    vals <- c(vals, cv); wts <- c(wts, cw); starts <- c(starts, cs) }",
+    "  out <- numeric(length(v)); ends <- c(starts[-1] - 1, length(v))",
+    "  for (b in seq_along(vals)) out[starts[b]:ends[b]] <- -vals[b]",
+    "  out",
+    "}",
+    "jsround <- function(x) floor(x + 0.5)   # JavaScript Math.round",
+    "qp_spec <- function(t, S, N, E, fu) {   # R specification of reconstructArmQP (Titman-style censoring QP)",
+    "  ok <- is.finite(t) & is.finite(S); t <- t[ok]; S <- S[ok]; o <- order(t); t <- t[o]; S <- S[o]",
+    "  if (!(length(t) && abs(t[1]) < 1e-9)) { t <- c(0, t); S <- c(1, S) }",
+    "  S <- pava_dec(pmin(1, pmax(0, S))); nt <- length(t); if (is.na(N)) N <- 1",
+    "  h <- numeric(nt); for (k in 2:nt) h[k] <- min(0.999, max(0, if (S[k - 1] > 0) 1 - S[k] / S[k - 1] else 0))",
+    "  n0 <- numeric(nt + 1); n0[2] <- N; if (nt >= 2) for (k in 2:nt) n0[k + 1] <- n0[k] * (1 - h[k])",
+    "  E0 <- sum(h[2:nt] * n0[2:nt]); A <- numeric(nt)",
+    "  for (k in 2:nt) { s <- 0; if (k + 1 <= nt) for (m in (k + 1):nt) { pr <- 1; if (k + 1 <= m - 1) for (l in (k + 1):(m - 1)) pr <- pr * (1 - h[l]); s <- s + h[m] * pr }; A[k] <- -s }",
+    "  sumA2 <- sum(A[2:nt]^2); if (sumA2 <= 0) sumA2 <- 1",
+    "  Et <- if (!is.na(E) && E > 0) min(E, E0) else E0",
+    "  lam <- (Et - E0) / sumA2; cc <- numeric(nt); cc[2:nt] <- pmax(0, lam * A[2:nt])",
+    "  qp <- NULL",
+    "  if (!is.na(E) && E > 0 && E < E0 && any(A[2:nt] != 0)) qp <- list(m = nt - 1, A = A[2:nt], b = Et - E0, closed = cc[2:nt])",
+    "  time <- c(); status <- c(); n <- N",
+    "  for (k in 2:nt) { dk <- min(jsround(h[k] * n), n); t0 <- t[k - 1]; t1 <- t[k]",
+    "    if (dk > 0) { time <- c(time, t0 + (t1 - t0) * ((0:(dk - 1)) + 0.5) / max(1, dk)); status <- c(status, rep(1, dk)) }",
+    "    ck <- min(jsround(cc[k]), n - dk); if (ck > 0) { time <- c(time, rep(t1, ck)); status <- c(status, rep(0, ck)) }",
+    "    n <- n - dk - max(ck, 0) }",
+    "  tailT <- if (is.na(fu)) t[nt] else fu",
+    "  rem <- max(0, jsround(n)); if (rem > 0) { time <- c(time, rep(tailT, rem)); status <- c(status, rep(0, rem)) }",
+    "  list(time = time, status = status, qp = qp)",
+    "}",
+    ""
+  ];
+  var R_TAIL = [
+    "",
+    "for (a in arms) {",
+    "  if (!length(a$time)) { notchecked <- c(notchecked, paste0('arm ', a$id, ': no rows')); next }",
+    "  f <- survfit(Surv(a$time, a$status) ~ 1)",
+    "  add(paste0('KM times, arm ', a$id), a$km_t, f$time, TOL)",
+    "  add(paste0('KM S(t), arm ', a$id), a$km_S, f$surv, TOL)",
+    "  add(paste0('step median, arm ', a$id), a$med, unname(summary(f)$table['median']), TOL)",
+    "  add(paste0('interpolated median (R spec), arm ', a$id), a$medi, interp_median(f$time, f$surv), TOL)",
+    "  rm <- if (tau < min(f$time)) tau else unname(summary(f, rmean = tau)$table['rmean'])",
+    "  add(paste0('RMST to tau = ', signif(tau, 6), ', arm ', a$id), a$rmst, rm, TOL)",
+    "  if (!is.null(a$qp_in)) {",
+    "    q <- qp_spec(a$qp_in$t, a$qp_in$S, a$qp_in$N, a$qp_in$E, a$qp_in$fu)",
+    "    add(paste0('QP realisation times (R spec), arm ', a$id), a$time, q$time, TOL)",
+    "    add(paste0('QP realisation status (R spec), arm ', a$id), a$status, q$status, 0)",
+    "    if (!is.null(q$qp)) {",
+    "      if (requireNamespace('quadprog', quietly = TRUE)) {",
+    "        sol <- quadprog::solve.QP(Dmat = diag(q$qp$m), dvec = rep(0, q$qp$m), Amat = cbind(q$qp$A, diag(q$qp$m)),",
+    "                                  bvec = c(q$qp$b, rep(0, q$qp$m)), meq = 1)",
+    "        add(paste0('QP censoring vector: closed form (R spec, in the page column) vs quadprog::solve.QP, arm ', a$id), q$qp$closed, sol$solution, TOL_QP)",
+    "      } else notchecked <- c(notchecked, paste0('QP closed form vs solve.QP, arm ', a$id, ': R package quadprog not available'))",
+    "    }",
+    "  }",
+    "  if (!is.null(a$cause)) {",
+    "    g <- survfit(Surv(a$cr_time, factor(a$cause, levels = 0:2)) ~ 1)",
+    "    add(paste0('Aalen-Johansen times, arm ', a$id), a$aj_t, g$time, TOL)",
+    "    add(paste0('Aalen-Johansen CIF cause 1, arm ', a$id), a$aj_cif1, g$pstate[, which(g$states == '1')], TOL)",
+    "    add(paste0('Aalen-Johansen CIF cause 2, arm ', a$id), a$aj_cif2, g$pstate[, which(g$states == '2')], TOL)",
+    "  }",
+    "}",
+    "if (!is.null(cox)) {",
+    "  d <- data.frame(time = c(cox$exp$time, cox$ctl$time), status = c(cox$exp$status, cox$ctl$status),",
+    "                  x = c(rep(1, length(cox$exp$time)), rep(0, length(cox$ctl$time))))",
+    "  if (cox$penalized) {",
+    "    add('Cox log-HR exp vs ctl (engine penalised: ridge Breslow spec, lambda 1)', cox$beta, ridge_breslow(d$time, d$status, d$x, 1), TOL_COX, TRUE)",
+    "  } else {",
+    "    fit <- coxph(Surv(time, status) ~ x, data = d, ties = 'breslow')",
+    "    add('Cox log-HR exp vs ctl (coxph, Breslow ties)', cox$beta, unname(coef(fit)), TOL_COX, TRUE)",
+    "  }",
+    "}",
+    "out <- do.call(rbind, rows)",
+    "print(out, row.names = FALSE, right = FALSE)",
+    "cat(sprintf('survival %s, %s\\n', as.character(packageVersion('survival')), R.version.string))",
+    "for (x in notchecked) cat('NOT CHECKED:', x, '\\n')",
+    "ok <- out$result == 'ok'",
+    "nc <- if (length(notchecked)) sprintf('; NOT CHECKED %d (listed above)', length(notchecked)) else ''",
+    "if (all(ok)) cat(sprintf('MATCH %d/%d%s\\n', sum(ok), length(ok), nc)) else",
+    "  cat(sprintf('MISMATCH %d/%d differ%s: %s\\n', sum(!ok), length(ok), nc, paste(out$check[!ok], collapse = '; ')))"
+  ];
+
+  // Returns {ok:true, script} or {ok:false, reason}.
+  function buildScript(trial, res){
+    if(!trial || !res) return {ok:false, reason:'run Reconstruct first'};
+    if(!res.arms || !res.arms.length) return {ok:false, reason:'the page reconstructed no pseudo-IPD (Tier '+res.tier+'), so there is nothing to recompute'};
+    var _ = RIPD._, L = [];
+    var maxT = res.arms.map(function(a){ return a.ipd.reduce(function(m,r){ return Math.max(m,r.time); },0); });
+    var tau = Math.min.apply(null, maxT);
+    var cr = null;
+    if((trial.arms||[]).some(function(a){ return a.competing_events; })){
+      try { cr = RIPD.reconstructCompetingRisks(trial); } catch(e){ cr = null; }
+    }
+    L.push("# registry-ipd - R check of the page's estimators on the pseudo-IPD it reconstructed");
+    L.push("# trial " + (res.nct_id||'(no id)') + ", Tier " + res.tier + ", reconstruction method " + (res.method||'parametric (Tier B)'));
+    L.push("# References (validation archive PREREG, Gate 1): survival::survfit, coxph(ties='breslow'), survfit Aalen-Johansen;");
+    L.push("# R specifications of the interpolated median and the QP realisation; quadprog::solve.QP for the QP.");
+    L.push("# Tolerance: 1e-9 relative to max(1,|R|); Cox log-HR 1e-7 absolute; QP closed form vs solve.QP 1e-8.");
+    L.push("# NOT checked here: the reconstruction from the registry curve itself (Guyot / anchor-exact / parametric has no R");
+    L.push("# equivalent that should agree; IPDfromKM differs from the engine by design - archive Gate 2). R checks the");
+    L.push("# estimators on the SAME pseudo-IPD rows; this is not a check of accuracy against true patient data.");
+    L.push.apply(L, R_HEAD);
+    L.push("tau <- " + num(tau) + "   # RMST horizon: the smallest of the arms' largest times");
+    L.push("arms <- list(");
+    res.arms.forEach(function(a, i){
+      var km = _.kmFromIPD(a.ipd), inp = (trial.arms||[]).filter(function(x){ return x.arm_id===a.arm_id; })[0] || {};
+      var parts = [
+        "    id = " + str(a.arm_id + (a.role ? ' (' + a.role + ')' : '')),
+        "    time = " + vec(a.ipd.map(function(r){ return r.time; })),
+        "    status = " + vec(a.ipd.map(function(r){ return r.status; })),
+        "    km_t = " + vec(km.map(function(s){ return s.t; })),
+        "    km_S = " + vec(km.map(function(s){ return s.S; })),
+        "    med = " + num(_.medianFromKM(km)),
+        "    medi = " + num(_.medianFromKM(km, {interpolate:true})),
+        "    rmst = " + num(_.rmst(km, tau))
+      ];
+      if(res.method==='qp' && inp.km_points){
+        parts.push("    qp_in = list(t = " + vec(inp.km_points.map(function(p){ return p.t; })) + ", S = " + vec(inp.km_points.map(function(p){ return p.S; }))
+          + ", N = " + num(inp.N) + ", E = " + num(inp.total_events) + ", fu = " + num(inp.follow_up_max) + ")");
+      }
+      var ca = cr && cr.arms && cr.arms[i];
+      if(ca && ca.ipd_cr && ca.cif && ca.arm_id===a.arm_id){
+        parts.push("    cr_time = " + vec(ca.ipd_cr.map(function(r){ return r.time; })) + ",   # Advanced panel: reconstructCompetingRisks(trial)");
+        parts.push("    cause = " + vec(ca.ipd_cr.map(function(r){ return r.cause; })));
+        parts.push("    aj_t = " + vec(ca.cif.map(function(s){ return s.t; })));
+        parts.push("    aj_cif1 = " + vec(ca.cif.map(function(s){ return s.cif1; })));
+        parts.push("    aj_cif2 = " + vec(ca.cif.map(function(s){ return s.cif2; })));
+      }
+      L.push("  list(\n" + parts.join(",\n") + ")" + (i < res.arms.length-1 ? "," : ""));
+    });
+    L.push(")");
+    var ex = res.arms.filter(function(a){ return a.role==='experimental'; })[0];
+    var ct = res.arms.filter(function(a){ return a.role==='comparator'; })[0];
+    if(ex && ct){
+      var rws = ex.ipd.map(function(r){ return {time:r.time, status:r.status, x:1}; })
+        .concat(ct.ipd.map(function(r){ return {time:r.time, status:r.status, x:0}; }));
+      var cx = _.coxLogHR(rws);
+      L.push("cox <- list(beta = " + num(cx.beta) + ", penalized = " + (cx.penalized ? "TRUE" : "FALSE")
+        + ",   # page: recon HR = exp(beta) = " + num(cx.hr));
+      L.push("  exp = list(time = arms[[" + (res.arms.indexOf(ex)+1) + "]]$time, status = arms[[" + (res.arms.indexOf(ex)+1) + "]]$status),");
+      L.push("  ctl = list(time = arms[[" + (res.arms.indexOf(ct)+1) + "]]$time, status = arms[[" + (res.arms.indexOf(ct)+1) + "]]$status))");
+    } else {
+      L.push("cox <- NULL");
+      L.push("notchecked <- c(notchecked, 'Cox log-HR: the trial has no experimental + comparator pair')");
+    }
+    L.push.apply(L, R_TAIL);
+    return {ok:true, script: L.join("\n") + "\n"};
+  }
+
+  var boot = null;
+  function webR(st){
+    if(!boot){
+      st('Loading WebR ' + WEBR + ' (one-time, ~30 MB)...');
+      boot = import(WEBR + 'webr.mjs').then(function(m){ var w = new m.WebR({baseUrl:WEBR, interactive:false}); return w.init().then(function(){ return w; }); });
+      boot.catch(function(){ boot = null; });
+    }
+    return boot;
+  }
+  function runWebR(script, st){
+    var w;
+    return webR(st).then(function(x){ w = x; st('Installing R package survival in WebR...');
+      return w.installPackages(['survival'], {quiet:true}); })
+    .then(function(){ return w.evalRString("if (requireNamespace('survival', quietly=TRUE)) '' else 'survival'"); })
+    .then(function(miss){
+      if(miss) throw new Error('R package not available in WebR: ' + miss);
+      // quadprog is optional: try it; the script names it as NOT CHECKED when it is missing
+      return w.installPackages(['quadprog'], {quiet:true}).catch(function(){});
+    }).then(function(){ st('Running the R script in WebR...'); return new w.Shelter(); })
+    .then(function(sh){
+      return sh.captureR(script, {captureStreams:true, withAutoprint:false}).then(function(cap){
+        sh.purge();
+        var out = (cap.output||[]).map(function(c){ return (c.type==='stderr'?'! ':'') + c.data; }).join('\n');
+        var ls = out.split('\n').filter(function(l){ return /^(MATCH|MISMATCH) /.test(l); });
+        var line = ls.length ? ls[ls.length-1] : '';
+        if(!line) return {status:'NOT CHECKED', line:'NOT CHECKED: the R script printed no MATCH/MISMATCH line', output:out};
+        return {status: /^MATCH /.test(line) ? 'MATCH' : 'MISMATCH', line: line, output: out};
+      }, function(e){ sh.purge(); throw e; });
+    }).catch(function(e){ return {status:'NOT CHECKED', line:'NOT CHECKED: ' + (e && e.message || e), output:''}; });
+  }
+
+  window.RIPD_RPATH = { buildScript: buildScript, runWebR: runWebR, WEBR: WEBR };
+  var dl = document.getElementById('rDl'), wb = document.getElementById('rWeb');
+  if(!dl || !wb) return;
+  var st = document.getElementById('rStatus'), pre = document.getElementById('rOut');
+  function cur(){ var s = window.RIPD_PAGE_STATE || {}; return buildScript(s.trial, s.result); }
+  dl.addEventListener('click', function(){
+    var b = cur();
+    if(!b.ok){ st.textContent = 'NOT CHECKED: ' + b.reason; st.setAttribute('data-status','NOT CHECKED'); return; }
+    var url = URL.createObjectURL(new Blob([b.script], {type:'text/x-r;charset=utf-8'}));
+    var a = document.createElement('a'); a.href = url; a.download = 'registry_ipd_verify.R';
+    document.body.appendChild(a); a.click();
+    setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(url); }, 0);
+    st.textContent = 'Downloaded registry_ipd_verify.R - run: Rscript registry_ipd_verify.R';
+  });
+  wb.addEventListener('click', function(){
+    st.removeAttribute('data-status');
+    var b = cur();
+    if(!b.ok){ st.textContent = 'NOT CHECKED: ' + b.reason; st.setAttribute('data-status','NOT CHECKED'); return; }
+    wb.disabled = true;
+    runWebR(b.script, function(t){ st.textContent = t; }).then(function(r){
+      st.textContent = r.line; st.setAttribute('data-status', r.status);
+      pre.style.display = ''; pre.textContent = r.output; wb.disabled = false;
+    });
+  });
 })();
 </script>
 </body>
