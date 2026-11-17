@@ -114,12 +114,20 @@
   // With {interpolate:true}, linearly interpolate the 0.5-crossing between the bracketing points —
   // important for COARSE registry curves, whose step median otherwise snaps up to the next posted
   // timepoint (validated: external same-endpoint median error 40% -> 6% with interpolation).
+  // Without interpolation the rule is survival::survfit's: on an EXACT S = 0.5 plateau (to sqrt(machine eps)) the
+  // median is the midpoint between the plateau start and the next time the curve drops (the plateau start when it
+  // never drops again).
+  const PLATEAU_TOL = 1.4901161193847656e-8;   // sqrt(.Machine$double.eps), survfit's quantile tolerance
   function medianFromKM(steps, opts) {
     let pt = 0, ps = 1;
-    for (const s of steps) {
+    for (let i = 0; i < steps.length; i++) {
+      const s = steps[i];
       if (s.S <= 0.5 + 1e-12) {
         if (opts && opts.interpolate && ps > 0.5 && ps - s.S > 1e-12)
           return pt + (ps - 0.5) / (ps - s.S) * (s.t - pt);
+        if (!(opts && opts.interpolate) && Math.abs(s.S - 0.5) < PLATEAU_TOL) {
+          for (let j = i + 1; j < steps.length; j++) if (steps[j].S < s.S - PLATEAU_TOL) return (s.t + steps[j].t) / 2;
+        }
         return s.t;
       }
       pt = s.t; ps = s.S;

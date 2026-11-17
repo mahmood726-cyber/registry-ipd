@@ -33,7 +33,9 @@ test('kmFromIPD + median + rmst on a hand example', () => {
   // S after t=1: 3/4 ; after t=2: 3/4*2/3=1/2 ; censor at 3; event at 4 with 1 at risk -> 0
   assert.ok(Math.abs(steps[0].S - 0.75) < 1e-9);
   assert.ok(Math.abs(steps[1].S - 0.5) < 1e-9);
-  assert.strictEqual(RIPD._.medianFromKM(steps), 2);
+  // S = 0.5 exactly on [2, 4): survival::survfit reports the midpoint of the plateau, (2 + 4) / 2 = 3
+  // (this assertion previously pinned 2, the plateau start; R gives 3 on the same four rows).
+  assert.strictEqual(RIPD._.medianFromKM(steps), 3);
 });
 
 test('coxLogHR recovers a known strong effect with correct sign', () => {
